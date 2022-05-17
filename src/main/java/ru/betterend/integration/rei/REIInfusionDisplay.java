@@ -1,5 +1,5 @@
 package ru.betterend.integration.rei;
-
+/*
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.SimpleGridMenuDisplay;
 import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
@@ -60,3 +60,4 @@ public class REIInfusionDisplay extends BasicDisplay implements SimpleGridMenuDi
 	//	return this.input;
 	//}
 }
+*/

@@ -1,5 +1,5 @@
 package ru.betterend.integration.rei;
-
+/*
 import com.google.common.collect.Lists;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
@@ -10,7 +10,7 @@ import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.entry.EntryStack;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
+
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 import ru.betterend.BetterEnd;
@@ -108,3 +108,4 @@ public class REIInfusionCategory implements DisplayCategory<REIInfusionDisplay> 
 		return 104;
 	}
 }
+ */

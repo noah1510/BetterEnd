@@ -1,5 +1,5 @@
 package ru.betterend.integration.rei;
-
+/*
 import com.google.common.collect.Lists;
 import com.mojang.blaze3d.vertex.PoseStack;
 import it.unimi.dsi.fastutil.ints.IntList;
@@ -13,7 +13,7 @@ import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.entry.EntryStack;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
+
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
@@ -119,3 +119,4 @@ public class REIAnvilCategory implements DisplayCategory<REIAnvilDisplay> {
 	}
 	
 }
+*/

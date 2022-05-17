@@ -1,5 +1,5 @@
 package ru.betterend.integration.rei;
-
+/*
 import net.minecraft.world.item.crafting.BlastingRecipe;
 
 public class REIBlastingDisplay extends REIAlloyingDisplay {
@@ -7,3 +7,4 @@ public class REIBlastingDisplay extends REIAlloyingDisplay {
 		super(recipe, recipe.getExperience(), recipe.getCookingTime());
 	}
 }
+*/

@@ -1,5 +1,5 @@
 package ru.betterend.integration.rei;
-
+/*
 import com.google.common.collect.Lists;
 import com.mojang.blaze3d.vertex.PoseStack;
 import me.shedaniel.math.Point;
@@ -15,7 +15,7 @@ import me.shedaniel.rei.api.common.entry.EntryStack;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
+
 import net.minecraft.world.item.Items;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -105,3 +105,4 @@ public class REIAlloyingFuelCategory implements DisplayCategory<REIAlloyingFuelD
 		};
 	}
 }
+*/

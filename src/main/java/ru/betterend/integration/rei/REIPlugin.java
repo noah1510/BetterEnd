@@ -1,5 +1,5 @@
 package ru.betterend.integration.rei;
-
+/*
 import com.google.common.collect.Lists;
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry;
@@ -24,6 +24,7 @@ import ru.betterend.registry.EndBlocks;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 
 //https://github.com/shedaniel/RoughlyEnoughItems/blob/6.x-1.17/default-plugin/src/main/java/me/shedaniel/rei/plugin/client/DefaultClientPlugin.java
 public class REIPlugin implements REIClientPlugin {
@@ -95,3 +96,4 @@ public class REIPlugin implements REIClientPlugin {
 		registry.addWorkstations(DefaultPlugin.FUEL, ITEM_FURNACESArray);
 	}
 }
+*/
