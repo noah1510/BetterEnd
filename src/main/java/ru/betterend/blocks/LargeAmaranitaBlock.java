@@ -29,10 +29,12 @@ public class LargeAmaranitaBlock extends EndPlantBlock implements AddMineableShe
 	private static final VoxelShape SHAPE_TOP = Shapes.or(Block.box(1, 3, 1, 15, 16, 15), SHAPE_BOTTOM);
 	
 	public LargeAmaranitaBlock() {
+		//TODO: 1.19 Test if we can remove dynamic shape and offsetType
 		super(FabricBlockSettings.of(Material.PLANT)
 								 
 								 .sound(SoundType.GRASS)
 								 .lightLevel((state) -> (state.getValue(SHAPE) == TripleShape.TOP) ? 15 : 0)
+					  .dynamicShape()
 					  .offsetType(OffsetType.NONE));
 	}
 	

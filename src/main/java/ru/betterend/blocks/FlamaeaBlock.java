@@ -29,8 +29,10 @@ public class FlamaeaBlock extends EndPlantBlock implements CustomItemProvider, A
 	private static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 1, 16);
 	
 	public FlamaeaBlock() {
+		//TODO: 1.19 Test if we can remove dynamic shape and offsetType
 		super(FabricBlockSettings.of(Material.PLANT)
 								 .sound(SoundType.WET_GRASS)
+					  .dynamicShape()
 					  .offsetType( BlockBehaviour.OffsetType.NONE));
 	}
 	

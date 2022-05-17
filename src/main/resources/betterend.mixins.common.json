@@ -4,6 +4,7 @@
 	"package": "ru.betterend.mixin.common",
 	"compatibilityLevel": "JAVA_16",
 	"mixins": [
+		"LevelMixin",
 		"NoiseBasedChunkGeneratorAccessor",
 		"NoiseGeneratorSettingsMixin",
 		"NoiseInterpolatorAccessor",
@@ -17,7 +18,6 @@
 		"WorldGenRegionMixin",
 		"BlockBehaviourMixin",
 		"NoiseChunkAccessor",
-		"DimensionTypeMixin",
 		"CraftingMenuMixin",
 		"LivingEntityMixin",
 		"ServerPlayerMixin",

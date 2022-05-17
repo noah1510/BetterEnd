@@ -41,6 +41,8 @@ import ru.betterend.world.generator.BiomeType;
 import ru.betterend.world.generator.GeneratorOptions;
 
 public class EndBiomes {
+	public static final BiomeAPI.Dimension END_CAVE = new BiomeAPI.Dimension(BiomeAPI.Dimension.END);
+
 	public static BiomePicker CAVE_BIOMES = null;
 	private static HexBiomeMap caveBiomeMap;
 	private static long lastSeed;
@@ -165,7 +167,7 @@ public class EndBiomes {
 			}
 		}
 	}
-	public static final BiomeAPI.Dimension END_CAVE = new BiomeAPI.Dimension(BiomeAPI.Dimension.END);
+
 	public static EndCaveBiome registerCaveBiome(EndCaveBiome.Config biomeConfig) {
 		final EndCaveBiome biome = EndCaveBiome.create(biomeConfig);
 		if (Configs.BIOME_CONFIG.getBoolean(biome.getID(), "enabled", true)) {

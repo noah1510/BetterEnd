@@ -2,6 +2,8 @@ package ru.betterend.mixin.common;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
+import net.minecraft.data.BuiltinRegistries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
@@ -12,6 +14,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.dimension.LevelStem;
 import net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator;
@@ -26,6 +29,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import ru.bclib.BCLib;
 import ru.bclib.api.biomes.BiomeAPI;
 import ru.betterend.BetterEnd;
 import ru.betterend.interfaces.BETargetChecker;
@@ -49,19 +53,16 @@ public abstract class ServerLevelMixin extends Level {
 							   int i) {
 		super(writableLevelData, resourceKey, holder, supplier, bl, bl2, l, i);
 	}
-	//private static String be_lastWorld = null;
-	
 
-//	@Inject(method = "<init>*", at = @At("TAIL"))
-//	private void be_onServerWorldInit(MinecraftServer server, Executor workerExecutor, LevelStorageSource.LevelStorageAccess session, ServerLevelData properties, ResourceKey<Level> registryKey, DimensionType dimensionType, ChunkProgressListener worldGenerationProgressListener, ChunkGenerator chunkGenerator, boolean debugWorld, long l, List<CustomSpawner> list, boolean bl, CallbackInfo info) {
-//		if (be_lastWorld != null && be_lastWorld.equals(session.getLevelId())) {
-//			return;
-//		}
-//
-//		be_lastWorld = session.getLevelId();
-//		//ServerLevel world = ServerLevel.class.cast(this);
-//		//EndBiomes.onWorldLoad(world.getSeed(), world.registryAccess().registryOrThrow(Registry.BIOME_REGISTRY));
-//	}
+	private final static List<ResourceKey<DimensionType>> BE_TEST_DIMENSIONS = List.of(BuiltinDimensionTypes.OVERWORLD, BuiltinDimensionTypes.OVERWORLD_CAVES, BuiltinDimensionTypes.NETHER);
+	@ModifyArg(method = "<init>", at = @At(value = "INVOKE", target="Lnet/minecraft/core/Holder;is(Lnet/minecraft/resources/ResourceKey;)Z"))
+	ResourceKey<DimensionType> be_dragonFight(ResourceKey<DimensionType> resourceKey){
+		if (!GeneratorOptions.hasDragonFights()) {
+			//this object would pass the test for the End-Dimension, so make sure we compare against something else to disabled the Dragon-Fight
+			if (this.dimensionTypeRegistration().is(BuiltinDimensionTypes.END))  return BuiltinDimensionTypes.OVERWORLD;
+		}
+		return resourceKey;
+	}
 	
 	@Inject(method = "<init>*", at = @At("TAIL"))
 	private void be_onServerWorldInit(MinecraftServer minecraftServer,
@@ -87,16 +88,7 @@ public abstract class ServerLevelMixin extends Level {
 			TerrainGenerator.initNoise(seed, chunkGenerator.getBiomeSource(), level.getChunkSource().randomState().sampler());
 		}
 	}
-	
-	@Inject(method = "getSharedSpawnPos", at = @At("HEAD"), cancellable = true)
-	private void be_getSharedSpawnPos(CallbackInfoReturnable<BlockPos> info) {
-		if (GeneratorOptions.changeSpawn()) {
-			if (ServerLevel.class.cast(this).dimension() == Level.END) {
-				BlockPos pos = GeneratorOptions.getSpawn();
-				info.setReturnValue(pos);
-			}
-		}
-	}
+
 	
 	@Inject(method = "makeObsidianPlatform", at = @At("HEAD"), cancellable = true)
 	private static void be_createObsidianPlatform(ServerLevel serverLevel, CallbackInfo info) {
