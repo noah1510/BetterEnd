@@ -21,6 +21,7 @@ import ru.bclib.util.BlocksHelper;
 import ru.bclib.util.MHelper;
 import ru.bclib.world.biomes.BCLBiome;
 import ru.bclib.world.features.DefaultFeature;
+import ru.bclib.world.generator.BiomePicker;
 import ru.betterend.registry.EndBiomes;
 import ru.betterend.util.BlockFixer;
 import ru.betterend.world.biome.EndBiome;
@@ -58,7 +59,7 @@ public abstract class EndCaveFeature extends DefaultFeature {
 			return false;
 		}
 		
-		EndCaveBiome biome = EndBiomes.getCaveBiome(pos.getX(), pos.getZ());
+		BiomePicker.Entry biome = EndBiomes.getCaveBiome(pos.getX(), pos.getZ());
 		Set<BlockPos> caveBlocks = generate(world, center, radius, random);
 		if (!caveBlocks.isEmpty()) {
 			if (biome != null) {
@@ -78,10 +79,10 @@ public abstract class EndCaveFeature extends DefaultFeature {
 					}
 				});
 
-				BlockState surfaceBlock = EndBiome.findTopMaterial(biome);
-				placeFloor(world, biome, floorPositions, random, surfaceBlock);
-				placeCeil(world, biome, ceilPositions, random);
-				placeWalls(world, biome, caveBlocks, random);
+				BlockState surfaceBlock = EndBiome.findTopMaterial(biome.bclBiome);
+				placeFloor(world, (EndCaveBiome) biome.bclBiome, floorPositions, random, surfaceBlock);
+				placeCeil(world, (EndCaveBiome) biome.bclBiome, ceilPositions, random);
+				placeWalls(world, (EndCaveBiome) biome.bclBiome, caveBlocks, random);
 			}
 			fixBlocks(world, caveBlocks);
 		}
@@ -150,12 +151,12 @@ public abstract class EndCaveFeature extends DefaultFeature {
 		return false;
 	}
 	
-	protected void setBiomes(WorldGenLevel world, EndCaveBiome biome, Set<BlockPos> blocks) {
+	protected void setBiomes(WorldGenLevel world, BiomePicker.Entry biome, Set<BlockPos> blocks) {
 		blocks.forEach((pos) -> setBiome(world, pos, biome));
 	}
 
-	protected void setBiome(WorldGenLevel world, BlockPos pos, EndCaveBiome biome) {
-		BiomeAPI.setBiome(world, pos, biome.getActualBiome());
+	protected void setBiome(WorldGenLevel world, BlockPos pos, BiomePicker.Entry biome) {
+		BiomeAPI.setBiome(world, pos, biome.actual);
 	}
 	
 	private BlockPos findPos(WorldGenLevel world, BlockPos pos, int radius, RandomSource random) {
@@ -232,7 +233,7 @@ public abstract class EndCaveFeature extends DefaultFeature {
 				Holder<Biome> biome = world.getBiome(pos.offset(x << 4, 0, z << 4));
 				BCLBiome endBiome = BiomeAPI.getFromBiome(biome);
 				boolean hasCaves = endBiome.getCustomData("has_caves", true);
-				if (!hasCaves && BiomeAPI.END_LAND_BIOME_PICKER.containsImmutable(endBiome.getID())) {
+				if (!hasCaves && BiomeAPI.wasRegisteredAsEndLandBiome(endBiome.getID())) {
 					return true;
 				}
 			}

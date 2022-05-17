@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -24,6 +25,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.LegacyRandomSource;
 import net.minecraft.world.level.material.Material;
 import ru.bclib.api.tag.CommonBlockTags;
 import ru.bclib.api.tag.NamedCommonItemTags;
@@ -31,12 +33,13 @@ import ru.bclib.api.tag.TagAPI.TagLocation;
 import ru.bclib.client.models.ModelsHelper;
 import ru.bclib.interfaces.ItemModelProvider;
 import ru.bclib.interfaces.TagProvider;
+import ru.bclib.util.MHelper;
 
 import java.util.List;
 import java.util.UUID;
 
 public class EndHammerItem extends DiggerItem implements ItemModelProvider, TagProvider {
-	public final static UUID ATTACK_KNOCKBACK_MODIFIER_ID = Mth.createInsecureUUID(ThreadLocalRandom.current());
+	public final static UUID ATTACK_KNOCKBACK_MODIFIER_ID = Mth.createInsecureUUID(MHelper.RANDOM_SOURCE);
 	
 	private final Multimap<Attribute, AttributeModifier> attributeModifiers;
 	

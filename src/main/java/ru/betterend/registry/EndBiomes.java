@@ -41,7 +41,7 @@ import ru.betterend.world.generator.BiomeType;
 import ru.betterend.world.generator.GeneratorOptions;
 
 public class EndBiomes {
-	public static final BiomePicker CAVE_BIOMES = new BiomePicker();
+	public static BiomePicker CAVE_BIOMES = null;
 	private static HexBiomeMap caveBiomeMap;
 	private static long lastSeed;
 	
@@ -81,8 +81,20 @@ public class EndBiomes {
 	}
 	
 	private static void onWorldLoad(ServerLevel level, long seed, Registry<Biome> registry) {
-		CAVE_BIOMES.getBiomes().forEach(biome -> biome.updateActualBiomes(registry));
-		CAVE_BIOMES.rebuild();
+		if (CAVE_BIOMES.biomeRegistry != registry) {
+			CAVE_BIOMES = new BiomePicker(registry);
+			registry.stream()
+					.filter(biome -> registry.getResourceKey(biome).isPresent())
+					.map(biome -> registry.getOrCreateHolder(registry.getResourceKey(biome).get()))
+					.map(biome -> biome.unwrapKey().orElseThrow().location())
+					.filter(id -> BiomeAPI.wasRegisteredAs(id, END_CAVE))
+					.map(id -> BiomeAPI.getBiome(id))
+					.filter(bcl -> bcl != null)
+					.forEach(bcl -> CAVE_BIOMES.addBiome(bcl));
+
+			caveBiomeMap = null;
+		}
+
 		if (caveBiomeMap == null || lastSeed != seed) {
 			caveBiomeMap = new HexBiomeMap(seed, GeneratorOptions.getBiomeSizeCaves(), CAVE_BIOMES);
 			lastSeed = seed;
@@ -134,7 +146,7 @@ public class EndBiomes {
 	public static EndBiome registerSubBiomeIntegration(EndBiome.Config biomeConfig) {
 		EndBiome biome = EndBiome.create(biomeConfig);
 		if (Configs.BIOME_CONFIG.getBoolean(biome.getID(), "enabled", true)) {
-			BiomeAPI.registerBiome(biome);
+			BiomeAPI.registerBiome(biome, BiomeAPI.Dimension.END);
 		}
 		return biome;
 	}
@@ -153,17 +165,16 @@ public class EndBiomes {
 			}
 		}
 	}
-	
+	public static final BiomeAPI.Dimension END_CAVE = new BiomeAPI.Dimension(BiomeAPI.Dimension.END);
 	public static EndCaveBiome registerCaveBiome(EndCaveBiome.Config biomeConfig) {
 		final EndCaveBiome biome = EndCaveBiome.create(biomeConfig);
 		if (Configs.BIOME_CONFIG.getBoolean(biome.getID(), "enabled", true)) {
-			BiomeAPI.registerBiome(biome);
-			CAVE_BIOMES.addBiome(biome);
+			BiomeAPI.registerBiome(biome, END_CAVE);
 		}
 		return biome;
 	}
 	
-	public static EndCaveBiome getCaveBiome(int x, int z) {
-		return (EndCaveBiome) caveBiomeMap.getBiome(x, 5, z);
+	public static BiomePicker.Entry getCaveBiome(int x, int z) {
+		return caveBiomeMap.getBiome(x, 5, z);
 	}
 }

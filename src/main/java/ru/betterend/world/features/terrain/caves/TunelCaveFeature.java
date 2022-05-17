@@ -21,6 +21,7 @@ import ru.bclib.api.biomes.BiomeAPI;
 import ru.bclib.api.tag.CommonBlockTags;
 import ru.bclib.util.BlocksHelper;
 import ru.bclib.world.biomes.BCLBiome;
+import ru.bclib.world.generator.BiomePicker;
 import ru.betterend.noise.OpenSimplexNoise;
 import ru.betterend.registry.EndBiomes;
 import ru.betterend.world.biome.EndBiome;
@@ -131,13 +132,13 @@ public class TunelCaveFeature extends EndCaveFeature {
 			return false;
 		}
 		
-		Map<EndCaveBiome, Set<BlockPos>> floorSets = Maps.newHashMap();
-		Map<EndCaveBiome, Set<BlockPos>> ceilSets = Maps.newHashMap();
+		Map<BiomePicker.Entry, Set<BlockPos>> floorSets = Maps.newHashMap();
+		Map<BiomePicker.Entry, Set<BlockPos>> ceilSets = Maps.newHashMap();
 		MutableBlockPos mut = new MutableBlockPos();
 		Set<BlockPos> remove = Sets.newHashSet();
 		caveBlocks.forEach((bpos) -> {
 			mut.set(bpos);
-			EndCaveBiome bio = EndBiomes.getCaveBiome(bpos.getX(), bpos.getZ());
+			BiomePicker.Entry bio = EndBiomes.getCaveBiome(bpos.getX(), bpos.getZ());
 			int height = world.getHeight(Types.WORLD_SURFACE, bpos.getX(), bpos.getZ());
 			if (mut.getY() >= height) {
 				remove.add(bpos);
@@ -171,14 +172,14 @@ public class TunelCaveFeature extends EndCaveFeature {
 		}
 		
 		floorSets.forEach((biome, floorPositions) -> {
-			BlockState surfaceBlock = EndBiome.findTopMaterial(biome);
-			placeFloor(world, biome, floorPositions, random, surfaceBlock);
+			BlockState surfaceBlock = EndBiome.findTopMaterial(biome.bclBiome);
+			placeFloor(world, (EndCaveBiome) biome.bclBiome, floorPositions, random, surfaceBlock);
 		});
 		ceilSets.forEach((biome, ceilPositions) -> {
-			placeCeil(world, biome, ceilPositions, random);
+			placeCeil(world, (EndCaveBiome) biome.bclBiome, ceilPositions, random);
 		});
-		EndCaveBiome biome = EndBiomes.getCaveBiome(pos.getX(), pos.getZ());
-		placeWalls(world, biome, caveBlocks, random);
+		BiomePicker.Entry biome = EndBiomes.getCaveBiome(pos.getX(), pos.getZ());
+		placeWalls(world, (EndCaveBiome) biome.bclBiome, caveBlocks, random);
 		fixBlocks(world, caveBlocks);
 		
 		return true;
