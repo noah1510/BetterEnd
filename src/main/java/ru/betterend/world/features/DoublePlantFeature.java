@@ -9,6 +9,7 @@ import ru.bclib.util.BlocksHelper;
 import ru.bclib.util.MHelper;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class DoublePlantFeature extends ScatterFeature {
 	private final Block smallPlant;
@@ -22,7 +23,7 @@ public class DoublePlantFeature extends ScatterFeature {
 	}
 	
 	@Override
-	public boolean canGenerate(WorldGenLevel world, Random random, BlockPos center, BlockPos blockPos, float radius) {
+	public boolean canGenerate(WorldGenLevel world, RandomSource random, BlockPos center, BlockPos blockPos, float radius) {
 		float d = MHelper.length(
 			center.getX() - blockPos.getX(),
 			center.getZ() - blockPos.getZ()
@@ -32,7 +33,7 @@ public class DoublePlantFeature extends ScatterFeature {
 	}
 	
 	@Override
-	public void generate(WorldGenLevel world, Random random, BlockPos blockPos) {
+	public void generate(WorldGenLevel world, RandomSource random, BlockPos blockPos) {
 		if (plant instanceof BaseDoublePlantBlock) {
 			int rot = random.nextInt(4);
 			BlockState state = plant.defaultBlockState().setValue(BaseDoublePlantBlock.ROTATION, rot);

@@ -21,11 +21,12 @@ import ru.betterend.world.biome.EndBiome;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class FloatingSpireFeature extends SpireFeature {
 	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig) {
-		final Random random = featureConfig.random();
+		final RandomSource random = featureConfig.random();
 		BlockPos pos = featureConfig.origin();
 		final WorldGenLevel world = featureConfig.level();
 		final ChunkGenerator chunkGenerator = featureConfig.chunkGenerator();

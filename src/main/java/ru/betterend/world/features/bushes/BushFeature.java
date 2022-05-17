@@ -22,6 +22,7 @@ import ru.bclib.world.features.DefaultFeature;
 import ru.betterend.noise.OpenSimplexNoise;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 import java.util.function.Function;
 
 public class BushFeature extends DefaultFeature {
@@ -36,7 +37,7 @@ public class BushFeature extends DefaultFeature {
 	
 	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig) {
-		final Random random = featureConfig.random();
+		final RandomSource random = featureConfig.random();
 		final BlockPos pos = featureConfig.origin();
 		final WorldGenLevel world = featureConfig.level();
 		if (!world.getBlockState(pos.below()).is(CommonBlockTags.END_STONES) && !world.getBlockState(pos.above())

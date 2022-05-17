@@ -42,6 +42,7 @@ import ru.betterend.blocks.entities.BlockEntityHydrothermalVent;
 import ru.betterend.registry.EndBlocks;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 @SuppressWarnings("deprecation")
 public class HydrothermalVentBlock extends BaseBlockNotFull implements EntityBlock, LiquidBlockContainer, SimpleWaterloggedBlock, AddMineablePickaxe {
@@ -113,7 +114,7 @@ public class HydrothermalVentBlock extends BaseBlockNotFull implements EntityBlo
 	}
 	
 	@Override
-	public void tick(BlockState state, ServerLevel world, BlockPos pos, Random random) {
+	public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		BlockPos up = pos.above();
 		if (world.getBlockState(up).is(Blocks.WATER)) {
 			BlocksHelper.setWithoutUpdate(world, up, EndBlocks.VENT_BUBBLE_COLUMN);
@@ -130,7 +131,7 @@ public class HydrothermalVentBlock extends BaseBlockNotFull implements EntityBlo
 	}
 	
 	@Environment(EnvType.CLIENT)
-	public void animateTick(BlockState state, Level world, BlockPos pos, Random random) {
+	public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
 		super.animateTick(state, world, pos, random);
 		if (!state.getValue(ACTIVATED) && random.nextBoolean()) {
 			double x = pos.getX() + random.nextDouble();

@@ -6,6 +6,7 @@ import ru.betterend.blocks.EndLilySeedBlock;
 import ru.betterend.registry.EndBlocks;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class EndLilyFeature extends UnderwaterPlantScatter {
 	public EndLilyFeature(int radius) {
@@ -13,7 +14,7 @@ public class EndLilyFeature extends UnderwaterPlantScatter {
 	}
 	
 	@Override
-	public void generate(WorldGenLevel world, Random random, BlockPos blockPos) {
+	public void generate(WorldGenLevel world, RandomSource random, BlockPos blockPos) {
 		EndLilySeedBlock seed = (EndLilySeedBlock) EndBlocks.END_LILY_SEED;
 		seed.grow(world, random, blockPos);
 	}

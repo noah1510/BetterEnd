@@ -49,6 +49,7 @@ import ru.betterend.registry.EndBlocks;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 @SuppressWarnings("deprecation")
 public class NeonCactusPlantBlock extends BaseBlockNotFull implements SimpleWaterloggedBlock, RenderLayerProvider, PottablePlant {
@@ -134,7 +135,7 @@ public class NeonCactusPlantBlock extends BaseBlockNotFull implements SimpleWate
 	}
 	
 	@Override
-	public void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, Random random) {
+	public void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource random) {
 		if (!blockState.canSurvive(serverLevel, blockPos)) {
 			serverLevel.destroyBlock(blockPos, true, null, 1);
 		}
@@ -174,7 +175,7 @@ public class NeonCactusPlantBlock extends BaseBlockNotFull implements SimpleWate
 	}
 	
 	@Override
-	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		if (!this.canSurvive(state, world, pos) || random.nextInt(8) > 0) {
 			return;
 		}
@@ -214,11 +215,11 @@ public class NeonCactusPlantBlock extends BaseBlockNotFull implements SimpleWate
 		mutateStem(placement, world, pos, MAX_LENGTH);
 	}
 	
-	public void growPlant(WorldGenLevel world, BlockPos pos, Random random) {
+	public void growPlant(WorldGenLevel world, BlockPos pos, RandomSource random) {
 		growPlant(world, pos, random, MHelper.randRange(MAX_LENGTH >> 1, MAX_LENGTH, random));
 	}
 	
-	public void growPlant(WorldGenLevel world, BlockPos pos, Random random, int iterations) {
+	public void growPlant(WorldGenLevel world, BlockPos pos, RandomSource random, int iterations) {
 		BlockState state = defaultBlockState();
 		BlockState downState = world.getBlockState(pos.below());
 		if (downState.is(Blocks.END_STONE) || downState.is(EndBlocks.ENDSTONE_DUST)) {
@@ -244,7 +245,7 @@ public class NeonCactusPlantBlock extends BaseBlockNotFull implements SimpleWate
 		}
 	}
 	
-	private boolean growIteration(WorldGenLevel world, MutableBlockPos pos, Random random, List<MutableBlockPos> ends, int length) {
+	private boolean growIteration(WorldGenLevel world, MutableBlockPos pos, RandomSource random, List<MutableBlockPos> ends, int length) {
 		BlockState state = world.getBlockState(pos);
 		if (!state.is(this)) {
 			return false;
@@ -284,7 +285,7 @@ public class NeonCactusPlantBlock extends BaseBlockNotFull implements SimpleWate
 		return true;
 	}
 	
-	private Direction getSideDirection(WorldGenLevel world, BlockPos pos, BlockState iterState, Direction dir, Random random) {
+	private Direction getSideDirection(WorldGenLevel world, BlockPos pos, BlockState iterState, Direction dir, RandomSource random) {
 		MutableBlockPos iterPos = pos.mutable();
 		Direction startDir = dir;
 		Direction lastDir = null;

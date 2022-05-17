@@ -17,8 +17,12 @@ import ru.betterend.blocks.basis.EndPlantWithAgeBlock;
 import ru.betterend.registry.EndBlocks;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class CavePumpkinVineBlock extends EndPlantWithAgeBlock {
+	public CavePumpkinVineBlock(){
+		super(p->p.offsetType(BlockBehaviour.OffsetType.NONE));
+	}
 	private static final VoxelShape SHAPE = Block.box(4, 0, 4, 12, 16, 12);
 	
 	@Override
@@ -28,7 +32,7 @@ public class CavePumpkinVineBlock extends EndPlantWithAgeBlock {
 	}
 	
 	@Override
-	public void performBonemeal(ServerLevel world, Random random, BlockPos pos, BlockState state) {
+	public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
 		int age = state.getValue(AGE);
 		BlockState down = world.getBlockState(pos.below());
 		if (down.getMaterial()
@@ -49,7 +53,7 @@ public class CavePumpkinVineBlock extends EndPlantWithAgeBlock {
 	}
 	
 	@Override
-	public void growAdult(WorldGenLevel world, Random random, BlockPos pos) {
+	public void growAdult(WorldGenLevel world, RandomSource random, BlockPos pos) {
 	}
 	
 	@Override
@@ -67,10 +71,5 @@ public class CavePumpkinVineBlock extends EndPlantWithAgeBlock {
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter view, BlockPos pos, CollisionContext ePos) {
 		return SHAPE;
-	}
-	
-	@Override
-	public BlockBehaviour.OffsetType getOffsetType() {
-		return BlockBehaviour.OffsetType.NONE;
 	}
 }

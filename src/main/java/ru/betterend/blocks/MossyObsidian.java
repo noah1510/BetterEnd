@@ -19,6 +19,7 @@ import ru.bclib.blocks.BaseBlock;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class MossyObsidian extends BaseBlock {
 	public MossyObsidian() {
@@ -36,7 +37,7 @@ public class MossyObsidian extends BaseBlock {
 	
 	@Override
 	@SuppressWarnings("deprecation")
-	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		if (random.nextInt(16) == 0 && !canSurvive(state, world, pos)) {
 			world.setBlockAndUpdate(pos, Blocks.OBSIDIAN.defaultBlockState());
 		}

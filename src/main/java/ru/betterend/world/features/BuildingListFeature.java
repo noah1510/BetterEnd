@@ -19,6 +19,7 @@ import ru.betterend.util.LootTableUtil;
 
 import java.util.List;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class BuildingListFeature extends ListFeature {
 	public BuildingListFeature(List<StructureInfo> list, BlockState defaultBlock) {
@@ -37,7 +38,7 @@ public class BuildingListFeature extends ListFeature {
 		public StructureTemplate.StructureBlockInfo processBlock(LevelReader levelReader, BlockPos blockPos, BlockPos blockPos2, StructureBlockInfo structureBlockInfo, StructureBlockInfo structureBlockInfo2, StructurePlaceSettings structurePlaceSettings) {
 			BlockState blockState = structureBlockInfo2.state;
 			if (blockState.getBlock() instanceof ChestBlock) {
-				Random random = structurePlaceSettings.getRandom(structureBlockInfo2.pos);
+				RandomSource random = structurePlaceSettings.getRandom(structureBlockInfo2.pos);
 				BlockPos chestPos = structureBlockInfo2.pos;
 				ChestBlock chestBlock = ChestBlock.class.cast(blockState.getBlock());
 				BlockEntity entity = chestBlock.newBlockEntity(chestPos, blockState);

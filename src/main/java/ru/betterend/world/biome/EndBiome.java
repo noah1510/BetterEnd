@@ -103,7 +103,6 @@ public class EndBiome extends BCLBiome implements SurfaceMaterialProvider {
 	public static EndBiome create(Config biomeConfig){
 		BCLBiomeBuilder builder = BCLBiomeBuilder
 				.start(biomeConfig.ID)
-				.category(Biome.BiomeCategory.THEEND)
 				.music(SoundEvents.MUSIC_END)
 				.waterColor(4159204)
 				.waterFogColor(329011)

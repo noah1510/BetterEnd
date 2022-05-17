@@ -19,6 +19,7 @@ import ru.betterend.blocks.basis.EndPlantWithAgeBlock;
 import ru.betterend.registry.EndBlocks;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class GlowingPillarSeedBlock extends EndPlantWithAgeBlock implements AddMineableShears {
 	
@@ -27,11 +28,12 @@ public class GlowingPillarSeedBlock extends EndPlantWithAgeBlock implements AddM
 								 .sound(SoundType.GRASS)
 								 .lightLevel(state -> state.getValue(AGE) * 3 + 3)
 								 .randomTicks()
-								 .noCollission());
+								 .noCollission()
+					  .offsetType(OffsetType.NONE));
 	}
 	
 	@Override
-	public void growAdult(WorldGenLevel world, Random random, BlockPos pos) {
+	public void growAdult(WorldGenLevel world, RandomSource random, BlockPos pos) {
 		int height = MHelper.randRange(1, 2, random);
 		int h = BlocksHelper.upRay(world, pos, height + 2);
 		if (h < height) {
@@ -77,10 +79,5 @@ public class GlowingPillarSeedBlock extends EndPlantWithAgeBlock implements AddM
 	@Override
 	protected boolean isTerrain(BlockState state) {
 		return state.is(EndBlocks.AMBER_MOSS);
-	}
-	
-	@Override
-	public BlockBehaviour.OffsetType getOffsetType() {
-		return BlockBehaviour.OffsetType.NONE;
 	}
 }

@@ -12,6 +12,7 @@ import ru.bclib.util.MHelper;
 import ru.bclib.world.features.DefaultFeature;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public abstract class WallScatterFeature extends DefaultFeature {
 	private static final Direction[] DIR = BlocksHelper.makeHorizontal();
@@ -21,13 +22,13 @@ public abstract class WallScatterFeature extends DefaultFeature {
 		this.radius = radius;
 	}
 	
-	public abstract boolean canGenerate(WorldGenLevel world, Random random, BlockPos pos, Direction dir);
+	public abstract boolean canGenerate(WorldGenLevel world, RandomSource random, BlockPos pos, Direction dir);
 	
-	public abstract void generate(WorldGenLevel world, Random random, BlockPos pos, Direction dir);
+	public abstract void generate(WorldGenLevel world, RandomSource random, BlockPos pos, Direction dir);
 	
 	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig) {
-		final Random random = featureConfig.random();
+		final RandomSource random = featureConfig.random();
 		final BlockPos center = featureConfig.origin();
 		final WorldGenLevel world = featureConfig.level();
 		int maxY = world.getHeight(Heightmap.Types.WORLD_SURFACE, center.getX(), center.getZ());
@@ -60,7 +61,7 @@ public abstract class WallScatterFeature extends DefaultFeature {
 		return true;
 	}
 	
-	private void shuffle(Random random) {
+	private void shuffle(RandomSource random) {
 		for (int i = 0; i < 4; i++) {
 			int j = random.nextInt(4);
 			Direction d = DIR[i];

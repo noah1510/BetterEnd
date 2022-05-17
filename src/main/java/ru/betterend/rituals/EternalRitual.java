@@ -25,6 +25,7 @@ import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.level.chunk.LevelChunkSection;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.LegacyRandomSource;
 import net.minecraft.world.level.material.Material;
 import org.jetbrains.annotations.Nullable;
 import ru.bclib.blocks.BlockProperties;
@@ -40,6 +41,7 @@ import java.awt.Point;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -444,7 +446,7 @@ public class EternalRitual {
 			net.minecraft.data.worldgen.features.EndFeatures.END_ISLAND.value().place(
 				targetWorld,
 				targetWorld.getChunkSource().getGenerator(),
-				new Random(basePos.asLong()),
+				new LegacyRandomSource(basePos.asLong()),
 				basePos.below()
 			);
 		}
@@ -456,7 +458,7 @@ public class EternalRitual {
 			.value()
 			.place(targetWorld,
 				targetWorld.getChunkSource().getGenerator(),
-				new Random(basePos.asLong()),
+				new LegacyRandomSource(basePos.asLong()),
 				basePos.below()
 			);
 		generatePortal(targetWorld, basePos, portalAxis, portalId);

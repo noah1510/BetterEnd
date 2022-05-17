@@ -30,6 +30,7 @@ import ru.betterend.registry.EndBlocks;
 
 import java.util.List;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class GiantMossyGlowshroomStructure extends SDFStructureFeature {
 	public GiantMossyGlowshroomStructure() {
@@ -40,7 +41,7 @@ public class GiantMossyGlowshroomStructure extends SDFStructureFeature {
 		SDFStructureFeature.generatePieces(structurePiecesBuilder, context, GiantMossyGlowshroomStructure::getSDF);
 	}
 
-	protected static SDF getSDF(BlockPos center, Random random) {
+	protected static SDF getSDF(BlockPos center, RandomSource random) {
 		SDFCappedCone cone1 = new SDFCappedCone().setHeight(2.5F).setRadius1(1.5F).setRadius2(2.5F);
 		SDFCappedCone cone2 = new SDFCappedCone().setHeight(3F).setRadius1(2.5F).setRadius2(13F);
 		SDF posedCone2 = new SDFTranslate().setTranslate(0, 5, 0).setSource(cone2);

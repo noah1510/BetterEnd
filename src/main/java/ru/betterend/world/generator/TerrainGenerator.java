@@ -14,6 +14,9 @@ import java.awt.Point;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.levelgen.LegacyRandomSource;
+
 import java.util.concurrent.locks.ReentrantLock;
 
 public class TerrainGenerator {
@@ -34,7 +37,7 @@ public class TerrainGenerator {
 	private static Sampler sampler;
 	
 	public static void initNoise(long seed, BiomeSource biomeSource, Sampler sampler) {
-		Random random = new Random(seed);
+		RandomSource random = new LegacyRandomSource(seed);
 		largeIslands = new IslandLayer(random.nextInt(), GeneratorOptions.bigOptions);
 		mediumIslands = new IslandLayer(random.nextInt(), GeneratorOptions.mediumOptions);
 		smallIslands = new IslandLayer(random.nextInt(), GeneratorOptions.smallOptions);

@@ -25,6 +25,7 @@ import ru.betterend.world.generator.GeneratorOptions;
 
 import java.util.Optional;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 @Mixin(EndPodiumFeature.class)
 public class EndPodiumFeatureMixin {
@@ -41,7 +42,7 @@ public class EndPodiumFeatureMixin {
 			info.cancel();
 		}
 		else if (GeneratorOptions.replacePortal()) {
-			Random random = featurePlaceContext.random();
+			RandomSource random = featurePlaceContext.random();
 			WorldGenLevel world = featurePlaceContext.level();
 			BlockPos blockPos = be_updatePortalPos(world);
 			StructureTemplate structure = StructureHelper.readStructure(BetterEnd.makeID(active ? "portal/end_portal_active" : "portal/end_portal_inactive"));

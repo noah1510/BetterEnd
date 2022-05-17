@@ -8,6 +8,7 @@ import ru.bclib.util.BlocksHelper;
 import ru.bclib.util.MHelper;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public abstract class SkyScatterFeature extends ScatterFeature {
 	public SkyScatterFeature(int radius) {
@@ -20,7 +21,7 @@ public abstract class SkyScatterFeature extends ScatterFeature {
 	}
 	
 	@Override
-	public boolean canGenerate(WorldGenLevel world, Random random, BlockPos center, BlockPos blockPos, float radius) {
+	public boolean canGenerate(WorldGenLevel world, RandomSource random, BlockPos center, BlockPos blockPos, float radius) {
 		if (!world.isEmptyBlock(blockPos)) {
 			return false;
 		}

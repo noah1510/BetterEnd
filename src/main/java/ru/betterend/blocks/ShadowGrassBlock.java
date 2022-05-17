@@ -16,6 +16,7 @@ import ru.betterend.registry.EndParticles;
 
 import java.util.List;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class ShadowGrassBlock extends EndTerrainBlock implements TagProvider {
 	public ShadowGrassBlock() {
@@ -23,7 +24,7 @@ public class ShadowGrassBlock extends EndTerrainBlock implements TagProvider {
 	}
 	
 	@Environment(EnvType.CLIENT)
-	public void animateTick(BlockState state, Level world, BlockPos pos, Random random) {
+	public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
 		super.animateTick(state, world, pos, random);
 		if (random.nextInt(32) == 0) {
 			world.addParticle(

@@ -5,7 +5,7 @@ import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.world.level.ChunkPos;
-import net.minecraft.world.level.StructureFeatureManager;
+import net.minecraft.world.level.StructureManager;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.chunk.ChunkGenerator;
@@ -19,6 +19,7 @@ import ru.betterend.registry.EndStructures;
 import ru.betterend.util.GlobalState;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class CavePiece extends BasePiece {
 	private OpenSimplexNoise noise;
@@ -40,7 +41,7 @@ public class CavePiece extends BasePiece {
 
 
 	@Override
-	public void postProcess(WorldGenLevel world, StructureFeatureManager arg, ChunkGenerator chunkGenerator, Random random, BoundingBox blockBox, ChunkPos chunkPos, BlockPos blockPos) {
+	public void postProcess(WorldGenLevel world, StructureManager arg, ChunkGenerator chunkGenerator, RandomSource random, BoundingBox blockBox, ChunkPos chunkPos, BlockPos blockPos) {
 		int x1 = MHelper.max(this.boundingBox.minX(), blockBox.minX());
 		int z1 = MHelper.max(this.boundingBox.minZ(), blockBox.minZ());
 		int x2 = MHelper.min(this.boundingBox.maxX(), blockBox.maxX());

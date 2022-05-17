@@ -99,7 +99,7 @@ public class REIAlloyingDisplay extends BasicDisplay implements SimpleGridMenuDi
 										 .map(EntryStacks::of)
 										 .map(e -> e.setting(
 											 EntryStack.Settings.TOOLTIP_APPEND_EXTRA,
-											 stack -> Collections.singletonList(new TranslatableComponent(
+											 stack -> Collections.singletonList(Component.translatable(
 												 "category.rei.smelting.fuel").withStyle(ChatFormatting.YELLOW))
 										 ))
 										 .collect(Collectors.toList());

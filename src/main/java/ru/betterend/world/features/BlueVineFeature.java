@@ -8,6 +8,7 @@ import ru.betterend.blocks.basis.EndPlantWithAgeBlock;
 import ru.betterend.registry.EndBlocks;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class BlueVineFeature extends ScatterFeature {
 	private boolean small;
@@ -18,7 +19,7 @@ public class BlueVineFeature extends ScatterFeature {
 	
 	@Override
 	@SuppressWarnings("deprecation")
-	public boolean canGenerate(WorldGenLevel world, Random random, BlockPos center, BlockPos blockPos, float radius) {
+	public boolean canGenerate(WorldGenLevel world, RandomSource random, BlockPos center, BlockPos blockPos, float radius) {
 		float d = MHelper.length(
 			center.getX() - blockPos.getX(),
 			center.getZ() - blockPos.getZ()
@@ -28,7 +29,7 @@ public class BlueVineFeature extends ScatterFeature {
 	}
 	
 	@Override
-	public void generate(WorldGenLevel world, Random random, BlockPos blockPos) {
+	public void generate(WorldGenLevel world, RandomSource random, BlockPos blockPos) {
 		if (small) {
 			BlocksHelper.setWithoutUpdate(
 				world,

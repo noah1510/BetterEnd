@@ -6,6 +6,7 @@ import ru.betterend.blocks.EndLotusSeedBlock;
 import ru.betterend.registry.EndBlocks;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class EndLotusFeature extends UnderwaterPlantScatter {
 	public EndLotusFeature(int radius) {
@@ -13,7 +14,7 @@ public class EndLotusFeature extends UnderwaterPlantScatter {
 	}
 	
 	@Override
-	public void generate(WorldGenLevel world, Random random, BlockPos blockPos) {
+	public void generate(WorldGenLevel world, RandomSource random, BlockPos blockPos) {
 		EndLotusSeedBlock seed = (EndLotusSeedBlock) EndBlocks.END_LOTUS_SEED;
 		seed.grow(world, random, blockPos);
 	}

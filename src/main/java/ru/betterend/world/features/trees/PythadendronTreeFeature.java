@@ -26,6 +26,7 @@ import ru.betterend.registry.EndBlocks;
 
 import java.util.List;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 import java.util.function.Function;
 
 public class PythadendronTreeFeature extends DefaultFeature {
@@ -35,7 +36,7 @@ public class PythadendronTreeFeature extends DefaultFeature {
 	
 	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig) {
-		final Random random = featureConfig.random();
+		final RandomSource random = featureConfig.random();
 		final BlockPos pos = featureConfig.origin();
 		final WorldGenLevel world = featureConfig.level();
 		if (world.getBlockState(pos.below()).getBlock() != EndBlocks.CHORUS_NYLIUM) {
@@ -72,7 +73,7 @@ public class PythadendronTreeFeature extends DefaultFeature {
 		return true;
 	}
 	
-	private void branch(float x, float y, float z, float size, float angle, Random random, int depth, WorldGenLevel world, BlockPos pos) {
+	private void branch(float x, float y, float z, float size, float angle, RandomSource random, int depth, WorldGenLevel world, BlockPos pos) {
 		if (depth == 0) return;
 		
 		float dx = (float) Math.cos(angle) * size * 0.15F;
@@ -132,7 +133,7 @@ public class PythadendronTreeFeature extends DefaultFeature {
 		}
 	}
 	
-	private void leavesBall(WorldGenLevel world, BlockPos pos, Random random, OpenSimplexNoise noise) {
+	private void leavesBall(WorldGenLevel world, BlockPos pos, RandomSource random, OpenSimplexNoise noise) {
 		float radius = MHelper.randRange(4.5F, 6.5F, random);
 		
 		SDF sphere = new SDFSphere().setRadius(radius)

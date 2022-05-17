@@ -12,11 +12,12 @@ import ru.betterend.blocks.EndBlockProperties.HydraluxShape;
 import ru.betterend.registry.EndBlocks;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class HydraluxSaplingBlock extends UnderwaterPlantWithAgeBlock {
 	
 	@Override
-	public void grow(WorldGenLevel world, Random random, BlockPos pos) {
+	public void grow(WorldGenLevel world, RandomSource random, BlockPos pos) {
 		int h = MHelper.randRange(4, 8, random);
 		MutableBlockPos mut = new MutableBlockPos().set(pos);
 		

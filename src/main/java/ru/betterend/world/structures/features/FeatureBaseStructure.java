@@ -7,14 +7,17 @@ import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.levelgen.feature.StructureFeature;
+import net.minecraft.world.level.levelgen.LegacyRandomSource;
+import net.minecraft.world.level.levelgen.RandomState;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.pieces.PieceGeneratorSupplier;
-import ru.bclib.world.structures.BCLStructureFeature;
+import ru.bclib.world.structures.BCLStructure;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
-public abstract class FeatureBaseStructure extends StructureFeature<NoneFeatureConfiguration> {
+public abstract class FeatureBaseStructure extends Structure {
 	protected static final BlockState AIR = Blocks.AIR.defaultBlockState();
 	
 	public FeatureBaseStructure(PieceGeneratorSupplier<NoneFeatureConfiguration> pieceGeneratorSupplier) {
@@ -22,12 +25,13 @@ public abstract class FeatureBaseStructure extends StructureFeature<NoneFeatureC
 	}
 
 	protected static boolean checkLocation(PieceGeneratorSupplier.Context<NoneFeatureConfiguration> context) {
-		return getGenerationHeight(context.chunkPos(), context.chunkGenerator(), context.heightAccessor()) >= 20 && BCLStructureFeature.isValidBiome(context);
+		return getGenerationHeight(context.chunkPos(), context.chunkGenerator(), context.heightAccessor(), context.randomState()) >= 20 && BCLStructure.isValidBiome(context);
 	}
 	
-	private static int getGenerationHeight(ChunkPos chunkPos, ChunkGenerator chunkGenerator, LevelHeightAccessor levelHeightAccessor) {
-		Random random = new Random((long) (chunkPos.x + chunkPos.z * 10387313));
+	private static int getGenerationHeight(ChunkPos chunkPos, ChunkGenerator chunkGenerator, LevelHeightAccessor levelHeightAccessor, RandomState rState) {
+		LegacyRandomSource random = new LegacyRandomSource((long) (chunkPos.x + chunkPos.z * 10387313));
 		Rotation blockRotation = Rotation.getRandom(random);
+
 		int i = 5;
 		int j = 5;
 		if (blockRotation == Rotation.CLOCKWISE_90) {
@@ -43,14 +47,14 @@ public abstract class FeatureBaseStructure extends StructureFeature<NoneFeatureC
 		
 		int k = chunkPos.getBlockX(7);
 		int l = chunkPos.getBlockZ(7);
-		int m = chunkGenerator.getFirstOccupiedHeight(k, l, Heightmap.Types.WORLD_SURFACE_WG, levelHeightAccessor);
-		int n = chunkGenerator.getFirstOccupiedHeight(k, l + j, Heightmap.Types.WORLD_SURFACE_WG, levelHeightAccessor);
-		int o = chunkGenerator.getFirstOccupiedHeight(k + i, l, Heightmap.Types.WORLD_SURFACE_WG, levelHeightAccessor);
+		int m = chunkGenerator.getFirstOccupiedHeight(k, l, Heightmap.Types.WORLD_SURFACE_WG, levelHeightAccessor, rState);
+		int n = chunkGenerator.getFirstOccupiedHeight(k, l + j, Heightmap.Types.WORLD_SURFACE_WG, levelHeightAccessor, rState);
+		int o = chunkGenerator.getFirstOccupiedHeight(k + i, l, Heightmap.Types.WORLD_SURFACE_WG, levelHeightAccessor, rState);
 		int p = chunkGenerator.getFirstOccupiedHeight(
 			k + i,
 			l + j,
 			Heightmap.Types.WORLD_SURFACE_WG,
-			levelHeightAccessor
+			levelHeightAccessor, rState
 		);
 		return Math.min(Math.min(m, n), Math.min(o, p));
 	}

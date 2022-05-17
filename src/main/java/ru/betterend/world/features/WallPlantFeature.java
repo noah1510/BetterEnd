@@ -11,6 +11,7 @@ import ru.bclib.blocks.BaseWallPlantBlock;
 import ru.bclib.util.BlocksHelper;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class WallPlantFeature extends WallScatterFeature {
 	private final Block block;
@@ -21,7 +22,7 @@ public class WallPlantFeature extends WallScatterFeature {
 	}
 	
 	@Override
-	public boolean canGenerate(WorldGenLevel world, Random random, BlockPos pos, Direction dir) {
+	public boolean canGenerate(WorldGenLevel world, RandomSource random, BlockPos pos, Direction dir) {
 		if (block instanceof BaseWallPlantBlock) {
 			BlockState state = block.defaultBlockState().setValue(BaseWallPlantBlock.FACING, dir);
 			return block.canSurvive(state, world, pos);
@@ -34,7 +35,7 @@ public class WallPlantFeature extends WallScatterFeature {
 	}
 	
 	@Override
-	public void generate(WorldGenLevel world, Random random, BlockPos pos, Direction dir) {
+	public void generate(WorldGenLevel world, RandomSource random, BlockPos pos, Direction dir) {
 		BlockState state = block.defaultBlockState();
 		if (block instanceof BaseWallPlantBlock) {
 			state = state.setValue(BaseWallPlantBlock.FACING, dir);

@@ -16,12 +16,13 @@ import ru.betterend.registry.EndBlocks;
 
 import java.util.List;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class BoluxMushroomBlock extends EndPlantBlock {
 	private static final VoxelShape SHAPE = Block.box(1, 0, 1, 15, 9, 15);
 	
 	public BoluxMushroomBlock() {
-		super(10);
+		super(10, p->p.offsetType(BlockBehaviour.OffsetType.NONE));
 	}
 	
 	@Override
@@ -33,11 +34,7 @@ public class BoluxMushroomBlock extends EndPlantBlock {
 	public VoxelShape getShape(BlockState state, BlockGetter view, BlockPos pos, CollisionContext ePos) {
 		return SHAPE;
 	}
-	
-	@Override
-	public BlockBehaviour.OffsetType getOffsetType() {
-		return BlockBehaviour.OffsetType.NONE;
-	}
+
 	
 	@Override
 	public boolean isValidBonemealTarget(BlockGetter world, BlockPos pos, BlockState state, boolean isClient) {
@@ -45,7 +42,7 @@ public class BoluxMushroomBlock extends EndPlantBlock {
 	}
 	
 	@Override
-	public boolean isBonemealSuccess(Level world, Random random, BlockPos pos, BlockState state) {
+	public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
 		return false;
 	}
 	

@@ -27,6 +27,7 @@ import ru.bclib.util.BlocksHelper;
 import ru.betterend.registry.EndBlocks;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 @SuppressWarnings("deprecation")
 public class MengerSpongeWetBlock extends BaseBlockNotFull implements RenderLayerProvider {
@@ -52,7 +53,7 @@ public class MengerSpongeWetBlock extends BaseBlockNotFull implements RenderLaye
 	
 	@Override
 	@Environment(EnvType.CLIENT)
-	public void animateTick(BlockState state, Level world, BlockPos pos, Random random) {
+	public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
 		Direction direction = Direction.getRandom(random);
 		if (direction != Direction.UP) {
 			BlockPos blockPos = pos.relative(direction);

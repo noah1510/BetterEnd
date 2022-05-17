@@ -19,6 +19,7 @@ import ru.betterend.noise.OpenSimplexNoise;
 
 import java.util.Map;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public abstract class MountainPiece extends BasePiece {
 	protected Map<Integer, Integer> heightmap = Maps.newHashMap();
@@ -32,7 +33,7 @@ public abstract class MountainPiece extends BasePiece {
 	protected int seed1;
 	protected int seed2;
 	
-	public MountainPiece(StructurePieceType type, BlockPos center, float radius, float height, Random random, Holder<Biome> biome) {
+	public MountainPiece(StructurePieceType type, BlockPos center, float radius, float height, RandomSource random, Holder<Biome> biome) {
 		super(type, random.nextInt(), null);
 		this.center = center;
 		this.radius = radius;

@@ -18,6 +18,7 @@ import ru.betterend.registry.EndBlocks;
 import ru.betterend.world.structures.piece.PaintedMountainPiece;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class PaintedMountainStructure extends FeatureBaseStructure {
 	private static final BlockState[] VARIANTS;
@@ -30,7 +31,7 @@ public class PaintedMountainStructure extends FeatureBaseStructure {
 	}
 
 	protected static void generatePieces(StructurePiecesBuilder structurePiecesBuilder, PieceGenerator.Context<NoneFeatureConfiguration> context) {
-		final Random random = context.random();
+		final RandomSource random = context.random();
 		final ChunkPos chunkPos = context.chunkPos();
 		final ChunkGenerator chunkGenerator = context.chunkGenerator();
 		final LevelHeightAccessor levelHeightAccessor = context.heightAccessor();

@@ -21,7 +21,7 @@ public class SplitNoiseCondition implements NumericProvider {
 	public int getNumber(SurfaceRulesContextAccessor context) {
 		final int x = context.getBlockX();
 		final int z = context.getBlockZ();
-		float noise = (float) NOISE.eval(x * 0.1, z * 0.1) + MHelper.randRange(-0.4F, 0.4F, MHelper.RANDOM);
+		float noise = (float) NOISE.eval(x * 0.1, z * 0.1) + MHelper.randRange(-0.4F, 0.4F, MHelper.RANDOM_SOURCE);
 		return noise > 0 ? 1 : 0;
 	}
 

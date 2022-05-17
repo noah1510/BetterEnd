@@ -42,6 +42,7 @@ import ru.betterend.registry.EndBlockEntities;
 
 import java.util.List;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class EndStoneSmelter extends BaseBlockWithEntity {
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
@@ -138,7 +139,7 @@ public class EndStoneSmelter extends BaseBlockWithEntity {
 	}
 	
 	@Environment(EnvType.CLIENT)
-	public void animateTick(BlockState state, Level world, BlockPos pos, Random random) {
+	public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
 		if (state.getValue(LIT)) {
 			double x = pos.getX() + 0.5D;
 			double y = pos.getY();

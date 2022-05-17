@@ -47,6 +47,7 @@ import ru.betterend.registry.EndItems;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class SilkMothNestBlock extends BaseBlock implements RenderLayerProvider {
 	public static final BooleanProperty ACTIVE = EndBlockProperties.ACTIVE;
@@ -133,7 +134,7 @@ public class SilkMothNestBlock extends BaseBlock implements RenderLayerProvider 
 	
 	@Override
 	@SuppressWarnings("deprecation")
-	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		if (!state.getValue(ACTIVE)) {
 			return;
 		}

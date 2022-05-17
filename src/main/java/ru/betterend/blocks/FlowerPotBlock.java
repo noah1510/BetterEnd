@@ -301,8 +301,8 @@ public class FlowerPotBlock extends BaseBlockNotFull implements RenderLayerProvi
 				modelPath.getNamespace(),
 				"models/block/" + modelPath.getPath() + "_potted.json"
 			);
-			
-			if (Minecraft.getInstance().getResourceManager().hasResource(objSource)) {
+
+			if (Minecraft.getInstance().getResourceManager().getResource(objSource).isPresent()) {
 				objSource = new ResourceLocation(modelPath.getNamespace(), "block/" + modelPath.getPath() + "_potted");
 				model.part(objSource)
 					 .setTransformation(offset)

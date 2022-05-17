@@ -35,6 +35,7 @@ import ru.betterend.registry.EndItems;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class EndLilyBlock extends EndUnderwaterPlantBlock implements AddMineableShears {
 	public static final EnumProperty<TripleShape> SHAPE = BlockProperties.TRIPLE_SHAPE;
@@ -95,8 +96,8 @@ public class EndLilyBlock extends EndUnderwaterPlantBlock implements AddMineable
 	public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
 		if (state.getValue(SHAPE) == TripleShape.TOP) {
 			return Lists.newArrayList(
-				new ItemStack(EndItems.END_LILY_LEAF, MHelper.randRange(1, 2, MHelper.RANDOM)),
-				new ItemStack(EndBlocks.END_LILY_SEED, MHelper.randRange(1, 2, MHelper.RANDOM))
+				new ItemStack(EndItems.END_LILY_LEAF, MHelper.randRange(1, 2, MHelper.RANDOM_SOURCE)),
+				new ItemStack(EndBlocks.END_LILY_SEED, MHelper.randRange(1, 2, MHelper.RANDOM_SOURCE))
 			);
 		}
 		return Collections.emptyList();
@@ -114,7 +115,7 @@ public class EndLilyBlock extends EndUnderwaterPlantBlock implements AddMineable
 	}
 	
 	@Override
-	public boolean isBonemealSuccess(Level world, Random random, BlockPos pos, BlockState state) {
+	public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
 		return false;
 	}
 }

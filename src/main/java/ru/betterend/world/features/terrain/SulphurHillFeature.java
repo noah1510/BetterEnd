@@ -16,11 +16,12 @@ import ru.betterend.noise.OpenSimplexNoise;
 import ru.betterend.registry.EndBlocks;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class SulphurHillFeature extends DefaultFeature {
 	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig) {
-		final Random random = featureConfig.random();
+		final RandomSource random = featureConfig.random();
 		BlockPos pos = featureConfig.origin();
 		final WorldGenLevel world = featureConfig.level();
 		pos = getPosOnSurfaceWG(world, pos);
@@ -42,7 +43,7 @@ public class SulphurHillFeature extends DefaultFeature {
 		return true;
 	}
 	
-	private void makeCircle(WorldGenLevel world, BlockPos pos, OpenSimplexNoise noise, Random random) {
+	private void makeCircle(WorldGenLevel world, BlockPos pos, OpenSimplexNoise noise, RandomSource random) {
 		int radius = MHelper.randRange(5, 9, random);
 		int min = -radius - 3;
 		int max = radius + 4;

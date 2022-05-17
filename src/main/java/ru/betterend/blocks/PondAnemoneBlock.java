@@ -18,6 +18,7 @@ import ru.bclib.interfaces.tools.AddMineableShears;
 import ru.betterend.blocks.basis.EndUnderwaterPlantBlock;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class PondAnemoneBlock extends EndUnderwaterPlantBlock implements AddMineableShears {
 	private static final VoxelShape SHAPE = Block.box(2, 0, 2, 14, 14, 14);
@@ -27,16 +28,12 @@ public class PondAnemoneBlock extends EndUnderwaterPlantBlock implements AddMine
 								 
 								 .luminance(13)
 								 .sound(SoundType.CORAL_BLOCK)
-								 .noCollission());
-	}
-	
-	@Override
-	public BlockBehaviour.OffsetType getOffsetType() {
-		return BlockBehaviour.OffsetType.NONE;
+								 .noCollission()
+					  .offsetType(OffsetType.NONE));
 	}
 	
 	@Environment(EnvType.CLIENT)
-	public void animateTick(BlockState state, Level world, BlockPos pos, Random random) {
+	public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
 		double x = pos.getX() + random.nextDouble();
 		double y = pos.getY() + random.nextDouble() * 0.5F + 0.5F;
 		double z = pos.getZ() + random.nextDouble();
@@ -54,7 +51,7 @@ public class PondAnemoneBlock extends EndUnderwaterPlantBlock implements AddMine
 	}
 	
 	@Override
-	public boolean isBonemealSuccess(Level world, Random random, BlockPos pos, BlockState state) {
+	public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
 		return false;
 	}
 }

@@ -23,6 +23,7 @@ import ru.betterend.registry.EndBlocks;
 import ru.betterend.util.BlockFixer;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 import java.util.Set;
 
 public class SulphuricCaveFeature extends DefaultFeature {
@@ -32,7 +33,7 @@ public class SulphuricCaveFeature extends DefaultFeature {
 	
 	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig) {
-		final Random random = featureConfig.random();
+		final RandomSource random = featureConfig.random();
 		BlockPos pos = featureConfig.origin();
 		final WorldGenLevel world = featureConfig.level();
 		int radius = MHelper.randRange(10, 30, random);
@@ -189,7 +190,7 @@ public class SulphuricCaveFeature extends DefaultFeature {
 			.equals(Material.WATER_PLANT) || state.getMaterial().equals(Material.LEAVES);
 	}
 	
-	private void placeBrimstone(WorldGenLevel world, BlockPos pos, Random random) {
+	private void placeBrimstone(WorldGenLevel world, BlockPos pos, RandomSource random) {
 		BlockState state = getBrimstone(world, pos);
 		BlocksHelper.setWithoutUpdate(world, pos, state);
 		if (state.getValue(EndBlockProperties.ACTIVE)) {
@@ -206,7 +207,7 @@ public class SulphuricCaveFeature extends DefaultFeature {
 		return EndBlocks.BRIMSTONE.defaultBlockState();
 	}
 	
-	private void makeShards(WorldGenLevel world, BlockPos pos, Random random) {
+	private void makeShards(WorldGenLevel world, BlockPos pos, RandomSource random) {
 		for (Direction dir : BlocksHelper.DIRECTIONS) {
 			BlockPos side;
 			if (random.nextInt(16) == 0 && world.getBlockState((side = pos.relative(dir))).is(Blocks.WATER)) {

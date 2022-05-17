@@ -8,6 +8,7 @@ import ru.bclib.blocks.BaseDoublePlantBlock;
 import ru.bclib.util.BlocksHelper;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class UnderwaterPlantFeature extends UnderwaterPlantScatter {
 	private final Block plant;
@@ -18,12 +19,12 @@ public class UnderwaterPlantFeature extends UnderwaterPlantScatter {
 	}
 	
 	@Override
-	public boolean canGenerate(WorldGenLevel world, Random random, BlockPos center, BlockPos blockPos, float radius) {
+	public boolean canGenerate(WorldGenLevel world, RandomSource random, BlockPos center, BlockPos blockPos, float radius) {
 		return super.canSpawn(world, blockPos) && plant.canSurvive(plant.defaultBlockState(), world, blockPos);
 	}
 	
 	@Override
-	public void generate(WorldGenLevel world, Random random, BlockPos blockPos) {
+	public void generate(WorldGenLevel world, RandomSource random, BlockPos blockPos) {
 		if (plant instanceof BaseDoublePlantBlock) {
 			int rot = random.nextInt(4);
 			BlockState state = plant.defaultBlockState().setValue(BaseDoublePlantBlock.ROTATION, rot);

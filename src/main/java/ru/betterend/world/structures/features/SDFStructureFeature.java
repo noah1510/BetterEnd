@@ -14,6 +14,7 @@ import ru.bclib.util.MHelper;
 import ru.betterend.world.structures.piece.VoxelPiece;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 import java.util.function.BiFunction;
 
 public abstract class SDFStructureFeature extends FeatureBaseStructure {
@@ -25,7 +26,7 @@ public abstract class SDFStructureFeature extends FeatureBaseStructure {
 	}
 
 	public static void generatePieces(StructurePiecesBuilder structurePiecesBuilder, PieceGenerator.Context<NoneFeatureConfiguration> context, BiFunction<BlockPos, Random, SDF> sdf) {
-		final Random random = context.random();
+		final RandomSource random = context.random();
 		final ChunkPos chunkPos = context.chunkPos();
 		final ChunkGenerator chunkGenerator = context.chunkGenerator();
 		final LevelHeightAccessor levelHeightAccessor = context.heightAccessor();

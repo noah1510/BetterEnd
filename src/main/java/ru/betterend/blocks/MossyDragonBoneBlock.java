@@ -20,6 +20,7 @@ import ru.betterend.registry.EndBlocks;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 @SuppressWarnings("deprecation")
 public class MossyDragonBoneBlock extends BaseRotatedPillarBlock {
@@ -37,7 +38,7 @@ public class MossyDragonBoneBlock extends BaseRotatedPillarBlock {
 	}
 	
 	@Override
-	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		if (random.nextInt(16) == 0 && !canSurvive(state, world, pos)) {
 			world.setBlockAndUpdate(pos, Blocks.BONE_BLOCK.defaultBlockState().setValue(AXIS, state.getValue(AXIS)));
 		}

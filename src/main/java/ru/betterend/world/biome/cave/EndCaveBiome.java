@@ -3,7 +3,6 @@ package ru.betterend.world.biome.cave;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.Biome.BiomeCategory;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -20,6 +19,7 @@ import ru.betterend.world.biome.EndBiome;
 import ru.betterend.world.features.terrain.caves.CaveChunkPopulatorFeature;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class EndCaveBiome extends EndBiome {
 	public static abstract class Config extends EndBiome.Config {
@@ -35,8 +35,7 @@ public class EndCaveBiome extends EndBiome {
 					new CaveChunkPopulatorFeature(() -> (EndCaveBiome) BiomeAPI.getBiome(ID))
 			);
 
-			builder.category(BiomeCategory.NONE)
-				   .feature(feature)
+			builder.feature(feature)
 				   .music(EndSounds.MUSIC_CAVES)
 				   .loop(EndSounds.AMBIENT_CAVES);
 		}
@@ -67,11 +66,11 @@ public class EndCaveBiome extends EndBiome {
 		ceilFeatures.add(feature, weight);
 	}
 	
-	public Feature<?> getFloorFeature(Random random) {
+	public Feature<?> getFloorFeature(RandomSource random) {
 		return floorFeatures.isEmpty() ? null : floorFeatures.get(random);
 	}
 	
-	public Feature<?> getCeilFeature(Random random) {
+	public Feature<?> getCeilFeature(RandomSource random) {
 		return ceilFeatures.isEmpty() ? null : ceilFeatures.get(random);
 	}
 	

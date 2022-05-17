@@ -27,7 +27,7 @@ import ru.bclib.world.biomes.BCLBiome;
 import ru.bclib.world.features.BCLFeature;
 import ru.bclib.world.features.DefaultFeature;
 import ru.bclib.world.features.ListFeature.StructureInfo;
-import ru.bclib.world.features.NBTStructureFeature.TerrainMerge;
+import ru.bclib.world.features.NBTFeature.TerrainMerge;
 import ru.betterend.BetterEnd;
 import ru.betterend.complexmaterials.StoneMaterial;
 import ru.betterend.config.Configs;
@@ -331,7 +331,8 @@ public class EndFeatures {
 		}
 		
 		boolean hasCaves = bclbiome.getCustomData("has_caves", true) && !(bclbiome instanceof EndCaveBiome);
-		if (hasCaves && !BiomeAPI.END_VOID_BIOME_PICKER.containsImmutable(id)) {
+		//TODO: 1.19 Test Cave generation
+		if (hasCaves && !BiomeAPI.wasRegisteredAsEndVoidBiome(id) /*!BiomeAPI.END_VOID_BIOME_PICKER.containsImmutable(id)*/) {
 			if (Configs.BIOME_CONFIG.getBoolean(id, "hasCaves", true)) {
 				BiomeAPI.addBiomeFeature(biome, ROUND_CAVE);
 				BiomeAPI.addBiomeFeature(biome, TUNEL_CAVE);

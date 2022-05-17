@@ -33,7 +33,7 @@ public class REIAlloyingFuelCategory implements DisplayCategory<REIAlloyingFuelD
 	
 	@Override
 	public @NotNull Component getTitle() {
-		return new TranslatableComponent("category.rei.fuel");
+		return Component.translatable("category.rei.fuel");
 	}
 	
 	@Override
@@ -54,7 +54,7 @@ public class REIAlloyingFuelCategory implements DisplayCategory<REIAlloyingFuelD
 		widgets.add(Widgets.createRecipeBase(bounds));
 		widgets.add(Widgets.createLabel(
 			new Point(bounds.x + 26, bounds.getMaxY() - 15),
-			new TranslatableComponent("category.rei.fuel.time", burnTime)
+			Component.translatable("category.rei.fuel.time", burnTime)
 		).color(0xFF404040, 0xFFBBBBBB).noShadow().leftAligned());
 		widgets.add(Widgets.createBurningFire(new Point(bounds.x + 6, startPoint.y + 1))
 						   .animationDurationTicks(recipeDisplay.getFuelTime()));
@@ -72,7 +72,7 @@ public class REIAlloyingFuelCategory implements DisplayCategory<REIAlloyingFuelD
 						   .disableHighlight();
 		String burnItems = DECIMAL_FORMAT.format(recipe.getFuelTime() / 200d);
 		return new DisplayRenderer() {
-			private TranslatableComponent text = new TranslatableComponent(
+			private TranslatableComponent text = Component.translatable(
 				"category.rei.fuel.time_short.items",
 				burnItems
 			);

@@ -4,9 +4,10 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.model.ModelLoadingRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.DimensionRenderingRegistry;
 import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 import ru.bclib.BCLib;
@@ -68,12 +69,13 @@ public class BetterEndClient implements ClientModInitializer {
 				if (player != null) {
 					hasSet = CrystaliteArmor.hasFullSet(player);
 				}
-				TranslatableComponent setDesc = new TranslatableComponent("tooltip.armor.crystalite_set");
+				MutableComponent setDesc = Component.translatable("tooltip.armor.crystalite_set");
+
 				setDesc.setStyle(Style.EMPTY.applyFormats(
 					hasSet ? ChatFormatting.BLUE : ChatFormatting.DARK_GRAY,
 					ChatFormatting.ITALIC
 				));
-				lines.add(TextComponent.EMPTY);
+				lines.add(Component.empty());
 				lines.add(setDesc);
 			}
 		});

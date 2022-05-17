@@ -69,7 +69,7 @@ public class SulphurCrystalBlock extends BaseAttachedBlock implements AddMineabl
 	public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
 		return state.getValue(AGE) < 2 ? Collections.emptyList() : Lists.newArrayList(new ItemStack(
 			EndItems.CRYSTALLINE_SULPHUR,
-			MHelper.randRange(1, 3, MHelper.RANDOM)
+			MHelper.randRange(1, 3, MHelper.RANDOM_SOURCE)
 		));
 	}
 	

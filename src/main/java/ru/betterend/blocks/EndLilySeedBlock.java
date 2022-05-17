@@ -11,10 +11,11 @@ import ru.bclib.util.BlocksHelper;
 import ru.betterend.registry.EndBlocks;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class EndLilySeedBlock extends UnderwaterPlantWithAgeBlock {
 	@Override
-	public void grow(WorldGenLevel world, Random random, BlockPos pos) {
+	public void grow(WorldGenLevel world, RandomSource random, BlockPos pos) {
 		if (canGrow(world, pos)) {
 			BlocksHelper.setWithoutUpdate(
 				world,

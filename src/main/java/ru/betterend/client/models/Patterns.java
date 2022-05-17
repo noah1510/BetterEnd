@@ -120,7 +120,7 @@ public class Patterns {
 	
 	public static Optional<String> createJson(ResourceLocation patternId, String parent, String block) {
 		ResourceManager resourceManager = Minecraft.getInstance().getResourceManager();
-		try (InputStream input = resourceManager.getResource(patternId).getInputStream()) {
+		try (InputStream input = resourceManager.getResource(patternId).get().open()) {
 			return Optional.ofNullable(createJson(new InputStreamReader(input, StandardCharsets.UTF_8), parent, block));
 		}
 		catch (Exception ex) {
@@ -136,7 +136,7 @@ public class Patterns {
 	
 	public static Optional<String> createJson(ResourceLocation patternId, Map<String, String> textures) {
 		ResourceManager resourceManager = Minecraft.getInstance().getResourceManager();
-		try (InputStream input = resourceManager.getResource(patternId).getInputStream()) {
+		try (InputStream input = resourceManager.getResource(patternId).get().open()) {
 			String json = new BufferedReader(new InputStreamReader(input, StandardCharsets.UTF_8)).lines()
 																								  .collect(Collectors.joining());
 			for (Entry<String, String> texture : textures.entrySet()) {

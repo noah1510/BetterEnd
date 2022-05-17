@@ -18,6 +18,7 @@ import ru.betterend.registry.EndBlocks;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class IceStarFeature extends DefaultFeature {
 	private final float minSize;
@@ -34,7 +35,7 @@ public class IceStarFeature extends DefaultFeature {
 	
 	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig) {
-		final Random random = featureConfig.random();
+		final RandomSource random = featureConfig.random();
 		BlockPos pos = featureConfig.origin();
 		final WorldGenLevel world = featureConfig.level();
 		float size = MHelper.randRange(minSize, maxSize, random);

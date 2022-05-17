@@ -8,6 +8,7 @@ import ru.bclib.util.BlocksHelper;
 import ru.betterend.registry.EndBlocks;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 import java.util.function.Function;
 
 public class MengerSpongeFeature extends UnderwaterPlantScatter {
@@ -18,7 +19,7 @@ public class MengerSpongeFeature extends UnderwaterPlantScatter {
 	}
 	
 	@Override
-	public void generate(WorldGenLevel world, Random random, BlockPos blockPos) {
+	public void generate(WorldGenLevel world, RandomSource random, BlockPos blockPos) {
 		BlocksHelper.setWithoutUpdate(world, blockPos, EndBlocks.MENGER_SPONGE_WET);
 		if (random.nextBoolean()) {
 			for (Direction dir : BlocksHelper.DIRECTIONS) {

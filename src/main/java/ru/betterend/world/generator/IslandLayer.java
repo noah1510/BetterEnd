@@ -2,6 +2,9 @@ package ru.betterend.world.generator;
 
 import com.google.common.collect.Maps;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.levelgen.LegacyRandomSource;
+
 import ru.bclib.sdf.SDF;
 import ru.bclib.sdf.operator.SDFRadialNoiseMap;
 import ru.bclib.sdf.operator.SDFScale;
@@ -15,9 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class IslandLayer {
-	private static final Random RANDOM = new Random();
+	private static final RandomSource RANDOM = new LegacyRandomSource(MHelper.RANDOM.nextLong());
 	private final SDFRadialNoiseMap noise;
 	private final SDF island;
 	

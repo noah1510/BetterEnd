@@ -12,6 +12,7 @@ import ru.bclib.util.BlocksHelper;
 import ru.bclib.world.features.DefaultFeature;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class SingleBlockFeature extends DefaultFeature {
 	private final Block block;
@@ -22,7 +23,7 @@ public class SingleBlockFeature extends DefaultFeature {
 	
 	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig) {
-		final Random random = featureConfig.random();
+		final RandomSource random = featureConfig.random();
 		final BlockPos pos = featureConfig.origin();
 		final WorldGenLevel world = featureConfig.level();
 		if (!world.getBlockState(pos.below()).is(CommonBlockTags.GEN_END_STONES)) {

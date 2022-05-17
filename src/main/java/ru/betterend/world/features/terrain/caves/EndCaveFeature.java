@@ -29,6 +29,7 @@ import ru.betterend.world.biome.cave.EndCaveBiome;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 import java.util.Set;
 
 public abstract class EndCaveFeature extends DefaultFeature {
@@ -39,7 +40,7 @@ public abstract class EndCaveFeature extends DefaultFeature {
 	
 	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig) {
-		final Random random = featureConfig.random();
+		final RandomSource random = featureConfig.random();
 		final BlockPos pos = featureConfig.origin();
 		final WorldGenLevel world = featureConfig.level();
 		if (pos.getX() * pos.getX() + pos.getZ() * pos.getZ() <= 2500) {
@@ -88,9 +89,9 @@ public abstract class EndCaveFeature extends DefaultFeature {
 		return true;
 	}
 	
-	protected abstract Set<BlockPos> generate(WorldGenLevel world, BlockPos center, int radius, Random random);
+	protected abstract Set<BlockPos> generate(WorldGenLevel world, BlockPos center, int radius, RandomSource random);
 	
-	protected void placeFloor(WorldGenLevel world, EndCaveBiome biome, Set<BlockPos> floorPositions, Random random, BlockState surfaceBlock) {
+	protected void placeFloor(WorldGenLevel world, EndCaveBiome biome, Set<BlockPos> floorPositions, RandomSource random, BlockState surfaceBlock) {
 		float density = biome.getFloorDensity();
 		floorPositions.forEach((pos) -> {
 			if (!surfaceBlock.is(Blocks.END_STONE)) {
@@ -105,7 +106,7 @@ public abstract class EndCaveFeature extends DefaultFeature {
 		});
 	}
 	
-	protected void placeCeil(WorldGenLevel world, EndCaveBiome biome, Set<BlockPos> ceilPositions, Random random) {
+	protected void placeCeil(WorldGenLevel world, EndCaveBiome biome, Set<BlockPos> ceilPositions, RandomSource random) {
 		float density = biome.getCeilDensity();
 		ceilPositions.forEach((pos) -> {
 			BlockState ceilBlock = biome.getCeil(pos);
@@ -121,7 +122,7 @@ public abstract class EndCaveFeature extends DefaultFeature {
 		});
 	}
 	
-	protected void placeWalls(WorldGenLevel world, EndCaveBiome biome, Set<BlockPos> positions, Random random) {
+	protected void placeWalls(WorldGenLevel world, EndCaveBiome biome, Set<BlockPos> positions, RandomSource random) {
 		Set<BlockPos> placed = Sets.newHashSet();
 		positions.forEach(pos -> {
 			if (random.nextInt(4) == 0 && hasOpenSide(pos, positions)) {
@@ -157,7 +158,7 @@ public abstract class EndCaveFeature extends DefaultFeature {
 		BiomeAPI.setBiome(world, pos, biome.getActualBiome());
 	}
 	
-	private BlockPos findPos(WorldGenLevel world, BlockPos pos, int radius, Random random) {
+	private BlockPos findPos(WorldGenLevel world, BlockPos pos, int radius, RandomSource random) {
 		int top = world.getHeight(Heightmap.Types.WORLD_SURFACE_WG, pos.getX(), pos.getZ());
 		MutableBlockPos bpos = new MutableBlockPos();
 		bpos.setX(pos.getX());

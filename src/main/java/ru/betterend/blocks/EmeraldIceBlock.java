@@ -28,6 +28,7 @@ import ru.bclib.interfaces.RenderLayerProvider;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class EmeraldIceBlock extends HalfTransparentBlock implements RenderLayerProvider, BlockModelProvider {
 	public EmeraldIceBlock() {
@@ -58,7 +59,7 @@ public class EmeraldIceBlock extends HalfTransparentBlock implements RenderLayer
 	
 	@Override
 	@SuppressWarnings("deprecation")
-	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		if (world.getBrightness(LightLayer.BLOCK, pos) > 11 - state.getLightBlock(world, pos)) {
 			this.melt(state, world, pos);
 		}

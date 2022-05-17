@@ -10,7 +10,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
+
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.ContainerHelper;
@@ -225,7 +225,7 @@ public class EndStoneSmelterBlockEntity extends BaseContainerBlockEntity impleme
 	
 	@Override
 	protected Component getDefaultName() {
-		return new TranslatableComponent(String.format("block.%s.%s", BetterEnd.MOD_ID, EndStoneSmelter.ID));
+		return Component.translatable(String.format("block.%s.%s", BetterEnd.MOD_ID, EndStoneSmelter.ID));
 	}
 	
 	@Override

@@ -29,13 +29,14 @@ import ru.betterend.integration.Integrations;
 
 import java.util.List;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class NightshadeRedwoodTreeFeature extends DefaultFeature {
 	private static final List<Vector3f> BRANCH;
 	
 	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig) {
-		final Random random = featureConfig.random();
+		final RandomSource random = featureConfig.random();
 		final BlockPos pos = featureConfig.origin();
 		final WorldGenLevel world = featureConfig.level();
 		if (!world.getBlockState(pos.below()).is(CommonBlockTags.END_STONES)) return false;

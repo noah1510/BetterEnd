@@ -20,6 +20,7 @@ import ru.betterend.registry.EndFeatures;
 
 import java.util.Optional;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class SmallAmaranitaBlock extends EndPlantBlock {
 	private static final VoxelShape SHAPE = Block.box(4, 0, 4, 12, 10, 12);
@@ -30,7 +31,7 @@ public class SmallAmaranitaBlock extends EndPlantBlock {
 	}
 	
 	@Override
-	public void performBonemeal(ServerLevel world, Random random, BlockPos pos, BlockState state) {
+	public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
 		BlockPos bigPos = growBig(world, pos);
 		if (bigPos != null) {
 			if (((Feature<NoneFeatureConfiguration>)EndFeatures.GIGANTIC_AMARANITA.getFeature())
@@ -75,7 +76,7 @@ public class SmallAmaranitaBlock extends EndPlantBlock {
 	}
 	
 	@Override
-	public boolean isBonemealSuccess(Level world, Random random, BlockPos pos, BlockState state) {
+	public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
 		return random.nextInt(8) == 0;
 	}
 }

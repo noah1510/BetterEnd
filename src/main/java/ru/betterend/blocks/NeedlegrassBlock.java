@@ -41,7 +41,7 @@ public class NeedlegrassBlock extends EndPlantBlock {
 			return Lists.newArrayList(new ItemStack(this));
 		}
 		else {
-			return Lists.newArrayList(new ItemStack(Items.STICK, MHelper.randRange(0, 2, MHelper.RANDOM)));
+			return Lists.newArrayList(new ItemStack(Items.STICK, MHelper.randRange(0, 2, MHelper.RANDOM_SOURCE)));
 		}
 	}
 	

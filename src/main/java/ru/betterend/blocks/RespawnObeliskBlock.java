@@ -6,7 +6,8 @@ import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.TranslatableComponent;
+
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
@@ -167,8 +168,8 @@ public class RespawnObeliskBlock extends BaseBlock implements CustomColorProvide
 			if (!world.isClientSide && !(itemStack.getItem() instanceof BlockItem) && !player.isCreative()) {
 				ServerPlayer serverPlayerEntity = (ServerPlayer) player;
 				serverPlayerEntity.displayClientMessage(
-					new TranslatableComponent("message.betterend.fail_spawn"),
-					true
+						Component.translatable("message.betterend.fail_spawn"),
+						true
 				);
 			}
 			return InteractionResult.FAIL;
@@ -176,7 +177,7 @@ public class RespawnObeliskBlock extends BaseBlock implements CustomColorProvide
 		else if (!world.isClientSide) {
 			ServerPlayer serverPlayerEntity = (ServerPlayer) player;
 			serverPlayerEntity.setRespawnPosition(world.dimension(), pos, 0.0F, false, false);
-			serverPlayerEntity.displayClientMessage(new TranslatableComponent("message.betterend.set_spawn"), true);
+			serverPlayerEntity.displayClientMessage(Component.translatable("message.betterend.set_spawn"), true);
 			double px = pos.getX() + 0.5;
 			double py = pos.getY() + 0.5;
 			double pz = pos.getZ() + 0.5;

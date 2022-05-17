@@ -39,6 +39,7 @@ import ru.betterend.util.BlockFixer;
 
 import java.util.Optional;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 import java.util.function.Function;
 
 public class GeyserFeature extends DefaultFeature {
@@ -49,7 +50,7 @@ public class GeyserFeature extends DefaultFeature {
 	
 	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig) {
-		final Random random = featureConfig.random();
+		final RandomSource random = featureConfig.random();
 		final WorldGenLevel world = featureConfig.level();
 		final BlockPos pos = getPosOnSurfaceWG(world, featureConfig.origin());
 		final ChunkGenerator chunkGenerator = featureConfig.chunkGenerator();

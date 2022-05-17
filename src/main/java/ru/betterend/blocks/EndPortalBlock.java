@@ -39,6 +39,7 @@ import ru.betterend.rituals.EternalRitual;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class EndPortalBlock extends NetherPortalBlock implements RenderLayerProvider, CustomColorProvider {
 	public static final IntegerProperty PORTAL = EndBlockProperties.PORTAL;
@@ -57,7 +58,7 @@ public class EndPortalBlock extends NetherPortalBlock implements RenderLayerProv
 	
 	@Override
 	@Environment(EnvType.CLIENT)
-	public void animateTick(BlockState state, Level world, BlockPos pos, Random random) {
+	public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
 		if (random.nextInt(100) == 0) {
 			world.playLocalSound(
 				pos.getX() + 0.5D,
@@ -86,7 +87,7 @@ public class EndPortalBlock extends NetherPortalBlock implements RenderLayerProv
 	}
 	
 	@Override
-	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 	}
 	
 	@Override

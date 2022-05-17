@@ -25,17 +25,12 @@ public class EndLotusFlowerBlock extends EndPlantBlock {
 	private static final VoxelShape SHAPE_COLLISION = Block.box(0, 0, 0, 16, 2, 16);
 	
 	public EndLotusFlowerBlock() {
-		super(FabricBlockSettings.of(Material.PLANT).luminance(15).noOcclusion());
+		super(FabricBlockSettings.of(Material.PLANT).luminance(15).noOcclusion().offsetType(BlockBehaviour.OffsetType.NONE));
 	}
 	
 	@Override
 	protected boolean isTerrain(BlockState state) {
 		return state.is(EndBlocks.END_LOTUS_STEM);
-	}
-	
-	@Override
-	public BlockBehaviour.OffsetType getOffsetType() {
-		return BlockBehaviour.OffsetType.NONE;
 	}
 	
 	@Override
@@ -51,7 +46,7 @@ public class EndLotusFlowerBlock extends EndPlantBlock {
 	
 	@Override
 	public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
-		int count = MHelper.randRange(1, 2, MHelper.RANDOM);
+		int count = MHelper.randRange(1, 2, MHelper.RANDOM_SOURCE);
 		return Lists.newArrayList(new ItemStack(EndBlocks.END_LOTUS_SEED, count));
 	}
 	

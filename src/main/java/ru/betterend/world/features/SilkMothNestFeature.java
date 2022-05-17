@@ -17,6 +17,7 @@ import ru.betterend.registry.EndBlocks;
 import ru.betterend.util.GlobalState;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class SilkMothNestFeature extends DefaultFeature {
 	private boolean canGenerate(WorldGenLevel world, BlockPos pos) {
@@ -35,7 +36,7 @@ public class SilkMothNestFeature extends DefaultFeature {
 	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig) {
 		final MutableBlockPos POS = GlobalState.stateForThread().POS;
-		final Random random = featureConfig.random();
+		final RandomSource random = featureConfig.random();
 		final BlockPos center = featureConfig.origin();
 		final WorldGenLevel world = featureConfig.level();
 		int maxY = world.getHeight(Heightmap.Types.WORLD_SURFACE, center.getX(), center.getZ());

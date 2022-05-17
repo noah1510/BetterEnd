@@ -24,6 +24,7 @@ import ru.betterend.registry.EndBlocks;
 
 import java.util.List;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 import java.util.function.Function;
 
 public class GiganticAmaranitaFeature extends DefaultFeature {
@@ -33,7 +34,7 @@ public class GiganticAmaranitaFeature extends DefaultFeature {
 	
 	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig) {
-		final Random random = featureConfig.random();
+		final RandomSource random = featureConfig.random();
 		final BlockPos pos = featureConfig.origin();
 		final WorldGenLevel world = featureConfig.level();
 		if (!world.getBlockState(pos.below()).is(BlockTags.NYLIUM)) return false;

@@ -17,6 +17,7 @@ import ru.bclib.util.MHelper;
 import ru.betterend.registry.EndParticles;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class TenaneaFlowersBlock extends BaseVineBlock implements CustomColorProvider {
 	public static final Vec3i[] COLORS;
@@ -62,7 +63,7 @@ public class TenaneaFlowersBlock extends BaseVineBlock implements CustomColorPro
 	}
 	
 	@Environment(EnvType.CLIENT)
-	public void animateTick(BlockState state, Level world, BlockPos pos, Random random) {
+	public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
 		super.animateTick(state, world, pos, random);
 		if (random.nextInt(32) == 0) {
 			double x = (double) pos.getX() + random.nextGaussian() + 0.5;

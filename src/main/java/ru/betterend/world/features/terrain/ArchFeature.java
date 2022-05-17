@@ -20,6 +20,7 @@ import ru.betterend.noise.OpenSimplexNoise;
 
 import java.util.List;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 import java.util.function.Function;
 
 public class ArchFeature extends DefaultFeature {
@@ -35,7 +36,7 @@ public class ArchFeature extends DefaultFeature {
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featurePlaceContext) {
 		final WorldGenLevel world = featurePlaceContext.level();
 		BlockPos origin = featurePlaceContext.origin();
-		Random random = featurePlaceContext.random();
+		RandomSource random = featurePlaceContext.random();
 		
 		BlockPos pos = getPosOnSurfaceWG(
 			world,

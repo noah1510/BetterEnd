@@ -12,6 +12,7 @@ import ru.betterend.blocks.EndLotusLeafBlock;
 import ru.betterend.registry.EndBlocks;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class EndLotusLeafFeature extends ScatterFeature {
 	public EndLotusLeafFeature(int radius) {
@@ -19,7 +20,7 @@ public class EndLotusLeafFeature extends ScatterFeature {
 	}
 	
 	@Override
-	public void generate(WorldGenLevel world, Random random, BlockPos blockPos) {
+	public void generate(WorldGenLevel world, RandomSource random, BlockPos blockPos) {
 		if (canGenerate(world, blockPos)) {
 			generateLeaf(world, blockPos);
 		}
@@ -74,7 +75,7 @@ public class EndLotusLeafFeature extends ScatterFeature {
 	}
 	
 	@Override
-	public boolean canGenerate(WorldGenLevel world, Random random, BlockPos center, BlockPos blockPos, float radius) {
+	public boolean canGenerate(WorldGenLevel world, RandomSource random, BlockPos center, BlockPos blockPos, float radius) {
 		return world.isEmptyBlock(blockPos) && world.getBlockState(blockPos.below()).is(Blocks.WATER);
 	}
 }

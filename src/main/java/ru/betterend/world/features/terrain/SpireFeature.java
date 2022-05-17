@@ -28,6 +28,7 @@ import ru.betterend.world.biome.EndBiome;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 import java.util.function.Function;
 
 public class SpireFeature extends DefaultFeature {
@@ -35,7 +36,7 @@ public class SpireFeature extends DefaultFeature {
 	
 	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig) {
-		final Random random = featureConfig.random();
+		final RandomSource random = featureConfig.random();
 		BlockPos pos = featureConfig.origin();
 		final WorldGenLevel world = featureConfig.level();
 		final ChunkGenerator chunkGenerator = featureConfig.chunkGenerator();
@@ -90,7 +91,7 @@ public class SpireFeature extends DefaultFeature {
 		return true;
 	}
 	
-	protected SDF addSegment(SDF sdf, float radius, Random random) {
+	protected SDF addSegment(SDF sdf, float radius, RandomSource random) {
 		SDF sphere = new SDFSphere().setRadius(radius).setBlock(Blocks.END_STONE);
 		SDF offseted = new SDFTranslate().setTranslate(0, radius + random.nextFloat() * 0.25F * radius, 0)
 										 .setSource(sdf);

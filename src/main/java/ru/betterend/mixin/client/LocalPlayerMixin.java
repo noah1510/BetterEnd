@@ -7,6 +7,7 @@ import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.protocol.game.ServerboundPlayerCommandPacket;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.player.ProfilePublicKey;
 import net.minecraft.world.item.ElytraItem;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Final;
@@ -18,17 +19,20 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import ru.betterend.interfaces.FallFlyingItem;
 
+import org.jetbrains.annotations.Nullable;
+
 @Mixin(LocalPlayer.class)
 public abstract class LocalPlayerMixin extends AbstractClientPlayer {
-	
-	public LocalPlayerMixin(ClientLevel clientLevel, GameProfile gameProfile) {
-		super(clientLevel, gameProfile);
-	}
-	
 	@Final
 	@Shadow
 	public ClientPacketListener connection;
-	
+
+	public LocalPlayerMixin(ClientLevel clientLevel,
+							GameProfile gameProfile,
+							@Nullable ProfilePublicKey profilePublicKey) {
+		super(clientLevel, gameProfile, profilePublicKey);
+	}
+
 	@Inject(method = "aiStep", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/player/LocalPlayer;getItemBySlot(Lnet/minecraft/world/entity/EquipmentSlot;)Lnet/minecraft/world/item/ItemStack;", shift = Shift.AFTER))
 	public void be_aiStep(CallbackInfo info) {
 		ItemStack itemStack = getItemBySlot(EquipmentSlot.CHEST);

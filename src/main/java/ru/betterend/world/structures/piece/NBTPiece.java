@@ -6,7 +6,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ChunkPos;
-import net.minecraft.world.level.StructureFeatureManager;
+import net.minecraft.world.level.StructureManager;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
@@ -22,6 +22,7 @@ import ru.betterend.util.StructureErode;
 import ru.betterend.world.biome.EndBiome;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class NBTPiece extends BasePiece {
 	private ResourceLocation structureID;
@@ -32,7 +33,7 @@ public class NBTPiece extends BasePiece {
 	private int erosion;
 	private boolean cover;
 	
-	public NBTPiece(ResourceLocation structureID, StructureTemplate structure, BlockPos pos, int erosion, boolean cover, Random random) {
+	public NBTPiece(ResourceLocation structureID, StructureTemplate structure, BlockPos pos, int erosion, boolean cover, RandomSource random) {
 		super(EndStructures.NBT_PIECE, random.nextInt(), null);
 		this.structureID = structureID;
 		this.structure = structure;
@@ -72,7 +73,7 @@ public class NBTPiece extends BasePiece {
 	}
 	
 	@Override
-	public void postProcess(WorldGenLevel world, StructureFeatureManager arg, ChunkGenerator chunkGenerator, Random random, BoundingBox blockBox, ChunkPos chunkPos, BlockPos blockPos) {
+	public void postProcess(WorldGenLevel world, StructureManager arg, ChunkGenerator chunkGenerator, RandomSource random, BoundingBox blockBox, ChunkPos chunkPos, BlockPos blockPos) {
 		BoundingBox bounds = BoundingBox.fromCorners(new Vec3i(
 			blockBox.minX(),
 			this.boundingBox.minY(),

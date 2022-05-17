@@ -13,6 +13,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.levelgen.Heightmap.Types;
+import net.minecraft.world.level.levelgen.LegacyRandomSource;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
@@ -28,11 +29,12 @@ import ru.betterend.world.biome.cave.EndCaveBiome;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 import java.util.Set;
 import java.util.stream.IntStream;
 
 public class TunelCaveFeature extends EndCaveFeature {
-	private Set<BlockPos> generate(WorldGenLevel world, BlockPos center, Random random) {
+	private Set<BlockPos> generate(WorldGenLevel world, BlockPos center, RandomSource random) {
 		int cx = center.getX() >> 4;
 		int cz = center.getZ() >> 4;
 		if ((long) cx * (long) cx + (long) cz + (long) cz < 256) {
@@ -44,7 +46,7 @@ public class TunelCaveFeature extends EndCaveFeature {
 		int x2 = x1 + 16;
 		int z2 = z1 + 16;
 		
-		Random rand = new Random(world.getSeed());
+		RandomSource rand = new LegacyRandomSource(world.getSeed());
 		OpenSimplexNoise noiseH = new OpenSimplexNoise(rand.nextInt());
 		OpenSimplexNoise noiseV = new OpenSimplexNoise(rand.nextInt());
 		OpenSimplexNoise noiseD = new OpenSimplexNoise(rand.nextInt());
@@ -113,7 +115,7 @@ public class TunelCaveFeature extends EndCaveFeature {
 	
 	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig) {
-		final Random random = featureConfig.random();
+		final RandomSource random = featureConfig.random();
 		final BlockPos pos = featureConfig.origin();
 		final WorldGenLevel world = featureConfig.level();
 		if (pos.getX() * pos.getX() + pos.getZ() * pos.getZ() <= 2500) {
@@ -183,12 +185,12 @@ public class TunelCaveFeature extends EndCaveFeature {
 	}
 	
 	@Override
-	protected Set<BlockPos> generate(WorldGenLevel world, BlockPos center, int radius, Random random) {
+	protected Set<BlockPos> generate(WorldGenLevel world, BlockPos center, int radius, RandomSource random) {
 		return null;
 	}
 	
 	@Override
-	protected void placeFloor(WorldGenLevel world, EndCaveBiome biome, Set<BlockPos> floorPositions, Random random, BlockState surfaceBlock) {
+	protected void placeFloor(WorldGenLevel world, EndCaveBiome biome, Set<BlockPos> floorPositions, RandomSource random, BlockState surfaceBlock) {
 		float density = biome.getFloorDensity() * 0.2F;
 		floorPositions.forEach((pos) -> {
 			if (!surfaceBlock.is(Blocks.END_STONE)) {
@@ -204,7 +206,7 @@ public class TunelCaveFeature extends EndCaveFeature {
 	}
 	
 	@Override
-	protected void placeCeil(WorldGenLevel world, EndCaveBiome biome, Set<BlockPos> ceilPositions, Random random) {
+	protected void placeCeil(WorldGenLevel world, EndCaveBiome biome, Set<BlockPos> ceilPositions, RandomSource random) {
 		float density = biome.getCeilDensity() * 0.2F;
 		ceilPositions.forEach((pos) -> {
 			BlockState ceilBlock = biome.getCeil(pos);

@@ -8,6 +8,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class WallPlantOnLogFeature extends WallPlantFeature {
 	public WallPlantOnLogFeature(Block block, int radius) {
@@ -15,7 +16,7 @@ public class WallPlantOnLogFeature extends WallPlantFeature {
 	}
 	
 	@Override
-	public boolean canGenerate(WorldGenLevel world, Random random, BlockPos pos, Direction dir) {
+	public boolean canGenerate(WorldGenLevel world, RandomSource random, BlockPos pos, Direction dir) {
 		BlockPos blockPos = pos.relative(dir.getOpposite());
 		BlockState blockState = world.getBlockState(blockPos);
 		return blockState.is(BlockTags.LOGS);

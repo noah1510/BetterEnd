@@ -18,7 +18,7 @@ public class FlammalixBlock extends EndPlantBlock {
 	private static final VoxelShape SHAPE = Block.box(2, 0, 2, 14, 14, 14);
 	
 	public FlammalixBlock() {
-		super(false, 12);
+		super(false, 12, p->p.offsetType(OffsetType.NONE));
 	}
 	
 	@Override
@@ -32,11 +32,6 @@ public class FlammalixBlock extends EndPlantBlock {
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter view, BlockPos pos, CollisionContext ePos) {
 		return SHAPE;
-	}
-	
-	@Override
-	public OffsetType getOffsetType() {
-		return OffsetType.NONE;
 	}
 	
 	@Override

@@ -10,6 +10,7 @@ import ru.bclib.blocks.BlockProperties.TripleShape;
 import ru.bclib.util.BlocksHelper;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class VineFeature extends InvertedScatterFeature {
 	private final Block vineBlock;
@@ -24,13 +25,13 @@ public class VineFeature extends InvertedScatterFeature {
 	}
 	
 	@Override
-	public boolean canGenerate(WorldGenLevel world, Random random, BlockPos center, BlockPos blockPos, float radius) {
+	public boolean canGenerate(WorldGenLevel world, RandomSource random, BlockPos center, BlockPos blockPos, float radius) {
 		BlockState state = world.getBlockState(blockPos);
 		return state.getMaterial().isReplaceable() && canPlaceBlock(state, world, blockPos);
 	}
 	
 	@Override
-	public void generate(WorldGenLevel world, Random random, BlockPos blockPos) {
+	public void generate(WorldGenLevel world, RandomSource random, BlockPos blockPos) {
 		int h = BlocksHelper.downRay(world, blockPos, random.nextInt(maxLength)) - 1;
 		if (h > 2) {
 			BlockState top = getTopState();

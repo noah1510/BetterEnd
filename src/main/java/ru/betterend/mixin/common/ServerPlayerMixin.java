@@ -17,6 +17,7 @@ import net.minecraft.server.players.PlayerList;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.ProfilePublicKey;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.BiomeManager;
 import net.minecraft.world.level.portal.PortalInfo;
@@ -31,6 +32,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import ru.betterend.interfaces.TeleportingEntity;
 import ru.betterend.world.generator.GeneratorOptions;
+
+import org.jetbrains.annotations.Nullable;
 
 @Mixin(ServerPlayer.class)
 public abstract class ServerPlayerMixin extends Player implements TeleportingEntity {
@@ -53,11 +56,16 @@ public abstract class ServerPlayerMixin extends Player implements TeleportingEnt
 	
 	private BlockPos exitPos;
 	private int be_teleportDelay = 0;
-	
-	public ServerPlayerMixin(Level world, BlockPos pos, float yaw, GameProfile profile) {
-		super(world, pos, yaw, profile);
+
+	public ServerPlayerMixin(Level level,
+							 BlockPos blockPos,
+							 float f,
+							 GameProfile gameProfile,
+							 @Nullable ProfilePublicKey profilePublicKey) {
+		super(level, blockPos, f, gameProfile, profilePublicKey);
 	}
-	
+
+
 	@Inject(method = "createEndPlatform", at = @At("HEAD"), cancellable = true)
 	private void be_createEndSpawnPlatform(ServerLevel world, BlockPos centerPos, CallbackInfo info) {
 		if (!GeneratorOptions.generateObsidianPlatform()) {

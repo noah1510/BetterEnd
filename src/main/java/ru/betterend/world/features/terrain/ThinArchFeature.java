@@ -21,6 +21,7 @@ import ru.bclib.world.features.DefaultFeature;
 import ru.betterend.noise.OpenSimplexNoise;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class ThinArchFeature extends DefaultFeature {
 	private Block block;
@@ -33,7 +34,7 @@ public class ThinArchFeature extends DefaultFeature {
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featurePlaceContext) {
 		final WorldGenLevel world = featurePlaceContext.level();
 		BlockPos origin = featurePlaceContext.origin();
-		Random random = featurePlaceContext.random();
+		RandomSource random = featurePlaceContext.random();
 
 		BlockPos pos = getPosOnSurfaceWG(world, new BlockPos((origin.getX() & 0xFFFFFFF0) | 7, 0, (origin.getZ() & 0xFFFFFFF0) | 7));
 		if (!world.getBlockState(pos.below(5)).is(CommonBlockTags.GEN_END_STONES)) {

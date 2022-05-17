@@ -7,7 +7,7 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceType;
 import ru.bclib.api.tag.TagAPI;
-import ru.bclib.world.structures.BCLStructureFeature;
+import ru.bclib.world.structures.BCLStructure;
 import ru.betterend.BetterEnd;
 import ru.betterend.world.structures.features.EternalPortalStructure;
 import ru.betterend.world.structures.features.GiantIceStarStructure;
@@ -31,51 +31,51 @@ public class EndStructures {
 	public static final StructurePieceType PAINTED_MOUNTAIN_PIECE = register("painted_mountain_piece", PaintedMountainPiece::new);
 	public static final StructurePieceType NBT_PIECE = register("nbt_piece", NBTPiece::new);
 	
-	public static final BCLStructureFeature GIANT_MOSSY_GLOWSHROOM = new BCLStructureFeature(
+	public static final BCLStructure<GiantMossyGlowshroomStructure> GIANT_MOSSY_GLOWSHROOM = new BCLStructure(
 		BetterEnd.makeID("giant_mossy_glowshroom"),
-		new GiantMossyGlowshroomStructure(),
+		GiantMossyGlowshroomStructure::new,
 		Decoration.SURFACE_STRUCTURES,
 		16,
 		8
 	);
-	public static final BCLStructureFeature MEGALAKE = new BCLStructureFeature(
+	public static final BCLStructure<MegaLakeStructure> MEGALAKE = new BCLStructure(
 		BetterEnd.makeID("megalake"),
-		new MegaLakeStructure(),
+		MegaLakeStructure::new,
 		Decoration.RAW_GENERATION,
 		4,
 		1
 	);
-	public static final BCLStructureFeature MEGALAKE_SMALL = new BCLStructureFeature(
+	public static final BCLStructure<MegaLakeSmallStructure> MEGALAKE_SMALL = new BCLStructure(
 		BetterEnd.makeID("megalake_small"),
-		new MegaLakeSmallStructure(),
+		MegaLakeSmallStructure::new,
 		Decoration.RAW_GENERATION,
 		4,
 		1
 	);
-	public static final BCLStructureFeature MOUNTAIN = new BCLStructureFeature(
+	public static final BCLStructure<MountainStructure> MOUNTAIN = new BCLStructure(
 		BetterEnd.makeID("mountain"),
-		new MountainStructure(),
+		MountainStructure::new,
 		Decoration.RAW_GENERATION,
 		3,
 		2
 	);
-	public static final BCLStructureFeature PAINTED_MOUNTAIN = new BCLStructureFeature(
+	public static final BCLStructure<PaintedMountainStructure> PAINTED_MOUNTAIN = new BCLStructure(
 		BetterEnd.makeID("painted_mountain"),
-		new PaintedMountainStructure(),
+		PaintedMountainStructure::new,
 		Decoration.RAW_GENERATION,
 		3,
 		2
 	);
-	public static final BCLStructureFeature ETERNAL_PORTAL = new BCLStructureFeature(
+	public static final BCLStructure<EternalPortalStructure> ETERNAL_PORTAL = new BCLStructure(
 		BetterEnd.makeID("eternal_portal"),
-		new EternalPortalStructure(),
+		EternalPortalStructure::new,
 		Decoration.SURFACE_STRUCTURES,
 		16,
 		6
 	);
-	public static final BCLStructureFeature GIANT_ICE_STAR = new BCLStructureFeature(
+	public static final BCLStructure<GiantIceStarStructure> GIANT_ICE_STAR = new BCLStructure(
 		BetterEnd.makeID("giant_ice_star"),
-		new GiantIceStarStructure(),
+		GiantIceStarStructure::new,
 		Decoration.SURFACE_STRUCTURES,
 		16,
 		8

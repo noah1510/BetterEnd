@@ -38,7 +38,7 @@ public abstract class BlockBehaviourMixin {
 						info.setReturnValue(Lists.newArrayList(new ItemStack(Items.GLOWSTONE_DUST, max)));
 					}
 				}
-				count = MHelper.randRange(min, max, MHelper.RANDOM);
+				count = MHelper.randRange(min, max, MHelper.RANDOM_SOURCE);
 				info.setReturnValue(Lists.newArrayList(new ItemStack(Items.GLOWSTONE_DUST, count)));
 			}
 		}

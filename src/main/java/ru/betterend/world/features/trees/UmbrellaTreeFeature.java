@@ -32,6 +32,7 @@ import ru.betterend.registry.EndBlocks;
 
 import java.util.List;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 import java.util.function.Function;
 
 public class UmbrellaTreeFeature extends DefaultFeature {
@@ -41,7 +42,7 @@ public class UmbrellaTreeFeature extends DefaultFeature {
 	
 	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig) {
-		final Random random = featureConfig.random();
+		final RandomSource random = featureConfig.random();
 		final BlockPos pos = featureConfig.origin();
 		final WorldGenLevel world = featureConfig.level();
 		final NoneFeatureConfiguration config = featureConfig.config();
@@ -149,7 +150,7 @@ public class UmbrellaTreeFeature extends DefaultFeature {
 		return true;
 	}
 	
-	private void makeRoots(WorldGenLevel world, BlockPos pos, float radius, Random random, BlockState wood) {
+	private void makeRoots(WorldGenLevel world, BlockPos pos, float radius, RandomSource random, BlockState wood) {
 		int count = (int) (radius * 1.5F);
 		for (int i = 0; i < count; i++) {
 			float angle = (float) i / (float) count * MHelper.PI2;
@@ -165,7 +166,7 @@ public class UmbrellaTreeFeature extends DefaultFeature {
 		}
 	}
 	
-	private SDF makeMembrane(WorldGenLevel world, float radius, Random random, BlockState membrane, BlockState center) {
+	private SDF makeMembrane(WorldGenLevel world, float radius, RandomSource random, BlockState membrane, BlockState center) {
 		SDF sphere = new SDFSphere().setRadius(radius).setBlock(membrane);
 		SDF sub = new SDFTranslate().setTranslate(0, -4, 0).setSource(sphere);
 		sphere = new SDFSubtraction().setSourceA(sphere).setSourceB(sub);

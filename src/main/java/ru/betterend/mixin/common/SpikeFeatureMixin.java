@@ -29,6 +29,7 @@ import ru.betterend.BetterEnd;
 import ru.betterend.world.generator.GeneratorOptions;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 @Mixin(SpikeFeature.class)
 public class SpikeFeatureMixin {
@@ -40,7 +41,7 @@ public class SpikeFeatureMixin {
 	}
 	
 	@Inject(method = "placeSpike", at = @At("HEAD"), cancellable = true)
-	private void be_placeSpike(ServerLevelAccessor world, Random random, SpikeConfiguration config, SpikeFeature.EndSpike spike, CallbackInfo info) {
+	private void be_placeSpike(ServerLevelAccessor world, RandomSource random, SpikeConfiguration config, SpikeFeature.EndSpike spike, CallbackInfo info) {
 		int x = spike.getCenterX();
 		int z = spike.getCenterZ();
 		int radius = spike.getRadius();

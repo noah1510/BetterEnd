@@ -1,7 +1,9 @@
 package ru.betterend.util;
 
 import net.minecraft.client.resources.language.I18n;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+
 
 public class LangUtil {
 	public final static String CONFIG_ELEMENT = "configuration";
@@ -20,7 +22,7 @@ public class LangUtil {
 		return getString(element, key);
 	}
 	
-	public TranslatableComponent getText(String key) {
+	public MutableComponent getText(String key) {
 		return getText(element, key);
 	}
 	
@@ -32,7 +34,7 @@ public class LangUtil {
 		return translate(String.format("%s.%s", element, key));
 	}
 	
-	public static TranslatableComponent getText(String element, String key) {
-		return new TranslatableComponent(getString(element, key));
+	public static MutableComponent getText(String element, String key) {
+		return Component.translatable(getString(element, key));
 	}
 }

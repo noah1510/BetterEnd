@@ -44,6 +44,7 @@ import ru.betterend.util.GlobalState;
 
 import java.util.EnumSet;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class EndSlimeEntity extends Slime {
 	private static final EntityDataAccessor<Byte> VARIANT = SynchedEntityData.defineId(
@@ -212,7 +213,7 @@ public class EndSlimeEntity extends Slime {
 		return this.entityData.get(VARIANT) == 0;
 	}
 	
-	public static boolean canSpawn(EntityType entityType, LevelAccessor world, MobSpawnType spawnType, BlockPos pos, Random random) {
+	public static boolean canSpawn(EntityType entityType, LevelAccessor world, MobSpawnType spawnType, BlockPos pos, RandomSource random) {
 		if (!world.getBlockState(pos.below()).is(CommonBlockTags.END_STONES)) {
 			return false;
 		}

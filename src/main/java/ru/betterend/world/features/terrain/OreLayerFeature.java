@@ -15,6 +15,7 @@ import ru.bclib.world.features.DefaultFeature;
 import ru.betterend.noise.OpenSimplexNoise;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class OreLayerFeature extends DefaultFeature {
 	private static final SDFSphere SPHERE;
@@ -36,7 +37,7 @@ public class OreLayerFeature extends DefaultFeature {
 	
 	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig) {
-		final Random random = featureConfig.random();
+		final RandomSource random = featureConfig.random();
 		final BlockPos pos = featureConfig.origin();
 		final WorldGenLevel world = featureConfig.level();
 		float radius = this.radius * 0.5F;

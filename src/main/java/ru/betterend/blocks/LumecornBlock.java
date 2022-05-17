@@ -88,7 +88,7 @@ public class LumecornBlock extends BaseBlockNotFull implements RenderLayerProvid
 		if (shape == LumecornShape.BOTTOM_BIG || shape == LumecornShape.BOTTOM_SMALL || shape == LumecornShape.MIDDLE) {
 			return Collections.singletonList(new ItemStack(
 				EndBlocks.LUMECORN_SEED,
-				MHelper.randRange(1, 2, MHelper.RANDOM)
+				MHelper.randRange(1, 2, MHelper.RANDOM_SOURCE)
 			));
 		}
 		return MHelper.RANDOM.nextBoolean() ? Collections.singletonList(new ItemStack(EndItems.LUMECORN_ROD)) : Collections

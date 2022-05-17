@@ -41,6 +41,7 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class SmallJellyshroomBlock extends BaseAttachedBlock implements RenderLayerProvider, BonemealableBlock, PottablePlant {
 	private static final EnumMap<Direction, VoxelShape> BOUNDING_SHAPES = Maps.newEnumMap(Direction.class);
@@ -97,12 +98,12 @@ public class SmallJellyshroomBlock extends BaseAttachedBlock implements RenderLa
 	}
 	
 	@Override
-	public boolean isBonemealSuccess(Level world, Random random, BlockPos pos, BlockState state) {
+	public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
 		return random.nextInt(16) == 0;
 	}
 	
 	@Override
-	public void performBonemeal(ServerLevel world, Random random, BlockPos pos, BlockState state) {
+	public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
 		BlocksHelper.setWithUpdate(world, pos, Blocks.AIR);
 		((Feature<NoneFeatureConfiguration>)EndFeatures.JELLYSHROOM.getFeature()).place(new FeaturePlaceContext<>(Optional.empty(), world, null, random, pos, null));
 	}

@@ -13,11 +13,16 @@ import ru.betterend.registry.EndFeatures;
 
 import java.util.Optional;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class LumecornSeedBlock extends EndPlantWithAgeBlock {
 
+	public LumecornSeedBlock(){
+		super(p->p.offsetType(OffsetType.NONE));
+	}
+
 	@Override
-	public void growAdult(WorldGenLevel world, Random random, BlockPos pos) {
+	public void growAdult(WorldGenLevel world, RandomSource random, BlockPos pos) {
 		((Feature<NoneFeatureConfiguration>) (EndFeatures.LUMECORN.getFeature())).place(new FeaturePlaceContext<>(
 				Optional.empty(),
 				world,
@@ -30,10 +35,5 @@ public class LumecornSeedBlock extends EndPlantWithAgeBlock {
 	@Override
 	protected boolean isTerrain(BlockState state) {
 		return state.is(EndBlocks.END_MOSS);
-	}
-
-	@Override
-	public BlockBehaviour.OffsetType getOffsetType() {
-		return BlockBehaviour.OffsetType.NONE;
 	}
 }

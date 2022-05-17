@@ -12,6 +12,7 @@ import ru.bclib.world.features.DefaultFeature;
 import ru.betterend.util.GlobalState;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public abstract class InvertedScatterFeature extends DefaultFeature {
 	private final int radius;
@@ -20,14 +21,14 @@ public abstract class InvertedScatterFeature extends DefaultFeature {
 		this.radius = radius;
 	}
 	
-	public abstract boolean canGenerate(WorldGenLevel world, Random random, BlockPos center, BlockPos blockPos, float radius);
+	public abstract boolean canGenerate(WorldGenLevel world, RandomSource random, BlockPos center, BlockPos blockPos, float radius);
 	
-	public abstract void generate(WorldGenLevel world, Random random, BlockPos blockPos);
+	public abstract void generate(WorldGenLevel world, RandomSource random, BlockPos blockPos);
 	
 	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig) {
 		final MutableBlockPos POS = GlobalState.stateForThread().POS;
-		final Random random = featureConfig.random();
+		final RandomSource random = featureConfig.random();
 		final BlockPos center = featureConfig.origin();
 		final WorldGenLevel world = featureConfig.level();
 		int maxY = world.getHeight(Heightmap.Types.WORLD_SURFACE, center.getX(), center.getZ());

@@ -14,10 +14,14 @@ import ru.betterend.blocks.basis.EndPlantWithAgeBlock;
 import ru.betterend.registry.EndBlocks;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class LanceleafSeedBlock extends EndPlantWithAgeBlock {
+	public LanceleafSeedBlock() {
+		super(p->p.offsetType(OffsetType.NONE));
+	}
 	@Override
-	public void growAdult(WorldGenLevel world, Random random, BlockPos pos) {
+	public void growAdult(WorldGenLevel world, RandomSource random, BlockPos pos) {
 		int height = MHelper.randRange(4, 6, random);
 		int h = BlocksHelper.upRay(world, pos, height + 2);
 		if (h < height + 1) {
@@ -54,10 +58,5 @@ public class LanceleafSeedBlock extends EndPlantWithAgeBlock {
 	@Override
 	protected boolean isTerrain(BlockState state) {
 		return state.is(EndBlocks.AMBER_MOSS);
-	}
-	
-	@Override
-	public BlockBehaviour.OffsetType getOffsetType() {
-		return BlockBehaviour.OffsetType.NONE;
 	}
 }

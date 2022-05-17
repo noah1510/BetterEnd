@@ -27,6 +27,7 @@ import ru.betterend.registry.EndItems;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class HydraluxBlock extends UnderwaterPlantBlock  implements AddMineableShears {
 	
@@ -70,7 +71,7 @@ public class HydraluxBlock extends UnderwaterPlantBlock  implements AddMineableS
 	}
 	
 	@Override
-	public boolean isBonemealSuccess(Level world, Random random, BlockPos pos, BlockState state) {
+	public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
 		return false;
 	}
 	
@@ -84,12 +85,12 @@ public class HydraluxBlock extends UnderwaterPlantBlock  implements AddMineableS
 	public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
 		HydraluxShape shape = state.getValue(SHAPE);
 		if (shape == HydraluxShape.FLOWER_BIG_BOTTOM || shape == HydraluxShape.FLOWER_SMALL_BOTTOM) {
-			return Lists.newArrayList(new ItemStack(EndItems.HYDRALUX_PETAL, MHelper.randRange(1, 4, MHelper.RANDOM)));
+			return Lists.newArrayList(new ItemStack(EndItems.HYDRALUX_PETAL, MHelper.randRange(1, 4, MHelper.RANDOM_SOURCE)));
 		}
 		else if (shape == HydraluxShape.ROOTS) {
 			return Lists.newArrayList(new ItemStack(
 				EndBlocks.HYDRALUX_SAPLING,
-				MHelper.randRange(1, 2, MHelper.RANDOM)
+				MHelper.randRange(1, 2, MHelper.RANDOM_SOURCE)
 			));
 		}
 		return Collections.emptyList();

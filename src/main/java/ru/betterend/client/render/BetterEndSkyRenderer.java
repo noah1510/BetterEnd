@@ -21,6 +21,8 @@ import ru.bclib.util.MHelper;
 import ru.betterend.BetterEnd;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.levelgen.LegacyRandomSource;
 
 public class BetterEndSkyRenderer implements DimensionRenderingRegistry.SkyRenderer {
 	private static final ResourceLocation NEBULA_1 = BetterEnd.makeID("textures/sky/nebula_2.png");
@@ -47,7 +49,7 @@ public class BetterEndSkyRenderer implements DimensionRenderingRegistry.SkyRende
 	private void initialise() {
 		if (!initialised) {
 			initStars();
-			Random random = new Random(131);
+			RandomSource random = new LegacyRandomSource(131);
 			axis1 = new Vector3f(random.nextFloat(), random.nextFloat(), random.nextFloat());
 			axis2 = new Vector3f(random.nextFloat(), random.nextFloat(), random.nextFloat());
 			axis3 = new Vector3f(random.nextFloat(), random.nextFloat(), random.nextFloat());
@@ -182,8 +184,8 @@ public class BetterEndSkyRenderer implements DimensionRenderingRegistry.SkyRende
 		
 		buffer = new VertexBuffer();
 		makeStars(bufferBuilder, minSize, maxSize, count, seed);
-		bufferBuilder.end();
-		buffer.upload(bufferBuilder);
+		BufferBuilder.RenderedBuffer renderedBuffer = bufferBuilder.end();
+		buffer.upload(renderedBuffer);
 		
 		return buffer;
 	}
@@ -195,8 +197,8 @@ public class BetterEndSkyRenderer implements DimensionRenderingRegistry.SkyRende
 		
 		buffer = new VertexBuffer();
 		makeUVStars(bufferBuilder, minSize, maxSize, count, seed);
-		bufferBuilder.end();
-		buffer.upload(bufferBuilder);
+		BufferBuilder.RenderedBuffer renderedBuffer = bufferBuilder.end();
+		buffer.upload(renderedBuffer);
 		
 		return buffer;
 	}
@@ -208,8 +210,8 @@ public class BetterEndSkyRenderer implements DimensionRenderingRegistry.SkyRende
 		
 		buffer = new VertexBuffer();
 		makeFarFog(bufferBuilder, minSize, maxSize, count, seed);
-		bufferBuilder.end();
-		buffer.upload(bufferBuilder);
+		BufferBuilder.RenderedBuffer renderedBuffer = bufferBuilder.end();
+		buffer.upload(renderedBuffer);
 		
 		return buffer;
 	}
@@ -221,8 +223,8 @@ public class BetterEndSkyRenderer implements DimensionRenderingRegistry.SkyRende
 		
 		buffer = new VertexBuffer();
 		makeCylinder(bufferBuilder, 16, 50, 100);
-		bufferBuilder.end();
-		buffer.upload(bufferBuilder);
+		BufferBuilder.RenderedBuffer renderedBuffer = bufferBuilder.end();
+		buffer.upload(renderedBuffer);
 		
 		return buffer;
 	}
@@ -234,14 +236,14 @@ public class BetterEndSkyRenderer implements DimensionRenderingRegistry.SkyRende
 		
 		buffer = new VertexBuffer();
 		makeCylinder(bufferBuilder, 16, 50, 70);
-		bufferBuilder.end();
-		buffer.upload(bufferBuilder);
+		BufferBuilder.RenderedBuffer renderedBuffer = bufferBuilder.end();
+		buffer.upload(renderedBuffer);
 		
 		return buffer;
 	}
 	
 	private void makeStars(BufferBuilder buffer, double minSize, double maxSize, int count, long seed) {
-		Random random = new Random(seed);
+		RandomSource random = new LegacyRandomSource(seed);
 		buffer.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION);
 		
 		for (int i = 0; i < count; ++i) {
@@ -287,7 +289,7 @@ public class BetterEndSkyRenderer implements DimensionRenderingRegistry.SkyRende
 	}
 	
 	private void makeUVStars(BufferBuilder buffer, double minSize, double maxSize, int count, long seed) {
-		Random random = new Random(seed);
+		RandomSource random = new LegacyRandomSource(seed);
 		buffer.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
 		
 		for (int i = 0; i < count; ++i) {
@@ -336,7 +338,7 @@ public class BetterEndSkyRenderer implements DimensionRenderingRegistry.SkyRende
 	}
 	
 	private void makeFarFog(BufferBuilder buffer, double minSize, double maxSize, int count, long seed) {
-		Random random = new Random(seed);
+		RandomSource random = new LegacyRandomSource(seed);
 		buffer.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
 		
 		for (int i = 0; i < count; ++i) {

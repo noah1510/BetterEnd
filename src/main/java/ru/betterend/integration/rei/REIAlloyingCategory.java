@@ -35,7 +35,7 @@ public class REIAlloyingCategory implements DisplayCategory<REIAlloyingDisplay> 
 	
 	@Override
 	public @NotNull Component getTitle() {
-		return new TranslatableComponent(EndBlocks.END_STONE_SMELTER.getDescriptionId());
+		return Component.translatable(EndBlocks.END_STONE_SMELTER.getDescriptionId());
 	}
 	
 	@Override
@@ -55,7 +55,7 @@ public class REIAlloyingCategory implements DisplayCategory<REIAlloyingDisplay> 
 						   .animationDurationMS(10000));
 		widgets.add(Widgets.createLabel(
 			new Point(bounds.x + bounds.width - 5, bounds.y + 5),
-			new TranslatableComponent("category.rei.cooking.time&xp",
+			Component.translatable("category.rei.cooking.time&xp",
 				df.format(display.getXp()),
 				df.format(smeltTime / 20D)
 			)

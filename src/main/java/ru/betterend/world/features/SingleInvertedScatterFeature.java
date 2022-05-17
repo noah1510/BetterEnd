@@ -10,6 +10,7 @@ import ru.bclib.blocks.BaseAttachedBlock;
 import ru.bclib.util.BlocksHelper;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class SingleInvertedScatterFeature extends InvertedScatterFeature {
 	private final Block block;
@@ -20,7 +21,7 @@ public class SingleInvertedScatterFeature extends InvertedScatterFeature {
 	}
 	
 	@Override
-	public boolean canGenerate(WorldGenLevel world, Random random, BlockPos center, BlockPos blockPos, float radius) {
+	public boolean canGenerate(WorldGenLevel world, RandomSource random, BlockPos center, BlockPos blockPos, float radius) {
 		if (!world.isEmptyBlock(blockPos)) {
 			return false;
 		}
@@ -32,7 +33,7 @@ public class SingleInvertedScatterFeature extends InvertedScatterFeature {
 	}
 	
 	@Override
-	public void generate(WorldGenLevel world, Random random, BlockPos blockPos) {
+	public void generate(WorldGenLevel world, RandomSource random, BlockPos blockPos) {
 		BlockState state = block.defaultBlockState();
 		if (block instanceof BaseAttachedBlock) {
 			state = state.setValue(BlockStateProperties.FACING, Direction.DOWN);

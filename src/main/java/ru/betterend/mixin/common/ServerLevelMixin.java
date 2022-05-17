@@ -13,8 +13,10 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.dimension.DimensionType;
+import net.minecraft.world.level.dimension.LevelStem;
 import net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator;
 import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
+import net.minecraft.world.level.storage.LevelStorageSource;
 import net.minecraft.world.level.storage.LevelStorageSource.LevelStorageAccess;
 import net.minecraft.world.level.storage.ServerLevelData;
 import net.minecraft.world.level.storage.WritableLevelData;
@@ -37,12 +39,19 @@ import java.util.function.Supplier;
 
 @Mixin(ServerLevel.class)
 public abstract class ServerLevelMixin extends Level {
+	protected ServerLevelMixin(WritableLevelData writableLevelData,
+							   ResourceKey<Level> resourceKey,
+							   Holder<DimensionType> holder,
+							   Supplier<ProfilerFiller> supplier,
+							   boolean bl,
+							   boolean bl2,
+							   long l,
+							   int i) {
+		super(writableLevelData, resourceKey, holder, supplier, bl, bl2, l, i);
+	}
 	//private static String be_lastWorld = null;
 	
-	protected ServerLevelMixin(WritableLevelData writableLevelData, ResourceKey<Level> resourceKey, Holder<DimensionType> dimensionType, Supplier<ProfilerFiller> supplier, boolean bl, boolean bl2, long l) {
-		super(writableLevelData, resourceKey, dimensionType, supplier, bl, bl2, l);
-	}
-	
+
 //	@Inject(method = "<init>*", at = @At("TAIL"))
 //	private void be_onServerWorldInit(MinecraftServer server, Executor workerExecutor, LevelStorageSource.LevelStorageAccess session, ServerLevelData properties, ResourceKey<Level> registryKey, DimensionType dimensionType, ChunkProgressListener worldGenerationProgressListener, ChunkGenerator chunkGenerator, boolean debugWorld, long l, List<CustomSpawner> list, boolean bl, CallbackInfo info) {
 //		if (be_lastWorld != null && be_lastWorld.equals(session.getLevelId())) {
@@ -55,15 +64,27 @@ public abstract class ServerLevelMixin extends Level {
 //	}
 	
 	@Inject(method = "<init>*", at = @At("TAIL"))
-	private void be_onServerWorldInit(MinecraftServer minecraftServer, Executor executor, LevelStorageAccess levelStorageAccess, ServerLevelData serverLevelData, ResourceKey resourceKey, Holder holder, ChunkProgressListener chunkProgressListener, ChunkGenerator chunkGenerator, boolean bl, long seed, List list, boolean bl2, CallbackInfo ci) {
+	private void be_onServerWorldInit(MinecraftServer minecraftServer,
+									  Executor executor,
+									  LevelStorageAccess levelStorageAccess,
+									  ServerLevelData serverLevelData,
+									  ResourceKey resourceKey,
+									  LevelStem levelStem,
+									  ChunkProgressListener chunkProgressListener,
+									  boolean bl,
+									  long seed,
+									  List list,
+									  boolean bl2,
+									  CallbackInfo ci) {
 		ServerLevel level = ServerLevel.class.cast(this);
 		if (level.dimension() == Level.END) {
+			final ChunkGenerator chunkGenerator = levelStem.generator();
 			if (chunkGenerator instanceof NoiseBasedChunkGenerator) {
 				Holder<NoiseGeneratorSettings> sHolder = NoiseBasedChunkGeneratorAccessor.class.cast(chunkGenerator).be_getSettings();
 				BETargetChecker.class.cast(sHolder.value()).be_setTarget(true);
 				
 			}
-			TerrainGenerator.initNoise(seed, chunkGenerator.getBiomeSource(), chunkGenerator.climateSampler());
+			TerrainGenerator.initNoise(seed, chunkGenerator.getBiomeSource(), level.getChunkSource().randomState().sampler());
 		}
 	}
 	

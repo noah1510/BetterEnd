@@ -13,6 +13,7 @@ import ru.betterend.blocks.basis.EndPlantBlock;
 import ru.betterend.registry.EndBlocks;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class UmbrellaMossBlock extends EndPlantBlock {
 	public UmbrellaMossBlock() {
@@ -35,12 +36,12 @@ public class UmbrellaMossBlock extends EndPlantBlock {
 	}
 	
 	@Override
-	public boolean isBonemealSuccess(Level world, Random random, BlockPos pos, BlockState state) {
+	public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
 		return world.isEmptyBlock(pos.above());
 	}
 	
 	@Override
-	public void performBonemeal(ServerLevel world, Random random, BlockPos pos, BlockState state) {
+	public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
 		int rot = world.random.nextInt(4);
 		BlockState bs = EndBlocks.UMBRELLA_MOSS_TALL.defaultBlockState().setValue(BaseDoublePlantBlock.ROTATION, rot);
 		BlocksHelper.setWithoutUpdate(world, pos, bs);

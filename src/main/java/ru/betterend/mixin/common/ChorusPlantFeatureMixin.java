@@ -18,12 +18,13 @@ import ru.bclib.util.MHelper;
 import ru.betterend.registry.EndBlocks;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 @Mixin(ChorusPlantFeature.class)
 public class ChorusPlantFeatureMixin {
 	@Inject(method = "place", at = @At("HEAD"), cancellable = true)
 	private void be_place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig, CallbackInfoReturnable<Boolean> info) {
-		final Random random = featureConfig.random();
+		final RandomSource random = featureConfig.random();
 		final BlockPos blockPos = featureConfig.origin();
 		final WorldGenLevel structureWorldAccess = featureConfig.level();
 		if (structureWorldAccess.isEmptyBlock(blockPos) && structureWorldAccess.getBlockState(blockPos.below()).is(EndBlocks.CHORUS_NYLIUM)) {

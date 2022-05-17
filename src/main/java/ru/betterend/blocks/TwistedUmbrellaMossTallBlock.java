@@ -9,6 +9,7 @@ import ru.bclib.blocks.BaseDoublePlantBlock;
 import ru.betterend.registry.EndBlocks;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class TwistedUmbrellaMossTallBlock extends BaseDoublePlantBlock {
 	public TwistedUmbrellaMossTallBlock() {
@@ -16,7 +17,7 @@ public class TwistedUmbrellaMossTallBlock extends BaseDoublePlantBlock {
 	}
 	
 	@Override
-	public void performBonemeal(ServerLevel world, Random random, BlockPos pos, BlockState state) {
+	public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
 		ItemEntity item = new ItemEntity(
 			world,
 			pos.getX() + 0.5,

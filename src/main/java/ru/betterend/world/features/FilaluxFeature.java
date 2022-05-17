@@ -12,6 +12,7 @@ import ru.bclib.util.MHelper;
 import ru.betterend.registry.EndBlocks;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class FilaluxFeature extends SkyScatterFeature {
 	public FilaluxFeature() {
@@ -19,7 +20,7 @@ public class FilaluxFeature extends SkyScatterFeature {
 	}
 	
 	@Override
-	public void generate(WorldGenLevel world, Random random, BlockPos blockPos) {
+	public void generate(WorldGenLevel world, RandomSource random, BlockPos blockPos) {
 		BlockState vine = EndBlocks.FILALUX.defaultBlockState();
 		BlockState wings = EndBlocks.FILALUX_WINGS.defaultBlockState();
 		BlocksHelper.setWithoutUpdate(world, blockPos, EndBlocks.FILALUX_LANTERN);

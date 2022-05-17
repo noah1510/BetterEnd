@@ -13,10 +13,14 @@ import ru.betterend.blocks.basis.FurBlock;
 import ru.betterend.registry.EndBlocks;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class BlueVineSeedBlock extends EndPlantWithAgeBlock {
+	public BlueVineSeedBlock(){
+		super(p -> p.offsetType(BlockBehaviour.OffsetType.NONE));
+	}
 	@Override
-	public void growAdult(WorldGenLevel world, Random random, BlockPos pos) {
+	public void growAdult(WorldGenLevel world, RandomSource random, BlockPos pos) {
 		int height = MHelper.randRange(2, 5, random);
 		int h = BlocksHelper.upRay(world, pos, height + 2);
 		if (h < height + 1) {
@@ -73,10 +77,5 @@ public class BlueVineSeedBlock extends EndPlantWithAgeBlock {
 	@Override
 	protected boolean isTerrain(BlockState state) {
 		return state.is(EndBlocks.END_MOSS) || state.is(EndBlocks.END_MYCELIUM);
-	}
-	
-	@Override
-	public BlockBehaviour.OffsetType getOffsetType() {
-		return BlockBehaviour.OffsetType.NONE;
 	}
 }

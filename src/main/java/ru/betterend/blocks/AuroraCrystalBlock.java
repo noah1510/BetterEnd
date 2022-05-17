@@ -109,10 +109,10 @@ public class AuroraCrystalBlock extends AbstractGlassBlock implements RenderLaye
 				if (min == max) {
 					return Lists.newArrayList(new ItemStack(EndItems.CRYSTAL_SHARDS, max));
 				}
-				count = MHelper.randRange(min, max, MHelper.RANDOM);
+				count = MHelper.randRange(min, max, MHelper.RANDOM_SOURCE);
 			}
 			else {
-				count = MHelper.randRange(MIN_DROP, MAX_DROP, MHelper.RANDOM);
+				count = MHelper.randRange(MIN_DROP, MAX_DROP, MHelper.RANDOM_SOURCE);
 			}
 			return Lists.newArrayList(new ItemStack(EndItems.CRYSTAL_SHARDS, count));
 		}

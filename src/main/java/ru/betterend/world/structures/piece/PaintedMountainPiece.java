@@ -7,7 +7,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.world.level.ChunkPos;
-import net.minecraft.world.level.StructureFeatureManager;
+import net.minecraft.world.level.StructureManager;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.state.BlockState;
@@ -22,11 +22,12 @@ import ru.betterend.registry.EndStructures;
 import ru.betterend.util.GlobalState;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class PaintedMountainPiece extends MountainPiece {
 	private BlockState[] slises;
 	
-	public PaintedMountainPiece(BlockPos center, float radius, float height, Random random, Holder<Biome> biome, BlockState[] slises) {
+	public PaintedMountainPiece(BlockPos center, float radius, float height, RandomSource random, Holder<Biome> biome, BlockState[] slises) {
 		super(EndStructures.PAINTED_MOUNTAIN_PIECE, center, radius, height, random, biome);
 		this.slises = slises;
 	}
@@ -56,7 +57,7 @@ public class PaintedMountainPiece extends MountainPiece {
 	}
 	
 	@Override
-	public void postProcess(WorldGenLevel world, StructureFeatureManager arg, ChunkGenerator chunkGenerator, Random random, BoundingBox blockBox, ChunkPos chunkPos, BlockPos blockPos) {
+	public void postProcess(WorldGenLevel world, StructureManager arg, ChunkGenerator chunkGenerator, RandomSource random, BoundingBox blockBox, ChunkPos chunkPos, BlockPos blockPos) {
 		int sx = chunkPos.getMinBlockX();
 		int sz = chunkPos.getMinBlockZ();
 		final MutableBlockPos pos = GlobalState.stateForThread().POS;

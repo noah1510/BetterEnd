@@ -20,6 +20,7 @@ import ru.betterend.util.GlobalState;
 import ru.betterend.world.biome.EndBiome;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class DesertLakeFeature extends DefaultFeature {
 	private static final BlockState END_STONE = Blocks.END_STONE.defaultBlockState();
@@ -29,7 +30,7 @@ public class DesertLakeFeature extends DefaultFeature {
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig) {
 		final MutableBlockPos POS = GlobalState.stateForThread().POS;
 		
-		final Random random = featureConfig.random();
+		final RandomSource random = featureConfig.random();
 		BlockPos blockPos = featureConfig.origin();
 		final WorldGenLevel world = featureConfig.level();
 		double radius = MHelper.randRange(8.0, 15.0, random);

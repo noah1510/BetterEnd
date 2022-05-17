@@ -13,10 +13,11 @@ import ru.bclib.util.BlocksHelper;
 import ru.betterend.registry.EndBlocks;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class EndLotusSeedBlock extends UnderwaterPlantWithAgeBlock {
 	@Override
-	public void grow(WorldGenLevel world, Random random, BlockPos pos) {
+	public void grow(WorldGenLevel world, RandomSource random, BlockPos pos) {
 		if (canGrow(world, pos)) {
 			BlockState startLeaf = EndBlocks.END_LOTUS_STEM.defaultBlockState().setValue(EndLotusStemBlock.LEAF, true);
 			BlockState roots = EndBlocks.END_LOTUS_STEM.defaultBlockState()

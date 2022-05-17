@@ -11,7 +11,7 @@ import net.minecraft.nbt.NbtUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.ChunkPos;
-import net.minecraft.world.level.StructureFeatureManager;
+import net.minecraft.world.level.StructureManager;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
@@ -33,6 +33,7 @@ import ru.betterend.world.biome.EndBiome;
 
 import java.util.Map;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class LakePiece extends BasePiece {
 	private static final BlockState ENDSTONE = Blocks.END_STONE.defaultBlockState();
@@ -47,7 +48,7 @@ public class LakePiece extends BasePiece {
 	
 	private ResourceLocation biomeID;
 	
-	public LakePiece(BlockPos center, float radius, float depth, Random random, Holder<Biome> biome) {
+	public LakePiece(BlockPos center, float radius, float depth, RandomSource random, Holder<Biome> biome) {
 		super(EndStructures.LAKE_PIECE, random.nextInt(), null);
 		this.center = center;
 		this.radius = radius;
@@ -85,7 +86,7 @@ public class LakePiece extends BasePiece {
 	}
 	
 	@Override
-	public void postProcess(WorldGenLevel world, StructureFeatureManager arg, ChunkGenerator chunkGenerator, Random random, BoundingBox blockBox, ChunkPos chunkPos, BlockPos blockPos) {
+	public void postProcess(WorldGenLevel world, StructureManager arg, ChunkGenerator chunkGenerator, RandomSource random, BoundingBox blockBox, ChunkPos chunkPos, BlockPos blockPos) {
 		int minY = this.boundingBox.minY();
 		int maxY = this.boundingBox.maxY();
 		int sx = SectionPos.sectionToBlockCoord(chunkPos.x);
@@ -147,7 +148,7 @@ public class LakePiece extends BasePiece {
 		fixWater(world, chunk, mut, random, sx, sz);
 	}
 	
-	private void fixWater(WorldGenLevel world, ChunkAccess chunk, MutableBlockPos mut, Random random, int sx, int sz) {
+	private void fixWater(WorldGenLevel world, ChunkAccess chunk, MutableBlockPos mut, RandomSource random, int sx, int sz) {
 		int minY = this.boundingBox.minY();
 		int maxY = this.boundingBox.maxY();
 		for (int x = 0; x < 16; x++) {

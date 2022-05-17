@@ -13,6 +13,7 @@ import ru.betterend.blocks.basis.EndPlantWithAgeBlock;
 import ru.betterend.registry.EndBlocks;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class BulbVineSeedBlock extends EndPlantWithAgeBlock {
 	
@@ -23,7 +24,7 @@ public class BulbVineSeedBlock extends EndPlantWithAgeBlock {
 	}
 	
 	@Override
-	public void growAdult(WorldGenLevel world, Random random, BlockPos pos) {
+	public void growAdult(WorldGenLevel world, RandomSource random, BlockPos pos) {
 		int h = BlocksHelper.downRay(world, pos, random.nextInt(24)) - 1;
 		if (h > 2) {
 			BlocksHelper.setWithoutUpdate(

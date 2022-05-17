@@ -15,6 +15,7 @@ import ru.bclib.util.BlocksHelper;
 import ru.bclib.world.features.DefaultFeature;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class StalactiteFeature extends DefaultFeature {
 	private final boolean ceiling;
@@ -29,7 +30,7 @@ public class StalactiteFeature extends DefaultFeature {
 	
 	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig) {
-		final Random random = featureConfig.random();
+		final RandomSource random = featureConfig.random();
 		final BlockPos pos = featureConfig.origin();
 		final WorldGenLevel world = featureConfig.level();
 		if (!isGround(world.getBlockState(ceiling ? pos.above() : pos.below()).getBlock())) {

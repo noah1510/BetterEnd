@@ -13,11 +13,12 @@ import net.minecraft.world.level.levelgen.structure.pieces.PieceGeneratorSupplie
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import ru.bclib.util.StructureHelper;
-import ru.bclib.world.structures.BCLStructureFeature;
+import ru.bclib.world.structures.BCLStructure;
 import ru.betterend.BetterEnd;
 import ru.betterend.world.structures.piece.NBTPiece;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class EternalPortalStructure extends FeatureBaseStructure {
 	private static final ResourceLocation STRUCTURE_ID = BetterEnd.makeID("portal/eternal_portal");
@@ -31,7 +32,7 @@ public class EternalPortalStructure extends FeatureBaseStructure {
 	}
 
 	protected static boolean checkLocation(PieceGeneratorSupplier.Context<NoneFeatureConfiguration> context) {
-		if (!BCLStructureFeature.isValidBiome(context)) return false;
+		if (!BCLStructure.isValidBiome(context)) return false;
 
 		final ChunkPos chunkPos = context.chunkPos();
 		final ChunkGenerator chunkGenerator = context.chunkGenerator();
@@ -54,7 +55,7 @@ public class EternalPortalStructure extends FeatureBaseStructure {
 	}
 
 	protected static void generatePieces(StructurePiecesBuilder structurePiecesBuilder, PieceGenerator.Context<NoneFeatureConfiguration> context) {
-		final Random random = context.random();
+		final RandomSource random = context.random();
 		final ChunkPos chunkPos = context.chunkPos();
 		final ChunkGenerator chunkGenerator = context.chunkGenerator();
 		final LevelHeightAccessor levelHeightAccessor = context.heightAccessor();

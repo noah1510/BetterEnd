@@ -17,6 +17,7 @@ import ru.betterend.client.ClientOptions;
 import ru.betterend.world.biome.EndBiome;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 @Mixin(MusicManager.class)
 public abstract class MusicTrackerMixin {
@@ -26,7 +27,7 @@ public abstract class MusicTrackerMixin {
 	
 	@Final
 	@Shadow
-	private Random random;
+	private RandomSource random;
 	
 	@Shadow
 	private SoundInstance currentMusic;

@@ -39,7 +39,7 @@ public class REIAnvilCategory implements DisplayCategory<REIAnvilDisplay> {
 	
 	@Override
 	public @NotNull Component getTitle() {
-		return new TranslatableComponent(Blocks.ANVIL.getDescriptionId());
+		return Component.translatable(Blocks.ANVIL.getDescriptionId());
 	}
 	
 	@Override
@@ -73,7 +73,7 @@ public class REIAnvilCategory implements DisplayCategory<REIAnvilDisplay> {
 		widgets.add(Widgets.createArrow(new Point(x + 24, y + 4)));
 		widgets.add(Widgets.createLabel(
 			new Point(bounds.x + bounds.width - 7, bounds.y + bounds.height - 15),
-			new TranslatableComponent("category.rei.damage.amount&dmg", display.getDamage())
+			Component.translatable("category.rei.damage.amount&dmg", display.getDamage())
 		).noShadow().rightAligned().color(0xFF404040, 0xFFBBBBBB));
 		widgets.add(Widgets.createSlot(new Point(x - 20, y + 4)).entries(materials).markInput());
 		widgets.add(Widgets.createSlot(new Point(x + 1, y + 4)).entries(inputEntries.get(0)).markInput());

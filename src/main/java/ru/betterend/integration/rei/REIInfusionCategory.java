@@ -35,7 +35,7 @@ public class REIInfusionCategory implements DisplayCategory<REIInfusionDisplay> 
 	
 	@Override
 	public @NotNull Component getTitle() {
-		return new TranslatableComponent(EndBlocks.INFUSION_PEDESTAL.getDescriptionId());
+		return Component.translatable(EndBlocks.INFUSION_PEDESTAL.getDescriptionId());
 	}
 	
 	@Override
@@ -98,7 +98,7 @@ public class REIInfusionCategory implements DisplayCategory<REIInfusionDisplay> 
 						   .markOutput());
 		widgets.add(Widgets.createLabel(
 			new Point(bounds.getMaxX() - 5, bounds.y + 6),
-			new TranslatableComponent("category.rei.infusion.time&val", display.getInfusionTime())
+			Component.translatable("category.rei.infusion.time&val", display.getInfusionTime())
 		).noShadow().rightAligned().color(0xFF404040, 0xFFBBBBBB));
 		return widgets;
 	}

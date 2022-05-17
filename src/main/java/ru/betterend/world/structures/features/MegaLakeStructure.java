@@ -15,6 +15,7 @@ import ru.bclib.util.MHelper;
 import ru.betterend.world.structures.piece.LakePiece;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class MegaLakeStructure extends FeatureBaseStructure {
 
@@ -27,7 +28,7 @@ public class MegaLakeStructure extends FeatureBaseStructure {
 	}
 
 	protected static void generatePieces(StructurePiecesBuilder structurePiecesBuilder, PieceGenerator.Context<NoneFeatureConfiguration> context) {
-		final Random random = context.random();
+		final RandomSource random = context.random();
 		final ChunkPos chunkPos = context.chunkPos();
 		final ChunkGenerator chunkGenerator = context.chunkGenerator();
 		final LevelHeightAccessor levelHeightAccessor = context.heightAccessor();

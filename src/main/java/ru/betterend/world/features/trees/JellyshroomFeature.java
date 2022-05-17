@@ -26,6 +26,7 @@ import ru.betterend.registry.EndBlocks;
 
 import java.util.List;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 import java.util.function.Function;
 
 public class JellyshroomFeature extends DefaultFeature {
@@ -34,7 +35,7 @@ public class JellyshroomFeature extends DefaultFeature {
 	
 	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig) {
-		final Random random = featureConfig.random();
+		final RandomSource random = featureConfig.random();
 		final BlockPos pos = featureConfig.origin();
 		final WorldGenLevel world = featureConfig.level();
 		if (!world.getBlockState(pos.below()).is(BlockTags.NYLIUM)) return false;
@@ -80,7 +81,7 @@ public class JellyshroomFeature extends DefaultFeature {
 		return true;
 	}
 	
-	private void makeRoots(WorldGenLevel world, BlockPos pos, float radius, Random random, BlockState wood) {
+	private void makeRoots(WorldGenLevel world, BlockPos pos, float radius, RandomSource random, BlockState wood) {
 		int count = (int) (radius * 3.5F);
 		for (int i = 0; i < count; i++) {
 			float angle = (float) i / (float) count * MHelper.PI2;
@@ -96,7 +97,7 @@ public class JellyshroomFeature extends DefaultFeature {
 		}
 	}
 	
-	private SDF makeCap(float radius, Random random, BlockState cap) {
+	private SDF makeCap(float radius, RandomSource random, BlockState cap) {
 		SDF sphere = new SDFSphere().setRadius(radius).setBlock(cap);
 		SDF sub = new SDFTranslate().setTranslate(0, -4, 0).setSource(sphere);
 		sphere = new SDFSubtraction().setSourceA(sphere).setSourceB(sub);

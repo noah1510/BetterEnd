@@ -5,6 +5,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -16,12 +17,13 @@ import ru.bclib.util.BlocksHelper;
 import ru.bclib.util.MHelper;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 import java.util.Set;
 
 public class StructureErode {
 	private static final Direction[] DIR = BlocksHelper.makeHorizontal();
 	
-	public static void erode(WorldGenLevel world, BoundingBox bounds, int iterations, Random random) {
+	public static void erode(WorldGenLevel world, BoundingBox bounds, int iterations, RandomSource random) {
 		MutableBlockPos mut = new MutableBlockPos();
 		boolean canDestruct = true;
 		for (int i = 0; i < iterations; i++) {
@@ -132,7 +134,7 @@ public class StructureErode {
 		}
 	}
 	
-	public static void erodeIntense(WorldGenLevel world, BoundingBox bounds, Random random) {
+	public static void erodeIntense(WorldGenLevel world, BoundingBox bounds, RandomSource random) {
 		MutableBlockPos mut = new MutableBlockPos();
 		MutableBlockPos mut2 = new MutableBlockPos();
 		int minY = bounds.minY() - 10;
@@ -256,7 +258,7 @@ public class StructureErode {
 		return false;
 	}
 	
-	public static void cover(WorldGenLevel world, BoundingBox bounds, Random random, BlockState defaultBlock) {
+	public static void cover(WorldGenLevel world, BoundingBox bounds, RandomSource random, BlockState defaultBlock) {
 		MutableBlockPos mut = new MutableBlockPos();
 		for (int x = bounds.minX(); x <= bounds.maxX(); x++) {
 			mut.setX(x);

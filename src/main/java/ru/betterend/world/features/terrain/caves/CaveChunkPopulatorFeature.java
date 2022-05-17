@@ -18,6 +18,7 @@ import ru.betterend.world.biome.cave.EndCaveBiome;
 
 import java.util.Optional;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 import java.util.Set;
 import java.util.function.Supplier;
 
@@ -30,7 +31,7 @@ public class CaveChunkPopulatorFeature extends DefaultFeature {
 	
 	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig) {
-		final Random random = featureConfig.random();
+		final RandomSource random = featureConfig.random();
 		final BlockPos pos = featureConfig.origin();
 		final WorldGenLevel world = featureConfig.level();
 		Set<BlockPos> floorPositions = Sets.newHashSet();
@@ -105,7 +106,7 @@ public class CaveChunkPopulatorFeature extends DefaultFeature {
 		}
 	}
 	
-	protected void placeFloor(WorldGenLevel world, EndCaveBiome biome, Set<BlockPos> floorPositions, Random random, BlockState surfaceBlock) {
+	protected void placeFloor(WorldGenLevel world, EndCaveBiome biome, Set<BlockPos> floorPositions, RandomSource random, BlockState surfaceBlock) {
 		float density = biome.getFloorDensity();
 		floorPositions.forEach((pos) -> {
 			BlocksHelper.setWithoutUpdate(world, pos, surfaceBlock);
@@ -118,7 +119,7 @@ public class CaveChunkPopulatorFeature extends DefaultFeature {
 		});
 	}
 	
-	protected void placeCeil(WorldGenLevel world, EndCaveBiome biome, Set<BlockPos> ceilPositions, Random random) {
+	protected void placeCeil(WorldGenLevel world, EndCaveBiome biome, Set<BlockPos> ceilPositions, RandomSource random) {
 		float density = biome.getCeilDensity();
 		ceilPositions.forEach((pos) -> {
 			BlockState ceilBlock = biome.getCeil(pos);

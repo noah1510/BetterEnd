@@ -6,7 +6,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.ChunkPos;
-import net.minecraft.world.level.StructureFeatureManager;
+import net.minecraft.world.level.StructureManager;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
@@ -26,11 +26,12 @@ import ru.betterend.util.GlobalState;
 import ru.betterend.world.biome.EndBiome;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class CrystalMountainPiece extends MountainPiece {
 	private BlockState top;
 	
-	public CrystalMountainPiece(BlockPos center, float radius, float height, Random random, Holder<Biome> biome) {
+	public CrystalMountainPiece(BlockPos center, float radius, float height, RandomSource random, Holder<Biome> biome) {
 		super(EndStructures.MOUNTAIN_PIECE, center, radius, height, random, biome);
 		top = EndBiome.findTopMaterial(biome.value()); //biome.getGenerationSettings().getSurfaceBuilderConfig().getTopMaterial();
 	}
@@ -46,7 +47,7 @@ public class CrystalMountainPiece extends MountainPiece {
 	}
 	
 	@Override
-	public void postProcess(WorldGenLevel world, StructureFeatureManager arg, ChunkGenerator chunkGenerator, Random random, BoundingBox blockBox, ChunkPos chunkPos, BlockPos blockPos) {
+	public void postProcess(WorldGenLevel world, StructureManager arg, ChunkGenerator chunkGenerator, RandomSource random, BoundingBox blockBox, ChunkPos chunkPos, BlockPos blockPos) {
 		int sx = chunkPos.getMinBlockX();
 		int sz = chunkPos.getMinBlockZ();
 		final MutableBlockPos pos = GlobalState.stateForThread().POS;
@@ -143,7 +144,7 @@ public class CrystalMountainPiece extends MountainPiece {
 		}
 	}
 	
-	private void crystal(ChunkAccess chunk, BlockPos pos, int radius, int height, float fill, Random random) {
+	private void crystal(ChunkAccess chunk, BlockPos pos, int radius, int height, float fill, RandomSource random) {
 		MutableBlockPos mut = new MutableBlockPos();
 		int max = MHelper.floor(fill * radius + radius + 0.5F);
 		height += pos.getY();

@@ -6,6 +6,7 @@ import ru.betterend.blocks.HydraluxSaplingBlock;
 import ru.betterend.registry.EndBlocks;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class HydraluxFeature extends UnderwaterPlantScatter {
 	public HydraluxFeature(int radius) {
@@ -13,7 +14,7 @@ public class HydraluxFeature extends UnderwaterPlantScatter {
 	}
 	
 	@Override
-	public void generate(WorldGenLevel world, Random random, BlockPos blockPos) {
+	public void generate(WorldGenLevel world, RandomSource random, BlockPos blockPos) {
 		HydraluxSaplingBlock seed = (HydraluxSaplingBlock) EndBlocks.HYDRALUX_SAPLING;
 		seed.grow(world, random, blockPos);
 	}

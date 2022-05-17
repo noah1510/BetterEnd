@@ -7,7 +7,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.WaterLilyBlockItem;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.PlaceOnWaterBlockItem;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -29,7 +30,8 @@ public class FlamaeaBlock extends EndPlantBlock implements CustomItemProvider, A
 	
 	public FlamaeaBlock() {
 		super(FabricBlockSettings.of(Material.PLANT)
-								 .sound(SoundType.WET_GRASS));
+								 .sound(SoundType.WET_GRASS)
+					  .offsetType( BlockBehaviour.OffsetType.NONE));
 	}
 	
 	@Override
@@ -41,12 +43,7 @@ public class FlamaeaBlock extends EndPlantBlock implements CustomItemProvider, A
 	public VoxelShape getShape(BlockState state, BlockGetter view, BlockPos pos, CollisionContext ePos) {
 		return SHAPE;
 	}
-	
-	@Override
-	public BlockBehaviour.OffsetType getOffsetType() {
-		return BlockBehaviour.OffsetType.NONE;
-	}
-	
+
 	@Override
 	public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
 		return Lists.newArrayList(new ItemStack(this));
@@ -59,6 +56,6 @@ public class FlamaeaBlock extends EndPlantBlock implements CustomItemProvider, A
 	
 	@Override
 	public BlockItem getCustomItem(ResourceLocation resourceLocation, FabricItemSettings fabricItemSettings) {
-		return new WaterLilyBlockItem(this, fabricItemSettings);
+		return new PlaceOnWaterBlockItem(this, fabricItemSettings);
 	}
 }

@@ -32,6 +32,7 @@ import ru.betterend.registry.EndBlocks;
 
 import java.util.List;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 import java.util.function.Function;
 
 public class LucerniaFeature extends DefaultFeature {
@@ -43,7 +44,7 @@ public class LucerniaFeature extends DefaultFeature {
 	
 	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig) {
-		final Random random = featureConfig.random();
+		final RandomSource random = featureConfig.random();
 		final BlockPos pos = featureConfig.origin();
 		final WorldGenLevel world = featureConfig.level();
 		final NoneFeatureConfiguration config = featureConfig.config();
@@ -71,7 +72,7 @@ public class LucerniaFeature extends DefaultFeature {
 		return true;
 	}
 	
-	private void leavesBall(WorldGenLevel world, BlockPos pos, float radius, Random random, OpenSimplexNoise noise, boolean natural) {
+	private void leavesBall(WorldGenLevel world, BlockPos pos, float radius, RandomSource random, OpenSimplexNoise noise, boolean natural) {
 		SDF sphere = new SDFSphere().setRadius(radius)
 									.setBlock(EndBlocks.LUCERNIA_LEAVES.defaultBlockState()
 																	   .setValue(LeavesBlock.DISTANCE, 6));
@@ -177,7 +178,7 @@ public class LucerniaFeature extends DefaultFeature {
 		});
 	}
 	
-	private void makeRoots(WorldGenLevel world, BlockPos pos, float radius, Random random) {
+	private void makeRoots(WorldGenLevel world, BlockPos pos, float radius, RandomSource random) {
 		int count = (int) (radius * 1.5F);
 		for (int i = 0; i < count; i++) {
 			float angle = (float) i / (float) count * MHelper.PI2;

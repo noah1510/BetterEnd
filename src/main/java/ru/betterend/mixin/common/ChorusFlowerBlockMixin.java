@@ -26,6 +26,7 @@ import ru.betterend.registry.EndBlocks;
 import ru.betterend.world.generator.GeneratorOptions;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 @Mixin(value = ChorusFlowerBlock.class, priority = 100)
 public abstract class ChorusFlowerBlockMixin extends Block {
@@ -49,7 +50,7 @@ public abstract class ChorusFlowerBlockMixin extends Block {
 	}
 	
 	@Inject(method = "randomTick", at = @At("HEAD"), cancellable = true)
-	private void be_randomTick(BlockState state, ServerLevel world, BlockPos pos, Random random, CallbackInfo info) {
+	private void be_randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random, CallbackInfo info) {
 		if (world.getBlockState(pos.below()).is(CommonBlockTags.END_STONES)) {
 			BlockPos up = pos.above();
 			if (world.isEmptyBlock(up) && up.getY() < 256) {

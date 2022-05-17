@@ -2,6 +2,7 @@ package ru.betterend.world.features;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
@@ -21,14 +22,15 @@ import net.minecraft.world.level.material.Material;
 import ru.bclib.api.tag.CommonBlockTags;
 import ru.bclib.util.MHelper;
 import ru.bclib.util.StructureHelper;
-import ru.bclib.world.features.NBTStructureFeature;
+import ru.bclib.world.features.NBTFeature;
 import ru.betterend.util.BlockFixer;
 import ru.betterend.util.StructureErode;
 import ru.betterend.world.biome.EndBiome;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
-public class CrashedShipFeature extends NBTStructureFeature {
+public class CrashedShipFeature extends NBTFeature {
 	private static final StructureProcessor REPLACER;
 	private static final String STRUCTURE_PATH = "/data/minecraft/structures/end_city/ship.nbt";
 	private StructureTemplate structure;
@@ -38,7 +40,7 @@ public class CrashedShipFeature extends NBTStructureFeature {
 	}
 
 	@Override
-	protected StructureTemplate getStructure(WorldGenLevel world, BlockPos pos, Random random) {
+	protected StructureTemplate getStructure(WorldGenLevel world, BlockPos pos, RandomSource random) {
 		if (structure == null) {
 			structure = world.getLevel().getStructureManager().getOrCreate(new ResourceLocation("end_city/ship"));
 			if (structure == null) {
@@ -49,7 +51,7 @@ public class CrashedShipFeature extends NBTStructureFeature {
 	}
 	
 	@Override
-	protected boolean canSpawn(WorldGenLevel world, BlockPos pos, Random random) {
+	protected boolean canSpawn(WorldGenLevel world, BlockPos pos, RandomSource random) {
 		long x = pos.getX() >> 4;
 		long z = pos.getX() >> 4;
 		if (x * x + z * z < 3600) {
@@ -59,30 +61,30 @@ public class CrashedShipFeature extends NBTStructureFeature {
 	}
 	
 	@Override
-	protected Rotation getRotation(WorldGenLevel world, BlockPos pos, Random random) {
+	protected Rotation getRotation(WorldGenLevel world, BlockPos pos, RandomSource random) {
 		return Rotation.getRandom(random);
 	}
 	
 	@Override
-	protected Mirror getMirror(WorldGenLevel world, BlockPos pos, Random random) {
+	protected Mirror getMirror(WorldGenLevel world, BlockPos pos, RandomSource random) {
 		return Mirror.values()[random.nextInt(3)];
 	}
 	
 	@Override
-	protected int getYOffset(StructureTemplate structure, WorldGenLevel world, BlockPos pos, Random random) {
+	protected int getYOffset(StructureTemplate structure, WorldGenLevel world, BlockPos pos, RandomSource random) {
 		int min = structure.getSize().getY() >> 3;
 		int max = structure.getSize().getY() >> 2;
 		return -MHelper.randRange(min, max, random);
 	}
 	
 	@Override
-	protected TerrainMerge getTerrainMerge(WorldGenLevel world, BlockPos pos, Random random) {
+	protected TerrainMerge getTerrainMerge(WorldGenLevel world, BlockPos pos, RandomSource random) {
 		return TerrainMerge.NONE;
 	}
 	
 	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig) {
-		final Random random = featureConfig.random();
+		final RandomSource random = featureConfig.random();
 		BlockPos center = featureConfig.origin();
 		final WorldGenLevel world = featureConfig.level();
 		center = new BlockPos(((center.getX() >> 4) << 4) | 8, 128, ((center.getZ() >> 4) << 4) | 8);

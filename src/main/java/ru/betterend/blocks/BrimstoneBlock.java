@@ -23,6 +23,7 @@ import ru.bclib.util.BlocksHelper;
 import ru.betterend.registry.EndBlocks;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class BrimstoneBlock extends BaseBlock {
 	public static final BooleanProperty ACTIVATED = BlockProperties.ACTIVE;
@@ -65,7 +66,7 @@ public class BrimstoneBlock extends BaseBlock {
 	
 	@Override
 	@SuppressWarnings("deprecation")
-	public void tick(BlockState state, ServerLevel world, BlockPos pos, Random random) {
+	public void tick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		boolean deactivate = true;
 		for (Direction dir : BlocksHelper.DIRECTIONS) {
 			if (world.getFluidState(pos.relative(dir)).getType().equals(Fluids.WATER)) {

@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -22,6 +23,9 @@ import ru.betterend.registry.EndParticles;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
+import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class AncientEmeraldIceBlock extends BaseBlock {
 	public AncientEmeraldIceBlock() {
@@ -30,7 +34,7 @@ public class AncientEmeraldIceBlock extends BaseBlock {
 	
 	@Override
 	@SuppressWarnings("deprecation")
-	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		Direction dir = BlocksHelper.randomDirection(random);
 		
 		if (random.nextBoolean()) {
@@ -56,7 +60,7 @@ public class AncientEmeraldIceBlock extends BaseBlock {
 		}
 	}
 	
-	private void makeParticles(ServerLevel world, BlockPos pos, Random random) {
+	private void makeParticles(ServerLevel world, BlockPos pos, RandomSource random) {
 		world.sendParticles(
 			EndParticles.SNOWFLAKE,
 			pos.getX() + 0.5,

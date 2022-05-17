@@ -30,6 +30,7 @@ import ru.betterend.registry.EndBlocks;
 
 import java.util.List;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 import java.util.function.Function;
 
 public class DragonTreeFeature extends DefaultFeature {
@@ -43,7 +44,7 @@ public class DragonTreeFeature extends DefaultFeature {
 	
 	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig) {
-		final Random random = featureConfig.random();
+		final RandomSource random = featureConfig.random();
 		final BlockPos pos = featureConfig.origin();
 		final WorldGenLevel world = featureConfig.level();
 		if (!world.getBlockState(pos.below()).is(BlockTags.NYLIUM)) return false;
@@ -77,7 +78,7 @@ public class DragonTreeFeature extends DefaultFeature {
 		return true;
 	}
 	
-	private void makeCap(WorldGenLevel world, BlockPos pos, float radius, Random random, OpenSimplexNoise noise) {
+	private void makeCap(WorldGenLevel world, BlockPos pos, float radius, RandomSource random, OpenSimplexNoise noise) {
 		int count = (int) radius;
 		int offset = (int) (BRANCH.get(BRANCH.size() - 1).y() * radius);
 		for (int i = 0; i < count; i++) {
@@ -102,7 +103,7 @@ public class DragonTreeFeature extends DefaultFeature {
 		leavesBall(world, pos.above(offset), radius * 1.15F + 2, random, noise);
 	}
 	
-	private void makeRoots(WorldGenLevel world, BlockPos pos, float radius, Random random) {
+	private void makeRoots(WorldGenLevel world, BlockPos pos, float radius, RandomSource random) {
 		int count = (int) (radius * 1.5F);
 		for (int i = 0; i < count; i++) {
 			float angle = (float) i / (float) count * MHelper.PI2;
@@ -118,7 +119,7 @@ public class DragonTreeFeature extends DefaultFeature {
 		}
 	}
 	
-	private void leavesBall(WorldGenLevel world, BlockPos pos, float radius, Random random, OpenSimplexNoise noise) {
+	private void leavesBall(WorldGenLevel world, BlockPos pos, float radius, RandomSource random, OpenSimplexNoise noise) {
 		SDF sphere = new SDFSphere().setRadius(radius)
 									.setBlock(EndBlocks.DRAGON_TREE_LEAVES.defaultBlockState()
 																		  .setValue(LeavesBlock.DISTANCE, 6));

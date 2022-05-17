@@ -35,6 +35,7 @@ import ru.betterend.registry.EndEntities;
 import ru.betterend.registry.EndItems;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class SilkMothHiveBlock extends BaseBlock {
 	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
@@ -75,7 +76,7 @@ public class SilkMothHiveBlock extends BaseBlock {
 	
 	@Override
 	@SuppressWarnings("deprecation")
-	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerLevel world, BlockPos pos, RandomSource random) {
 		Direction dir = state.getValue(FACING);
 		BlockPos spawn = pos.relative(dir);
 		if (!world.getBlockState(spawn).isAir()) {

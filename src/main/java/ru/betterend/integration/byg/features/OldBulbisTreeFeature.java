@@ -26,6 +26,7 @@ import ru.betterend.noise.OpenSimplexNoise;
 
 import java.util.List;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 import java.util.function.Function;
 
 public class OldBulbisTreeFeature extends DefaultFeature {
@@ -36,7 +37,7 @@ public class OldBulbisTreeFeature extends DefaultFeature {
 	
 	@Override
 	public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig) {
-		final Random random = featureConfig.random();
+		final RandomSource random = featureConfig.random();
 		final BlockPos pos = featureConfig.origin();
 		final WorldGenLevel world = featureConfig.level();
 		if (!world.getBlockState(pos.below()).is(CommonBlockTags.END_STONES)) return false;
@@ -98,7 +99,7 @@ public class OldBulbisTreeFeature extends DefaultFeature {
 		return true;
 	}
 	
-	private void bigSphere(WorldGenLevel world, BlockPos pos, float radius, BlockState cap, BlockState glow, BlockState wood, Function<BlockState, Boolean> replacement, Random random) {
+	private void bigSphere(WorldGenLevel world, BlockPos pos, float radius, BlockState cap, BlockState glow, BlockState wood, Function<BlockState, Boolean> replacement, RandomSource random) {
 		OpenSimplexNoise noise = new OpenSimplexNoise(random.nextLong());
 		SDF sphere = new SDFSphere().setRadius(radius).setBlock(cap);
 		
@@ -145,7 +146,7 @@ public class OldBulbisTreeFeature extends DefaultFeature {
 		sphere.fillArea(world, pos, new AABB(pos.above((int) offsetY)).inflate(radius * 1.3F));
 	}
 	
-	private void makeRoots(WorldGenLevel world, BlockPos pos, float radius, Random random, BlockState wood, Function<BlockState, Boolean> replacement) {
+	private void makeRoots(WorldGenLevel world, BlockPos pos, float radius, RandomSource random, BlockState wood, Function<BlockState, Boolean> replacement) {
 		int count = (int) (radius * 1.5F);
 		for (int i = 0; i < count; i++) {
 			float angle = (float) i / (float) count * MHelper.PI2;

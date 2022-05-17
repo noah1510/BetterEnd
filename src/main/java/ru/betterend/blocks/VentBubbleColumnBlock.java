@@ -35,6 +35,7 @@ import ru.betterend.registry.EndBlocks;
 
 import java.util.Optional;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class VentBubbleColumnBlock extends Block implements BucketPickup, LiquidBlockContainer {
 	public VentBubbleColumnBlock() {
@@ -83,7 +84,7 @@ public class VentBubbleColumnBlock extends Block implements BucketPickup, Liquid
 	}
 	
 	@Environment(EnvType.CLIENT)
-	public void animateTick(BlockState state, Level world, BlockPos pos, Random random) {
+	public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
 		if (random.nextInt(4) == 0) {
 			double px = pos.getX() + random.nextDouble();
 			double py = pos.getY() + random.nextDouble();

@@ -6,21 +6,32 @@ import ru.bclib.api.tag.CommonBlockTags;
 import ru.bclib.blocks.BasePlantBlock;
 import ru.betterend.interfaces.PottablePlant;
 
+import java.util.function.Function;
+
 public class EndPlantBlock extends BasePlantBlock implements PottablePlant {
 	public EndPlantBlock() {
-		this(false);
+		this(false, p->p);
 	}
-	
+
 	public EndPlantBlock(int light) {
-		this(false, light);
+		this(light, p->p);
 	}
-	
+	public EndPlantBlock(int light, Function<Properties, Properties> propMod) {
+		this(false, light, propMod);
+	}
+
 	public EndPlantBlock(boolean replaceable) {
 		super(replaceable);
 	}
-	
-	public EndPlantBlock(boolean replaceable, int light) {
-		super(replaceable, light);
+	public EndPlantBlock(boolean replaceable, Function<Properties, Properties> propMod) {
+		super(replaceable, propMod);
+	}
+
+	public EndPlantBlock(boolean replaceable, int light){
+		this(replaceable, light, p->p);
+	}
+	public EndPlantBlock(boolean replaceable, int light, Function<Properties, Properties> propMod) {
+		super(replaceable, light, propMod);
 	}
 	
 	public EndPlantBlock(Properties settings) {

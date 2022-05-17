@@ -21,6 +21,7 @@ import ru.betterend.blocks.basis.EndPlantBlock;
 import ru.betterend.registry.EndBlocks;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 public class LargeAmaranitaBlock extends EndPlantBlock implements AddMineableShears {
 	public static final EnumProperty<TripleShape> SHAPE = BlockProperties.TRIPLE_SHAPE;
@@ -31,7 +32,8 @@ public class LargeAmaranitaBlock extends EndPlantBlock implements AddMineableShe
 		super(FabricBlockSettings.of(Material.PLANT)
 								 
 								 .sound(SoundType.GRASS)
-								 .lightLevel((state) -> (state.getValue(SHAPE) == TripleShape.TOP) ? 15 : 0));
+								 .lightLevel((state) -> (state.getValue(SHAPE) == TripleShape.TOP) ? 15 : 0)
+					  .offsetType(OffsetType.NONE));
 	}
 	
 	@Override
@@ -64,17 +66,12 @@ public class LargeAmaranitaBlock extends EndPlantBlock implements AddMineableShe
 	}
 	
 	@Override
-	public OffsetType getOffsetType() {
-		return OffsetType.NONE;
-	}
-	
-	@Override
 	public boolean isValidBonemealTarget(BlockGetter world, BlockPos pos, BlockState state, boolean isClient) {
 		return false;
 	}
 	
 	@Override
-	public boolean isBonemealSuccess(Level world, Random random, BlockPos pos, BlockState state) {
+	public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
 		return false;
 	}
 }

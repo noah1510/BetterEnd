@@ -12,12 +12,13 @@ import ru.bclib.util.MHelper;
 import ru.betterend.noise.OpenSimplexNoise;
 
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 import java.util.Set;
 import java.util.stream.IntStream;
 
 public class RoundCaveFeature extends EndCaveFeature {
 	@Override
-	protected Set<BlockPos> generate(WorldGenLevel world, BlockPos center, int radius, Random random) {
+	protected Set<BlockPos> generate(WorldGenLevel world, BlockPos center, int radius, RandomSource random) {
 		OpenSimplexNoise noise = new OpenSimplexNoise(MHelper.getSeed(534, center.getX(), center.getZ()));
 		
 		int x1 = center.getX() - radius - 5;

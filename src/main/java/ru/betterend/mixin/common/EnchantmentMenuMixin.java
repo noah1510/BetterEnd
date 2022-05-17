@@ -20,6 +20,7 @@ import ru.bclib.api.tag.CommonBlockTags;
 
 import java.util.List;
 import java.util.Random;
+import net.minecraft.util.RandomSource;
 
 @Mixin(EnchantmentMenu.class)
 public abstract class EnchantmentMenuMixin extends AbstractContainerMenu {
@@ -33,7 +34,7 @@ public abstract class EnchantmentMenuMixin extends AbstractContainerMenu {
 	
 	@Final
 	@Shadow
-	private Random random;
+	private RandomSource random;
 	
 	@Final
 	@Shadow
