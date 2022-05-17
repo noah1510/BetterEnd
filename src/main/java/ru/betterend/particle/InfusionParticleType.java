@@ -7,6 +7,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.commands.arguments.item.ItemInput;
 import net.minecraft.commands.arguments.item.ItemParser;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
@@ -25,11 +26,9 @@ public class InfusionParticleType extends ParticleType<InfusionParticleType> imp
 	public static final ParticleOptions.Deserializer<InfusionParticleType> PARAMETERS_FACTORY = new ParticleOptions.Deserializer<InfusionParticleType>() {
 		public InfusionParticleType fromCommand(ParticleType<InfusionParticleType> particleType, StringReader stringReader) throws CommandSyntaxException {
 			stringReader.expect(' ');
-			ItemParser itemStringReader = new ItemParser(stringReader, false).parse();
-			ItemStack itemStack = new ItemInput(
-				itemStringReader.getItem(),
-				itemStringReader.getNbt()
-			).createItemStack(1, false);
+			ItemParser.ItemResult itemResult = ItemParser.parseForItem(HolderLookup.forRegistry(Registry.ITEM), stringReader);
+			ItemStack itemStack = new ItemInput(itemResult.item(), itemResult.nbt()).createItemStack(1, false);
+
 			return new InfusionParticleType(particleType, itemStack);
 		}
 		
