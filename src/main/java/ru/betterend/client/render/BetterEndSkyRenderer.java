@@ -1,5 +1,6 @@
 package ru.betterend.client.render;
 
+import com.mojang.blaze3d.platform.GlDebug;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.BufferBuilder;
@@ -16,6 +17,8 @@ import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext;
 import net.minecraft.client.renderer.FogRenderer;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
+
+import org.lwjgl.opengl.GLDebugMessageAMDCallback;
 import ru.bclib.util.BackgroundInfo;
 import ru.bclib.util.MHelper;
 import ru.betterend.BetterEnd;
@@ -25,6 +28,10 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.levelgen.LegacyRandomSource;
 
 public class BetterEndSkyRenderer implements DimensionRenderingRegistry.SkyRenderer {
+	@FunctionalInterface
+	static interface BufferFunction {
+		void make(BufferBuilder bufferBuilder, double minSize, double maxSize, int count, long seed);
+	}
 	private static final ResourceLocation NEBULA_1 = BetterEnd.makeID("textures/sky/nebula_2.png");
 	private static final ResourceLocation NEBULA_2 = BetterEnd.makeID("textures/sky/nebula_3.png");
 	private static final ResourceLocation HORIZON = BetterEnd.makeID("textures/sky/nebula_1.png");
@@ -157,93 +164,59 @@ public class BetterEndSkyRenderer implements DimensionRenderingRegistry.SkyRende
 	
 	private void renderBuffer(PoseStack matrices, Matrix4f matrix4f, VertexBuffer buffer, VertexFormat format, float r, float g, float b, float a) {
 		RenderSystem.setShaderColor(r, g, b, a);
+		buffer.bind();
 		if (format == DefaultVertexFormat.POSITION) {
 			buffer.drawWithShader(matrices.last().pose(), matrix4f, GameRenderer.getPositionShader());
 		}
 		else {
 			buffer.drawWithShader(matrices.last().pose(), matrix4f, GameRenderer.getPositionTexShader());
 		}
+		VertexBuffer.unbind();
 	}
 	
 	private void initStars() {
 		BufferBuilder buffer = Tesselator.getInstance().getBuilder();
-		stars1 = buildBufferStars(buffer, stars1, 0.1, 0.30, 3500, 41315);
-		stars2 = buildBufferStars(buffer, stars2, 0.1, 0.35, 2000, 35151);
-		stars3 = buildBufferUVStars(buffer, stars3, 0.4, 1.2, 1000, 61354);
-		stars4 = buildBufferUVStars(buffer, stars4, 0.4, 1.2, 1000, 61355);
-		nebula1 = buildBufferFarFog(buffer, nebula1, 40, 60, 30, 11515);
-		nebula2 = buildBufferFarFog(buffer, nebula2, 40, 60, 10, 14151);
+		stars1 = buildBuffer(buffer, stars1, 0.1, 0.30, 3500, 41315, this::makeStars);
+		stars2 = buildBuffer(buffer, stars2, 0.1, 0.35, 2000, 35151, this::makeStars);
+		stars3 = buildBuffer(buffer, stars3, 0.4, 1.2, 1000, 61354, this::makeUVStars);
+		stars4 = buildBuffer(buffer, stars4, 0.4, 1.2, 1000, 61355, this::makeUVStars);
+		nebula1 = buildBuffer(buffer, nebula1, 40, 60, 30, 11515, this::makeFarFog);
+		nebula2 = buildBuffer(buffer, nebula2, 40, 60, 10, 14151, this::makeFarFog);
 		horizon = buildBufferHorizon(buffer, horizon);
 		fog = buildBufferFog(buffer, fog);
 	}
-	
-	private VertexBuffer buildBufferStars(BufferBuilder bufferBuilder, VertexBuffer buffer, double minSize, double maxSize, int count, long seed) {
+
+	private VertexBuffer buildBuffer(BufferBuilder bufferBuilder, VertexBuffer buffer, double minSize, double maxSize, int count, long seed, BufferFunction fkt) {
 		if (buffer != null) {
 			buffer.close();
 		}
-		
+
 		buffer = new VertexBuffer();
-		makeStars(bufferBuilder, minSize, maxSize, count, seed);
+		fkt.make(bufferBuilder, minSize, maxSize, count, seed);
 		BufferBuilder.RenderedBuffer renderedBuffer = bufferBuilder.end();
+		buffer.bind();
 		buffer.upload(renderedBuffer);
-		
+
 		return buffer;
 	}
-	
-	private VertexBuffer buildBufferUVStars(BufferBuilder bufferBuilder, VertexBuffer buffer, double minSize, double maxSize, int count, long seed) {
-		if (buffer != null) {
-			buffer.close();
-		}
-		
-		buffer = new VertexBuffer();
-		makeUVStars(bufferBuilder, minSize, maxSize, count, seed);
-		BufferBuilder.RenderedBuffer renderedBuffer = bufferBuilder.end();
-		buffer.upload(renderedBuffer);
-		
-		return buffer;
-	}
-	
-	private VertexBuffer buildBufferFarFog(BufferBuilder bufferBuilder, VertexBuffer buffer, double minSize, double maxSize, int count, long seed) {
-		if (buffer != null) {
-			buffer.close();
-		}
-		
-		buffer = new VertexBuffer();
-		makeFarFog(bufferBuilder, minSize, maxSize, count, seed);
-		BufferBuilder.RenderedBuffer renderedBuffer = bufferBuilder.end();
-		buffer.upload(renderedBuffer);
-		
-		return buffer;
-	}
+
 	
 	private VertexBuffer buildBufferHorizon(BufferBuilder bufferBuilder, VertexBuffer buffer) {
-		if (buffer != null) {
-			buffer.close();
-		}
-		
-		buffer = new VertexBuffer();
-		makeCylinder(bufferBuilder, 16, 50, 100);
-		BufferBuilder.RenderedBuffer renderedBuffer = bufferBuilder.end();
-		buffer.upload(renderedBuffer);
-		
-		return buffer;
+		return buildBuffer(
+				bufferBuilder, buffer, 0, 0, 0, 0,
+				(_builder, _minSize, _maxSize, _count, _seed)->makeCylinder(_builder, 16, 50, 100));
+
 	}
 	
 	private VertexBuffer buildBufferFog(BufferBuilder bufferBuilder, VertexBuffer buffer) {
-		if (buffer != null) {
-			buffer.close();
-		}
-		
-		buffer = new VertexBuffer();
-		makeCylinder(bufferBuilder, 16, 50, 70);
-		BufferBuilder.RenderedBuffer renderedBuffer = bufferBuilder.end();
-		buffer.upload(renderedBuffer);
-		
-		return buffer;
+		return buildBuffer(
+				bufferBuilder, buffer, 0, 0, 0, 0,
+				(_builder, _minSize, _maxSize, _count, _seed)->makeCylinder(_builder, 16, 50, 70));
 	}
 	
 	private void makeStars(BufferBuilder buffer, double minSize, double maxSize, int count, long seed) {
 		RandomSource random = new LegacyRandomSource(seed);
+		RenderSystem.setShader(GameRenderer::getPositionShader);
 		buffer.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION);
 		
 		for (int i = 0; i < count; ++i) {
@@ -290,6 +263,7 @@ public class BetterEndSkyRenderer implements DimensionRenderingRegistry.SkyRende
 	
 	private void makeUVStars(BufferBuilder buffer, double minSize, double maxSize, int count, long seed) {
 		RandomSource random = new LegacyRandomSource(seed);
+		RenderSystem.setShader(GameRenderer::getPositionTexShader);
 		buffer.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
 		
 		for (int i = 0; i < count; ++i) {
@@ -339,6 +313,7 @@ public class BetterEndSkyRenderer implements DimensionRenderingRegistry.SkyRende
 	
 	private void makeFarFog(BufferBuilder buffer, double minSize, double maxSize, int count, long seed) {
 		RandomSource random = new LegacyRandomSource(seed);
+		RenderSystem.setShader(GameRenderer::getPositionTexShader);
 		buffer.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
 		
 		for (int i = 0; i < count; ++i) {
@@ -388,6 +363,7 @@ public class BetterEndSkyRenderer implements DimensionRenderingRegistry.SkyRende
 	}
 	
 	private void makeCylinder(BufferBuilder buffer, int segments, double height, double radius) {
+		RenderSystem.setShader(GameRenderer::getPositionTexShader);
 		buffer.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
 		for (int i = 0; i < segments; i++) {
 			double a1 = (double) i * Math.PI * 2.0 / (double) segments;
