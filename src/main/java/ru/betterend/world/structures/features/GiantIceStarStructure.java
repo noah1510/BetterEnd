@@ -7,6 +7,7 @@ import net.minecraft.world.level.LevelHeightAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.structure.StructureType;
 import net.minecraft.world.level.levelgen.structure.pieces.PieceGenerator;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
 import ru.bclib.sdf.SDF;
@@ -16,6 +17,7 @@ import ru.bclib.sdf.operator.SDFUnion;
 import ru.bclib.sdf.primitive.SDFCappedCone;
 import ru.bclib.util.MHelper;
 import ru.betterend.registry.EndBlocks;
+import ru.betterend.registry.EndStructures;
 import ru.betterend.world.structures.piece.VoxelPiece;
 
 import java.util.ArrayList;
@@ -29,8 +31,13 @@ public class GiantIceStarStructure extends SDFStructureFeature {
 	private static final int minCount = 25;
 	private static final int maxCount = 40;
 
-	public GiantIceStarStructure() {
-		super(GiantIceStarStructure::generatePieces);
+	public GiantIceStarStructure(StructureSettings s) {
+		super(s);
+	}
+
+	@Override
+	public StructureType<GiantIceStarStructure> type() {
+		return EndStructures.GIANT_ICE_STAR.structureType;
 	}
 
 	protected static SDF getSDF(BlockPos pos, RandomSource random) {
@@ -105,7 +112,7 @@ public class GiantIceStarStructure extends SDFStructureFeature {
 		return result;
 	}
 		
-	public static void generatePieces(StructurePiecesBuilder structurePiecesBuilder, PieceGenerator.Context<NoneFeatureConfiguration> context) {
+	public void generatePieces(StructurePiecesBuilder structurePiecesBuilder, GenerationContext context) {
 		final RandomSource random = context.random();
 		final ChunkPos chunkPos = context.chunkPos();
 		final ChunkGenerator chunkGenerator = context.chunkGenerator();

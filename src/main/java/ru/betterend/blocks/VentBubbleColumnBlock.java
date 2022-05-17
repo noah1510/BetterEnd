@@ -39,7 +39,7 @@ import net.minecraft.util.RandomSource;
 
 public class VentBubbleColumnBlock extends Block implements BucketPickup, LiquidBlockContainer {
 	public VentBubbleColumnBlock() {
-		super(FabricBlockSettings.of(Material.BUBBLE_COLUMN).noOcclusion().noCollission().noDrops());
+		super(FabricBlockSettings.of(Material.BUBBLE_COLUMN).nonOpaque().noCollision().noLootTable());
 	}
 	
 	@Override

@@ -4,6 +4,7 @@ import com.mojang.math.Vector3f;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.structure.StructureType;
 import net.minecraft.world.level.levelgen.structure.pieces.PieceGenerator;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
 import ru.bclib.sdf.SDF;
@@ -27,17 +28,20 @@ import ru.betterend.blocks.MossyGlowshroomCapBlock;
 import ru.betterend.blocks.basis.FurBlock;
 import ru.betterend.noise.OpenSimplexNoise;
 import ru.betterend.registry.EndBlocks;
+import ru.betterend.registry.EndStructures;
 
 import java.util.List;
 import java.util.Random;
 import net.minecraft.util.RandomSource;
 
 public class GiantMossyGlowshroomStructure extends SDFStructureFeature {
-	public GiantMossyGlowshroomStructure() {
-		super(GiantMossyGlowshroomStructure::generatePieces);
+	public GiantMossyGlowshroomStructure(StructureSettings s) {
+		super(s);
 	}
 
-	public static void generatePieces(StructurePiecesBuilder structurePiecesBuilder, PieceGenerator.Context<NoneFeatureConfiguration> context) {
+
+	@Override
+	protected void generatePieces(StructurePiecesBuilder structurePiecesBuilder, GenerationContext context) {
 		SDFStructureFeature.generatePieces(structurePiecesBuilder, context, GiantMossyGlowshroomStructure::getSDF);
 	}
 
@@ -155,5 +159,11 @@ public class GiantMossyGlowshroomStructure extends SDFStructureFeature {
 								 }
 								 return info.getState();
 							 });
+	}
+
+
+	@Override
+	public StructureType<GiantMossyGlowshroomStructure> type() {
+		return EndStructures.GIANT_MOSSY_GLOWSHROOM.structureType;
 	}
 }

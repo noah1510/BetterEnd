@@ -8,6 +8,8 @@ import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.Heightmap.Types;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.levelgen.structure.Structure;
+import net.minecraft.world.level.levelgen.structure.StructureType;
 import net.minecraft.world.level.levelgen.structure.pieces.PieceGenerator;
 import net.minecraft.world.level.levelgen.structure.pieces.PieceGeneratorSupplier;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
@@ -15,24 +17,26 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemp
 import ru.bclib.util.StructureHelper;
 import ru.bclib.world.structures.BCLStructure;
 import ru.betterend.BetterEnd;
+import ru.betterend.registry.EndStructures;
 import ru.betterend.world.structures.piece.NBTPiece;
 
+import java.util.Optional;
 import java.util.Random;
 import net.minecraft.util.RandomSource;
+
+import javax.swing.text.html.Option;
 
 public class EternalPortalStructure extends FeatureBaseStructure {
 	private static final ResourceLocation STRUCTURE_ID = BetterEnd.makeID("portal/eternal_portal");
 	private static final StructureTemplate STRUCTURE = StructureHelper.readStructure(STRUCTURE_ID);
 
-	public EternalPortalStructure() {
-		super(PieceGeneratorSupplier.simple(
-			EternalPortalStructure::checkLocation,
-			EternalPortalStructure::generatePieces)
-		);
+	public EternalPortalStructure(StructureSettings s) {
+		super(s);
 	}
 
-	protected static boolean checkLocation(PieceGeneratorSupplier.Context<NoneFeatureConfiguration> context) {
-		if (!BCLStructure.isValidBiome(context)) return false;
+	@Override
+	public Optional<GenerationStub> findGenerationPoint(GenerationContext context) {
+		if (!BCLStructure.isValidBiome(context)) return Optional.empty();
 
 		final ChunkPos chunkPos = context.chunkPos();
 		final ChunkGenerator chunkGenerator = context.chunkGenerator();
@@ -41,27 +45,33 @@ public class EternalPortalStructure extends FeatureBaseStructure {
 		long x = (long) chunkPos.x * (long) chunkPos.x;
 		long z = (long) chunkPos.z * (long) chunkPos.z;
 		if (x + z < 1024L) {
-			return false;
+			return Optional.empty();
 		}
 		if (chunkGenerator.getBaseHeight(
 				chunkPos.getBlockX(8),
 				chunkPos.getBlockZ(8),
 				Heightmap.Types.WORLD_SURFACE_WG,
-				levelHeightAccessor
+				levelHeightAccessor,
+				context.randomState()
 		) < 5) {
-			return false;
+			return Optional.empty();
 		}
-		return FeatureBaseStructure.checkLocation(context);
+		return super.findGenerationPoint(context);
 	}
 
-	protected static void generatePieces(StructurePiecesBuilder structurePiecesBuilder, PieceGenerator.Context<NoneFeatureConfiguration> context) {
+	@Override
+	public StructureType<EternalPortalStructure> type() {
+		return EndStructures.ETERNAL_PORTAL.structureType;
+	}
+
+	protected void generatePieces(StructurePiecesBuilder structurePiecesBuilder, GenerationContext context) {
 		final RandomSource random = context.random();
 		final ChunkPos chunkPos = context.chunkPos();
 		final ChunkGenerator chunkGenerator = context.chunkGenerator();
 		final LevelHeightAccessor levelHeightAccessor = context.heightAccessor();
 		int x = chunkPos.getBlockX(8);
 		int z = chunkPos.getBlockZ(8);
-		int y = chunkGenerator.getBaseHeight(x, z, Types.WORLD_SURFACE_WG, levelHeightAccessor);
+		int y = chunkGenerator.getBaseHeight(x, z, Types.WORLD_SURFACE_WG, levelHeightAccessor, context.randomState());
 		structurePiecesBuilder.addPiece(new NBTPiece(
 				STRUCTURE_ID,
 				STRUCTURE,

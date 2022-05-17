@@ -18,21 +18,18 @@ import net.minecraft.util.RandomSource;
 import java.util.function.BiFunction;
 
 public abstract class SDFStructureFeature extends FeatureBaseStructure {
-	public SDFStructureFeature(PieceGenerator<NoneFeatureConfiguration> generator) {
-		super(PieceGeneratorSupplier.simple(
-				FeatureBaseStructure::checkLocation,
-				generator
-			 ));
+	public SDFStructureFeature(StructureSettings s) {
+		super(s);
 	}
 
-	public static void generatePieces(StructurePiecesBuilder structurePiecesBuilder, PieceGenerator.Context<NoneFeatureConfiguration> context, BiFunction<BlockPos, Random, SDF> sdf) {
+	public static void generatePieces(StructurePiecesBuilder structurePiecesBuilder, GenerationContext context, BiFunction<BlockPos, RandomSource, SDF> sdf) {
 		final RandomSource random = context.random();
 		final ChunkPos chunkPos = context.chunkPos();
 		final ChunkGenerator chunkGenerator = context.chunkGenerator();
 		final LevelHeightAccessor levelHeightAccessor = context.heightAccessor();
 		int x = chunkPos.getBlockX(MHelper.randRange(4, 12, random));
 		int z = chunkPos.getBlockZ(MHelper.randRange(4, 12, random));
-		int y = chunkGenerator.getBaseHeight(x, z, Types.WORLD_SURFACE_WG, levelHeightAccessor);
+		int y = chunkGenerator.getBaseHeight(x, z, Types.WORLD_SURFACE_WG, levelHeightAccessor, context.randomState());
 		if (y > 5) {
 			BlockPos start = new BlockPos(x, y, z);
 			VoxelPiece piece = new VoxelPiece((world) -> {

@@ -31,49 +31,49 @@ public class EndStructures {
 	public static final StructurePieceType PAINTED_MOUNTAIN_PIECE = register("painted_mountain_piece", PaintedMountainPiece::new);
 	public static final StructurePieceType NBT_PIECE = register("nbt_piece", NBTPiece::new);
 	
-	public static final BCLStructure<GiantMossyGlowshroomStructure> GIANT_MOSSY_GLOWSHROOM = new BCLStructure(
+	public static final BCLStructure<GiantMossyGlowshroomStructure> GIANT_MOSSY_GLOWSHROOM = new BCLStructure<>(
 		BetterEnd.makeID("giant_mossy_glowshroom"),
 		GiantMossyGlowshroomStructure::new,
 		Decoration.SURFACE_STRUCTURES,
 		16,
 		8
 	);
-	public static final BCLStructure<MegaLakeStructure> MEGALAKE = new BCLStructure(
+	public static final BCLStructure<MegaLakeStructure> MEGALAKE = new BCLStructure<>(
 		BetterEnd.makeID("megalake"),
 		MegaLakeStructure::new,
 		Decoration.RAW_GENERATION,
 		4,
 		1
 	);
-	public static final BCLStructure<MegaLakeSmallStructure> MEGALAKE_SMALL = new BCLStructure(
+	public static final BCLStructure<MegaLakeSmallStructure> MEGALAKE_SMALL = new BCLStructure<>(
 		BetterEnd.makeID("megalake_small"),
 		MegaLakeSmallStructure::new,
 		Decoration.RAW_GENERATION,
 		4,
 		1
 	);
-	public static final BCLStructure<MountainStructure> MOUNTAIN = new BCLStructure(
+	public static final BCLStructure<MountainStructure> MOUNTAIN = new BCLStructure<>(
 		BetterEnd.makeID("mountain"),
 		MountainStructure::new,
 		Decoration.RAW_GENERATION,
 		3,
 		2
 	);
-	public static final BCLStructure<PaintedMountainStructure> PAINTED_MOUNTAIN = new BCLStructure(
+	public static final BCLStructure<PaintedMountainStructure> PAINTED_MOUNTAIN = new BCLStructure<>(
 		BetterEnd.makeID("painted_mountain"),
 		PaintedMountainStructure::new,
 		Decoration.RAW_GENERATION,
 		3,
 		2
 	);
-	public static final BCLStructure<EternalPortalStructure> ETERNAL_PORTAL = new BCLStructure(
+	public static final BCLStructure<EternalPortalStructure> ETERNAL_PORTAL = new BCLStructure<>(
 		BetterEnd.makeID("eternal_portal"),
 		EternalPortalStructure::new,
 		Decoration.SURFACE_STRUCTURES,
 		16,
 		6
 	);
-	public static final BCLStructure<GiantIceStarStructure> GIANT_ICE_STAR = new BCLStructure(
+	public static final BCLStructure<GiantIceStarStructure> GIANT_ICE_STAR = new BCLStructure<>(
 		BetterEnd.makeID("giant_ice_star"),
 		GiantIceStarStructure::new,
 		Decoration.SURFACE_STRUCTURES,
