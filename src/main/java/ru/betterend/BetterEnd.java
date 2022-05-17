@@ -69,8 +69,13 @@ public class BetterEnd implements ModInitializer {
 		
 		BiomeAPI.registerEndBiomeModification((biomeID, biome) -> {
 			if (!biomeID.equals(Biomes.THE_VOID.location())) {
-				EndStructures.addBiomeStructures(biomeID, biome);
 				EndFeatures.addBiomeFeatures(biomeID, biome);
+			}
+		});
+
+		BiomeAPI.onFinishingEndBiomeTags((biomeID, biome) -> {
+			if (!biomeID.equals(Biomes.THE_VOID.location())) {
+				EndStructures.addBiomeStructures(biomeID, biome);
 			}
 		});
 

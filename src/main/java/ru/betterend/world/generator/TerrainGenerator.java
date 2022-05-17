@@ -17,6 +17,8 @@ import java.util.Random;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.levelgen.LegacyRandomSource;
 
+import net.fabricmc.fabric.impl.biome.TheEndBiomeData;
+
 import java.util.concurrent.locks.ReentrantLock;
 
 public class TerrainGenerator {

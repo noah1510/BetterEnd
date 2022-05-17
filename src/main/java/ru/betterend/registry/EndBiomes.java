@@ -83,7 +83,7 @@ public class EndBiomes {
 	}
 	
 	private static void onWorldLoad(ServerLevel level, long seed, Registry<Biome> registry) {
-		if (CAVE_BIOMES.biomeRegistry != registry) {
+		if (CAVE_BIOMES==null || CAVE_BIOMES.biomeRegistry != registry) {
 			CAVE_BIOMES = new BiomePicker(registry);
 			registry.stream()
 					.filter(biome -> registry.getResourceKey(biome).isPresent())
@@ -94,6 +94,7 @@ public class EndBiomes {
 					.filter(bcl -> bcl != null)
 					.forEach(bcl -> CAVE_BIOMES.addBiome(bcl));
 
+			CAVE_BIOMES.rebuild();
 			caveBiomeMap = null;
 		}
 

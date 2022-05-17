@@ -15,7 +15,7 @@ public abstract class SlimeMixin extends Entity implements ISlime {
 	}
 	
 	@Shadow
-	protected void setSize(int size, boolean heal) {
+	public void setSize(int size, boolean heal) {
 	}
 	
 	@Override
