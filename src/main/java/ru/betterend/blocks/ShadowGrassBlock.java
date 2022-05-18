@@ -3,19 +3,21 @@ package ru.betterend.blocks;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.core.BlockPos;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MaterialColor;
-import ru.bclib.api.tag.NamedCommonBlockTags;
-import ru.bclib.api.tag.TagAPI.TagLocation;
+
+import ru.bclib.api.tag.CommonBlockTags;
+
 import ru.bclib.interfaces.TagProvider;
 import ru.betterend.blocks.basis.EndTerrainBlock;
 import ru.betterend.registry.EndParticles;
 
 import java.util.List;
-import java.util.Random;
+
 import net.minecraft.util.RandomSource;
 
 public class ShadowGrassBlock extends EndTerrainBlock implements TagProvider {
@@ -40,7 +42,7 @@ public class ShadowGrassBlock extends EndTerrainBlock implements TagProvider {
 	}
 	
 	@Override
-	public void addTags(List<TagLocation<Block>> blockTags, List<TagLocation<Item>> itemTags) {
-		blockTags.add(NamedCommonBlockTags.END_STONES);
+	public void addTags(List<TagKey<Block>> blockTags, List<TagKey<Item>> itemTags) {
+		blockTags.add(CommonBlockTags.END_STONES);
 	}
 }

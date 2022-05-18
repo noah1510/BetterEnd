@@ -16,12 +16,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.material.Material;
 import ru.bclib.api.BonemealAPI;
 import ru.bclib.api.ComposterAPI;
-import ru.bclib.api.tag.NamedBlockTags;
-import ru.bclib.api.tag.NamedCommonBlockTags;
-import ru.bclib.api.tag.NamedCommonItemTags;
-import ru.bclib.api.tag.NamedItemTags;
-import ru.bclib.api.tag.NamedMineableTags;
-import ru.bclib.api.tag.TagAPI;
+import ru.bclib.api.tag.*;
 import ru.bclib.blocks.BaseVineBlock;
 import ru.bclib.blocks.SimpleLeavesBlock;
 import ru.betterend.BetterEnd;
@@ -109,22 +104,22 @@ public class EndTags {
 		});
 
 		TagAPI.addBlockTag(
-			NamedCommonBlockTags.GEN_END_STONES,
+				CommonBlockTags.END_STONES,
 			EndBlocks.ENDER_ORE,
 			EndBlocks.BRIMSTONE
 		);
-		TagAPI.addBlockTag(NamedCommonBlockTags.END_STONES, EndBlocks.BRIMSTONE);
+		TagAPI.addBlockTag(CommonBlockTags.END_STONES, EndBlocks.BRIMSTONE);
 		TagAPI.addBlockTag(NamedBlockTags.ANVIL, EndBlocks.AETERNIUM_ANVIL);
 		TagAPI.addBlockTag(NamedBlockTags.BEACON_BASE_BLOCKS, EndBlocks.AETERNIUM_BLOCK);
 		TagAPI.addItemTag(NamedItemTags.BEACON_PAYMENT_ITEMS, EndItems.AETERNIUM_INGOT);
 		TagAPI.addBlockTag(
-			NamedCommonBlockTags.DRAGON_IMMUNE,
-			EndBlocks.ENDER_ORE,
-			EndBlocks.ETERNAL_PEDESTAL,
-			EndBlocks.FLAVOLITE_RUNED_ETERNAL,
-			EndBlocks.FLAVOLITE_RUNED
+                CommonBlockTags.DRAGON_IMMUNE,
+                EndBlocks.ENDER_ORE,
+                EndBlocks.ETERNAL_PEDESTAL,
+                EndBlocks.FLAVOLITE_RUNED_ETERNAL,
+                EndBlocks.FLAVOLITE_RUNED
 		);
-		TagAPI.addItemTag(NamedCommonItemTags.IRON_INGOTS, EndBlocks.THALLASIUM.ingot);
+		TagAPI.addItemTag(CommonItemTags.IRON_INGOTS, EndBlocks.THALLASIUM.ingot);
 		
 		TagAPI.addItemTag(ALLOYING_IRON, Items.IRON_ORE, Items.DEEPSLATE_IRON_ORE, Items.RAW_IRON);
 		TagAPI.addItemTag(ALLOYING_GOLD, Items.GOLD_ORE, Items.DEEPSLATE_GOLD_ORE, Items.RAW_GOLD);
@@ -132,7 +127,7 @@ public class EndTags {
 	}
 	
 	public static void addEndGround(Block bl){
-		TagAPI.addBlockTag(NamedCommonBlockTags.END_STONES, bl);
+		TagAPI.addBlockTag(CommonBlockTags.END_STONES, bl);
 	}
 	
 	public static void addBiomeSurfaceToEndGroup(EndBiome b){

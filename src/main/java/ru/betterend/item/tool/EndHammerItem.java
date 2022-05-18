@@ -9,8 +9,8 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -25,11 +25,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.LegacyRandomSource;
 import net.minecraft.world.level.material.Material;
 import ru.bclib.api.tag.CommonBlockTags;
-import ru.bclib.api.tag.NamedCommonItemTags;
-import ru.bclib.api.tag.TagAPI.TagLocation;
+import ru.bclib.api.tag.CommonItemTags;
+
 import ru.bclib.client.models.ModelsHelper;
 import ru.bclib.interfaces.ItemModelProvider;
 import ru.bclib.interfaces.TagProvider;
@@ -151,7 +150,7 @@ public class EndHammerItem extends DiggerItem implements ItemModelProvider, TagP
 	}
 	
 	@Override
-	public void addTags(List<TagLocation<Block>> blockTags, List<TagLocation<Item>> itemTags) {
-		itemTags.add(NamedCommonItemTags.HAMMERS);
+	public void addTags(List<TagKey<Block>> blockTags, List<TagKey<Item>> itemTags) {
+		itemTags.add(CommonItemTags.HAMMERS);
 	}
 }

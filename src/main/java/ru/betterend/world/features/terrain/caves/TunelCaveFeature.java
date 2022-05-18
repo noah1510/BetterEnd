@@ -29,7 +29,7 @@ import ru.betterend.world.biome.cave.EndCaveBiome;
 
 import java.util.Map;
 import java.util.Optional;
-import java.util.Random;
+
 import net.minecraft.util.RandomSource;
 import java.util.Set;
 import java.util.stream.IntStream;
@@ -132,13 +132,13 @@ public class TunelCaveFeature extends EndCaveFeature {
 			return false;
 		}
 		
-		Map<BiomePicker.Entry, Set<BlockPos>> floorSets = Maps.newHashMap();
-		Map<BiomePicker.Entry, Set<BlockPos>> ceilSets = Maps.newHashMap();
+		Map<BiomePicker.ActualBiome, Set<BlockPos>> floorSets = Maps.newHashMap();
+		Map<BiomePicker.ActualBiome, Set<BlockPos>> ceilSets = Maps.newHashMap();
 		MutableBlockPos mut = new MutableBlockPos();
 		Set<BlockPos> remove = Sets.newHashSet();
 		caveBlocks.forEach((bpos) -> {
 			mut.set(bpos);
-			BiomePicker.Entry bio = EndBiomes.getCaveBiome(bpos.getX(), bpos.getZ());
+			BiomePicker.ActualBiome bio = EndBiomes.getCaveBiome(bpos.getX(), bpos.getZ());
 			int height = world.getHeight(Types.WORLD_SURFACE, bpos.getX(), bpos.getZ());
 			if (mut.getY() >= height) {
 				remove.add(bpos);
@@ -178,7 +178,7 @@ public class TunelCaveFeature extends EndCaveFeature {
 		ceilSets.forEach((biome, ceilPositions) -> {
 			placeCeil(world, (EndCaveBiome) biome.bclBiome, ceilPositions, random);
 		});
-		BiomePicker.Entry biome = EndBiomes.getCaveBiome(pos.getX(), pos.getZ());
+		BiomePicker.ActualBiome biome = EndBiomes.getCaveBiome(pos.getX(), pos.getZ());
 		placeWalls(world, (EndCaveBiome) biome.bclBiome, caveBlocks, random);
 		fixBlocks(world, caveBlocks);
 		

@@ -29,7 +29,7 @@ import ru.betterend.world.biome.cave.EndCaveBiome;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
+
 import net.minecraft.util.RandomSource;
 import java.util.Set;
 
@@ -59,7 +59,7 @@ public abstract class EndCaveFeature extends DefaultFeature {
 			return false;
 		}
 		
-		BiomePicker.Entry biome = EndBiomes.getCaveBiome(pos.getX(), pos.getZ());
+		BiomePicker.ActualBiome biome = EndBiomes.getCaveBiome(pos.getX(), pos.getZ());
 		Set<BlockPos> caveBlocks = generate(world, center, radius, random);
 		if (!caveBlocks.isEmpty()) {
 			if (biome != null) {
@@ -151,12 +151,12 @@ public abstract class EndCaveFeature extends DefaultFeature {
 		return false;
 	}
 	
-	protected void setBiomes(WorldGenLevel world, BiomePicker.Entry biome, Set<BlockPos> blocks) {
+	protected void setBiomes(WorldGenLevel world, BiomePicker.ActualBiome biome, Set<BlockPos> blocks) {
 		blocks.forEach((pos) -> setBiome(world, pos, biome));
 	}
 
-	protected void setBiome(WorldGenLevel world, BlockPos pos, BiomePicker.Entry biome) {
-		BiomeAPI.setBiome(world, pos, biome.actual);
+	protected void setBiome(WorldGenLevel world, BlockPos pos, BiomePicker.ActualBiome biome) {
+		BiomeAPI.setBiome(world, pos, biome.biome);
 	}
 	
 	private BlockPos findPos(WorldGenLevel world, BlockPos pos, int radius, RandomSource random) {

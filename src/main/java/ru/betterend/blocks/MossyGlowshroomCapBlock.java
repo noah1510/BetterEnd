@@ -1,6 +1,8 @@
 package ru.betterend.blocks;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.Block;
@@ -10,7 +12,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.Material;
 import ru.bclib.api.tag.NamedMineableTags;
-import ru.bclib.api.tag.TagAPI.TagLocation;
+
 import ru.bclib.blocks.BaseBlock;
 import ru.bclib.interfaces.TagProvider;
 import ru.betterend.registry.EndBlocks;
@@ -38,7 +40,7 @@ public class MossyGlowshroomCapBlock extends BaseBlock implements TagProvider {
 	}
 	
 	@Override
-	public void addTags(List<TagLocation<Block>> blockTags, List<TagLocation<Item>> itemTags) {
+	public void addTags(List<TagKey<Block>> blockTags, List<TagKey<Item>> itemTags) {
 		blockTags.add(NamedMineableTags.AXE);
 	}
 }

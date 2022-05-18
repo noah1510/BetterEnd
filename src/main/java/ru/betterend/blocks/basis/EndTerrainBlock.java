@@ -1,11 +1,13 @@
 package ru.betterend.blocks.basis;
 
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.MaterialColor;
-import ru.bclib.api.tag.NamedCommonBlockTags;
-import ru.bclib.api.tag.TagAPI.TagLocation;
+
+import ru.bclib.api.tag.CommonBlockTags;
+
 import ru.bclib.blocks.BaseTerrainBlock;
 import ru.bclib.interfaces.TagProvider;
 import ru.betterend.interfaces.PottableTerrain;
@@ -18,7 +20,7 @@ public class EndTerrainBlock extends BaseTerrainBlock implements PottableTerrain
 	}
 	
 	@Override
-	public void addTags(List<TagLocation<Block>> blockTags, List<TagLocation<Item>> itemTags) {
-		blockTags.add(NamedCommonBlockTags.END_STONES);
+	public void addTags(List<TagKey<Block>> blockTags, List<TagKey<Item>> itemTags) {
+		blockTags.add(CommonBlockTags.END_STONES);
 	}
 }

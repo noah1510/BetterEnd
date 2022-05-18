@@ -13,10 +13,8 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MaterialColor;
-import ru.bclib.api.tag.NamedBlockTags;
-import ru.bclib.api.tag.NamedCommonBlockTags;
-import ru.bclib.api.tag.NamedItemTags;
-import ru.bclib.api.tag.TagAPI;
+
+import ru.bclib.api.tag.*;
 import ru.bclib.blocks.BaseBlock;
 import ru.bclib.blocks.BaseChainBlock;
 import ru.bclib.blocks.BaseDoorBlock;
@@ -494,6 +492,6 @@ public class MetalMaterial {
 		TagAPI.addBlockTag(NamedBlockTags.ANVIL, anvilBlock);
 		TagAPI.addBlockTag(NamedBlockTags.BEACON_BASE_BLOCKS, block);
 		TagAPI.addItemTag(NamedItemTags.BEACON_PAYMENT_ITEMS, ingot);
-		TagAPI.addBlockTag(NamedCommonBlockTags.DRAGON_IMMUNE, ore, bars);
+		TagAPI.addBlockTag(CommonBlockTags.DRAGON_IMMUNE, ore, bars);
 	}
 }

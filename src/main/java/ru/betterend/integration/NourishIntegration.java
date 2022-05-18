@@ -1,8 +1,9 @@
 package ru.betterend.integration;
 
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import ru.bclib.api.tag.TagAPI;
-import ru.bclib.api.tag.TagAPI.TagLocation;
+
 import ru.bclib.integration.ModIntegration;
 import ru.betterend.registry.EndItems;
 
@@ -13,10 +14,10 @@ public class NourishIntegration extends ModIntegration {
 	
 	@Override
 	public void init() {
-		TagLocation<Item> fats = TagLocation.of(getItemTag("fats"));
-		TagLocation<Item> fruit = TagLocation.of(getItemTag("fruit"));
-		TagLocation<Item> protein = TagLocation.of(getItemTag("protein"));
-		TagLocation<Item> sweets = TagLocation.of(getItemTag("sweets"));
+		TagKey<Item> fats = getItemTag("fats");
+		TagKey<Item> fruit = getItemTag("fruit");
+		TagKey<Item> protein = getItemTag("protein");
+		TagKey<Item> sweets = getItemTag("sweets");
 		
 		TagAPI.addItemTag(fats, EndItems.END_FISH_RAW, EndItems.END_FISH_COOKED);
 		TagAPI.addItemTag(

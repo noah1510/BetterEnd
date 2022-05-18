@@ -177,7 +177,7 @@ public class EndBiomes {
 		return biome;
 	}
 	
-	public static BiomePicker.Entry getCaveBiome(int x, int z) {
+	public static BiomePicker.ActualBiome getCaveBiome(int x, int z) {
 		return caveBiomeMap.getBiome(x, 5, z);
 	}
 }

@@ -4,11 +4,8 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.MaterialColor;
-import ru.bclib.api.tag.NamedBlockTags;
-import ru.bclib.api.tag.NamedCommonBlockTags;
-import ru.bclib.api.tag.NamedCommonItemTags;
-import ru.bclib.api.tag.NamedItemTags;
-import ru.bclib.api.tag.TagAPI;
+
+import ru.bclib.api.tag.*;
 import ru.bclib.blocks.BaseBlock;
 import ru.bclib.blocks.BaseFurnaceBlock;
 import ru.bclib.blocks.BaseRotatedPillarBlock;
@@ -183,18 +180,18 @@ public class StoneMaterial {
 		TagAPI.addItemTag(NamedItemTags.STONE_BRICKS, bricks);
 		TagAPI.addItemTag(NamedItemTags.STONE_CRAFTING_MATERIALS, stone);
 		TagAPI.addItemTag(NamedItemTags.STONE_TOOL_MATERIALS, stone);
-		TagAPI.addItemTag(NamedCommonItemTags.FURNACES, furnace);
+		TagAPI.addItemTag(CommonItemTags.FURNACES, furnace);
 		
 		// Block Tags //
 		TagAPI.addBlockTag(NamedBlockTags.STONE_BRICKS, bricks);
 		TagAPI.addBlockTag(NamedBlockTags.WALLS, wall, brickWall);
 		TagAPI.addBlockTag(NamedBlockTags.SLABS, slab, brickSlab);
 		TagAPI.addBlockTags(pressurePlate, NamedBlockTags.PRESSURE_PLATES, NamedBlockTags.STONE_PRESSURE_PLATES);
-		TagAPI.addBlockTag(NamedCommonBlockTags.END_STONES, stone);
+		TagAPI.addBlockTag(CommonBlockTags.END_STONES, stone);
 		
-		TagAPI.addBlockTag(NamedCommonBlockTags.DRAGON_IMMUNE, stone, stairs, slab, wall);
+		TagAPI.addBlockTag(CommonBlockTags.DRAGON_IMMUNE, stone, stairs, slab, wall);
 
-		TagAPI.addBlockTag(NamedCommonBlockTags.GEN_END_STONES, stone);
-		TagAPI.addBlockTag(NamedCommonBlockTags.END_STONES, stone);
+		TagAPI.addBlockTag(CommonBlockTags.END_STONES, stone);
+		TagAPI.addBlockTag(CommonBlockTags.END_STONES, stone);
 	}
 }
