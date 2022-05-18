@@ -26,13 +26,13 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"ru.betterend.BetterEnd"
+			"org.betterx.betterend.BetterEnd"
 		],
 		"client": [
-			"ru.betterend.client.BetterEndClient"
+          "org.betterx.betterend.client.BetterEndClient"
 		],
 		"rei_plugins": [
-            "ru.betterend.integration.rei.REIPlugin"
+            "org.betterx.betterend.integration.rei.REIPlugin"
         ]
 	},
 	"accessWidener" : "betterend.accesswidener",
