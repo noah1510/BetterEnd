@@ -33,7 +33,6 @@ public class EndStoneSmelterScreen extends AbstractContainerScreen<EndStoneSmelt
 
     public void init() {
         super.init();
-        //TODO: test in 1.17
         narrow = width < 379;
         recipeBook.init(width, height, minecraft, narrow, menu);
         leftPos = recipeBook.updateScreenPosition(width, imageWidth);
@@ -129,10 +128,8 @@ public class EndStoneSmelterScreen extends AbstractContainerScreen<EndStoneSmelt
     @Override
     protected void renderBg(PoseStack matrices, float delta, int mouseX, int mouseY) {
         if (minecraft == null) return;
-        //TODO: verify
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, BACKGROUND_TEXTURE);
-        //minecraft.getTextureManager().bind(BACKGROUND_TEXTURE);
         blit(matrices, leftPos, topPos, 0, 0, imageWidth, imageHeight);
         int progress;
         if (menu.isBurning()) {

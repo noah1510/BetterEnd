@@ -43,7 +43,7 @@ public class REIAlloyingFuelCategory implements DisplayCategory<REIAlloyingFuelD
 
     @Override
     public @NotNull EntryStack getIcon() {
-        return EntryStacks.of(Items.COAL);
+        return EntryStacks.of(Items.LAVA_BUCKET);
     }
 
     @Override

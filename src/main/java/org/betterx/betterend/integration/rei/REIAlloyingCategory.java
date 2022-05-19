@@ -1,12 +1,9 @@
 package org.betterx.betterend.integration.rei;
 
 
-import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.network.chat.Component;
 
 import com.google.common.collect.Lists;
-import com.mojang.blaze3d.vertex.PoseStack;
-import it.unimi.dsi.fastutil.ints.IntList;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.gui.widgets.Widget;
@@ -80,37 +77,6 @@ public class REIAlloyingCategory implements DisplayCategory<REIAlloyingDisplay> 
                            .disableBackground()
                            .markOutput());
         return widgets;
-    }
-
-    //TODO: 1.18 REI find replacement
-    //@Override
-    public void renderRedSlots(PoseStack matrices,
-                               List<Widget> widgets,
-                               Rectangle bounds,
-                               REIAlloyingDisplay display,
-                               IntList redSlots) {
-        Point startPoint = new Point(bounds.getCenterX() - 41, bounds.getCenterY() - 27);
-        matrices.pushPose();
-        matrices.translate(0, 0, 400);
-        if (redSlots.contains(0)) {
-            GuiComponent.fill(
-                    matrices,
-                    startPoint.x - 20,
-                    startPoint.y + 1,
-                    startPoint.x - 20 + 16,
-                    startPoint.y + 1 + 16,
-                    1090453504
-                             );
-            GuiComponent.fill(
-                    matrices,
-                    startPoint.x + 1,
-                    startPoint.y + 1,
-                    startPoint.x + 1 + 16,
-                    startPoint.y + 1 + 16,
-                    1090453504
-                             );
-        }
-        matrices.popPose();
     }
 
     @Override

@@ -1,11 +1,9 @@
 package org.betterx.betterend.registry;
 
-import net.minecraft.core.Registry;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LeavesBlock;
@@ -131,19 +129,5 @@ public class EndTags {
         addEndGround(b.getTopMaterial().getBlock());
         addEndGround(b.getAltTopMaterial().getBlock());
         addEndGround(b.getUnderMaterial().getBlock());
-    }
-
-    // TODO make getter for biome top blocks
-    public static void addTerrainTags(Registry<Biome> biomeRegistry) {
-		/*biomeRegistry.forEach((biome) -> {
-			if (biome.getBiomeCategory() == BiomeCategory.THEEND) {
-				SurfaceBuilderConfiguration config = biome.getGenerationSettings().getSurfaceBuilderConfig();
-				Block under = config.getUnderMaterial().getBlock();
-				Block surface = config.getTopMaterial().getBlock();
-				TagAPI.addTag(CommonBlockTags.GEN_END_STONES, under, surface);
-				TagAPI.addTag(CommonBlockTags.END_STONES, surface);
-			}
-		});
-		TagAPI.BLOCK_END_STONES.getValues().forEach(TagAPI::addEndGround);*/
     }
 }

@@ -6,11 +6,15 @@ import net.minecraft.world.item.crafting.BlastingRecipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.Blocks;
 
+import net.fabricmc.fabric.api.registry.FuelRegistry;
+import net.fabricmc.fabric.impl.content.registry.FuelRegistryImpl;
+
 import com.google.common.collect.Lists;
 import me.shedaniel.rei.api.client.plugins.REIClientPlugin;
 import me.shedaniel.rei.api.client.registry.category.CategoryRegistry;
 import me.shedaniel.rei.api.client.registry.display.DisplayRegistry;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
+import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.entry.EntryStack;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import me.shedaniel.rei.api.common.util.EntryStacks;
@@ -23,6 +27,7 @@ import org.betterx.betterend.recipe.builders.AlloyingRecipe;
 import org.betterx.betterend.recipe.builders.InfusionRecipe;
 import org.betterx.betterend.registry.EndBlocks;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,13 +59,15 @@ public class REIPlugin implements REIClientPlugin {
         registry.registerRecipeFiller(AnvilRecipe.class, AnvilRecipe.TYPE, REIAnvilDisplay::new);
         registry.registerRecipeFiller(InfusionRecipe.class, InfusionRecipe.TYPE, REIInfusionDisplay::new);
 
-        //TODO: 1.18 REI fix this
-//		FuelRegistryImpl.INSTANCE.getFuelTimes().forEach((item, time) -> {
-//			if (time >= 2000) {
-//				final List<EntryIngredient> list = Collections.singletonList(EntryIngredients.of(item));
-//				registry.add(new REIAlloyingFuelDisplay(list, time));
-//			}
-//		});
+        //TODO: Migrate to 1.18/1.18.2
+        if (FuelRegistry.INSTANCE instanceof FuelRegistryImpl fabricImpl) {
+            fabricImpl.getFuelTimes().forEach((item, time) -> {
+                if (time >= 2000) {
+                    final List<EntryIngredient> list = Collections.singletonList(EntryIngredients.of(item));
+                    registry.add(new REIAlloyingFuelDisplay(list, time));
+                }
+            });
+        }
     }
 
     @Override
