@@ -94,7 +94,7 @@ public abstract class ServerPlayerMixin extends Player implements TeleportingEnt
             LevelData worldProperties = destination.getLevelData();
             ServerPlayer player = ServerPlayer.class.cast(this);
             connection.send(new ClientboundRespawnPacket(
-                    new Holder.Direct(destination.dimensionType()),
+                    destination.dimensionTypeId(),
                     destination.dimension(),
                     BiomeManager.obfuscateSeed(destination.getSeed()),
                     gameMode.getGameModeForPlayer(),

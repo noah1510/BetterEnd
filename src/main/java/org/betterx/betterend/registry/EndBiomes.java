@@ -65,7 +65,7 @@ public class EndBiomes {
             CAVE_BIOMES = new BiomePicker(registry);
             registry.stream()
                     .filter(biome -> registry.getResourceKey(biome).isPresent())
-                    .map(biome -> registry.getOrCreateHolder(registry.getResourceKey(biome).get()))
+                    .map(biome -> registry.getOrCreateHolderOrThrow(registry.getResourceKey(biome).get()))
                     .map(biome -> biome.unwrapKey().orElseThrow().location())
                     .filter(id -> BiomeAPI.wasRegisteredAs(id, END_CAVE))
                     .map(id -> BiomeAPI.getBiome(id))

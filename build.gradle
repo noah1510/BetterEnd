@@ -23,14 +23,14 @@ repositories {
     maven { url 'https://maven.blamejared.com' }
     maven { url "https://maven.shedaniel.me/" }
     maven { url 'https://jitpack.io' }
-	maven { url 'https://maven.terraformersmc.com/releases' }
-	flatDir {
+    maven { url 'https://maven.terraformersmc.com/releases' }
+    flatDir {
         dirs 'libs'
     }
 }
 
 loom {
-	accessWidenerPath = file("src/main/resources/betterend.accesswidener")
+    accessWidenerPath = file("src/main/resources/betterend.accesswidener")
 }
 
 dependencies {
@@ -41,18 +41,18 @@ dependencies {
 
     // useApi "vazkii.patchouli:Patchouli:1.17-${project.patchouli_version}"
     println "Using local BCLib: ${local_bclib}"
-    if (local_bclib){		
-        implementation( project(path:":BCLib", configuration: 'dev') )
+    if (local_bclib) {
+        implementation(project(path: ":BCLib", configuration: 'dev'))
     } else {
         modImplementation "com.github.paulevsGitch:BCLib:${project.bclib_version}"
     }
 
-    //useOptional "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
-    //useOptional "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.rei_version}"
+    useOptional "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
+    useOptional "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.rei_version}"
 }
 
 def useOptional(String dep) {
-    dependencies.modRuntime(dep) {
+    dependencies.modRuntimeOnly(dep) {
         exclude group: 'net.fabricmc.fabric-api'
         exclude group: 'net.fabricmc'
         if (!dep.contains("me.shedaniel")) {
@@ -84,10 +84,10 @@ def useApi(String dep) {
 
 processResources {
     println "Version: ${project.version}"
-	inputs.property "version", project.version
+    inputs.property "version", project.version
     filesMatching("fabric.mod.json") {
-		expand "version": project.version
-	}
+        expand "version": project.version
+    }
 }
 
 // ensure that the encoding is set to UTF-8, no matter what the system default is
@@ -116,10 +116,10 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 }
 
 java {
-	// Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
-	// if it is present.
-	// If you remove this line, sources will not be generated.
-	withSourcesJar()
+    // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
+    // if it is present.
+    // If you remove this line, sources will not be generated.
+    withSourcesJar()
 }
 
 jar {
@@ -159,20 +159,20 @@ task release(dependsOn: [remapJar, sourcesJar, javadocJar]) {
 
 // configure the maven publication
 publishing {
-	publications {
-		mavenJava(MavenPublication) {
-			artifact(remapJar) {
-				builtBy remapJar
-			}
-			artifact(sourcesJar) {
-				builtBy remapSourcesJar
-			}
-		}
-	}
+    publications {
+        mavenJava(MavenPublication) {
+            artifact(remapJar) {
+                builtBy remapJar
+            }
+            artifact(sourcesJar) {
+                builtBy remapSourcesJar
+            }
+        }
+    }
 
-	// select the repositories you want to publish to
-	repositories {
-		// uncomment to publish to the local maven
-		// mavenLocal()
-	}
+    // select the repositories you want to publish to
+    repositories {
+        // uncomment to publish to the local maven
+        // mavenLocal()
+    }
 }
