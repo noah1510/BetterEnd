@@ -17,11 +17,11 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import org.betterx.bclib.api.biomes.BCLBiome;
 import org.betterx.bclib.api.biomes.BiomeAPI;
 import org.betterx.bclib.api.tag.CommonBlockTags;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
-import org.betterx.bclib.world.biomes.BCLBiome;
 import org.betterx.bclib.world.features.DefaultFeature;
 import org.betterx.bclib.world.generator.BiomePicker;
 import org.betterx.betterend.registry.EndBiomes;

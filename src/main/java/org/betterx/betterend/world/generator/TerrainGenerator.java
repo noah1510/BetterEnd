@@ -8,9 +8,9 @@ import net.minecraft.world.level.levelgen.LegacyRandomSource;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import org.betterx.bclib.api.biomes.BCLBiome;
 import org.betterx.bclib.api.biomes.BiomeAPI;
 import org.betterx.bclib.util.MHelper;
-import org.betterx.bclib.world.biomes.BCLBiome;
 import org.betterx.betterend.noise.OpenSimplexNoise;
 
 import java.awt.*;

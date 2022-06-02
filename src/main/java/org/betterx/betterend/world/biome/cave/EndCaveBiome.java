@@ -10,10 +10,10 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 
 import org.betterx.bclib.api.biomes.BCLBiomeBuilder;
 import org.betterx.bclib.api.biomes.BCLBiomeBuilder.BiomeSupplier;
+import org.betterx.bclib.api.biomes.BCLBiomeSettings;
 import org.betterx.bclib.api.biomes.BiomeAPI;
 import org.betterx.bclib.api.features.BCLCommonFeatures;
 import org.betterx.bclib.util.WeightedList;
-import org.betterx.bclib.world.biomes.BCLBiomeSettings;
 import org.betterx.bclib.world.features.BCLFeature;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.registry.EndSounds;

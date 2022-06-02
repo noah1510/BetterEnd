@@ -30,6 +30,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.Optional;
 import org.jetbrains.annotations.Nullable;
 
 @Mixin(ServerPlayer.class)
@@ -101,7 +102,8 @@ public abstract class ServerPlayerMixin extends Player implements TeleportingEnt
                     gameMode.getPreviousGameModeForPlayer(),
                     destination.isDebug(),
                     destination.isFlat(),
-                    true
+                    true,
+                    Optional.empty()
             ));
             connection.send(new ClientboundChangeDifficultyPacket(
                     worldProperties.getDifficulty(),

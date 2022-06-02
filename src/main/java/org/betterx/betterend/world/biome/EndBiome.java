@@ -9,13 +9,13 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.SurfaceRules;
 
+import org.betterx.bclib.api.biomes.BCLBiome;
 import org.betterx.bclib.api.biomes.BCLBiomeBuilder;
 import org.betterx.bclib.api.biomes.BCLBiomeBuilder.BiomeSupplier;
+import org.betterx.bclib.api.biomes.BCLBiomeSettings;
 import org.betterx.bclib.api.biomes.BiomeAPI;
 import org.betterx.bclib.api.surface.SurfaceRuleBuilder;
 import org.betterx.bclib.interfaces.SurfaceMaterialProvider;
-import org.betterx.bclib.world.biomes.BCLBiome;
-import org.betterx.bclib.world.biomes.BCLBiomeSettings;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndFeatures;

@@ -7,7 +7,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import org.betterx.bclib.api.biomes.BCLBiomeBuilder;
 import org.betterx.bclib.api.biomes.BCLBiomeBuilder.BiomeSupplier;
-import org.betterx.bclib.world.biomes.BCLBiomeSettings;
+import org.betterx.bclib.api.biomes.BCLBiomeSettings;
 import org.betterx.betterend.noise.OpenSimplexNoise;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.world.biome.EndBiome;

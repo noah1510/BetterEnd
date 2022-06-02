@@ -6,8 +6,8 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.biome.Biome;
 
 import org.betterx.bclib.api.LifeCycleAPI;
+import org.betterx.bclib.api.biomes.BCLBiome;
 import org.betterx.bclib.api.biomes.BiomeAPI;
-import org.betterx.bclib.world.biomes.BCLBiome;
 import org.betterx.bclib.world.generator.BiomePicker;
 import org.betterx.bclib.world.generator.map.hex.HexBiomeMap;
 import org.betterx.betterend.config.Configs;
@@ -19,7 +19,7 @@ import org.betterx.betterend.world.generator.BiomeType;
 import org.betterx.betterend.world.generator.GeneratorOptions;
 
 public class EndBiomes {
-    public static final BiomeAPI.Dimension END_CAVE = new BiomeAPI.Dimension(BiomeAPI.Dimension.END);
+    public static final BiomeAPI.BiomeType END_CAVE = new BiomeAPI.BiomeType("END_CAVE", BiomeAPI.BiomeType.END);
 
     public static BiomePicker CAVE_BIOMES = null;
     private static HexBiomeMap caveBiomeMap;
@@ -126,7 +126,7 @@ public class EndBiomes {
     public static EndBiome registerSubBiomeIntegration(EndBiome.Config biomeConfig) {
         EndBiome biome = EndBiome.create(biomeConfig);
         if (Configs.BIOME_CONFIG.getBoolean(biome.getID(), "enabled", true)) {
-            BiomeAPI.registerBiome(biome, BiomeAPI.Dimension.END);
+            BiomeAPI.registerBiome(biome, BiomeAPI.BiomeType.END);
         }
         return biome;
     }
