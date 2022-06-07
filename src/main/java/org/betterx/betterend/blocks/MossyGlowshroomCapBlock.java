@@ -12,7 +12,7 @@ import net.minecraft.world.level.material.Material;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
-import org.betterx.bclib.api.tag.NamedMineableTags;
+import org.betterx.bclib.api.v2.tag.NamedMineableTags;
 import org.betterx.bclib.blocks.BaseBlock;
 import org.betterx.bclib.interfaces.TagProvider;
 import org.betterx.betterend.registry.EndBlocks;

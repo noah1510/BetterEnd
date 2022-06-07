@@ -6,7 +6,7 @@ import net.minecraft.world.level.material.MaterialColor;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
-import org.betterx.bclib.api.tag.*;
+import org.betterx.bclib.api.v2.tag.*;
 import org.betterx.bclib.blocks.*;
 import org.betterx.bclib.recipes.GridRecipe;
 import org.betterx.betterend.BetterEnd;

@@ -10,7 +10,7 @@ import net.minecraft.world.level.levelgen.Heightmap.Types;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 
-import org.betterx.bclib.api.spawning.SpawnRuleBuilder;
+import org.betterx.bclib.api.v2.spawning.SpawnRuleBuilder;
 import org.betterx.bclib.util.ColorUtil;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.config.Configs;

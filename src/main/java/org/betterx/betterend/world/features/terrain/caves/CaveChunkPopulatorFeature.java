@@ -12,9 +12,9 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
 import com.google.common.collect.Sets;
-import org.betterx.bclib.api.tag.CommonBlockTags;
+import org.betterx.bclib.api.v2.levelgen.features.DefaultFeature;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.bclib.world.features.DefaultFeature;
 import org.betterx.betterend.util.BlockFixer;
 import org.betterx.betterend.world.biome.cave.EndCaveBiome;
 

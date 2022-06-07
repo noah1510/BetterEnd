@@ -12,10 +12,10 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 import net.minecraft.world.level.material.Fluids;
 
 import com.google.common.collect.Sets;
-import org.betterx.bclib.api.tag.CommonBlockTags;
+import org.betterx.bclib.api.v2.levelgen.features.DefaultFeature;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
-import org.betterx.bclib.world.features.DefaultFeature;
 import org.betterx.betterend.blocks.EndBlockProperties;
 import org.betterx.betterend.blocks.SulphurCrystalBlock;
 import org.betterx.betterend.noise.OpenSimplexNoise;
@@ -169,7 +169,7 @@ public class SulphuricLakeFeature extends DefaultFeature {
                     world,
                     pos.getX() + dir.getStepX() * 2,
                     pos.getZ() + dir.getStepZ() * 2
-                                                                                                                   ) < y || getYOnSurface(
+            ) < y || getYOnSurface(
                     world,
                     pos.getX() + dir.getStepX() * 3,
                     pos.getZ() + dir.getStepZ() * 3) < y) {

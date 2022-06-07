@@ -3,7 +3,7 @@ package org.betterx.betterend.integration;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 
-import org.betterx.bclib.api.tag.TagAPI;
+import org.betterx.bclib.api.v2.tag.TagAPI;
 import org.betterx.bclib.integration.ModIntegration;
 import org.betterx.betterend.registry.EndItems;
 

@@ -7,10 +7,10 @@ import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-import org.betterx.bclib.api.tag.CommonBlockTags;
+import org.betterx.bclib.api.v2.levelgen.features.DefaultFeature;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
-import org.betterx.bclib.world.features.DefaultFeature;
 import org.betterx.betterend.util.GlobalState;
 
 public abstract class ScatterFeature extends DefaultFeature {
@@ -82,7 +82,7 @@ public abstract class ScatterFeature extends DefaultFeature {
                     center,
                     POS,
                     r
-                                                         ) && (getChance() < 2 || random.nextInt(getChance()) == 0)) {
+            ) && (getChance() < 2 || random.nextInt(getChance()) == 0)) {
                 generate(world, random, POS);
             }
         }

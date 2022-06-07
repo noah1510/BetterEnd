@@ -15,7 +15,8 @@ import net.minecraft.world.level.material.Material;
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import com.mojang.math.Vector3f;
-import org.betterx.bclib.api.tag.CommonBlockTags;
+import org.betterx.bclib.api.v2.levelgen.features.DefaultFeature;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.sdf.PosInfo;
 import org.betterx.bclib.sdf.SDF;
 import org.betterx.bclib.sdf.operator.SDFDisplacement;
@@ -26,7 +27,6 @@ import org.betterx.bclib.sdf.primitive.SDFSphere;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.bclib.util.SplineHelper;
-import org.betterx.bclib.world.features.DefaultFeature;
 import org.betterx.betterend.integration.Integrations;
 
 import java.util.List;
@@ -195,6 +195,6 @@ public class NightshadeRedwoodTreeFeature extends DefaultFeature {
                 new Vector3f(0.40F, 0.2F, 0),
                 new Vector3f(0.50F, 0.4F, 0),
                 new Vector3f(0.55F, 0.6F, 0)
-                                   );
+        );
     }
 }

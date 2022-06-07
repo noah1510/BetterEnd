@@ -12,13 +12,13 @@ import net.minecraft.world.level.material.Material;
 
 import com.google.common.collect.Lists;
 import com.mojang.math.Vector3f;
-import org.betterx.bclib.api.tag.CommonBlockTags;
+import org.betterx.bclib.api.v2.levelgen.features.DefaultFeature;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.sdf.SDF;
 import org.betterx.bclib.sdf.operator.*;
 import org.betterx.bclib.sdf.primitive.SDFSphere;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.bclib.util.SplineHelper;
-import org.betterx.bclib.world.features.DefaultFeature;
 import org.betterx.betterend.blocks.JellyshroomCapBlock;
 import org.betterx.betterend.registry.EndBlocks;
 
@@ -115,7 +115,7 @@ public class JellyshroomFeature extends DefaultFeature {
                 new Vector3f(0.3F, 0.30F, 0),
                 new Vector3f(0.7F, 0.05F, 0),
                 new Vector3f(0.8F, -0.20F, 0)
-                                 );
+        );
         SplineHelper.offset(ROOT, new Vector3f(0, -0.45F, 0));
 
         REPLACE = (state) -> {

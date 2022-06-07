@@ -19,7 +19,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.SpikeConfigurat
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 
-import org.betterx.bclib.api.WorldDataAPI;
+import org.betterx.bclib.api.v2.WorldDataAPI;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.StructureHelper;
 import org.betterx.betterend.BetterEnd;

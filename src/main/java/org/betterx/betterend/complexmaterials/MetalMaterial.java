@@ -15,10 +15,10 @@ import net.minecraft.world.level.material.MaterialColor;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
-import org.betterx.bclib.api.tag.CommonBlockTags;
-import org.betterx.bclib.api.tag.NamedBlockTags;
-import org.betterx.bclib.api.tag.NamedItemTags;
-import org.betterx.bclib.api.tag.TagAPI;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
+import org.betterx.bclib.api.v2.tag.NamedBlockTags;
+import org.betterx.bclib.api.v2.tag.NamedItemTags;
+import org.betterx.bclib.api.v2.tag.TagAPI;
 import org.betterx.bclib.blocks.*;
 import org.betterx.bclib.items.ModelProviderItem;
 import org.betterx.bclib.items.tool.BaseAxeItem;

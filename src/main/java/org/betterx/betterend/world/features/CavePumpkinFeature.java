@@ -6,9 +6,9 @@ import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-import org.betterx.bclib.api.tag.CommonBlockTags;
+import org.betterx.bclib.api.v2.levelgen.features.DefaultFeature;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.bclib.world.features.DefaultFeature;
 import org.betterx.betterend.blocks.EndBlockProperties;
 import org.betterx.betterend.registry.EndBlocks;
 
@@ -29,13 +29,13 @@ public class CavePumpkinFeature extends DefaultFeature {
                 world,
                 pos,
                 EndBlocks.CAVE_PUMPKIN_SEED.defaultBlockState().setValue(EndBlockProperties.AGE, age)
-                                     );
+        );
         if (age > 1) {
             BlocksHelper.setWithoutUpdate(
                     world,
                     pos.below(),
                     EndBlocks.CAVE_PUMPKIN.defaultBlockState().setValue(EndBlockProperties.SMALL, age < 3)
-                                         );
+            );
         }
 
         return true;

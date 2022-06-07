@@ -6,8 +6,8 @@ import net.minecraft.world.level.biome.Biomes;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 
-import org.betterx.bclib.api.WorldDataAPI;
-import org.betterx.bclib.api.biomes.BiomeAPI;
+import org.betterx.bclib.api.v2.WorldDataAPI;
+import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
 import org.betterx.bclib.util.Logger;
 import org.betterx.betterend.api.BetterEndPlugin;
 import org.betterx.betterend.config.Configs;
@@ -56,9 +56,9 @@ public class BetterEnd implements ModInitializer {
         Configs.saveConfigs();
 
         if (GeneratorOptions.useNewGenerator()) {
-            org.betterx.bclib.world.generator.GeneratorOptions.setFarEndBiomes(GeneratorOptions.getIslandDistBlock());
-            org.betterx.bclib.world.generator.GeneratorOptions.setEndLandFunction((pos) -> TerrainGenerator.isLand(pos.x,
-                                                                                                                   pos.y));
+            org.betterx.bclib.api.v2.generator.GeneratorOptions.setFarEndBiomes(GeneratorOptions.getIslandDistBlock());
+            org.betterx.bclib.api.v2.generator.GeneratorOptions.setEndLandFunction((pos) -> TerrainGenerator.isLand(pos.x,
+                    pos.y));
         }
 
         BiomeAPI.registerEndBiomeModification((biomeID, biome) -> {

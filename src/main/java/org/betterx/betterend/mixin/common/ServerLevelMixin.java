@@ -21,7 +21,7 @@ import net.minecraft.world.level.storage.LevelStorageSource.LevelStorageAccess;
 import net.minecraft.world.level.storage.ServerLevelData;
 import net.minecraft.world.level.storage.WritableLevelData;
 
-import org.betterx.bclib.api.biomes.BiomeAPI;
+import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.interfaces.BETargetChecker;
 import org.betterx.betterend.registry.EndBlocks;

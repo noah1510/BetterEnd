@@ -6,7 +6,7 @@ import net.minecraft.world.item.Items;
 
 import net.fabricmc.loader.api.FabricLoader;
 
-import org.betterx.bclib.api.ModIntegrationAPI;
+import org.betterx.bclib.api.v2.ModIntegrationAPI;
 import org.betterx.bclib.integration.ModIntegration;
 import org.betterx.bclib.recipes.GridRecipe;
 import org.betterx.betterend.BetterEnd;

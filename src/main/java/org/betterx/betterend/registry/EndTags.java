@@ -14,9 +14,9 @@ import net.fabricmc.fabric.mixin.object.builder.AbstractBlockAccessor;
 import net.fabricmc.fabric.mixin.object.builder.AbstractBlockSettingsAccessor;
 
 import com.google.common.collect.Lists;
-import org.betterx.bclib.api.BonemealAPI;
-import org.betterx.bclib.api.ComposterAPI;
-import org.betterx.bclib.api.tag.*;
+import org.betterx.bclib.api.v2.BonemealAPI;
+import org.betterx.bclib.api.v2.ComposterAPI;
+import org.betterx.bclib.api.v2.tag.*;
 import org.betterx.bclib.blocks.BaseVineBlock;
 import org.betterx.bclib.blocks.SimpleLeavesBlock;
 import org.betterx.betterend.BetterEnd;

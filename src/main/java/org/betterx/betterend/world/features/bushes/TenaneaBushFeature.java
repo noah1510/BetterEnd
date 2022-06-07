@@ -12,7 +12,8 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 import net.minecraft.world.level.material.Material;
 
 import com.google.common.collect.Lists;
-import org.betterx.bclib.api.tag.CommonBlockTags;
+import org.betterx.bclib.api.v2.levelgen.features.DefaultFeature;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.blocks.BlockProperties;
 import org.betterx.bclib.blocks.BlockProperties.TripleShape;
 import org.betterx.bclib.sdf.SDF;
@@ -23,7 +24,6 @@ import org.betterx.bclib.sdf.operator.SDFTranslate;
 import org.betterx.bclib.sdf.primitive.SDFSphere;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
-import org.betterx.bclib.world.features.DefaultFeature;
 import org.betterx.betterend.blocks.basis.FurBlock;
 import org.betterx.betterend.noise.OpenSimplexNoise;
 import org.betterx.betterend.registry.EndBlocks;
@@ -54,7 +54,7 @@ public class TenaneaBushFeature extends DefaultFeature {
                 vec.x() * 0.2,
                 vec.y() * 0.2,
                 vec.z() * 0.2
-                                                                              ) * 3).setSource(sphere);
+        ) * 3).setSource(sphere);
         sphere = new SDFDisplacement().setFunction((vec) -> MHelper.randRange(-2F, 2F, random)).setSource(sphere);
         sphere = new SDFSubtraction().setSourceA(sphere)
                                      .setSourceB(new SDFTranslate().setTranslate(0, -radius, 0).setSource(sphere));
@@ -75,7 +75,7 @@ public class TenaneaBushFeature extends DefaultFeature {
                             info.setBlockPos(
                                     info.getPos().relative(d),
                                     EndBlocks.TENANEA_OUTER_LEAVES.defaultBlockState().setValue(FurBlock.FACING, d)
-                                            );
+                            );
                         }
                     }
 

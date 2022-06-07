@@ -14,6 +14,7 @@ import net.minecraft.world.level.material.Material;
 
 import com.google.common.collect.Lists;
 import com.mojang.math.Vector3f;
+import org.betterx.bclib.api.v2.levelgen.features.DefaultFeature;
 import org.betterx.bclib.blocks.BlockProperties;
 import org.betterx.bclib.blocks.BlockProperties.TripleShape;
 import org.betterx.bclib.sdf.SDF;
@@ -22,7 +23,6 @@ import org.betterx.bclib.sdf.primitive.SDFSphere;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.bclib.util.SplineHelper;
-import org.betterx.bclib.world.features.DefaultFeature;
 import org.betterx.betterend.blocks.basis.FurBlock;
 import org.betterx.betterend.noise.OpenSimplexNoise;
 import org.betterx.betterend.registry.EndBlocks;
@@ -79,7 +79,7 @@ public class TenaneaFeature extends DefaultFeature {
                 vec.x() * 0.2,
                 vec.y() * 0.2,
                 vec.z() * 0.2
-                                                                              ) * 2F).setSource(sphere);
+        ) * 2F).setSource(sphere);
         sphere = new SDFDisplacement().setFunction((vec) -> MHelper.randRange(-1.5F, 1.5F, random)).setSource(sphere);
 
         MutableBlockPos mut = new MutableBlockPos();
@@ -196,6 +196,6 @@ public class TenaneaFeature extends DefaultFeature {
                 new Vector3f(0.30F, 0.55F, 0.00F),
                 new Vector3f(0.42F, 0.70F, 0.00F),
                 new Vector3f(0.50F, 1.00F, 0.00F)
-                                   );
+        );
     }
 }

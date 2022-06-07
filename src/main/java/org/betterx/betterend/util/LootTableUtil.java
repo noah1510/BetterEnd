@@ -14,8 +14,8 @@ import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder;
 import net.fabricmc.fabric.api.loot.v1.FabricLootSupplierBuilder;
 import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
 
-import org.betterx.bclib.api.biomes.BCLBiome;
-import org.betterx.bclib.api.biomes.BiomeAPI;
+import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
+import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
 import org.betterx.bclib.complexmaterials.WoodenComplexMaterial;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.registry.EndBiomes;

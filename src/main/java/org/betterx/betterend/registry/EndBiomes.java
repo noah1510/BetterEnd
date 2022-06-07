@@ -5,11 +5,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.biome.Biome;
 
-import org.betterx.bclib.api.LifeCycleAPI;
-import org.betterx.bclib.api.biomes.BCLBiome;
-import org.betterx.bclib.api.biomes.BiomeAPI;
-import org.betterx.bclib.world.generator.BiomePicker;
-import org.betterx.bclib.world.generator.map.hex.HexBiomeMap;
+import org.betterx.bclib.api.v2.LifeCycleAPI;
+import org.betterx.bclib.api.v2.generator.BiomePicker;
+import org.betterx.bclib.api.v2.generator.map.hex.HexBiomeMap;
+import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
+import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
 import org.betterx.betterend.config.Configs;
 import org.betterx.betterend.world.biome.EndBiome;
 import org.betterx.betterend.world.biome.air.BiomeIceStarfield;

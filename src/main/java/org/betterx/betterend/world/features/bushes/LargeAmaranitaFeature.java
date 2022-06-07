@@ -9,12 +9,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-import org.betterx.bclib.api.tag.CommonBlockTags;
+import org.betterx.bclib.api.v2.levelgen.features.DefaultFeature;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.blocks.BlockProperties;
 import org.betterx.bclib.blocks.BlockProperties.TripleShape;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
-import org.betterx.bclib.world.features.DefaultFeature;
 import org.betterx.betterend.registry.EndBlocks;
 
 public class LargeAmaranitaFeature extends DefaultFeature {
@@ -42,13 +42,13 @@ public class LargeAmaranitaFeature extends DefaultFeature {
                     world,
                     mut.move(Direction.UP),
                     state.setValue(BlockProperties.TRIPLE_SHAPE, TripleShape.MIDDLE)
-                                      );
+            );
         }
         BlocksHelper.setWithUpdate(
                 world,
                 mut.move(Direction.UP),
                 state.setValue(BlockProperties.TRIPLE_SHAPE, TripleShape.TOP)
-                                  );
+        );
 
         return true;
     }

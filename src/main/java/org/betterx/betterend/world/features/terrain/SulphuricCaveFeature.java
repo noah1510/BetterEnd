@@ -14,10 +14,10 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 import net.minecraft.world.level.material.Material;
 
 import com.google.common.collect.Sets;
-import org.betterx.bclib.api.tag.CommonBlockTags;
+import org.betterx.bclib.api.v2.levelgen.features.DefaultFeature;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
-import org.betterx.bclib.world.features.DefaultFeature;
 import org.betterx.betterend.blocks.EndBlockProperties;
 import org.betterx.betterend.blocks.SulphurCrystalBlock;
 import org.betterx.betterend.noise.OpenSimplexNoise;
@@ -110,7 +110,7 @@ public class SulphuricCaveFeature extends DefaultFeature {
                                     x * 0.03,
                                     y * 0.03,
                                     z * 0.03
-                                                                                         ) * 0.5;
+                            ) * 0.5;
                             if (v > 0.4) {
                                 brimstone.add(mut.immutable());
                             } else {
@@ -130,13 +130,13 @@ public class SulphuricCaveFeature extends DefaultFeature {
             for (int i = 0; i < count; i++) {
                 mut.set(pos)
                    .move(MHelper.floor(random.nextGaussian() * 2 + 0.5),
-                         0,
-                         MHelper.floor(random.nextGaussian() * 2 + 0.5)
-                        );
+                           0,
+                           MHelper.floor(random.nextGaussian() * 2 + 0.5)
+                   );
                 int dist = MHelper.floor(3 - MHelper.length(
                         mut.getX() - pos.getX(),
                         mut.getZ() - pos.getZ()
-                                                           )) + random.nextInt(2);
+                )) + random.nextInt(2);
                 if (dist > 0) {
                     state = world.getBlockState(mut);
                     while (!state.getFluidState().isEmpty() || state.getMaterial().equals(Material.WATER_PLANT)) {
@@ -156,7 +156,7 @@ public class SulphuricCaveFeature extends DefaultFeature {
                                             p,
                                             EndBlocks.TUBE_WORM.defaultBlockState()
                                                                .setValue(HorizontalDirectionalBlock.FACING, dir)
-                                                                 );
+                                    );
                                 }
                             }
                             mut.setY(mut.getY() + 1);
@@ -167,8 +167,8 @@ public class SulphuricCaveFeature extends DefaultFeature {
                         while (state.is(Blocks.WATER)) {
                             BlocksHelper.setWithoutUpdate(world, mut, EndBlocks.VENT_BUBBLE_COLUMN.defaultBlockState());
                             world.scheduleTick(mut.immutable(),
-                                               EndBlocks.VENT_BUBBLE_COLUMN,
-                                               MHelper.randRange(8, 32, random));
+                                    EndBlocks.VENT_BUBBLE_COLUMN,
+                                    MHelper.randRange(8, 32, random));
                             mut.setY(mut.getY() + 1);
                             state = world.getBlockState(mut);
                         }

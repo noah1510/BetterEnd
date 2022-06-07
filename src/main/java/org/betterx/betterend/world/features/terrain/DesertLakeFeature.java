@@ -11,10 +11,10 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Material;
 
-import org.betterx.bclib.api.tag.CommonBlockTags;
+import org.betterx.bclib.api.v2.levelgen.features.DefaultFeature;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
-import org.betterx.bclib.world.features.DefaultFeature;
 import org.betterx.betterend.noise.OpenSimplexNoise;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.util.BlockFixer;
@@ -116,7 +116,7 @@ public class DesertLakeFeature extends DefaultFeature {
                                 x * 0.2,
                                 y * 0.2,
                                 z * 0.2
-                                                                    ) * 0.25 + 0.75)) - 1.0 / size;
+                        ) * 0.25 + 0.75)) - 1.0 / size;
                         if (r > 0) {
                             r *= r;
                             if (x2 + z2 <= r) {
@@ -127,7 +127,7 @@ public class DesertLakeFeature extends DefaultFeature {
                                 pos = POS.below();
                                 if (world.getBlockState(pos).is(CommonBlockTags.GEN_END_STONES)) {
                                     state = EndBiome.findTopMaterial(world,
-                                                                     pos); //world.getBiome(pos).getGenerationSettings().getSurfaceBuilderConfig().getTopMaterial();
+                                            pos); //world.getBiome(pos).getGenerationSettings().getSurfaceBuilderConfig().getTopMaterial();
                                     if (y > waterLevel + 1) BlocksHelper.setWithoutUpdate(world, pos, state);
                                     else if (y > waterLevel)
                                         BlocksHelper.setWithoutUpdate(
@@ -136,13 +136,13 @@ public class DesertLakeFeature extends DefaultFeature {
                                                 random.nextBoolean()
                                                         ? state
                                                         : EndBlocks.ENDSTONE_DUST.defaultBlockState()
-                                                                     );
+                                        );
                                     else
                                         BlocksHelper.setWithoutUpdate(
                                                 world,
                                                 pos,
                                                 EndBlocks.ENDSTONE_DUST.defaultBlockState()
-                                                                     );
+                                        );
                                 }
                             }
                         } else {
@@ -186,8 +186,9 @@ public class DesertLakeFeature extends DefaultFeature {
                                 BlocksHelper.setWithoutUpdate(world, pos, EndBlocks.ENDSTONE_DUST.defaultBlockState());
                             }
                             pos = POS.above();
-                            while (canReplace(state = world.getBlockState(pos)) && !state.isAir() && state.getFluidState()
-                                                                                                          .isEmpty()) {
+                            while (canReplace(state = world.getBlockState(pos)) && !state.isAir() && state
+                                    .getFluidState()
+                                    .isEmpty()) {
                                 BlocksHelper.setWithoutUpdate(world, pos, pos.getY() < waterLevel ? WATER : AIR);
                                 pos = pos.above();
                             }
@@ -200,19 +201,19 @@ public class DesertLakeFeature extends DefaultFeature {
                             } else if (y < waterLevel) {
                                 if (world.isEmptyBlock(POS.above())) {
                                     state = EndBiome.findTopMaterial(world,
-                                                                     pos); //world.getBiome(POS).getGenerationSettings().getSurfaceBuilderConfig().getTopMaterial();
+                                            pos); //world.getBiome(POS).getGenerationSettings().getSurfaceBuilderConfig().getTopMaterial();
                                     BlocksHelper.setWithoutUpdate(
                                             world,
                                             POS,
                                             random.nextBoolean() ? state : EndBlocks.ENDSTONE_DUST.defaultBlockState()
-                                                                 );
+                                    );
                                     BlocksHelper.setWithoutUpdate(world, POS.below(), END_STONE);
                                 } else {
                                     BlocksHelper.setWithoutUpdate(
                                             world,
                                             POS,
                                             EndBlocks.ENDSTONE_DUST.defaultBlockState()
-                                                                 );
+                                    );
                                     BlocksHelper.setWithoutUpdate(world, POS.below(), END_STONE);
                                 }
                             }
@@ -226,16 +227,17 @@ public class DesertLakeFeature extends DefaultFeature {
                 world,
                 new BlockPos(minX - 2, waterLevel - 2, minZ - 2),
                 new BlockPos(maxX + 2, blockPos.getY() + 20, maxZ + 2)
-                            );
+        );
 
         return true;
     }
 
     private boolean canReplace(BlockState state) {
         return state.getMaterial()
-                    .isReplaceable() || state.is(CommonBlockTags.GEN_END_STONES) || state.is(EndBlocks.ENDSTONE_DUST) || state.getMaterial()
-                                                                                                                              .equals(
-                                                                                                                                      Material.PLANT) || state
+                    .isReplaceable() || state.is(CommonBlockTags.GEN_END_STONES) || state.is(EndBlocks.ENDSTONE_DUST) || state
+                .getMaterial()
+                .equals(
+                        Material.PLANT) || state
                 .getMaterial()
                 .equals(Material.WATER_PLANT);
     }

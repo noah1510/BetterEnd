@@ -11,10 +11,10 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-import org.betterx.bclib.api.tag.CommonBlockTags;
+import org.betterx.bclib.api.v2.levelgen.features.DefaultFeature;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.blocks.StalactiteBlock;
 import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.bclib.world.features.DefaultFeature;
 
 public class StalactiteFeature extends DefaultFeature {
     private final boolean ceiling;
@@ -66,7 +66,7 @@ public class StalactiteFeature extends DefaultFeature {
             BlockState state = stalagnate ? base.setValue(
                     StalactiteBlock.IS_FLOOR,
                     dir > 0 ? i < center : i > center
-                                                         ) : base.setValue(StalactiteBlock.IS_FLOOR, dir > 0);
+            ) : base.setValue(StalactiteBlock.IS_FLOOR, dir > 0);
             BlocksHelper.setWithoutUpdate(world, mut, state);
         }
 

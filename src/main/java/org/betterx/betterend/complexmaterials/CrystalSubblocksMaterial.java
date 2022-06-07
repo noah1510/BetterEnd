@@ -4,9 +4,9 @@ import net.minecraft.world.level.block.Block;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
-import org.betterx.bclib.api.tag.NamedBlockTags;
-import org.betterx.bclib.api.tag.NamedItemTags;
-import org.betterx.bclib.api.tag.TagAPI;
+import org.betterx.bclib.api.v2.tag.NamedBlockTags;
+import org.betterx.bclib.api.v2.tag.NamedItemTags;
+import org.betterx.bclib.api.v2.tag.TagAPI;
 import org.betterx.bclib.blocks.BaseSlabBlock;
 import org.betterx.bclib.blocks.BaseStairsBlock;
 import org.betterx.bclib.blocks.BaseWallBlock;

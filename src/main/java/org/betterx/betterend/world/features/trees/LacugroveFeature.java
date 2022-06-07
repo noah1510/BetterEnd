@@ -13,7 +13,8 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 import net.minecraft.world.level.material.Material;
 
 import com.mojang.math.Vector3f;
-import org.betterx.bclib.api.tag.CommonBlockTags;
+import org.betterx.bclib.api.v2.levelgen.features.DefaultFeature;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.sdf.PosInfo;
 import org.betterx.bclib.sdf.SDF;
 import org.betterx.bclib.sdf.operator.SDFDisplacement;
@@ -23,7 +24,6 @@ import org.betterx.bclib.sdf.primitive.SDFSphere;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.bclib.util.SplineHelper;
-import org.betterx.bclib.world.features.DefaultFeature;
 import org.betterx.betterend.noise.OpenSimplexNoise;
 import org.betterx.betterend.registry.EndBlocks;
 
@@ -101,7 +101,7 @@ public class LacugroveFeature extends DefaultFeature {
                                         world,
                                         mut,
                                         y == top ? EndBlocks.LACUGROVE.getBark() : EndBlocks.LACUGROVE.getLog()
-                                                             );
+                                );
                             } else {
                                 break;
                             }
@@ -174,7 +174,7 @@ public class LacugroveFeature extends DefaultFeature {
                         random.nextGaussian() * 1,
                         random.nextGaussian() * 1,
                         random.nextGaussian() * 1
-                                       );
+                );
                 boolean place = true;
                 for (Direction d : Direction.values()) {
                     BlockState state = world.getBlockState(p.relative(d));

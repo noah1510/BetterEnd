@@ -15,7 +15,8 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 import net.minecraft.world.level.material.Material;
 
 import com.mojang.math.Vector3f;
-import org.betterx.bclib.api.tag.CommonBlockTags;
+import org.betterx.bclib.api.v2.levelgen.features.DefaultFeature;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.sdf.SDF;
 import org.betterx.bclib.sdf.operator.*;
 import org.betterx.bclib.sdf.primitive.SDFCappedCone;
@@ -24,7 +25,6 @@ import org.betterx.bclib.sdf.primitive.SDFPrimitive;
 import org.betterx.bclib.sdf.primitive.SDFSphere;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
-import org.betterx.bclib.world.features.DefaultFeature;
 import org.betterx.betterend.blocks.HydrothermalVentBlock;
 import org.betterx.betterend.noise.OpenSimplexNoise;
 import org.betterx.betterend.registry.EndBlocks;
@@ -177,9 +177,9 @@ public class GeyserFeature extends DefaultFeature {
         for (int i = 0; i < 150; i++) {
             mut.set(pos)
                .move(MHelper.floor(random.nextGaussian() * 4 + 0.5),
-                     -halfHeight - 10,
-                     MHelper.floor(random.nextGaussian() * 4 + 0.5)
-                    );
+                       -halfHeight - 10,
+                       MHelper.floor(random.nextGaussian() * 4 + 0.5)
+               );
             float distRaw = MHelper.length(mut.getX() - pos.getX(), mut.getZ() - pos.getZ());
             int dist = MHelper.floor(6 - distRaw) + random.nextInt(2);
             if (dist >= 0) {
@@ -201,7 +201,7 @@ public class GeyserFeature extends DefaultFeature {
                                         p,
                                         EndBlocks.TUBE_WORM.defaultBlockState()
                                                            .setValue(HorizontalDirectionalBlock.FACING, dir)
-                                                             );
+                                );
                             }
                         }
                         mut.setY(mut.getY() + 1);
@@ -223,9 +223,9 @@ public class GeyserFeature extends DefaultFeature {
         for (int i = 0; i < 10; i++) {
             mut.set(pos)
                .move(MHelper.floor(random.nextGaussian() * 0.7 + 0.5),
-                     -halfHeight - 10,
-                     MHelper.floor(random.nextGaussian() * 0.7 + 0.5)
-                    );
+                       -halfHeight - 10,
+                       MHelper.floor(random.nextGaussian() * 0.7 + 0.5)
+               );
             float distRaw = MHelper.length(mut.getX() - pos.getX(), mut.getZ() - pos.getZ());
             int dist = MHelper.floor(6 - distRaw) + random.nextInt(2);
             if (dist >= 0) {
@@ -255,11 +255,11 @@ public class GeyserFeature extends DefaultFeature {
 
         EndFeatures.SULPHURIC_LAKE.getFeature()
                                   .place(new FeaturePlaceContext<>(Optional.empty(),
-                                                                   world,
-                                                                   chunkGenerator,
-                                                                   random,
-                                                                   pos,
-                                                                   null));
+                                          world,
+                                          chunkGenerator,
+                                          random,
+                                          pos,
+                                          null));
 
         double distance = radius1 * 1.7;
         BlockPos start = pos.offset(-distance, -halfHeight - 15 - distance, -distance);

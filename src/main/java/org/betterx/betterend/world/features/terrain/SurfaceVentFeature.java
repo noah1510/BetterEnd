@@ -8,10 +8,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-import org.betterx.bclib.api.tag.CommonBlockTags;
+import org.betterx.bclib.api.v2.levelgen.features.DefaultFeature;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
-import org.betterx.bclib.world.features.DefaultFeature;
 import org.betterx.betterend.blocks.HydrothermalVentBlock;
 import org.betterx.betterend.registry.EndBlocks;
 
@@ -24,7 +24,7 @@ public class SurfaceVentFeature extends DefaultFeature {
         pos = getPosOnSurface(
                 world,
                 new BlockPos(pos.getX() + random.nextInt(16), pos.getY(), pos.getZ() + random.nextInt(16))
-                             );
+        );
         if (!world.getBlockState(pos.below(3)).is(CommonBlockTags.GEN_END_STONES)) {
             return false;
         }
@@ -39,7 +39,7 @@ public class SurfaceVentFeature extends DefaultFeature {
             int dist = MHelper.floor(2 - MHelper.length(
                     mut.getX() - pos.getX(),
                     mut.getZ() - pos.getZ()
-                                                       )) + random.nextInt(2);
+            )) + random.nextInt(2);
             if (dist > 0) {
                 BlockState state = world.getBlockState(mut);
                 for (int n = 0; n < 10 && state.isAir(); n++) {

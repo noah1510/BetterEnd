@@ -16,10 +16,10 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.*;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate.StructureBlockInfo;
 import net.minecraft.world.level.material.Material;
 
-import org.betterx.bclib.api.tag.CommonBlockTags;
+import org.betterx.bclib.api.v2.levelgen.features.NBTFeature;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.bclib.util.StructureHelper;
-import org.betterx.bclib.world.features.NBTFeature;
 import org.betterx.betterend.util.BlockFixer;
 import org.betterx.betterend.util.StructureErode;
 import org.betterx.betterend.world.biome.EndBiome;
@@ -97,7 +97,7 @@ public class CrashedShipFeature extends NBTFeature {
                 mirror,
                 rotation,
                 BlockPos.ZERO
-                                                     );
+        );
         center = center.offset(0, getYOffset(structure, world, center, random) + 0.5, 0);
         StructurePlaceSettings placementData = new StructurePlaceSettings().setRotation(rotation).setMirror(mirror);
         center = center.offset(-offset.getX() * 0.5, 0, -offset.getZ() * 0.5);
@@ -113,7 +113,7 @@ public class CrashedShipFeature extends NBTFeature {
                 world,
                 new BlockPos(bounds.minX(), bounds.minY(), bounds.minZ()),
                 new BlockPos(bounds.maxX(), bounds.maxY(), bounds.maxZ())
-                            );
+        );
 
         return true;
     }

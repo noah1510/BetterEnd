@@ -8,7 +8,7 @@ import net.minecraft.sounds.Music;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 
-import org.betterx.bclib.api.biomes.BiomeAPI;
+import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
 import org.betterx.betterend.client.ClientOptions;
 import org.betterx.betterend.world.biome.EndBiome;
 import org.spongepowered.asm.mixin.Final;

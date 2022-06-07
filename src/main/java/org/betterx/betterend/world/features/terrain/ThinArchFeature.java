@@ -11,7 +11,8 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 import com.mojang.math.Vector3f;
-import org.betterx.bclib.api.tag.CommonBlockTags;
+import org.betterx.bclib.api.v2.levelgen.features.DefaultFeature;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.sdf.SDF;
 import org.betterx.bclib.sdf.operator.SDFCoordModify;
 import org.betterx.bclib.sdf.operator.SDFDisplacement;
@@ -19,7 +20,6 @@ import org.betterx.bclib.sdf.operator.SDFRotation;
 import org.betterx.bclib.sdf.operator.SDFUnion;
 import org.betterx.bclib.sdf.primitive.SDFTorus;
 import org.betterx.bclib.util.MHelper;
-import org.betterx.bclib.world.features.DefaultFeature;
 import org.betterx.betterend.noise.OpenSimplexNoise;
 
 public class ThinArchFeature extends DefaultFeature {
@@ -36,9 +36,9 @@ public class ThinArchFeature extends DefaultFeature {
         RandomSource random = featurePlaceContext.random();
 
         BlockPos pos = getPosOnSurfaceWG(world,
-                                         new BlockPos((origin.getX() & 0xFFFFFFF0) | 7,
-                                                      0,
-                                                      (origin.getZ() & 0xFFFFFFF0) | 7));
+                new BlockPos((origin.getX() & 0xFFFFFFF0) | 7,
+                        0,
+                        (origin.getZ() & 0xFFFFFFF0) | 7));
         if (!world.getBlockState(pos.below(5)).is(CommonBlockTags.GEN_END_STONES)) {
             return false;
         }

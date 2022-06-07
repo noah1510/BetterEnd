@@ -19,11 +19,11 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import org.betterx.bclib.api.biomes.BCLBiome;
-import org.betterx.bclib.api.biomes.BiomeAPI;
-import org.betterx.bclib.api.tag.CommonBlockTags;
+import org.betterx.bclib.api.v2.generator.BiomePicker;
+import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
+import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.bclib.world.generator.BiomePicker;
 import org.betterx.betterend.noise.OpenSimplexNoise;
 import org.betterx.betterend.registry.EndBiomes;
 import org.betterx.betterend.world.biome.EndBiome;
@@ -83,11 +83,11 @@ public class TunelCaveFeature extends EndCaveFeature {
                     float vert = Mth.sin((y + (float) noiseV.eval(
                             pos.getX() * 0.01,
                             pos.getZ() * 0.01
-                                                                 ) * 20) * 0.1F) * 0.9F;
+                    ) * 20) * 0.1F) * 0.9F;
                     float dist = (float) noiseD.eval(pos.getX() * 0.1, y * 0.1, pos.getZ() * 0.1) * 0.12F;
                     val = (val + vert * vert + dist) + density + gradient;
                     if (val < 0.15 && world.getBlockState(pos).is(CommonBlockTags.GEN_END_STONES) && noWaterNear(world,
-                                                                                                                 pos)) {
+                            pos)) {
                         positions.add(pos.immutable());
                     }
                 }
@@ -234,10 +234,10 @@ public class TunelCaveFeature extends EndCaveFeature {
         return hasCavesInBiome(world, pos.offset(-8, 0, -8)) && hasCavesInBiome(
                 world,
                 pos.offset(8, 0, -8)
-                                                                               ) && hasCavesInBiome(world,
-                                                                                                    pos.offset(-8,
-                                                                                                               0,
-                                                                                                               8)) && hasCavesInBiome(
+        ) && hasCavesInBiome(world,
+                pos.offset(-8,
+                        0,
+                        8)) && hasCavesInBiome(
                 world,
                 pos.offset(8, 0, 8));
     }

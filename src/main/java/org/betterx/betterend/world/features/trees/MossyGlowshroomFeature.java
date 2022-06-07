@@ -10,6 +10,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 import net.minecraft.world.level.material.Material;
 
 import com.mojang.math.Vector3f;
+import org.betterx.bclib.api.v2.levelgen.features.DefaultFeature;
 import org.betterx.bclib.sdf.SDF;
 import org.betterx.bclib.sdf.operator.*;
 import org.betterx.bclib.sdf.primitive.SDFCappedCone;
@@ -18,7 +19,6 @@ import org.betterx.bclib.sdf.primitive.SDFSphere;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.bclib.util.SplineHelper;
-import org.betterx.bclib.world.features.DefaultFeature;
 import org.betterx.betterend.blocks.MossyGlowshroomCapBlock;
 import org.betterx.betterend.blocks.basis.FurBlock;
 import org.betterx.betterend.noise.OpenSimplexNoise;
@@ -98,7 +98,7 @@ public class MossyGlowshroomFeature extends DefaultFeature {
                         info.setBlockPos(
                                 info.getPos().relative(dir),
                                 EndBlocks.MOSSY_GLOWSHROOM_FUR.defaultBlockState().setValue(FurBlock.FACING, dir)
-                                        );
+                        );
                     }
                 }
 
@@ -106,7 +106,7 @@ public class MossyGlowshroomFeature extends DefaultFeature {
                     info.setBlockPos(
                             info.getPos().below(),
                             EndBlocks.MOSSY_GLOWSHROOM_FUR.defaultBlockState().setValue(FurBlock.FACING, Direction.DOWN)
-                                    );
+                    );
                 }
             }
             return info.getState();
@@ -145,7 +145,7 @@ public class MossyGlowshroomFeature extends DefaultFeature {
             float y = pos.y() + (float) noise.eval(
                     pos.x() * 0.1 + CENTER.x(),
                     pos.z() * 0.1 + CENTER.z()
-                                                  ) * dist * 0.3F - dist * 0.15F;
+            ) * dist * 0.3F - dist * 0.15F;
             pos.set(pos.x(), y, pos.z());
         }).setSource(cones);
 

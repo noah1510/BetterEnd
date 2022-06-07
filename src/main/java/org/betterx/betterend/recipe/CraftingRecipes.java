@@ -8,7 +8,7 @@ import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
-import org.betterx.bclib.api.tag.CommonItemTags;
+import org.betterx.bclib.api.v2.tag.CommonItemTags;
 import org.betterx.bclib.recipes.GridRecipe;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.config.Configs;

@@ -8,13 +8,13 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
 import com.mojang.math.Vector3f;
+import org.betterx.bclib.api.v2.levelgen.features.DefaultFeature;
 import org.betterx.bclib.sdf.SDF;
 import org.betterx.bclib.sdf.operator.SDFRotation;
 import org.betterx.bclib.sdf.operator.SDFTranslate;
 import org.betterx.bclib.sdf.operator.SDFUnion;
 import org.betterx.bclib.sdf.primitive.SDFCappedCone;
 import org.betterx.bclib.util.MHelper;
-import org.betterx.bclib.world.features.DefaultFeature;
 import org.betterx.betterend.registry.EndBlocks;
 
 import java.util.ArrayList;
@@ -84,7 +84,7 @@ public class IceStarFeature extends DefaultFeature {
                     px,
                     py,
                     pz
-                                                                             ) * 0.4F + random.nextFloat() * randScale;
+            ) * 0.4F + random.nextFloat() * randScale;
             if (distance < ancientRadius) {
                 return ancient;
             } else if (distance < denseRadius) {

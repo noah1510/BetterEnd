@@ -4,7 +4,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 
 import com.google.common.collect.Lists;
-import org.betterx.bclib.api.BonemealAPI;
+import org.betterx.bclib.api.v2.BonemealAPI;
 import org.betterx.betterend.blocks.basis.EndTerrainBlock;
 import org.betterx.betterend.registry.EndBiomes;
 import org.betterx.betterend.registry.EndBlocks;

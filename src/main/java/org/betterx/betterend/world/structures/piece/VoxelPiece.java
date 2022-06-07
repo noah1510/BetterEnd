@@ -10,7 +10,7 @@ import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceSerializationContext;
 
-import org.betterx.bclib.world.structures.StructureWorld;
+import org.betterx.bclib.api.v2.levelgen.structures.StructureWorld;
 import org.betterx.betterend.registry.EndStructures;
 
 import java.util.function.Consumer;

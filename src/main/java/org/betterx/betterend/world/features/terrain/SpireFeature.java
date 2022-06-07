@@ -13,15 +13,15 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 import net.minecraft.world.level.material.Material;
 
 import com.google.common.collect.Lists;
-import org.betterx.bclib.api.biomes.BiomeAPI;
-import org.betterx.bclib.api.tag.CommonBlockTags;
+import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
+import org.betterx.bclib.api.v2.levelgen.features.DefaultFeature;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.sdf.SDF;
 import org.betterx.bclib.sdf.operator.SDFDisplacement;
 import org.betterx.bclib.sdf.operator.SDFSmoothUnion;
 import org.betterx.bclib.sdf.operator.SDFTranslate;
 import org.betterx.bclib.sdf.primitive.SDFSphere;
 import org.betterx.bclib.util.MHelper;
-import org.betterx.bclib.world.features.DefaultFeature;
 import org.betterx.betterend.noise.OpenSimplexNoise;
 import org.betterx.betterend.registry.EndBiomes;
 import org.betterx.betterend.registry.EndFeatures;
@@ -59,9 +59,9 @@ public class SpireFeature extends DefaultFeature {
                     vec.x() * 0.1,
                     vec.y() * 0.1,
                     vec.z() * 0.1
-                                               )) * 3F + Math.abs(noise.eval(vec.x() * 0.3,
-                                                                             vec.y() * 0.3 + 100,
-                                                                             vec.z() * 0.3)) * 1.3F);
+            )) * 3F + Math.abs(noise.eval(vec.x() * 0.3,
+                    vec.y() * 0.3 + 100,
+                    vec.z() * 0.3)) * 1.3F);
         }).setSource(sdf);
         final BlockPos center = pos;
         List<BlockPos> support = Lists.newArrayList();
@@ -86,11 +86,11 @@ public class SpireFeature extends DefaultFeature {
             if (BiomeAPI.getFromBiome(world.getBiome(bpos)) == EndBiomes.BLOSSOMING_SPIRES) {
                 EndFeatures.TENANEA_BUSH.getFeature()
                                         .place(new FeaturePlaceContext<>(Optional.empty(),
-                                                                         world,
-                                                                         chunkGenerator,
-                                                                         random,
-                                                                         bpos,
-                                                                         null));
+                                                world,
+                                                chunkGenerator,
+                                                random,
+                                                bpos,
+                                                null));
             }
         });
 

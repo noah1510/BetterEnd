@@ -14,7 +14,8 @@ import net.minecraft.world.level.material.Material;
 
 import com.google.common.collect.Lists;
 import com.mojang.math.Vector3f;
-import org.betterx.bclib.api.tag.CommonBlockTags;
+import org.betterx.bclib.api.v2.levelgen.features.DefaultFeature;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.blocks.BlockProperties;
 import org.betterx.bclib.blocks.BlockProperties.TripleShape;
 import org.betterx.bclib.sdf.SDF;
@@ -23,7 +24,6 @@ import org.betterx.bclib.sdf.primitive.SDFSphere;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.bclib.util.SplineHelper;
-import org.betterx.bclib.world.features.DefaultFeature;
 import org.betterx.betterend.blocks.basis.FurBlock;
 import org.betterx.betterend.noise.OpenSimplexNoise;
 import org.betterx.betterend.registry.EndBlocks;
@@ -85,7 +85,7 @@ public class LucerniaFeature extends DefaultFeature {
                 vec.x() * 0.2,
                 vec.y() * 0.2,
                 vec.z() * 0.2
-                                                                              ) * 2F).setSource(sphere);
+        ) * 2F).setSource(sphere);
         sphere = new SDFDisplacement().setFunction((vec) -> MHelper.randRange(-1.5F, 1.5F, random)).setSource(sphere);
 
         MutableBlockPos mut = new MutableBlockPos();
@@ -190,10 +190,10 @@ public class LucerniaFeature extends DefaultFeature {
             Vector3f last = branch.get(branch.size() - 1);
             if (world.getBlockState(pos.offset(last.x(), last.y(), last.z())).is(CommonBlockTags.GEN_END_STONES)) {
                 SplineHelper.fillSplineForce(branch,
-                                             world,
-                                             EndBlocks.LUCERNIA.getBark().defaultBlockState(),
-                                             pos,
-                                             REPLACE);
+                        world,
+                        EndBlocks.LUCERNIA.getBark().defaultBlockState(),
+                        pos,
+                        REPLACE);
             }
         }
     }
@@ -221,14 +221,14 @@ public class LucerniaFeature extends DefaultFeature {
                 new Vector3f(0.30F, 0.55F, 0.00F),
                 new Vector3f(0.42F, 0.70F, 0.00F),
                 new Vector3f(0.50F, 1.00F, 0.00F)
-                                   );
+        );
 
         ROOT = Lists.newArrayList(
                 new Vector3f(0.1F, 0.70F, 0),
                 new Vector3f(0.3F, 0.30F, 0),
                 new Vector3f(0.7F, 0.05F, 0),
                 new Vector3f(0.8F, -0.20F, 0)
-                                 );
+        );
         SplineHelper.offset(ROOT, new Vector3f(0, -0.45F, 0));
     }
 }

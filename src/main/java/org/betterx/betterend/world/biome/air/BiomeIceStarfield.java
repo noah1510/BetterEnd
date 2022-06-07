@@ -2,7 +2,7 @@ package org.betterx.betterend.world.biome.air;
 
 import net.minecraft.world.entity.EntityType;
 
-import org.betterx.bclib.api.biomes.BCLBiomeBuilder;
+import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
 import org.betterx.betterend.registry.EndFeatures;
 import org.betterx.betterend.registry.EndParticles;
 import org.betterx.betterend.registry.EndStructures;

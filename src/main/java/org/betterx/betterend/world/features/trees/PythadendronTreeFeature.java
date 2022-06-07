@@ -12,6 +12,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 import net.minecraft.world.level.material.Material;
 
 import com.mojang.math.Vector3f;
+import org.betterx.bclib.api.v2.levelgen.features.DefaultFeature;
 import org.betterx.bclib.sdf.PosInfo;
 import org.betterx.bclib.sdf.SDF;
 import org.betterx.bclib.sdf.operator.SDFDisplacement;
@@ -22,7 +23,6 @@ import org.betterx.bclib.sdf.primitive.SDFSphere;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.bclib.util.SplineHelper;
-import org.betterx.bclib.world.features.DefaultFeature;
 import org.betterx.betterend.noise.OpenSimplexNoise;
 import org.betterx.betterend.registry.EndBlocks;
 
@@ -61,7 +61,7 @@ public class PythadendronTreeFeature extends DefaultFeature {
                 depth,
                 world,
                 pos
-              );
+        );
 
         SDF function = SplineHelper.buildSDF(spline, 1.7F, 1.1F, (bpos) -> {
             return EndBlocks.PYTHADENDRON.getBark().defaultBlockState();
@@ -103,7 +103,7 @@ public class PythadendronTreeFeature extends DefaultFeature {
                 EndBlocks.PYTHADENDRON.getBark().defaultBlockState(),
                 pos,
                 REPLACE
-                                            );
+        );
 
         spline = SplineHelper.makeSpline(x, y, z, x2, y, z2, 5);
         SplineHelper.powerOffset(spline, size * MHelper.randRange(1.0F, 2.0F, random), 4);
@@ -116,7 +116,7 @@ public class PythadendronTreeFeature extends DefaultFeature {
                 EndBlocks.PYTHADENDRON.getBark().defaultBlockState(),
                 pos,
                 REPLACE
-                                            );
+        );
 
         OpenSimplexNoise noise = new OpenSimplexNoise(random.nextInt());
         if (depth < 3) {

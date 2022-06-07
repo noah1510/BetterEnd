@@ -16,8 +16,8 @@ import net.minecraft.world.level.storage.loot.LootContext;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
-import org.betterx.bclib.api.tag.NamedBlockTags;
-import org.betterx.bclib.api.tag.TagAPI;
+import org.betterx.bclib.api.v2.tag.NamedBlockTags;
+import org.betterx.bclib.api.v2.tag.TagAPI;
 import org.betterx.bclib.blocks.BaseBlock;
 import org.betterx.bclib.blocks.BaseLeavesBlock;
 import org.betterx.bclib.interfaces.CustomColorProvider;

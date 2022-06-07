@@ -11,7 +11,8 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.material.Material;
 
-import org.betterx.bclib.api.tag.CommonBlockTags;
+import org.betterx.bclib.api.v2.levelgen.features.DefaultFeature;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.sdf.SDF;
 import org.betterx.bclib.sdf.operator.SDFDisplacement;
 import org.betterx.bclib.sdf.operator.SDFScale3D;
@@ -20,7 +21,6 @@ import org.betterx.bclib.sdf.operator.SDFTranslate;
 import org.betterx.bclib.sdf.primitive.SDFSphere;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
-import org.betterx.bclib.world.features.DefaultFeature;
 import org.betterx.betterend.noise.OpenSimplexNoise;
 
 import java.util.function.Function;
@@ -78,7 +78,7 @@ public class BushFeature extends DefaultFeature {
                             world,
                             p,
                             leaves.defaultBlockState().setValue(LeavesBlock.DISTANCE, 1)
-                                                 );
+                    );
                 } else {
                     BlocksHelper.setWithoutUpdate(world, p, leaves.defaultBlockState());
                 }

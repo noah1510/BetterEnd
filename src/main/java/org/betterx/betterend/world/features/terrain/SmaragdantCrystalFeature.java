@@ -9,10 +9,10 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-import org.betterx.bclib.api.tag.CommonBlockTags;
+import org.betterx.bclib.api.v2.levelgen.features.DefaultFeature;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
-import org.betterx.bclib.world.features.DefaultFeature;
 import org.betterx.betterend.registry.EndBlocks;
 
 public class SmaragdantCrystalFeature extends DefaultFeature {
@@ -35,7 +35,7 @@ public class SmaragdantCrystalFeature extends DefaultFeature {
             int dist = MHelper.floor(1.5F - MHelper.length(
                     mut.getX() - pos.getX(),
                     mut.getZ() - pos.getZ()
-                                                          )) + random.nextInt(3);
+            )) + random.nextInt(3);
             if (dist > 0) {
                 BlockState state = world.getBlockState(mut);
                 for (int n = 0; n < 10 && state.isAir(); n++) {
@@ -53,7 +53,7 @@ public class SmaragdantCrystalFeature extends DefaultFeature {
                             world,
                             mut,
                             shard.setValue(BlockStateProperties.WATERLOGGED, waterlogged)
-                                                 );
+                    );
                 }
             }
         }

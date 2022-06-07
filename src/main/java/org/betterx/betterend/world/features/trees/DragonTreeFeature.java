@@ -14,7 +14,8 @@ import net.minecraft.world.level.material.Material;
 
 import com.google.common.collect.Lists;
 import com.mojang.math.Vector3f;
-import org.betterx.bclib.api.tag.CommonBlockTags;
+import org.betterx.bclib.api.v2.levelgen.features.DefaultFeature;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.sdf.PosInfo;
 import org.betterx.bclib.sdf.SDF;
 import org.betterx.bclib.sdf.operator.*;
@@ -22,7 +23,6 @@ import org.betterx.bclib.sdf.primitive.SDFSphere;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.bclib.util.SplineHelper;
-import org.betterx.bclib.world.features.DefaultFeature;
 import org.betterx.betterend.noise.OpenSimplexNoise;
 import org.betterx.betterend.registry.EndBlocks;
 
@@ -111,10 +111,10 @@ public class DragonTreeFeature extends DefaultFeature {
             Vector3f last = branch.get(branch.size() - 1);
             if (world.getBlockState(pos.offset(last.x(), last.y(), last.z())).is(CommonBlockTags.GEN_END_STONES)) {
                 SplineHelper.fillSpline(branch,
-                                        world,
-                                        EndBlocks.DRAGON_TREE.getBark().defaultBlockState(),
-                                        pos,
-                                        REPLACE);
+                        world,
+                        EndBlocks.DRAGON_TREE.getBark().defaultBlockState(),
+                        pos,
+                        REPLACE);
             }
         }
     }
@@ -181,7 +181,7 @@ public class DragonTreeFeature extends DefaultFeature {
                         random.nextGaussian() * 1,
                         random.nextGaussian() * 1,
                         random.nextGaussian() * 1
-                                       );
+                );
                 boolean place = true;
                 for (Direction d : Direction.values()) {
                     BlockState state = world.getBlockState(p.relative(d));
@@ -230,7 +230,7 @@ public class DragonTreeFeature extends DefaultFeature {
                 new Vector3f(0.4F, 0.6F, 0),
                 new Vector3f(0.8F, 0.8F, 0),
                 new Vector3f(1, 1, 0)
-                                   );
+        );
         SIDE1 = Lists.newArrayList(new Vector3f(0.4F, 0.6F, 0), new Vector3f(0.8F, 0.8F, 0), new Vector3f(1, 1, 0));
         SIDE2 = SplineHelper.copySpline(SIDE1);
 
@@ -250,7 +250,7 @@ public class DragonTreeFeature extends DefaultFeature {
                 new Vector3f(0.3F, 0.3F, 0),
                 new Vector3f(0.7F, 0.05F, 0),
                 new Vector3f(0.8F, -0.2F, 0)
-                                 );
+        );
         SplineHelper.offset(ROOT, new Vector3f(0, -0.45F, 0));
     }
 }

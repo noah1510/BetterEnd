@@ -15,7 +15,7 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProc
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate.StructureBlockInfo;
 
-import org.betterx.bclib.world.features.ListFeature;
+import org.betterx.bclib.api.v2.levelgen.features.ListFeature;
 import org.betterx.betterend.util.LootTableUtil;
 
 import java.util.List;
@@ -53,7 +53,7 @@ public class BuildingListFeature extends ListFeature {
                         chestPos.getX() >> 2,
                         chestPos.getY() >> 2,
                         chestPos.getZ() >> 2
-                                                               );
+                );
                 chestEntity.setLootTable(LootTableUtil.getTable(biome), random.nextLong());
                 chestEntity.setChanged();
             }

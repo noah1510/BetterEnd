@@ -15,13 +15,13 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 import net.minecraft.world.level.material.Material;
 
 import com.mojang.math.Vector3f;
+import org.betterx.bclib.api.v2.levelgen.features.DefaultFeature;
 import org.betterx.bclib.blocks.BaseAttachedBlock;
 import org.betterx.bclib.sdf.PosInfo;
 import org.betterx.bclib.sdf.SDF;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.bclib.util.SplineHelper;
-import org.betterx.bclib.world.features.DefaultFeature;
 import org.betterx.betterend.registry.EndBlocks;
 
 import java.util.List;
@@ -54,7 +54,7 @@ public class GiganticAmaranitaFeature extends DefaultFeature {
                 radius,
                 0.2F,
                 (bpos) -> EndBlocks.AMARANITA_STEM.defaultBlockState()
-                                            );
+        );
 
         Vector3f capPos = spline.get(spline.size() - 1);
         makeHead(world, pos.offset(capPos.x() + 0.5F, capPos.y() + 1.5F, capPos.z() + 0.5F), Mth.floor(size / 1.6F));
@@ -107,7 +107,7 @@ public class GiganticAmaranitaFeature extends DefaultFeature {
                                     mut,
                                     EndBlocks.AMARANITA_FUR.defaultBlockState()
                                                            .setValue(BaseAttachedBlock.FACING, Direction.DOWN)
-                                                         );
+                            );
                         }
                     }
                 }
@@ -172,13 +172,13 @@ public class GiganticAmaranitaFeature extends DefaultFeature {
                                 Direction dir = Direction.fromAxisAndDirection(
                                         axis,
                                         distance < 0 ? AxisDirection.NEGATIVE : AxisDirection.POSITIVE
-                                                                              );
+                                );
                                 BlocksHelper.setWithoutUpdate(
                                         world,
                                         offseted,
                                         EndBlocks.AMARANITA_FUR.defaultBlockState()
                                                                .setValue(BaseAttachedBlock.FACING, dir)
-                                                             );
+                                );
                             }
                             mut.move(Direction.DOWN);
                         }
@@ -188,7 +188,7 @@ public class GiganticAmaranitaFeature extends DefaultFeature {
                                     mut,
                                     EndBlocks.AMARANITA_FUR.defaultBlockState()
                                                            .setValue(BaseAttachedBlock.FACING, Direction.DOWN)
-                                                         );
+                            );
                         }
                     }
                 }
@@ -298,13 +298,13 @@ public class GiganticAmaranitaFeature extends DefaultFeature {
                                 Direction dir = Direction.fromAxisAndDirection(
                                         axis,
                                         distance < 0 ? AxisDirection.NEGATIVE : AxisDirection.POSITIVE
-                                                                              );
+                                );
                                 BlocksHelper.setWithoutUpdate(
                                         world,
                                         offseted,
                                         EndBlocks.AMARANITA_FUR.defaultBlockState()
                                                                .setValue(BaseAttachedBlock.FACING, dir)
-                                                             );
+                                );
                             }
                             mut.move(Direction.DOWN);
                         }
@@ -314,7 +314,7 @@ public class GiganticAmaranitaFeature extends DefaultFeature {
                                     mut,
                                     EndBlocks.AMARANITA_FUR.defaultBlockState()
                                                            .setValue(BaseAttachedBlock.FACING, Direction.DOWN)
-                                                         );
+                            );
                         }
                     }
                 }

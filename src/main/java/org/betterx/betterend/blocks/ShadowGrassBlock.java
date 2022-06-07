@@ -12,7 +12,7 @@ import net.minecraft.world.level.material.MaterialColor;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
-import org.betterx.bclib.api.tag.CommonBlockTags;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.interfaces.TagProvider;
 import org.betterx.betterend.blocks.basis.EndTerrainBlock;
 import org.betterx.betterend.registry.EndParticles;

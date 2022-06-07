@@ -12,13 +12,13 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 import net.minecraft.world.phys.AABB;
 
 import com.mojang.math.Vector3f;
+import org.betterx.bclib.api.v2.levelgen.features.DefaultFeature;
 import org.betterx.bclib.sdf.PosInfo;
 import org.betterx.bclib.sdf.SDF;
 import org.betterx.bclib.sdf.operator.*;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.bclib.util.SplineHelper;
-import org.betterx.bclib.world.features.DefaultFeature;
 import org.betterx.betterend.blocks.HelixTreeLeavesBlock;
 import org.betterx.betterend.registry.EndBlocks;
 
@@ -71,20 +71,20 @@ public class HelixTreeFeature extends DefaultFeature {
         sdf.addPostProcess(POST).fillArea(world, pos, new AABB(pos.offset(-dx, dy1, -dx), pos.offset(dx, dy2, dx)));
         SplineHelper.scale(spline, scale);
         SplineHelper.fillSplineForce(spline,
-                                     world,
-                                     EndBlocks.HELIX_TREE.getBark().defaultBlockState(),
-                                     pos,
-                                     (state) -> {
-                                         return state.getMaterial().isReplaceable();
-                                     });
+                world,
+                EndBlocks.HELIX_TREE.getBark().defaultBlockState(),
+                pos,
+                (state) -> {
+                    return state.getMaterial().isReplaceable();
+                });
         SplineHelper.rotateSpline(spline, (float) Math.PI);
         SplineHelper.fillSplineForce(spline,
-                                     world,
-                                     EndBlocks.HELIX_TREE.getBark().defaultBlockState(),
-                                     pos,
-                                     (state) -> {
-                                         return state.getMaterial().isReplaceable();
-                                     });
+                world,
+                EndBlocks.HELIX_TREE.getBark().defaultBlockState(),
+                pos,
+                (state) -> {
+                    return state.getMaterial().isReplaceable();
+                });
         SplineHelper.scale(spline2, scale);
         BlockPos leafStart = pos.offset(lastPoint.x() + 0.5, lastPoint.y() + 0.5, lastPoint.z() + 0.5);
         SplineHelper.fillSplineForce(
@@ -95,7 +95,7 @@ public class HelixTreeFeature extends DefaultFeature {
                 (state) -> {
                     return state.getMaterial().isReplaceable();
                 }
-                                    );
+        );
 
         spline.clear();
         float rad = MHelper.randRange(8F, 11F, random);

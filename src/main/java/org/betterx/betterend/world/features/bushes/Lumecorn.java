@@ -9,10 +9,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-import org.betterx.bclib.api.tag.CommonBlockTags;
+import org.betterx.bclib.api.v2.levelgen.features.DefaultFeature;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
-import org.betterx.bclib.world.features.DefaultFeature;
 import org.betterx.betterend.blocks.EndBlockProperties.LumecornShape;
 import org.betterx.betterend.blocks.LumecornBlock;
 import org.betterx.betterend.registry.EndBlocks;
@@ -46,7 +46,7 @@ public class Lumecorn extends DefaultFeature {
                     world,
                     mut,
                     EndBlocks.LUMECORN.defaultBlockState().setValue(LumecornBlock.SHAPE, LumecornShape.BOTTOM_SMALL)
-                                         );
+            );
             BlocksHelper.setWithoutUpdate(world, mut.move(Direction.UP), bottom);
             BlocksHelper.setWithoutUpdate(world, mut.move(Direction.UP), topMiddle);
             BlocksHelper.setWithoutUpdate(world, mut.move(Direction.UP), top);
@@ -57,18 +57,18 @@ public class Lumecorn extends DefaultFeature {
                     world,
                     mut,
                     EndBlocks.LUMECORN.defaultBlockState().setValue(LumecornBlock.SHAPE, LumecornShape.BOTTOM_SMALL)
-                                         );
+            );
         } else {
             BlocksHelper.setWithoutUpdate(
                     world,
                     mut,
                     EndBlocks.LUMECORN.defaultBlockState().setValue(LumecornBlock.SHAPE, LumecornShape.BOTTOM_BIG)
-                                         );
+            );
             BlocksHelper.setWithoutUpdate(
                     world,
                     mut.move(Direction.UP),
                     EndBlocks.LUMECORN.defaultBlockState().setValue(LumecornBlock.SHAPE, LumecornShape.MIDDLE)
-                                         );
+            );
             height--;
         }
         BlocksHelper.setWithoutUpdate(world, mut.move(Direction.UP), bottom);

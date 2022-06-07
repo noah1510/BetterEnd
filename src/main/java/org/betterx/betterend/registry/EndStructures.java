@@ -7,7 +7,7 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceType;
 
-import org.betterx.bclib.api.tag.TagAPI;
+import org.betterx.bclib.api.v2.tag.TagAPI;
 import org.betterx.bclib.world.structures.BCLStructure;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.world.structures.features.*;
