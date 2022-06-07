@@ -1,8 +1,8 @@
-[![](https://jitpack.io/v/paulevsGitch/BetterEnd.svg)](https://jitpack.io/#paulevsGitch/BetterEnd)
+[![](https://jitpack.io/v/quiqueck/BetterEnd.svg)](https://jitpack.io/#quiqueck/BetterEnd)
 
 # Better End
 
-Better End Mod for Fabric, MC 1.18
+Better End Mod for Fabric, MC 1.19
 
 Importing:
 
