@@ -44,7 +44,7 @@ dependencies {
     if (local_bclib) {
         implementation(project(path: ":BCLib", configuration: 'dev'))
     } else {
-        modImplementation "com.github.paulevsGitch:BCLib:${project.bclib_version}"
+        modImplementation "com.github.quiqueck:BCLib:${project.bclib_version}"
     }
 
     useOptional "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
@@ -143,11 +143,11 @@ task release(dependsOn: [remapJar, sourcesJar, javadocJar]) {
 
     doLast {
         def github = GitHub.connectUsingOAuth(env.GITHUB_TOKEN as String)
-        def repository = github.getRepository("paulevsGitch/BetterEnd")
+        def repository = github.getRepository("quiqueck/BetterEnd")
 
         def releaseBuilder = new GHReleaseBuilder(repository, version as String)
         releaseBuilder.name("${archivesBaseName}-${version}")
-        releaseBuilder.body("A changelog can be found at https://github.com/paulevsGitch/BetterEnd/commits")
+        releaseBuilder.body("A changelog can be found at https://github.com/quiqueck/BetterEnd/commits")
         releaseBuilder.commitish("master")
 
         def ghRelease = releaseBuilder.create()
