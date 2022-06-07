@@ -11,7 +11,7 @@ import org.betterx.betterend.registry.EndFeatures;
 
 public class LacugroveSaplingBlock extends PottableFeatureSapling {
     public LacugroveSaplingBlock() {
-        super((state) -> EndFeatures.LACUGROVE.getFeature());
+        super((state) -> EndFeatures.LACUGROVE);
     }
 
     @Override

@@ -11,7 +11,7 @@ import org.betterx.betterend.registry.EndFeatures;
 
 public class LucerniaSaplingBlock extends PottableFeatureSapling {
     public LucerniaSaplingBlock() {
-        super((state) -> EndFeatures.LUCERNIA.getFeature());
+        super((state) -> EndFeatures.LUCERNIA);
     }
 
     @Override

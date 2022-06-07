@@ -12,7 +12,7 @@ import org.betterx.betterend.registry.EndFeatures;
 
 public class UmbrellaTreeSaplingBlock extends PottableFeatureSapling {
     public UmbrellaTreeSaplingBlock() {
-        super((state) -> EndFeatures.UMBRELLA_TREE.getFeature());
+        super((state) -> EndFeatures.UMBRELLA_TREE);
     }
 
     @Override

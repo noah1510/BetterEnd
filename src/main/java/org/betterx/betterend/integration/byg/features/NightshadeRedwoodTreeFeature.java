@@ -15,7 +15,7 @@ import net.minecraft.world.level.material.Material;
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import com.mojang.math.Vector3f;
-import org.betterx.bclib.api.v2.levelgen.features.DefaultFeature;
+import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
 import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.sdf.PosInfo;
 import org.betterx.bclib.sdf.SDF;

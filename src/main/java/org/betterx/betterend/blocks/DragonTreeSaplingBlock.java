@@ -11,7 +11,7 @@ import org.betterx.betterend.registry.EndFeatures;
 
 public class DragonTreeSaplingBlock extends PottableFeatureSapling {
     public DragonTreeSaplingBlock() {
-        super((state) -> EndFeatures.DRAGON_TREE.getFeature());
+        super((state) -> EndFeatures.DRAGON_TREE);
     }
 
     @Override

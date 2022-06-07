@@ -11,7 +11,7 @@ import org.betterx.betterend.registry.EndFeatures;
 
 public class MossyGlowshroomSaplingBlock extends PottableFeatureSapling {
     public MossyGlowshroomSaplingBlock() {
-        super(7, (state) -> EndFeatures.MOSSY_GLOWSHROOM.getFeature());
+        super(7, (state) -> EndFeatures.MOSSY_GLOWSHROOM);
     }
 
     @Override

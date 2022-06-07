@@ -11,7 +11,7 @@ import org.betterx.betterend.registry.EndFeatures;
 
 public class HelixTreeSaplingBlock extends PottableFeatureSapling {
     public HelixTreeSaplingBlock() {
-        super((state) -> EndFeatures.HELIX_TREE.getFeature());
+        super((state) -> EndFeatures.HELIX_TREE);
     }
 
     @Override

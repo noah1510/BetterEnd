@@ -16,7 +16,6 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.*;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate.StructureBlockInfo;
 import net.minecraft.world.level.material.Material;
 
-import org.betterx.bclib.api.v2.levelgen.features.NBTFeature;
 import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.bclib.util.StructureHelper;

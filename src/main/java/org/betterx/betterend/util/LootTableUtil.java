@@ -5,14 +5,13 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
-
-import net.fabricmc.fabric.api.loot.v1.FabricLootPoolBuilder;
-import net.fabricmc.fabric.api.loot.v1.FabricLootSupplierBuilder;
-import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
+import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
@@ -32,63 +31,58 @@ public class LootTableUtil {
     private static final ResourceLocation UMBRELLA_JUNGLE = BetterEnd.makeID("chests/umbrella_jungle");
 
     public static void init() {
-        LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, id, table, setter) -> {
+        LootTableEvents.MODIFY.register((resourceManager, lootManager, id, table, setter) -> {
             if (END_CITY_TREASURE_ID.equals(id)) {
-                FabricLootPoolBuilder builder = FabricLootPoolBuilder.builder();
+                LootPool.Builder builder = LootPool.lootPool();
                 builder.setRolls(ConstantValue.exactly(1));
-                builder.withCondition(LootItemRandomChanceCondition.randomChance(0.2f).build());
-                builder.withEntry(LootItem.lootTableItem(Items.GHAST_TEAR).build());
+                builder.conditionally(LootItemRandomChanceCondition.randomChance(0.2f).build());
+                builder.add(LootItem.lootTableItem(Items.GHAST_TEAR));
                 table.withPool(builder);
 
-                builder = FabricLootPoolBuilder.builder();
+                builder = LootPool.lootPool();
                 builder.setRolls(UniformGenerator.between(0, 3));
-                builder.withEntry(LootItem.lootTableItem(EndItems.MUSIC_DISC_STRANGE_AND_ALIEN).build());
-                builder.withEntry(LootItem.lootTableItem(EndItems.MUSIC_DISC_GRASPING_AT_STARS).build());
-                builder.withEntry(LootItem.lootTableItem(EndItems.MUSIC_DISC_ENDSEEKER).build());
-                builder.withEntry(LootItem.lootTableItem(EndItems.MUSIC_DISC_EO_DRACONA).build());
+                builder.add(LootItem.lootTableItem(EndItems.MUSIC_DISC_STRANGE_AND_ALIEN));
+                builder.add(LootItem.lootTableItem(EndItems.MUSIC_DISC_GRASPING_AT_STARS));
+                builder.add(LootItem.lootTableItem(EndItems.MUSIC_DISC_ENDSEEKER));
+                builder.add(LootItem.lootTableItem(EndItems.MUSIC_DISC_EO_DRACONA));
                 table.withPool(builder);
             } else if (id.getNamespace().equals(BetterEnd.MOD_ID)) {
                 addCommonItems(table);
                 if (FOGGY_MUSHROOMLAND.equals(id)) {
-                    FabricLootPoolBuilder builder = FabricLootPoolBuilder.builder();
+                    LootPool.Builder builder =LootPool.lootPool();
                     builder.setRolls(UniformGenerator.between(4, 8));
-                    builder.withEntry(LootItem.lootTableItem(EndBlocks.MOSSY_GLOWSHROOM.getBlock(WoodenComplexMaterial.BLOCK_PLANKS))
-                                              .build());
-                    builder.withEntry(LootItem.lootTableItem(EndBlocks.MOSSY_GLOWSHROOM_SAPLING).build());
-                    builder.withEntry(LootItem.lootTableItem(EndBlocks.BLUE_VINE_SEED).build());
+                    builder.add(LootItem.lootTableItem(EndBlocks.MOSSY_GLOWSHROOM.getBlock(WoodenComplexMaterial.BLOCK_PLANKS)));
+                    builder.add(LootItem.lootTableItem(EndBlocks.MOSSY_GLOWSHROOM_SAPLING));
+                    builder.add(LootItem.lootTableItem(EndBlocks.BLUE_VINE_SEED));
                     table.withPool(builder);
                 } else if (CHORUS_FOREST.equals(id)) {
-                    FabricLootPoolBuilder builder = FabricLootPoolBuilder.builder();
+                    LootPool.Builder builder = LootPool.lootPool();
                     builder.setRolls(UniformGenerator.between(4, 8));
-                    builder.withEntry(LootItem.lootTableItem(EndBlocks.PYTHADENDRON.getBlock(WoodenComplexMaterial.BLOCK_PLANKS))
-                                              .build());
-                    builder.withEntry(LootItem.lootTableItem(EndBlocks.PYTHADENDRON_SAPLING).build());
-                    builder.withEntry(LootItem.lootTableItem(EndBlocks.CHORUS_MUSHROOM).build());
+                    builder.add(LootItem.lootTableItem(EndBlocks.PYTHADENDRON.getBlock(WoodenComplexMaterial.BLOCK_PLANKS)));
+                    builder.add(LootItem.lootTableItem(EndBlocks.PYTHADENDRON_SAPLING));
+                    builder.add(LootItem.lootTableItem(EndBlocks.CHORUS_MUSHROOM));
                     table.withPool(builder);
                 } else if (SHADOW_FOREST.equals(id)) {
-                    FabricLootPoolBuilder builder = FabricLootPoolBuilder.builder();
+                    LootPool.Builder builder = LootPool.lootPool();
                     builder.setRolls(UniformGenerator.between(4, 8));
-                    builder.withEntry(LootItem.lootTableItem(EndBlocks.DRAGON_TREE.getBlock(WoodenComplexMaterial.BLOCK_PLANKS))
-                                              .build());
-                    builder.withEntry(LootItem.lootTableItem(EndBlocks.DRAGON_TREE_SAPLING).build());
-                    builder.withEntry(LootItem.lootTableItem(EndBlocks.SHADOW_BERRY).build());
-                    builder.withEntry(LootItem.lootTableItem(EndItems.SHADOW_BERRY_RAW).build());
+                    builder.add(LootItem.lootTableItem(EndBlocks.DRAGON_TREE.getBlock(WoodenComplexMaterial.BLOCK_PLANKS)));
+                    builder.add(LootItem.lootTableItem(EndBlocks.DRAGON_TREE_SAPLING));
+                    builder.add(LootItem.lootTableItem(EndBlocks.SHADOW_BERRY));
+                    builder.add(LootItem.lootTableItem(EndItems.SHADOW_BERRY_RAW));
                     table.withPool(builder);
                 } else if (LANTERN_WOODS.equals(id)) {
-                    FabricLootPoolBuilder builder = FabricLootPoolBuilder.builder();
+                    LootPool.Builder builder =LootPool.lootPool();
                     builder.setRolls(UniformGenerator.between(4, 8));
-                    builder.withEntry(LootItem.lootTableItem(EndBlocks.LUCERNIA.getBlock(WoodenComplexMaterial.BLOCK_PLANKS))
-                                              .build());
-                    builder.withEntry(LootItem.lootTableItem(EndBlocks.LUCERNIA_SAPLING).build());
-                    builder.withEntry(LootItem.lootTableItem(EndBlocks.BOLUX_MUSHROOM).build());
+                    builder.add(LootItem.lootTableItem(EndBlocks.LUCERNIA.getBlock(WoodenComplexMaterial.BLOCK_PLANKS)));
+                    builder.add(LootItem.lootTableItem(EndBlocks.LUCERNIA_SAPLING));
+                    builder.add(LootItem.lootTableItem(EndBlocks.BOLUX_MUSHROOM));
                     table.withPool(builder);
                 } else if (UMBRELLA_JUNGLE.equals(id)) {
-                    FabricLootPoolBuilder builder = FabricLootPoolBuilder.builder();
+                    LootPool.Builder builder = LootPool.lootPool();
                     builder.setRolls(UniformGenerator.between(4, 8));
-                    builder.withEntry(LootItem.lootTableItem(EndBlocks.UMBRELLA_TREE.getBlock(WoodenComplexMaterial.BLOCK_PLANKS))
-                                              .build());
-                    builder.withEntry(LootItem.lootTableItem(EndBlocks.UMBRELLA_TREE_SAPLING).build());
-                    builder.withEntry(LootItem.lootTableItem(EndBlocks.SMALL_JELLYSHROOM).build());
+                    builder.add(LootItem.lootTableItem(EndBlocks.UMBRELLA_TREE.getBlock(WoodenComplexMaterial.BLOCK_PLANKS)));
+                    builder.add(LootItem.lootTableItem(EndBlocks.UMBRELLA_TREE_SAPLING));
+                    builder.add(LootItem.lootTableItem(EndBlocks.SMALL_JELLYSHROOM));
                     table.withPool(builder);
                 }
             }
@@ -111,43 +105,43 @@ public class LootTableUtil {
         return COMMON;
     }
 
-    private static void addCommonItems(FabricLootSupplierBuilder table) {
-        FabricLootPoolBuilder builder = FabricLootPoolBuilder.builder();
+    private static void addCommonItems(LootTable.Builder table) {
+        LootPool.Builder builder = LootPool.lootPool();
         builder.setRolls(UniformGenerator.between(0, 2));
-        builder.withEntry(LootItem.lootTableItem(EndItems.MUSIC_DISC_STRANGE_AND_ALIEN).build());
-        builder.withEntry(LootItem.lootTableItem(EndItems.MUSIC_DISC_GRASPING_AT_STARS).build());
-        builder.withEntry(LootItem.lootTableItem(EndItems.MUSIC_DISC_ENDSEEKER).build());
-        builder.withEntry(LootItem.lootTableItem(EndItems.MUSIC_DISC_EO_DRACONA).build());
+        builder.add(LootItem.lootTableItem(EndItems.MUSIC_DISC_STRANGE_AND_ALIEN));
+        builder.add(LootItem.lootTableItem(EndItems.MUSIC_DISC_GRASPING_AT_STARS));
+        builder.add(LootItem.lootTableItem(EndItems.MUSIC_DISC_ENDSEEKER));
+        builder.add(LootItem.lootTableItem(EndItems.MUSIC_DISC_EO_DRACONA));
         table.withPool(builder);
 
-        builder = FabricLootPoolBuilder.builder();
+        builder = LootPool.lootPool();
         builder.setRolls(UniformGenerator.between(4, 8));
-        builder.withEntry(LootItem.lootTableItem(EndBlocks.THALLASIUM.ingot).build());
-        builder.withEntry(LootItem.lootTableItem(EndBlocks.THALLASIUM.rawOre).build());
-        builder.withEntry(LootItem.lootTableItem(Items.ENDER_PEARL).build());
+        builder.add(LootItem.lootTableItem(EndBlocks.THALLASIUM.ingot));
+        builder.add(LootItem.lootTableItem(EndBlocks.THALLASIUM.rawOre));
+        builder.add(LootItem.lootTableItem(Items.ENDER_PEARL));
         table.withPool(builder);
 
-        builder = FabricLootPoolBuilder.builder();
+        builder = LootPool.lootPool();
         builder.setRolls(UniformGenerator.between(2, 4));
-        builder.withEntry(LootItem.lootTableItem(EndBlocks.TERMINITE.ingot).build());
-        builder.withEntry(LootItem.lootTableItem(EndItems.ENDER_SHARD).build());
-        builder.withEntry(LootItem.lootTableItem(EndBlocks.AURORA_CRYSTAL).build());
-        builder.withEntry(LootItem.lootTableItem(EndBlocks.THALLASIUM.axe).build());
-        builder.withEntry(LootItem.lootTableItem(EndBlocks.THALLASIUM.pickaxe).build());
-        builder.withEntry(LootItem.lootTableItem(EndBlocks.THALLASIUM.hoe).build());
-        builder.withEntry(LootItem.lootTableItem(EndBlocks.THALLASIUM.sword).build());
-        builder.withEntry(LootItem.lootTableItem(EndBlocks.THALLASIUM.shovel).build());
-        builder.withEntry(LootItem.lootTableItem(Items.ENDER_EYE).build());
-        builder.withEntry(LootItem.lootTableItem(Blocks.OBSIDIAN).build());
+        builder.add(LootItem.lootTableItem(EndBlocks.TERMINITE.ingot));
+        builder.add(LootItem.lootTableItem(EndItems.ENDER_SHARD));
+        builder.add(LootItem.lootTableItem(EndBlocks.AURORA_CRYSTAL));
+        builder.add(LootItem.lootTableItem(EndBlocks.THALLASIUM.axe));
+        builder.add(LootItem.lootTableItem(EndBlocks.THALLASIUM.pickaxe));
+        builder.add(LootItem.lootTableItem(EndBlocks.THALLASIUM.hoe));
+        builder.add(LootItem.lootTableItem(EndBlocks.THALLASIUM.sword));
+        builder.add(LootItem.lootTableItem(EndBlocks.THALLASIUM.shovel));
+        builder.add(LootItem.lootTableItem(Items.ENDER_EYE));
+        builder.add(LootItem.lootTableItem(Blocks.OBSIDIAN));
         table.withPool(builder);
 
-        builder = FabricLootPoolBuilder.builder();
+        builder = LootPool.lootPool();
         builder.setRolls(UniformGenerator.between(0, 4));
-        builder.withEntry(LootItem.lootTableItem(EndBlocks.FLAVOLITE_RUNED).build());
-        builder.withEntry(LootItem.lootTableItem(EndItems.AETERNIUM_INGOT).build());
-        builder.withEntry(LootItem.lootTableItem(EndItems.AMBER_GEM).build());
-        builder.withEntry(LootItem.lootTableItem(Items.END_CRYSTAL).build());
-        builder.withEntry(LootItem.lootTableItem(Items.GHAST_TEAR).build());
+        builder.add(LootItem.lootTableItem(EndBlocks.FLAVOLITE_RUNED));
+        builder.add(LootItem.lootTableItem(EndItems.AETERNIUM_INGOT));
+        builder.add(LootItem.lootTableItem(EndItems.AMBER_GEM));
+        builder.add(LootItem.lootTableItem(Items.END_CRYSTAL));
+        builder.add(LootItem.lootTableItem(Items.GHAST_TEAR));
         table.withPool(builder);
     }
 }

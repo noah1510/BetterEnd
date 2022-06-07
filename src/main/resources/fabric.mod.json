@@ -39,10 +39,10 @@
     "betterend.mixins.shadow.json"
   ],
   "depends": {
-    "fabricloader": ">=0.14.5",
-    "fabric": ">=0.52.4",
-    "minecraft": "1.19-beta.1",
-    "bclib": "2.0.x"
+    "fabricloader": ">=0.14.6",
+    "fabric": ">=0.55.2",
+    "minecraft": "1.19",
+    "bclib": "2.0.0"
   },
   "suggests": {
     "byg": ">=1.1.3",

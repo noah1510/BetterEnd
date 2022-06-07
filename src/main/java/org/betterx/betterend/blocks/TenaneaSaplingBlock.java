@@ -11,7 +11,7 @@ import org.betterx.betterend.registry.EndFeatures;
 
 public class TenaneaSaplingBlock extends PottableFeatureSapling {
     public TenaneaSaplingBlock() {
-        super((state) -> EndFeatures.TENANEA.getFeature());
+        super((state) -> EndFeatures.TENANEA);
     }
 
     @Override

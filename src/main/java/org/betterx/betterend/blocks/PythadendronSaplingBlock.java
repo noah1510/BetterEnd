@@ -11,7 +11,7 @@ import org.betterx.betterend.registry.EndFeatures;
 
 public class PythadendronSaplingBlock extends PottableFeatureSapling {
     public PythadendronSaplingBlock() {
-        super((state) -> EndFeatures.PYTHADENDRON_TREE.getFeature());
+        super((state) -> EndFeatures.PYTHADENDRON_TREE);
     }
 
     @Override
