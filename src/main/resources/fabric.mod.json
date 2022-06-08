@@ -28,7 +28,7 @@
     "client": [
       "org.betterx.betterend.client.BetterEndClient"
     ],
-    "rei_plugins_disabled": [
+    "rei_plugins": [
       "org.betterx.betterend.integration.rei.REIPlugin"
     ]
   },
