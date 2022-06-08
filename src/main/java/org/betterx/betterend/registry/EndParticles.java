@@ -1,13 +1,13 @@
 package org.betterx.betterend.registry;
 
-import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.particles.SimpleParticleType;
 
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
-import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
 
+import com.mojang.serialization.Codec;
+import org.betterx.bclib.particles.BCLParticleType;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.particle.*;
 
@@ -16,7 +16,8 @@ public class EndParticles {
     public static final SimpleParticleType PORTAL_SPHERE = register("portal_sphere");
     public static final ParticleType<InfusionParticleType> INFUSION = register(
             "infusion",
-            FabricParticleTypes.complex(InfusionParticleType.PARAMETERS_FACTORY)
+            InfusionParticleType.PARAMETERS_FACTORY,
+            InfusionParticleType.CODEC
                                                                               );
     public static final SimpleParticleType SULPHUR_PARTICLE = register("sulphur_particle");
     public static final SimpleParticleType GEYSER_PARTICLE = registerFar("geyser_particle");
@@ -44,14 +45,16 @@ public class EndParticles {
     }
 
     private static SimpleParticleType register(String name) {
-        return Registry.register(Registry.PARTICLE_TYPE, BetterEnd.makeID(name), FabricParticleTypes.simple());
+        return BCLParticleType.register(BetterEnd.makeID(name));
     }
 
     private static SimpleParticleType registerFar(String name) {
-        return Registry.register(Registry.PARTICLE_TYPE, BetterEnd.makeID(name), FabricParticleTypes.simple(true));
+        return BCLParticleType.register(BetterEnd.makeID(name), true);
     }
 
-    private static <T extends ParticleOptions> ParticleType<T> register(String name, ParticleType<T> type) {
-        return Registry.register(Registry.PARTICLE_TYPE, BetterEnd.makeID(name), type);
+    private static <T extends ParticleOptions> ParticleType<T> register(String name,
+                                                                        ParticleOptions.Deserializer<T> type,
+                                                                        Codec<T> codec) {
+        return BCLParticleType.register(BetterEnd.makeID(name), type, codec);
     }
 }
