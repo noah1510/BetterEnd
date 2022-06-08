@@ -10,6 +10,7 @@ import org.betterx.bclib.api.v2.WorldDataAPI;
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
 import org.betterx.bclib.util.Logger;
 import org.betterx.betterend.api.BetterEndPlugin;
+import org.betterx.betterend.commands.CommandRegistry;
 import org.betterx.betterend.config.Configs;
 import org.betterx.betterend.effects.EndPotions;
 import org.betterx.betterend.integration.Integrations;
@@ -37,7 +38,6 @@ public class BetterEnd implements ModInitializer {
         EndEntities.register();
         EndBiomes.register();
         EndTags.register();
-        EndPoiTypes.register();
         EndEnchantments.register();
         EndPotions.register();
         CraftingRecipes.register();
@@ -50,6 +50,7 @@ public class BetterEnd implements ModInitializer {
         BonemealPlants.init();
         GeneratorOptions.init();
         LootTableUtil.init();
+        CommandRegistry.register();
         FabricLoader.getInstance()
                     .getEntrypoints("betterend", BetterEndPlugin.class)
                     .forEach(BetterEndPlugin::register);

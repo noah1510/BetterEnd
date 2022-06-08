@@ -39,8 +39,12 @@ public class StoneMaterial {
     public final Block furnace;
     public final Block flowerPot;
 
+    public static FabricBlockSettings createMaterial(MaterialColor color) {
+        return FabricBlockSettings.copyOf(Blocks.END_STONE).mapColor(color);
+    }
+
     public StoneMaterial(String name, MaterialColor color) {
-        FabricBlockSettings material = FabricBlockSettings.copyOf(Blocks.END_STONE).mapColor(color);
+        FabricBlockSettings material = createMaterial(color);
 
         stone = EndBlocks.registerBlock(name, new BaseBlock(material));
         polished = EndBlocks.registerBlock(name + "_polished", new BaseBlock(material));

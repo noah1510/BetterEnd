@@ -13,6 +13,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -35,13 +36,11 @@ import org.betterx.betterend.blocks.RunedFlavolite;
 import org.betterx.betterend.blocks.entities.EternalPedestalEntity;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndFeatures;
-import org.betterx.betterend.registry.EndPoiTypes;
 import org.betterx.betterend.registry.EndPortals;
 
 import java.awt.*;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 import org.jetbrains.annotations.Nullable;
@@ -97,7 +96,7 @@ public class EternalRitual {
     private final static Block PORTAL = EndBlocks.END_PORTAL_BLOCK;
     private final static BooleanProperty ACTIVE = BlockProperties.ACTIVE;
 
-    public final static int SEARCH_RADIUS = calculateSearchSteps(48);
+    public final static int SEARCH_RADIUS = calculateSearchSteps(16);
 
     private Level world;
     private Direction.Axis axis;
@@ -366,28 +365,20 @@ public class EternalRitual {
 
     @Nullable
     private BlockPos findFrame(ServerLevel level, BlockPos.MutableBlockPos startPos) {
-        Optional<BlockPos> foundPos = EndPoiTypes
-                .ETERNAL_PORTAL.findPoiAround(level, startPos, false, level.getWorldBorder());
 
-        if (foundPos.isPresent()) {
-            if (checkFrame(world, foundPos.get())) {
-                return foundPos.get();
+        List<BlockPos.MutableBlockPos> foundPos = findAllBlockPos(
+                level,
+                startPos,
+                (SEARCH_RADIUS >> 4) + 1,
+                FRAME,
+                blockState -> blockState.is(FRAME) && !blockState.getValue(ACTIVE)
+                                                                 );
+        for (BlockPos.MutableBlockPos testPos : foundPos) {
+            if (checkFrame(level, testPos)) {
+                return testPos;
             }
         }
         return null;
-//        List<BlockPos.MutableBlockPos> foundPos = findAllBlockPos(
-//                world,
-//                startPos,
-//                (SEARCH_RADIUS >> 4) + 1,
-//                FRAME,
-//                blockState -> blockState.is(FRAME) && !blockState.getValue(ACTIVE)
-//                                                                 );
-//        for (BlockPos.MutableBlockPos testPos : foundPos) {
-//            if (checkFrame(world, testPos)) {
-//                return testPos;
-//            }
-//        }
-//        return null;
     }
 
     private BlockPos findPortalPos(int portalId) {
@@ -408,6 +399,7 @@ public class EternalRitual {
         }
         Direction.Axis portalAxis = (Direction.Axis.X == axis) ? Direction.Axis.Z : Direction.Axis.X;
         int worldCeil = targetWorld.getHeight() - 1;
+
         if (checkIsAreaValid(targetWorld, basePos, portalAxis)) {
             generatePortal(targetWorld, basePos, portalAxis, portalId);
             return basePos.immutable();
@@ -415,6 +407,10 @@ public class EternalRitual {
             Direction direction = Direction.EAST;
             BlockPos.MutableBlockPos checkPos = basePos.mutable();
             int radius = (int) ((SEARCH_RADIUS / multiplier) + 1);
+            //make sure chunks are properly loaded for faster searches
+            PoiManager poiManager = targetWorld.getPoiManager();
+            poiManager.ensureLoadedAndValid(world, checkPos, radius >> 4);
+
             for (int step = 1; step < radius; step++) {
                 for (int i = 0; i < (step >> 1); i++) {
                     ChunkAccess chunk = targetWorld.getChunk(checkPos);
@@ -743,11 +739,14 @@ public class EternalRitual {
      * @param condition   Predicate for test block states in the chunk section
      * @return List of positions of the all found blocks or empty list.
      */
-    public static List<BlockPos.MutableBlockPos> findAllBlockPos(Level world,
+    public static List<BlockPos.MutableBlockPos> findAllBlockPos(ServerLevel world,
                                                                  BlockPos.MutableBlockPos checkPos,
                                                                  int radius,
                                                                  Block searchBlock,
                                                                  Predicate<BlockState> condition) {
+        //make sure chunks are properly loaded for faster searches
+        PoiManager poiManager = world.getPoiManager();
+        poiManager.ensureLoadedAndValid(world, checkPos, radius >> 4);
 
         List<BlockPos.MutableBlockPos> posFound = Lists.newArrayList();
         Direction moveDirection = Direction.EAST;
@@ -779,7 +778,7 @@ public class EternalRitual {
         return posFound;
     }
 
-    public static int calculateSearchSteps(int radius) {
-        return radius * 4 - 1;
+    public static int calculateSearchSteps(int chunkRadius) {
+        return chunkRadius * 4 - 1;
     }
 }
