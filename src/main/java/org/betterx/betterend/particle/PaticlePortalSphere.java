@@ -1,5 +1,7 @@
 package org.betterx.betterend.particle;
 
+import org.betterx.bclib.util.MHelper;
+
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
@@ -10,8 +12,6 @@ import net.minecraft.util.Mth;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-
-import org.betterx.bclib.util.MHelper;
 
 public class PaticlePortalSphere extends SimpleAnimatedParticle {
     private int ticks;
@@ -71,14 +71,16 @@ public class PaticlePortalSphere extends SimpleAnimatedParticle {
         }
 
         @Override
-        public Particle createParticle(SimpleParticleType type,
-                                       ClientLevel world,
-                                       double x,
-                                       double y,
-                                       double z,
-                                       double vX,
-                                       double vY,
-                                       double vZ) {
+        public Particle createParticle(
+                SimpleParticleType type,
+                ClientLevel world,
+                double x,
+                double y,
+                double z,
+                double vX,
+                double vY,
+                double vZ
+        ) {
             return new PaticlePortalSphere(world, x, y, z, sprites);
         }
     }

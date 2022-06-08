@@ -1,8 +1,8 @@
 package org.betterx.betterend.world.generator;
 
-import net.minecraft.util.Mth;
-
 import org.betterx.bclib.config.PathConfig;
+
+import net.minecraft.util.Mth;
 
 public class LayerOptions {
     public final float distance;
@@ -15,13 +15,15 @@ public class LayerOptions {
     public final long centerDist;
     public final boolean hasCentralIsland;
 
-    public LayerOptions(String name,
-                        PathConfig config,
-                        float distance,
-                        float scale,
-                        int center,
-                        int heightVariation,
-                        boolean hasCentral) {
+    public LayerOptions(
+            String name,
+            PathConfig config,
+            float distance,
+            float scale,
+            int center,
+            int heightVariation,
+            boolean hasCentral
+    ) {
         this.distance = clampDistance(config.getFloat(name, "distance[1-8192]", distance));
         this.scale = clampScale(config.getFloat(name, "scale[0.1-1024]", scale));
         this.center = clampCenter(config.getInt(name, "averageHeight[0-255]", center));

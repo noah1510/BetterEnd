@@ -1,16 +1,16 @@
 package org.betterx.betterend.world.biome.cave;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
-import net.minecraft.world.level.block.state.BlockState;
-
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder.BiomeSupplier;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeSettings;
 import org.betterx.betterend.noise.OpenSimplexNoise;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.world.biome.EndBiome;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class JadeCaveBiome extends EndCaveBiome.Config {
     public static class Biome extends EndCaveBiome {
@@ -29,8 +29,10 @@ public class JadeCaveBiome extends EndCaveBiome.Config {
         @Override
         public BlockState getWall(BlockPos pos) {
             double depth = DEPTH_NOISE.eval(pos.getX() * 0.02, pos.getZ() * 0.02) * 0.2 + 0.5;
-            int index = Mth.floor((pos.getY() + WALL_NOISE.eval(pos.getX() * 0.2,
-                                                                pos.getZ() * 0.2) * 1.5) * depth + 0.5);
+            int index = Mth.floor((pos.getY() + WALL_NOISE.eval(
+                    pos.getX() * 0.2,
+                    pos.getZ() * 0.2
+            ) * 1.5) * depth + 0.5);
             index = Mth.abs(index) % 3;
             return JADE[index];
         }

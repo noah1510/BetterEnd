@@ -1,5 +1,9 @@
 package org.betterx.betterend.blocks.entities;
 
+import org.betterx.betterend.blocks.basis.PedestalBlock;
+import org.betterx.betterend.registry.EndBlockEntities;
+import org.betterx.betterend.registry.EndItems;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
@@ -9,10 +13,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-
-import org.betterx.betterend.blocks.basis.PedestalBlock;
-import org.betterx.betterend.registry.EndBlockEntities;
-import org.betterx.betterend.registry.EndItems;
 
 public class PedestalBlockEntity extends BlockEntity implements Container {
     private ItemStack activeItem = ItemStack.EMPTY;

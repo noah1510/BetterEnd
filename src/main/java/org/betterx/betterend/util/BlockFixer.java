@@ -1,5 +1,13 @@
 package org.betterx.betterend.util;
 
+import org.betterx.bclib.blocks.BaseDoublePlantBlock;
+import org.betterx.bclib.blocks.BaseVineBlock;
+import org.betterx.bclib.blocks.StalactiteBlock;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.betterend.blocks.BlueVineBlock;
+import org.betterx.betterend.blocks.basis.FurBlock;
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
@@ -12,13 +20,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.dimension.DimensionType;
 
 import com.google.common.collect.Sets;
-import org.betterx.bclib.blocks.BaseDoublePlantBlock;
-import org.betterx.bclib.blocks.BaseVineBlock;
-import org.betterx.bclib.blocks.StalactiteBlock;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.betterend.blocks.BlueVineBlock;
-import org.betterx.betterend.blocks.basis.FurBlock;
-import org.betterx.betterend.registry.EndBlocks;
 
 import java.util.Set;
 import java.util.stream.IntStream;
@@ -129,7 +130,7 @@ public class BlockFixer {
                                     if ((st.is(Blocks.CHORUS_PLANT) || st.is(Blocks.CHORUS_FLOWER)) && !st.canSurvive(
                                             level,
                                             p
-                                                                                                                     )) {
+                                    )) {
                                         add.add(p);
                                     }
                                 }
@@ -138,7 +139,7 @@ public class BlockFixer {
                                 if ((st.is(Blocks.CHORUS_PLANT) || st.is(Blocks.CHORUS_FLOWER)) && !st.canSurvive(
                                         level,
                                         p
-                                                                                                                 )) {
+                                )) {
                                     add.add(p);
                                 }
                             });

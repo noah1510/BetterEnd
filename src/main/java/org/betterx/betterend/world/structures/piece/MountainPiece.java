@@ -1,5 +1,9 @@
 package org.betterx.betterend.world.structures.piece;
 
+import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.noise.OpenSimplexNoise;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Holder;
@@ -15,9 +19,6 @@ import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceType;
 
 import com.google.common.collect.Maps;
-import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.noise.OpenSimplexNoise;
 
 import java.util.Map;
 
@@ -33,12 +34,14 @@ public abstract class MountainPiece extends BasePiece {
     protected int seed1;
     protected int seed2;
 
-    public MountainPiece(StructurePieceType type,
-                         BlockPos center,
-                         float radius,
-                         float height,
-                         RandomSource random,
-                         Holder<Biome> biome) {
+    public MountainPiece(
+            StructurePieceType type,
+            BlockPos center,
+            float radius,
+            float height,
+            RandomSource random,
+            Holder<Biome> biome
+    ) {
         super(type, random.nextInt(), null);
         this.center = center;
         this.radius = radius;
@@ -102,7 +105,7 @@ public abstract class MountainPiece extends BasePiece {
         h = MHelper.floor(noise2.eval(pos.getX() * 0.01, pos.getZ() * 0.01) * noise2.eval(
                 pos.getX() * 0.002,
                 pos.getZ() * 0.002
-                                                                                         ) * 8 + 8);
+        ) * 8 + 8);
 
         if (h < 0) {
             heightmap.put(p, 0);

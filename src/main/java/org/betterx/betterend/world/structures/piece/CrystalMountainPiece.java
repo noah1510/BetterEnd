@@ -1,5 +1,13 @@
 package org.betterx.betterend.world.structures.piece;
 
+import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.registry.EndStructures;
+import org.betterx.betterend.util.GlobalState;
+import org.betterx.betterend.world.biome.EndBiome;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Holder;
@@ -18,14 +26,6 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.Heightmap.Types;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceSerializationContext;
-
-import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.betterend.registry.EndStructures;
-import org.betterx.betterend.util.GlobalState;
-import org.betterx.betterend.world.biome.EndBiome;
 
 public class CrystalMountainPiece extends MountainPiece {
     private BlockState top;
@@ -46,13 +46,15 @@ public class CrystalMountainPiece extends MountainPiece {
     }
 
     @Override
-    public void postProcess(WorldGenLevel world,
-                            StructureManager arg,
-                            ChunkGenerator chunkGenerator,
-                            RandomSource random,
-                            BoundingBox blockBox,
-                            ChunkPos chunkPos,
-                            BlockPos blockPos) {
+    public void postProcess(
+            WorldGenLevel world,
+            StructureManager arg,
+            ChunkGenerator chunkGenerator,
+            RandomSource random,
+            BoundingBox blockBox,
+            ChunkPos chunkPos,
+            BlockPos blockPos
+    ) {
         int sx = chunkPos.getMinBlockX();
         int sz = chunkPos.getMinBlockZ();
         final MutableBlockPos pos = GlobalState.stateForThread().POS;
@@ -96,14 +98,14 @@ public class CrystalMountainPiece extends MountainPiece {
                                     -0.4,
                                     0.4,
                                     random
-                                                                                                    ) - (center.getY() + 14) * 0.1) > 0;
+                            ) - (center.getY() + 14) * 0.1) > 0;
                             for (int y = minY - 1; y < maxYI; y++) {
                                 pos.setY(y);
                                 chunk.setBlockState(
                                         pos,
                                         needCover && y == cover ? top : Blocks.END_STONE.defaultBlockState(),
                                         false
-                                                   );
+                                );
                             }
                         }
                     }

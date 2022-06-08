@@ -1,13 +1,14 @@
 package org.betterx.betterend.integration;
 
-import net.minecraft.world.level.ItemLike;
-
-import com.google.common.collect.Maps;
 import org.betterx.bclib.integration.ModIntegration;
 import org.betterx.bclib.util.ColorUtil;
 import org.betterx.betterend.blocks.HydraluxPetalColoredBlock;
 import org.betterx.betterend.complexmaterials.ColoredMaterial;
 import org.betterx.betterend.registry.EndBlocks;
+
+import net.minecraft.world.level.ItemLike;
+
+import com.google.common.collect.Maps;
 
 import java.awt.*;
 import java.util.Map;

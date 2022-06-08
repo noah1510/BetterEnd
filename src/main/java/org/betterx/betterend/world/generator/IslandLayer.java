@@ -1,10 +1,5 @@
 package org.betterx.betterend.world.generator;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.levelgen.LegacyRandomSource;
-
-import com.google.common.collect.Maps;
 import org.betterx.bclib.sdf.SDF;
 import org.betterx.bclib.sdf.operator.SDFRadialNoiseMap;
 import org.betterx.bclib.sdf.operator.SDFScale;
@@ -13,6 +8,12 @@ import org.betterx.bclib.sdf.operator.SDFTranslate;
 import org.betterx.bclib.sdf.primitive.SDFCappedCone;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.noise.OpenSimplexNoise;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.levelgen.LegacyRandomSource;
+
+import com.google.common.collect.Maps;
 
 import java.util.ArrayList;
 import java.util.List;

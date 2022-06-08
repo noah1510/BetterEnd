@@ -1,5 +1,11 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.blocks.BaseVineBlock;
+import org.betterx.bclib.interfaces.CustomColorProvider;
+import org.betterx.bclib.util.ColorUtil;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.registry.EndParticles;
+
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.core.BlockPos;
@@ -12,12 +18,6 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-
-import org.betterx.bclib.blocks.BaseVineBlock;
-import org.betterx.bclib.interfaces.CustomColorProvider;
-import org.betterx.bclib.util.ColorUtil;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.registry.EndParticles;
 
 public class TenaneaFlowersBlock extends BaseVineBlock implements CustomColorProvider {
     public static final Vec3i[] COLORS;

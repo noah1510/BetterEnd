@@ -1,5 +1,15 @@
 package org.betterx.betterend.world.features.terrain;
 
+import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
+import org.betterx.bclib.sdf.SDF;
+import org.betterx.bclib.sdf.operator.SDFDisplacement;
+import org.betterx.bclib.sdf.primitive.SDFSphere;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.noise.OpenSimplexNoise;
+import org.betterx.betterend.registry.EndBiomes;
+import org.betterx.betterend.registry.EndFeatures;
+import org.betterx.betterend.world.biome.EndBiome;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
@@ -10,15 +20,6 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
 import com.google.common.collect.Lists;
-import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
-import org.betterx.bclib.sdf.SDF;
-import org.betterx.bclib.sdf.operator.SDFDisplacement;
-import org.betterx.bclib.sdf.primitive.SDFSphere;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.noise.OpenSimplexNoise;
-import org.betterx.betterend.registry.EndBiomes;
-import org.betterx.betterend.registry.EndFeatures;
-import org.betterx.betterend.world.biome.EndBiome;
 
 import java.util.List;
 import java.util.Optional;
@@ -35,7 +36,7 @@ public class FloatingSpireFeature extends SpireFeature {
                 64,
                 192,
                 random
-                                                                                                                    );
+        );
         pos = new BlockPos(pos.getX(), y, pos.getZ());
 
         SDF sdf = new SDFSphere().setRadius(MHelper.randRange(2, 3, random)).setBlock(Blocks.END_STONE);
@@ -56,9 +57,11 @@ public class FloatingSpireFeature extends SpireFeature {
                     vec.x() * 0.1,
                     vec.y() * 0.1,
                     vec.z() * 0.1
-                                               )) * 3F + Math.abs(noise.eval(vec.x() * 0.3,
-                                                                             vec.y() * 0.3 + 100,
-                                                                             vec.z() * 0.3)) * 1.3F);
+            )) * 3F + Math.abs(noise.eval(
+                    vec.x() * 0.3,
+                    vec.y() * 0.3 + 100,
+                    vec.z() * 0.3
+            )) * 1.3F);
         }).setSource(sdf);
         final BlockPos center = pos;
         List<BlockPos> support = Lists.newArrayList();
@@ -67,8 +70,10 @@ public class FloatingSpireFeature extends SpireFeature {
                 if (random.nextInt(16) == 0) {
                     support.add(info.getPos().above());
                 }
-                return EndBiome.findTopMaterial(world,
-                                                info.getPos());//world.getBiome(info.getPos()).getGenerationSettings().getSurfaceBuilderConfig().getTopMaterial();
+                return EndBiome.findTopMaterial(
+                        world,
+                        info.getPos()
+                );//world.getBiome(info.getPos()).getGenerationSettings().getSurfaceBuilderConfig().getTopMaterial();
             } else if (info.getState(Direction.UP, 3).isAir()) {
                 return EndBiome.findUnderMaterial(world, info.getPos());
 //				return world.getBiome(info.getPos())
@@ -83,12 +88,14 @@ public class FloatingSpireFeature extends SpireFeature {
         support.forEach((bpos) -> {
             if (BiomeAPI.getFromBiome(world.getBiome(bpos)) == EndBiomes.BLOSSOMING_SPIRES) {
                 EndFeatures.TENANEA_BUSH.getFeature()
-                                        .place(new FeaturePlaceContext<>(Optional.empty(),
-                                                                         world,
-                                                                         chunkGenerator,
-                                                                         random,
-                                                                         bpos,
-                                                                         null));
+                                        .place(new FeaturePlaceContext<>(
+                                                Optional.empty(),
+                                                world,
+                                                chunkGenerator,
+                                                random,
+                                                bpos,
+                                                null
+                                        ));
             }
         });
 

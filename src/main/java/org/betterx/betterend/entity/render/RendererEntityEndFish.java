@@ -1,5 +1,12 @@
 package org.betterx.betterend.entity.render;
 
+import org.betterx.betterend.BetterEnd;
+import org.betterx.betterend.entity.EndFishEntity;
+import org.betterx.betterend.entity.model.EndFishEntityModel;
+import org.betterx.betterend.registry.EndEntitiesRenders;
+
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -7,13 +14,6 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.client.renderer.entity.layers.EyesLayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
-
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.entity.EndFishEntity;
-import org.betterx.betterend.entity.model.EndFishEntityModel;
-import org.betterx.betterend.registry.EndEntitiesRenders;
 
 public class RendererEntityEndFish extends MobRenderer<EndFishEntity, EndFishEntityModel> {
     private static final ResourceLocation[] TEXTURE = new ResourceLocation[EndFishEntity.VARIANTS];
@@ -28,27 +28,30 @@ public class RendererEntityEndFish extends MobRenderer<EndFishEntity, EndFishEnt
             }
 
             @Override
-            public void render(PoseStack matrices,
-                               MultiBufferSource vertexConsumers,
-                               int light,
-                               EndFishEntity entity,
-                               float limbAngle,
-                               float limbDistance,
-                               float tickDelta,
-                               float animationProgress,
-                               float headYaw,
-                               float headPitch) {
+            public void render(
+                    PoseStack matrices,
+                    MultiBufferSource vertexConsumers,
+                    int light,
+                    EndFishEntity entity,
+                    float limbAngle,
+                    float limbDistance,
+                    float tickDelta,
+                    float animationProgress,
+                    float headYaw,
+                    float headPitch
+            ) {
                 VertexConsumer vertexConsumer = vertexConsumers.getBuffer(GLOW[entity.getVariant()]);
                 this.getParentModel()
-                    .renderToBuffer(matrices,
-                                    vertexConsumer,
-                                    15728640,
-                                    OverlayTexture.NO_OVERLAY,
-                                    1.0F,
-                                    1.0F,
-                                    1.0F,
-                                    1.0F
-                                   );
+                    .renderToBuffer(
+                            matrices,
+                            vertexConsumer,
+                            15728640,
+                            OverlayTexture.NO_OVERLAY,
+                            1.0F,
+                            1.0F,
+                            1.0F,
+                            1.0F
+                    );
             }
         });
     }

@@ -1,9 +1,10 @@
 package org.betterx.betterend.registry;
 
+import org.betterx.betterend.item.model.CrystaliteArmorProvider;
+
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
-import org.betterx.betterend.item.model.CrystaliteArmorProvider;
 import shadow.fabric.api.client.rendering.v1.ArmorRenderingRegistry;
 
 @Environment(EnvType.CLIENT)

@@ -1,5 +1,25 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.blocks.BaseBlockNotFull;
+import org.betterx.bclib.client.models.BasePatterns;
+import org.betterx.bclib.client.models.ModelsHelper;
+import org.betterx.bclib.client.models.ModelsHelper.MultiPartBuilder;
+import org.betterx.bclib.client.models.PatternsHelper;
+import org.betterx.bclib.client.render.BCLRenderLayer;
+import org.betterx.bclib.interfaces.PostInitable;
+import org.betterx.bclib.interfaces.RenderLayerProvider;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.bclib.util.JsonFactory;
+import org.betterx.betterend.BetterEnd;
+import org.betterx.betterend.blocks.basis.PottableLeavesBlock;
+import org.betterx.betterend.client.models.Patterns;
+import org.betterx.betterend.config.Configs;
+import org.betterx.betterend.interfaces.PottablePlant;
+import org.betterx.betterend.interfaces.PottableTerrain;
+import org.betterx.betterend.registry.EndBlocks;
+
+import com.mojang.math.Transformation;
+import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;
@@ -38,25 +58,6 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.mojang.math.Transformation;
-import com.mojang.math.Vector3f;
-import org.betterx.bclib.blocks.BaseBlockNotFull;
-import org.betterx.bclib.client.models.BasePatterns;
-import org.betterx.bclib.client.models.ModelsHelper;
-import org.betterx.bclib.client.models.ModelsHelper.MultiPartBuilder;
-import org.betterx.bclib.client.models.PatternsHelper;
-import org.betterx.bclib.client.render.BCLRenderLayer;
-import org.betterx.bclib.interfaces.PostInitable;
-import org.betterx.bclib.interfaces.RenderLayerProvider;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.bclib.util.JsonFactory;
-import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.blocks.basis.PottableLeavesBlock;
-import org.betterx.betterend.client.models.Patterns;
-import org.betterx.betterend.config.Configs;
-import org.betterx.betterend.interfaces.PottablePlant;
-import org.betterx.betterend.interfaces.PottableTerrain;
-import org.betterx.betterend.registry.EndBlocks;
 
 import java.io.File;
 import java.util.List;
@@ -79,7 +80,7 @@ public class FlowerPotBlock extends BaseBlockNotFull implements RenderLayerProvi
                     .setValue(PLANT_ID, 0)
                     .setValue(SOIL_ID, 0)
                     .setValue(POT_LIGHT, 0)
-                                 );
+        );
     }
 
     @Override
@@ -104,12 +105,14 @@ public class FlowerPotBlock extends BaseBlockNotFull implements RenderLayerProvi
 
     @Override
     @SuppressWarnings("deprecation")
-    public BlockState updateShape(BlockState state,
-                                  Direction facing,
-                                  BlockState neighborState,
-                                  LevelAccessor world,
-                                  BlockPos pos,
-                                  BlockPos neighborPos) {
+    public BlockState updateShape(
+            BlockState state,
+            Direction facing,
+            BlockState neighborState,
+            LevelAccessor world,
+            BlockPos pos,
+            BlockPos neighborPos
+    ) {
         int plantID = state.getValue(PLANT_ID);
         if (plantID < 1 || plantID > plants.length || plants[plantID - 1] == null) {
             return state.getValue(POT_LIGHT) > 0 ? state.setValue(POT_LIGHT, 0) : state;
@@ -205,12 +208,14 @@ public class FlowerPotBlock extends BaseBlockNotFull implements RenderLayerProvi
 
     @Override
     @SuppressWarnings("deprecation")
-    public InteractionResult use(BlockState state,
-                                 Level level,
-                                 BlockPos pos,
-                                 Player player,
-                                 InteractionHand hand,
-                                 BlockHitResult hit) {
+    public InteractionResult use(
+            BlockState state,
+            Level level,
+            BlockPos pos,
+            Player player,
+            InteractionHand hand,
+            BlockHitResult hit
+    ) {
         if (level.isClientSide) {
             return InteractionResult.CONSUME;
         }
@@ -236,7 +241,7 @@ public class FlowerPotBlock extends BaseBlockNotFull implements RenderLayerProvi
                             SoundSource.BLOCKS,
                             1,
                             1
-                                   );
+                    );
                     return InteractionResult.SUCCESS;
                 }
             }
@@ -276,7 +281,7 @@ public class FlowerPotBlock extends BaseBlockNotFull implements RenderLayerProvi
                         SoundSource.BLOCKS,
                         1,
                         1
-                               );
+                );
                 if (!player.isCreative()) {
                     itemStack.shrink(1);
                 }
@@ -295,9 +300,11 @@ public class FlowerPotBlock extends BaseBlockNotFull implements RenderLayerProvi
 
     @Override
     @Environment(EnvType.CLIENT)
-    public UnbakedModel getModelVariant(ResourceLocation stateId,
-                                        BlockState blockState,
-                                        Map<ResourceLocation, UnbakedModel> modelCache) {
+    public UnbakedModel getModelVariant(
+            ResourceLocation stateId,
+            BlockState blockState,
+            Map<ResourceLocation, UnbakedModel> modelCache
+    ) {
         MultiPartBuilder model = MultiPartBuilder.create(stateDefinition);
         model.part(new ModelResourceLocation(stateId.getNamespace(), stateId.getPath(), "inventory")).add();
         Transformation offset = new Transformation(new Vector3f(0, 7.5F / 16F, 0), null, null, null);

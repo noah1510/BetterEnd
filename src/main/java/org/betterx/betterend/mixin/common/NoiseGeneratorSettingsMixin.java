@@ -1,8 +1,9 @@
 package org.betterx.betterend.mixin.common;
 
+import org.betterx.betterend.interfaces.BETargetChecker;
+
 import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
 
-import org.betterx.betterend.interfaces.BETargetChecker;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(NoiseGeneratorSettings.class)

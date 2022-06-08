@@ -1,5 +1,10 @@
 package org.betterx.betterend.item;
 
+import org.betterx.betterend.BetterEnd;
+import org.betterx.betterend.interfaces.FallFlyingItem;
+import org.betterx.betterend.interfaces.MultiModelItem;
+import org.betterx.betterend.registry.EndItems;
+
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -11,11 +16,6 @@ import net.minecraft.world.item.Rarity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
-
-import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.interfaces.FallFlyingItem;
-import org.betterx.betterend.interfaces.MultiModelItem;
-import org.betterx.betterend.registry.EndItems;
 
 public class CrystaliteElytra extends CrystaliteArmor implements MultiModelItem, FallFlyingItem {
 
@@ -32,20 +32,22 @@ public class CrystaliteElytra extends CrystaliteArmor implements MultiModelItem,
         this.toughness = material.getToughness() / 1.75F;
         addAttributeModifier(
                 Attributes.ARMOR,
-                new AttributeModifier(ARMOR_MODIFIER_UUID_PER_SLOT[2],
-                                      "Armor modifier",
-                                      defense,
-                                      AttributeModifier.Operation.ADDITION
+                new AttributeModifier(
+                        ARMOR_MODIFIER_UUID_PER_SLOT[2],
+                        "Armor modifier",
+                        defense,
+                        AttributeModifier.Operation.ADDITION
                 )
-                            );
+        );
         addAttributeModifier(
                 Attributes.ARMOR_TOUGHNESS,
-                new AttributeModifier(ARMOR_MODIFIER_UUID_PER_SLOT[2],
-                                      "Armor toughness",
-                                      toughness,
-                                      AttributeModifier.Operation.ADDITION
+                new AttributeModifier(
+                        ARMOR_MODIFIER_UUID_PER_SLOT[2],
+                        "Armor toughness",
+                        toughness,
+                        AttributeModifier.Operation.ADDITION
                 )
-                            );
+        );
     }
 
     @Override
@@ -80,6 +82,6 @@ public class CrystaliteElytra extends CrystaliteArmor implements MultiModelItem,
                 this,
                 new ResourceLocation("broken"),
                 (itemStack, clientLevel, livingEntity, i) -> ElytraItem.isFlyEnabled(itemStack) ? 0.0F : 1.0F
-                                                     );
+        );
     }
 }

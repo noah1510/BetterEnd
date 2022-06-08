@@ -1,11 +1,12 @@
 package org.betterx.betterend.client.models;
 
+import org.betterx.betterend.BetterEnd;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 
 import com.google.common.collect.Maps;
-import org.betterx.betterend.BetterEnd;
 
 import java.io.BufferedReader;
 import java.io.InputStream;

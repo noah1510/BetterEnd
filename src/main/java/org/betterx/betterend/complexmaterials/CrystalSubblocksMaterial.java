@@ -1,9 +1,5 @@
 package org.betterx.betterend.complexmaterials;
 
-import net.minecraft.world.level.block.Block;
-
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-
 import org.betterx.bclib.api.v2.tag.NamedBlockTags;
 import org.betterx.bclib.api.v2.tag.NamedItemTags;
 import org.betterx.bclib.api.v2.tag.TagAPI;
@@ -18,6 +14,10 @@ import org.betterx.betterend.blocks.basis.LitPillarBlock;
 import org.betterx.betterend.config.Configs;
 import org.betterx.betterend.recipe.CraftingRecipes;
 import org.betterx.betterend.registry.EndBlocks;
+
+import net.minecraft.world.level.block.Block;
+
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 public class CrystalSubblocksMaterial {
     public final Block polished;

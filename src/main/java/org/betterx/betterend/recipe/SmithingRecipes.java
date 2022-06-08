@@ -1,12 +1,12 @@
 package org.betterx.betterend.recipe;
 
-import net.minecraft.world.item.Items;
-
 import org.betterx.bclib.recipes.SmithingTableRecipe;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.config.Configs;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndItems;
+
+import net.minecraft.world.item.Items;
 
 public class SmithingRecipes {
 

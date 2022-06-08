@@ -1,5 +1,13 @@
 package org.betterx.betterend.integration.rei;
 
+import org.betterx.bclib.blocks.BaseFurnaceBlock;
+import org.betterx.bclib.recipes.AnvilRecipe;
+import org.betterx.betterend.BetterEnd;
+import org.betterx.betterend.blocks.basis.EndAnvilBlock;
+import org.betterx.betterend.recipe.builders.AlloyingRecipe;
+import org.betterx.betterend.recipe.builders.InfusionRecipe;
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.BlastingRecipe;
@@ -19,13 +27,6 @@ import me.shedaniel.rei.api.common.entry.EntryStack;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import me.shedaniel.rei.api.common.util.EntryStacks;
 import me.shedaniel.rei.plugin.common.BuiltinPlugin;
-import org.betterx.bclib.blocks.BaseFurnaceBlock;
-import org.betterx.bclib.recipes.AnvilRecipe;
-import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.blocks.basis.EndAnvilBlock;
-import org.betterx.betterend.recipe.builders.AlloyingRecipe;
-import org.betterx.betterend.recipe.builders.InfusionRecipe;
-import org.betterx.betterend.registry.EndBlocks;
 
 import java.util.Collections;
 import java.util.List;
@@ -38,19 +39,19 @@ public class REIPlugin implements REIClientPlugin {
     public final static CategoryIdentifier<REIAlloyingFuelDisplay> ALLOYING_FUEL = CategoryIdentifier.of(
             BetterEnd.MOD_ID,
             "alloying_fuel"
-                                                                                                        );
+    );
     public final static CategoryIdentifier<REIAlloyingDisplay> ALLOYING = CategoryIdentifier.of(
             BetterEnd.MOD_ID,
             AlloyingRecipe.GROUP
-                                                                                               );
+    );
     public final static CategoryIdentifier<REIAnvilDisplay> SMITHING = CategoryIdentifier.of(
             BetterEnd.MOD_ID,
             AnvilRecipe.ID.getPath()
-                                                                                            );
+    );
     public final static CategoryIdentifier<REIInfusionDisplay> INFUSION = CategoryIdentifier.of(
             BetterEnd.MOD_ID,
             InfusionRecipe.GROUP
-                                                                                               );
+    );
 
     @Override
     public void registerDisplays(DisplayRegistry registry) {
@@ -90,7 +91,7 @@ public class REIPlugin implements REIClientPlugin {
                 new REIAlloyingCategory(endStoneSmelter),
                 new REIInfusionCategory(infusionRitual),
                 new REIAnvilCategory(anvilsArray)
-                    );
+        );
 
         registry.addWorkstations(ALLOYING_FUEL, endStoneSmelter);
         registry.addWorkstations(ALLOYING, endStoneSmelter);

@@ -1,30 +1,31 @@
 package org.betterx.betterend.client.render;
 
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Matrix3f;
+import com.mojang.math.Matrix4f;
+import com.mojang.math.Vector3f;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Matrix3f;
-import com.mojang.math.Matrix4f;
-import com.mojang.math.Vector3f;
-
 public class BeamRenderer {
     private static final ResourceLocation BEAM_TEXTURE = new ResourceLocation("textures/entity/end_gateway_beam.png");
 
-    public static void renderLightBeam(PoseStack matrices,
-                                       MultiBufferSource vertexConsumers,
-                                       int age,
-                                       float tick,
-                                       int minY,
-                                       int maxY,
-                                       float[] colors,
-                                       float alpha,
-                                       float beamIn,
-                                       float beamOut) {
+    public static void renderLightBeam(
+            PoseStack matrices,
+            MultiBufferSource vertexConsumers,
+            int age,
+            float tick,
+            int minY,
+            int maxY,
+            float[] colors,
+            float alpha,
+            float beamIn,
+            float beamOut
+    ) {
         float red = colors[0];
         float green = colors[1];
         float blue = colors[2];
@@ -62,7 +63,7 @@ public class BeamRenderer {
                 1.0F,
                 minV,
                 maxV
-                  );
+        );
 
         float xOut = -beamOut;
         maxV = (float) maxY + minV;
@@ -87,30 +88,32 @@ public class BeamRenderer {
                 1.0F,
                 minV,
                 maxV
-                  );
+        );
         matrices.popPose();
     }
 
-    private static void renderBeam(PoseStack matrices,
-                                   VertexConsumer vertexConsumer,
-                                   float red,
-                                   float green,
-                                   float blue,
-                                   float alpha,
-                                   int minY,
-                                   int maxY,
-                                   float x1,
-                                   float d1,
-                                   float x2,
-                                   float d2,
-                                   float x3,
-                                   float d3,
-                                   float x4,
-                                   float d4,
-                                   float minU,
-                                   float maxU,
-                                   float minV,
-                                   float maxV) {
+    private static void renderBeam(
+            PoseStack matrices,
+            VertexConsumer vertexConsumer,
+            float red,
+            float green,
+            float blue,
+            float alpha,
+            int minY,
+            int maxY,
+            float x1,
+            float d1,
+            float x2,
+            float d2,
+            float x3,
+            float d3,
+            float x4,
+            float d4,
+            float minU,
+            float maxU,
+            float minV,
+            float maxV
+    ) {
         PoseStack.Pose entry = matrices.last();
         Matrix4f matrix4f = entry.pose();
         Matrix3f matrix3f = entry.normal();
@@ -132,7 +135,7 @@ public class BeamRenderer {
                 maxU,
                 minV,
                 maxV
-                  );
+        );
         renderBeam(
                 matrix4f,
                 matrix3f,
@@ -151,7 +154,7 @@ public class BeamRenderer {
                 maxU,
                 minV,
                 maxV
-                  );
+        );
         renderBeam(
                 matrix4f,
                 matrix3f,
@@ -170,7 +173,7 @@ public class BeamRenderer {
                 maxU,
                 minV,
                 maxV
-                  );
+        );
         renderBeam(
                 matrix4f,
                 matrix3f,
@@ -189,44 +192,48 @@ public class BeamRenderer {
                 maxU,
                 minV,
                 maxV
-                  );
+        );
     }
 
-    private static void renderBeam(Matrix4f matrix4f,
-                                   Matrix3f matrix3f,
-                                   VertexConsumer vertexConsumer,
-                                   float red,
-                                   float green,
-                                   float blue,
-                                   float alpha,
-                                   int minY,
-                                   int maxY,
-                                   float minX,
-                                   float minD,
-                                   float maxX,
-                                   float maxD,
-                                   float minU,
-                                   float maxU,
-                                   float minV,
-                                   float maxV) {
+    private static void renderBeam(
+            Matrix4f matrix4f,
+            Matrix3f matrix3f,
+            VertexConsumer vertexConsumer,
+            float red,
+            float green,
+            float blue,
+            float alpha,
+            int minY,
+            int maxY,
+            float minX,
+            float minD,
+            float maxX,
+            float maxD,
+            float minU,
+            float maxU,
+            float minV,
+            float maxV
+    ) {
         addVertex(matrix4f, matrix3f, vertexConsumer, red, green, blue, alpha, maxX, minY, maxD, maxU, minV);
         addVertex(matrix4f, matrix3f, vertexConsumer, red, green, blue, alpha, maxX, maxY, maxD, maxU, maxV);
         addVertex(matrix4f, matrix3f, vertexConsumer, red, green, blue, alpha, minX, maxY, minD, minU, maxV);
         addVertex(matrix4f, matrix3f, vertexConsumer, red, green, blue, alpha, minX, minY, minD, minU, minV);
     }
 
-    private static void addVertex(Matrix4f matrix4f,
-                                  Matrix3f matrix3f,
-                                  VertexConsumer vertexConsumer,
-                                  float red,
-                                  float green,
-                                  float blue,
-                                  float alpha,
-                                  float x,
-                                  float y,
-                                  float d,
-                                  float u,
-                                  float v) {
+    private static void addVertex(
+            Matrix4f matrix4f,
+            Matrix3f matrix3f,
+            VertexConsumer vertexConsumer,
+            float red,
+            float green,
+            float blue,
+            float alpha,
+            float x,
+            float y,
+            float d,
+            float u,
+            float v
+    ) {
         vertexConsumer.vertex(matrix4f, x, y, d)
                       .color(red, green, blue, alpha)
                       .uv(u, v)

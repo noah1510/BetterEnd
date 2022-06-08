@@ -1,13 +1,13 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.betterend.blocks.basis.PottableFeatureSapling;
+import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.registry.EndFeatures;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-
-import org.betterx.betterend.blocks.basis.PottableFeatureSapling;
-import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.betterend.registry.EndFeatures;
 
 public class TenaneaSaplingBlock extends PottableFeatureSapling {
     public TenaneaSaplingBlock() {

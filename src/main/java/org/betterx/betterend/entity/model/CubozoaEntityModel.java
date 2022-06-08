@@ -1,5 +1,9 @@
 package org.betterx.betterend.entity.model;
 
+import org.betterx.betterend.entity.CubozoaEntity;
+
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartNames;
@@ -10,10 +14,6 @@ import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.util.Mth;
-
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import org.betterx.betterend.entity.CubozoaEntity;
 
 public class CubozoaEntityModel extends EntityModel<CubozoaEntity> {
     private final static int TENTACLE_COUNT = 4;
@@ -32,26 +32,26 @@ public class CubozoaEntityModel extends EntityModel<CubozoaEntity> {
                 PartNames.BODY,
                 CubeListBuilder.create().texOffs(0, 17).addBox(-2.0F, -12.5F, -2.0F, 4.0F, 4.0F, 4.0F),
                 PartPose.offset(0.0F, 24.0F, 0.0F)
-                                                                 );
+        );
 
         bodyPart.addOrReplaceChild(
                 "main_cube_r1",
                 CubeListBuilder.create().texOffs(0, 0).addBox(-5.0F, -7.0F, -5.0F, 10.0F, 7.0F, 10.0F),
                 PartPose.offsetAndRotation(0.0F, -14.0F, 0.0F, 0.0F, 0.0F, -3.1416F)
-                                  );
+        );
 
         for (int i = 1; i <= TENTACLE_COUNT; i++) {
             PartDefinition tentaclePart = bodyPart.addOrReplaceChild(
                     "tentacle_center_" + i,
                     CubeListBuilder.create(),
                     PartPose.offsetAndRotation(0.0F, 0.0F, 0.0F, 0.0F, i * 1.5708F, 0.0F)
-                                                                    );
+            );
 
             tentaclePart.addOrReplaceChild(
                     "tentacle_" + i,
                     CubeListBuilder.create().texOffs(16, 17).addBox(-4.0F, 0.0F, 0.0F, 8.0F, 7.0F, 0.0F),
                     PartPose.offset(0.0F, -7.0F, 4.5F)
-                                          );
+            );
         }
 
         return LayerDefinition.create(modelData, 48, 48);
@@ -70,12 +70,14 @@ public class CubozoaEntityModel extends EntityModel<CubozoaEntity> {
     }
 
     @Override
-    public void setupAnim(CubozoaEntity entity,
-                          float limbAngle,
-                          float limbDistance,
-                          float animationProgress,
-                          float headYaw,
-                          float headPitch) {
+    public void setupAnim(
+            CubozoaEntity entity,
+            float limbAngle,
+            float limbDistance,
+            float animationProgress,
+            float headYaw,
+            float headPitch
+    ) {
         float sin = Mth.sin(animationProgress * 0.13F);
         scaleY = sin * 0.1F + 0.9F;
         scaleXZ = Mth.sin(animationProgress * 0.13F + 3.14F) * 0.1F + 0.9F;
@@ -86,14 +88,16 @@ public class CubozoaEntityModel extends EntityModel<CubozoaEntity> {
     }
 
     @Override
-    public void renderToBuffer(PoseStack matrices,
-                               VertexConsumer vertices,
-                               int light,
-                               int overlay,
-                               float red,
-                               float green,
-                               float blue,
-                               float alpha) {
+    public void renderToBuffer(
+            PoseStack matrices,
+            VertexConsumer vertices,
+            int light,
+            int overlay,
+            float red,
+            float green,
+            float blue,
+            float alpha
+    ) {
         matrices.pushPose();
         matrices.scale(scaleXZ, scaleY, scaleXZ);
         model.render(matrices, vertices, light, overlay);

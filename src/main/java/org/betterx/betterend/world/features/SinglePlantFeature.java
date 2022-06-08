@@ -1,15 +1,15 @@
 package org.betterx.betterend.world.features;
 
+import org.betterx.bclib.blocks.BaseCropBlock;
+import org.betterx.bclib.blocks.BaseDoublePlantBlock;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.betterend.blocks.basis.EndPlantWithAgeBlock;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-
-import org.betterx.bclib.blocks.BaseCropBlock;
-import org.betterx.bclib.blocks.BaseDoublePlantBlock;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.betterend.blocks.basis.EndPlantWithAgeBlock;
 
 public class SinglePlantFeature extends ScatterFeature {
     private final Block plant;
@@ -45,11 +45,13 @@ public class SinglePlantFeature extends ScatterFeature {
     }
 
     @Override
-    public boolean canGenerate(WorldGenLevel world,
-                               RandomSource random,
-                               BlockPos center,
-                               BlockPos blockPos,
-                               float radius) {
+    public boolean canGenerate(
+            WorldGenLevel world,
+            RandomSource random,
+            BlockPos center,
+            BlockPos blockPos,
+            float radius
+    ) {
         return plant.canSurvive(plant.defaultBlockState(), world, blockPos);
     }
 

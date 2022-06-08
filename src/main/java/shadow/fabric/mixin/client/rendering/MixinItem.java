@@ -22,6 +22,7 @@ package shadow.fabric.mixin.client.rendering;
 
 
 import net.minecraft.world.item.Item;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import shadow.fabric.api.client.rendering.v1.ArmorRenderingRegistry;
@@ -30,28 +31,28 @@ import shadow.fabric.impl.client.rendering.ArmorProviderExtensions;
 
 @Mixin(Item.class)
 public class MixinItem implements ArmorProviderExtensions {
-	@Unique
-	private ArmorRenderingRegistry.ModelProvider armorModelProvider;
-	@Unique
-	private ArmorRenderingRegistry.TextureProvider armorTextureProvider;
-	
-	@Override
-	public ArmorRenderingRegistry.ModelProvider fabric_getArmorModelProvider() {
-		return armorModelProvider;
-	}
-	
-	@Override
-	public ArmorRenderingRegistry.TextureProvider fabric_getArmorTextureProvider() {
-		return armorTextureProvider;
-	}
-	
-	@Override
-	public void fabric_setArmorModelProvider(ArmorRenderingRegistry.ModelProvider provider) {
-		armorModelProvider = provider;
-	}
-	
-	@Override
-	public void fabric_setArmorTextureProvider(ArmorRenderingRegistry.TextureProvider provider) {
-		armorTextureProvider = provider;
-	}
+    @Unique
+    private ArmorRenderingRegistry.ModelProvider armorModelProvider;
+    @Unique
+    private ArmorRenderingRegistry.TextureProvider armorTextureProvider;
+
+    @Override
+    public ArmorRenderingRegistry.ModelProvider fabric_getArmorModelProvider() {
+        return armorModelProvider;
+    }
+
+    @Override
+    public ArmorRenderingRegistry.TextureProvider fabric_getArmorTextureProvider() {
+        return armorTextureProvider;
+    }
+
+    @Override
+    public void fabric_setArmorModelProvider(ArmorRenderingRegistry.ModelProvider provider) {
+        armorModelProvider = provider;
+    }
+
+    @Override
+    public void fabric_setArmorTextureProvider(ArmorRenderingRegistry.TextureProvider provider) {
+        armorTextureProvider = provider;
+    }
 }

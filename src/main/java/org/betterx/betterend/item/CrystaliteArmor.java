@@ -1,5 +1,9 @@
 package org.betterx.betterend.item;
 
+import org.betterx.bclib.items.BaseArmorItem;
+import org.betterx.betterend.effects.EndStatusEffects;
+import org.betterx.betterend.item.material.EndArmorMaterial;
+
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -8,10 +12,6 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
-
-import org.betterx.bclib.items.BaseArmorItem;
-import org.betterx.betterend.effects.EndStatusEffects;
-import org.betterx.betterend.item.material.EndArmorMaterial;
 
 public class CrystaliteArmor extends BaseArmorItem {
 

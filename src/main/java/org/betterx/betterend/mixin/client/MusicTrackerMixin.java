@@ -1,5 +1,9 @@
 package org.betterx.betterend.mixin.client;
 
+import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
+import org.betterx.betterend.client.ClientOptions;
+import org.betterx.betterend.world.biome.EndBiome;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.sounds.AbstractSoundInstance;
 import net.minecraft.client.resources.sounds.SoundInstance;
@@ -8,9 +12,6 @@ import net.minecraft.sounds.Music;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 
-import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
-import org.betterx.betterend.client.ClientOptions;
-import org.betterx.betterend.world.biome.EndBiome;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;

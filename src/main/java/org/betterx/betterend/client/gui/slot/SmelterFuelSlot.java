@@ -1,11 +1,11 @@
 package org.betterx.betterend.client.gui.slot;
 
+import org.betterx.betterend.client.gui.EndStoneSmelterScreenHandler;
+
 import net.minecraft.world.Container;
 import net.minecraft.world.inventory.FurnaceFuelSlot;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-
-import org.betterx.betterend.client.gui.EndStoneSmelterScreenHandler;
 
 public class SmelterFuelSlot extends Slot {
 

@@ -1,5 +1,8 @@
 package org.betterx.betterend.integration.rei;
 
+import org.betterx.betterend.blocks.entities.EndStoneSmelterBlockEntity;
+import org.betterx.betterend.recipe.builders.AlloyingRecipe;
+
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -12,8 +15,6 @@ import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
 import me.shedaniel.rei.api.common.entry.EntryStack;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
 import me.shedaniel.rei.api.common.util.EntryStacks;
-import org.betterx.betterend.blocks.entities.EndStoneSmelterBlockEntity;
-import org.betterx.betterend.recipe.builders.AlloyingRecipe;
 
 import java.util.Collections;
 import java.util.List;
@@ -23,11 +24,11 @@ import org.jetbrains.annotations.NotNull;
 
 public class REIAlloyingDisplay extends BasicDisplay implements SimpleGridMenuDisplay {
 
-    private static List<EntryStack> fuel;
+    private static final List<EntryStack> fuel;
 
-    private Recipe<?> recipe;
-    private float xp;
-    private double smeltTime;
+    private final Recipe<?> recipe;
+    private final float xp;
+    private final double smeltTime;
 
 
     public REIAlloyingDisplay(AlloyingRecipe recipe) {
@@ -38,7 +39,7 @@ public class REIAlloyingDisplay extends BasicDisplay implements SimpleGridMenuDi
         super(
                 EntryIngredients.ofIngredients(recipe.getIngredients()),
                 Collections.singletonList(EntryIngredients.of(recipe.getResultItem()))
-             );
+        );
         this.recipe = recipe;
         this.xp = xp;
         this.smeltTime = smeltTime;
@@ -101,7 +102,7 @@ public class REIAlloyingDisplay extends BasicDisplay implements SimpleGridMenuDi
                                                  EntryStack.Settings.TOOLTIP_APPEND_EXTRA,
                                                  stack -> Collections.singletonList(Component.translatable(
                                                          "category.rei.smelting.fuel").withStyle(ChatFormatting.YELLOW))
-                                                            ))
+                                         ))
                                          .collect(Collectors.toList());
     }
 }

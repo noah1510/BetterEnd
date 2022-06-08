@@ -1,5 +1,8 @@
 package org.betterx.betterend.world.structures.piece;
 
+import org.betterx.bclib.api.v2.levelgen.structures.StructureWorld;
+import org.betterx.betterend.registry.EndStructures;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.RandomSource;
@@ -9,9 +12,6 @@ import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceSerializationContext;
-
-import org.betterx.bclib.api.v2.levelgen.structures.StructureWorld;
-import org.betterx.betterend.registry.EndStructures;
 
 import java.util.function.Consumer;
 
@@ -41,13 +41,15 @@ public class VoxelPiece extends BasePiece {
     }
 
     @Override
-    public void postProcess(WorldGenLevel world,
-                            StructureManager arg,
-                            ChunkGenerator chunkGenerator,
-                            RandomSource random,
-                            BoundingBox blockBox,
-                            ChunkPos chunkPos,
-                            BlockPos blockPos) {
+    public void postProcess(
+            WorldGenLevel world,
+            StructureManager arg,
+            ChunkGenerator chunkGenerator,
+            RandomSource random,
+            BoundingBox blockBox,
+            ChunkPos chunkPos,
+            BlockPos blockPos
+    ) {
         this.world.placeChunk(world, chunkPos);
     }
 }

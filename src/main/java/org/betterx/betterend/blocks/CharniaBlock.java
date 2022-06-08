@@ -1,12 +1,12 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.betterend.blocks.basis.EndUnderwaterPlantBlock;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
-
-import org.betterx.betterend.blocks.basis.EndUnderwaterPlantBlock;
 
 public class CharniaBlock extends EndUnderwaterPlantBlock {
 

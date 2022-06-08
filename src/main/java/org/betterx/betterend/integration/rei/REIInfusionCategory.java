@@ -1,5 +1,8 @@
 package org.betterx.betterend.integration.rei;
 
+import org.betterx.betterend.BetterEnd;
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
@@ -12,8 +15,6 @@ import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.entry.EntryStack;
-import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.registry.EndBlocks;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -99,7 +100,7 @@ public class REIInfusionCategory implements DisplayCategory<REIInfusionDisplay> 
         widgets.add(Widgets.createLabel(
                 new Point(bounds.getMaxX() - 5, bounds.y + 6),
                 Component.translatable("category.rei.infusion.time&val", display.getInfusionTime())
-                                       ).noShadow().rightAligned().color(0xFF404040, 0xFFBBBBBB));
+        ).noShadow().rightAligned().color(0xFF404040, 0xFFBBBBBB));
         return widgets;
     }
 

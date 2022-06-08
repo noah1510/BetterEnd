@@ -1,5 +1,12 @@
 package org.betterx.betterend.world.structures.piece;
 
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.noise.OpenSimplexNoise;
+import org.betterx.betterend.registry.EndStructures;
+import org.betterx.betterend.util.GlobalState;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -12,13 +19,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceSerializationContext;
-
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.noise.OpenSimplexNoise;
-import org.betterx.betterend.registry.EndStructures;
-import org.betterx.betterend.util.GlobalState;
 
 public class CavePiece extends BasePiece {
     private OpenSimplexNoise noise;
@@ -40,13 +40,15 @@ public class CavePiece extends BasePiece {
 
 
     @Override
-    public void postProcess(WorldGenLevel world,
-                            StructureManager arg,
-                            ChunkGenerator chunkGenerator,
-                            RandomSource random,
-                            BoundingBox blockBox,
-                            ChunkPos chunkPos,
-                            BlockPos blockPos) {
+    public void postProcess(
+            WorldGenLevel world,
+            StructureManager arg,
+            ChunkGenerator chunkGenerator,
+            RandomSource random,
+            BoundingBox blockBox,
+            ChunkPos chunkPos,
+            BlockPos blockPos
+    ) {
         int x1 = MHelper.max(this.boundingBox.minX(), blockBox.minX());
         int z1 = MHelper.max(this.boundingBox.minZ(), blockBox.minZ());
         int x2 = MHelper.min(this.boundingBox.maxX(), blockBox.maxX());

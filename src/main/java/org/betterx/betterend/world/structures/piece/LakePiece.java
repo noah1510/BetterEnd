@@ -1,5 +1,14 @@
 package org.betterx.betterend.world.structures.piece;
 
+import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.noise.OpenSimplexNoise;
+import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.registry.EndStructures;
+import org.betterx.betterend.world.biome.EndBiome;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
@@ -24,14 +33,6 @@ import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceSeriali
 import net.minecraft.world.level.material.FluidState;
 
 import com.google.common.collect.Maps;
-import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.noise.OpenSimplexNoise;
-import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.betterend.registry.EndStructures;
-import org.betterx.betterend.world.biome.EndBiome;
 
 import java.util.Map;
 
@@ -86,13 +87,15 @@ public class LakePiece extends BasePiece {
     }
 
     @Override
-    public void postProcess(WorldGenLevel world,
-                            StructureManager arg,
-                            ChunkGenerator chunkGenerator,
-                            RandomSource random,
-                            BoundingBox blockBox,
-                            ChunkPos chunkPos,
-                            BlockPos blockPos) {
+    public void postProcess(
+            WorldGenLevel world,
+            StructureManager arg,
+            ChunkGenerator chunkGenerator,
+            RandomSource random,
+            BoundingBox blockBox,
+            ChunkPos chunkPos,
+            BlockPos blockPos
+    ) {
         int minY = this.boundingBox.minY();
         int maxY = this.boundingBox.maxY();
         int sx = SectionPos.sectionToBlockCoord(chunkPos.x);
@@ -136,7 +139,7 @@ public class LakePiece extends BasePiece {
                         if (!state.isCollisionShapeFullBlock(world, worldPos) && !state.isRedstoneConductor(
                                 world,
                                 worldPos
-                                                                                                           )) {
+                        )) {
                             state = chunk.getBlockState(mut.above());
                             if (state.isAir()) {
                                 state = random.nextBoolean() ? ENDSTONE : EndBiome.findTopMaterial(world, worldPos);
@@ -154,12 +157,14 @@ public class LakePiece extends BasePiece {
         fixWater(world, chunk, mut, random, sx, sz);
     }
 
-    private void fixWater(WorldGenLevel world,
-                          ChunkAccess chunk,
-                          MutableBlockPos mut,
-                          RandomSource random,
-                          int sx,
-                          int sz) {
+    private void fixWater(
+            WorldGenLevel world,
+            ChunkAccess chunk,
+            MutableBlockPos mut,
+            RandomSource random,
+            int sx,
+            int sz
+    ) {
         int minY = this.boundingBox.minY();
         int maxY = this.boundingBox.maxY();
         for (int x = 0; x < 16; x++) {

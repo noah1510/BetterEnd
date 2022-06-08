@@ -1,5 +1,11 @@
 package org.betterx.betterend.world.features;
 
+import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
+import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
+import org.betterx.bclib.api.v2.levelgen.structures.templatesystem.DestructionStructureProcessor;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
+import org.betterx.bclib.util.BlocksHelper;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
@@ -20,12 +26,6 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
-
-import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
-import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
-import org.betterx.bclib.api.v2.levelgen.structures.templatesystem.DestructionStructureProcessor;
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
-import org.betterx.bclib.util.BlocksHelper;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -48,10 +48,12 @@ public abstract class NBTFeature extends DefaultFeature {
 
     protected abstract Mirror getMirror(WorldGenLevel world, BlockPos pos, RandomSource random);
 
-    protected abstract int getYOffset(StructureTemplate structure,
-                                      WorldGenLevel world,
-                                      BlockPos pos,
-                                      RandomSource random);
+    protected abstract int getYOffset(
+            StructureTemplate structure,
+            WorldGenLevel world,
+            BlockPos pos,
+            RandomSource random
+    );
 
     protected abstract TerrainMerge getTerrainMerge(WorldGenLevel world, BlockPos pos, RandomSource random);
 

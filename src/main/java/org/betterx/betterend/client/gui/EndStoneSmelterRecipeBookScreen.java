@@ -1,5 +1,7 @@
 package org.betterx.betterend.client.gui;
 
+import org.betterx.betterend.blocks.entities.EndStoneSmelterBlockEntity;
+
 import net.minecraft.client.gui.screens.recipebook.BlastingRecipeBookComponent;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.inventory.Slot;
@@ -10,8 +12,6 @@ import net.minecraft.world.item.crafting.Recipe;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-
-import org.betterx.betterend.blocks.entities.EndStoneSmelterBlockEntity;
 
 import java.util.Iterator;
 import java.util.List;

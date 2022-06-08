@@ -1,9 +1,9 @@
 package org.betterx.betterend.world.generator;
 
+import org.betterx.betterend.config.Configs;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
-
-import org.betterx.betterend.config.Configs;
 
 public class GeneratorOptions {
     private static int biomeSizeCaves;

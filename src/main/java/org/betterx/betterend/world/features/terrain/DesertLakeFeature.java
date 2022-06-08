@@ -1,5 +1,15 @@
 package org.betterx.betterend.world.features.terrain;
 
+import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.noise.OpenSimplexNoise;
+import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.util.BlockFixer;
+import org.betterx.betterend.util.GlobalState;
+import org.betterx.betterend.world.biome.EndBiome;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.util.RandomSource;
@@ -10,16 +20,6 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Material;
-
-import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.noise.OpenSimplexNoise;
-import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.betterend.util.BlockFixer;
-import org.betterx.betterend.util.GlobalState;
-import org.betterx.betterend.world.biome.EndBiome;
 
 public class DesertLakeFeature extends DefaultFeature {
     private static final BlockState END_STONE = Blocks.END_STONE.defaultBlockState();
@@ -126,8 +126,10 @@ public class DesertLakeFeature extends DefaultFeature {
                                 }
                                 pos = POS.below();
                                 if (world.getBlockState(pos).is(CommonBlockTags.GEN_END_STONES)) {
-                                    state = EndBiome.findTopMaterial(world,
-                                            pos); //world.getBiome(pos).getGenerationSettings().getSurfaceBuilderConfig().getTopMaterial();
+                                    state = EndBiome.findTopMaterial(
+                                            world,
+                                            pos
+                                    ); //world.getBiome(pos).getGenerationSettings().getSurfaceBuilderConfig().getTopMaterial();
                                     if (y > waterLevel + 1) BlocksHelper.setWithoutUpdate(world, pos, state);
                                     else if (y > waterLevel)
                                         BlocksHelper.setWithoutUpdate(
@@ -200,8 +202,10 @@ public class DesertLakeFeature extends DefaultFeature {
                                 BlocksHelper.setWithoutUpdate(world, POS, EndBlocks.END_MOSS);
                             } else if (y < waterLevel) {
                                 if (world.isEmptyBlock(POS.above())) {
-                                    state = EndBiome.findTopMaterial(world,
-                                            pos); //world.getBiome(POS).getGenerationSettings().getSurfaceBuilderConfig().getTopMaterial();
+                                    state = EndBiome.findTopMaterial(
+                                            world,
+                                            pos
+                                    ); //world.getBiome(POS).getGenerationSettings().getSurfaceBuilderConfig().getTopMaterial();
                                     BlocksHelper.setWithoutUpdate(
                                             world,
                                             POS,

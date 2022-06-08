@@ -1,11 +1,11 @@
 package org.betterx.betterend.item.material;
 
+import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.registry.EndItems;
+
 import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
-
-import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.betterend.registry.EndItems;
 
 import java.util.function.Supplier;
 
@@ -27,12 +27,14 @@ public enum EndToolMaterial implements Tier {
     private final LazyLoadedValue<Ingredient> repairIngredient;
 
     @SuppressWarnings("deprecation")
-    EndToolMaterial(int miningLevel,
-                    int durability,
-                    float miningSpeed,
-                    float attackDamage,
-                    int enchantability,
-                    Supplier<Ingredient> repairIngredient) {
+    EndToolMaterial(
+            int miningLevel,
+            int durability,
+            float miningSpeed,
+            float attackDamage,
+            int enchantability,
+            Supplier<Ingredient> repairIngredient
+    ) {
         this.durability = durability;
         this.miningSpeed = miningSpeed;
         this.attackDamage = attackDamage;

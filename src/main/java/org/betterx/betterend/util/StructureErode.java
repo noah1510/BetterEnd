@@ -1,5 +1,10 @@
 package org.betterx.betterend.util;
 
+import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.bclib.util.MHelper;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
@@ -12,10 +17,6 @@ import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.material.Material;
 
 import com.google.common.collect.Sets;
-import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.bclib.util.MHelper;
 
 import java.util.Set;
 
@@ -38,7 +39,7 @@ public class StructureErode {
                                 state,
                                 world,
                                 mut
-                                                                      ) && random.nextInt(8) == 0 && world.isEmptyBlock(
+                        ) && random.nextInt(8) == 0 && world.isEmptyBlock(
                                 mut.below(2))) {
                             int r = MHelper.randRange(1, 4, random);
                             int cx = mut.getX();
@@ -66,7 +67,7 @@ public class StructureErode {
                                                 world.getBlockState(mut),
                                                 world,
                                                 mut
-                                                                                            )) {
+                                        )) {
                                             BlocksHelper.setWithoutUpdate(world, mut, Blocks.AIR);
                                         }
                                     }
@@ -102,7 +103,7 @@ public class StructureErode {
                                 world.getBlockState(mut.above()),
                                 world,
                                 mut
-                                                                                         )) {
+                        )) {
                             BlocksHelper.setWithoutUpdate(world, mut, Blocks.AIR);
                         }
                     }

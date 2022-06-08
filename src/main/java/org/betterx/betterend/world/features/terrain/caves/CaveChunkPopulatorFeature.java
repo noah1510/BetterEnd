@@ -1,5 +1,11 @@
 package org.betterx.betterend.world.features.terrain.caves;
 
+import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.betterend.util.BlockFixer;
+import org.betterx.betterend.world.biome.cave.EndCaveBiome;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.util.RandomSource;
@@ -12,11 +18,6 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
 import com.google.common.collect.Sets;
-import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.betterend.util.BlockFixer;
-import org.betterx.betterend.world.biome.cave.EndCaveBiome;
 
 import java.util.Optional;
 import java.util.Set;
@@ -49,13 +50,15 @@ public class CaveChunkPopulatorFeature extends DefaultFeature {
         return true;
     }
 
-    protected void fillSets(int sx,
-                            int sz,
-                            ChunkAccess chunk,
-                            Set<BlockPos> floorPositions,
-                            Set<BlockPos> ceilPositions,
-                            MutableBlockPos min,
-                            MutableBlockPos max) {
+    protected void fillSets(
+            int sx,
+            int sz,
+            ChunkAccess chunk,
+            Set<BlockPos> floorPositions,
+            Set<BlockPos> ceilPositions,
+            MutableBlockPos min,
+            MutableBlockPos max
+    ) {
         MutableBlockPos mut = new MutableBlockPos();
         MutableBlockPos mut2 = new MutableBlockPos();
         MutableBlockPos mut3 = new MutableBlockPos();
@@ -111,11 +114,13 @@ public class CaveChunkPopulatorFeature extends DefaultFeature {
         }
     }
 
-    protected void placeFloor(WorldGenLevel world,
-                              EndCaveBiome biome,
-                              Set<BlockPos> floorPositions,
-                              RandomSource random,
-                              BlockState surfaceBlock) {
+    protected void placeFloor(
+            WorldGenLevel world,
+            EndCaveBiome biome,
+            Set<BlockPos> floorPositions,
+            RandomSource random,
+            BlockState surfaceBlock
+    ) {
         float density = biome.getFloorDensity();
         floorPositions.forEach((pos) -> {
             BlocksHelper.setWithoutUpdate(world, pos, surfaceBlock);
@@ -128,10 +133,12 @@ public class CaveChunkPopulatorFeature extends DefaultFeature {
         });
     }
 
-    protected void placeCeil(WorldGenLevel world,
-                             EndCaveBiome biome,
-                             Set<BlockPos> ceilPositions,
-                             RandomSource random) {
+    protected void placeCeil(
+            WorldGenLevel world,
+            EndCaveBiome biome,
+            Set<BlockPos> ceilPositions,
+            RandomSource random
+    ) {
         float density = biome.getCeilDensity();
         ceilPositions.forEach((pos) -> {
             BlockState ceilBlock = biome.getCeil(pos);

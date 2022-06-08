@@ -1,5 +1,7 @@
 package org.betterx.betterend.integration.rei;
 
+import org.betterx.betterend.recipe.builders.InfusionRecipe;
+
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Recipe;
 
@@ -7,7 +9,6 @@ import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.display.SimpleGridMenuDisplay;
 import me.shedaniel.rei.api.common.display.basic.BasicDisplay;
 import me.shedaniel.rei.api.common.util.EntryIngredients;
-import org.betterx.betterend.recipe.builders.InfusionRecipe;
 
 import java.util.Collections;
 import java.util.Optional;
@@ -22,7 +23,7 @@ public class REIInfusionDisplay extends BasicDisplay implements SimpleGridMenuDi
         super(
                 EntryIngredients.ofIngredients(recipe.getIngredients()),
                 Collections.singletonList(EntryIngredients.of(recipe.getResultItem()))
-             );
+        );
         this.recipe = recipe;
         this.time = recipe.getInfusionTime();
     }

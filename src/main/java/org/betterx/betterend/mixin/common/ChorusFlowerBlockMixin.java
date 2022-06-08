@@ -1,5 +1,10 @@
 package org.betterx.betterend.mixin.common;
 
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.world.generator.GeneratorOptions;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -15,10 +20,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.betterend.world.generator.GeneratorOptions;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -41,10 +42,12 @@ public abstract class ChorusFlowerBlockMixin extends Block {
     private ChorusPlantBlock plant;
 
     @Inject(method = "canSurvive", at = @At("HEAD"), cancellable = true)
-    private void be_canSurvive(BlockState state,
-                               LevelReader world,
-                               BlockPos pos,
-                               CallbackInfoReturnable<Boolean> info) {
+    private void be_canSurvive(
+            BlockState state,
+            LevelReader world,
+            BlockPos pos,
+            CallbackInfoReturnable<Boolean> info
+    ) {
         if (world.getBlockState(pos.below()).is(EndBlocks.CHORUS_NYLIUM)) {
             info.setReturnValue(true);
             info.cancel();
@@ -52,22 +55,26 @@ public abstract class ChorusFlowerBlockMixin extends Block {
     }
 
     @Inject(method = "randomTick", at = @At("HEAD"), cancellable = true)
-    private void be_randomTick(BlockState state,
-                               ServerLevel world,
-                               BlockPos pos,
-                               RandomSource random,
-                               CallbackInfo info) {
+    private void be_randomTick(
+            BlockState state,
+            ServerLevel world,
+            BlockPos pos,
+            RandomSource random,
+            CallbackInfo info
+    ) {
         if (world.getBlockState(pos.below()).is(CommonBlockTags.END_STONES)) {
             BlockPos up = pos.above();
             if (world.isEmptyBlock(up) && up.getY() < 256) {
                 int i = state.getValue(ChorusFlowerBlock.AGE);
                 if (i < 5) {
                     this.placeGrownFlower(world, up, i + 1);
-                    BlocksHelper.setWithoutUpdate(world,
-                                                  pos,
-                                                  plant.defaultBlockState()
-                                                       .setValue(ChorusPlantBlock.UP, true)
-                                                       .setValue(ChorusPlantBlock.DOWN, true));
+                    BlocksHelper.setWithoutUpdate(
+                            world,
+                            pos,
+                            plant.defaultBlockState()
+                                 .setValue(ChorusPlantBlock.UP, true)
+                                 .setValue(ChorusPlantBlock.DOWN, true)
+                    );
                     info.cancel();
                 }
             }

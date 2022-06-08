@@ -1,5 +1,11 @@
 package org.betterx.betterend.blocks.entities;
 
+import org.betterx.betterend.BetterEnd;
+import org.betterx.betterend.blocks.EndStoneSmelter;
+import org.betterx.betterend.client.gui.EndStoneSmelterScreenHandler;
+import org.betterx.betterend.recipe.builders.AlloyingRecipe;
+import org.betterx.betterend.registry.EndBlockEntities;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
@@ -36,11 +42,6 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import it.unimi.dsi.fastutil.objects.Object2IntMap.Entry;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
-import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.blocks.EndStoneSmelter;
-import org.betterx.betterend.client.gui.EndStoneSmelterScreenHandler;
-import org.betterx.betterend.recipe.builders.AlloyingRecipe;
-import org.betterx.betterend.registry.EndBlockEntities;
 
 import java.util.Iterator;
 import java.util.List;
@@ -215,7 +216,7 @@ public class EndStoneSmelterBlockEntity extends BaseContainerBlockEntity impleme
                 worldPosition.getX() + 0.5D,
                 worldPosition.getY() + 0.5D,
                 worldPosition.getZ() + 0.5D
-                                   ) <= 64.0D;
+        ) <= 64.0D;
     }
 
     @Override
@@ -233,10 +234,12 @@ public class EndStoneSmelterBlockEntity extends BaseContainerBlockEntity impleme
         return new EndStoneSmelterScreenHandler(syncId, playerInventory, this, propertyDelegate);
     }
 
-    public static void tick(Level tickLevel,
-                            BlockPos tickPos,
-                            BlockState tickState,
-                            EndStoneSmelterBlockEntity blockEntity) {
+    public static void tick(
+            Level tickLevel,
+            BlockPos tickPos,
+            BlockState tickState,
+            EndStoneSmelterBlockEntity blockEntity
+    ) {
         if (tickLevel == null) return;
 
         boolean initialBurning = blockEntity.isBurning();
@@ -275,7 +278,7 @@ public class EndStoneSmelterBlockEntity extends BaseContainerBlockEntity impleme
                                 blockEntity.inventory.set(
                                         2,
                                         remainFuel == null ? ItemStack.EMPTY : new ItemStack(remainFuel)
-                                                         );
+                                );
                             }
                         }
                         blockEntity.setChanged();

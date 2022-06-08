@@ -1,14 +1,14 @@
 package org.betterx.betterend.complexmaterials;
 
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.MaterialColor;
-
 import org.betterx.bclib.complexmaterials.WoodenComplexMaterial;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.config.Configs;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndItems;
+
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.MaterialColor;
 
 public class EndWoodenComplexMaterial extends WoodenComplexMaterial {
     private Block bark;
@@ -19,9 +19,11 @@ public class EndWoodenComplexMaterial extends WoodenComplexMaterial {
     }
 
     public EndWoodenComplexMaterial init() {
-        return (EndWoodenComplexMaterial) super.init(EndBlocks.getBlockRegistry(),
-                                                     EndItems.getItemRegistry(),
-                                                     Configs.RECIPE_CONFIG);
+        return (EndWoodenComplexMaterial) super.init(
+                EndBlocks.getBlockRegistry(),
+                EndItems.getItemRegistry(),
+                Configs.RECIPE_CONFIG
+        );
     }
 
     public boolean isTreeLog(Block block) {

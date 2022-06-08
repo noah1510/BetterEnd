@@ -1,10 +1,10 @@
 package org.betterx.betterend.registry;
 
+import org.betterx.betterend.client.render.PedestalItemRenderer;
+
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
-
-import org.betterx.betterend.client.render.PedestalItemRenderer;
 
 @Environment(EnvType.CLIENT)
 public class EndBlockEntityRenders {

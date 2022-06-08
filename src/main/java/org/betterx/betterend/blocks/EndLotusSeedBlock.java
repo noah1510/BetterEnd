@@ -1,5 +1,11 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
+import org.betterx.bclib.blocks.BlockProperties.TripleShape;
+import org.betterx.bclib.blocks.UnderwaterPlantWithAgeBlock;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
@@ -7,12 +13,6 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
-
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
-import org.betterx.bclib.blocks.BlockProperties.TripleShape;
-import org.betterx.bclib.blocks.UnderwaterPlantWithAgeBlock;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.betterend.registry.EndBlocks;
 
 public class EndLotusSeedBlock extends UnderwaterPlantWithAgeBlock {
     @Override
@@ -43,7 +43,7 @@ public class EndLotusSeedBlock extends UnderwaterPlantWithAgeBlock {
                         world,
                         bpos,
                         startLeaf.setValue(EndLotusStemBlock.SHAPE, shape).setValue(EndLotusStemBlock.FACING, dir)
-                                             );
+                );
             } else {
                 BlocksHelper.setWithoutUpdate(world, bpos, stem.setValue(EndLotusStemBlock.SHAPE, shape));
             }
@@ -103,7 +103,7 @@ public class EndLotusSeedBlock extends UnderwaterPlantWithAgeBlock {
                     p.set(pos).move(move),
                     leaf.setValue(EndLotusLeafBlock.HORIZONTAL_FACING, move)
                         .setValue(EndLotusLeafBlock.SHAPE, TripleShape.MIDDLE)
-                                         );
+            );
         }
         for (int i = 0; i < 4; i++) {
             Direction d1 = BlocksHelper.HORIZONTAL[i];
@@ -113,7 +113,7 @@ public class EndLotusSeedBlock extends UnderwaterPlantWithAgeBlock {
                     p.set(pos).move(d1).move(d2),
                     leaf.setValue(EndLotusLeafBlock.HORIZONTAL_FACING, d1)
                         .setValue(EndLotusLeafBlock.SHAPE, TripleShape.TOP)
-                                         );
+            );
         }
     }
 

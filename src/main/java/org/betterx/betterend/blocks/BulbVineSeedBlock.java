@@ -1,18 +1,18 @@
 package org.betterx.betterend.blocks;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.block.state.BlockState;
-
 import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.blocks.BlockProperties;
 import org.betterx.bclib.blocks.BlockProperties.TripleShape;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.betterend.blocks.basis.EndPlantWithAgeBlock;
 import org.betterx.betterend.registry.EndBlocks;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class BulbVineSeedBlock extends EndPlantWithAgeBlock {
 
@@ -30,20 +30,20 @@ public class BulbVineSeedBlock extends EndPlantWithAgeBlock {
                     world,
                     pos,
                     EndBlocks.BULB_VINE.defaultBlockState().setValue(BlockProperties.TRIPLE_SHAPE, TripleShape.TOP)
-                                         );
+            );
             for (int i = 1; i < h; i++) {
                 BlocksHelper.setWithoutUpdate(
                         world,
                         pos.below(i),
                         EndBlocks.BULB_VINE.defaultBlockState()
                                            .setValue(BlockProperties.TRIPLE_SHAPE, TripleShape.MIDDLE)
-                                             );
+                );
             }
             BlocksHelper.setWithoutUpdate(
                     world,
                     pos.below(h),
                     EndBlocks.BULB_VINE.defaultBlockState().setValue(BlockProperties.TRIPLE_SHAPE, TripleShape.BOTTOM)
-                                         );
+            );
         }
     }
 }

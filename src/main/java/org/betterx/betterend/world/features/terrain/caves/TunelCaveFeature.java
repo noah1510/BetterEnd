@@ -1,5 +1,15 @@
 package org.betterx.betterend.world.features.terrain.caves;
 
+import org.betterx.bclib.api.v2.generator.BiomePicker;
+import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
+import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.betterend.noise.OpenSimplexNoise;
+import org.betterx.betterend.registry.EndBiomes;
+import org.betterx.betterend.world.biome.EndBiome;
+import org.betterx.betterend.world.biome.cave.EndCaveBiome;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
@@ -19,15 +29,6 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import org.betterx.bclib.api.v2.generator.BiomePicker;
-import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
-import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.betterend.noise.OpenSimplexNoise;
-import org.betterx.betterend.registry.EndBiomes;
-import org.betterx.betterend.world.biome.EndBiome;
-import org.betterx.betterend.world.biome.cave.EndCaveBiome;
 
 import java.util.Map;
 import java.util.Optional;
@@ -86,8 +87,10 @@ public class TunelCaveFeature extends EndCaveFeature {
                     ) * 20) * 0.1F) * 0.9F;
                     float dist = (float) noiseD.eval(pos.getX() * 0.1, y * 0.1, pos.getZ() * 0.1) * 0.12F;
                     val = (val + vert * vert + dist) + density + gradient;
-                    if (val < 0.15 && world.getBlockState(pos).is(CommonBlockTags.GEN_END_STONES) && noWaterNear(world,
-                            pos)) {
+                    if (val < 0.15 && world.getBlockState(pos).is(CommonBlockTags.GEN_END_STONES) && noWaterNear(
+                            world,
+                            pos
+                    )) {
                         positions.add(pos.immutable());
                     }
                 }
@@ -191,11 +194,13 @@ public class TunelCaveFeature extends EndCaveFeature {
     }
 
     @Override
-    protected void placeFloor(WorldGenLevel world,
-                              EndCaveBiome biome,
-                              Set<BlockPos> floorPositions,
-                              RandomSource random,
-                              BlockState surfaceBlock) {
+    protected void placeFloor(
+            WorldGenLevel world,
+            EndCaveBiome biome,
+            Set<BlockPos> floorPositions,
+            RandomSource random,
+            BlockState surfaceBlock
+    ) {
         float density = biome.getFloorDensity() * 0.2F;
         floorPositions.forEach((pos) -> {
             if (!surfaceBlock.is(Blocks.END_STONE)) {
@@ -211,10 +216,12 @@ public class TunelCaveFeature extends EndCaveFeature {
     }
 
     @Override
-    protected void placeCeil(WorldGenLevel world,
-                             EndCaveBiome biome,
-                             Set<BlockPos> ceilPositions,
-                             RandomSource random) {
+    protected void placeCeil(
+            WorldGenLevel world,
+            EndCaveBiome biome,
+            Set<BlockPos> ceilPositions,
+            RandomSource random
+    ) {
         float density = biome.getCeilDensity() * 0.2F;
         ceilPositions.forEach((pos) -> {
             BlockState ceilBlock = biome.getCeil(pos);
@@ -234,12 +241,17 @@ public class TunelCaveFeature extends EndCaveFeature {
         return hasCavesInBiome(world, pos.offset(-8, 0, -8)) && hasCavesInBiome(
                 world,
                 pos.offset(8, 0, -8)
-        ) && hasCavesInBiome(world,
-                pos.offset(-8,
-                        0,
-                        8)) && hasCavesInBiome(
+        ) && hasCavesInBiome(
                 world,
-                pos.offset(8, 0, 8));
+                pos.offset(
+                        -8,
+                        0,
+                        8
+                )
+        ) && hasCavesInBiome(
+                world,
+                pos.offset(8, 0, 8)
+        );
     }
 
     protected boolean hasCavesInBiome(WorldGenLevel world, BlockPos pos) {

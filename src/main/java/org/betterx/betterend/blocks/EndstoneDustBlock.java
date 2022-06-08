@@ -1,5 +1,10 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
+import org.betterx.bclib.interfaces.TagProvider;
+import org.betterx.bclib.interfaces.tools.AddMineableShovel;
+import org.betterx.bclib.util.ColorUtil;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -15,11 +20,6 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
-import org.betterx.bclib.interfaces.TagProvider;
-import org.betterx.bclib.interfaces.tools.AddMineableShovel;
-import org.betterx.bclib.util.ColorUtil;
-
 import java.util.Collections;
 import java.util.List;
 
@@ -29,9 +29,9 @@ public class EndstoneDustBlock extends FallingBlock implements TagProvider, AddM
 
     public EndstoneDustBlock() {
         super(FabricBlockSettings
-                      .copyOf(Blocks.SAND)
-                      .mapColor(Blocks.END_STONE.defaultMaterialColor())
-             );
+                .copyOf(Blocks.SAND)
+                .mapColor(Blocks.END_STONE.defaultMaterialColor())
+        );
     }
 
     @Override

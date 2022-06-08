@@ -1,5 +1,9 @@
 package org.betterx.betterend.particle;
 
+import org.betterx.bclib.interfaces.CustomColorProvider;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
@@ -9,10 +13,6 @@ import net.minecraft.util.Mth;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-
-import org.betterx.bclib.interfaces.CustomColorProvider;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.registry.EndBlocks;
 
 @Environment(EnvType.CLIENT)
 public class ParticleTenaneaPetal extends TextureSheetParticle {
@@ -25,14 +25,16 @@ public class ParticleTenaneaPetal extends TextureSheetParticle {
     private double nextVY;
     private double nextVZ;
 
-    protected ParticleTenaneaPetal(ClientLevel world,
-                                   double x,
-                                   double y,
-                                   double z,
-                                   double r,
-                                   double g,
-                                   double b,
-                                   SpriteSet sprites) {
+    protected ParticleTenaneaPetal(
+            ClientLevel world,
+            double x,
+            double y,
+            double z,
+            double r,
+            double g,
+            double b,
+            SpriteSet sprites
+    ) {
         super(world, x, y, z, r, g, b);
         pickSprite(sprites);
 
@@ -108,14 +110,16 @@ public class ParticleTenaneaPetal extends TextureSheetParticle {
         }
 
         @Override
-        public Particle createParticle(SimpleParticleType type,
-                                       ClientLevel world,
-                                       double x,
-                                       double y,
-                                       double z,
-                                       double vX,
-                                       double vY,
-                                       double vZ) {
+        public Particle createParticle(
+                SimpleParticleType type,
+                ClientLevel world,
+                double x,
+                double y,
+                double z,
+                double vX,
+                double vY,
+                double vZ
+        ) {
             return new ParticleTenaneaPetal(world, x, y, z, 1, 1, 1, sprites);
         }
     }

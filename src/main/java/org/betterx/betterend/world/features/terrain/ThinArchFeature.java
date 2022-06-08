@@ -1,16 +1,5 @@
 package org.betterx.betterend.world.features.terrain;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.util.Mth;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.world.phys.Vec3;
-
-import com.mojang.math.Vector3f;
 import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
 import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.sdf.SDF;
@@ -21,6 +10,17 @@ import org.betterx.bclib.sdf.operator.SDFUnion;
 import org.betterx.bclib.sdf.primitive.SDFTorus;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.noise.OpenSimplexNoise;
+
+import com.mojang.math.Vector3f;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 
 public class ThinArchFeature extends DefaultFeature {
     private final Block block;
@@ -35,10 +35,14 @@ public class ThinArchFeature extends DefaultFeature {
         BlockPos origin = featurePlaceContext.origin();
         RandomSource random = featurePlaceContext.random();
 
-        BlockPos pos = getPosOnSurfaceWG(world,
-                new BlockPos((origin.getX() & 0xFFFFFFF0) | 7,
+        BlockPos pos = getPosOnSurfaceWG(
+                world,
+                new BlockPos(
+                        (origin.getX() & 0xFFFFFFF0) | 7,
                         0,
-                        (origin.getZ() & 0xFFFFFFF0) | 7));
+                        (origin.getZ() & 0xFFFFFFF0) | 7
+                )
+        );
         if (!world.getBlockState(pos.below(5)).is(CommonBlockTags.GEN_END_STONES)) {
             return false;
         }

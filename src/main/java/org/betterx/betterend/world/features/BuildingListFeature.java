@@ -1,5 +1,7 @@
 package org.betterx.betterend.world.features;
 
+import org.betterx.betterend.util.LootTableUtil;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.util.RandomSource;
@@ -14,9 +16,6 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProc
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorType;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate.StructureBlockInfo;
-
-
-import org.betterx.betterend.util.LootTableUtil;
 
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
@@ -35,12 +34,14 @@ public class BuildingListFeature extends ListFeature {
     class ChestProcessor extends StructureProcessor {
         @Nullable
         @Override
-        public StructureTemplate.StructureBlockInfo processBlock(LevelReader levelReader,
-                                                                 BlockPos blockPos,
-                                                                 BlockPos blockPos2,
-                                                                 StructureBlockInfo structureBlockInfo,
-                                                                 StructureBlockInfo structureBlockInfo2,
-                                                                 StructurePlaceSettings structurePlaceSettings) {
+        public StructureTemplate.StructureBlockInfo processBlock(
+                LevelReader levelReader,
+                BlockPos blockPos,
+                BlockPos blockPos2,
+                StructureBlockInfo structureBlockInfo,
+                StructureBlockInfo structureBlockInfo2,
+                StructurePlaceSettings structurePlaceSettings
+        ) {
             BlockState blockState = structureBlockInfo2.state;
             if (blockState.getBlock() instanceof ChestBlock) {
                 RandomSource random = structurePlaceSettings.getRandom(structureBlockInfo2.pos);

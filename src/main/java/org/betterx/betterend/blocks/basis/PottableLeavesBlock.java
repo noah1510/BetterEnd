@@ -1,10 +1,10 @@
 package org.betterx.betterend.blocks.basis;
 
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.material.MaterialColor;
-
 import org.betterx.bclib.blocks.BaseLeavesBlock;
 import org.betterx.betterend.interfaces.PottablePlant;
+
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.material.MaterialColor;
 
 public class PottableLeavesBlock extends BaseLeavesBlock implements PottablePlant {
 

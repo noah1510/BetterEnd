@@ -1,5 +1,17 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.blocks.BaseBlock;
+import org.betterx.bclib.blocks.BlockProperties;
+import org.betterx.bclib.blocks.BlockProperties.TripleShape;
+import org.betterx.bclib.client.render.BCLRenderLayer;
+import org.betterx.bclib.interfaces.CustomColorProvider;
+import org.betterx.bclib.interfaces.RenderLayerProvider;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.bclib.util.ColorUtil;
+import org.betterx.betterend.particle.InfusionParticleType;
+import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.registry.EndItems;
+
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.core.BlockPos;
@@ -32,17 +44,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 import com.google.common.collect.Lists;
-import org.betterx.bclib.blocks.BaseBlock;
-import org.betterx.bclib.blocks.BlockProperties;
-import org.betterx.bclib.blocks.BlockProperties.TripleShape;
-import org.betterx.bclib.client.render.BCLRenderLayer;
-import org.betterx.bclib.interfaces.CustomColorProvider;
-import org.betterx.bclib.interfaces.RenderLayerProvider;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.bclib.util.ColorUtil;
-import org.betterx.betterend.particle.InfusionParticleType;
-import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.betterend.registry.EndItems;
 
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
@@ -82,11 +83,13 @@ public class RespawnObeliskBlock extends BaseBlock implements CustomColorProvide
     }
 
     @Override
-    public void setPlacedBy(Level world,
-                            BlockPos pos,
-                            BlockState state,
-                            @Nullable LivingEntity placer,
-                            ItemStack itemStack) {
+    public void setPlacedBy(
+            Level world,
+            BlockPos pos,
+            BlockState state,
+            @Nullable LivingEntity placer,
+            ItemStack itemStack
+    ) {
         state = this.defaultBlockState();
         BlocksHelper.setWithUpdate(world, pos, state.setValue(SHAPE, TripleShape.BOTTOM));
         BlocksHelper.setWithUpdate(world, pos.above(), state.setValue(SHAPE, TripleShape.MIDDLE));
@@ -95,12 +98,14 @@ public class RespawnObeliskBlock extends BaseBlock implements CustomColorProvide
 
     @Override
     @SuppressWarnings("deprecation")
-    public BlockState updateShape(BlockState state,
-                                  Direction facing,
-                                  BlockState neighborState,
-                                  LevelAccessor world,
-                                  BlockPos pos,
-                                  BlockPos neighborPos) {
+    public BlockState updateShape(
+            BlockState state,
+            Direction facing,
+            BlockState neighborState,
+            LevelAccessor world,
+            BlockPos pos,
+            BlockPos neighborPos
+    ) {
         TripleShape shape = state.getValue(SHAPE);
         if (shape == TripleShape.BOTTOM) {
             if (world.getBlockState(pos.above()).is(this)) {
@@ -164,12 +169,14 @@ public class RespawnObeliskBlock extends BaseBlock implements CustomColorProvide
 
     @Override
     @SuppressWarnings("deprecation")
-    public InteractionResult use(BlockState state,
-                                 Level world,
-                                 BlockPos pos,
-                                 Player player,
-                                 InteractionHand hand,
-                                 BlockHitResult hit) {
+    public InteractionResult use(
+            BlockState state,
+            Level world,
+            BlockPos pos,
+            Player player,
+            InteractionHand hand,
+            BlockHitResult hit
+    ) {
         ItemStack itemStack = player.getItemInHand(hand);
         boolean canActivate = itemStack.getItem() == EndItems.AMBER_GEM && itemStack.getCount() > 5;
         if (hand != InteractionHand.MAIN_HAND || !canActivate) {
@@ -178,7 +185,7 @@ public class RespawnObeliskBlock extends BaseBlock implements CustomColorProvide
                 serverPlayerEntity.displayClientMessage(
                         Component.translatable("message.betterend.fail_spawn"),
                         true
-                                                       );
+                );
             }
             return InteractionResult.FAIL;
         } else if (!world.isClientSide) {

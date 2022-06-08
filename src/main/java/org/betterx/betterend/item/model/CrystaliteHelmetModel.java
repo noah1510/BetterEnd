@@ -1,5 +1,7 @@
 package org.betterx.betterend.item.model;
 
+import org.betterx.betterend.registry.EndEntitiesRenders;
+
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.ModelPart;
@@ -13,7 +15,6 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
 import com.google.common.collect.Lists;
-import org.betterx.betterend.registry.EndEntitiesRenders;
 
 import java.util.Collections;
 
@@ -42,16 +43,16 @@ public class CrystaliteHelmetModel extends HumanoidModel<LivingEntity> {
                 PartNames.HAT,
                 CubeListBuilder.create().texOffs(0, 0).addBox(-4.0f, -8.0f, -4.0f, 8.0f, 8.0f, 8.0f, deformation_hat),
                 PartPose.ZERO
-                                                            );
+        );
 
         return LayerDefinition.create(modelData, 64, 48);
     }
 
     public static CrystaliteHelmetModel createModel(EntityModelSet entityModelSet) {
         return new CrystaliteHelmetModel(entityModelSet == null
-                                                 ? getTexturedModelData().bakeRoot()
-                                                 : entityModelSet.bakeLayer(
-                                                         EndEntitiesRenders.CRYSTALITE_HELMET));
+                ? getTexturedModelData().bakeRoot()
+                : entityModelSet.bakeLayer(
+                        EndEntitiesRenders.CRYSTALITE_HELMET));
     }
 
 

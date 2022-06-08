@@ -1,5 +1,11 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.blocks.BaseBlock;
+import org.betterx.bclib.blocks.BlockProperties;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.registry.EndItems;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -19,21 +25,15 @@ import net.minecraft.world.phys.BlockHitResult;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
-import org.betterx.bclib.blocks.BaseBlock;
-import org.betterx.bclib.blocks.BlockProperties;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.betterend.registry.EndItems;
-
 public class UmbrellaTreeClusterBlock extends BaseBlock {
     public static final BooleanProperty NATURAL = BlockProperties.NATURAL;
 
     public UmbrellaTreeClusterBlock() {
         super(FabricBlockSettings
-                      .copyOf(Blocks.NETHER_WART_BLOCK)
-                      .mapColor(MaterialColor.COLOR_PURPLE)
-                      .luminance(15)
-             );
+                .copyOf(Blocks.NETHER_WART_BLOCK)
+                .mapColor(MaterialColor.COLOR_PURPLE)
+                .luminance(15)
+        );
         registerDefaultState(stateDefinition.any().setValue(NATURAL, false));
     }
 
@@ -44,12 +44,14 @@ public class UmbrellaTreeClusterBlock extends BaseBlock {
 
     @Override
     @SuppressWarnings("deprecation")
-    public InteractionResult use(BlockState state,
-                                 Level world,
-                                 BlockPos pos,
-                                 Player player,
-                                 InteractionHand hand,
-                                 BlockHitResult hit) {
+    public InteractionResult use(
+            BlockState state,
+            Level world,
+            BlockPos pos,
+            Player player,
+            InteractionHand hand,
+            BlockHitResult hit
+    ) {
         ItemStack stack = player.getMainHandItem();
         if (stack.getItem() == Items.GLASS_BOTTLE) {
             if (!player.isCreative()) {
@@ -66,12 +68,12 @@ public class UmbrellaTreeClusterBlock extends BaseBlock {
                     1,
                     1,
                     false
-                                );
+            );
             BlocksHelper.setWithUpdate(
                     world,
                     pos,
                     EndBlocks.UMBRELLA_TREE_CLUSTER_EMPTY.defaultBlockState().setValue(NATURAL, state.getValue(NATURAL))
-                                      );
+            );
             return InteractionResult.SUCCESS;
         }
         return InteractionResult.FAIL;

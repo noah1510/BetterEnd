@@ -1,5 +1,12 @@
 package org.betterx.betterend.mixin.common;
 
+import org.betterx.bclib.blocks.BlockProperties;
+import org.betterx.bclib.blocks.BlockProperties.TripleShape;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.interfaces.FallFlyingItem;
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -14,12 +21,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
-import org.betterx.bclib.blocks.BlockProperties;
-import org.betterx.bclib.blocks.BlockProperties.TripleShape;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.interfaces.FallFlyingItem;
-import org.betterx.betterend.registry.EndBlocks;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -36,12 +37,14 @@ public abstract class PlayerMixin extends LivingEntity {
     private static Direction[] horizontal;
 
     @Inject(method = "findRespawnPositionAndUseSpawnBlock", at = @At(value = "HEAD"), cancellable = true)
-    private static void be_findRespawnPositionAndUseSpawnBlock(ServerLevel world,
-                                                               BlockPos pos,
-                                                               float f,
-                                                               boolean bl,
-                                                               boolean bl2,
-                                                               CallbackInfoReturnable<Optional<Vec3>> info) {
+    private static void be_findRespawnPositionAndUseSpawnBlock(
+            ServerLevel world,
+            BlockPos pos,
+            float f,
+            boolean bl,
+            boolean bl2,
+            CallbackInfoReturnable<Optional<Vec3>> info
+    ) {
         BlockState blockState = world.getBlockState(pos);
         if (blockState.is(EndBlocks.RESPAWN_OBELISK)) {
             info.setReturnValue(be_obeliskRespawnPosition(world, pos, blockState));

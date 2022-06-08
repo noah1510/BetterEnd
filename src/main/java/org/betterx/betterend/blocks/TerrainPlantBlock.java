@@ -1,9 +1,9 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.betterend.blocks.basis.EndPlantBlock;
+
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-
-import org.betterx.betterend.blocks.basis.EndPlantBlock;
 
 public class TerrainPlantBlock extends EndPlantBlock {
     private final Block[] ground;

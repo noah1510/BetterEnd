@@ -1,5 +1,12 @@
 package org.betterx.betterend.recipe;
 
+import org.betterx.bclib.api.v2.tag.CommonItemTags;
+import org.betterx.bclib.recipes.GridRecipe;
+import org.betterx.betterend.BetterEnd;
+import org.betterx.betterend.config.Configs;
+import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.registry.EndItems;
+
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -7,13 +14,6 @@ import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-
-import org.betterx.bclib.api.v2.tag.CommonItemTags;
-import org.betterx.bclib.recipes.GridRecipe;
-import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.config.Configs;
-import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.betterend.registry.EndItems;
 
 public class CraftingRecipes {
 
@@ -43,19 +43,19 @@ public class CraftingRecipes {
                 EndBlocks.ANDESITE_PEDESTAL,
                 Blocks.POLISHED_ANDESITE_SLAB,
                 Blocks.POLISHED_ANDESITE
-                        );
+        );
         registerPedestal(
                 "diorite_pedestal",
                 EndBlocks.DIORITE_PEDESTAL,
                 Blocks.POLISHED_DIORITE_SLAB,
                 Blocks.POLISHED_DIORITE
-                        );
+        );
         registerPedestal(
                 "granite_pedestal",
                 EndBlocks.GRANITE_PEDESTAL,
                 Blocks.POLISHED_GRANITE_SLAB,
                 Blocks.POLISHED_GRANITE
-                        );
+        );
         registerPedestal("quartz_pedestal", EndBlocks.QUARTZ_PEDESTAL, Blocks.QUARTZ_SLAB, Blocks.QUARTZ_PILLAR);
         registerPedestal("purpur_pedestal", EndBlocks.PURPUR_PEDESTAL, Blocks.PURPUR_SLAB, Blocks.PURPUR_PILLAR);
 

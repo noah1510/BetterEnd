@@ -1,5 +1,9 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.blocks.BaseBlockWithEntity;
+import org.betterx.betterend.blocks.entities.EndStoneSmelterBlockEntity;
+import org.betterx.betterend.registry.EndBlockEntities;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -33,9 +37,6 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 import com.google.common.collect.Lists;
-import org.betterx.bclib.blocks.BaseBlockWithEntity;
-import org.betterx.betterend.blocks.entities.EndStoneSmelterBlockEntity;
-import org.betterx.betterend.registry.EndBlockEntities;
 
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
@@ -56,12 +57,14 @@ public class EndStoneSmelter extends BaseBlockWithEntity {
     }
 
     @SuppressWarnings("deprecation")
-    public InteractionResult use(BlockState state,
-                                 Level world,
-                                 BlockPos pos,
-                                 Player player,
-                                 InteractionHand hand,
-                                 BlockHitResult hit) {
+    public InteractionResult use(
+            BlockState state,
+            Level world,
+            BlockPos pos,
+            Player player,
+            InteractionHand hand,
+            BlockHitResult hit
+    ) {
         if (world.isClientSide) {
             return InteractionResult.SUCCESS;
         } else {
@@ -154,7 +157,7 @@ public class EndStoneSmelter extends BaseBlockWithEntity {
                         1.0F,
                         1.0F,
                         false
-                                    );
+                );
             }
 
             Direction direction = state.getValue(FACING);
@@ -170,13 +173,15 @@ public class EndStoneSmelter extends BaseBlockWithEntity {
 
     @Override
     @Nullable
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level,
-                                                                  BlockState blockState,
-                                                                  BlockEntityType<T> blockEntityType) {
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(
+            Level level,
+            BlockState blockState,
+            BlockEntityType<T> blockEntityType
+    ) {
         return level.isClientSide() ? null : createTickerHelper(
                 blockEntityType,
                 EndBlockEntities.END_STONE_SMELTER,
                 EndStoneSmelterBlockEntity::tick
-                                                               );
+        );
     }
 }

@@ -1,5 +1,9 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.betterend.blocks.basis.PedestalBlock;
+import org.betterx.betterend.blocks.entities.InfusionPedestalEntity;
+import org.betterx.betterend.rituals.InfusionRitual;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -12,10 +16,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import org.betterx.betterend.blocks.basis.PedestalBlock;
-import org.betterx.betterend.blocks.entities.InfusionPedestalEntity;
-import org.betterx.betterend.rituals.InfusionRitual;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -79,9 +79,11 @@ public class InfusionPedestal extends PedestalBlock {
 
     @Override
     @Nullable
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level,
-                                                                  BlockState blockState,
-                                                                  BlockEntityType<T> blockEntityType) {
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(
+            Level level,
+            BlockState blockState,
+            BlockEntityType<T> blockEntityType
+    ) {
         return InfusionPedestalEntity::tickEnity;
     }
 

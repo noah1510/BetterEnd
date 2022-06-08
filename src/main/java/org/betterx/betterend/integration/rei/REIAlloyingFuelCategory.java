@@ -1,11 +1,11 @@
 package org.betterx.betterend.integration.rei;
 
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Items;
 
 import com.google.common.collect.Lists;
-import com.mojang.blaze3d.vertex.PoseStack;
 import me.shedaniel.math.Point;
 import me.shedaniel.math.Rectangle;
 import me.shedaniel.rei.api.client.gui.DisplayRenderer;
@@ -52,7 +52,7 @@ public class REIAlloyingFuelCategory implements DisplayCategory<REIAlloyingFuelD
         widgets.add(Widgets.createLabel(
                 new Point(bounds.x + 26, bounds.getMaxY() - 15),
                 Component.translatable("category.rei.fuel.time", burnTime)
-                                       ).color(0xFF404040, 0xFFBBBBBB).noShadow().leftAligned());
+        ).color(0xFF404040, 0xFFBBBBBB).noShadow().leftAligned());
         widgets.add(Widgets.createBurningFire(new Point(bounds.x + 6, startPoint.y + 1))
                            .animationDurationTicks(recipeDisplay.getFuelTime()));
         widgets.add(Widgets.createSlot(new Point(bounds.x + 6, startPoint.y + 18))
@@ -69,10 +69,10 @@ public class REIAlloyingFuelCategory implements DisplayCategory<REIAlloyingFuelD
                            .disableHighlight();
         String burnItems = DECIMAL_FORMAT.format(recipe.getFuelTime() / 200d);
         return new DisplayRenderer() {
-            private Component text = Component.translatable(
+            private final Component text = Component.translatable(
                     "category.rei.fuel.time_short.items",
                     burnItems
-                                                           );
+            );
 
             @Override
             public int getHeight() {
@@ -97,7 +97,7 @@ public class REIAlloyingFuelCategory implements DisplayCategory<REIAlloyingFuelD
                         bounds.x + 25,
                         bounds.y + 8,
                         -1
-                                                       );
+                );
             }
         };
     }

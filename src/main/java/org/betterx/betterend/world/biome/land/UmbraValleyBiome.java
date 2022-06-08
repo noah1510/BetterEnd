@@ -1,9 +1,5 @@
 package org.betterx.betterend.world.biome.land;
 
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.SurfaceRules;
-
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
 import org.betterx.bclib.api.v2.levelgen.surface.SurfaceRuleBuilder;
 import org.betterx.bclib.api.v2.levelgen.surface.rules.SwitchRuleSource;
@@ -14,6 +10,10 @@ import org.betterx.betterend.registry.EndParticles;
 import org.betterx.betterend.registry.EndSounds;
 import org.betterx.betterend.world.biome.EndBiome;
 import org.betterx.betterend.world.surface.UmbraSurfaceNoiseCondition;
+
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.SurfaceRules;
 
 import java.util.List;
 
@@ -71,18 +71,19 @@ public class UmbraValleyBiome extends EndBiome.Config {
             @Override
             public SurfaceRuleBuilder surface() {
                 return super.surface()
-                            .rule(2, SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR,
-                                                         new SwitchRuleSource(
-                                                                 new UmbraSurfaceNoiseCondition(),
-                                                                 List.of(
-                                                                         SurfaceRules.state(surfaceMaterial().getAltTopMaterial()),
-                                                                         PALLIDIUM_HEAVY,
-                                                                         PALLIDIUM_THIN,
-                                                                         PALLIDIUM_TINY,
-                                                                         SurfaceRules.state(surfaceMaterial().getTopMaterial())
-                                                                        )
-                                                         )
-                                                        ));
+                            .rule(2, SurfaceRules.ifTrue(
+                                    SurfaceRules.ON_FLOOR,
+                                    new SwitchRuleSource(
+                                            new UmbraSurfaceNoiseCondition(),
+                                            List.of(
+                                                    SurfaceRules.state(surfaceMaterial().getAltTopMaterial()),
+                                                    PALLIDIUM_HEAVY,
+                                                    PALLIDIUM_THIN,
+                                                    PALLIDIUM_TINY,
+                                                    SurfaceRules.state(surfaceMaterial().getTopMaterial())
+                                            )
+                                    )
+                            ));
             }
         };
     }

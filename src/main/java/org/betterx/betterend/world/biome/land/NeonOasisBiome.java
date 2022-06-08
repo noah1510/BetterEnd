@@ -1,14 +1,5 @@
 package org.betterx.betterend.world.biome.land;
 
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.tags.BiomeTags;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.SurfaceRules;
-import net.minecraft.world.level.levelgen.SurfaceRules.RuleSource;
-import net.minecraft.world.level.levelgen.placement.CaveSurface;
-
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
 import org.betterx.bclib.api.v2.levelgen.surface.SurfaceRuleBuilder;
 import org.betterx.bclib.api.v2.levelgen.surface.rules.SwitchRuleSource;
@@ -18,6 +9,15 @@ import org.betterx.betterend.registry.EndFeatures;
 import org.betterx.betterend.registry.EndSounds;
 import org.betterx.betterend.world.biome.EndBiome;
 import org.betterx.betterend.world.surface.SplitNoiseCondition;
+
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.tags.BiomeTags;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.SurfaceRules;
+import net.minecraft.world.level.levelgen.SurfaceRules.RuleSource;
+import net.minecraft.world.level.levelgen.placement.CaveSurface;
 
 import java.util.List;
 
@@ -67,15 +67,16 @@ public class NeonOasisBiome extends EndBiome.Config {
                         List.of(
                                 SurfaceRules.state(EndBlocks.ENDSTONE_DUST.defaultBlockState()),
                                 SurfaceRules.state(EndBlocks.END_MOSS.defaultBlockState())
-                               )
+                        )
                 );
                 return super
                         .surface()
                         .ceil(Blocks.END_STONE.defaultBlockState())
                         .rule(1, SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, surfaceBlockRule))
-                        .rule(4, SurfaceRules.ifTrue(SurfaceRules.stoneDepthCheck(5, false, CaveSurface.FLOOR),
-                                                     SurfaceRules.state(EndBlocks.ENDSTONE_DUST.defaultBlockState())
-                                                    ));
+                        .rule(4, SurfaceRules.ifTrue(
+                                SurfaceRules.stoneDepthCheck(5, false, CaveSurface.FLOOR),
+                                SurfaceRules.state(EndBlocks.ENDSTONE_DUST.defaultBlockState())
+                        ));
             }
         };
     }
