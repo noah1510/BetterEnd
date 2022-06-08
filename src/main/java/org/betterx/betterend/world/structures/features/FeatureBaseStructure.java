@@ -32,8 +32,7 @@ public abstract class FeatureBaseStructure extends Structure {
                                            context.chunkGenerator(),
                                            context.heightAccessor(),
                                            context.randomState());
-        //TODO: 1.19 Do we need isValidBiome? This should now be handled by the BiomeTags...
-        if (pos.getZ() >= 20 && BCLStructure.isValidBiome(context)) {
+        if (pos.getZ() >= 20 ) {
             return Optional.of(new Structure.GenerationStub(pos, (structurePiecesBuilder) -> {
                 generatePieces(structurePiecesBuilder, context);
             }));

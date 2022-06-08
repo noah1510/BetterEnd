@@ -59,7 +59,6 @@ public class REIPlugin implements REIClientPlugin {
         registry.registerRecipeFiller(AnvilRecipe.class, AnvilRecipe.TYPE, REIAnvilDisplay::new);
         registry.registerRecipeFiller(InfusionRecipe.class, InfusionRecipe.TYPE, REIInfusionDisplay::new);
 
-        //TODO: Migrate to 1.18/1.18.2
         if (FuelRegistry.INSTANCE instanceof FuelRegistryImpl fabricImpl) {
             fabricImpl.getFuelTimes().forEach((item, time) -> {
                 if (time >= 2000) {
