@@ -1,14 +1,14 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.blocks.BaseDoublePlantBlock;
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
-
-import org.betterx.bclib.blocks.BaseDoublePlantBlock;
-import org.betterx.betterend.registry.EndBlocks;
 
 public class UmbrellaMossTallBlock extends BaseDoublePlantBlock {
     public UmbrellaMossTallBlock() {

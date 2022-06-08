@@ -1,5 +1,17 @@
 package org.betterx.betterend.world.features.terrain.caves;
 
+import org.betterx.bclib.api.v2.generator.BiomePicker;
+import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
+import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
+import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.registry.EndBiomes;
+import org.betterx.betterend.util.BlockFixer;
+import org.betterx.betterend.world.biome.EndBiome;
+import org.betterx.betterend.world.biome.cave.EndCaveBiome;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
@@ -17,17 +29,6 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import org.betterx.bclib.api.v2.generator.BiomePicker;
-import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
-import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
-import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.registry.EndBiomes;
-import org.betterx.betterend.util.BlockFixer;
-import org.betterx.betterend.world.biome.EndBiome;
-import org.betterx.betterend.world.biome.cave.EndCaveBiome;
 
 import java.util.List;
 import java.util.Optional;
@@ -92,11 +93,13 @@ public abstract class EndCaveFeature extends DefaultFeature {
 
     protected abstract Set<BlockPos> generate(WorldGenLevel world, BlockPos center, int radius, RandomSource random);
 
-    protected void placeFloor(WorldGenLevel world,
-                              EndCaveBiome biome,
-                              Set<BlockPos> floorPositions,
-                              RandomSource random,
-                              BlockState surfaceBlock) {
+    protected void placeFloor(
+            WorldGenLevel world,
+            EndCaveBiome biome,
+            Set<BlockPos> floorPositions,
+            RandomSource random,
+            BlockState surfaceBlock
+    ) {
         float density = biome.getFloorDensity();
         floorPositions.forEach((pos) -> {
             if (!surfaceBlock.is(Blocks.END_STONE)) {
@@ -111,10 +114,12 @@ public abstract class EndCaveFeature extends DefaultFeature {
         });
     }
 
-    protected void placeCeil(WorldGenLevel world,
-                             EndCaveBiome biome,
-                             Set<BlockPos> ceilPositions,
-                             RandomSource random) {
+    protected void placeCeil(
+            WorldGenLevel world,
+            EndCaveBiome biome,
+            Set<BlockPos> ceilPositions,
+            RandomSource random
+    ) {
         float density = biome.getCeilDensity();
         ceilPositions.forEach((pos) -> {
             BlockState ceilBlock = biome.getCeil(pos);

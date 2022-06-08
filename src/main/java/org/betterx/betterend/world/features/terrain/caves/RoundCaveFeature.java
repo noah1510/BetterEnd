@@ -1,5 +1,10 @@
 package org.betterx.betterend.world.features.terrain.caves;
 
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.noise.OpenSimplexNoise;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.util.RandomSource;
@@ -8,10 +13,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
 
 import com.google.common.collect.Sets;
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.noise.OpenSimplexNoise;
 
 import java.util.Set;
 import java.util.stream.IntStream;

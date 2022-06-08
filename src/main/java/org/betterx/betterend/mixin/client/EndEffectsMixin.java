@@ -1,9 +1,10 @@
 package org.betterx.betterend.mixin.client;
 
+import org.betterx.betterend.integration.Integrations;
+
 import net.minecraft.client.renderer.DimensionSpecialEffects.EndEffects;
 import net.minecraft.world.phys.Vec3;
 
-import org.betterx.betterend.integration.Integrations;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

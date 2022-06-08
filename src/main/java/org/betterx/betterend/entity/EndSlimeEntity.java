@@ -1,5 +1,14 @@
 package org.betterx.betterend.entity;
 
+import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
+import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.interfaces.ISlime;
+import org.betterx.betterend.registry.EndBiomes;
+import org.betterx.betterend.util.GlobalState;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.particles.ParticleOptions;
@@ -35,22 +44,13 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 
-import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
-import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.interfaces.ISlime;
-import org.betterx.betterend.registry.EndBiomes;
-import org.betterx.betterend.util.GlobalState;
-
 import java.util.EnumSet;
 
 public class EndSlimeEntity extends Slime {
     private static final EntityDataAccessor<Byte> VARIANT = SynchedEntityData.defineId(
             EndSlimeEntity.class,
             EntityDataSerializers.BYTE
-                                                                                      );
+    );
 
     public EndSlimeEntity(EntityType<EndSlimeEntity> entityType, Level world) {
         super(entityType, world);
@@ -67,7 +67,7 @@ public class EndSlimeEntity extends Slime {
                 new NearestAttackableTargetGoal<Player>(this, Player.class, 10, true, false, (livingEntity) -> {
                     return Math.abs(livingEntity.getY() - this.getY()) <= 4.0D;
                 })
-                                   );
+        );
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<IronGolem>(this, IronGolem.class, true));
     }
 
@@ -81,11 +81,13 @@ public class EndSlimeEntity extends Slime {
     }
 
     @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world,
-                                        DifficultyInstance difficulty,
-                                        MobSpawnType spawnReason,
-                                        SpawnGroupData entityData,
-                                        CompoundTag entityTag) {
+    public SpawnGroupData finalizeSpawn(
+            ServerLevelAccessor world,
+            DifficultyInstance difficulty,
+            MobSpawnType spawnReason,
+            SpawnGroupData entityData,
+            CompoundTag entityTag
+    ) {
         SpawnGroupData data = super.finalizeSpawn(world, difficulty, spawnReason, entityData, entityTag);
         BCLBiome biome = BiomeAPI.getFromBiome(world.getBiome(blockPosition()));
         if (biome == EndBiomes.FOGGY_MUSHROOMLAND) {
@@ -155,7 +157,7 @@ public class EndSlimeEntity extends Slime {
                         this.getZ() + (double) h,
                         this.random.nextFloat() * 360.0F,
                         0.0F
-                                  );
+                );
                 this.level.addFreshEntity(slimeEntity);
             }
         }
@@ -215,11 +217,13 @@ public class EndSlimeEntity extends Slime {
         return this.entityData.get(VARIANT) == 0;
     }
 
-    public static boolean canSpawn(EntityType entityType,
-                                   LevelAccessor world,
-                                   MobSpawnType spawnType,
-                                   BlockPos pos,
-                                   RandomSource random) {
+    public static boolean canSpawn(
+            EntityType entityType,
+            LevelAccessor world,
+            MobSpawnType spawnType,
+            BlockPos pos,
+            RandomSource random
+    ) {
         if (!world.getBlockState(pos.below()).is(CommonBlockTags.END_STONES)) {
             return false;
         }
@@ -363,7 +367,7 @@ public class EndSlimeEntity extends Slime {
             ((EndSlimeMoveControl) EndSlimeEntity.this.getMoveControl()).look(
                     EndSlimeEntity.this.getYRot(),
                     EndSlimeEntity.this.isDealsDamage()
-                                                                             );
+            );
         }
     }
 
@@ -409,7 +413,7 @@ public class EndSlimeEntity extends Slime {
                                     EndSlimeEntity.this.getJumpSound(),
                                     EndSlimeEntity.this.getSoundVolume(),
                                     getJumpSoundPitch()
-                                                         );
+                            );
                         }
                     } else {
                         EndSlimeEntity.this.xxa = 0.0F;

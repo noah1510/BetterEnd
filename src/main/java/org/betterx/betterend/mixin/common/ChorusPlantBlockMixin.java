@@ -1,5 +1,8 @@
 package org.betterx.betterend.mixin.common;
 
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -13,8 +16,6 @@ import net.minecraft.world.level.block.ChorusPlantBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
-import org.betterx.betterend.registry.EndBlocks;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -38,9 +39,11 @@ public abstract class ChorusPlantBlockMixin extends Block {
     }
 
     @Inject(method = "Lnet/minecraft/world/level/block/ChorusPlantBlock;getStateForPlacement" + "(Lnet/minecraft/world/level/BlockGetter;Lnet/minecraft/core/BlockPos;)" + "Lnet/minecraft/world/level/block/state/BlockState;", at = @At("RETURN"), cancellable = true)
-    private void be_getStateForPlacement(BlockGetter blockGetter,
-                                         BlockPos blockPos,
-                                         CallbackInfoReturnable<BlockState> info) {
+    private void be_getStateForPlacement(
+            BlockGetter blockGetter,
+            BlockPos blockPos,
+            CallbackInfoReturnable<BlockState> info
+    ) {
         BlockState plant = info.getReturnValue();
         if (plant.is(Blocks.CHORUS_PLANT) && blockGetter.getBlockState(blockPos.below())
                                                         .is(CommonBlockTags.END_STONES)) {
@@ -49,10 +52,12 @@ public abstract class ChorusPlantBlockMixin extends Block {
     }
 
     @Inject(method = "canSurvive", at = @At("HEAD"), cancellable = true)
-    private void be_canSurvive(BlockState state,
-                               LevelReader world,
-                               BlockPos pos,
-                               CallbackInfoReturnable<Boolean> info) {
+    private void be_canSurvive(
+            BlockState state,
+            LevelReader world,
+            BlockPos pos,
+            CallbackInfoReturnable<Boolean> info
+    ) {
         BlockState down = world.getBlockState(pos.below());
         if (down.is(EndBlocks.CHORUS_NYLIUM) || down.is(Blocks.END_STONE)) {
             info.setReturnValue(true);
@@ -60,13 +65,15 @@ public abstract class ChorusPlantBlockMixin extends Block {
     }
 
     @Inject(method = "updateShape", at = @At("RETURN"), cancellable = true)
-    private void be_updateShape(BlockState state,
-                                Direction direction,
-                                BlockState newState,
-                                LevelAccessor world,
-                                BlockPos pos,
-                                BlockPos posFrom,
-                                CallbackInfoReturnable<BlockState> info) {
+    private void be_updateShape(
+            BlockState state,
+            Direction direction,
+            BlockState newState,
+            LevelAccessor world,
+            BlockPos pos,
+            BlockPos posFrom,
+            CallbackInfoReturnable<BlockState> info
+    ) {
         BlockState plant = info.getReturnValue();
         if (plant.is(Blocks.CHORUS_PLANT) && world.getBlockState(pos.below()).is(CommonBlockTags.END_STONES)) {
             plant = plant.setValue(BlockStateProperties.DOWN, true);

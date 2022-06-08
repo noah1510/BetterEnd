@@ -1,18 +1,5 @@
 package org.betterx.betterend.world.features.terrain;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.LeavesBlock;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.chunk.ChunkGenerator;
-import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-import net.minecraft.world.level.material.Material;
-
-import com.google.common.collect.Lists;
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
 import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
 import org.betterx.bclib.api.v2.tag.CommonBlockTags;
@@ -26,6 +13,20 @@ import org.betterx.betterend.noise.OpenSimplexNoise;
 import org.betterx.betterend.registry.EndBiomes;
 import org.betterx.betterend.registry.EndFeatures;
 import org.betterx.betterend.world.biome.EndBiome;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.material.Material;
+
+import com.google.common.collect.Lists;
 
 import java.util.List;
 import java.util.Optional;
@@ -59,9 +60,11 @@ public class SpireFeature extends DefaultFeature {
                     vec.x() * 0.1,
                     vec.y() * 0.1,
                     vec.z() * 0.1
-            )) * 3F + Math.abs(noise.eval(vec.x() * 0.3,
+            )) * 3F + Math.abs(noise.eval(
+                    vec.x() * 0.3,
                     vec.y() * 0.3 + 100,
-                    vec.z() * 0.3)) * 1.3F);
+                    vec.z() * 0.3
+            )) * 1.3F);
         }).setSource(sdf);
         final BlockPos center = pos;
         List<BlockPos> support = Lists.newArrayList();
@@ -85,12 +88,14 @@ public class SpireFeature extends DefaultFeature {
         support.forEach((bpos) -> {
             if (BiomeAPI.getFromBiome(world.getBiome(bpos)) == EndBiomes.BLOSSOMING_SPIRES) {
                 EndFeatures.TENANEA_BUSH.getFeature()
-                                        .place(new FeaturePlaceContext<>(Optional.empty(),
+                                        .place(new FeaturePlaceContext<>(
+                                                Optional.empty(),
                                                 world,
                                                 chunkGenerator,
                                                 random,
                                                 bpos,
-                                                null));
+                                                null
+                                        ));
             }
         });
 

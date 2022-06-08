@@ -1,11 +1,5 @@
 package org.betterx.betterend.complexmaterials;
 
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.material.MaterialColor;
-
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-
 import org.betterx.bclib.api.v2.tag.*;
 import org.betterx.bclib.blocks.*;
 import org.betterx.bclib.recipes.GridRecipe;
@@ -17,6 +11,12 @@ import org.betterx.betterend.config.Configs;
 import org.betterx.betterend.recipe.CraftingRecipes;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndItems;
+
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.material.MaterialColor;
+
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 public class StoneMaterial {
     public final Block stone;

@@ -1,5 +1,11 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.blocks.BaseBlockNotFull;
+import org.betterx.bclib.client.render.BCLRenderLayer;
+import org.betterx.bclib.interfaces.RenderLayerProvider;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -23,12 +29,6 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
-import org.betterx.bclib.blocks.BaseBlockNotFull;
-import org.betterx.bclib.client.render.BCLRenderLayer;
-import org.betterx.bclib.interfaces.RenderLayerProvider;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.betterend.registry.EndBlocks;
-
 @SuppressWarnings("deprecation")
 public class MengerSpongeWetBlock extends BaseBlockNotFull implements RenderLayerProvider {
     public MengerSpongeWetBlock() {
@@ -47,7 +47,7 @@ public class MengerSpongeWetBlock extends BaseBlockNotFull implements RenderLaye
                     SoundSource.BLOCKS,
                     1.0F,
                     (1.0F + world.getRandom().nextFloat() * 0.2F) * 0.7F
-                           );
+            );
         }
     }
 
@@ -119,10 +119,12 @@ public class MengerSpongeWetBlock extends BaseBlockNotFull implements RenderLaye
     }
 
     @Override
-    public VoxelShape getShape(BlockState blockState,
-                               BlockGetter blockGetter,
-                               BlockPos blockPos,
-                               CollisionContext collisionContext) {
+    public VoxelShape getShape(
+            BlockState blockState,
+            BlockGetter blockGetter,
+            BlockPos blockPos,
+            CollisionContext collisionContext
+    ) {
         return EndBlocks.MENGER_SPONGE.getShape(blockState, blockGetter, blockPos, collisionContext);
     }
 }

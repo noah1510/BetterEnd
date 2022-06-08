@@ -1,5 +1,7 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.blocks.BaseBlock;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -16,8 +18,6 @@ import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-
-import org.betterx.bclib.blocks.BaseBlock;
 
 import java.util.Collections;
 import java.util.List;
@@ -61,7 +61,7 @@ public class MossyObsidian extends BaseBlock {
                     blockPos,
                     Direction.UP,
                     blockState.getLightBlock(worldView, blockPos)
-                                                      );
+            );
             return i < 5;
         }
     }

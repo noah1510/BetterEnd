@@ -1,13 +1,13 @@
 package org.betterx.betterend.recipe;
 
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Blocks;
-
 import org.betterx.bclib.recipes.FurnaceRecipe;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.config.Configs;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndItems;
+
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Blocks;
 
 public class FurnaceRecipes {
     public static void register() {
@@ -16,7 +16,7 @@ public class FurnaceRecipes {
                 "end_lily_leaf_dried",
                 EndItems.END_LILY_LEAF,
                 EndItems.END_LILY_LEAF_DRIED
-                          ).checkConfig(Configs.RECIPE_CONFIG).build();
+        ).checkConfig(Configs.RECIPE_CONFIG).build();
         FurnaceRecipe.make(BetterEnd.MOD_ID, "end_glass", EndBlocks.ENDSTONE_DUST, Blocks.GLASS)
                      .checkConfig(Configs.RECIPE_CONFIG)
                      .build();
@@ -37,7 +37,7 @@ public class FurnaceRecipes {
                 "chorus_mushroom",
                 EndItems.CHORUS_MUSHROOM_RAW,
                 EndItems.CHORUS_MUSHROOM_COOKED
-                          ).checkConfig(Configs.RECIPE_CONFIG).buildFoodlike();
+        ).checkConfig(Configs.RECIPE_CONFIG).buildFoodlike();
         FurnaceRecipe.make(BetterEnd.MOD_ID, "bolux_mushroom", EndBlocks.BOLUX_MUSHROOM, EndItems.BOLUX_MUSHROOM_COOKED)
                      .checkConfig(Configs.RECIPE_CONFIG)
                      .buildFoodlike();

@@ -1,18 +1,18 @@
 package org.betterx.betterend.blocks;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.BlockPos.MutableBlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.block.state.BlockState;
-
 import org.betterx.bclib.blocks.BlockProperties;
 import org.betterx.bclib.blocks.BlockProperties.PentaShape;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.blocks.basis.EndPlantWithAgeBlock;
 import org.betterx.betterend.registry.EndBlocks;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.BlockPos.MutableBlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class LanceleafSeedBlock extends EndPlantWithAgeBlock {
     public LanceleafSeedBlock() {
@@ -34,24 +34,24 @@ public class LanceleafSeedBlock extends EndPlantWithAgeBlock {
                 world,
                 mut.move(Direction.UP),
                 plant.setValue(BlockProperties.PENTA_SHAPE, PentaShape.PRE_BOTTOM)
-                                     );
+        );
         for (int i = 2; i < height - 2; i++) {
             BlocksHelper.setWithoutUpdate(
                     world,
                     mut.move(Direction.UP),
                     plant.setValue(BlockProperties.PENTA_SHAPE, PentaShape.MIDDLE)
-                                         );
+            );
         }
         BlocksHelper.setWithoutUpdate(
                 world,
                 mut.move(Direction.UP),
                 plant.setValue(BlockProperties.PENTA_SHAPE, PentaShape.PRE_TOP)
-                                     );
+        );
         BlocksHelper.setWithoutUpdate(
                 world,
                 mut.move(Direction.UP),
                 plant.setValue(BlockProperties.PENTA_SHAPE, PentaShape.TOP)
-                                     );
+        );
     }
 
     @Override

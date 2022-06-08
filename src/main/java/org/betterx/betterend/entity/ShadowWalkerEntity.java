@@ -1,5 +1,8 @@
 package org.betterx.betterend.entity;
 
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.registry.EndSounds;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvent;
@@ -20,9 +23,6 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.registry.EndSounds;
 
 public class ShadowWalkerEntity extends Monster {
     public ShadowWalkerEntity(EntityType<ShadowWalkerEntity> entityType, Level world) {
@@ -59,7 +59,7 @@ public class ShadowWalkerEntity extends Monster {
                 0,
                 0,
                 0
-                         );
+        );
         level.addParticle(
                 ParticleTypes.SMOKE,
                 getX() + random.nextGaussian() * 0.2,
@@ -68,7 +68,7 @@ public class ShadowWalkerEntity extends Monster {
                 0,
                 0,
                 0
-                         );
+        );
         level.addParticle(
                 ParticleTypes.ENTITY_EFFECT,
                 getX() + random.nextGaussian() * 0.2,
@@ -77,7 +77,7 @@ public class ShadowWalkerEntity extends Monster {
                 0,
                 0,
                 0
-                         );
+        );
     }
 
     @Override

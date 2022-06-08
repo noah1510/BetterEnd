@@ -1,5 +1,10 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.blocks.BaseBlock;
+import org.betterx.bclib.blocks.BlockProperties;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -19,11 +24,6 @@ import net.minecraft.world.level.material.MaterialColor;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
-import org.betterx.bclib.blocks.BaseBlock;
-import org.betterx.bclib.blocks.BlockProperties;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.betterend.registry.EndBlocks;
-
 import org.jetbrains.annotations.Nullable;
 
 public class BrimstoneBlock extends BaseBlock {
@@ -40,11 +40,13 @@ public class BrimstoneBlock extends BaseBlock {
     }
 
     @Override
-    public void setPlacedBy(Level world,
-                            BlockPos pos,
-                            BlockState state,
-                            @Nullable LivingEntity placer,
-                            ItemStack itemStack) {
+    public void setPlacedBy(
+            Level world,
+            BlockPos pos,
+            BlockState state,
+            @Nullable LivingEntity placer,
+            ItemStack itemStack
+    ) {
         if (world.isClientSide()) {
             updateChunks((ClientLevel) world, pos);
         }

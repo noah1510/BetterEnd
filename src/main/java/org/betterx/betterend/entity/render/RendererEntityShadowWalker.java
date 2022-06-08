@@ -1,13 +1,13 @@
 package org.betterx.betterend.entity.render;
 
+import org.betterx.betterend.BetterEnd;
+import org.betterx.betterend.entity.ShadowWalkerEntity;
+
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.HumanoidMobRenderer;
 import net.minecraft.resources.ResourceLocation;
-
-import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.entity.ShadowWalkerEntity;
 
 public class RendererEntityShadowWalker extends HumanoidMobRenderer<ShadowWalkerEntity, PlayerModel<ShadowWalkerEntity>> {
     private static final ResourceLocation TEXTURE = BetterEnd.makeID("textures/entity/shadow_walker.png");

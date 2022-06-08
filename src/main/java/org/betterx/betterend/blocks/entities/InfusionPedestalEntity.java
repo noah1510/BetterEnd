@@ -1,13 +1,13 @@
 package org.betterx.betterend.blocks.entities;
 
+import org.betterx.betterend.registry.EndBlockEntities;
+import org.betterx.betterend.rituals.InfusionRitual;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-
-import org.betterx.betterend.registry.EndBlockEntities;
-import org.betterx.betterend.rituals.InfusionRitual;
 
 public class InfusionPedestalEntity extends PedestalBlockEntity {
 
@@ -56,10 +56,12 @@ public class InfusionPedestalEntity extends PedestalBlockEntity {
         }
     }
 
-    public static <T extends BlockEntity> void tickEnity(Level level,
-                                                         BlockPos blockPos,
-                                                         BlockState blockState,
-                                                         T uncastedEntity) {
+    public static <T extends BlockEntity> void tickEnity(
+            Level level,
+            BlockPos blockPos,
+            BlockState blockState,
+            T uncastedEntity
+    ) {
         if (uncastedEntity instanceof InfusionPedestalEntity) {
             InfusionPedestalEntity blockEntity = (InfusionPedestalEntity) uncastedEntity;
             if (blockEntity.hasRitual()) {

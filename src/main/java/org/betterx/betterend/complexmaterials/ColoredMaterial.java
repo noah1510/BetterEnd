@@ -1,5 +1,11 @@
 package org.betterx.betterend.complexmaterials;
 
+import org.betterx.bclib.recipes.GridRecipe;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.betterend.BetterEnd;
+import org.betterx.betterend.config.Configs;
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.core.Registry;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.DyeItem;
@@ -10,11 +16,6 @@ import net.minecraft.world.level.material.MaterialColor;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 import com.google.common.collect.Maps;
-import org.betterx.bclib.recipes.GridRecipe;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.config.Configs;
-import org.betterx.betterend.registry.EndBlocks;
 
 import java.util.Map;
 import java.util.function.Function;
@@ -28,11 +29,13 @@ public class ColoredMaterial {
         this(constructor, source, COLORS, DYES, craftEight);
     }
 
-    public ColoredMaterial(Function<FabricBlockSettings, Block> constructor,
-                           Block source,
-                           Map<Integer, String> colors,
-                           Map<Integer, ItemLike> dyes,
-                           boolean craftEight) {
+    public ColoredMaterial(
+            Function<FabricBlockSettings, Block> constructor,
+            Block source,
+            Map<Integer, String> colors,
+            Map<Integer, ItemLike> dyes,
+            boolean craftEight
+    ) {
         String id = Registry.BLOCK.getKey(source).getPath();
         colors.forEach((color, name) -> {
             String blockName = id + "_" + name;

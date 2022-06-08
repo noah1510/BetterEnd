@@ -1,5 +1,14 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
+import org.betterx.bclib.blocks.BaseAttachedBlock;
+import org.betterx.bclib.client.render.BCLRenderLayer;
+import org.betterx.bclib.interfaces.RenderLayerProvider;
+import org.betterx.bclib.items.tool.BaseShearsItem;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.betterend.interfaces.PottablePlant;
+import org.betterx.betterend.registry.EndFeatures;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -29,14 +38,6 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
-import org.betterx.bclib.blocks.BaseAttachedBlock;
-import org.betterx.bclib.client.render.BCLRenderLayer;
-import org.betterx.bclib.interfaces.RenderLayerProvider;
-import org.betterx.bclib.items.tool.BaseShearsItem;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.betterend.interfaces.PottablePlant;
-import org.betterx.betterend.registry.EndFeatures;
 
 import java.util.EnumMap;
 import java.util.List;
@@ -61,7 +62,7 @@ public class SmallJellyshroomBlock extends BaseAttachedBlock implements RenderLa
         if (tool != null && BaseShearsItem.isShear(tool) || EnchantmentHelper.getItemEnchantmentLevel(
                 Enchantments.SILK_TOUCH,
                 tool
-                                                                                                     ) > 0) {
+        ) > 0) {
             return Lists.newArrayList(new ItemStack(this));
         } else {
             return Lists.newArrayList();
@@ -110,7 +111,8 @@ public class SmallJellyshroomBlock extends BaseAttachedBlock implements RenderLa
                 null,
                 random,
                 pos,
-                null));
+                null
+        ));
     }
 
     @Override

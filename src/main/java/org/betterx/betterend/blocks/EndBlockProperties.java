@@ -1,12 +1,12 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.blocks.BlockProperties;
+import org.betterx.betterend.registry.EndPortals;
+
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-
-import org.betterx.bclib.blocks.BlockProperties;
-import org.betterx.betterend.registry.EndPortals;
 
 public class EndBlockProperties extends BlockProperties {
     public static final EnumProperty<HydraluxShape> HYDRALUX_SHAPE = EnumProperty.create("shape", HydraluxShape.class);

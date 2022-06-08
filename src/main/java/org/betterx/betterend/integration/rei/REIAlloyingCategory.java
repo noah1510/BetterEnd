@@ -1,6 +1,8 @@
 package org.betterx.betterend.integration.rei;
 
 
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.network.chat.Component;
 
 import com.google.common.collect.Lists;
@@ -12,7 +14,6 @@ import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.entry.EntryStack;
-import org.betterx.betterend.registry.EndBlocks;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -52,11 +53,12 @@ public class REIAlloyingCategory implements DisplayCategory<REIAlloyingDisplay> 
                            .animationDurationMS(10000));
         widgets.add(Widgets.createLabel(
                 new Point(bounds.x + bounds.width - 5, bounds.y + 5),
-                Component.translatable("category.rei.cooking.time&xp",
-                                       df.format(display.getXp()),
-                                       df.format(smeltTime / 20D)
-                                      )
-                                       ).noShadow().rightAligned().color(0xFF404040, 0xFFBBBBBB));
+                Component.translatable(
+                        "category.rei.cooking.time&xp",
+                        df.format(display.getXp()),
+                        df.format(smeltTime / 20D)
+                )
+        ).noShadow().rightAligned().color(0xFF404040, 0xFFBBBBBB));
         widgets.add(Widgets.createArrow(new Point(startPoint.x + 24, startPoint.y + 8))
                            .animationDurationTicks(smeltTime));
         List<EntryIngredient> inputEntries = display.getInputEntries();

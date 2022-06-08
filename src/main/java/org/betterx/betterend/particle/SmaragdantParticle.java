@@ -1,5 +1,7 @@
 package org.betterx.betterend.particle;
 
+import org.betterx.bclib.util.MHelper;
+
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -7,8 +9,6 @@ import net.minecraft.util.Mth;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-
-import org.betterx.bclib.util.MHelper;
 
 @Environment(EnvType.CLIENT)
 public class SmaragdantParticle extends SimpleAnimatedParticle {
@@ -19,14 +19,16 @@ public class SmaragdantParticle extends SimpleAnimatedParticle {
     private double nextVY;
     private double nextVZ;
 
-    protected SmaragdantParticle(ClientLevel world,
-                                 double x,
-                                 double y,
-                                 double z,
-                                 double r,
-                                 double g,
-                                 double b,
-                                 SpriteSet sprites) {
+    protected SmaragdantParticle(
+            ClientLevel world,
+            double x,
+            double y,
+            double z,
+            double r,
+            double g,
+            double b,
+            SpriteSet sprites
+    ) {
         super(world, x, y, z, sprites, 0);
         setSprite(sprites.get(random));
 
@@ -89,14 +91,16 @@ public class SmaragdantParticle extends SimpleAnimatedParticle {
         }
 
         @Override
-        public Particle createParticle(SimpleParticleType type,
-                                       ClientLevel world,
-                                       double x,
-                                       double y,
-                                       double z,
-                                       double vX,
-                                       double vY,
-                                       double vZ) {
+        public Particle createParticle(
+                SimpleParticleType type,
+                ClientLevel world,
+                double x,
+                double y,
+                double z,
+                double vX,
+                double vY,
+                double vZ
+        ) {
             return new SmaragdantParticle(world, x, y, z, 1, 1, 1, sprites);
         }
     }

@@ -1,5 +1,15 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.blocks.BaseBlock;
+import org.betterx.bclib.client.render.BCLRenderLayer;
+import org.betterx.bclib.interfaces.RenderLayerProvider;
+import org.betterx.bclib.items.tool.BaseShearsItem;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.entity.SilkMothEntity;
+import org.betterx.betterend.registry.EndEntities;
+import org.betterx.betterend.registry.EndItems;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -32,16 +42,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-
-import org.betterx.bclib.blocks.BaseBlock;
-import org.betterx.bclib.client.render.BCLRenderLayer;
-import org.betterx.bclib.interfaces.RenderLayerProvider;
-import org.betterx.bclib.items.tool.BaseShearsItem;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.entity.SilkMothEntity;
-import org.betterx.betterend.registry.EndEntities;
-import org.betterx.betterend.registry.EndItems;
 
 import java.util.Collections;
 import java.util.List;
@@ -87,12 +87,14 @@ public class SilkMothNestBlock extends BaseBlock implements RenderLayerProvider 
 
     @Override
     @SuppressWarnings("deprecation")
-    public BlockState updateShape(BlockState state,
-                                  Direction facing,
-                                  BlockState neighborState,
-                                  LevelAccessor world,
-                                  BlockPos pos,
-                                  BlockPos neighborPos) {
+    public BlockState updateShape(
+            BlockState state,
+            Direction facing,
+            BlockState neighborState,
+            LevelAccessor world,
+            BlockPos pos,
+            BlockPos neighborPos
+    ) {
         if (!state.getValue(ACTIVE)) {
             if (canSupportCenter(world, pos.above(), Direction.DOWN) || world.getBlockState(pos.above())
                                                                              .is(BlockTags.LEAVES)) {
@@ -163,12 +165,14 @@ public class SilkMothNestBlock extends BaseBlock implements RenderLayerProvider 
 
     @Override
     @SuppressWarnings("deprecation")
-    public InteractionResult use(BlockState state,
-                                 Level world,
-                                 BlockPos pos,
-                                 Player player,
-                                 InteractionHand hand,
-                                 BlockHitResult hit) {
+    public InteractionResult use(
+            BlockState state,
+            Level world,
+            BlockPos pos,
+            Player player,
+            InteractionHand hand,
+            BlockHitResult hit
+    ) {
         if (hand == InteractionHand.MAIN_HAND) {
             ItemStack stack = player.getMainHandItem();
             if (BaseShearsItem.isShear(stack) && state.getValue(ACTIVE) && state.getValue(FULLNESS) == 3) {

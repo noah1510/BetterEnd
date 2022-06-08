@@ -1,5 +1,16 @@
 package org.betterx.betterend.registry;
 
+import org.betterx.bclib.api.v2.BonemealAPI;
+import org.betterx.bclib.api.v2.ComposterAPI;
+import org.betterx.bclib.api.v2.tag.*;
+import org.betterx.bclib.blocks.BaseVineBlock;
+import org.betterx.bclib.blocks.SimpleLeavesBlock;
+import org.betterx.betterend.BetterEnd;
+import org.betterx.betterend.blocks.basis.EndTerrainBlock;
+import org.betterx.betterend.blocks.basis.PedestalBlock;
+import org.betterx.betterend.item.tool.EndHammerItem;
+import org.betterx.betterend.world.biome.EndBiome;
+
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
@@ -14,16 +25,6 @@ import net.fabricmc.fabric.mixin.object.builder.AbstractBlockAccessor;
 import net.fabricmc.fabric.mixin.object.builder.AbstractBlockSettingsAccessor;
 
 import com.google.common.collect.Lists;
-import org.betterx.bclib.api.v2.BonemealAPI;
-import org.betterx.bclib.api.v2.ComposterAPI;
-import org.betterx.bclib.api.v2.tag.*;
-import org.betterx.bclib.blocks.BaseVineBlock;
-import org.betterx.bclib.blocks.SimpleLeavesBlock;
-import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.blocks.basis.EndTerrainBlock;
-import org.betterx.betterend.blocks.basis.PedestalBlock;
-import org.betterx.betterend.item.tool.EndHammerItem;
-import org.betterx.betterend.world.biome.EndBiome;
 
 import java.util.List;
 
@@ -102,7 +103,7 @@ public class EndTags {
                 CommonBlockTags.END_STONES,
                 EndBlocks.ENDER_ORE,
                 EndBlocks.BRIMSTONE
-                          );
+        );
         TagAPI.addBlockTag(CommonBlockTags.END_STONES, EndBlocks.BRIMSTONE);
         TagAPI.addBlockTag(NamedBlockTags.ANVIL, EndBlocks.AETERNIUM_ANVIL);
         TagAPI.addBlockTag(NamedBlockTags.BEACON_BASE_BLOCKS, EndBlocks.AETERNIUM_BLOCK);
@@ -113,7 +114,7 @@ public class EndTags {
                 EndBlocks.ETERNAL_PEDESTAL,
                 EndBlocks.FLAVOLITE_RUNED_ETERNAL,
                 EndBlocks.FLAVOLITE_RUNED
-                          );
+        );
         TagAPI.addItemTag(CommonItemTags.IRON_INGOTS, EndBlocks.THALLASIUM.ingot);
 
         TagAPI.addItemTag(ALLOYING_IRON, Items.IRON_ORE, Items.DEEPSLATE_IRON_ORE, Items.RAW_IRON);

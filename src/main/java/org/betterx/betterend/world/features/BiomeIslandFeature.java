@@ -1,13 +1,5 @@
 package org.betterx.betterend.world.features;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.BlockPos.MutableBlockPos;
-import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-
 import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
 import org.betterx.bclib.sdf.SDF;
 import org.betterx.bclib.sdf.operator.SDFDisplacement;
@@ -16,6 +8,14 @@ import org.betterx.bclib.sdf.primitive.SDFCappedCone;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.betterend.noise.OpenSimplexNoise;
 import org.betterx.betterend.world.biome.EndBiome;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.BlockPos.MutableBlockPos;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
 public class BiomeIslandFeature extends DefaultFeature {
     private static final MutableBlockPos CENTER = new MutableBlockPos();

@@ -1,13 +1,13 @@
 package org.betterx.betterend.world.features;
 
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
-
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.betterend.registry.EndBlocks;
 
 import java.util.function.Function;
 

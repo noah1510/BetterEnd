@@ -25,13 +25,13 @@ public class ArmoredElytraModel<T extends LivingEntity> extends AgeableListModel
                 PartNames.LEFT_WING,
                 CubeListBuilder.create().texOffs(22, 0).addBox(-10.0f, 0.0f, 0.0f, 10.0f, 20.0f, 2.0f),
                 PartPose.ZERO
-                                       );
+        );
 
         modelPartData.addOrReplaceChild(
                 PartNames.RIGHT_WING,
                 CubeListBuilder.create().mirror().texOffs(22, 0).addBox(0.0f, 0.0f, 0.0f, 10.0f, 20.0f, 2.0f),
                 PartPose.ZERO
-                                       );
+        );
 
         return LayerDefinition.create(modelData, 64, 32);
     }

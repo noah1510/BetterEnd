@@ -1,5 +1,15 @@
 package org.betterx.betterend.world.features.terrain;
 
+import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.blocks.EndBlockProperties;
+import org.betterx.betterend.blocks.SulphurCrystalBlock;
+import org.betterx.betterend.noise.OpenSimplexNoise;
+import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.util.BlockFixer;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
@@ -14,15 +24,6 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 import net.minecraft.world.level.material.Material;
 
 import com.google.common.collect.Sets;
-import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.blocks.EndBlockProperties;
-import org.betterx.betterend.blocks.SulphurCrystalBlock;
-import org.betterx.betterend.noise.OpenSimplexNoise;
-import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.betterend.util.BlockFixer;
 
 import java.util.Set;
 
@@ -129,7 +130,8 @@ public class SulphuricCaveFeature extends DefaultFeature {
             int count = MHelper.randRange(5, 20, random);
             for (int i = 0; i < count; i++) {
                 mut.set(pos)
-                   .move(MHelper.floor(random.nextGaussian() * 2 + 0.5),
+                   .move(
+                           MHelper.floor(random.nextGaussian() * 2 + 0.5),
                            0,
                            MHelper.floor(random.nextGaussian() * 2 + 0.5)
                    );
@@ -166,9 +168,11 @@ public class SulphuricCaveFeature extends DefaultFeature {
                         state = world.getBlockState(mut);
                         while (state.is(Blocks.WATER)) {
                             BlocksHelper.setWithoutUpdate(world, mut, EndBlocks.VENT_BUBBLE_COLUMN.defaultBlockState());
-                            world.scheduleTick(mut.immutable(),
+                            world.scheduleTick(
+                                    mut.immutable(),
                                     EndBlocks.VENT_BUBBLE_COLUMN,
-                                    MHelper.randRange(8, 32, random));
+                                    MHelper.randRange(8, 32, random)
+                            );
                             mut.setY(mut.getY() + 1);
                             state = world.getBlockState(mut);
                         }

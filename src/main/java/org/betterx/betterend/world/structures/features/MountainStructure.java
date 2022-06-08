@@ -1,5 +1,9 @@
 package org.betterx.betterend.world.structures.features;
 
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.registry.EndStructures;
+import org.betterx.betterend.world.structures.piece.CrystalMountainPiece;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.util.RandomSource;
@@ -11,10 +15,6 @@ import net.minecraft.world.level.levelgen.Heightmap.Types;
 import net.minecraft.world.level.levelgen.RandomState;
 import net.minecraft.world.level.levelgen.structure.StructureType;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
-
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.registry.EndStructures;
-import org.betterx.betterend.world.structures.piece.CrystalMountainPiece;
 
 public class MountainStructure extends FeatureBaseStructure {
 

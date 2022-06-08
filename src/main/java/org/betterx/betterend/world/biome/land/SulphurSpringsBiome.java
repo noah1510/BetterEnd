@@ -1,12 +1,5 @@
 package org.betterx.betterend.world.biome.land;
 
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.SurfaceRules;
-import net.minecraft.world.level.levelgen.SurfaceRules.RuleSource;
-import net.minecraft.world.level.levelgen.placement.CaveSurface;
-
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
 import org.betterx.bclib.api.v2.levelgen.surface.SurfaceRuleBuilder;
 import org.betterx.bclib.api.v2.levelgen.surface.rules.SwitchRuleSource;
@@ -14,6 +7,13 @@ import org.betterx.bclib.interfaces.SurfaceMaterialProvider;
 import org.betterx.betterend.registry.*;
 import org.betterx.betterend.world.biome.EndBiome;
 import org.betterx.betterend.world.surface.SulphuricSurfaceNoiseCondition;
+
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.SurfaceRules;
+import net.minecraft.world.level.levelgen.SurfaceRules.RuleSource;
+import net.minecraft.world.level.levelgen.placement.CaveSurface;
 
 import java.util.List;
 
@@ -78,14 +78,18 @@ public class SulphurSpringsBiome extends EndBiome.Config {
                                 SurfaceRules.state(surfaceMaterial().getTopMaterial()),
                                 SULPHURIC_ROCK,
                                 BRIMSTONE
-                               )
+                        )
                 );
                 return super
                         .surface()
                         .rule(2, SurfaceRules.ifTrue(SurfaceRules.ON_FLOOR, surfaceBlockRule))
-                        .rule(2,
-                              SurfaceRules.ifTrue(SurfaceRules.stoneDepthCheck(5, false, CaveSurface.FLOOR),
-                                                  surfaceBlockRule));
+                        .rule(
+                                2,
+                                SurfaceRules.ifTrue(
+                                        SurfaceRules.stoneDepthCheck(5, false, CaveSurface.FLOOR),
+                                        surfaceBlockRule
+                                )
+                        );
             }
         };
     }

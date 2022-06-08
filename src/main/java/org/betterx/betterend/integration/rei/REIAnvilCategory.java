@@ -1,5 +1,7 @@
 package org.betterx.betterend.integration.rei;
 
+import org.betterx.betterend.blocks.basis.EndAnvilBlock;
+
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
@@ -15,7 +17,6 @@ import me.shedaniel.rei.api.client.registry.display.DisplayCategory;
 import me.shedaniel.rei.api.common.category.CategoryIdentifier;
 import me.shedaniel.rei.api.common.entry.EntryIngredient;
 import me.shedaniel.rei.api.common.entry.EntryStack;
-import org.betterx.betterend.blocks.basis.EndAnvilBlock;
 
 import java.util.Arrays;
 import java.util.List;
@@ -71,7 +72,7 @@ public class REIAnvilCategory implements DisplayCategory<REIAnvilDisplay> {
         widgets.add(Widgets.createLabel(
                 new Point(bounds.x + bounds.width - 7, bounds.y + bounds.height - 15),
                 Component.translatable("category.rei.damage.amount&dmg", display.getDamage())
-                                       ).noShadow().rightAligned().color(0xFF404040, 0xFFBBBBBB));
+        ).noShadow().rightAligned().color(0xFF404040, 0xFFBBBBBB));
         widgets.add(Widgets.createSlot(new Point(x - 20, y + 4)).entries(materials).markInput());
         widgets.add(Widgets.createSlot(new Point(x + 1, y + 4)).entries(inputEntries.get(0)).markInput());
         widgets.add(Widgets.createSlot(new Point(x + 61, y + 5))

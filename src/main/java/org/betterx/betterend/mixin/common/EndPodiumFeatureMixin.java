@@ -1,5 +1,10 @@
 package org.betterx.betterend.mixin.common;
 
+import org.betterx.bclib.api.v2.WorldDataAPI;
+import org.betterx.bclib.util.StructureHelper;
+import org.betterx.betterend.BetterEnd;
+import org.betterx.betterend.world.generator.GeneratorOptions;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
 import net.minecraft.nbt.CompoundTag;
@@ -13,10 +18,6 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 
-import org.betterx.bclib.api.v2.WorldDataAPI;
-import org.betterx.bclib.util.StructureHelper;
-import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.world.generator.GeneratorOptions;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -36,8 +37,10 @@ public class EndPodiumFeatureMixin {
     private boolean active;
 
     @Inject(method = "place", at = @At("HEAD"), cancellable = true)
-    private void be_place(FeaturePlaceContext<NoneFeatureConfiguration> featurePlaceContext,
-                          CallbackInfoReturnable<Boolean> info) {
+    private void be_place(
+            FeaturePlaceContext<NoneFeatureConfiguration> featurePlaceContext,
+            CallbackInfoReturnable<Boolean> info
+    ) {
         if (!GeneratorOptions.hasPortal()) {
             info.setReturnValue(false);
             info.cancel();
@@ -46,8 +49,8 @@ public class EndPodiumFeatureMixin {
             WorldGenLevel world = featurePlaceContext.level();
             BlockPos blockPos = be_updatePortalPos(world);
             StructureTemplate structure = StructureHelper.readStructure(BetterEnd.makeID(active
-                                                                                                 ? "portal/end_portal_active"
-                                                                                                 : "portal/end_portal_inactive"));
+                    ? "portal/end_portal_active"
+                    : "portal/end_portal_inactive"));
             Vec3i size = structure.getSize();
             blockPos = blockPos.offset(-(size.getX() >> 1), -3, -(size.getZ() >> 1));
             structure.placeInWorld(world, blockPos, blockPos, new StructurePlaceSettings(), random, 2);

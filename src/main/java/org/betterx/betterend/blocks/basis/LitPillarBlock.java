@@ -1,11 +1,11 @@
 package org.betterx.betterend.blocks.basis;
 
+import org.betterx.bclib.blocks.BaseRotatedPillarBlock;
+
 import net.minecraft.resources.ResourceLocation;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-
-import org.betterx.bclib.blocks.BaseRotatedPillarBlock;
 
 import java.util.Optional;
 

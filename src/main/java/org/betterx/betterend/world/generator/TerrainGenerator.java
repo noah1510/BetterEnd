@@ -1,5 +1,10 @@
 package org.betterx.betterend.world.generator;
 
+import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
+import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.noise.OpenSimplexNoise;
+
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.biome.BiomeSource;
@@ -8,10 +13,6 @@ import net.minecraft.world.level.levelgen.LegacyRandomSource;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
-import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.noise.OpenSimplexNoise;
 
 import java.awt.*;
 import java.util.List;
@@ -59,11 +60,11 @@ public class TerrainGenerator {
         double distortion1 = noise1.eval(x * 0.1, z * 0.1) * 20 + noise2.eval(
                 x * 0.2,
                 z * 0.2
-                                                                             ) * 10 + noise1.eval(x * 0.4, z * 0.4) * 5;
+        ) * 10 + noise1.eval(x * 0.4, z * 0.4) * 5;
         double distortion2 = noise2.eval(x * 0.1, z * 0.1) * 20 + noise1.eval(
                 x * 0.2,
                 z * 0.2
-                                                                             ) * 10 + noise2.eval(x * 0.4, z * 0.4) * 5;
+        ) * 10 + noise2.eval(x * 0.4, z * 0.4) * 5;
         double px = (double) x * scaleXZ + distortion1;
         double pz = (double) z * scaleXZ + distortion2;
 
@@ -160,11 +161,11 @@ public class TerrainGenerator {
         double distortion1 = noise1.eval(px * 0.1, pz * 0.1) * 20 + noise2.eval(px * 0.2, pz * 0.2) * 10 + noise1.eval(
                 px * 0.4,
                 pz * 0.4
-                                                                                                                      ) * 5;
+        ) * 5;
         double distortion2 = noise2.eval(px * 0.1, pz * 0.1) * 20 + noise1.eval(px * 0.2, pz * 0.2) * 10 + noise2.eval(
                 px * 0.4,
                 pz * 0.4
-                                                                                                                      ) * 5;
+        ) * 5;
         px = px * SCALE_XZ + distortion1;
         pz = pz * SCALE_XZ + distortion2;
 

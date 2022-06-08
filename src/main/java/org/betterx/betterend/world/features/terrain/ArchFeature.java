@@ -1,5 +1,14 @@
 package org.betterx.betterend.world.features.terrain;
 
+import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
+import org.betterx.bclib.sdf.SDF;
+import org.betterx.bclib.sdf.operator.SDFDisplacement;
+import org.betterx.bclib.sdf.operator.SDFRotation;
+import org.betterx.bclib.sdf.primitive.SDFTorus;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.noise.OpenSimplexNoise;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
@@ -11,14 +20,6 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 import com.google.common.collect.Lists;
-import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
-import org.betterx.bclib.sdf.SDF;
-import org.betterx.bclib.sdf.operator.SDFDisplacement;
-import org.betterx.bclib.sdf.operator.SDFRotation;
-import org.betterx.bclib.sdf.primitive.SDFTorus;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.noise.OpenSimplexNoise;
 
 import java.util.List;
 import java.util.function.Function;
@@ -57,7 +58,8 @@ public class ArchFeature extends DefaultFeature {
         final float smallRadiusF = smallRadius;
         OpenSimplexNoise noise = new OpenSimplexNoise(random.nextLong());
         arch = new SDFDisplacement().setFunction((vec) -> {
-            return (float) (Math.abs(noise.eval(vec.x() * 0.1,
+            return (float) (Math.abs(noise.eval(
+                    vec.x() * 0.1,
                     vec.y() * 0.1,
                     vec.z() * 0.1
             )) * 3F + Math.abs(noise.eval(

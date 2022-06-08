@@ -15,8 +15,6 @@ import net.minecraft.world.level.levelgen.RandomState;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
 
-import org.betterx.bclib.world.structures.BCLStructure;
-
 import java.util.Optional;
 
 public abstract class FeatureBaseStructure extends Structure {
@@ -28,11 +26,13 @@ public abstract class FeatureBaseStructure extends Structure {
 
     @Override
     public Optional<GenerationStub> findGenerationPoint(GenerationContext context) {
-        BlockPos pos = getGenerationHeight(context.chunkPos(),
-                                           context.chunkGenerator(),
-                                           context.heightAccessor(),
-                                           context.randomState());
-        if (pos.getZ() >= 20 ) {
+        BlockPos pos = getGenerationHeight(
+                context.chunkPos(),
+                context.chunkGenerator(),
+                context.heightAccessor(),
+                context.randomState()
+        );
+        if (pos.getZ() >= 20) {
             return Optional.of(new Structure.GenerationStub(pos, (structurePiecesBuilder) -> {
                 generatePieces(structurePiecesBuilder, context);
             }));
@@ -44,13 +44,17 @@ public abstract class FeatureBaseStructure extends Structure {
         return cg.getBiomeSource().getNoiseBiome(i, j, k, rState.sampler());
     }
 
-    protected abstract void generatePieces(StructurePiecesBuilder structurePiecesBuilder,
-                                           Structure.GenerationContext context);
+    protected abstract void generatePieces(
+            StructurePiecesBuilder structurePiecesBuilder,
+            Structure.GenerationContext context
+    );
 
-    private static BlockPos getGenerationHeight(ChunkPos chunkPos,
-                                                ChunkGenerator chunkGenerator,
-                                                LevelHeightAccessor levelHeightAccessor,
-                                                RandomState rState) {
+    private static BlockPos getGenerationHeight(
+            ChunkPos chunkPos,
+            ChunkGenerator chunkGenerator,
+            LevelHeightAccessor levelHeightAccessor,
+            RandomState rState
+    ) {
         LegacyRandomSource random = new LegacyRandomSource(chunkPos.x + chunkPos.z * 10387313);
         Rotation blockRotation = Rotation.getRandom(random);
 
@@ -67,27 +71,33 @@ public abstract class FeatureBaseStructure extends Structure {
 
         int k = chunkPos.getBlockX(7);
         int l = chunkPos.getBlockZ(7);
-        int m = chunkGenerator.getFirstOccupiedHeight(k,
-                                                      l,
-                                                      Heightmap.Types.WORLD_SURFACE_WG,
-                                                      levelHeightAccessor,
-                                                      rState);
-        int n = chunkGenerator.getFirstOccupiedHeight(k,
-                                                      l + j,
-                                                      Heightmap.Types.WORLD_SURFACE_WG,
-                                                      levelHeightAccessor,
-                                                      rState);
-        int o = chunkGenerator.getFirstOccupiedHeight(k + i,
-                                                      l,
-                                                      Heightmap.Types.WORLD_SURFACE_WG,
-                                                      levelHeightAccessor,
-                                                      rState);
+        int m = chunkGenerator.getFirstOccupiedHeight(
+                k,
+                l,
+                Heightmap.Types.WORLD_SURFACE_WG,
+                levelHeightAccessor,
+                rState
+        );
+        int n = chunkGenerator.getFirstOccupiedHeight(
+                k,
+                l + j,
+                Heightmap.Types.WORLD_SURFACE_WG,
+                levelHeightAccessor,
+                rState
+        );
+        int o = chunkGenerator.getFirstOccupiedHeight(
+                k + i,
+                l,
+                Heightmap.Types.WORLD_SURFACE_WG,
+                levelHeightAccessor,
+                rState
+        );
         int p = chunkGenerator.getFirstOccupiedHeight(
                 k + i,
                 l + j,
                 Heightmap.Types.WORLD_SURFACE_WG,
                 levelHeightAccessor, rState
-                                                     );
+        );
         return new BlockPos(k, l, Math.min(Math.min(m, n), Math.min(o, p)));
     }
 }

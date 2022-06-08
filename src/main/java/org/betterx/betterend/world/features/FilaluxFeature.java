@@ -1,17 +1,17 @@
 package org.betterx.betterend.world.features;
 
+import org.betterx.bclib.blocks.BlockProperties;
+import org.betterx.bclib.blocks.BlockProperties.TripleShape;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-
-import org.betterx.bclib.blocks.BlockProperties;
-import org.betterx.bclib.blocks.BlockProperties.TripleShape;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.registry.EndBlocks;
 
 public class FilaluxFeature extends SkyScatterFeature {
     public FilaluxFeature() {
@@ -27,13 +27,13 @@ public class FilaluxFeature extends SkyScatterFeature {
                 world,
                 blockPos.above(),
                 wings.setValue(BlockStateProperties.FACING, Direction.UP)
-                                     );
+        );
         for (Direction dir : BlocksHelper.HORIZONTAL) {
             BlocksHelper.setWithoutUpdate(
                     world,
                     blockPos.relative(dir),
                     wings.setValue(BlockStateProperties.FACING, dir)
-                                         );
+            );
         }
         int length = MHelper.randRange(1, 3, random);
         for (int i = 1; i <= length; i++) {

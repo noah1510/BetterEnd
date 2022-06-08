@@ -1,5 +1,9 @@
 package org.betterx.betterend.recipe;
 
+import org.betterx.betterend.recipe.builders.InfusionRecipe;
+import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.registry.EndItems;
+
 import net.minecraft.world.item.EnchantedBookItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -7,10 +11,6 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Blocks;
-
-import org.betterx.betterend.recipe.builders.InfusionRecipe;
-import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.betterend.registry.EndItems;
 
 public class InfusionRecipes {
     public static void register() {

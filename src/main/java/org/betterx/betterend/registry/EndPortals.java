@@ -1,5 +1,10 @@
 package org.betterx.betterend.registry;
 
+import org.betterx.bclib.util.ColorUtil;
+import org.betterx.bclib.util.JsonFactory;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.BetterEnd;
+
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
@@ -9,10 +14,6 @@ import net.fabricmc.loader.api.FabricLoader;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import org.betterx.bclib.util.ColorUtil;
-import org.betterx.bclib.util.JsonFactory;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.BetterEnd;
 
 import java.io.File;
 
@@ -127,7 +128,7 @@ public class EndPortals {
                     JsonFactory.getInt(obj, "colorRed", 255),
                     JsonFactory.getInt(obj, "colorGreen", 255),
                     JsonFactory.getInt(obj, "colorBlue", 255)
-                );
+            );
         }
 
         PortalInfo(ResourceLocation dimension, ResourceLocation item, int r, int g, int b) {

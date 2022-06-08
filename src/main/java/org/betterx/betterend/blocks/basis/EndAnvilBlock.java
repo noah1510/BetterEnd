@@ -1,9 +1,9 @@
 package org.betterx.betterend.blocks.basis;
 
-import net.minecraft.world.level.material.MaterialColor;
-
 import org.betterx.bclib.blocks.LeveledAnvilBlock;
 import org.betterx.betterend.complexmaterials.MetalMaterial;
+
+import net.minecraft.world.level.material.MaterialColor;
 
 public class EndAnvilBlock extends LeveledAnvilBlock {
     protected MetalMaterial metalMaterial;

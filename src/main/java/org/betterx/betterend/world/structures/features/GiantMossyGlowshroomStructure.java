@@ -1,12 +1,5 @@
 package org.betterx.betterend.world.structures.features;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.levelgen.structure.StructureType;
-import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
-
-import com.mojang.math.Vector3f;
 import org.betterx.bclib.sdf.SDF;
 import org.betterx.bclib.sdf.operator.*;
 import org.betterx.bclib.sdf.primitive.SDFCappedCone;
@@ -20,6 +13,13 @@ import org.betterx.betterend.blocks.basis.FurBlock;
 import org.betterx.betterend.noise.OpenSimplexNoise;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndStructures;
+
+import com.mojang.math.Vector3f;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.levelgen.structure.StructureType;
+import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
 
 import java.util.List;
 
@@ -61,7 +61,7 @@ public class GiantMossyGlowshroomStructure extends SDFStructureFeature {
             float y = pos.y() + (float) noise.eval(
                     pos.x() * 0.1 + center.getX(),
                     pos.z() * 0.1 + center.getZ()
-                                                  ) * dist * 0.3F - dist * 0.15F;
+            ) * dist * 0.3F - dist * 0.15F;
             pos.set(pos.x(), y, pos.z());
         }).setSource(cones);
 
@@ -105,7 +105,7 @@ public class GiantMossyGlowshroomStructure extends SDFStructureFeature {
                                                                                      .setValue(
                                                                                              MossyGlowshroomCapBlock.TRANSITION,
                                                                                              true
-                                                                                              ));
+                                                                                     ));
                                          return info.getState();
                                      } else if (!EndBlocks.MOSSY_GLOWSHROOM.isTreeLog(info.getStateUp()) || !EndBlocks.MOSSY_GLOWSHROOM
                                              .isTreeLog(info.getStateDown())) {
@@ -118,7 +118,7 @@ public class GiantMossyGlowshroomStructure extends SDFStructureFeature {
                                                                                      .setValue(
                                                                                              MossyGlowshroomCapBlock.TRANSITION,
                                                                                              true
-                                                                                              ));
+                                                                                     ));
                                          return info.getState();
                                      }
 
@@ -131,7 +131,7 @@ public class GiantMossyGlowshroomStructure extends SDFStructureFeature {
                                                      info.getPos().relative(dir),
                                                      EndBlocks.MOSSY_GLOWSHROOM_FUR.defaultBlockState()
                                                                                    .setValue(FurBlock.FACING, dir)
-                                                             );
+                                             );
                                          }
                                      }
 
@@ -139,9 +139,11 @@ public class GiantMossyGlowshroomStructure extends SDFStructureFeature {
                                          info.setBlockPos(
                                                  info.getPos().below(),
                                                  EndBlocks.MOSSY_GLOWSHROOM_FUR.defaultBlockState()
-                                                                               .setValue(FurBlock.FACING,
-                                                                                         Direction.DOWN)
-                                                         );
+                                                                               .setValue(
+                                                                                       FurBlock.FACING,
+                                                                                       Direction.DOWN
+                                                                               )
+                                         );
                                      }
                                  }
                                  return info.getState();

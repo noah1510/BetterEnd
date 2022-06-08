@@ -1,12 +1,12 @@
 package org.betterx.betterend.world.features;
 
+import org.betterx.betterend.util.GlobalState;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
-
-import org.betterx.betterend.util.GlobalState;
 
 public abstract class UnderwaterPlantScatter extends ScatterFeature {
     public UnderwaterPlantScatter(int radius) {
@@ -23,11 +23,13 @@ public abstract class UnderwaterPlantScatter extends ScatterFeature {
     }
 
     @Override
-    public boolean canGenerate(WorldGenLevel world,
-                               RandomSource random,
-                               BlockPos center,
-                               BlockPos blockPos,
-                               float radius) {
+    public boolean canGenerate(
+            WorldGenLevel world,
+            RandomSource random,
+            BlockPos center,
+            BlockPos blockPos,
+            float radius
+    ) {
         return world.getBlockState(blockPos).is(Blocks.WATER);
     }
 

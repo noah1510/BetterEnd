@@ -1,15 +1,5 @@
 package org.betterx.betterend.world.structures.features;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.ChunkPos;
-import net.minecraft.world.level.LevelHeightAccessor;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.chunk.ChunkGenerator;
-import net.minecraft.world.level.levelgen.structure.StructureType;
-import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
-
-import com.mojang.math.Vector3f;
 import org.betterx.bclib.sdf.SDF;
 import org.betterx.bclib.sdf.operator.SDFRotation;
 import org.betterx.bclib.sdf.operator.SDFTranslate;
@@ -19,6 +9,16 @@ import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndStructures;
 import org.betterx.betterend.world.structures.piece.VoxelPiece;
+
+import com.mojang.math.Vector3f;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.ChunkPos;
+import net.minecraft.world.level.LevelHeightAccessor;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.structure.StructureType;
+import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +81,7 @@ public class GiantIceStarStructure extends SDFStructureFeature {
                     px,
                     py,
                     pz
-                                                                             ) * 0.4F + random.nextFloat() * randScale;
+            ) * 0.4F + random.nextFloat() * randScale;
             if (distance < ancientRadius) {
                 return ancient;
             } else if (distance < denseRadius) {

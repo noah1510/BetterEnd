@@ -1,13 +1,13 @@
 package org.betterx.betterend.world.surface;
 
-import net.minecraft.core.Registry;
-
-import com.mojang.serialization.Codec;
 import org.betterx.bclib.interfaces.NumericProvider;
 import org.betterx.bclib.mixin.common.SurfaceRulesContextAccessor;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.noise.OpenSimplexNoise;
+
+import com.mojang.serialization.Codec;
+import net.minecraft.core.Registry;
 
 /**
  * Noise source that returns a value in [0, 1]

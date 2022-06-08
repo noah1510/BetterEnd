@@ -1,5 +1,7 @@
 package org.betterx.betterend.particle;
 
+import org.betterx.bclib.util.MHelper;
+
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.BlockPos.MutableBlockPos;
@@ -8,22 +10,22 @@ import net.minecraft.core.particles.SimpleParticleType;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
-import org.betterx.bclib.util.MHelper;
-
 @Environment(EnvType.CLIENT)
 public class ParticleGeyser extends TextureSheetParticle {
     private final MutableBlockPos mut = new MutableBlockPos();
     private boolean changeDir = false;
     private boolean check = true;
 
-    protected ParticleGeyser(ClientLevel world,
-                             double x,
-                             double y,
-                             double z,
-                             double vx,
-                             double vy,
-                             double vz,
-                             SpriteSet sprites) {
+    protected ParticleGeyser(
+            ClientLevel world,
+            double x,
+            double y,
+            double z,
+            double vx,
+            double vy,
+            double vz,
+            SpriteSet sprites
+    ) {
         super(world, x, y, z, vx, vy, vz);
         pickSprite(sprites);
         this.lifetime = MHelper.randRange(400, 800, random);
@@ -75,14 +77,16 @@ public class ParticleGeyser extends TextureSheetParticle {
         }
 
         @Override
-        public Particle createParticle(SimpleParticleType type,
-                                       ClientLevel world,
-                                       double x,
-                                       double y,
-                                       double z,
-                                       double vX,
-                                       double vY,
-                                       double vZ) {
+        public Particle createParticle(
+                SimpleParticleType type,
+                ClientLevel world,
+                double x,
+                double y,
+                double z,
+                double vX,
+                double vY,
+                double vZ
+        ) {
             return new ParticleGeyser(world, x, y, z, 0, 0.125, 0, sprites);
         }
     }

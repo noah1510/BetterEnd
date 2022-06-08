@@ -1,5 +1,13 @@
 package org.betterx.betterend.recipe.builders;
 
+import org.betterx.bclib.interfaces.UnknownReceipBookCategory;
+import org.betterx.bclib.recipes.BCLRecipeManager;
+import org.betterx.bclib.util.ItemUtil;
+import org.betterx.betterend.BetterEnd;
+import org.betterx.betterend.config.Configs;
+import org.betterx.betterend.rituals.InfusionRitual;
+
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.TagParser;
@@ -18,13 +26,6 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
 import com.google.gson.JsonObject;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import org.betterx.bclib.interfaces.UnknownReceipBookCategory;
-import org.betterx.bclib.recipes.BCLRecipeManager;
-import org.betterx.bclib.util.ItemUtil;
-import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.config.Configs;
-import org.betterx.betterend.rituals.InfusionRitual;
 
 import java.util.Arrays;
 
@@ -35,7 +36,7 @@ public class InfusionRecipe implements Recipe<InfusionRitual>, UnknownReceipBook
             BetterEnd.MOD_ID,
             GROUP,
             new Serializer()
-                                                                                   );
+    );
 
     private final ResourceLocation id;
     private final Ingredient[] catalysts;
@@ -184,14 +185,14 @@ public class InfusionRecipe implements Recipe<InfusionRitual>, UnknownReceipBook
                     BetterEnd.LOGGER.warning(
                             "Input for Infusion recipe can't be 'null', recipe {} will be ignored!",
                             id
-                                            );
+                    );
                     return;
                 }
                 if (output == null) {
                     BetterEnd.LOGGER.warning(
                             "Output for Infusion recipe can't be 'null', recipe {} will be ignored!",
                             id
-                                            );
+                    );
                     return;
                 }
                 InfusionRecipe recipe = new InfusionRecipe(id, input, output);

@@ -1,5 +1,13 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.client.render.BCLRenderLayer;
+import org.betterx.bclib.interfaces.CustomColorProvider;
+import org.betterx.bclib.interfaces.RenderLayerProvider;
+import org.betterx.betterend.interfaces.TeleportingEntity;
+import org.betterx.betterend.registry.EndParticles;
+import org.betterx.betterend.registry.EndPortals;
+import org.betterx.betterend.rituals.EternalRitual;
+
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.core.BlockPos;
@@ -30,14 +38,6 @@ import net.minecraft.world.level.dimension.DimensionType;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-
-import org.betterx.bclib.client.render.BCLRenderLayer;
-import org.betterx.bclib.interfaces.CustomColorProvider;
-import org.betterx.bclib.interfaces.RenderLayerProvider;
-import org.betterx.betterend.interfaces.TeleportingEntity;
-import org.betterx.betterend.registry.EndParticles;
-import org.betterx.betterend.registry.EndPortals;
-import org.betterx.betterend.rituals.EternalRitual;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -70,7 +70,7 @@ public class EndPortalBlock extends NetherPortalBlock implements RenderLayerProv
                     0.5F,
                     random.nextFloat() * 0.4F + 0.8F,
                     false
-                                );
+            );
         }
 
         double x = pos.getX() + random.nextDouble();
@@ -91,12 +91,14 @@ public class EndPortalBlock extends NetherPortalBlock implements RenderLayerProv
     }
 
     @Override
-    public BlockState updateShape(BlockState state,
-                                  Direction direction,
-                                  BlockState newState,
-                                  LevelAccessor world,
-                                  BlockPos pos,
-                                  BlockPos posFrom) {
+    public BlockState updateShape(
+            BlockState state,
+            Direction direction,
+            BlockState newState,
+            LevelAccessor world,
+            BlockPos pos,
+            BlockPos posFrom
+    ) {
         return state;
     }
 
@@ -119,7 +121,7 @@ public class EndPortalBlock extends NetherPortalBlock implements RenderLayerProv
                     exitPos.getZ() + 0.5,
                     entity.getYRot(),
                     entity.getXRot()
-                                              );
+            );
         } else {
             ((TeleportingEntity) entity).be_setExitPos(exitPos);
             Optional<Entity> teleported = Optional.ofNullable(entity.changeDimension(destination));
@@ -136,10 +138,12 @@ public class EndPortalBlock extends NetherPortalBlock implements RenderLayerProv
         return BCLRenderLayer.TRANSLUCENT;
     }
 
-    private BlockPos findExitPos(ServerLevel currentWorld,
-                                 ServerLevel targetWorld,
-                                 BlockPos currentPos,
-                                 Entity entity) {
+    private BlockPos findExitPos(
+            ServerLevel currentWorld,
+            ServerLevel targetWorld,
+            BlockPos currentPos,
+            Entity entity
+    ) {
         if (targetWorld == null) return null;
         Registry<DimensionType> registry = targetWorld.registryAccess()
                                                       .registryOrThrow(Registry.DIMENSION_TYPE_REGISTRY);
@@ -149,10 +153,11 @@ public class EndPortalBlock extends NetherPortalBlock implements RenderLayerProv
         double currentMultiplier = Objects.requireNonNull(registry.get(currentWorldId)).coordinateScale();
         double multiplier = targetMultiplier > currentMultiplier ? 1.0 / targetMultiplier : currentMultiplier;
         MutableBlockPos basePos = currentPos.mutable()
-                                            .set(currentPos.getX() * multiplier,
-                                                 currentPos.getY(),
-                                                 currentPos.getZ() * multiplier
-                                                );
+                                            .set(
+                                                    currentPos.getX() * multiplier,
+                                                    currentPos.getY(),
+                                                    currentPos.getZ() * multiplier
+                                            );
         MutableBlockPos checkPos = basePos.mutable();
         BlockState currentState = currentWorld.getBlockState(currentPos);
         int radius = (EternalRitual.SEARCH_RADIUS >> 4) + 1;
@@ -162,7 +167,7 @@ public class EndPortalBlock extends NetherPortalBlock implements RenderLayerProv
                 radius,
                 this,
                 state -> state.is(this) && state.getValue(PORTAL).equals(currentState.getValue(PORTAL))
-                                             );
+        );
         if (checkPos != null) {
             BlockState checkState = targetWorld.getBlockState(checkPos);
             Axis axis = checkState.getValue(AXIS);

@@ -1,5 +1,8 @@
 package org.betterx.betterend.item.model;
 
+import org.betterx.betterend.item.CrystaliteArmor;
+import org.betterx.betterend.registry.EndItems;
+
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.resources.ResourceLocation;
@@ -12,8 +15,6 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
 import com.google.common.collect.Lists;
-import org.betterx.betterend.item.CrystaliteArmor;
-import org.betterx.betterend.registry.EndItems;
 import shadow.fabric.api.client.rendering.v1.ArmorRenderingRegistry;
 
 import org.jetbrains.annotations.NotNull;
@@ -33,22 +34,26 @@ public class CrystaliteArmorProvider implements ArmorRenderingRegistry.ModelProv
     private final static CrystaliteBootsModel BOOTS_MODEL = CrystaliteBootsModel.createModel(null);
 
     //@Override
-    public @NotNull ResourceLocation getArmorTexture(LivingEntity entity,
-                                                     ItemStack stack,
-                                                     EquipmentSlot slot,
-                                                     boolean secondLayer,
-                                                     @Nullable String suffix,
-                                                     ResourceLocation defaultTexture) {
+    public @NotNull ResourceLocation getArmorTexture(
+            LivingEntity entity,
+            ItemStack stack,
+            EquipmentSlot slot,
+            boolean secondLayer,
+            @Nullable String suffix,
+            ResourceLocation defaultTexture
+    ) {
         if (!isStackValid(stack)) return defaultTexture;
         if (secondLayer) return SECOND_LAYER;
         return FIRST_LAYER;
     }
 
     //@Override
-    public @NotNull HumanoidModel<LivingEntity> getArmorModel(LivingEntity entity,
-                                                              ItemStack stack,
-                                                              EquipmentSlot slot,
-                                                              HumanoidModel<LivingEntity> defaultModel) {
+    public @NotNull HumanoidModel<LivingEntity> getArmorModel(
+            LivingEntity entity,
+            ItemStack stack,
+            EquipmentSlot slot,
+            HumanoidModel<LivingEntity> defaultModel
+    ) {
         if (!isStackValid(stack)) return defaultModel;
         switch (slot) {
             case HEAD: {
@@ -83,7 +88,7 @@ public class CrystaliteArmorProvider implements ArmorRenderingRegistry.ModelProv
                 EndItems.CRYSTALITE_ELYTRA,
                 EndItems.CRYSTALITE_LEGGINGS,
                 EndItems.CRYSTALITE_BOOTS
-                                 );
+        );
     }
 
     private boolean isStackValid(ItemStack stack) {

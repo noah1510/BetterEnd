@@ -1,5 +1,9 @@
 package org.betterx.betterend.entity.model;
 
+import org.betterx.betterend.entity.DragonflyEntity;
+
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartNames;
@@ -9,10 +13,6 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.client.renderer.RenderType;
-
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import org.betterx.betterend.entity.DragonflyEntity;
 
 public class DragonflyEntityModel extends EntityModel<DragonflyEntity> {
     private final ModelPart model;
@@ -34,61 +34,61 @@ public class DragonflyEntityModel extends EntityModel<DragonflyEntity> {
                 PartNames.BODY,
                 CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -4.0F, 0.0F, 4.0F, 4.0F, 9.0F),
                 PartPose.offset(2.0F, 21.5F, -4.0F)
-                                                                 );
+        );
 
         bodyPart.addOrReplaceChild(
                 PartNames.HEAD,
                 CubeListBuilder.create().texOffs(17, 0).addBox(-1.5F, -1.5F, -2.5F, 3.0F, 3.0F, 3.0F),
                 PartPose.offsetAndRotation(-2.0F, -2.0F, 0.0F, 0.3491F, 0.0F, 0.0F)
-                                  );
+        );
 
         PartDefinition tailPart = bodyPart.addOrReplaceChild(
                 PartNames.TAIL,
                 CubeListBuilder.create().texOffs(26, 0).addBox(-1.5F, -1.5F, 0.0F, 3.0F, 3.0F, 7.0F),
                 PartPose.offset(-2.0F, -2.0F, 9.0F)
-                                                            );
+        );
 
         tailPart.addOrReplaceChild(
                 PartNames.TAIL_FIN,
                 CubeListBuilder.create().texOffs(36, 0).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 10.0F),
                 PartPose.offset(0.0F, 0.0F, 7.0F)
-                                  );
+        );
 
         bodyPart.addOrReplaceChild(
                 PartNames.LEFT_WING,
                 CubeListBuilder.create().texOffs(0, 13).addBox(-15.0F, 0.0F, -3.0F, 15.0F, 0.0F, 4.0F),
                 PartPose.offset(-2.0F, -4.0F, 4.0F)
-                                  );
+        );
 
         bodyPart.addOrReplaceChild(
                 PartNames.RIGHT_WING,
                 CubeListBuilder.create().mirror().texOffs(0, 13).addBox(0.0F, 0.0F, -3.0F, 15.0F, 0.0F, 4.0F),
                 PartPose.offset(-2.0F, -4.0F, 4.0F)
-                                  );
+        );
 
         bodyPart.addOrReplaceChild(
                 PartNames.LEFT_WING_BASE,
                 CubeListBuilder.create().texOffs(4, 17).addBox(-12.0F, 0.0F, -2.5F, 12.0F, 0.0F, 3.0F),
                 PartPose.offset(-2.0F, -4.0F, 8.0F)
-                                  );
+        );
 
         bodyPart.addOrReplaceChild(
                 PartNames.RIGHT_WING_BASE,
                 CubeListBuilder.create().mirror().texOffs(4, 17).addBox(0.0F, 0.0F, -2.5F, 12.0F, 0.0F, 3.0F),
                 PartPose.offset(-2.0F, -4.0F, 8.0F)
-                                  );
+        );
 
         bodyPart.addOrReplaceChild(
                 PartNames.LEFT_LEG,
                 CubeListBuilder.create().texOffs(50, 1).addBox(0.0F, 0.0F, 0.0F, 0.0F, 3.0F, 6.0F),
                 PartPose.offsetAndRotation(-1.0F, 0.0F, 1.0F, 0.0F, 0.0F, -0.5236F)
-                                  );
+        );
 
         bodyPart.addOrReplaceChild(
                 PartNames.RIGHT_LEG,
                 CubeListBuilder.create().texOffs(50, 1).addBox(0.0F, 0.0F, 0.0F, 0.0F, 3.0F, 6.0F),
                 PartPose.offsetAndRotation(-3.0F, 0.0F, 1.0F, 0.0F, 0.0F, 0.5236F)
-                                  );
+        );
 
         return LayerDefinition.create(modelData, 64, 64);
     }
@@ -109,12 +109,14 @@ public class DragonflyEntityModel extends EntityModel<DragonflyEntity> {
     }
 
     @Override
-    public void setupAnim(DragonflyEntity entity,
-                          float limbAngle,
-                          float limbDistance,
-                          float animationProgress,
-                          float headYaw,
-                          float headPitch) {
+    public void setupAnim(
+            DragonflyEntity entity,
+            float limbAngle,
+            float limbDistance,
+            float animationProgress,
+            float headYaw,
+            float headPitch
+    ) {
         float progress = animationProgress * 2F;
 
         wing_1.zRot = 0.3491F + (float) Math.sin(progress) * 0.3491F;
@@ -131,14 +133,16 @@ public class DragonflyEntityModel extends EntityModel<DragonflyEntity> {
     }
 
     @Override
-    public void renderToBuffer(PoseStack matrices,
-                               VertexConsumer vertices,
-                               int light,
-                               int overlay,
-                               float red,
-                               float green,
-                               float blue,
-                               float alpha) {
+    public void renderToBuffer(
+            PoseStack matrices,
+            VertexConsumer vertices,
+            int light,
+            int overlay,
+            float red,
+            float green,
+            float blue,
+            float alpha
+    ) {
         model.render(matrices, vertices, light, overlay);
     }
 }

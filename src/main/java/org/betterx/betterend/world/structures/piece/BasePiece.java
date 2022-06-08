@@ -22,8 +22,10 @@ public abstract class BasePiece extends StructurePiece {
     }
 
     @Override
-    protected void addAdditionalSaveData(StructurePieceSerializationContext structurePieceSerializationContext,
-                                         CompoundTag compoundTag) {
+    protected void addAdditionalSaveData(
+            StructurePieceSerializationContext structurePieceSerializationContext,
+            CompoundTag compoundTag
+    ) {
         addAdditionalSaveData(compoundTag);
     }
 }

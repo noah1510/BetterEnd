@@ -1,5 +1,18 @@
 package org.betterx.betterend.world.features.trees;
 
+import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
+import org.betterx.bclib.sdf.SDF;
+import org.betterx.bclib.sdf.operator.*;
+import org.betterx.bclib.sdf.primitive.SDFSphere;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.bclib.util.SplineHelper;
+import org.betterx.betterend.blocks.UmbrellaTreeClusterBlock;
+import org.betterx.betterend.blocks.UmbrellaTreeMembraneBlock;
+import org.betterx.betterend.registry.EndBlocks;
+
+import com.mojang.math.Vector3f;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
@@ -13,18 +26,6 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 import net.minecraft.world.level.material.Material;
 
 import com.google.common.collect.Lists;
-import com.mojang.math.Vector3f;
-import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
-import org.betterx.bclib.sdf.SDF;
-import org.betterx.bclib.sdf.operator.*;
-import org.betterx.bclib.sdf.primitive.SDFSphere;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.bclib.util.SplineHelper;
-import org.betterx.betterend.blocks.UmbrellaTreeClusterBlock;
-import org.betterx.betterend.blocks.UmbrellaTreeMembraneBlock;
-import org.betterx.betterend.registry.EndBlocks;
 
 import java.util.List;
 import java.util.function.Function;
@@ -162,11 +163,13 @@ public class UmbrellaTreeFeature extends DefaultFeature {
         }
     }
 
-    private SDF makeMembrane(WorldGenLevel world,
-                             float radius,
-                             RandomSource random,
-                             BlockState membrane,
-                             BlockState center) {
+    private SDF makeMembrane(
+            WorldGenLevel world,
+            float radius,
+            RandomSource random,
+            BlockState membrane,
+            BlockState center
+    ) {
         SDF sphere = new SDFSphere().setRadius(radius).setBlock(membrane);
         SDF sub = new SDFTranslate().setTranslate(0, -4, 0).setSource(sphere);
         sphere = new SDFSubtraction().setSourceA(sphere).setSourceB(sub);

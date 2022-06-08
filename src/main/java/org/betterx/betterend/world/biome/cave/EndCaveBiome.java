@@ -1,13 +1,5 @@
 package org.betterx.betterend.world.biome.cave;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.GenerationStep;
-import net.minecraft.world.level.levelgen.feature.Feature;
-
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder.BiomeSupplier;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeSettings;
@@ -19,6 +11,14 @@ import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.registry.EndSounds;
 import org.betterx.betterend.world.biome.EndBiome;
 import org.betterx.betterend.world.features.terrain.caves.CaveChunkPopulatorFeature;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.feature.Feature;
 
 public class EndCaveBiome extends EndBiome {
     public static abstract class Config extends EndBiome.Config {

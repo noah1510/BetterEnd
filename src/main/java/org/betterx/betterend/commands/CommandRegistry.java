@@ -1,5 +1,13 @@
 package org.betterx.betterend.commands;
 
+import org.betterx.bclib.api.v2.poi.BCLPoiType;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.betterend.registry.EndPoiTypes;
+
+import com.mojang.brigadier.Command;
+import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.context.CommandContext;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -15,14 +23,6 @@ import net.minecraft.world.phys.Vec3;
 
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 
-import com.mojang.brigadier.Command;
-import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.context.CommandContext;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import org.betterx.bclib.api.v2.poi.BCLPoiType;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.betterend.registry.EndPoiTypes;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -32,21 +32,23 @@ public class CommandRegistry {
         CommandRegistrationCallback.EVENT.register(CommandRegistry::register);
     }
 
-    private static void register(CommandDispatcher<CommandSourceStack> dispatcher,
-                                 CommandBuildContext commandBuildContext,
-                                 Commands.CommandSelection commandSelection) {
+    private static void register(
+            CommandDispatcher<CommandSourceStack> dispatcher,
+            CommandBuildContext commandBuildContext,
+            Commands.CommandSelection commandSelection
+    ) {
         dispatcher.register(
                 Commands.literal("be")
                         .requires(source -> source.hasPermission(Commands.LEVEL_OWNERS))
                         .then(Commands.literal("locate_portal")
                                       .requires(source -> source.hasPermission(Commands.LEVEL_OWNERS))
                                       .executes(ctx -> find_poi(ctx, EndPoiTypes.ETERNAL_PORTAL_INACTIVE))
-                             )
-                           );
+                        )
+        );
     }
 
     private static final Map<Holder<Biome>, BlockState> biomeMap = new HashMap<>();
-    private static int biomeMapIdx = 0;
+    private static final int biomeMapIdx = 0;
     private static final BlockState[] states = {
             Blocks.RED_STAINED_GLASS.defaultBlockState(),
             Blocks.BLUE_STAINED_GLASS.defaultBlockState(),

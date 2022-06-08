@@ -1,5 +1,10 @@
 package org.betterx.betterend.world.structures.features;
 
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.registry.EndStructures;
+import org.betterx.betterend.world.structures.piece.PaintedMountainPiece;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.util.RandomSource;
@@ -13,11 +18,6 @@ import net.minecraft.world.level.levelgen.Heightmap.Types;
 import net.minecraft.world.level.levelgen.RandomState;
 import net.minecraft.world.level.levelgen.structure.StructureType;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
-
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.betterend.registry.EndStructures;
-import org.betterx.betterend.world.structures.piece.PaintedMountainPiece;
 
 public class PaintedMountainStructure extends FeatureBaseStructure {
     private static final BlockState[] VARIANTS;
@@ -50,12 +50,14 @@ public class PaintedMountainStructure extends FeatureBaseStructure {
             for (int i = 0; i < count; i++) {
                 slises[i] = VARIANTS[random.nextInt(VARIANTS.length)];
             }
-            structurePiecesBuilder.addPiece(new PaintedMountainPiece(new BlockPos(x, y, z),
-                                                                     radius,
-                                                                     height,
-                                                                     random,
-                                                                     biome,
-                                                                     slises));
+            structurePiecesBuilder.addPiece(new PaintedMountainPiece(
+                    new BlockPos(x, y, z),
+                    radius,
+                    height,
+                    random,
+                    biome,
+                    slises
+            ));
         }
 
         //this.calculateBoundingBox();

@@ -1,5 +1,11 @@
 package org.betterx.betterend.registry;
 
+import org.betterx.bclib.api.v2.spawning.SpawnRuleBuilder;
+import org.betterx.bclib.util.ColorUtil;
+import org.betterx.betterend.BetterEnd;
+import org.betterx.betterend.config.Configs;
+import org.betterx.betterend.entity.*;
+
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.*;
@@ -9,12 +15,6 @@ import net.minecraft.world.level.levelgen.Heightmap.Types;
 
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
-
-import org.betterx.bclib.api.v2.spawning.SpawnRuleBuilder;
-import org.betterx.bclib.util.ColorUtil;
-import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.config.Configs;
-import org.betterx.betterend.entity.*;
 
 public class EndEntities {
     public static final EntityType<DragonflyEntity> DRAGONFLY = register(
@@ -27,7 +27,7 @@ public class EndEntities {
             true,
             ColorUtil.color(32, 42, 176),
             ColorUtil.color(115, 225, 249)
-                                                                        );
+    );
     public static final EntityType<EndSlimeEntity> END_SLIME = register(
             "end_slime",
             MobCategory.MONSTER,
@@ -38,7 +38,7 @@ public class EndEntities {
             false,
             ColorUtil.color(28, 28, 28),
             ColorUtil.color(99, 11, 99)
-                                                                       );
+    );
     public static final EntityType<EndFishEntity> END_FISH = register(
             "end_fish",
             MobCategory.WATER_AMBIENT,
@@ -49,7 +49,7 @@ public class EndEntities {
             true,
             ColorUtil.color(3, 50, 76),
             ColorUtil.color(120, 206, 255)
-                                                                     );
+    );
     public static final EntityType<ShadowWalkerEntity> SHADOW_WALKER = register(
             "shadow_walker",
             MobCategory.MONSTER,
@@ -60,7 +60,7 @@ public class EndEntities {
             true,
             ColorUtil.color(30, 30, 30),
             ColorUtil.color(5, 5, 5)
-                                                                               );
+    );
     public static final EntityType<CubozoaEntity> CUBOZOA = register(
             "cubozoa",
             MobCategory.WATER_AMBIENT,
@@ -71,7 +71,7 @@ public class EndEntities {
             true,
             ColorUtil.color(151, 77, 181),
             ColorUtil.color(93, 176, 238)
-                                                                    );
+    );
     public static final EntityType<SilkMothEntity> SILK_MOTH = register(
             "silk_moth",
             MobCategory.AMBIENT,
@@ -82,7 +82,7 @@ public class EndEntities {
             true,
             ColorUtil.color(198, 138, 204),
             ColorUtil.color(242, 220, 236)
-                                                                       );
+    );
 
     public static void register() {
         // Air //
@@ -109,11 +109,13 @@ public class EndEntities {
         SpawnRuleBuilder.start(CUBOZOA).maxNearby(8, 64).buildInWater(Types.MOTION_BLOCKING);
     }
 
-    protected static <T extends Entity> EntityType<T> register(String name,
-                                                               MobCategory group,
-                                                               float width,
-                                                               float height,
-                                                               EntityFactory<T> entity) {
+    protected static <T extends Entity> EntityType<T> register(
+            String name,
+            MobCategory group,
+            float width,
+            float height,
+            EntityFactory<T> entity
+    ) {
         ResourceLocation id = BetterEnd.makeID(name);
         EntityType<T> type = FabricEntityTypeBuilder
                 .create(group, entity)
@@ -125,21 +127,23 @@ public class EndEntities {
         return type;
     }
 
-    private static <T extends Mob> EntityType<T> register(String name,
-                                                          MobCategory group,
-                                                          float width,
-                                                          float height,
-                                                          EntityFactory<T> entity,
-                                                          Builder attributes,
-                                                          boolean fixedSize,
-                                                          int eggColor,
-                                                          int dotsColor) {
+    private static <T extends Mob> EntityType<T> register(
+            String name,
+            MobCategory group,
+            float width,
+            float height,
+            EntityFactory<T> entity,
+            Builder attributes,
+            boolean fixedSize,
+            int eggColor,
+            int dotsColor
+    ) {
         ResourceLocation id = BetterEnd.makeID(name);
         EntityType<T> type = FabricEntityTypeBuilder
                 .create(group, entity)
                 .dimensions(fixedSize
-                                    ? EntityDimensions.fixed(width, height)
-                                    : EntityDimensions.scalable(width, height))
+                        ? EntityDimensions.fixed(width, height)
+                        : EntityDimensions.scalable(width, height))
                 .build();
         if (Configs.ENTITY_CONFIG.getBooleanRoot(id.getPath(), true)) {
             FabricDefaultAttributeRegistry.register(type, attributes);

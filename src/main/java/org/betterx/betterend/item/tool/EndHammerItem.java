@@ -1,5 +1,12 @@
 package org.betterx.betterend.item.tool;
 
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
+import org.betterx.bclib.api.v2.tag.CommonItemTags;
+import org.betterx.bclib.client.models.ModelsHelper;
+import org.betterx.bclib.interfaces.ItemModelProvider;
+import org.betterx.bclib.interfaces.TagProvider;
+import org.betterx.bclib.util.MHelper;
+
 import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
@@ -27,12 +34,6 @@ import net.fabricmc.api.Environment;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableMultimap.Builder;
 import com.google.common.collect.Multimap;
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
-import org.betterx.bclib.api.v2.tag.CommonItemTags;
-import org.betterx.bclib.client.models.ModelsHelper;
-import org.betterx.bclib.interfaces.ItemModelProvider;
-import org.betterx.bclib.interfaces.TagProvider;
-import org.betterx.bclib.util.MHelper;
 
 import java.util.List;
 import java.util.UUID;
@@ -48,28 +49,31 @@ public class EndHammerItem extends DiggerItem implements ItemModelProvider, TagP
         Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(
                 Attributes.ATTACK_DAMAGE,
-                new AttributeModifier(BASE_ATTACK_DAMAGE_UUID,
-                                      "Weapon modifier",
-                                      attackDamage + material.getAttackDamageBonus(),
-                                      AttributeModifier.Operation.ADDITION
+                new AttributeModifier(
+                        BASE_ATTACK_DAMAGE_UUID,
+                        "Weapon modifier",
+                        attackDamage + material.getAttackDamageBonus(),
+                        AttributeModifier.Operation.ADDITION
                 )
-                   );
+        );
         builder.put(
                 Attributes.ATTACK_SPEED,
-                new AttributeModifier(BASE_ATTACK_SPEED_UUID,
-                                      "Weapon modifier",
-                                      attackSpeed,
-                                      AttributeModifier.Operation.ADDITION
+                new AttributeModifier(
+                        BASE_ATTACK_SPEED_UUID,
+                        "Weapon modifier",
+                        attackSpeed,
+                        AttributeModifier.Operation.ADDITION
                 )
-                   );
+        );
         builder.put(
                 Attributes.ATTACK_KNOCKBACK,
-                new AttributeModifier(ATTACK_KNOCKBACK_MODIFIER_ID,
-                                      "Weapon modifier",
-                                      knockback,
-                                      AttributeModifier.Operation.ADDITION
+                new AttributeModifier(
+                        ATTACK_KNOCKBACK_MODIFIER_ID,
+                        "Weapon modifier",
+                        knockback,
+                        AttributeModifier.Operation.ADDITION
                 )
-                   );
+        );
         this.attributeModifiers = builder.build();
     }
 

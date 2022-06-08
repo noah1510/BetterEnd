@@ -1,5 +1,9 @@
 package org.betterx.betterend.blocks.basis;
 
+import org.betterx.bclib.blocks.BaseBlockNotFull;
+import org.betterx.bclib.blocks.BlockProperties;
+import org.betterx.bclib.client.models.ModelsHelper;
+
 import net.minecraft.client.resources.model.UnbakedModel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -23,10 +27,6 @@ import net.minecraft.world.level.material.Fluids;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-
-import org.betterx.bclib.blocks.BaseBlockNotFull;
-import org.betterx.bclib.blocks.BlockProperties;
-import org.betterx.bclib.client.models.ModelsHelper;
 
 import java.util.Map;
 
@@ -91,12 +91,14 @@ public class EndLanternBlock extends BaseBlockNotFull implements SimpleWaterlogg
     }
 
     @Override
-    public BlockState updateShape(BlockState state,
-                                  Direction facing,
-                                  BlockState neighborState,
-                                  LevelAccessor world,
-                                  BlockPos pos,
-                                  BlockPos neighborPos) {
+    public BlockState updateShape(
+            BlockState state,
+            Direction facing,
+            BlockState neighborState,
+            LevelAccessor world,
+            BlockPos pos,
+            BlockPos neighborPos
+    ) {
         Boolean water = state.getValue(WATERLOGGED);
         if (water) {
             world.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
@@ -125,9 +127,11 @@ public class EndLanternBlock extends BaseBlockNotFull implements SimpleWaterlogg
 
     @Override
     @Environment(EnvType.CLIENT)
-    public UnbakedModel getModelVariant(ResourceLocation stateId,
-                                        BlockState blockState,
-                                        Map<ResourceLocation, UnbakedModel> modelCache) {
+    public UnbakedModel getModelVariant(
+            ResourceLocation stateId,
+            BlockState blockState,
+            Map<ResourceLocation, UnbakedModel> modelCache
+    ) {
         String floor = blockState.getValue(IS_FLOOR) ? "_floor" : "";
         ResourceLocation modelId = new ResourceLocation(stateId.getNamespace(), "block/" + stateId.getPath() + floor);
         registerBlockModel(stateId, modelId, blockState, modelCache);

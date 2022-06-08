@@ -1,5 +1,16 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.api.v2.tag.NamedBlockTags;
+import org.betterx.bclib.api.v2.tag.TagAPI;
+import org.betterx.bclib.blocks.BaseBlock;
+import org.betterx.bclib.blocks.BaseLeavesBlock;
+import org.betterx.bclib.interfaces.CustomColorProvider;
+import org.betterx.bclib.interfaces.tools.AddMineableShears;
+import org.betterx.bclib.util.ColorUtil;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.noise.OpenSimplexNoise;
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.util.Mth;
@@ -16,17 +27,6 @@ import net.minecraft.world.level.storage.loot.LootContext;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
-import org.betterx.bclib.api.v2.tag.NamedBlockTags;
-import org.betterx.bclib.api.v2.tag.TagAPI;
-import org.betterx.bclib.blocks.BaseBlock;
-import org.betterx.bclib.blocks.BaseLeavesBlock;
-import org.betterx.bclib.interfaces.CustomColorProvider;
-import org.betterx.bclib.interfaces.tools.AddMineableShears;
-import org.betterx.bclib.util.ColorUtil;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.noise.OpenSimplexNoise;
-import org.betterx.betterend.registry.EndBlocks;
-
 import java.util.List;
 
 public class HelixTreeLeavesBlock extends BaseBlock implements CustomColorProvider, AddMineableShears {
@@ -35,12 +35,12 @@ public class HelixTreeLeavesBlock extends BaseBlock implements CustomColorProvid
 
     public HelixTreeLeavesBlock() {
         super(FabricBlockSettings
-                      .of(Material.LEAVES)
-                      .mapColor(MaterialColor.COLOR_ORANGE)
-                      .sound(SoundType.WART_BLOCK)
-                      .sound(SoundType.GRASS)
-                      .strength(0.2F)
-             );
+                .of(Material.LEAVES)
+                .mapColor(MaterialColor.COLOR_ORANGE)
+                .sound(SoundType.WART_BLOCK)
+                .sound(SoundType.GRASS)
+                .strength(0.2F)
+        );
 
         TagAPI.addBlockTag(NamedBlockTags.LEAVES, this);
     }

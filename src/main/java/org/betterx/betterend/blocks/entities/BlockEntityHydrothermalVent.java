@@ -1,5 +1,12 @@
 package org.betterx.betterend.blocks.entities;
 
+import org.betterx.betterend.blocks.HydrothermalVentBlock;
+import org.betterx.betterend.interfaces.FallFlyingItem;
+import org.betterx.betterend.registry.EndBlockEntities;
+import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.registry.EndParticles;
+import org.betterx.betterend.util.GlobalState;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
@@ -13,13 +20,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
-import org.betterx.betterend.blocks.HydrothermalVentBlock;
-import org.betterx.betterend.interfaces.FallFlyingItem;
-import org.betterx.betterend.registry.EndBlockEntities;
-import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.betterend.registry.EndParticles;
-import org.betterx.betterend.util.GlobalState;
-
 import java.util.List;
 
 public class BlockEntityHydrothermalVent extends BlockEntity {
@@ -29,10 +29,12 @@ public class BlockEntityHydrothermalVent extends BlockEntity {
         super(EndBlockEntities.HYDROTHERMAL_VENT, blockPos, blockState);
     }
 
-    public static <T extends BlockEntity> void tick(Level level,
-                                                    BlockPos worldPosition,
-                                                    BlockState state,
-                                                    T uncastedEntity) {
+    public static <T extends BlockEntity> void tick(
+            Level level,
+            BlockPos worldPosition,
+            BlockState state,
+            T uncastedEntity
+    ) {
         if (level != null && uncastedEntity instanceof BlockEntityHydrothermalVent && state.is(EndBlocks.HYDROTHERMAL_VENT)) {
             BlockEntityHydrothermalVent blockEntity = (BlockEntityHydrothermalVent) uncastedEntity;
             if (level.isClientSide()) {
@@ -44,10 +46,12 @@ public class BlockEntityHydrothermalVent extends BlockEntity {
         }
     }
 
-    private static void clientTick(Level level,
-                                   BlockPos worldPosition,
-                                   BlockState state,
-                                   BlockEntityHydrothermalVent blockEntity) {
+    private static void clientTick(
+            Level level,
+            BlockPos worldPosition,
+            BlockState state,
+            BlockEntityHydrothermalVent blockEntity
+    ) {
         boolean active = state.getValue(HydrothermalVentBlock.ACTIVATED);
         if (active && level.random.nextInt(20) == 0 && state.getValue(HydrothermalVentBlock.WATERLOGGED)) {
             double x = worldPosition.getX() + level.random.nextDouble();
@@ -57,10 +61,12 @@ public class BlockEntityHydrothermalVent extends BlockEntity {
         }
     }
 
-    private static void serverTick(Level level,
-                                   BlockPos worldPosition,
-                                   BlockState state,
-                                   BlockEntityHydrothermalVent blockEntity) {
+    private static void serverTick(
+            Level level,
+            BlockPos worldPosition,
+            BlockState state,
+            BlockEntityHydrothermalVent blockEntity
+    ) {
         final MutableBlockPos POS = GlobalState.stateForThread().POS;
         boolean active = state.getValue(HydrothermalVentBlock.ACTIVATED);
         POS.set(worldPosition).move(Direction.UP);

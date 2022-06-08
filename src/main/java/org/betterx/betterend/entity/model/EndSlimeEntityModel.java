@@ -1,5 +1,11 @@
 package org.betterx.betterend.entity.model;
 
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.entity.EndSlimeEntity;
+import org.betterx.betterend.registry.EndEntitiesRenders;
+
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.ListModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.ModelPart;
@@ -12,11 +18,6 @@ import net.minecraft.client.model.geom.builders.PartDefinition;
 import net.minecraft.client.renderer.RenderType;
 
 import com.google.common.collect.ImmutableList;
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.entity.EndSlimeEntity;
-import org.betterx.betterend.registry.EndEntitiesRenders;
 
 public class EndSlimeEntityModel<T extends EndSlimeEntity> extends ListModel<T> {
     private final ModelPart innerCube;
@@ -43,37 +44,37 @@ public class EndSlimeEntityModel<T extends EndSlimeEntity> extends ListModel<T> 
                     PartNames.BODY,
                     CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, 16.0F, -4.0F, 8.0F, 8.0F, 8.0F),
                     PartPose.ZERO
-                                           );
+            );
         } else {
             modelPartData.addOrReplaceChild(
                     PartNames.BODY,
                     CubeListBuilder.create().texOffs(0, 16).addBox(-3.0F, 17.0F, -3.0F, 6.0F, 6.0F, 6.0F),
                     PartPose.ZERO
-                                           );
+            );
 
             modelPartData.addOrReplaceChild(
                     PartNames.RIGHT_EYE,
                     CubeListBuilder.create().texOffs(32, 0).addBox(-3.25F, 18.0F, -3.5F, 2.0F, 2.0F, 2.0F),
                     PartPose.ZERO
-                                           );
+            );
 
             modelPartData.addOrReplaceChild(
                     PartNames.LEFT_EYE,
                     CubeListBuilder.create().texOffs(32, 4).addBox(1.25F, 18.0F, -3.5F, 2.0F, 2.0F, 2.0F),
                     PartPose.ZERO
-                                           );
+            );
 
             modelPartData.addOrReplaceChild(
                     PartNames.MOUTH,
                     CubeListBuilder.create().texOffs(32, 8).addBox(0.0F, 21.0F, -3.5F, 1.0F, 1.0F, 1.0F),
                     PartPose.ZERO
-                                           );
+            );
 
             PartDefinition flowerPart = modelPartData.addOrReplaceChild(
                     "flower",
                     CubeListBuilder.create(),
                     PartPose.ZERO
-                                                                       );
+            );
             PartDefinition cropPart = modelPartData.addOrReplaceChild("crop", CubeListBuilder.create(), PartPose.ZERO);
 
             for (int i = 0; i < 6; i++) {
@@ -84,14 +85,14 @@ public class EndSlimeEntityModel<T extends EndSlimeEntity> extends ListModel<T> 
                         "petalRot_" + i,
                         CubeListBuilder.create(),
                         PartPose.offsetAndRotation(0, 0, 0, 0, rot, 0)
-                                                                      );
+                );
 
 
                 petalRotPart.addOrReplaceChild(
                         "petal_" + i,
                         CubeListBuilder.create().texOffs(40, 0).addBox(0.0F, 0.0F, 0.0F, 8.0F, 8.0F, 0.0F),
                         PartPose.offset(-4, 8, 0)
-                                              );
+                );
             }
         }
 
@@ -102,8 +103,8 @@ public class EndSlimeEntityModel<T extends EndSlimeEntity> extends ListModel<T> 
         super(RenderType::entityCutout);
 
         ModelPart modelPart = modelSet.bakeLayer(onlyShell
-                                                         ? EndEntitiesRenders.END_SLIME_SHELL_MODEL
-                                                         : EndEntitiesRenders.END_SLIME_MODEL);
+                ? EndEntitiesRenders.END_SLIME_SHELL_MODEL
+                : EndEntitiesRenders.END_SLIME_MODEL);
 
         innerCube = modelPart.getChild(PartNames.BODY);
         if (!onlyShell) {
@@ -122,12 +123,14 @@ public class EndSlimeEntityModel<T extends EndSlimeEntity> extends ListModel<T> 
     }
 
     @Override
-    public void setupAnim(T entity,
-                          float limbAngle,
-                          float limbDistance,
-                          float animationProgress,
-                          float headYaw,
-                          float headPitch) {
+    public void setupAnim(
+            T entity,
+            float limbAngle,
+            float limbDistance,
+            float animationProgress,
+            float headYaw,
+            float headPitch
+    ) {
     }
 
     public void renderFlower(PoseStack matrices, VertexConsumer vertices, int light, int overlay) {

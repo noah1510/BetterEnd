@@ -1,5 +1,7 @@
 package org.betterx.betterend.mixin.client;
 
+import org.betterx.bclib.util.MHelper;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.screens.Screen;
@@ -10,7 +12,6 @@ import net.minecraft.sounds.Music;
 import net.minecraft.sounds.Musics;
 import net.minecraft.world.level.Level;
 
-import org.betterx.bclib.util.MHelper;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -40,7 +41,7 @@ public class MinecraftClientMixin {
                 if (this.gui.getBossOverlay().shouldPlayMusic() && MHelper.lengthSqr(
                         this.player.getX(),
                         this.player.getZ()
-                                                                                    ) < 250000) {
+                ) < 250000) {
                     info.setReturnValue(Musics.END_BOSS);
                 } else {
                     Music sound = this.level.getBiomeManager()

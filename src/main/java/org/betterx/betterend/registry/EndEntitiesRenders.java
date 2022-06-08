@@ -1,5 +1,10 @@
 package org.betterx.betterend.registry;
 
+import org.betterx.betterend.BetterEnd;
+import org.betterx.betterend.entity.model.*;
+import org.betterx.betterend.entity.render.*;
+import org.betterx.betterend.item.model.*;
+
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.renderer.entity.EntityRendererProvider.Context;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -7,11 +12,6 @@ import net.minecraft.world.entity.EntityType;
 
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
-
-import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.entity.model.*;
-import org.betterx.betterend.entity.render.*;
-import org.betterx.betterend.item.model.*;
 
 import java.util.function.Function;
 
@@ -40,18 +40,24 @@ public class EndEntitiesRenders {
         register(EndEntities.SILK_MOTH, SilkMothEntityRenderer::new);
 
         EntityModelLayerRegistry.registerModelLayer(DRAGONFLY_MODEL, DragonflyEntityModel::getTexturedModelData);
-        EntityModelLayerRegistry.registerModelLayer(END_SLIME_SHELL_MODEL,
-                                                    EndSlimeEntityModel::getShellOnlyTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(
+                END_SLIME_SHELL_MODEL,
+                EndSlimeEntityModel::getShellOnlyTexturedModelData
+        );
         EntityModelLayerRegistry.registerModelLayer(END_SLIME_MODEL, EndSlimeEntityModel::getCompleteTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(END_FISH_MODEL, EndFishEntityModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(CUBOZOA_MODEL, CubozoaEntityModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(SILK_MOTH_MODEL, SilkMothEntityModel::getTexturedModelData);
 
         EntityModelLayerRegistry.registerModelLayer(ARMORED_ELYTRA, ArmoredElytraModel::getTexturedModelData);
-        EntityModelLayerRegistry.registerModelLayer(CRYSTALITE_CHESTPLATE,
-                                                    CrystaliteChestplateModel::getRegularTexturedModelData);
-        EntityModelLayerRegistry.registerModelLayer(CRYSTALITE_CHESTPLATE_THIN,
-                                                    CrystaliteChestplateModel::getThinTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(
+                CRYSTALITE_CHESTPLATE,
+                CrystaliteChestplateModel::getRegularTexturedModelData
+        );
+        EntityModelLayerRegistry.registerModelLayer(
+                CRYSTALITE_CHESTPLATE_THIN,
+                CrystaliteChestplateModel::getThinTexturedModelData
+        );
         EntityModelLayerRegistry.registerModelLayer(CRYSTALITE_HELMET, CrystaliteHelmetModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(CRYSTALITE_LEGGINGS, CrystaliteLeggingsModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(CRYSTALITE_BOOTS, CrystaliteBootsModel::getTexturedModelData);

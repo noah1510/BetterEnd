@@ -1,5 +1,11 @@
 package org.betterx.betterend.entity.render;
 
+import org.betterx.betterend.BetterEnd;
+import org.betterx.betterend.entity.EndSlimeEntity;
+import org.betterx.betterend.entity.model.EndSlimeEntityModel;
+
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -11,12 +17,6 @@ import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.entity.EndSlimeEntity;
-import org.betterx.betterend.entity.model.EndSlimeEntityModel;
 
 public class RendererEntityEndSlime extends MobRenderer<EndSlimeEntity, EndSlimeEntityModel<EndSlimeEntity>> {
     private static final ResourceLocation[] TEXTURE = new ResourceLocation[4];
@@ -32,27 +32,30 @@ public class RendererEntityEndSlime extends MobRenderer<EndSlimeEntity, EndSlime
             }
 
             @Override
-            public void render(PoseStack matrices,
-                               MultiBufferSource vertexConsumers,
-                               int light,
-                               EndSlimeEntity entity,
-                               float limbAngle,
-                               float limbDistance,
-                               float tickDelta,
-                               float animationProgress,
-                               float headYaw,
-                               float headPitch) {
+            public void render(
+                    PoseStack matrices,
+                    MultiBufferSource vertexConsumers,
+                    int light,
+                    EndSlimeEntity entity,
+                    float limbAngle,
+                    float limbDistance,
+                    float tickDelta,
+                    float animationProgress,
+                    float headYaw,
+                    float headPitch
+            ) {
                 VertexConsumer vertexConsumer = vertexConsumers.getBuffer(GLOW[entity.getSlimeType()]);
                 this.getParentModel()
-                    .renderToBuffer(matrices,
-                                    vertexConsumer,
-                                    15728640,
-                                    OverlayTexture.NO_OVERLAY,
-                                    1.0F,
-                                    1.0F,
-                                    1.0F,
-                                    1.0F
-                                   );
+                    .renderToBuffer(
+                            matrices,
+                            vertexConsumer,
+                            15728640,
+                            OverlayTexture.NO_OVERLAY,
+                            1.0F,
+                            1.0F,
+                            1.0F,
+                            1.0F
+                    );
                 if (entity.isLake()) {
                     this.getParentModel().renderFlower(matrices, vertexConsumer, 15728640, OverlayTexture.NO_OVERLAY);
                 }
@@ -66,12 +69,14 @@ public class RendererEntityEndSlime extends MobRenderer<EndSlimeEntity, EndSlime
     }
 
     @Override
-    public void render(EndSlimeEntity slimeEntity,
-                       float f,
-                       float g,
-                       PoseStack matrixStack,
-                       MultiBufferSource vertexConsumerProvider,
-                       int i) {
+    public void render(
+            EndSlimeEntity slimeEntity,
+            float f,
+            float g,
+            PoseStack matrixStack,
+            MultiBufferSource vertexConsumerProvider,
+            int i
+    ) {
         this.shadowRadius = 0.25F * (float) slimeEntity.getSize();
         super.render(slimeEntity, f, g, matrixStack, vertexConsumerProvider, i);
     }
@@ -90,42 +95,48 @@ public class RendererEntityEndSlime extends MobRenderer<EndSlimeEntity, EndSlime
         private final EndSlimeEntityModel<T> modelOrdinal;
         private final EndSlimeEntityModel<T> modelLake;
 
-        public OverlayFeatureRenderer(RenderLayerParent<T, EndSlimeEntityModel<T>> featureRendererContext,
-                                      EntityRendererProvider.Context ctx) {
+        public OverlayFeatureRenderer(
+                RenderLayerParent<T, EndSlimeEntityModel<T>> featureRendererContext,
+                EntityRendererProvider.Context ctx
+        ) {
             super(featureRendererContext);
             modelOrdinal = new EndSlimeEntityModel<>(ctx.getModelSet(), true);
             modelLake = new EndSlimeEntityModel<>(ctx.getModelSet(), true);
         }
 
-        public void render(PoseStack matrixStack,
-                           MultiBufferSource vertexConsumerProvider,
-                           int i,
-                           T livingEntity,
-                           float f,
-                           float g,
-                           float h,
-                           float j,
-                           float k,
-                           float l) {
+        public void render(
+                PoseStack matrixStack,
+                MultiBufferSource vertexConsumerProvider,
+                int i,
+                T livingEntity,
+                float f,
+                float g,
+                float h,
+                float j,
+                float k,
+                float l
+        ) {
             if (!livingEntity.isInvisible()) {
                 if (livingEntity.isLake()) {
                     VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(RenderType.entityCutout(this.getTextureLocation(
                             livingEntity)));
                     this.getParentModel()
-                        .renderFlower(matrixStack,
-                                      vertexConsumer,
-                                      i,
-                                      LivingEntityRenderer.getOverlayCoords(livingEntity, 0.0F)
-                                     );
+                        .renderFlower(
+                                matrixStack,
+                                vertexConsumer,
+                                i,
+                                LivingEntityRenderer.getOverlayCoords(livingEntity, 0.0F)
+                        );
                 } else if (livingEntity.isAmber() || livingEntity.isChorus()) {
                     VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(RenderType.entityCutout(this.getTextureLocation(
                             livingEntity)));
                     this.getParentModel()
-                        .renderCrop(matrixStack,
-                                    vertexConsumer,
-                                    i,
-                                    LivingEntityRenderer.getOverlayCoords(livingEntity, 0.0F)
-                                   );
+                        .renderCrop(
+                                matrixStack,
+                                vertexConsumer,
+                                i,
+                                LivingEntityRenderer.getOverlayCoords(livingEntity, 0.0F)
+                        );
                 }
 
                 EndSlimeEntityModel<T> model = livingEntity.getSlimeType() == 1 ? modelLake : modelOrdinal;
@@ -143,7 +154,7 @@ public class RendererEntityEndSlime extends MobRenderer<EndSlimeEntity, EndSlime
                         1.0F,
                         1.0F,
                         1.0F
-                                    );
+                );
             }
         }
     }

@@ -1,9 +1,9 @@
 package org.betterx.betterend.item;
 
-import net.minecraft.world.item.Rarity;
-
 import org.betterx.bclib.items.ModelProviderItem;
 import org.betterx.betterend.registry.EndItems;
+
+import net.minecraft.world.item.Rarity;
 
 public class EternalCrystalItem extends ModelProviderItem {
     public EternalCrystalItem() {

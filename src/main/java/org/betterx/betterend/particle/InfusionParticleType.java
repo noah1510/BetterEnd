@@ -1,5 +1,11 @@
 package org.betterx.betterend.particle;
 
+import org.betterx.bclib.util.ColorUtil;
+import org.betterx.betterend.registry.EndParticles;
+
+import com.mojang.brigadier.StringReader;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import com.mojang.serialization.Codec;
 import net.minecraft.commands.arguments.item.ItemInput;
 import net.minecraft.commands.arguments.item.ItemParser;
 import net.minecraft.core.HolderLookup;
@@ -12,12 +18,6 @@ import net.minecraft.world.item.ItemStack;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
-import com.mojang.brigadier.StringReader;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import com.mojang.serialization.Codec;
-import org.betterx.bclib.util.ColorUtil;
-import org.betterx.betterend.registry.EndParticles;
-
 public class InfusionParticleType extends ParticleType<InfusionParticleType> implements ParticleOptions {
     public static final Codec<InfusionParticleType> CODEC = ItemStack.CODEC.xmap(itemStack -> new InfusionParticleType(
             EndParticles.INFUSION,
@@ -26,18 +26,24 @@ public class InfusionParticleType extends ParticleType<InfusionParticleType> imp
 
     @SuppressWarnings("deprecation")
     public static final ParticleOptions.Deserializer<InfusionParticleType> PARAMETERS_FACTORY = new ParticleOptions.Deserializer<InfusionParticleType>() {
-        public InfusionParticleType fromCommand(ParticleType<InfusionParticleType> particleType,
-                                                StringReader stringReader) throws CommandSyntaxException {
+        public InfusionParticleType fromCommand(
+                ParticleType<InfusionParticleType> particleType,
+                StringReader stringReader
+        ) throws CommandSyntaxException {
             stringReader.expect(' ');
-            ItemParser.ItemResult itemResult = ItemParser.parseForItem(HolderLookup.forRegistry(Registry.ITEM),
-                                                                       stringReader);
+            ItemParser.ItemResult itemResult = ItemParser.parseForItem(
+                    HolderLookup.forRegistry(Registry.ITEM),
+                    stringReader
+            );
             ItemStack itemStack = new ItemInput(itemResult.item(), itemResult.nbt()).createItemStack(1, false);
 
             return new InfusionParticleType(particleType, itemStack);
         }
 
-        public InfusionParticleType fromNetwork(ParticleType<InfusionParticleType> particleType,
-                                                FriendlyByteBuf packetByteBuf) {
+        public InfusionParticleType fromNetwork(
+                ParticleType<InfusionParticleType> particleType,
+                FriendlyByteBuf packetByteBuf
+        ) {
             return new InfusionParticleType(particleType, packetByteBuf.readItem());
         }
     };

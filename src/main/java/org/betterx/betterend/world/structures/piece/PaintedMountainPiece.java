@@ -1,5 +1,9 @@
 package org.betterx.betterend.world.structures.piece;
 
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.registry.EndStructures;
+import org.betterx.betterend.util.GlobalState;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Holder;
@@ -19,19 +23,17 @@ import net.minecraft.world.level.levelgen.Heightmap.Types;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceSerializationContext;
 
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.registry.EndStructures;
-import org.betterx.betterend.util.GlobalState;
-
 public class PaintedMountainPiece extends MountainPiece {
     private BlockState[] slises;
 
-    public PaintedMountainPiece(BlockPos center,
-                                float radius,
-                                float height,
-                                RandomSource random,
-                                Holder<Biome> biome,
-                                BlockState[] slises) {
+    public PaintedMountainPiece(
+            BlockPos center,
+            float radius,
+            float height,
+            RandomSource random,
+            Holder<Biome> biome,
+            BlockState[] slises
+    ) {
         super(EndStructures.PAINTED_MOUNTAIN_PIECE, center, radius, height, random, biome);
         this.slises = slises;
     }
@@ -61,13 +63,15 @@ public class PaintedMountainPiece extends MountainPiece {
     }
 
     @Override
-    public void postProcess(WorldGenLevel world,
-                            StructureManager arg,
-                            ChunkGenerator chunkGenerator,
-                            RandomSource random,
-                            BoundingBox blockBox,
-                            ChunkPos chunkPos,
-                            BlockPos blockPos) {
+    public void postProcess(
+            WorldGenLevel world,
+            StructureManager arg,
+            ChunkGenerator chunkGenerator,
+            RandomSource random,
+            BoundingBox blockBox,
+            ChunkPos chunkPos,
+            BlockPos blockPos
+    ) {
         int sx = chunkPos.getMinBlockX();
         int sz = chunkPos.getMinBlockZ();
         final MutableBlockPos pos = GlobalState.stateForThread().POS;
@@ -103,7 +107,7 @@ public class PaintedMountainPiece extends MountainPiece {
                             float offset = (float) (noise1.eval(px * 0.07, pz * 0.07) * 5 + noise1.eval(
                                     px * 0.2,
                                     pz * 0.2
-                                                                                                       ) * 2 + 7);
+                            ) * 2 + 7);
                             for (int y = minY - 1; y < maxY; y++) {
                                 pos.setY(y);
                                 int index = MHelper.floor((y + offset) * 0.65F) % slises.length;

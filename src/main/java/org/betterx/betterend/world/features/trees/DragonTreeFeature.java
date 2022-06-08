@@ -1,5 +1,18 @@
 package org.betterx.betterend.world.features.trees;
 
+import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
+import org.betterx.bclib.sdf.PosInfo;
+import org.betterx.bclib.sdf.SDF;
+import org.betterx.bclib.sdf.operator.*;
+import org.betterx.bclib.sdf.primitive.SDFSphere;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.bclib.util.SplineHelper;
+import org.betterx.betterend.noise.OpenSimplexNoise;
+import org.betterx.betterend.registry.EndBlocks;
+
+import com.mojang.math.Vector3f;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
@@ -13,18 +26,6 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 import net.minecraft.world.level.material.Material;
 
 import com.google.common.collect.Lists;
-import com.mojang.math.Vector3f;
-import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
-import org.betterx.bclib.sdf.PosInfo;
-import org.betterx.bclib.sdf.SDF;
-import org.betterx.bclib.sdf.operator.*;
-import org.betterx.bclib.sdf.primitive.SDFSphere;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.bclib.util.SplineHelper;
-import org.betterx.betterend.noise.OpenSimplexNoise;
-import org.betterx.betterend.registry.EndBlocks;
 
 import java.util.List;
 import java.util.function.Function;
@@ -110,20 +111,24 @@ public class DragonTreeFeature extends DefaultFeature {
             SplineHelper.scale(branch, scale);
             Vector3f last = branch.get(branch.size() - 1);
             if (world.getBlockState(pos.offset(last.x(), last.y(), last.z())).is(CommonBlockTags.GEN_END_STONES)) {
-                SplineHelper.fillSpline(branch,
+                SplineHelper.fillSpline(
+                        branch,
                         world,
                         EndBlocks.DRAGON_TREE.getBark().defaultBlockState(),
                         pos,
-                        REPLACE);
+                        REPLACE
+                );
             }
         }
     }
 
-    private void leavesBall(WorldGenLevel world,
-                            BlockPos pos,
-                            float radius,
-                            RandomSource random,
-                            OpenSimplexNoise noise) {
+    private void leavesBall(
+            WorldGenLevel world,
+            BlockPos pos,
+            float radius,
+            RandomSource random,
+            OpenSimplexNoise noise
+    ) {
         SDF sphere = new SDFSphere().setRadius(radius)
                                     .setBlock(EndBlocks.DRAGON_TREE_LEAVES.defaultBlockState()
                                                                           .setValue(LeavesBlock.DISTANCE, 6));

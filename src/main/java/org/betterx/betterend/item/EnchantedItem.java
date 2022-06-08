@@ -1,5 +1,9 @@
 package org.betterx.betterend.item;
 
+import org.betterx.bclib.client.models.ModelsHelper;
+import org.betterx.bclib.items.ModelProviderItem;
+import org.betterx.betterend.registry.EndItems;
+
 import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
@@ -9,10 +13,6 @@ import net.minecraft.world.item.Rarity;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-
-import org.betterx.bclib.client.models.ModelsHelper;
-import org.betterx.bclib.items.ModelProviderItem;
-import org.betterx.betterend.registry.EndItems;
 
 public class EnchantedItem extends ModelProviderItem {
 

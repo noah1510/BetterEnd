@@ -1,12 +1,12 @@
 package org.betterx.betterend.world.biome.cave;
 
-import net.minecraft.resources.ResourceLocation;
-
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder.BiomeSupplier;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeSettings;
 import org.betterx.betterend.registry.EndFeatures;
 import org.betterx.betterend.world.biome.EndBiome;
+
+import net.minecraft.resources.ResourceLocation;
 
 public class EmptyEndCaveBiome extends EndCaveBiome.Config {
     public static class Biome extends EndCaveBiome {

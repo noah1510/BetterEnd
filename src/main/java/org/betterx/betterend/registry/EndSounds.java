@@ -1,9 +1,9 @@
 package org.betterx.betterend.registry;
 
+import org.betterx.betterend.BetterEnd;
+
 import net.minecraft.core.Registry;
 import net.minecraft.sounds.SoundEvent;
-
-import org.betterx.betterend.BetterEnd;
 
 public class EndSounds {
     // Music

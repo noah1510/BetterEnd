@@ -1,5 +1,12 @@
 package org.betterx.betterend.integration.byg.biomes;
 
+import org.betterx.bclib.BCLib;
+import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
+import org.betterx.betterend.integration.Integrations;
+import org.betterx.betterend.integration.byg.features.BYGFeatures;
+import org.betterx.betterend.registry.EndFeatures;
+import org.betterx.betterend.world.biome.EndBiome;
+
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.particles.ParticleTypes;
@@ -13,13 +20,6 @@ import net.minecraft.world.level.biome.MobSpawnSettings.SpawnerData;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
-
-import org.betterx.bclib.BCLib;
-import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
-import org.betterx.betterend.integration.Integrations;
-import org.betterx.betterend.integration.byg.features.BYGFeatures;
-import org.betterx.betterend.registry.EndFeatures;
-import org.betterx.betterend.world.biome.EndBiome;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -47,7 +47,7 @@ public class OldBulbisGardens extends EndBiome.Config {
                .particles(
                        ParticleTypes.REVERSE_PORTAL,
                        0.002F
-                         )
+               )
                //TODO: 1.18 surface rules
                //.surface(ivis, origin)
                .feature(EndFeatures.END_LAKE_RARE)

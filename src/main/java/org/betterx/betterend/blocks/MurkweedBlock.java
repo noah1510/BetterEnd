@@ -1,5 +1,8 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.betterend.blocks.basis.EndPlantBlock;
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.RandomSource;
@@ -14,9 +17,6 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-
-import org.betterx.betterend.blocks.basis.EndPlantBlock;
-import org.betterx.betterend.registry.EndBlocks;
 
 public class MurkweedBlock extends EndPlantBlock {
     @Override

@@ -1,5 +1,8 @@
 package org.betterx.betterend.mixin.common;
 
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.betterend.world.generator.GeneratorOptions;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -11,8 +14,6 @@ import net.minecraft.world.level.dimension.end.EndDragonFight;
 import net.minecraft.world.phys.AABB;
 
 import com.google.common.collect.Lists;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.betterend.world.generator.GeneratorOptions;
 import org.slf4j.Logger;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -72,7 +73,7 @@ public class EndDragonFightMixin {
                 List<EndCrystal> crystalList = level.getEntitiesOfClass(
                         EndCrystal.class,
                         new AABB(central.below(255).south().west(), central.above(255).north().east())
-                                                                       );
+                );
 
                 int count = crystalList.size();
                 for (int n = 0; n < count; n++) {

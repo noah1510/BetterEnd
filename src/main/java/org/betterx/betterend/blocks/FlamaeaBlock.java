@@ -1,5 +1,9 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.interfaces.CustomItemProvider;
+import org.betterx.bclib.interfaces.tools.AddMineableShears;
+import org.betterx.betterend.blocks.basis.EndPlantBlock;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
@@ -20,9 +24,6 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 import com.google.common.collect.Lists;
-import org.betterx.bclib.interfaces.CustomItemProvider;
-import org.betterx.bclib.interfaces.tools.AddMineableShears;
-import org.betterx.betterend.blocks.basis.EndPlantBlock;
 
 import java.util.List;
 

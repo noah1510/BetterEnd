@@ -1,5 +1,8 @@
 package org.betterx.betterend.mixin.common;
 
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.item.tool.EndHammerItem;
+
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -12,8 +15,6 @@ import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 
 import com.google.common.collect.Lists;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.item.tool.EndHammerItem;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -24,9 +25,11 @@ import java.util.List;
 @Mixin(BlockBehaviour.class)
 public abstract class BlockBehaviourMixin {
     @Inject(method = "getDrops", at = @At("HEAD"), cancellable = true)
-    public void be_getDroppedStacks(BlockState state,
-                                    LootContext.Builder builder,
-                                    CallbackInfoReturnable<List<ItemStack>> info) {
+    public void be_getDroppedStacks(
+            BlockState state,
+            LootContext.Builder builder,
+            CallbackInfoReturnable<List<ItemStack>> info
+    ) {
         if (state.is(Blocks.GLOWSTONE)) {
             ItemStack tool = builder.getParameter(LootContextParams.TOOL);
             if (tool != null && tool.getItem() instanceof EndHammerItem) {

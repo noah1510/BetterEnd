@@ -1,11 +1,5 @@
 package org.betterx.betterend;
 
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.biome.Biomes;
-
-import net.fabricmc.api.ModInitializer;
-import net.fabricmc.loader.api.FabricLoader;
-
 import org.betterx.bclib.api.v2.WorldDataAPI;
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
 import org.betterx.bclib.util.Logger;
@@ -20,6 +14,12 @@ import org.betterx.betterend.util.BonemealPlants;
 import org.betterx.betterend.util.LootTableUtil;
 import org.betterx.betterend.world.generator.GeneratorOptions;
 import org.betterx.betterend.world.generator.TerrainGenerator;
+
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.biome.Biomes;
+
+import net.fabricmc.api.ModInitializer;
+import net.fabricmc.loader.api.FabricLoader;
 
 public class BetterEnd implements ModInitializer {
     public static final String MOD_ID = "betterend";
@@ -60,8 +60,10 @@ public class BetterEnd implements ModInitializer {
 
         if (GeneratorOptions.useNewGenerator()) {
             org.betterx.bclib.api.v2.generator.GeneratorOptions.setFarEndBiomes(GeneratorOptions.getIslandDistBlock());
-            org.betterx.bclib.api.v2.generator.GeneratorOptions.setEndLandFunction((pos) -> TerrainGenerator.isLand(pos.x,
-                                                                                                                    pos.y));
+            org.betterx.bclib.api.v2.generator.GeneratorOptions.setEndLandFunction((pos) -> TerrainGenerator.isLand(
+                    pos.x,
+                    pos.y
+            ));
         }
 
         BiomeAPI.registerEndBiomeModification((biomeID, biome) -> {

@@ -1,16 +1,16 @@
 package org.betterx.betterend.effects;
 
+import org.betterx.bclib.mixin.common.PotionBrewingAccessor;
+import org.betterx.betterend.BetterEnd;
+import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.registry.EndItems;
+
 import net.minecraft.core.Registry;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.Potions;
-
-import org.betterx.bclib.mixin.common.PotionBrewingAccessor;
-import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.betterend.registry.EndItems;
 
 public class EndPotions {
     public final static Potion END_VEIL = registerPotion("end_veil", EndStatusEffects.END_VEIL, 3600);

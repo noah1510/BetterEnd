@@ -1,16 +1,16 @@
 package org.betterx.betterend.integration;
 
+import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
+import org.betterx.bclib.api.v2.levelgen.features.BCLFeature;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
+import org.betterx.bclib.api.v2.tag.TagAPI;
+import org.betterx.bclib.integration.ModIntegration;
+
 import net.minecraft.core.Holder;
 import net.minecraft.core.MappedRegistry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
-
-import org.betterx.bclib.api.v2.levelgen.features.BCLFeature;
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
-import org.betterx.bclib.api.v2.tag.TagAPI;
-import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
-import org.betterx.bclib.integration.ModIntegration;
 
 public class EnderscapeIntegration extends ModIntegration {
     public EnderscapeIntegration() {
@@ -32,8 +32,10 @@ public class EnderscapeIntegration extends ModIntegration {
             }
         });
 
-        BCLFeature scatteredShadowQuartzOre = getFeature("scattered_shadow_quartz_ore",
-                Decoration.UNDERGROUND_DECORATION);
+        BCLFeature scatteredShadowQuartzOre = getFeature(
+                "scattered_shadow_quartz_ore",
+                Decoration.UNDERGROUND_DECORATION
+        );
         BCLFeature voidNebuliteOre = getFeature("void_nebulite_ore", Decoration.UNDERGROUND_DECORATION);
         BCLFeature nebuliteOre = getFeature("nebulite_ore", Decoration.UNDERGROUND_DECORATION);
 

@@ -1,5 +1,11 @@
 package org.betterx.betterend.world.features;
 
+import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
+import org.betterx.bclib.blocks.BlockProperties;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.util.GlobalState;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
@@ -11,12 +17,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-
-import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
-import org.betterx.bclib.blocks.BlockProperties;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.betterend.util.GlobalState;
 
 public class SilkMothNestFeature extends DefaultFeature {
     private boolean canGenerate(WorldGenLevel world, BlockPos pos) {

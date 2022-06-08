@@ -1,5 +1,14 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
+import org.betterx.bclib.blocks.BaseBlockNotFull;
+import org.betterx.bclib.client.render.BCLRenderLayer;
+import org.betterx.bclib.interfaces.RenderLayerProvider;
+import org.betterx.bclib.interfaces.tools.AddMineableAxe;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.registry.EndItems;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
@@ -20,22 +29,15 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
-import org.betterx.bclib.blocks.BaseBlockNotFull;
-import org.betterx.bclib.client.render.BCLRenderLayer;
-import org.betterx.bclib.interfaces.RenderLayerProvider;
-import org.betterx.bclib.interfaces.tools.AddMineableAxe;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.betterend.registry.EndItems;
-
 import java.util.Collections;
 import java.util.List;
 
 @SuppressWarnings("deprecation")
 public class LumecornBlock extends BaseBlockNotFull implements RenderLayerProvider, AddMineableAxe {
-    public static final EnumProperty<EndBlockProperties.LumecornShape> SHAPE = EnumProperty.create("shape",
-                                                                                                   EndBlockProperties.LumecornShape.class);
+    public static final EnumProperty<EndBlockProperties.LumecornShape> SHAPE = EnumProperty.create(
+            "shape",
+            EndBlockProperties.LumecornShape.class
+    );
     private static final VoxelShape SHAPE_BOTTOM = Block.box(6, 0, 6, 10, 16, 10);
     private static final VoxelShape SHAPE_TOP = Block.box(6, 0, 6, 10, 8, 10);
 
@@ -73,12 +75,14 @@ public class LumecornBlock extends BaseBlockNotFull implements RenderLayerProvid
     }
 
     @Override
-    public BlockState updateShape(BlockState state,
-                                  Direction facing,
-                                  BlockState neighborState,
-                                  LevelAccessor world,
-                                  BlockPos pos,
-                                  BlockPos neighborPos) {
+    public BlockState updateShape(
+            BlockState state,
+            Direction facing,
+            BlockState neighborState,
+            LevelAccessor world,
+            BlockPos pos,
+            BlockPos neighborPos
+    ) {
         if (!canSurvive(state, world, pos)) {
             return Blocks.AIR.defaultBlockState();
         } else {

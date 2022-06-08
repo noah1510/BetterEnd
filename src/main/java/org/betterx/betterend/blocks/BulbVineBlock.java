@@ -1,5 +1,11 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.blocks.BaseVineBlock;
+import org.betterx.bclib.blocks.BlockProperties.TripleShape;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.registry.EndItems;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
@@ -8,11 +14,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootContext;
 
 import com.google.common.collect.Lists;
-import org.betterx.bclib.blocks.BaseVineBlock;
-import org.betterx.bclib.blocks.BlockProperties.TripleShape;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.betterend.registry.EndItems;
 
 import java.util.List;
 

@@ -1,13 +1,13 @@
 package org.betterx.betterend.tab;
 
+import org.betterx.betterend.BetterEnd;
+import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.registry.EndItems;
+
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
-
-import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.betterend.registry.EndItems;
 
 import java.util.stream.Collectors;
 

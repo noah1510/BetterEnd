@@ -1,5 +1,10 @@
 package org.betterx.betterend.mixin.client;
 
+import org.betterx.bclib.util.ColorUtil;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.client.ClientOptions;
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.core.BlockPos;
@@ -8,10 +13,6 @@ import net.minecraft.world.level.BlockAndTintGetter;
 
 import net.fabricmc.loader.api.FabricLoader;
 
-import org.betterx.bclib.util.ColorUtil;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.client.ClientOptions;
-import org.betterx.betterend.registry.EndBlocks;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

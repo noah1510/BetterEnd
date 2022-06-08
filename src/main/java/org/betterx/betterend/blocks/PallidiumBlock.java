@@ -1,5 +1,9 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.betterend.blocks.basis.EndTerrainBlock;
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.client.resources.model.UnbakedModel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
@@ -16,10 +20,6 @@ import net.minecraft.world.phys.BlockHitResult;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.betterend.blocks.basis.EndTerrainBlock;
-import org.betterx.betterend.registry.EndBlocks;
 
 import java.util.Map;
 
@@ -41,12 +41,14 @@ public class PallidiumBlock extends EndTerrainBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState state,
-                                 Level level,
-                                 BlockPos pos,
-                                 Player player,
-                                 InteractionHand hand,
-                                 BlockHitResult hit) {
+    public InteractionResult use(
+            BlockState state,
+            Level level,
+            BlockPos pos,
+            Player player,
+            InteractionHand hand,
+            BlockHitResult hit
+    ) {
         if (nextLevel == null) {
             return InteractionResult.PASS;
         } else if (level.isClientSide) {
@@ -66,9 +68,11 @@ public class PallidiumBlock extends EndTerrainBlock {
 
     @Override
     @Environment(EnvType.CLIENT)
-    public UnbakedModel getModelVariant(ResourceLocation stateId,
-                                        BlockState blockState,
-                                        Map<ResourceLocation, UnbakedModel> modelCache) {
+    public UnbakedModel getModelVariant(
+            ResourceLocation stateId,
+            BlockState blockState,
+            Map<ResourceLocation, UnbakedModel> modelCache
+    ) {
         return this.getBlockModel(stateId, blockState);
     }
 }

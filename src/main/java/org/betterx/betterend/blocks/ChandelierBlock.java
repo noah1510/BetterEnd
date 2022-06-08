@@ -1,5 +1,12 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.blocks.BaseAttachedBlock;
+import org.betterx.bclib.client.models.ModelsHelper;
+import org.betterx.bclib.client.render.BCLRenderLayer;
+import org.betterx.bclib.interfaces.BlockModelProvider;
+import org.betterx.bclib.interfaces.RenderLayerProvider;
+import org.betterx.betterend.client.models.Patterns;
+
 import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.client.resources.model.BlockModelRotation;
 import net.minecraft.client.resources.model.UnbakedModel;
@@ -18,12 +25,6 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 import com.google.common.collect.Maps;
-import org.betterx.bclib.blocks.BaseAttachedBlock;
-import org.betterx.bclib.client.models.ModelsHelper;
-import org.betterx.bclib.client.render.BCLRenderLayer;
-import org.betterx.bclib.interfaces.BlockModelProvider;
-import org.betterx.bclib.interfaces.RenderLayerProvider;
-import org.betterx.betterend.client.models.Patterns;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -77,9 +78,11 @@ public class ChandelierBlock extends BaseAttachedBlock implements RenderLayerPro
 
     @Override
     @Environment(EnvType.CLIENT)
-    public UnbakedModel getModelVariant(ResourceLocation stateId,
-                                        BlockState blockState,
-                                        Map<ResourceLocation, UnbakedModel> modelCache) {
+    public UnbakedModel getModelVariant(
+            ResourceLocation stateId,
+            BlockState blockState,
+            Map<ResourceLocation, UnbakedModel> modelCache
+    ) {
         String state = "_wall";
         BlockModelRotation rotation = BlockModelRotation.X0_Y0;
         switch (blockState.getValue(FACING)) {

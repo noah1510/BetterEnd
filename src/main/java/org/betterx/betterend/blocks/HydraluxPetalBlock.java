@@ -1,5 +1,8 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.blocks.BaseBlock;
+import org.betterx.bclib.interfaces.tools.AddMineableAxe;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
@@ -10,9 +13,6 @@ import net.minecraft.world.level.material.MaterialColor;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
-import org.betterx.bclib.blocks.BaseBlock;
-import org.betterx.bclib.interfaces.tools.AddMineableAxe;
-
 public class HydraluxPetalBlock extends BaseBlock implements AddMineableAxe {
     public HydraluxPetalBlock() {
         this(
@@ -22,7 +22,7 @@ public class HydraluxPetalBlock extends BaseBlock implements AddMineableAxe {
                         .resistance(1)
                         .mapColor(MaterialColor.PODZOL)
                         .sound(SoundType.WART_BLOCK)
-            );
+        );
     }
 
     public HydraluxPetalBlock(Properties settings) {

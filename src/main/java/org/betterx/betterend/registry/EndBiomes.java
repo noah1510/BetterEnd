@@ -1,10 +1,5 @@
 package org.betterx.betterend.registry;
 
-import net.minecraft.core.Registry;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.level.biome.Biome;
-
 import org.betterx.bclib.api.v2.LifeCycleAPI;
 import org.betterx.bclib.api.v2.generator.BiomePicker;
 import org.betterx.bclib.api.v2.generator.map.hex.HexBiomeMap;
@@ -17,6 +12,11 @@ import org.betterx.betterend.world.biome.cave.*;
 import org.betterx.betterend.world.biome.land.*;
 import org.betterx.betterend.world.generator.BiomeType;
 import org.betterx.betterend.world.generator.GeneratorOptions;
+
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.biome.Biome;
 
 public class EndBiomes {
     public static final BiomeAPI.BiomeType END_CAVE = new BiomeAPI.BiomeType("END_CAVE", BiomeAPI.BiomeType.END);

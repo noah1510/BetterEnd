@@ -1,5 +1,14 @@
 package org.betterx.betterend.entity;
 
+import org.betterx.bclib.entity.DespawnableAnimal;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.BetterEnd;
+import org.betterx.betterend.blocks.EndBlockProperties;
+import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.registry.EndEntities;
+import org.betterx.betterend.registry.EndItems;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
@@ -33,15 +42,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.phys.Vec3;
-
-import org.betterx.bclib.entity.DespawnableAnimal;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.blocks.EndBlockProperties;
-import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.betterend.registry.EndEntities;
-import org.betterx.betterend.registry.EndItems;
 
 import java.util.EnumSet;
 import org.jetbrains.annotations.Nullable;
@@ -205,17 +205,21 @@ public class SilkMothEntity extends DespawnableAnimal implements FlyingAnimal {
             Vec3 vec3d = null;
             if (SilkMothEntity.this.hivePos != null && SilkMothEntity.this.hiveWorld == SilkMothEntity.this.level) {
                 if (SilkMothEntity.this.position()
-                                       .distanceToSqr(SilkMothEntity.this.hivePos.getX(),
-                                                      SilkMothEntity.this.hivePos.getY(),
-                                                      SilkMothEntity.this.hivePos.getZ()) > 16) {
+                                       .distanceToSqr(
+                                               SilkMothEntity.this.hivePos.getX(),
+                                               SilkMothEntity.this.hivePos.getY(),
+                                               SilkMothEntity.this.hivePos.getZ()
+                                       ) > 16) {
                     vec3d = SilkMothEntity.this.position().add(random.nextGaussian() * 2, 0, random.nextGaussian() * 2);
                 }
             }
             vec3d = vec3d == null ? this.getRandomLocation() : vec3d;
             if (vec3d != null) {
                 try {
-                    SilkMothEntity.this.navigation.moveTo(SilkMothEntity.this.navigation.createPath(new BlockPos(vec3d),
-                                                                                                    1), 1.0D);
+                    SilkMothEntity.this.navigation.moveTo(SilkMothEntity.this.navigation.createPath(
+                            new BlockPos(vec3d),
+                            1
+                    ), 1.0D);
                 } catch (Exception e) {
                 }
             }
@@ -233,7 +237,7 @@ public class SilkMothEntity extends DespawnableAnimal implements FlyingAnimal {
                     vec3d3.x,
                     vec3d3.z,
                     1.5707963705062866D
-                                                                        );
+            );
         }
     }
 
@@ -252,7 +256,7 @@ public class SilkMothEntity extends DespawnableAnimal implements FlyingAnimal {
                             SilkMothEntity.this.hivePos.getX(),
                             SilkMothEntity.this.hivePos.getY(),
                             SilkMothEntity.this.hivePos.getZ()
-                                                                ) < 16384;
+                    ) < 16384;
         }
 
         @Override
@@ -301,7 +305,7 @@ public class SilkMothEntity extends DespawnableAnimal implements FlyingAnimal {
                                 SilkMothEntity.this.hiveWorld,
                                 SilkMothEntity.this.hivePos,
                                 state.setValue(EndBlockProperties.FULLNESS, fullness)
-                                                  );
+                        );
                     }
                     SilkMothEntity.this.level.playSound(
                             null,
@@ -310,7 +314,7 @@ public class SilkMothEntity extends DespawnableAnimal implements FlyingAnimal {
                             SoundSource.BLOCKS,
                             1,
                             1
-                                                       );
+                    );
                     SilkMothEntity.this.discard();
                 } else {
                     SilkMothEntity.this.hivePos = null;

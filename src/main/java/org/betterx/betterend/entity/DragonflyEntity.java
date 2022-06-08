@@ -1,5 +1,11 @@
 package org.betterx.betterend.entity;
 
+import org.betterx.bclib.entity.DespawnableAnimal;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.registry.EndEntities;
+import org.betterx.betterend.registry.EndSounds;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
@@ -25,12 +31,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraft.world.level.pathfinder.Path;
 import net.minecraft.world.phys.Vec3;
-
-import org.betterx.bclib.entity.DespawnableAnimal;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.registry.EndEntities;
-import org.betterx.betterend.registry.EndSounds;
 
 import java.util.EnumSet;
 
@@ -178,7 +178,7 @@ public class DragonflyEntity extends DespawnableAnimal implements FlyingAnimal {
                                 MHelper.PI2,
                                 3,
                                 1
-                                                      );
+                        );
                         if (airPos != null && !isInVoid(airPos)) {
                             return airPos;
                         }
@@ -198,7 +198,7 @@ public class DragonflyEntity extends DespawnableAnimal implements FlyingAnimal {
                     rotation.x,
                     rotation.z,
                     1.5707963705062866D
-                                              );
+            );
         }
 
         private boolean isInVoid(Vec3 pos) {

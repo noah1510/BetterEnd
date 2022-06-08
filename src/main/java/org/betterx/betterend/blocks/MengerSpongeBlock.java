@@ -1,5 +1,10 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.blocks.BaseBlockNotFull;
+import org.betterx.bclib.client.render.BCLRenderLayer;
+import org.betterx.bclib.interfaces.RenderLayerProvider;
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.FluidTags;
@@ -21,10 +26,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 import com.google.common.collect.Lists;
-import org.betterx.bclib.blocks.BaseBlockNotFull;
-import org.betterx.bclib.client.render.BCLRenderLayer;
-import org.betterx.bclib.interfaces.RenderLayerProvider;
-import org.betterx.betterend.registry.EndBlocks;
 
 import java.util.Queue;
 
@@ -44,12 +45,14 @@ public class MengerSpongeBlock extends BaseBlockNotFull implements RenderLayerPr
     }
 
     @Override
-    public BlockState updateShape(BlockState state,
-                                  Direction facing,
-                                  BlockState neighborState,
-                                  LevelAccessor world,
-                                  BlockPos pos,
-                                  BlockPos neighborPos) {
+    public BlockState updateShape(
+            BlockState state,
+            Direction facing,
+            BlockState neighborState,
+            LevelAccessor world,
+            BlockPos pos,
+            BlockPos neighborPos
+    ) {
         if (absorbWater(world, pos)) {
             return EndBlocks.MENGER_SPONGE_WET.defaultBlockState();
         }
@@ -76,7 +79,7 @@ public class MengerSpongeBlock extends BaseBlockNotFull implements RenderLayerPr
                                                                                                                         world,
                                                                                                                         blockPos2,
                                                                                                                         blockState
-                                                                                                                            )
+                                                                                                                )
                                                                                                                 .isEmpty()) {
                         ++i;
                         if (j < 6) {
@@ -114,23 +117,25 @@ public class MengerSpongeBlock extends BaseBlockNotFull implements RenderLayerPr
     }
 
     @Override
-    public VoxelShape getShape(BlockState blockState,
-                               BlockGetter blockGetter,
-                               BlockPos blockPos,
-                               CollisionContext collisionContext) {
+    public VoxelShape getShape(
+            BlockState blockState,
+            BlockGetter blockGetter,
+            BlockPos blockPos,
+            CollisionContext collisionContext
+    ) {
         return SHAPE;
     }
 
     static {
         SHAPE = Shapes.or(
                 Shapes.or(box(0, 0, 0, 16, 6, 6), box(0, 0, 10, 16, 6, 16),
-                          Shapes.or(box(0, 10, 0, 16, 16, 6), box(0, 10, 10, 16, 16, 16)),
+                        Shapes.or(box(0, 10, 0, 16, 16, 6), box(0, 10, 10, 16, 16, 16)),
 
-                          Shapes.or(box(0, 0, 0, 6, 6, 16), box(10, 0, 0, 16, 6, 16)),
-                          Shapes.or(box(0, 10, 0, 6, 16, 16), box(10, 10, 0, 16, 16, 16)),
+                        Shapes.or(box(0, 0, 0, 6, 6, 16), box(10, 0, 0, 16, 6, 16)),
+                        Shapes.or(box(0, 10, 0, 6, 16, 16), box(10, 10, 0, 16, 16, 16)),
 
-                          Shapes.or(box(0, 0, 0, 6, 16, 6), box(10, 0, 0, 16, 16, 6)),
-                          Shapes.or(box(0, 0, 10, 6, 16, 16), box(10, 0, 10, 16, 16, 16))
-                         ));
+                        Shapes.or(box(0, 0, 0, 6, 16, 6), box(10, 0, 0, 16, 16, 6)),
+                        Shapes.or(box(0, 0, 10, 6, 16, 16), box(10, 0, 10, 16, 16, 16))
+                ));
     }
 }

@@ -1,5 +1,16 @@
 package org.betterx.betterend.world.features.trees;
 
+import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
+import org.betterx.bclib.sdf.PosInfo;
+import org.betterx.bclib.sdf.SDF;
+import org.betterx.bclib.sdf.operator.*;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.bclib.util.SplineHelper;
+import org.betterx.betterend.blocks.HelixTreeLeavesBlock;
+import org.betterx.betterend.registry.EndBlocks;
+
+import com.mojang.math.Vector3f;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.tags.BlockTags;
@@ -10,17 +21,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.phys.AABB;
-
-import com.mojang.math.Vector3f;
-import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
-import org.betterx.bclib.sdf.PosInfo;
-import org.betterx.bclib.sdf.SDF;
-import org.betterx.bclib.sdf.operator.*;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.bclib.util.SplineHelper;
-import org.betterx.betterend.blocks.HelixTreeLeavesBlock;
-import org.betterx.betterend.registry.EndBlocks;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,21 +70,25 @@ public class HelixTreeFeature extends DefaultFeature {
         float dy2 = 100 * scale;
         sdf.addPostProcess(POST).fillArea(world, pos, new AABB(pos.offset(-dx, dy1, -dx), pos.offset(dx, dy2, dx)));
         SplineHelper.scale(spline, scale);
-        SplineHelper.fillSplineForce(spline,
+        SplineHelper.fillSplineForce(
+                spline,
                 world,
                 EndBlocks.HELIX_TREE.getBark().defaultBlockState(),
                 pos,
                 (state) -> {
                     return state.getMaterial().isReplaceable();
-                });
+                }
+        );
         SplineHelper.rotateSpline(spline, (float) Math.PI);
-        SplineHelper.fillSplineForce(spline,
+        SplineHelper.fillSplineForce(
+                spline,
                 world,
                 EndBlocks.HELIX_TREE.getBark().defaultBlockState(),
                 pos,
                 (state) -> {
                     return state.getMaterial().isReplaceable();
-                });
+                }
+        );
         SplineHelper.scale(spline2, scale);
         BlockPos leafStart = pos.offset(lastPoint.x() + 0.5, lastPoint.y() + 0.5, lastPoint.z() + 0.5);
         SplineHelper.fillSplineForce(
@@ -159,12 +163,14 @@ public class HelixTreeFeature extends DefaultFeature {
         return true;
     }
 
-    private void fillLine(Vector3f start,
-                          Vector3f end,
-                          WorldGenLevel world,
-                          BlockState state,
-                          BlockPos pos,
-                          int offset) {
+    private void fillLine(
+            Vector3f start,
+            Vector3f end,
+            WorldGenLevel world,
+            BlockState state,
+            BlockPos pos,
+            int offset
+    ) {
         float dx = end.x() - start.x();
         float dy = end.y() - start.y();
         float dz = end.z() - start.z();
