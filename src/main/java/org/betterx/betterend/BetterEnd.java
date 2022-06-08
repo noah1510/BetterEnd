@@ -34,6 +34,7 @@ public class BetterEnd implements ModInitializer {
         EndPortals.loadPortals();
         EndSounds.register();
         EndBlockEntities.register();
+        EndPoiTypes.register();
         EndFeatures.register();
         EndEntities.register();
         EndBiomes.register();

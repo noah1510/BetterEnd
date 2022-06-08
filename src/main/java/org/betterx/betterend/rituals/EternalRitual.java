@@ -36,11 +36,13 @@ import org.betterx.betterend.blocks.RunedFlavolite;
 import org.betterx.betterend.blocks.entities.EternalPedestalEntity;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndFeatures;
+import org.betterx.betterend.registry.EndPoiTypes;
 import org.betterx.betterend.registry.EndPortals;
 
 import java.awt.*;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 import org.jetbrains.annotations.Nullable;
@@ -96,7 +98,7 @@ public class EternalRitual {
     private final static Block PORTAL = EndBlocks.END_PORTAL_BLOCK;
     private final static BooleanProperty ACTIVE = BlockProperties.ACTIVE;
 
-    public final static int SEARCH_RADIUS = calculateSearchSteps(16);
+    public final static int SEARCH_RADIUS = calculateSearchSteps(48);
 
     private Level world;
     private Direction.Axis axis;
@@ -365,19 +367,26 @@ public class EternalRitual {
 
     @Nullable
     private BlockPos findFrame(ServerLevel level, BlockPos.MutableBlockPos startPos) {
-
-        List<BlockPos.MutableBlockPos> foundPos = findAllBlockPos(
-                level,
-                startPos,
-                (SEARCH_RADIUS >> 4) + 1,
-                FRAME,
-                blockState -> blockState.is(FRAME) && !blockState.getValue(ACTIVE)
-                                                                 );
-        for (BlockPos.MutableBlockPos testPos : foundPos) {
-            if (checkFrame(level, testPos)) {
-                return testPos;
-            }
+        Optional<BlockPos> found = EndPoiTypes.ETERNAL_PORTAL_INACTIVE.findPoiAround(level,
+                                                                                     startPos,
+                                                                                     SEARCH_RADIUS >> 4 + 1,
+                                                                                     level.getWorldBorder());
+        if (found.isPresent()) {
+            if (checkFrame(level, found.get()))
+                return found.get();
         }
+        //                List<BlockPos.MutableBlockPos> foundPos = findAllBlockPos(
+//                level,
+//                startPos,
+//                (SEARCH_RADIUS >> 4) + 1,
+//                FRAME,
+//                blockState -> blockState.is(FRAME) && !blockState.getValue(ACTIVE)
+//                                                                         );
+//        for (BlockPos.MutableBlockPos testPos : foundPos) {
+//            if (checkFrame(level, testPos)) {
+//                return testPos;
+//            }
+//        }
         return null;
     }
 
