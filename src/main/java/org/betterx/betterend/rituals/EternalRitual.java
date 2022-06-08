@@ -35,11 +35,13 @@ import org.betterx.betterend.blocks.RunedFlavolite;
 import org.betterx.betterend.blocks.entities.EternalPedestalEntity;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndFeatures;
+import org.betterx.betterend.registry.EndPoiTypes;
 import org.betterx.betterend.registry.EndPortals;
 
 import java.awt.*;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 import org.jetbrains.annotations.Nullable;
@@ -363,20 +365,29 @@ public class EternalRitual {
     }
 
     @Nullable
-    private BlockPos findFrame(Level world, BlockPos.MutableBlockPos startPos) {
-        List<BlockPos.MutableBlockPos> foundPos = findAllBlockPos(
-                world,
-                startPos,
-                (SEARCH_RADIUS >> 4) + 1,
-                FRAME,
-                blockState -> blockState.is(FRAME) && !blockState.getValue(ACTIVE)
-                                                                 );
-        for (BlockPos.MutableBlockPos testPos : foundPos) {
-            if (checkFrame(world, testPos)) {
-                return testPos;
+    private BlockPos findFrame(ServerLevel level, BlockPos.MutableBlockPos startPos) {
+        Optional<BlockPos> foundPos = EndPoiTypes
+                .ETERNAL_PORTAL.findPoiAround(level, startPos, false, level.getWorldBorder());
+
+        if (foundPos.isPresent()) {
+            if (checkFrame(world, foundPos.get())) {
+                return foundPos.get();
             }
         }
         return null;
+//        List<BlockPos.MutableBlockPos> foundPos = findAllBlockPos(
+//                world,
+//                startPos,
+//                (SEARCH_RADIUS >> 4) + 1,
+//                FRAME,
+//                blockState -> blockState.is(FRAME) && !blockState.getValue(ACTIVE)
+//                                                                 );
+//        for (BlockPos.MutableBlockPos testPos : foundPos) {
+//            if (checkFrame(world, testPos)) {
+//                return testPos;
+//            }
+//        }
+//        return null;
     }
 
     private BlockPos findPortalPos(int portalId) {
@@ -737,6 +748,7 @@ public class EternalRitual {
                                                                  int radius,
                                                                  Block searchBlock,
                                                                  Predicate<BlockState> condition) {
+
         List<BlockPos.MutableBlockPos> posFound = Lists.newArrayList();
         Direction moveDirection = Direction.EAST;
         for (int step = 1; step < radius; step++) {

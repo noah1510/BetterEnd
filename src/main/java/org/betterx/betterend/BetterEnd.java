@@ -37,6 +37,7 @@ public class BetterEnd implements ModInitializer {
         EndEntities.register();
         EndBiomes.register();
         EndTags.register();
+        EndPoiTypes.register();
         EndEnchantments.register();
         EndPotions.register();
         CraftingRecipes.register();
@@ -58,7 +59,7 @@ public class BetterEnd implements ModInitializer {
         if (GeneratorOptions.useNewGenerator()) {
             org.betterx.bclib.api.v2.generator.GeneratorOptions.setFarEndBiomes(GeneratorOptions.getIslandDistBlock());
             org.betterx.bclib.api.v2.generator.GeneratorOptions.setEndLandFunction((pos) -> TerrainGenerator.isLand(pos.x,
-                    pos.y));
+                                                                                                                    pos.y));
         }
 
         BiomeAPI.registerEndBiomeModification((biomeID, biome) -> {
