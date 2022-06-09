@@ -1,5 +1,9 @@
 package org.betterx.betterend.entity;
 
+import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
+import org.betterx.betterend.registry.EndBiomes;
+import org.betterx.betterend.registry.EndItems;
+
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundGameEventPacket;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -22,31 +26,29 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 
-import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
-import org.betterx.betterend.registry.EndBiomes;
-import org.betterx.betterend.registry.EndItems;
-
 public class CubozoaEntity extends AbstractSchoolingFish {
     public static final int VARIANTS = 2;
     private static final EntityDataAccessor<Byte> VARIANT = SynchedEntityData.defineId(
             CubozoaEntity.class,
             EntityDataSerializers.BYTE
-                                                                                      );
+    );
     private static final EntityDataAccessor<Byte> SCALE = SynchedEntityData.defineId(
             CubozoaEntity.class,
             EntityDataSerializers.BYTE
-                                                                                    );
+    );
 
     public CubozoaEntity(EntityType<CubozoaEntity> entityType, Level world) {
         super(entityType, world);
     }
 
     @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor world,
-                                        DifficultyInstance difficulty,
-                                        MobSpawnType spawnReason,
-                                        SpawnGroupData entityData,
-                                        CompoundTag entityTag) {
+    public SpawnGroupData finalizeSpawn(
+            ServerLevelAccessor world,
+            DifficultyInstance difficulty,
+            MobSpawnType spawnReason,
+            SpawnGroupData entityData,
+            CompoundTag entityTag
+    ) {
         SpawnGroupData data = super.finalizeSpawn(world, difficulty, spawnReason, entityData, entityTag);
 
         if (BiomeAPI.getFromBiome(world.getBiome(blockPosition())) == EndBiomes.SULPHUR_SPRINGS) {

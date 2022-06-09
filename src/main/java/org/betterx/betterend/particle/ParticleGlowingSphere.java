@@ -1,5 +1,7 @@
 package org.betterx.betterend.particle;
 
+import org.betterx.bclib.util.MHelper;
+
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
@@ -11,8 +13,6 @@ import net.minecraft.util.Mth;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
-import org.betterx.bclib.util.MHelper;
-
 @Environment(EnvType.CLIENT)
 public class ParticleGlowingSphere extends SimpleAnimatedParticle {
     private int ticks;
@@ -23,14 +23,16 @@ public class ParticleGlowingSphere extends SimpleAnimatedParticle {
     private double nextVY;
     private double nextVZ;
 
-    protected ParticleGlowingSphere(ClientLevel world,
-                                    double x,
-                                    double y,
-                                    double z,
-                                    SpriteSet sprites,
-                                    double r,
-                                    double g,
-                                    double b) {
+    protected ParticleGlowingSphere(
+            ClientLevel world,
+            double x,
+            double y,
+            double z,
+            SpriteSet sprites,
+            double r,
+            double g,
+            double b
+    ) {
         super(world, x, y, z, sprites, 0);
         setSprite(sprites.get(random));
         this.lifetime = MHelper.randRange(150, 300, random);
@@ -78,14 +80,16 @@ public class ParticleGlowingSphere extends SimpleAnimatedParticle {
         }
 
         @Override
-        public Particle createParticle(SimpleParticleType type,
-                                       ClientLevel world,
-                                       double x,
-                                       double y,
-                                       double z,
-                                       double vX,
-                                       double vY,
-                                       double vZ) {
+        public Particle createParticle(
+                SimpleParticleType type,
+                ClientLevel world,
+                double x,
+                double y,
+                double z,
+                double vX,
+                double vY,
+                double vZ
+        ) {
             return new ParticleGlowingSphere(world, x, y, z, sprites, 1, 1, 1);
         }
     }

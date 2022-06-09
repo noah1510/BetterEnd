@@ -1,5 +1,7 @@
 package org.betterx.betterend.mixin.common;
 
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
+
 import net.minecraft.core.Registry;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Container;
@@ -8,7 +10,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.EnchantmentInstance;
 
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -67,7 +68,7 @@ public abstract class EnchantmentMenuMixin extends AbstractContainerMenu {
                                     k,
                                     0,
                                     j
-                                                                                        )) && world.isEmptyBlock(
+                            )) && world.isEmptyBlock(
                                     blockPos.offset(k, 1, j))) {
                                 if (world.getBlockState(blockPos.offset(k * 2, 0, j * 2))
                                          .is(CommonBlockTags.BOOKSHELVES)) {

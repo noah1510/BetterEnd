@@ -1,5 +1,10 @@
 package org.betterx.betterend.world.features;
 
+import org.betterx.bclib.blocks.BlockProperties.TripleShape;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.betterend.blocks.EndLotusLeafBlock;
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
@@ -7,11 +12,6 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-
-import org.betterx.bclib.blocks.BlockProperties.TripleShape;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.betterend.blocks.EndLotusLeafBlock;
-import org.betterx.betterend.registry.EndBlocks;
 
 public class EndLotusLeafFeature extends ScatterFeature {
     public EndLotusLeafFeature(int radius) {
@@ -45,7 +45,7 @@ public class EndLotusLeafFeature extends ScatterFeature {
                     p.set(pos).move(move),
                     leaf.setValue(EndLotusLeafBlock.HORIZONTAL_FACING, move)
                         .setValue(EndLotusLeafBlock.SHAPE, TripleShape.MIDDLE)
-                                         );
+            );
         }
         for (int i = 0; i < 4; i++) {
             Direction d1 = BlocksHelper.HORIZONTAL[i];
@@ -55,7 +55,7 @@ public class EndLotusLeafFeature extends ScatterFeature {
                     p.set(pos).move(d1).move(d2),
                     leaf.setValue(EndLotusLeafBlock.HORIZONTAL_FACING, d1)
                         .setValue(EndLotusLeafBlock.SHAPE, TripleShape.TOP)
-                                         );
+            );
         }
     }
 
@@ -74,11 +74,13 @@ public class EndLotusLeafFeature extends ScatterFeature {
     }
 
     @Override
-    public boolean canGenerate(WorldGenLevel world,
-                               RandomSource random,
-                               BlockPos center,
-                               BlockPos blockPos,
-                               float radius) {
+    public boolean canGenerate(
+            WorldGenLevel world,
+            RandomSource random,
+            BlockPos center,
+            BlockPos blockPos,
+            float radius
+    ) {
         return world.isEmptyBlock(blockPos) && world.getBlockState(blockPos.below()).is(Blocks.WATER);
     }
 }

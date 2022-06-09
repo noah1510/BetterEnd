@@ -1,5 +1,11 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.blocks.BaseBlock;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.registry.EndParticles;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -15,12 +21,6 @@ import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-
-import org.betterx.bclib.blocks.BaseBlock;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.betterend.registry.EndParticles;
 
 import java.util.Collections;
 import java.util.List;
@@ -68,7 +68,7 @@ public class AncientEmeraldIceBlock extends BaseBlock {
                 0.5,
                 0.5,
                 0
-                           );
+        );
     }
 
     @Override

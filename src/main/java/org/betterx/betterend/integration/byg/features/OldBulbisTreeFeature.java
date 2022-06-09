@@ -1,18 +1,5 @@
 package org.betterx.betterend.integration.byg.features;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.util.Mth;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.phys.AABB;
-
-import com.google.common.collect.Lists;
-import com.mojang.math.Vector3f;
 import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
 import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.sdf.SDF;
@@ -25,6 +12,20 @@ import org.betterx.bclib.util.MHelper;
 import org.betterx.bclib.util.SplineHelper;
 import org.betterx.betterend.integration.Integrations;
 import org.betterx.betterend.noise.OpenSimplexNoise;
+
+import com.mojang.math.Vector3f;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.material.Material;
+import net.minecraft.world.phys.AABB;
+
+import com.google.common.collect.Lists;
 
 import java.util.List;
 import java.util.function.Function;
@@ -101,14 +102,16 @@ public class OldBulbisTreeFeature extends DefaultFeature {
         return true;
     }
 
-    private void bigSphere(WorldGenLevel world,
-                           BlockPos pos,
-                           float radius,
-                           BlockState cap,
-                           BlockState glow,
-                           BlockState wood,
-                           Function<BlockState, Boolean> replacement,
-                           RandomSource random) {
+    private void bigSphere(
+            WorldGenLevel world,
+            BlockPos pos,
+            float radius,
+            BlockState cap,
+            BlockState glow,
+            BlockState wood,
+            Function<BlockState, Boolean> replacement,
+            RandomSource random
+    ) {
         OpenSimplexNoise noise = new OpenSimplexNoise(random.nextLong());
         SDF sphere = new SDFSphere().setRadius(radius).setBlock(cap);
 
@@ -155,12 +158,14 @@ public class OldBulbisTreeFeature extends DefaultFeature {
         sphere.fillArea(world, pos, new AABB(pos.above((int) offsetY)).inflate(radius * 1.3F));
     }
 
-    private void makeRoots(WorldGenLevel world,
-                           BlockPos pos,
-                           float radius,
-                           RandomSource random,
-                           BlockState wood,
-                           Function<BlockState, Boolean> replacement) {
+    private void makeRoots(
+            WorldGenLevel world,
+            BlockPos pos,
+            float radius,
+            RandomSource random,
+            BlockState wood,
+            Function<BlockState, Boolean> replacement
+    ) {
         int count = (int) (radius * 1.5F);
         for (int i = 0; i < count; i++) {
             float angle = (float) i / (float) count * MHelper.PI2;

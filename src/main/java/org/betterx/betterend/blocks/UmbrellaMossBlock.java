@@ -1,5 +1,10 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.blocks.BaseDoublePlantBlock;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.betterend.blocks.basis.EndPlantBlock;
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -9,11 +14,6 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-
-import org.betterx.bclib.blocks.BaseDoublePlantBlock;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.betterend.blocks.basis.EndPlantBlock;
-import org.betterx.betterend.registry.EndBlocks;
 
 public class UmbrellaMossBlock extends EndPlantBlock {
     public UmbrellaMossBlock() {

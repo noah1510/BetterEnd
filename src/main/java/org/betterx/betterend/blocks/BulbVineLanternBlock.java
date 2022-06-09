@@ -1,5 +1,13 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.client.models.ModelsHelper;
+import org.betterx.bclib.client.render.BCLRenderLayer;
+import org.betterx.bclib.interfaces.BlockModelProvider;
+import org.betterx.bclib.interfaces.RenderLayerProvider;
+import org.betterx.bclib.interfaces.tools.AddMineablePickaxe;
+import org.betterx.betterend.blocks.basis.EndLanternBlock;
+import org.betterx.betterend.client.models.Patterns;
+
 import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
@@ -17,13 +25,6 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 import com.google.common.collect.Maps;
-import org.betterx.bclib.client.models.ModelsHelper;
-import org.betterx.bclib.client.render.BCLRenderLayer;
-import org.betterx.bclib.interfaces.BlockModelProvider;
-import org.betterx.bclib.interfaces.RenderLayerProvider;
-import org.betterx.bclib.interfaces.tools.AddMineablePickaxe;
-import org.betterx.betterend.blocks.basis.EndLanternBlock;
-import org.betterx.betterend.client.models.Patterns;
 
 import java.util.Map;
 import java.util.Optional;
@@ -68,7 +69,7 @@ public class BulbVineLanternBlock extends EndLanternBlock implements RenderLayer
                 ? Patterns.createJson(
                 Patterns.BLOCK_BULB_LANTERN_FLOOR,
                 textures
-                                     )
+        )
                 : Patterns.createJson(Patterns.BLOCK_BULB_LANTERN_CEIL, textures);
         return ModelsHelper.fromPattern(pattern);
     }

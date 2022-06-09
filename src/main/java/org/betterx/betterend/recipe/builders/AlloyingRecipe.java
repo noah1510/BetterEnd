@@ -1,5 +1,13 @@
 package org.betterx.betterend.recipe.builders;
 
+import org.betterx.bclib.interfaces.UnknownReceipBookCategory;
+import org.betterx.bclib.recipes.BCLRecipeManager;
+import org.betterx.bclib.util.ItemUtil;
+import org.betterx.bclib.util.RecipeHelper;
+import org.betterx.betterend.BetterEnd;
+import org.betterx.betterend.config.Configs;
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -20,13 +28,6 @@ import net.fabricmc.api.Environment;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import org.betterx.bclib.interfaces.UnknownReceipBookCategory;
-import org.betterx.bclib.recipes.BCLRecipeManager;
-import org.betterx.bclib.util.ItemUtil;
-import org.betterx.bclib.util.RecipeHelper;
-import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.config.Configs;
-import org.betterx.betterend.registry.EndBlocks;
 
 public class AlloyingRecipe implements Recipe<Container>, UnknownReceipBookCategory {
     public final static String GROUP = "alloying";
@@ -35,7 +36,7 @@ public class AlloyingRecipe implements Recipe<Container>, UnknownReceipBookCateg
             BetterEnd.MOD_ID,
             GROUP,
             new Serializer()
-                                                                                   );
+    );
 
     protected final RecipeType<?> type;
     protected final ResourceLocation id;
@@ -46,13 +47,15 @@ public class AlloyingRecipe implements Recipe<Container>, UnknownReceipBookCateg
     protected final float experience;
     protected final int smeltTime;
 
-    public AlloyingRecipe(ResourceLocation id,
-                          String group,
-                          Ingredient primaryInput,
-                          Ingredient secondaryInput,
-                          ItemStack output,
-                          float experience,
-                          int smeltTime) {
+    public AlloyingRecipe(
+            ResourceLocation id,
+            String group,
+            Ingredient primaryInput,
+            Ingredient secondaryInput,
+            ItemStack output,
+            float experience,
+            int smeltTime
+    ) {
         this.group = group;
         this.id = id;
         this.primaryInput = primaryInput;
@@ -225,14 +228,14 @@ public class AlloyingRecipe implements Recipe<Container>, UnknownReceipBookCateg
                     BetterEnd.LOGGER.warning(
                             "Primary input for Alloying recipe can't be 'null', recipe {} will be ignored!",
                             id
-                                            );
+                    );
                     return;
                 }
                 if (secondaryInput == null) {
                     BetterEnd.LOGGER.warning(
                             "Secondary input for Alloying can't be 'null', recipe {} will be ignored!",
                             id
-                                            );
+                    );
                     return;
                 }
                 if (output == null) {
@@ -250,7 +253,7 @@ public class AlloyingRecipe implements Recipe<Container>, UnknownReceipBookCateg
                 BCLRecipeManager.addRecipe(
                         TYPE,
                         new AlloyingRecipe(id, group, primaryInput, secondaryInput, output, experience, smeltTime)
-                                          );
+                );
             }
         }
     }

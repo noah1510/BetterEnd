@@ -1,10 +1,10 @@
 package org.betterx.betterend.blocks.basis;
 
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-
 import org.betterx.bclib.blocks.BaseCropBlock;
 import org.betterx.betterend.interfaces.PottablePlant;
+
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 
 public class PottableCropBlock extends BaseCropBlock implements PottablePlant {
     private final Block[] terrain;

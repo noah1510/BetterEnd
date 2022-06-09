@@ -1,10 +1,11 @@
 package org.betterx.betterend.mixin.common;
 
+import org.betterx.betterend.world.generator.GeneratorOptions;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 
-import org.betterx.betterend.world.generator.GeneratorOptions;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;

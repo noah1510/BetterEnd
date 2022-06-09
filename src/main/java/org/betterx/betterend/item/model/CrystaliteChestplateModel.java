@@ -1,5 +1,8 @@
 package org.betterx.betterend.item.model;
 
+import org.betterx.betterend.registry.EndEntitiesRenders;
+
+import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.ModelPart;
@@ -11,8 +14,6 @@ import net.minecraft.world.entity.HumanoidArm;
 import net.minecraft.world.entity.LivingEntity;
 
 import com.google.common.collect.Lists;
-import com.mojang.blaze3d.vertex.PoseStack;
-import org.betterx.betterend.registry.EndEntitiesRenders;
 
 import java.util.Collections;
 
@@ -50,7 +51,7 @@ public class CrystaliteChestplateModel extends HumanoidModel<LivingEntity> {
                 PartNames.BODY,
                 CubeListBuilder.create().texOffs(16, 16).addBox(-4.0f, 0.0f, -2.0f, 8.0f, 12.0f, 4.0f, deformation),
                 PartPose.ZERO
-                                                             );
+        );
 
         if (thinArms) {
             deformation = new CubeDeformation(scale + 0.45F);
@@ -61,7 +62,7 @@ public class CrystaliteChestplateModel extends HumanoidModel<LivingEntity> {
                                    .texOffs(40, 32)
                                    .addBox(-1.0f, -2.5f, -2.0f, 4.0f, 12.0f, 4.0f, deformation),
                     PartPose.offset(5.0f, 2.0f, 0.0f)
-                                                                         );
+            );
 
             PartDefinition rightShoulder = modelPartData.addOrReplaceChild(
                     "rightShoulder",
@@ -69,7 +70,7 @@ public class CrystaliteChestplateModel extends HumanoidModel<LivingEntity> {
                                    .texOffs(40, 16)
                                    .addBox(-3.0f, -2.5f, -2.0f, 4.0f, 12.0f, 4.0f, deformation),
                     PartPose.offset(-5.0f, 2.0f, 10.0f)
-                                                                          );
+            );
         } else {
             deformation = new CubeDeformation(scale + 0.45F);
             PartDefinition leftShoulder = modelPartData.addOrReplaceChild(
@@ -79,7 +80,7 @@ public class CrystaliteChestplateModel extends HumanoidModel<LivingEntity> {
                                    .texOffs(40, 32)
                                    .addBox(-1.0f, -2.5f, -2.0f, 4.0f, 12.0f, 4.0f, deformation),
                     PartPose.offset(5.0f, 2.0f, 0.0f)
-                                                                         );
+            );
 
             PartDefinition rightShoulder = modelPartData.addOrReplaceChild(
                     "rightShoulder",
@@ -87,7 +88,7 @@ public class CrystaliteChestplateModel extends HumanoidModel<LivingEntity> {
                                    .texOffs(40, 16)
                                    .addBox(-3.0f, -2.5f, -2.0f, 4.0f, 12.0f, 4.0f, deformation),
                     PartPose.offset(-5.0f, 2.0f, 10.0f)
-                                                                          );
+            );
         }
         return LayerDefinition.create(modelData, 64, 48);
     }
@@ -95,19 +96,23 @@ public class CrystaliteChestplateModel extends HumanoidModel<LivingEntity> {
     final ModelPart localBody;
 
     public static CrystaliteChestplateModel createRegularModel(EntityModelSet entityModelSet) {
-        return new CrystaliteChestplateModel(entityModelSet == null
-                                                     ? getRegularTexturedModelData().bakeRoot()
-                                                     : entityModelSet
-                                                             .bakeLayer(EndEntitiesRenders.CRYSTALITE_CHESTPLATE),
-                                             false);
+        return new CrystaliteChestplateModel(
+                entityModelSet == null
+                        ? getRegularTexturedModelData().bakeRoot()
+                        : entityModelSet
+                                .bakeLayer(EndEntitiesRenders.CRYSTALITE_CHESTPLATE),
+                false
+        );
     }
 
     public static CrystaliteChestplateModel createThinModel(EntityModelSet entityModelSet) {
-        return new CrystaliteChestplateModel(entityModelSet == null
-                                                     ? getThinTexturedModelData().bakeRoot()
-                                                     : entityModelSet
-                                                             .bakeLayer(EndEntitiesRenders.CRYSTALITE_CHESTPLATE_THIN),
-                                             true);
+        return new CrystaliteChestplateModel(
+                entityModelSet == null
+                        ? getThinTexturedModelData().bakeRoot()
+                        : entityModelSet
+                                .bakeLayer(EndEntitiesRenders.CRYSTALITE_CHESTPLATE_THIN),
+                true
+        );
     }
 
     protected CrystaliteChestplateModel(ModelPart modelPart, boolean thinArms) {

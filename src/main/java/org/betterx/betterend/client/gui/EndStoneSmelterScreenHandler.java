@@ -1,5 +1,12 @@
 package org.betterx.betterend.client.gui;
 
+import org.betterx.betterend.BetterEnd;
+import org.betterx.betterend.blocks.EndStoneSmelter;
+import org.betterx.betterend.blocks.entities.EndStoneSmelterBlockEntity;
+import org.betterx.betterend.client.gui.slot.SmelterFuelSlot;
+import org.betterx.betterend.client.gui.slot.SmelterOutputSlot;
+import org.betterx.betterend.recipe.builders.AlloyingRecipe;
+
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -15,12 +22,6 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
 
 import org.anti_ad.mc.ipn.api.IPNIgnore;
-import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.blocks.EndStoneSmelter;
-import org.betterx.betterend.blocks.entities.EndStoneSmelterBlockEntity;
-import org.betterx.betterend.client.gui.slot.SmelterFuelSlot;
-import org.betterx.betterend.client.gui.slot.SmelterOutputSlot;
-import org.betterx.betterend.recipe.builders.AlloyingRecipe;
 
 @IPNIgnore
 public class EndStoneSmelterScreenHandler extends RecipeBookMenu<Container> {
@@ -28,7 +29,7 @@ public class EndStoneSmelterScreenHandler extends RecipeBookMenu<Container> {
     public final static MenuType<EndStoneSmelterScreenHandler> HANDLER_TYPE = ScreenHandlerRegistry.registerSimple(
             BetterEnd.makeID(EndStoneSmelter.ID),
             EndStoneSmelterScreenHandler::new
-                                                                                                                  );
+    );
 
     private final Container inventory;
     private final ContainerData propertyDelegate;
@@ -38,10 +39,12 @@ public class EndStoneSmelterScreenHandler extends RecipeBookMenu<Container> {
         this(syncId, playerInventory, new SimpleContainer(4), new SimpleContainerData(4));
     }
 
-    public EndStoneSmelterScreenHandler(int syncId,
-                                        Inventory playerInventory,
-                                        Container inventory,
-                                        ContainerData propertyDelegate) {
+    public EndStoneSmelterScreenHandler(
+            int syncId,
+            Inventory playerInventory,
+            Container inventory,
+            ContainerData propertyDelegate
+    ) {
         super(HANDLER_TYPE, syncId);
         this.inventory = inventory;
         this.propertyDelegate = propertyDelegate;

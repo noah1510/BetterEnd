@@ -1,5 +1,7 @@
 package org.betterx.betterend.mixin.common;
 
+import org.betterx.betterend.interfaces.TeleportingEntity;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
@@ -8,7 +10,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.portal.PortalInfo;
 import net.minecraft.world.phys.Vec3;
 
-import org.betterx.betterend.interfaces.TeleportingEntity;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -65,7 +66,7 @@ public abstract class EntityMixin implements TeleportingEntity {
                             teleportTarget.pos.z,
                             teleportTarget.yRot,
                             entity.getXRot()
-                                 );
+                    );
                     entity.setDeltaMovement(teleportTarget.speed);
                     destination.addDuringTeleport(entity);
                 }

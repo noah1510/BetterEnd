@@ -10,7 +10,8 @@ public class EndPoiTypes {
     public static final BCLPoiType ETERNAL_PORTAL_INACTIVE = BCLPoiType.register(
             BetterEnd.makeID("eternal_portal_inactive"),
             Set.of(EndBlocks.FLAVOLITE_RUNED_ETERNAL.defaultBlockState().setValue(RunedFlavolite.ACTIVATED, false)),
-            0, 1);
+            0, 1
+    );
 
     public static void register() {
 

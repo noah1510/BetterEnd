@@ -1,13 +1,13 @@
 package org.betterx.betterend.world.surface;
 
-import net.minecraft.core.Registry;
-
-import com.mojang.serialization.Codec;
 import org.betterx.bclib.interfaces.NumericProvider;
 import org.betterx.bclib.mixin.common.SurfaceRulesContextAccessor;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.noise.OpenSimplexNoise;
+
+import com.mojang.serialization.Codec;
+import net.minecraft.core.Registry;
 
 /**
  * Noise source that returns a value in [0, 4]
@@ -28,10 +28,14 @@ public class UmbraSurfaceNoiseCondition implements NumericProvider {
     }
 
     public static int getDepth(int x, int z) {
-        final double value = NOISE.eval(x * 0.03, z * 0.03) + NOISE.eval(x * 0.1,
-                                                                         z * 0.1) * 0.3 + MHelper.randRange(-0.1,
-                                                                                                            0.1,
-                                                                                                            MHelper.RANDOM_SOURCE);
+        final double value = NOISE.eval(x * 0.03, z * 0.03) + NOISE.eval(
+                x * 0.1,
+                z * 0.1
+        ) * 0.3 + MHelper.randRange(
+                -0.1,
+                0.1,
+                MHelper.RANDOM_SOURCE
+        );
         if (value > 0.4) return 0;
         if (value > 0.15) return 1;
         if (value > -0.15) return 2;
@@ -45,8 +49,10 @@ public class UmbraSurfaceNoiseCondition implements NumericProvider {
     }
 
     static {
-        Registry.register(NumericProvider.NUMERIC_PROVIDER,
-                          BetterEnd.makeID("umbra_srf"),
-                          UmbraSurfaceNoiseCondition.CODEC);
+        Registry.register(
+                NumericProvider.NUMERIC_PROVIDER,
+                BetterEnd.makeID("umbra_srf"),
+                UmbraSurfaceNoiseCondition.CODEC
+        );
     }
 }

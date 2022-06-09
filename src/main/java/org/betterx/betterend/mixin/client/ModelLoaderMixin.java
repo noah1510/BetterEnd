@@ -1,10 +1,11 @@
 package org.betterx.betterend.mixin.client;
 
+import org.betterx.betterend.BetterEnd;
+import org.betterx.betterend.world.generator.GeneratorOptions;
+
 import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.resources.ResourceLocation;
 
-import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.world.generator.GeneratorOptions;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;

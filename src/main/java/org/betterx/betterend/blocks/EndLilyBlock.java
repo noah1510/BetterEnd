@@ -1,5 +1,13 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.blocks.BlockProperties;
+import org.betterx.bclib.blocks.BlockProperties.TripleShape;
+import org.betterx.bclib.interfaces.tools.AddMineableShears;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.blocks.basis.EndUnderwaterPlantBlock;
+import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.registry.EndItems;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
@@ -27,13 +35,6 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 import com.google.common.collect.Lists;
-import org.betterx.bclib.blocks.BlockProperties;
-import org.betterx.bclib.blocks.BlockProperties.TripleShape;
-import org.betterx.bclib.interfaces.tools.AddMineableShears;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.blocks.basis.EndUnderwaterPlantBlock;
-import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.betterend.registry.EndItems;
 
 import java.util.Collections;
 import java.util.List;
@@ -51,12 +52,14 @@ public class EndLilyBlock extends EndUnderwaterPlantBlock implements AddMineable
     }
 
     @Override
-    public BlockState updateShape(BlockState state,
-                                  Direction facing,
-                                  BlockState neighborState,
-                                  LevelAccessor world,
-                                  BlockPos pos,
-                                  BlockPos neighborPos) {
+    public BlockState updateShape(
+            BlockState state,
+            Direction facing,
+            BlockState neighborState,
+            LevelAccessor world,
+            BlockPos pos,
+            BlockPos neighborPos
+    ) {
         if (!canSurvive(state, world, pos)) {
             return state.getValue(SHAPE) == TripleShape.TOP
                     ? Blocks.AIR.defaultBlockState()
@@ -103,7 +106,7 @@ public class EndLilyBlock extends EndUnderwaterPlantBlock implements AddMineable
             return Lists.newArrayList(
                     new ItemStack(EndItems.END_LILY_LEAF, MHelper.randRange(1, 2, MHelper.RANDOM_SOURCE)),
                     new ItemStack(EndBlocks.END_LILY_SEED, MHelper.randRange(1, 2, MHelper.RANDOM_SOURCE))
-                                     );
+            );
         }
         return Collections.emptyList();
     }

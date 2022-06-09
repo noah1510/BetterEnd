@@ -1,5 +1,10 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.blocks.BaseBlock;
+import org.betterx.bclib.blocks.BlockProperties;
+import org.betterx.bclib.interfaces.tools.AddMineableAxe;
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.LevelAccessor;
@@ -13,11 +18,6 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.Material;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-
-import org.betterx.bclib.blocks.BaseBlock;
-import org.betterx.bclib.blocks.BlockProperties;
-import org.betterx.bclib.interfaces.tools.AddMineableAxe;
-import org.betterx.betterend.registry.EndBlocks;
 
 public class BlueVineLanternBlock extends BaseBlock implements AddMineableAxe {
     public static final BooleanProperty NATURAL = BlockProperties.NATURAL;
@@ -37,12 +37,14 @@ public class BlueVineLanternBlock extends BaseBlock implements AddMineableAxe {
 
     @Override
     @SuppressWarnings("deprecation")
-    public BlockState updateShape(BlockState state,
-                                  Direction facing,
-                                  BlockState neighborState,
-                                  LevelAccessor world,
-                                  BlockPos pos,
-                                  BlockPos neighborPos) {
+    public BlockState updateShape(
+            BlockState state,
+            Direction facing,
+            BlockState neighborState,
+            LevelAccessor world,
+            BlockPos pos,
+            BlockPos neighborPos
+    ) {
         if (!canSurvive(state, world, pos)) {
             return Blocks.AIR.defaultBlockState();
         } else {

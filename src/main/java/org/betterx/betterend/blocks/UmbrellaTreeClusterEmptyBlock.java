@@ -1,5 +1,9 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.blocks.BaseBlock;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -12,19 +16,15 @@ import net.minecraft.world.level.material.MaterialColor;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
-import org.betterx.bclib.blocks.BaseBlock;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.betterend.registry.EndBlocks;
-
 public class UmbrellaTreeClusterEmptyBlock extends BaseBlock {
     public static final BooleanProperty NATURAL = EndBlockProperties.NATURAL;
 
     public UmbrellaTreeClusterEmptyBlock() {
         super(FabricBlockSettings
-                      .copyOf(Blocks.NETHER_WART_BLOCK)
-                      .mapColor(MaterialColor.COLOR_PURPLE)
-                      .randomTicks()
-             );
+                .copyOf(Blocks.NETHER_WART_BLOCK)
+                .mapColor(MaterialColor.COLOR_PURPLE)
+                .randomTicks()
+        );
         registerDefaultState(stateDefinition.any().setValue(NATURAL, false));
     }
 
@@ -41,7 +41,7 @@ public class UmbrellaTreeClusterEmptyBlock extends BaseBlock {
                     world,
                     pos,
                     EndBlocks.UMBRELLA_TREE_CLUSTER.defaultBlockState().setValue(UmbrellaTreeClusterBlock.NATURAL, true)
-                                      );
+            );
         }
     }
 }

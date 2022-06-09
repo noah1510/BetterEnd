@@ -1,5 +1,16 @@
 package org.betterx.betterend.blocks.basis;
 
+import org.betterx.bclib.blocks.BaseBlockNotFull;
+import org.betterx.bclib.blocks.BlockProperties;
+import org.betterx.bclib.client.models.ModelsHelper;
+import org.betterx.betterend.blocks.EndBlockProperties;
+import org.betterx.betterend.blocks.EndBlockProperties.PedestalState;
+import org.betterx.betterend.blocks.InfusionPedestal;
+import org.betterx.betterend.blocks.entities.InfusionPedestalEntity;
+import org.betterx.betterend.blocks.entities.PedestalBlockEntity;
+import org.betterx.betterend.client.models.Patterns;
+import org.betterx.betterend.rituals.InfusionRitual;
+
 import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.client.resources.model.UnbakedModel;
 import net.minecraft.core.BlockPos;
@@ -36,16 +47,6 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import org.betterx.bclib.blocks.BaseBlockNotFull;
-import org.betterx.bclib.blocks.BlockProperties;
-import org.betterx.bclib.client.models.ModelsHelper;
-import org.betterx.betterend.blocks.EndBlockProperties;
-import org.betterx.betterend.blocks.EndBlockProperties.PedestalState;
-import org.betterx.betterend.blocks.InfusionPedestal;
-import org.betterx.betterend.blocks.entities.InfusionPedestalEntity;
-import org.betterx.betterend.blocks.entities.PedestalBlockEntity;
-import org.betterx.betterend.client.models.Patterns;
-import org.betterx.betterend.rituals.InfusionRitual;
 
 import java.awt.*;
 import java.util.List;
@@ -77,7 +78,7 @@ public class PedestalBlock extends BaseBlockNotFull implements EntityBlock {
                         .setValue(STATE, PedestalState.DEFAULT)
                         .setValue(HAS_ITEM, false)
                         .setValue(HAS_LIGHT, false)
-                                 );
+        );
         this.parent = parent;
     }
 
@@ -98,12 +99,14 @@ public class PedestalBlock extends BaseBlockNotFull implements EntityBlock {
 
     @Override
     @SuppressWarnings("deprecation")
-    public InteractionResult use(BlockState state,
-                                 Level level,
-                                 BlockPos pos,
-                                 Player player,
-                                 InteractionHand hand,
-                                 BlockHitResult hit) {
+    public InteractionResult use(
+            BlockState state,
+            Level level,
+            BlockPos pos,
+            Player player,
+            InteractionHand hand,
+            BlockHitResult hit
+    ) {
         if (!state.is(this) || !isPlaceable(state)) {
             return InteractionResult.PASS;
         }
@@ -188,12 +191,14 @@ public class PedestalBlock extends BaseBlockNotFull implements EntityBlock {
 
     @Override
     @SuppressWarnings("deprecation")
-    public BlockState updateShape(BlockState state,
-                                  Direction direction,
-                                  BlockState newState,
-                                  LevelAccessor world,
-                                  BlockPos pos,
-                                  BlockPos posFrom) {
+    public BlockState updateShape(
+            BlockState state,
+            Direction direction,
+            BlockState newState,
+            LevelAccessor world,
+            BlockPos pos,
+            BlockPos posFrom
+    ) {
         BlockState updated = getUpdatedState(state, direction, newState, world, pos, posFrom);
         if (!updated.is(this)) return updated;
         if (!isPlaceable(updated)) {
@@ -202,12 +207,14 @@ public class PedestalBlock extends BaseBlockNotFull implements EntityBlock {
         return updated;
     }
 
-    private BlockState getUpdatedState(BlockState state,
-                                       Direction direction,
-                                       BlockState newState,
-                                       LevelAccessor world,
-                                       BlockPos pos,
-                                       BlockPos posFrom) {
+    private BlockState getUpdatedState(
+            BlockState state,
+            Direction direction,
+            BlockState newState,
+            LevelAccessor world,
+            BlockPos pos,
+            BlockPos posFrom
+    ) {
         if (!state.is(this)) return state.updateShape(direction, newState, world, pos, posFrom);
         if (direction != Direction.UP && direction != Direction.DOWN) return state;
         BlockState upState = world.getBlockState(pos.above());
@@ -411,9 +418,11 @@ public class PedestalBlock extends BaseBlockNotFull implements EntityBlock {
 
     @Override
     @Environment(EnvType.CLIENT)
-    public UnbakedModel getModelVariant(ResourceLocation stateId,
-                                        BlockState blockState,
-                                        Map<ResourceLocation, UnbakedModel> modelCache) {
+    public UnbakedModel getModelVariant(
+            ResourceLocation stateId,
+            BlockState blockState,
+            Map<ResourceLocation, UnbakedModel> modelCache
+    ) {
         PedestalState state = blockState.getValue(STATE);
         ResourceLocation modelId = new ResourceLocation(
                 stateId.getNamespace(),

@@ -1,5 +1,11 @@
 package org.betterx.betterend.mixin.common;
 
+import org.betterx.betterend.BetterEnd;
+import org.betterx.betterend.interfaces.FallFlyingItem;
+import org.betterx.betterend.interfaces.MobEffectApplier;
+import org.betterx.betterend.item.CrystaliteArmor;
+import org.betterx.betterend.registry.EndAttributes;
+
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.util.Mth;
@@ -22,11 +28,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
-import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.interfaces.FallFlyingItem;
-import org.betterx.betterend.interfaces.MobEffectApplier;
-import org.betterx.betterend.item.CrystaliteArmor;
-import org.betterx.betterend.registry.EndAttributes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -149,7 +150,7 @@ public abstract class LivingEntityMixin extends Entity {
                                 1,
                                 LivingEntity.class.cast(this),
                                 livingEntity -> livingEntity.broadcastBreakEvent(EquipmentSlot.CHEST)
-                                              );
+                        );
                     }
                     isFlying = true;
                 } else {
@@ -249,7 +250,7 @@ public abstract class LivingEntityMixin extends Entity {
                         (lookAngle.x / k * l - moveDelta.x) * 0.1D,
                         0.0D,
                         (lookAngle.z / k * l - moveDelta.z) * 0.1D
-                                         );
+                );
             }
             moveDelta = moveDelta.multiply(0.9900000095367432D, 0.9800000190734863D, 0.9900000095367432D);
             double movementFactor = ((FallFlyingItem) itemStack.getItem()).getMovementFactor();

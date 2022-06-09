@@ -1,9 +1,9 @@
 package org.betterx.betterend.blocks.basis;
 
-import net.minecraft.world.level.block.state.BlockState;
-
 import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.blocks.UnderwaterPlantBlock;
+
+import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.function.Function;
 

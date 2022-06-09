@@ -1,5 +1,10 @@
 package org.betterx.betterend.world.features;
 
+import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.util.GlobalState;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.util.RandomSource;
@@ -8,11 +13,6 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.util.GlobalState;
-
 public abstract class InvertedScatterFeature extends DefaultFeature {
     private final int radius;
 
@@ -20,11 +20,13 @@ public abstract class InvertedScatterFeature extends DefaultFeature {
         this.radius = radius;
     }
 
-    public abstract boolean canGenerate(WorldGenLevel world,
-                                        RandomSource random,
-                                        BlockPos center,
-                                        BlockPos blockPos,
-                                        float radius);
+    public abstract boolean canGenerate(
+            WorldGenLevel world,
+            RandomSource random,
+            BlockPos center,
+            BlockPos blockPos,
+            float radius
+    );
 
     public abstract void generate(WorldGenLevel world, RandomSource random, BlockPos blockPos);
 

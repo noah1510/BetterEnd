@@ -1,14 +1,14 @@
 package org.betterx.betterend.world.features;
 
+import org.betterx.bclib.blocks.BaseDoublePlantBlock;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.bclib.util.MHelper;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-
-import org.betterx.bclib.blocks.BaseDoublePlantBlock;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.bclib.util.MHelper;
 
 public class DoublePlantFeature extends ScatterFeature {
     private final Block smallPlant;
@@ -22,15 +22,17 @@ public class DoublePlantFeature extends ScatterFeature {
     }
 
     @Override
-    public boolean canGenerate(WorldGenLevel world,
-                               RandomSource random,
-                               BlockPos center,
-                               BlockPos blockPos,
-                               float radius) {
+    public boolean canGenerate(
+            WorldGenLevel world,
+            RandomSource random,
+            BlockPos center,
+            BlockPos blockPos,
+            float radius
+    ) {
         float d = MHelper.length(
                 center.getX() - blockPos.getX(),
                 center.getZ() - blockPos.getZ()
-                                ) / radius * 0.6F + random.nextFloat() * 0.4F;
+        ) / radius * 0.6F + random.nextFloat() * 0.4F;
         plant = d < 0.5F ? largePlant : smallPlant;
         return plant.canSurvive(plant.defaultBlockState(), world, blockPos);
     }

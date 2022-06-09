@@ -1,11 +1,11 @@
 package org.betterx.betterend.recipe;
 
-import net.minecraft.world.item.Items;
-
 import org.betterx.bclib.recipes.AnvilRecipe;
 import org.betterx.betterend.config.Configs;
 import org.betterx.betterend.item.material.EndToolMaterial;
 import org.betterx.betterend.registry.EndItems;
+
+import net.minecraft.world.item.Items;
 
 public class AnvilRecipes {
     public static void register() {

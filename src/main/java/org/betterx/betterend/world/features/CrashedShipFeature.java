@@ -1,5 +1,12 @@
 package org.betterx.betterend.world.features;
 
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.bclib.util.StructureHelper;
+import org.betterx.betterend.util.BlockFixer;
+import org.betterx.betterend.util.StructureErode;
+import org.betterx.betterend.world.biome.EndBiome;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
@@ -15,13 +22,6 @@ import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.templatesystem.*;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate.StructureBlockInfo;
 import net.minecraft.world.level.material.Material;
-
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.bclib.util.StructureHelper;
-import org.betterx.betterend.util.BlockFixer;
-import org.betterx.betterend.util.StructureErode;
-import org.betterx.betterend.world.biome.EndBiome;
 
 public class CrashedShipFeature extends NBTFeature {
     private static final StructureProcessor REPLACER;
@@ -125,12 +125,14 @@ public class CrashedShipFeature extends NBTFeature {
     static {
         REPLACER = new StructureProcessor() {
             @Override
-            public StructureBlockInfo processBlock(LevelReader worldView,
-                                                   BlockPos pos,
-                                                   BlockPos blockPos,
-                                                   StructureBlockInfo structureBlockInfo,
-                                                   StructureBlockInfo structureBlockInfo2,
-                                                   StructurePlaceSettings structurePlacementData) {
+            public StructureBlockInfo processBlock(
+                    LevelReader worldView,
+                    BlockPos pos,
+                    BlockPos blockPos,
+                    StructureBlockInfo structureBlockInfo,
+                    StructureBlockInfo structureBlockInfo2,
+                    StructurePlaceSettings structurePlacementData
+            ) {
                 BlockState state = structureBlockInfo2.state;
                 if (state.is(Blocks.SPAWNER) || state.getMaterial().equals(Material.WOOL)) {
                     return new StructureBlockInfo(structureBlockInfo2.pos, AIR, null);

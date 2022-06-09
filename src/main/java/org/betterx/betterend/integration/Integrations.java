@@ -1,11 +1,5 @@
 package org.betterx.betterend.integration;
 
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-
-import net.fabricmc.loader.api.FabricLoader;
-
 import org.betterx.bclib.api.v2.ModIntegrationAPI;
 import org.betterx.bclib.integration.ModIntegration;
 import org.betterx.bclib.recipes.GridRecipe;
@@ -15,6 +9,12 @@ import org.betterx.betterend.events.PlayerAdvancementsCallback;
 import org.betterx.betterend.integration.byg.BYGIntegration;
 import org.betterx.betterend.item.GuideBookItem;
 import org.betterx.betterend.registry.EndItems;
+
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+
+import net.fabricmc.loader.api.FabricLoader;
 
 public class Integrations {
     public static final ModIntegration BYG = ModIntegrationAPI.register(new BYGIntegration());

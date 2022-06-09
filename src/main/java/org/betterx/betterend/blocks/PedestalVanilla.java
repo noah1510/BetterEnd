@@ -1,10 +1,10 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.betterend.blocks.basis.PedestalBlock;
+
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
-
-import org.betterx.betterend.blocks.basis.PedestalBlock;
 
 import java.util.HashMap;
 import java.util.Map;

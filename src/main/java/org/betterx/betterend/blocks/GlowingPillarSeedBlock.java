@@ -1,5 +1,13 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.blocks.BlockProperties;
+import org.betterx.bclib.blocks.BlockProperties.TripleShape;
+import org.betterx.bclib.interfaces.tools.AddMineableShears;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.blocks.basis.EndPlantWithAgeBlock;
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
@@ -11,14 +19,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Material;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-
-import org.betterx.bclib.blocks.BlockProperties;
-import org.betterx.bclib.blocks.BlockProperties.TripleShape;
-import org.betterx.bclib.interfaces.tools.AddMineableShears;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.blocks.basis.EndPlantWithAgeBlock;
-import org.betterx.betterend.registry.EndBlocks;
 
 public class GlowingPillarSeedBlock extends EndPlantWithAgeBlock implements AddMineableShears {
 
@@ -53,7 +53,7 @@ public class GlowingPillarSeedBlock extends EndPlantWithAgeBlock implements AddM
                 world,
                 mut,
                 EndBlocks.GLOWING_PILLAR_LUMINOPHOR.defaultBlockState().setValue(BlueVineLanternBlock.NATURAL, true)
-                                  );
+        );
         for (Direction dir : BlocksHelper.DIRECTIONS) {
             pos = mut.relative(dir);
             if (world.isEmptyBlock(pos)) {
@@ -61,7 +61,7 @@ public class GlowingPillarSeedBlock extends EndPlantWithAgeBlock implements AddM
                         world,
                         pos,
                         EndBlocks.GLOWING_PILLAR_LEAVES.defaultBlockState().setValue(BlockStateProperties.FACING, dir)
-                                          );
+                );
             }
         }
         mut.move(Direction.UP);
@@ -71,7 +71,7 @@ public class GlowingPillarSeedBlock extends EndPlantWithAgeBlock implements AddM
                     mut,
                     EndBlocks.GLOWING_PILLAR_LEAVES.defaultBlockState()
                                                    .setValue(BlockStateProperties.FACING, Direction.UP)
-                                      );
+            );
         }
     }
 

@@ -1,5 +1,12 @@
 package org.betterx.betterend.integration.byg.biomes;
 
+import org.betterx.bclib.BCLib;
+import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
+import org.betterx.betterend.integration.Integrations;
+import org.betterx.betterend.integration.byg.features.BYGFeatures;
+import org.betterx.betterend.registry.EndFeatures;
+import org.betterx.betterend.world.biome.EndBiome;
+
 import net.minecraft.core.Holder;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvent;
@@ -10,13 +17,6 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeSpecialEffects;
 import net.minecraft.world.level.biome.MobSpawnSettings.SpawnerData;
 import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
-
-import org.betterx.bclib.BCLib;
-import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
-import org.betterx.betterend.integration.Integrations;
-import org.betterx.betterend.integration.byg.features.BYGFeatures;
-import org.betterx.betterend.registry.EndFeatures;
-import org.betterx.betterend.world.biome.EndBiome;
 
 import java.util.List;
 
@@ -37,7 +37,7 @@ public class NightshadeRedwoods extends EndBiome.Config {
                .particles(
                        ParticleTypes.REVERSE_PORTAL,
                        0.002F
-                         )
+               )
                //TODO: 1.18 surface rules
 //			  .setSurface(biome.getGenerationSettings()
 //							   .getSurfaceBuilder()

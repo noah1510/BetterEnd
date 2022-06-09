@@ -1,5 +1,13 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
+import org.betterx.bclib.blocks.UnderwaterPlantBlock;
+import org.betterx.bclib.interfaces.tools.AddMineableShears;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.blocks.EndBlockProperties.HydraluxShape;
+import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.registry.EndItems;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
@@ -19,13 +27,6 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 import com.google.common.collect.Lists;
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
-import org.betterx.bclib.blocks.UnderwaterPlantBlock;
-import org.betterx.bclib.interfaces.tools.AddMineableShears;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.blocks.EndBlockProperties.HydraluxShape;
-import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.betterend.registry.EndItems;
 
 import java.util.Collections;
 import java.util.List;
@@ -84,8 +85,10 @@ public class HydraluxBlock extends UnderwaterPlantBlock implements AddMineableSh
     public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
         HydraluxShape shape = state.getValue(SHAPE);
         if (shape == HydraluxShape.FLOWER_BIG_BOTTOM || shape == HydraluxShape.FLOWER_SMALL_BOTTOM) {
-            return Lists.newArrayList(new ItemStack(EndItems.HYDRALUX_PETAL,
-                                                    MHelper.randRange(1, 4, MHelper.RANDOM_SOURCE)));
+            return Lists.newArrayList(new ItemStack(
+                    EndItems.HYDRALUX_PETAL,
+                    MHelper.randRange(1, 4, MHelper.RANDOM_SOURCE)
+            ));
         } else if (shape == HydraluxShape.ROOTS) {
             return Lists.newArrayList(new ItemStack(
                     EndBlocks.HYDRALUX_SAPLING,

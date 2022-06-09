@@ -15,7 +15,7 @@ public interface PlayerAdvancementsCallback {
                     event.onAdvancementComplete(player, advancement, criterionName);
                 }
             }
-                                                                                                  );
+    );
 
     void onAdvancementComplete(ServerPlayer player, Advancement advancement, String criterionName);
 }

@@ -1,13 +1,13 @@
 package org.betterx.betterend.world.features;
 
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.bclib.util.MHelper;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
-
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.bclib.util.MHelper;
 
 public abstract class SkyScatterFeature extends ScatterFeature {
     public SkyScatterFeature(int radius) {
@@ -20,11 +20,13 @@ public abstract class SkyScatterFeature extends ScatterFeature {
     }
 
     @Override
-    public boolean canGenerate(WorldGenLevel world,
-                               RandomSource random,
-                               BlockPos center,
-                               BlockPos blockPos,
-                               float radius) {
+    public boolean canGenerate(
+            WorldGenLevel world,
+            RandomSource random,
+            BlockPos center,
+            BlockPos blockPos,
+            float radius
+    ) {
         if (!world.isEmptyBlock(blockPos)) {
             return false;
         }

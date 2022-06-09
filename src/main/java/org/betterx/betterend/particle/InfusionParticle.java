@@ -10,15 +10,17 @@ public class InfusionParticle extends TextureSheetParticle {
 
     private final SpriteSet spriteProvider;
 
-    public InfusionParticle(ClientLevel clientWorld,
-                            double x,
-                            double y,
-                            double z,
-                            double velocityX,
-                            double velocityY,
-                            double velocityZ,
-                            float[] palette,
-                            SpriteSet spriteProvider) {
+    public InfusionParticle(
+            ClientLevel clientWorld,
+            double x,
+            double y,
+            double z,
+            double velocityX,
+            double velocityY,
+            double velocityZ,
+            float[] palette,
+            SpriteSet spriteProvider
+    ) {
         super(clientWorld, x, y, z, 0.0, 0.0, 0.0);
         this.setSpriteFromAge(spriteProvider);
         this.spriteProvider = spriteProvider;
@@ -60,14 +62,16 @@ public class InfusionParticle extends TextureSheetParticle {
             this.spriteProvider = spriteProvider;
         }
 
-        public Particle createParticle(InfusionParticleType particleType,
-                                       ClientLevel clientWorld,
-                                       double d,
-                                       double e,
-                                       double f,
-                                       double g,
-                                       double h,
-                                       double i) {
+        public Particle createParticle(
+                InfusionParticleType particleType,
+                ClientLevel clientWorld,
+                double d,
+                double e,
+                double f,
+                double g,
+                double h,
+                double i
+        ) {
             return new InfusionParticle(clientWorld, d, e, f, g, h, i, particleType.getPalette(), this.spriteProvider);
         }
     }

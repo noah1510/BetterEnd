@@ -1,14 +1,14 @@
 package org.betterx.betterend.item.material;
 
+import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.registry.EndItems;
+
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
-
-import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.betterend.registry.EndItems;
 
 import java.util.function.Supplier;
 
@@ -35,14 +35,16 @@ public enum EndArmorMaterial implements ArmorMaterial {
     private final LazyLoadedValue<Ingredient> repairIngredient;
 
     @SuppressWarnings("deprecation")
-    EndArmorMaterial(String name,
-                     int durabilityMultiplier,
-                     int[] protectionAmounts,
-                     int enchantability,
-                     SoundEvent equipSound,
-                     float toughness,
-                     float knockbackResistance,
-                     Supplier<Ingredient> repairIngredient) {
+    EndArmorMaterial(
+            String name,
+            int durabilityMultiplier,
+            int[] protectionAmounts,
+            int enchantability,
+            SoundEvent equipSound,
+            float toughness,
+            float knockbackResistance,
+            Supplier<Ingredient> repairIngredient
+    ) {
         this.name = name;
         this.durabilityMultiplier = durabilityMultiplier;
         this.protectionAmounts = protectionAmounts;

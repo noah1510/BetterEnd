@@ -1,11 +1,11 @@
 package org.betterx.betterend.world.features;
 
+import org.betterx.betterend.blocks.HydraluxSaplingBlock;
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
-
-import org.betterx.betterend.blocks.HydraluxSaplingBlock;
-import org.betterx.betterend.registry.EndBlocks;
 
 public class HydraluxFeature extends UnderwaterPlantScatter {
     public HydraluxFeature(int radius) {

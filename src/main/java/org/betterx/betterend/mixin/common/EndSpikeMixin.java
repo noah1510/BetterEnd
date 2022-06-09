@@ -1,11 +1,12 @@
 package org.betterx.betterend.mixin.common;
 
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.level.levelgen.feature.SpikeFeature.EndSpike;
-
 import org.betterx.bclib.api.v2.WorldDataAPI;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.world.generator.GeneratorOptions;
+
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.level.levelgen.feature.SpikeFeature.EndSpike;
+
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;

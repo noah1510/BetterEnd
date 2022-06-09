@@ -1,17 +1,5 @@
 package org.betterx.betterend.world.features.trees;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.BlockPos.MutableBlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.block.LeavesBlock;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-import net.minecraft.world.level.material.Material;
-
-import com.mojang.math.Vector3f;
 import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
 import org.betterx.bclib.sdf.PosInfo;
 import org.betterx.bclib.sdf.SDF;
@@ -25,6 +13,18 @@ import org.betterx.bclib.util.MHelper;
 import org.betterx.bclib.util.SplineHelper;
 import org.betterx.betterend.noise.OpenSimplexNoise;
 import org.betterx.betterend.registry.EndBlocks;
+
+import com.mojang.math.Vector3f;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.BlockPos.MutableBlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.world.level.material.Material;
 
 import java.util.List;
 import java.util.function.Function;
@@ -73,15 +73,17 @@ public class PythadendronTreeFeature extends DefaultFeature {
         return true;
     }
 
-    private void branch(float x,
-                        float y,
-                        float z,
-                        float size,
-                        float angle,
-                        RandomSource random,
-                        int depth,
-                        WorldGenLevel world,
-                        BlockPos pos) {
+    private void branch(
+            float x,
+            float y,
+            float z,
+            float size,
+            float angle,
+            RandomSource random,
+            int depth,
+            WorldGenLevel world,
+            BlockPos pos
+    ) {
         if (depth == 0) return;
 
         float dx = (float) Math.cos(angle) * size * 0.15F;

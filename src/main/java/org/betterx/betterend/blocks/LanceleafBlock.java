@@ -1,5 +1,11 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.blocks.BlockProperties;
+import org.betterx.bclib.blocks.BlockProperties.PentaShape;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.blocks.basis.EndPlantBlock;
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
@@ -12,12 +18,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.storage.loot.LootContext;
-
-import org.betterx.bclib.blocks.BlockProperties;
-import org.betterx.bclib.blocks.BlockProperties.PentaShape;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.blocks.basis.EndPlantBlock;
-import org.betterx.betterend.registry.EndBlocks;
 
 import java.util.Collections;
 import java.util.List;
@@ -50,12 +50,14 @@ public class LanceleafBlock extends EndPlantBlock {
     }
 
     @Override
-    public BlockState updateShape(BlockState state,
-                                  Direction facing,
-                                  BlockState neighborState,
-                                  LevelAccessor world,
-                                  BlockPos pos,
-                                  BlockPos neighborPos) {
+    public BlockState updateShape(
+            BlockState state,
+            Direction facing,
+            BlockState neighborState,
+            LevelAccessor world,
+            BlockPos pos,
+            BlockPos neighborPos
+    ) {
         if (!canSurvive(state, world, pos)) {
             return Blocks.AIR.defaultBlockState();
         } else {

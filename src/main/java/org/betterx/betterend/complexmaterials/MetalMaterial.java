@@ -1,20 +1,5 @@
 package org.betterx.betterend.complexmaterials;
 
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Item.Properties;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.Tier;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.MaterialColor;
-
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-
 import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.api.v2.tag.NamedBlockTags;
 import org.betterx.bclib.api.v2.tag.NamedItemTags;
@@ -41,6 +26,21 @@ import org.betterx.betterend.item.tool.EndPickaxe;
 import org.betterx.betterend.recipe.builders.AlloyingRecipe;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndItems;
+
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Item.Properties;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.Tier;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MaterialColor;
+
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 public class MetalMaterial {
     public final Block ore;
@@ -97,12 +97,14 @@ public class MetalMaterial {
         );
     }
 
-    public static MetalMaterial makeNormal(String name,
-                                           MaterialColor color,
-                                           float hardness,
-                                           float resistance,
-                                           Tier material,
-                                           ArmorMaterial armor) {
+    public static MetalMaterial makeNormal(
+            String name,
+            MaterialColor color,
+            float hardness,
+            float resistance,
+            Tier material,
+            ArmorMaterial armor
+    ) {
         return new MetalMaterial(
                 name,
                 true,
@@ -127,12 +129,14 @@ public class MetalMaterial {
         );
     }
 
-    public static MetalMaterial makeOreless(String name,
-                                            MaterialColor color,
-                                            float hardness,
-                                            float resistance,
-                                            Tier material,
-                                            ArmorMaterial armor) {
+    public static MetalMaterial makeOreless(
+            String name,
+            MaterialColor color,
+            float hardness,
+            float resistance,
+            Tier material,
+            ArmorMaterial armor
+    ) {
         return new MetalMaterial(
                 name,
                 false,
@@ -146,12 +150,14 @@ public class MetalMaterial {
         );
     }
 
-    private MetalMaterial(String name,
-                          boolean hasOre,
-                          FabricBlockSettings settings,
-                          Properties itemSettings,
-                          Tier material,
-                          ArmorMaterial armor) {
+    private MetalMaterial(
+            String name,
+            boolean hasOre,
+            FabricBlockSettings settings,
+            Properties itemSettings,
+            Tier material,
+            ArmorMaterial armor
+    ) {
         BlockBehaviour.Properties lanternProperties = FabricBlockSettings.copyOf(settings)
                                                                          .hardness(1)
                                                                          .resistance(1)
@@ -198,24 +204,24 @@ public class MetalMaterial {
         hammer = EndItems.registerEndTool(
                 name + "_hammer",
                 new EndHammerItem(material, 5.0F, -3.2F, 0.3D, itemSettings)
-                                         );
+        );
 
         forgedPlate = EndItems.registerEndItem(name + "_forged_plate");
         helmet = EndItems.registerEndItem(name + "_helmet", new EndArmorItem(armor, EquipmentSlot.HEAD, itemSettings));
         chestplate = EndItems.registerEndItem(
                 name + "_chestplate",
                 new EndArmorItem(armor, EquipmentSlot.CHEST, itemSettings)
-                                             );
+        );
         leggings = EndItems.registerEndItem(
                 name + "_leggings",
                 new EndArmorItem(armor, EquipmentSlot.LEGS, itemSettings)
-                                           );
+        );
         boots = EndItems.registerEndItem(name + "_boots", new EndArmorItem(armor, EquipmentSlot.FEET, itemSettings));
 
         anvilBlock = EndBlocks.registerBlock(
                 name + "_anvil",
                 new EndAnvilBlock(this, block.defaultMaterialColor(), level)
-                                            );
+        );
 
         if (hasOre) {
             FurnaceRecipe.make(BetterEnd.MOD_ID, name + "_ingot_furnace_ore", ore, ingot)

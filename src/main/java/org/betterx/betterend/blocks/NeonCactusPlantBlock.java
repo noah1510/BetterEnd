@@ -1,5 +1,17 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
+import org.betterx.bclib.blocks.BaseBlockNotFull;
+import org.betterx.bclib.blocks.BlockProperties;
+import org.betterx.bclib.blocks.BlockProperties.TripleShape;
+import org.betterx.bclib.client.render.BCLRenderLayer;
+import org.betterx.bclib.interfaces.RenderLayerProvider;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.blocks.EndBlockProperties.CactusBottom;
+import org.betterx.betterend.interfaces.PottablePlant;
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
@@ -29,17 +41,6 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
-import org.betterx.bclib.blocks.BaseBlockNotFull;
-import org.betterx.bclib.blocks.BlockProperties;
-import org.betterx.bclib.blocks.BlockProperties.TripleShape;
-import org.betterx.bclib.client.render.BCLRenderLayer;
-import org.betterx.bclib.interfaces.RenderLayerProvider;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.blocks.EndBlockProperties.CactusBottom;
-import org.betterx.betterend.interfaces.PottablePlant;
-import org.betterx.betterend.registry.EndBlocks;
 
 import java.util.EnumMap;
 import java.util.List;
@@ -106,12 +107,14 @@ public class NeonCactusPlantBlock extends BaseBlockNotFull implements SimpleWate
     }
 
     @Override
-    public BlockState updateShape(BlockState state,
-                                  Direction direction,
-                                  BlockState newState,
-                                  LevelAccessor world,
-                                  BlockPos pos,
-                                  BlockPos posFrom) {
+    public BlockState updateShape(
+            BlockState state,
+            Direction direction,
+            BlockState newState,
+            LevelAccessor world,
+            BlockPos pos,
+            BlockPos posFrom
+    ) {
         world.scheduleTick(pos, this, 2);
         if (state.getValue(WATERLOGGED)) {
             world.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
@@ -235,11 +238,13 @@ public class NeonCactusPlantBlock extends BaseBlockNotFull implements SimpleWate
         }
     }
 
-    private boolean growIteration(WorldGenLevel world,
-                                  MutableBlockPos pos,
-                                  RandomSource random,
-                                  List<MutableBlockPos> ends,
-                                  int length) {
+    private boolean growIteration(
+            WorldGenLevel world,
+            MutableBlockPos pos,
+            RandomSource random,
+            List<MutableBlockPos> ends,
+            int length
+    ) {
         BlockState state = world.getBlockState(pos);
         if (!state.is(this)) {
             return false;
@@ -278,11 +283,13 @@ public class NeonCactusPlantBlock extends BaseBlockNotFull implements SimpleWate
         return true;
     }
 
-    private Direction getSideDirection(WorldGenLevel world,
-                                       BlockPos pos,
-                                       BlockState iterState,
-                                       Direction dir,
-                                       RandomSource random) {
+    private Direction getSideDirection(
+            WorldGenLevel world,
+            BlockPos pos,
+            BlockState iterState,
+            Direction dir,
+            RandomSource random
+    ) {
         MutableBlockPos iterPos = pos.mutable();
         Direction startDir = dir;
         Direction lastDir = null;
@@ -312,10 +319,12 @@ public class NeonCactusPlantBlock extends BaseBlockNotFull implements SimpleWate
     }
 
     @Override
-    public boolean isPathfindable(BlockState blockState,
-                                  BlockGetter blockGetter,
-                                  BlockPos blockPos,
-                                  PathComputationType pathComputationType) {
+    public boolean isPathfindable(
+            BlockState blockState,
+            BlockGetter blockGetter,
+            BlockPos blockPos,
+            PathComputationType pathComputationType
+    ) {
         return false;
     }
 

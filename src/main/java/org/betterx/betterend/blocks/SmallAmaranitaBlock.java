@@ -1,5 +1,10 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.betterend.blocks.basis.EndPlantBlock;
+import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.registry.EndFeatures;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
@@ -8,17 +13,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.betterend.blocks.basis.EndPlantBlock;
-import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.betterend.registry.EndFeatures;
 
 import java.util.Optional;
 
@@ -35,7 +33,14 @@ public class SmallAmaranitaBlock extends EndPlantBlock {
         BlockPos bigPos = growBig(world, pos);
         if (bigPos != null) {
             if (EndFeatures.GIGANTIC_AMARANITA.getFeature()
-                                              .place(new FeaturePlaceContext<>(Optional.empty(), world, null, random, bigPos, null))) {
+                                              .place(new FeaturePlaceContext<>(
+                                                      Optional.empty(),
+                                                      world,
+                                                      null,
+                                                      random,
+                                                      bigPos,
+                                                      null
+                                              ))) {
                 replaceMushroom(world, bigPos);
                 replaceMushroom(world, bigPos.south());
                 replaceMushroom(world, bigPos.east());
@@ -49,7 +54,8 @@ public class SmallAmaranitaBlock extends EndPlantBlock {
                 null,
                 random,
                 pos,
-                null));
+                null
+        ));
     }
 
     @Override
@@ -72,7 +78,7 @@ public class SmallAmaranitaBlock extends EndPlantBlock {
 
     private boolean checkFrame(ServerLevel world, BlockPos pos) {
         return world.getBlockState(pos).is(this) && world.getBlockState(pos.south()).is(this) && world.getBlockState(pos
-                                                                                                                             .east())
+                                                                                                              .east())
                                                                                                       .is(this) && world.getBlockState(
                 pos.south().east()).is(this);
     }

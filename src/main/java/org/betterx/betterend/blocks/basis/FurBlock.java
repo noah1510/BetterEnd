@@ -1,5 +1,14 @@
 package org.betterx.betterend.blocks.basis;
 
+import org.betterx.bclib.api.v2.tag.NamedBlockTags;
+import org.betterx.bclib.api.v2.tag.TagAPI;
+import org.betterx.bclib.blocks.BaseAttachedBlock;
+import org.betterx.bclib.client.render.BCLRenderLayer;
+import org.betterx.bclib.interfaces.RenderLayerProvider;
+import org.betterx.bclib.interfaces.tools.AddMineableShears;
+import org.betterx.bclib.items.tool.BaseShearsItem;
+import org.betterx.bclib.util.MHelper;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
@@ -20,14 +29,6 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import org.betterx.bclib.api.v2.tag.NamedBlockTags;
-import org.betterx.bclib.api.v2.tag.TagAPI;
-import org.betterx.bclib.blocks.BaseAttachedBlock;
-import org.betterx.bclib.client.render.BCLRenderLayer;
-import org.betterx.bclib.interfaces.RenderLayerProvider;
-import org.betterx.bclib.interfaces.tools.AddMineableShears;
-import org.betterx.bclib.items.tool.BaseShearsItem;
-import org.betterx.bclib.util.MHelper;
 
 import java.util.EnumMap;
 import java.util.List;
@@ -69,7 +70,7 @@ public class FurBlock extends BaseAttachedBlock implements RenderLayerProvider, 
         if (tool != null && BaseShearsItem.isShear(tool) || EnchantmentHelper.getItemEnchantmentLevel(
                 Enchantments.SILK_TOUCH,
                 tool
-                                                                                                     ) > 0) {
+        ) > 0) {
             return Lists.newArrayList(new ItemStack(this));
         } else if (dropChance < 1 || MHelper.RANDOM.nextInt(dropChance) == 0) {
             return Lists.newArrayList(new ItemStack(drop));

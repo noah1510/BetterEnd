@@ -1,5 +1,10 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.api.v2.tag.NamedMineableTags;
+import org.betterx.bclib.blocks.BaseBlock;
+import org.betterx.bclib.interfaces.TagProvider;
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -11,11 +16,6 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.Material;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-
-import org.betterx.bclib.api.v2.tag.NamedMineableTags;
-import org.betterx.bclib.blocks.BaseBlock;
-import org.betterx.bclib.interfaces.TagProvider;
-import org.betterx.betterend.registry.EndBlocks;
 
 import java.util.List;
 
@@ -33,7 +33,7 @@ public class MossyGlowshroomCapBlock extends BaseBlock implements TagProvider {
                            TRANSITION,
                            EndBlocks.MOSSY_GLOWSHROOM.isTreeLog(ctx.getLevel()
                                                                    .getBlockState(ctx.getClickedPos().below()))
-                            );
+                   );
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {

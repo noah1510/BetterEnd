@@ -1,5 +1,14 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.client.render.BCLRenderLayer;
+import org.betterx.bclib.interfaces.CustomColorProvider;
+import org.betterx.bclib.interfaces.RenderLayerProvider;
+import org.betterx.bclib.interfaces.tools.AddMineableHammer;
+import org.betterx.bclib.interfaces.tools.AddMineablePickaxe;
+import org.betterx.bclib.util.ColorUtil;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.registry.EndItems;
+
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.core.BlockPos;
@@ -21,14 +30,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 import com.google.common.collect.Lists;
-import org.betterx.bclib.client.render.BCLRenderLayer;
-import org.betterx.bclib.interfaces.CustomColorProvider;
-import org.betterx.bclib.interfaces.RenderLayerProvider;
-import org.betterx.bclib.interfaces.tools.AddMineableHammer;
-import org.betterx.bclib.interfaces.tools.AddMineablePickaxe;
-import org.betterx.bclib.util.ColorUtil;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.registry.EndItems;
 
 import java.util.List;
 
@@ -39,21 +40,23 @@ public class AuroraCrystalBlock extends AbstractGlassBlock implements RenderLaye
 
     public AuroraCrystalBlock() {
         super(FabricBlockSettings
-                      .of(Material.GLASS)
-                      .hardness(1F)
-                      .resistance(1F)
-                      .luminance(15)
-                      .noOcclusion()
-                      .isSuffocating((state, world, pos) -> false)
-                      .sound(SoundType.GLASS));
+                .of(Material.GLASS)
+                .hardness(1F)
+                .resistance(1F)
+                .luminance(15)
+                .noOcclusion()
+                .isSuffocating((state, world, pos) -> false)
+                .sound(SoundType.GLASS));
     }
 
     @Override
     @Deprecated
-    public VoxelShape getVisualShape(BlockState blockState,
-                                     BlockGetter blockGetter,
-                                     BlockPos blockPos,
-                                     CollisionContext collisionContext) {
+    public VoxelShape getVisualShape(
+            BlockState blockState,
+            BlockGetter blockGetter,
+            BlockPos blockPos,
+            CollisionContext collisionContext
+    ) {
         return this.getCollisionShape(blockState, blockGetter, blockPos, collisionContext);
     }
 

@@ -1,5 +1,8 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.interfaces.tools.AddMineableShears;
+import org.betterx.betterend.blocks.basis.EndUnderwaterPlantBlock;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.RandomSource;
@@ -16,9 +19,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-
-import org.betterx.bclib.interfaces.tools.AddMineableShears;
-import org.betterx.betterend.blocks.basis.EndUnderwaterPlantBlock;
 
 public class BubbleCoralBlock extends EndUnderwaterPlantBlock implements AddMineableShears {
 

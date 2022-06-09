@@ -1,13 +1,13 @@
 package org.betterx.betterend.blocks.basis;
 
+import org.betterx.bclib.blocks.BaseBlock;
+
 import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.state.BlockState;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-
-import org.betterx.bclib.blocks.BaseBlock;
 
 import org.jetbrains.annotations.Nullable;
 

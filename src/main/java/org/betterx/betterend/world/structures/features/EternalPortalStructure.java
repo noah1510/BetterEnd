@@ -1,5 +1,11 @@
 package org.betterx.betterend.world.structures.features;
 
+import org.betterx.bclib.util.StructureHelper;
+import org.betterx.bclib.world.structures.BCLStructure;
+import org.betterx.betterend.BetterEnd;
+import org.betterx.betterend.registry.EndStructures;
+import org.betterx.betterend.world.structures.piece.NBTPiece;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
@@ -11,12 +17,6 @@ import net.minecraft.world.level.levelgen.Heightmap.Types;
 import net.minecraft.world.level.levelgen.structure.StructureType;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
-
-import org.betterx.bclib.util.StructureHelper;
-import org.betterx.bclib.world.structures.BCLStructure;
-import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.registry.EndStructures;
-import org.betterx.betterend.world.structures.piece.NBTPiece;
 
 import java.util.Optional;
 
@@ -47,7 +47,7 @@ public class EternalPortalStructure extends FeatureBaseStructure {
                 Heightmap.Types.WORLD_SURFACE_WG,
                 levelHeightAccessor,
                 context.randomState()
-                                        ) < 5) {
+        ) < 5) {
             return Optional.empty();
         }
         return super.findGenerationPoint(context);

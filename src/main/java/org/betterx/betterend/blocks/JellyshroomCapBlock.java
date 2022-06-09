@@ -1,5 +1,15 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.client.models.ModelsHelper;
+import org.betterx.bclib.client.render.BCLRenderLayer;
+import org.betterx.bclib.interfaces.BlockModelProvider;
+import org.betterx.bclib.interfaces.CustomColorProvider;
+import org.betterx.bclib.interfaces.RenderLayerProvider;
+import org.betterx.bclib.util.ColorUtil;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.client.models.Patterns;
+import org.betterx.betterend.noise.OpenSimplexNoise;
+
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.client.renderer.block.model.BlockModel;
@@ -21,15 +31,6 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 import com.google.common.collect.Lists;
-import org.betterx.bclib.client.models.ModelsHelper;
-import org.betterx.bclib.client.render.BCLRenderLayer;
-import org.betterx.bclib.interfaces.BlockModelProvider;
-import org.betterx.bclib.interfaces.CustomColorProvider;
-import org.betterx.bclib.interfaces.RenderLayerProvider;
-import org.betterx.bclib.util.ColorUtil;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.client.models.Patterns;
-import org.betterx.betterend.noise.OpenSimplexNoise;
 
 import java.util.List;
 import java.util.Optional;

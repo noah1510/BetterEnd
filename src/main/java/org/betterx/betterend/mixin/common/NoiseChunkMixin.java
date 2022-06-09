@@ -1,11 +1,12 @@
 package org.betterx.betterend.mixin.common;
 
-import net.minecraft.world.level.levelgen.*;
-import net.minecraft.world.level.levelgen.blending.Blender;
-
 import org.betterx.bclib.BCLib;
 import org.betterx.betterend.interfaces.BETargetChecker;
 import org.betterx.betterend.world.generator.TerrainGenerator;
+
+import net.minecraft.world.level.levelgen.*;
+import net.minecraft.world.level.levelgen.blending.Blender;
+
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -20,16 +21,18 @@ public class NoiseChunkMixin implements BETargetChecker {
     private boolean be_isEndGenerator;
 
     @Inject(method = "<init>*", at = @At("TAIL"))
-    private void be_onNoiseChunkInit(int i,
-                                     RandomState randomState,
-                                     int j,
-                                     int k,
-                                     NoiseSettings noiseSettings,
-                                     DensityFunctions.BeardifierOrMarker beardifierOrMarker,
-                                     NoiseGeneratorSettings noiseGeneratorSettings,
-                                     Aquifer.FluidPicker fluidPicker,
-                                     Blender blender,
-                                     CallbackInfo ci) {
+    private void be_onNoiseChunkInit(
+            int i,
+            RandomState randomState,
+            int j,
+            int k,
+            NoiseSettings noiseSettings,
+            DensityFunctions.BeardifierOrMarker beardifierOrMarker,
+            NoiseGeneratorSettings noiseGeneratorSettings,
+            Aquifer.FluidPicker fluidPicker,
+            Blender blender,
+            CallbackInfo ci
+    ) {
         var o = BETargetChecker.class.cast(noiseGeneratorSettings);
         if (o != null) be_isEndGenerator = o.be_isTarget();
         else BCLib.LOGGER.warning(noiseGeneratorSettings + " has unknown implementation.");

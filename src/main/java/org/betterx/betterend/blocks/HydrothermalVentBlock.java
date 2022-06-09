@@ -1,5 +1,12 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.blocks.BaseBlockNotFull;
+import org.betterx.bclib.blocks.BlockProperties;
+import org.betterx.bclib.interfaces.tools.AddMineablePickaxe;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.betterend.blocks.entities.BlockEntityHydrothermalVent;
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -30,13 +37,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-
-import org.betterx.bclib.blocks.BaseBlockNotFull;
-import org.betterx.bclib.blocks.BlockProperties;
-import org.betterx.bclib.interfaces.tools.AddMineablePickaxe;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.betterend.blocks.entities.BlockEntityHydrothermalVent;
-import org.betterx.betterend.registry.EndBlocks;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -81,12 +81,14 @@ public class HydrothermalVentBlock extends BaseBlockNotFull implements EntityBlo
     }
 
     @Override
-    public BlockState updateShape(BlockState state,
-                                  Direction facing,
-                                  BlockState neighborState,
-                                  LevelAccessor world,
-                                  BlockPos pos,
-                                  BlockPos neighborPos) {
+    public BlockState updateShape(
+            BlockState state,
+            Direction facing,
+            BlockState neighborState,
+            LevelAccessor world,
+            BlockPos pos,
+            BlockPos neighborPos
+    ) {
         if (!canSurvive(state, world, pos)) {
             return Blocks.WATER.defaultBlockState();
         } else if (state.getValue(WATERLOGGED) && facing == Direction.UP && neighborState.is(Blocks.WATER)) {
@@ -123,11 +125,13 @@ public class HydrothermalVentBlock extends BaseBlockNotFull implements EntityBlo
     }
 
     @Override
-    public void setPlacedBy(Level world,
-                            BlockPos pos,
-                            BlockState state,
-                            @Nullable LivingEntity placer,
-                            ItemStack itemStack) {
+    public void setPlacedBy(
+            Level world,
+            BlockPos pos,
+            BlockState state,
+            @Nullable LivingEntity placer,
+            ItemStack itemStack
+    ) {
         if (world instanceof ServerLevel && state.getValue(WATERLOGGED) && world.getBlockState(pos.above())
                                                                                 .is(Blocks.WATER)) {
             tick(state, (ServerLevel) world, pos, world.random);
@@ -147,9 +151,11 @@ public class HydrothermalVentBlock extends BaseBlockNotFull implements EntityBlo
 
     @Nullable
     @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level,
-                                                                  BlockState blockState,
-                                                                  BlockEntityType<T> blockEntityType) {
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(
+            Level level,
+            BlockState blockState,
+            BlockEntityType<T> blockEntityType
+    ) {
         return BlockEntityHydrothermalVent::tick;
     }
 }

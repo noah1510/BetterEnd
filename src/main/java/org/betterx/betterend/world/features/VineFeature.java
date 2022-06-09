@@ -1,15 +1,15 @@
 package org.betterx.betterend.world.features;
 
+import org.betterx.bclib.blocks.BaseVineBlock;
+import org.betterx.bclib.blocks.BlockProperties;
+import org.betterx.bclib.blocks.BlockProperties.TripleShape;
+import org.betterx.bclib.util.BlocksHelper;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-
-import org.betterx.bclib.blocks.BaseVineBlock;
-import org.betterx.bclib.blocks.BlockProperties;
-import org.betterx.bclib.blocks.BlockProperties.TripleShape;
-import org.betterx.bclib.util.BlocksHelper;
 
 public class VineFeature extends InvertedScatterFeature {
     private final Block vineBlock;
@@ -24,11 +24,13 @@ public class VineFeature extends InvertedScatterFeature {
     }
 
     @Override
-    public boolean canGenerate(WorldGenLevel world,
-                               RandomSource random,
-                               BlockPos center,
-                               BlockPos blockPos,
-                               float radius) {
+    public boolean canGenerate(
+            WorldGenLevel world,
+            RandomSource random,
+            BlockPos center,
+            BlockPos blockPos,
+            float radius
+    ) {
         BlockState state = world.getBlockState(blockPos);
         return state.getMaterial().isReplaceable() && canPlaceBlock(state, world, blockPos);
     }

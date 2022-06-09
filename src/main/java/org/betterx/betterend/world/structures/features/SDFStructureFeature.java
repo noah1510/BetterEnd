@@ -1,5 +1,9 @@
 package org.betterx.betterend.world.structures.features;
 
+import org.betterx.bclib.sdf.SDF;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.world.structures.piece.VoxelPiece;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.ChunkPos;
@@ -8,10 +12,6 @@ import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.Heightmap.Types;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
 
-import org.betterx.bclib.sdf.SDF;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.world.structures.piece.VoxelPiece;
-
 import java.util.function.BiFunction;
 
 public abstract class SDFStructureFeature extends FeatureBaseStructure {
@@ -19,9 +19,11 @@ public abstract class SDFStructureFeature extends FeatureBaseStructure {
         super(s);
     }
 
-    public static void generatePieces(StructurePiecesBuilder structurePiecesBuilder,
-                                      GenerationContext context,
-                                      BiFunction<BlockPos, RandomSource, SDF> sdf) {
+    public static void generatePieces(
+            StructurePiecesBuilder structurePiecesBuilder,
+            GenerationContext context,
+            BiFunction<BlockPos, RandomSource, SDF> sdf
+    ) {
         final RandomSource random = context.random();
         final ChunkPos chunkPos = context.chunkPos();
         final ChunkGenerator chunkGenerator = context.chunkGenerator();

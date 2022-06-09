@@ -1,5 +1,15 @@
 package org.betterx.betterend.world.features.terrain;
 
+import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
+import org.betterx.bclib.api.v2.tag.CommonBlockTags;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.blocks.EndBlockProperties;
+import org.betterx.betterend.blocks.SulphurCrystalBlock;
+import org.betterx.betterend.noise.OpenSimplexNoise;
+import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.util.GlobalState;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
@@ -12,15 +22,6 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 import net.minecraft.world.level.material.Fluids;
 
 import com.google.common.collect.Sets;
-import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.blocks.EndBlockProperties;
-import org.betterx.betterend.blocks.SulphurCrystalBlock;
-import org.betterx.betterend.noise.OpenSimplexNoise;
-import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.betterend.util.GlobalState;
 
 import java.util.Set;
 
@@ -172,7 +173,8 @@ public class SulphuricLakeFeature extends DefaultFeature {
             ) < y || getYOnSurface(
                     world,
                     pos.getX() + dir.getStepX() * 3,
-                    pos.getZ() + dir.getStepZ() * 3) < y) {
+                    pos.getZ() + dir.getStepZ() * 3
+            ) < y) {
                 return false;
             }
         }

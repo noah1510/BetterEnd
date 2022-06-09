@@ -1,5 +1,10 @@
 package org.betterx.betterend.rituals;
 
+import org.betterx.betterend.blocks.entities.InfusionPedestalEntity;
+import org.betterx.betterend.blocks.entities.PedestalBlockEntity;
+import org.betterx.betterend.particle.InfusionParticleType;
+import org.betterx.betterend.recipe.builders.InfusionRecipe;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
@@ -10,11 +15,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-
-import org.betterx.betterend.blocks.entities.InfusionPedestalEntity;
-import org.betterx.betterend.blocks.entities.PedestalBlockEntity;
-import org.betterx.betterend.particle.InfusionParticleType;
-import org.betterx.betterend.recipe.builders.InfusionRecipe;
 
 import java.awt.*;
 import java.util.Arrays;
@@ -136,7 +136,7 @@ public class InfusionRitual implements Container {
                             ty - sy,
                             tz - sz,
                             0.5
-                                             );
+                    );
                 }
             }
         }

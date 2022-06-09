@@ -1,9 +1,9 @@
 package org.betterx.betterend.interfaces;
 
+import org.betterx.betterend.registry.EndItems;
+
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-
-import org.betterx.betterend.registry.EndItems;
 
 public interface MultiModelItem {
     @Environment(EnvType.CLIENT)

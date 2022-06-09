@@ -1,8 +1,5 @@
 package org.betterx.betterend.integration.byg.features;
 
-import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-
 import org.betterx.bclib.api.v2.levelgen.features.BCLCommonFeatures;
 import org.betterx.bclib.api.v2.levelgen.features.BCLFeature;
 import org.betterx.betterend.BetterEnd;
@@ -12,6 +9,9 @@ import org.betterx.betterend.world.features.SinglePlantFeature;
 import org.betterx.betterend.world.features.VineFeature;
 import org.betterx.betterend.world.features.WallPlantFeature;
 import org.betterx.betterend.world.features.WallPlantOnLogFeature;
+
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
 public class BYGFeatures {
     public static final BCLFeature OLD_BULBIS_TREE = redisterVegetation(

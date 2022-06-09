@@ -1,5 +1,15 @@
 package org.betterx.betterend.rituals;
 
+import org.betterx.bclib.blocks.BlockProperties;
+import org.betterx.betterend.BetterEnd;
+import org.betterx.betterend.blocks.EndPortalBlock;
+import org.betterx.betterend.blocks.RunedFlavolite;
+import org.betterx.betterend.blocks.entities.EternalPedestalEntity;
+import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.registry.EndFeatures;
+import org.betterx.betterend.registry.EndPoiTypes;
+import org.betterx.betterend.registry.EndPortals;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
@@ -29,15 +39,6 @@ import net.minecraft.world.level.material.Material;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import org.betterx.bclib.blocks.BlockProperties;
-import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.blocks.EndPortalBlock;
-import org.betterx.betterend.blocks.RunedFlavolite;
-import org.betterx.betterend.blocks.entities.EternalPedestalEntity;
-import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.betterend.registry.EndFeatures;
-import org.betterx.betterend.registry.EndPoiTypes;
-import org.betterx.betterend.registry.EndPortals;
 
 import java.awt.*;
 import java.util.List;
@@ -55,7 +56,7 @@ public class EternalRitual {
             new Point(4, -5),
             new Point(4, 5),
             new Point(6, 0)
-                                                                   );
+    );
     private final static Set<Point> FRAME_MAP = Sets.newHashSet(
             new Point(0, 0),
             new Point(0, 6),
@@ -66,7 +67,7 @@ public class EternalRitual {
             new Point(3, 2),
             new Point(3, 3),
             new Point(3, 4)
-                                                               );
+    );
     private final static Set<Point> PORTAL_MAP = Sets.newHashSet(
             new Point(0, 0),
             new Point(0, 1),
@@ -81,7 +82,7 @@ public class EternalRitual {
             new Point(2, 1),
             new Point(2, 2),
             new Point(2, 3)
-                                                                );
+    );
     private final static Set<Point> BASE_MAP = Sets.newHashSet(
             new Point(3, 0),
             new Point(2, 0),
@@ -90,7 +91,7 @@ public class EternalRitual {
             new Point(1, 2),
             new Point(0, 1),
             new Point(0, 2)
-                                                              );
+    );
 
     private final static Block BASE = EndBlocks.FLAVOLITE.tiles;
     private final static Block PEDESTAL = EndBlocks.ETERNAL_PEDESTAL;
@@ -236,7 +237,7 @@ public class EternalRitual {
                     0,
                     0,
                     1
-                                     );
+            );
             serverWorld.sendParticles(
                     ParticleTypes.REVERSE_PORTAL,
                     p.getX() + 0.5,
@@ -247,7 +248,7 @@ public class EternalRitual {
                     0,
                     0,
                     0.3
-                                     );
+            );
         }
         serverWorld.playSound(null, center, SoundEvents.END_PORTAL_SPAWN, SoundSource.NEUTRAL, 16, 1);
     }
@@ -289,7 +290,7 @@ public class EternalRitual {
                         0.5,
                         0.5,
                         0.1
-                                         );
+                );
                 serverWorld.sendParticles(
                         ParticleTypes.REVERSE_PORTAL,
                         pos.getX() + 0.5,
@@ -300,7 +301,7 @@ public class EternalRitual {
                         0.5,
                         0.5,
                         0.3
-                                         );
+                );
             }
             pos = center.mutable().move(moveDir, -point.x).move(Direction.UP, point.y);
             if (!world.getBlockState(pos).is(PORTAL)) {
@@ -315,7 +316,7 @@ public class EternalRitual {
                         0.5,
                         0.5,
                         0.1
-                                         );
+                );
                 serverWorld.sendParticles(
                         ParticleTypes.REVERSE_PORTAL,
                         pos.getX() + 0.5,
@@ -326,7 +327,7 @@ public class EternalRitual {
                         0.5,
                         0.5,
                         0.3
-                                         );
+                );
             }
         });
     }
@@ -367,10 +368,12 @@ public class EternalRitual {
 
     @Nullable
     private BlockPos findFrame(ServerLevel level, BlockPos.MutableBlockPos startPos) {
-        Optional<BlockPos> found = EndPoiTypes.ETERNAL_PORTAL_INACTIVE.findPoiAround(level,
-                                                                                     startPos,
-                                                                                     SEARCH_RADIUS >> 4 + 1,
-                                                                                     level.getWorldBorder());
+        Optional<BlockPos> found = EndPoiTypes.ETERNAL_PORTAL_INACTIVE.findPoiAround(
+                level,
+                startPos,
+                SEARCH_RADIUS >> 4 + 1,
+                level.getWorldBorder()
+        );
         if (found.isPresent()) {
             if (checkFrame(level, found.get()))
                 return found.get();
@@ -398,10 +401,11 @@ public class EternalRitual {
                                                   .registryOrThrow(Registry.DIMENSION_TYPE_REGISTRY);
         double multiplier = Objects.requireNonNull(registry.get(targetWorldId)).coordinateScale();
         BlockPos.MutableBlockPos basePos = center.mutable()
-                                                 .set(center.getX() / multiplier,
-                                                      center.getY(),
-                                                      center.getZ() / multiplier
-                                                     );
+                                                 .set(
+                                                         center.getX() / multiplier,
+                                                         center.getY(),
+                                                         center.getZ() / multiplier
+                                                 );
         BlockPos framePos = findFrame(targetWorld, basePos.mutable());
         if (framePos != null) {
             return framePos.above();
@@ -428,12 +432,12 @@ public class EternalRitual {
                                 Heightmap.Types.WORLD_SURFACE,
                                 checkPos.getX() & 15,
                                 checkPos.getZ() & 15
-                                                      );
+                        );
                         int motionY = chunk.getHeight(
                                 Heightmap.Types.MOTION_BLOCKING,
                                 checkPos.getX() & 15,
                                 checkPos.getZ() & 15
-                                                     );
+                        );
                         int ceil = Math.min(Math.max(surfaceY, motionY) + 1, worldCeil);
                         if (ceil < 5) continue;
                         checkPos.setY(ceil);
@@ -456,7 +460,7 @@ public class EternalRitual {
                     targetWorld.getChunkSource().getGenerator(),
                     new LegacyRandomSource(basePos.asLong()),
                     basePos.below()
-                                                                                     );
+            );
         } else if (targetWorld.dimension() == Level.OVERWORLD) {
             basePos.setY(targetWorld.getChunk(basePos)
                                     .getHeight(Heightmap.Types.WORLD_SURFACE, basePos.getX(), basePos.getZ()) + 1);
@@ -464,11 +468,12 @@ public class EternalRitual {
         EndFeatures.BIOME_ISLAND
                 .getPlacedFeature()
                 .value()
-                .place(targetWorld,
-                       targetWorld.getChunkSource().getGenerator(),
-                       new LegacyRandomSource(basePos.asLong()),
-                       basePos.below()
-                      );
+                .place(
+                        targetWorld,
+                        targetWorld.getChunkSource().getGenerator(),
+                        new LegacyRandomSource(basePos.asLong()),
+                        basePos.below()
+                );
         generatePortal(targetWorld, basePos, portalAxis, portalId);
         return basePos.immutable();
     }
@@ -678,7 +683,7 @@ public class EternalRitual {
         for (BlockPos checkPos : BlockPos.betweenClosed(
                 center.relative(moveDir.getClockWise()),
                 center.relative(moveDir.getCounterClockWise())
-                                                       )) {
+        )) {
             for (Point point : PORTAL_MAP) {
                 BlockPos pos = checkPos.mutable().move(moveDir, point.x).move(Direction.UP, point.y);
                 BlockState state = world.getBlockState(pos);
@@ -706,11 +711,13 @@ public class EternalRitual {
      * @return Position of the first found block or null.
      */
     @Nullable
-    public static BlockPos.MutableBlockPos findBlockPos(Level world,
-                                                        BlockPos.MutableBlockPos checkPos,
-                                                        int radius,
-                                                        Block searchBlock,
-                                                        Predicate<BlockState> condition) {
+    public static BlockPos.MutableBlockPos findBlockPos(
+            Level world,
+            BlockPos.MutableBlockPos checkPos,
+            int radius,
+            Block searchBlock,
+            Predicate<BlockState> condition
+    ) {
         Direction moveDirection = Direction.EAST;
         for (int step = 1; step < radius; step++) {
             for (int i = 0; i < (step >> 1); i++) {
@@ -748,11 +755,13 @@ public class EternalRitual {
      * @param condition   Predicate for test block states in the chunk section
      * @return List of positions of the all found blocks or empty list.
      */
-    public static List<BlockPos.MutableBlockPos> findAllBlockPos(ServerLevel world,
-                                                                 BlockPos.MutableBlockPos checkPos,
-                                                                 int radius,
-                                                                 Block searchBlock,
-                                                                 Predicate<BlockState> condition) {
+    public static List<BlockPos.MutableBlockPos> findAllBlockPos(
+            ServerLevel world,
+            BlockPos.MutableBlockPos checkPos,
+            int radius,
+            Block searchBlock,
+            Predicate<BlockState> condition
+    ) {
         //make sure chunks are properly loaded for faster searches
         PoiManager poiManager = world.getPoiManager();
         poiManager.ensureLoadedAndValid(world, checkPos, radius >> 4);

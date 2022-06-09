@@ -1,5 +1,13 @@
 package org.betterx.betterend.util;
 
+import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
+import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
+import org.betterx.bclib.complexmaterials.WoodenComplexMaterial;
+import org.betterx.betterend.BetterEnd;
+import org.betterx.betterend.registry.EndBiomes;
+import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.registry.EndItems;
+
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
@@ -11,15 +19,8 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
-import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 
-import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
-import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
-import org.betterx.bclib.complexmaterials.WoodenComplexMaterial;
-import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.registry.EndBiomes;
-import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.betterend.registry.EndItems;
+import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 
 public class LootTableUtil {
     private static final ResourceLocation END_CITY_TREASURE_ID = new ResourceLocation("chests/end_city_treasure");
@@ -49,7 +50,7 @@ public class LootTableUtil {
             } else if (id.getNamespace().equals(BetterEnd.MOD_ID)) {
                 addCommonItems(table);
                 if (FOGGY_MUSHROOMLAND.equals(id)) {
-                    LootPool.Builder builder =LootPool.lootPool();
+                    LootPool.Builder builder = LootPool.lootPool();
                     builder.setRolls(UniformGenerator.between(4, 8));
                     builder.add(LootItem.lootTableItem(EndBlocks.MOSSY_GLOWSHROOM.getBlock(WoodenComplexMaterial.BLOCK_PLANKS)));
                     builder.add(LootItem.lootTableItem(EndBlocks.MOSSY_GLOWSHROOM_SAPLING));
@@ -71,7 +72,7 @@ public class LootTableUtil {
                     builder.add(LootItem.lootTableItem(EndItems.SHADOW_BERRY_RAW));
                     table.withPool(builder);
                 } else if (LANTERN_WOODS.equals(id)) {
-                    LootPool.Builder builder =LootPool.lootPool();
+                    LootPool.Builder builder = LootPool.lootPool();
                     builder.setRolls(UniformGenerator.between(4, 8));
                     builder.add(LootItem.lootTableItem(EndBlocks.LUCERNIA.getBlock(WoodenComplexMaterial.BLOCK_PLANKS)));
                     builder.add(LootItem.lootTableItem(EndBlocks.LUCERNIA_SAPLING));

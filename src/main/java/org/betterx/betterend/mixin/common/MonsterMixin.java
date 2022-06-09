@@ -19,12 +19,14 @@ import java.util.List;
 @Mixin(Monster.class)
 public class MonsterMixin {
     @Inject(method = "checkMonsterSpawnRules", at = @At(value = "RETURN"), cancellable = true)
-    private static void be_checkMonsterSpawnRules(EntityType<? extends Monster> type,
-                                                  ServerLevelAccessor serverWorldAccess,
-                                                  MobSpawnType spawnReason,
-                                                  BlockPos pos,
-                                                  RandomSource random,
-                                                  CallbackInfoReturnable<Boolean> info) {
+    private static void be_checkMonsterSpawnRules(
+            EntityType<? extends Monster> type,
+            ServerLevelAccessor serverWorldAccess,
+            MobSpawnType spawnReason,
+            BlockPos pos,
+            RandomSource random,
+            CallbackInfoReturnable<Boolean> info
+    ) {
         boolean canSpawn = info.getReturnValue();
         if (canSpawn && spawnReason == MobSpawnType.NATURAL && type == EntityType.ENDERMAN) {
             AABB box = new AABB(pos).inflate(16);

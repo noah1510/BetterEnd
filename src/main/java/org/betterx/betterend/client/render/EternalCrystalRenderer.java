@@ -1,5 +1,13 @@
 package org.betterx.betterend.client.render;
 
+import org.betterx.bclib.util.ColorUtil;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.BetterEnd;
+import org.betterx.betterend.blocks.AuroraCrystalBlock;
+
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Vector3f;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
@@ -12,25 +20,19 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.Vec3i;
 import net.minecraft.util.Mth;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Vector3f;
-import org.betterx.bclib.util.ColorUtil;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.blocks.AuroraCrystalBlock;
-
 // TODO make crystals bright
 public class EternalCrystalRenderer {
     private static final RenderType RENDER_LAYER;
     private static final ModelPart[] SHARDS;
     private static final ModelPart CORE;
 
-    public static void render(int age,
-                              float tickDelta,
-                              PoseStack matrices,
-                              MultiBufferSource vertexConsumerProvider,
-                              int light) {
+    public static void render(
+            int age,
+            float tickDelta,
+            PoseStack matrices,
+            MultiBufferSource vertexConsumerProvider,
+            int light
+    ) {
         VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(RENDER_LAYER);
         float[] colors = colors(age);
         float rotation = (age + tickDelta) / 25.0F + 6.0F;
@@ -46,7 +48,7 @@ public class EternalCrystalRenderer {
                 colors[1],
                 colors[2],
                 colors[3]
-                   );
+        );
 
         for (int i = 0; i < 4; i++) {
             matrices.pushPose();
@@ -61,7 +63,7 @@ public class EternalCrystalRenderer {
                     colors[1],
                     colors[2],
                     colors[3]
-                            );
+            );
             matrices.popPose();
         }
 
@@ -92,31 +94,31 @@ public class EternalCrystalRenderer {
                 "SHARDS_0",
                 CubeListBuilder.create().texOffs(2, 4).addBox(-5.0f, 1.0f, -3.0f, 2.0f, 8.0f, 2.0f),
                 PartPose.ZERO
-                                       );
+        );
 
         modelPartData.addOrReplaceChild(
                 "SHARDS_1",
                 CubeListBuilder.create().texOffs(2, 4).addBox(3.0f, -1.0f, -1.0f, 2.0f, 8.0f, 2.0f),
                 PartPose.ZERO
-                                       );
+        );
 
         modelPartData.addOrReplaceChild(
                 "SHARDS_2",
                 CubeListBuilder.create().texOffs(2, 4).addBox(-1.0f, 0.0f, -5.0f, 2.0f, 4.0f, 2.0f),
                 PartPose.ZERO
-                                       );
+        );
 
         modelPartData.addOrReplaceChild(
                 "SHARDS_3",
                 CubeListBuilder.create().texOffs(2, 4).addBox(0.0f, 3.0f, 4.0f, 2.0f, 6.0f, 2.0f),
                 PartPose.ZERO
-                                       );
+        );
 
         modelPartData.addOrReplaceChild(
                 "CORE",
                 CubeListBuilder.create().texOffs(0, 0).addBox(-2.0f, -2.0f, -2.0f, 4.0f, 12.0f, 4.0f),
                 PartPose.ZERO
-                                       );
+        );
 
         return LayerDefinition.create(modelData, 16, 16);
     }

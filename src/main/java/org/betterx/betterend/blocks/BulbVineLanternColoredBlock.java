@@ -1,13 +1,13 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.interfaces.CustomColorProvider;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.bclib.util.ColorUtil;
+
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-
-import org.betterx.bclib.interfaces.CustomColorProvider;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.bclib.util.ColorUtil;
 
 public class BulbVineLanternColoredBlock extends BulbVineLanternBlock implements CustomColorProvider {
     public BulbVineLanternColoredBlock(FabricBlockSettings settings) {

@@ -1,5 +1,15 @@
 package org.betterx.betterend.client.render;
 
+import org.betterx.bclib.util.BackgroundInfo;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.BetterEnd;
+
+import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.*;
+import com.mojang.math.Matrix4f;
+import com.mojang.math.Quaternion;
+import com.mojang.math.Vector3f;
 import net.minecraft.client.renderer.FogRenderer;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
@@ -8,16 +18,6 @@ import net.minecraft.world.level.levelgen.LegacyRandomSource;
 
 import net.fabricmc.fabric.api.client.rendering.v1.DimensionRenderingRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext;
-
-import com.mojang.blaze3d.platform.GlStateManager;
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.*;
-import com.mojang.math.Matrix4f;
-import com.mojang.math.Quaternion;
-import com.mojang.math.Vector3f;
-import org.betterx.bclib.util.BackgroundInfo;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.BetterEnd;
 
 public class BetterEndSkyRenderer implements DimensionRenderingRegistry.SkyRenderer {
     @FunctionalInterface
@@ -92,54 +92,62 @@ public class BetterEndSkyRenderer implements DimensionRenderingRegistry.SkyRende
             matrices.pushPose();
             matrices.mulPose(new Quaternion(0, time, 0, false));
             RenderSystem.setShaderTexture(0, HORIZON);
-            renderBuffer(matrices,
-                         projectionMatrix,
-                         horizon,
-                         DefaultVertexFormat.POSITION_TEX,
-                         0.77F,
-                         0.31F,
-                         0.73F,
-                         0.7F * blindA);
+            renderBuffer(
+                    matrices,
+                    projectionMatrix,
+                    horizon,
+                    DefaultVertexFormat.POSITION_TEX,
+                    0.77F,
+                    0.31F,
+                    0.73F,
+                    0.7F * blindA
+            );
             matrices.popPose();
 
             matrices.pushPose();
             matrices.mulPose(new Quaternion(0, -time, 0, false));
             RenderSystem.setShaderTexture(0, NEBULA_1);
-            renderBuffer(matrices,
-                         projectionMatrix,
-                         nebula1,
-                         DefaultVertexFormat.POSITION_TEX,
-                         0.77F,
-                         0.31F,
-                         0.73F,
-                         blind02);
+            renderBuffer(
+                    matrices,
+                    projectionMatrix,
+                    nebula1,
+                    DefaultVertexFormat.POSITION_TEX,
+                    0.77F,
+                    0.31F,
+                    0.73F,
+                    blind02
+            );
             matrices.popPose();
 
             matrices.pushPose();
             matrices.mulPose(new Quaternion(0, time2, 0, false));
             RenderSystem.setShaderTexture(0, NEBULA_2);
-            renderBuffer(matrices,
-                         projectionMatrix,
-                         nebula2,
-                         DefaultVertexFormat.POSITION_TEX,
-                         0.77F,
-                         0.31F,
-                         0.73F,
-                         blind02);
+            renderBuffer(
+                    matrices,
+                    projectionMatrix,
+                    nebula2,
+                    DefaultVertexFormat.POSITION_TEX,
+                    0.77F,
+                    0.31F,
+                    0.73F,
+                    blind02
+            );
             matrices.popPose();
 
             RenderSystem.setShaderTexture(0, STARS);
 
             matrices.pushPose();
             matrices.mulPose(axis3.rotation(time));
-            renderBuffer(matrices,
-                         projectionMatrix,
-                         stars3,
-                         DefaultVertexFormat.POSITION_TEX,
-                         0.77F,
-                         0.31F,
-                         0.73F,
-                         blind06);
+            renderBuffer(
+                    matrices,
+                    projectionMatrix,
+                    stars3,
+                    DefaultVertexFormat.POSITION_TEX,
+                    0.77F,
+                    0.31F,
+                    0.73F,
+                    blind06
+            );
             matrices.popPose();
 
             matrices.pushPose();
@@ -160,7 +168,8 @@ public class BetterEndSkyRenderer implements DimensionRenderingRegistry.SkyRende
                     BackgroundInfo.fogColorRed,
                     BackgroundInfo.fogColorGreen,
                     BackgroundInfo.fogColorBlue,
-                    a);
+                    a
+            );
         }
 
         RenderSystem.disableTexture();
@@ -173,14 +182,16 @@ public class BetterEndSkyRenderer implements DimensionRenderingRegistry.SkyRende
 
             matrices.pushPose();
             matrices.mulPose(axis2.rotation(time2));
-            renderBuffer(matrices,
-                         projectionMatrix,
-                         stars2,
-                         DefaultVertexFormat.POSITION,
-                         0.95F,
-                         0.64F,
-                         0.93F,
-                         blind06);
+            renderBuffer(
+                    matrices,
+                    projectionMatrix,
+                    stars2,
+                    DefaultVertexFormat.POSITION,
+                    0.95F,
+                    0.64F,
+                    0.93F,
+                    blind06
+            );
             matrices.popPose();
         }
 
@@ -190,14 +201,16 @@ public class BetterEndSkyRenderer implements DimensionRenderingRegistry.SkyRende
         RenderSystem.disableBlend();
     }
 
-    private void renderBuffer(PoseStack matrices,
-                              Matrix4f matrix4f,
-                              VertexBuffer buffer,
-                              VertexFormat format,
-                              float r,
-                              float g,
-                              float b,
-                              float a) {
+    private void renderBuffer(
+            PoseStack matrices,
+            Matrix4f matrix4f,
+            VertexBuffer buffer,
+            VertexFormat format,
+            float r,
+            float g,
+            float b,
+            float a
+    ) {
         RenderSystem.setShaderColor(r, g, b, a);
         buffer.bind();
         if (format == DefaultVertexFormat.POSITION) {
@@ -220,13 +233,15 @@ public class BetterEndSkyRenderer implements DimensionRenderingRegistry.SkyRende
         fog = buildBufferFog(buffer, fog);
     }
 
-    private VertexBuffer buildBuffer(BufferBuilder bufferBuilder,
-                                     VertexBuffer buffer,
-                                     double minSize,
-                                     double maxSize,
-                                     int count,
-                                     long seed,
-                                     BufferFunction fkt) {
+    private VertexBuffer buildBuffer(
+            BufferBuilder bufferBuilder,
+            VertexBuffer buffer,
+            double minSize,
+            double maxSize,
+            int count,
+            long seed,
+            BufferFunction fkt
+    ) {
         if (buffer != null) {
             buffer.close();
         }
@@ -244,14 +259,16 @@ public class BetterEndSkyRenderer implements DimensionRenderingRegistry.SkyRende
     private VertexBuffer buildBufferHorizon(BufferBuilder bufferBuilder, VertexBuffer buffer) {
         return buildBuffer(
                 bufferBuilder, buffer, 0, 0, 0, 0,
-                (_builder, _minSize, _maxSize, _count, _seed) -> makeCylinder(_builder, 16, 50, 100));
+                (_builder, _minSize, _maxSize, _count, _seed) -> makeCylinder(_builder, 16, 50, 100)
+        );
 
     }
 
     private VertexBuffer buildBufferFog(BufferBuilder bufferBuilder, VertexBuffer buffer) {
         return buildBuffer(
                 bufferBuilder, buffer, 0, 0, 0, 0,
-                (_builder, _minSize, _maxSize, _count, _seed) -> makeCylinder(_builder, 16, 50, 70));
+                (_builder, _minSize, _maxSize, _count, _seed) -> makeCylinder(_builder, 16, 50, 70)
+        );
     }
 
     private void makeStars(BufferBuilder buffer, double minSize, double maxSize, int count, long seed) {

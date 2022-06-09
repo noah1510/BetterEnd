@@ -1,10 +1,10 @@
 package org.betterx.betterend.integration.byg;
 
-import net.minecraft.world.level.block.Block;
-
 import org.betterx.bclib.blocks.BaseVineBlock;
 import org.betterx.betterend.blocks.basis.EndWallPlantBlock;
 import org.betterx.betterend.registry.EndBlocks;
+
+import net.minecraft.world.level.block.Block;
 
 public class BYGBlocks {
     public static final Block IVIS_MOSS = EndBlocks.registerBlock("ivis_moss", new EndWallPlantBlock());

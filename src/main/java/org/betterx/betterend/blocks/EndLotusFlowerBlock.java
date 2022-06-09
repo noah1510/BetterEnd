@@ -1,5 +1,9 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.blocks.basis.EndPlantBlock;
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
@@ -16,9 +20,6 @@ import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 import com.google.common.collect.Lists;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.blocks.basis.EndPlantBlock;
-import org.betterx.betterend.registry.EndBlocks;
 
 import java.util.List;
 

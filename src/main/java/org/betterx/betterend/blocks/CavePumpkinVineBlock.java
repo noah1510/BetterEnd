@@ -1,5 +1,9 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.blocks.BlockProperties;
+import org.betterx.betterend.blocks.basis.EndPlantWithAgeBlock;
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -13,10 +17,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import org.betterx.bclib.blocks.BlockProperties;
-import org.betterx.betterend.blocks.basis.EndPlantWithAgeBlock;
-import org.betterx.betterend.registry.EndBlocks;
 
 public class CavePumpkinVineBlock extends EndPlantWithAgeBlock {
     public CavePumpkinVineBlock() {
@@ -44,7 +44,7 @@ public class CavePumpkinVineBlock extends EndPlantWithAgeBlock {
                 world.setBlockAndUpdate(
                         pos.below(),
                         EndBlocks.CAVE_PUMPKIN.defaultBlockState().setValue(BlockProperties.SMALL, true)
-                                       );
+                );
             } else if (age == 3) {
                 world.setBlockAndUpdate(pos.below(), EndBlocks.CAVE_PUMPKIN.defaultBlockState());
             }
@@ -56,12 +56,14 @@ public class CavePumpkinVineBlock extends EndPlantWithAgeBlock {
     }
 
     @Override
-    public BlockState updateShape(BlockState state,
-                                  Direction facing,
-                                  BlockState neighborState,
-                                  LevelAccessor world,
-                                  BlockPos pos,
-                                  BlockPos neighborPos) {
+    public BlockState updateShape(
+            BlockState state,
+            Direction facing,
+            BlockState neighborState,
+            LevelAccessor world,
+            BlockPos pos,
+            BlockPos neighborPos
+    ) {
         state = super.updateShape(state, facing, neighborState, world, pos, neighborPos);
         if (state.is(this) && state.getValue(BlockProperties.AGE) > 1) {
             BlockState down = world.getBlockState(pos.below());

@@ -1,5 +1,9 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.client.render.BCLRenderLayer;
+import org.betterx.bclib.interfaces.BlockModelProvider;
+import org.betterx.bclib.interfaces.RenderLayerProvider;
+
 import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
@@ -23,10 +27,6 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
-import org.betterx.bclib.client.render.BCLRenderLayer;
-import org.betterx.bclib.interfaces.BlockModelProvider;
-import org.betterx.bclib.interfaces.RenderLayerProvider;
-
 import java.util.Collections;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
@@ -42,12 +42,14 @@ public class EmeraldIceBlock extends HalfTransparentBlock implements RenderLayer
     }
 
     @Override
-    public void playerDestroy(Level world,
-                              Player player,
-                              BlockPos pos,
-                              BlockState state,
-                              @Nullable BlockEntity blockEntity,
-                              ItemStack stack) {
+    public void playerDestroy(
+            Level world,
+            Player player,
+            BlockPos pos,
+            BlockState state,
+            @Nullable BlockEntity blockEntity,
+            ItemStack stack
+    ) {
         super.playerDestroy(world, player, pos, state, blockEntity, stack);
         if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.SILK_TOUCH, stack) == 0) {
             if (world.dimensionType().ultraWarm()) {

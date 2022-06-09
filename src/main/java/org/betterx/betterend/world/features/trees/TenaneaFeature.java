@@ -1,5 +1,19 @@
 package org.betterx.betterend.world.features.trees;
 
+import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
+import org.betterx.bclib.blocks.BlockProperties;
+import org.betterx.bclib.blocks.BlockProperties.TripleShape;
+import org.betterx.bclib.sdf.SDF;
+import org.betterx.bclib.sdf.operator.*;
+import org.betterx.bclib.sdf.primitive.SDFSphere;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.bclib.util.MHelper;
+import org.betterx.bclib.util.SplineHelper;
+import org.betterx.betterend.blocks.basis.FurBlock;
+import org.betterx.betterend.noise.OpenSimplexNoise;
+import org.betterx.betterend.registry.EndBlocks;
+
+import com.mojang.math.Vector3f;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
@@ -13,19 +27,6 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 import net.minecraft.world.level.material.Material;
 
 import com.google.common.collect.Lists;
-import com.mojang.math.Vector3f;
-import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
-import org.betterx.bclib.blocks.BlockProperties;
-import org.betterx.bclib.blocks.BlockProperties.TripleShape;
-import org.betterx.bclib.sdf.SDF;
-import org.betterx.bclib.sdf.operator.*;
-import org.betterx.bclib.sdf.primitive.SDFSphere;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.bclib.util.MHelper;
-import org.betterx.bclib.util.SplineHelper;
-import org.betterx.betterend.blocks.basis.FurBlock;
-import org.betterx.betterend.noise.OpenSimplexNoise;
-import org.betterx.betterend.registry.EndBlocks;
 
 import java.util.List;
 import java.util.function.Function;
@@ -63,11 +64,13 @@ public class TenaneaFeature extends DefaultFeature {
         return true;
     }
 
-    private void leavesBall(WorldGenLevel world,
-                            BlockPos pos,
-                            float radius,
-                            RandomSource random,
-                            OpenSimplexNoise noise) {
+    private void leavesBall(
+            WorldGenLevel world,
+            BlockPos pos,
+            float radius,
+            RandomSource random,
+            OpenSimplexNoise noise
+    ) {
         SDF sphere = new SDFSphere().setRadius(radius)
                                     .setBlock(EndBlocks.TENANEA_LEAVES.defaultBlockState()
                                                                       .setValue(LeavesBlock.DISTANCE, 6));

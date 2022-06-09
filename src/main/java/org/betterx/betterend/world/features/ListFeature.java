@@ -1,6 +1,8 @@
 package org.betterx.betterend.world.features;
 
 
+import org.betterx.bclib.util.StructureHelper;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
@@ -9,8 +11,6 @@ import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
-
-import org.betterx.bclib.util.StructureHelper;
 
 import java.util.List;
 

@@ -1,5 +1,7 @@
 package org.betterx.betterend.item.model;
 
+import org.betterx.betterend.registry.EndEntitiesRenders;
+
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.ModelPart;
@@ -9,7 +11,6 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.entity.LivingEntity;
 
 import com.google.common.collect.Lists;
-import org.betterx.betterend.registry.EndEntitiesRenders;
 
 import java.util.Collections;
 
@@ -39,22 +40,22 @@ public class CrystaliteBootsModel extends HumanoidModel<LivingEntity> {
                 "leftBoot",
                 CubeListBuilder.create().texOffs(0, 32).addBox(-2.0f, 0.0f, -2.0f, 4.0f, 12.0f, 4.0f, deformation),
                 PartPose.offset(1.9f, 12.0f, 0.0f)
-                                       );
+        );
 
         modelPartData.addOrReplaceChild(
                 "rightBoot",
                 CubeListBuilder.create().texOffs(0, 16).addBox(-2.0f, 0.0f, -2.0f, 4.0f, 12.0f, 4.0f, deformation),
                 PartPose.offset(-1.9f, 12.0f, 0.0f)
-                                       );
+        );
 
         return LayerDefinition.create(modelData, 64, 48);
     }
 
     public static CrystaliteBootsModel createModel(EntityModelSet entityModelSet) {
         return new CrystaliteBootsModel(entityModelSet == null
-                                                ? getTexturedModelData().bakeRoot()
-                                                : entityModelSet.bakeLayer(
-                                                        EndEntitiesRenders.CRYSTALITE_BOOTS));
+                ? getTexturedModelData().bakeRoot()
+                : entityModelSet.bakeLayer(
+                        EndEntitiesRenders.CRYSTALITE_BOOTS));
     }
 
     public CrystaliteBootsModel(ModelPart modelPart) {

@@ -1,5 +1,11 @@
 package org.betterx.betterend.world.structures.piece;
 
+import org.betterx.bclib.util.MHelper;
+import org.betterx.bclib.util.StructureHelper;
+import org.betterx.betterend.registry.EndStructures;
+import org.betterx.betterend.util.StructureErode;
+import org.betterx.betterend.world.biome.EndBiome;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
 import net.minecraft.nbt.CompoundTag;
@@ -17,12 +23,6 @@ import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceSeriali
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 
-import org.betterx.bclib.util.MHelper;
-import org.betterx.bclib.util.StructureHelper;
-import org.betterx.betterend.registry.EndStructures;
-import org.betterx.betterend.util.StructureErode;
-import org.betterx.betterend.world.biome.EndBiome;
-
 public class NBTPiece extends BasePiece {
     private ResourceLocation structureID;
     private Rotation rotation;
@@ -32,12 +32,14 @@ public class NBTPiece extends BasePiece {
     private int erosion;
     private boolean cover;
 
-    public NBTPiece(ResourceLocation structureID,
-                    StructureTemplate structure,
-                    BlockPos pos,
-                    int erosion,
-                    boolean cover,
-                    RandomSource random) {
+    public NBTPiece(
+            ResourceLocation structureID,
+            StructureTemplate structure,
+            BlockPos pos,
+            int erosion,
+            boolean cover,
+            RandomSource random
+    ) {
         super(EndStructures.NBT_PIECE, random.nextInt(), null);
         this.structureID = structureID;
         this.structure = structure;
@@ -77,13 +79,15 @@ public class NBTPiece extends BasePiece {
     }
 
     @Override
-    public void postProcess(WorldGenLevel world,
-                            StructureManager arg,
-                            ChunkGenerator chunkGenerator,
-                            RandomSource random,
-                            BoundingBox blockBox,
-                            ChunkPos chunkPos,
-                            BlockPos blockPos) {
+    public void postProcess(
+            WorldGenLevel world,
+            StructureManager arg,
+            ChunkGenerator chunkGenerator,
+            RandomSource random,
+            BoundingBox blockBox,
+            ChunkPos chunkPos,
+            BlockPos blockPos
+    ) {
         BoundingBox bounds = BoundingBox.fromCorners(new Vec3i(
                 blockBox.minX(),
                 this.boundingBox.minY(),

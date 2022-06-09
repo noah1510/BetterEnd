@@ -1,5 +1,8 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -28,9 +31,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.betterend.registry.EndBlocks;
 
 import java.util.Optional;
 
@@ -66,12 +66,14 @@ public class VentBubbleColumnBlock extends Block implements BucketPickup, Liquid
 
     @Override
     @SuppressWarnings("deprecation")
-    public BlockState updateShape(BlockState state,
-                                  Direction direction,
-                                  BlockState newState,
-                                  LevelAccessor world,
-                                  BlockPos pos,
-                                  BlockPos posFrom) {
+    public BlockState updateShape(
+            BlockState state,
+            Direction direction,
+            BlockState newState,
+            LevelAccessor world,
+            BlockPos pos,
+            BlockPos posFrom
+    ) {
         if (!state.canSurvive(world, pos)) {
             return Blocks.WATER.defaultBlockState();
         } else {
@@ -102,7 +104,7 @@ public class VentBubbleColumnBlock extends Block implements BucketPickup, Liquid
                     0.2F + random.nextFloat() * 0.2F,
                     0.9F + random.nextFloat() * 0.15F,
                     false
-                                );
+            );
         }
     }
 
@@ -126,7 +128,7 @@ public class VentBubbleColumnBlock extends Block implements BucketPickup, Liquid
                             0.0D,
                             0.0D,
                             1.0D
-                                             );
+                    );
                     serverWorld.sendParticles(
                             ParticleTypes.BUBBLE,
                             (double) pos.getX() + world.random.nextDouble(),
@@ -137,7 +139,7 @@ public class VentBubbleColumnBlock extends Block implements BucketPickup, Liquid
                             0.01D,
                             0.0D,
                             0.2D
-                                             );
+                    );
                 }
             }
         } else {

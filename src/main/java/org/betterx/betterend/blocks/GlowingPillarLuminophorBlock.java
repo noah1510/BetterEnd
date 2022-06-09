@@ -1,5 +1,9 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.blocks.BaseBlock;
+import org.betterx.bclib.interfaces.tools.AddMineableShears;
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.LevelAccessor;
@@ -14,10 +18,6 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-
-import org.betterx.bclib.blocks.BaseBlock;
-import org.betterx.bclib.interfaces.tools.AddMineableShears;
-import org.betterx.betterend.registry.EndBlocks;
 
 public class GlowingPillarLuminophorBlock extends BaseBlock implements AddMineableShears {
     public static final BooleanProperty NATURAL = EndBlockProperties.NATURAL;
@@ -39,12 +39,14 @@ public class GlowingPillarLuminophorBlock extends BaseBlock implements AddMineab
 
     @Override
     @SuppressWarnings("deprecation")
-    public BlockState updateShape(BlockState state,
-                                  Direction facing,
-                                  BlockState neighborState,
-                                  LevelAccessor world,
-                                  BlockPos pos,
-                                  BlockPos neighborPos) {
+    public BlockState updateShape(
+            BlockState state,
+            Direction facing,
+            BlockState neighborState,
+            LevelAccessor world,
+            BlockPos pos,
+            BlockPos neighborPos
+    ) {
         if (!canSurvive(state, world, pos)) {
             return Blocks.AIR.defaultBlockState();
         } else {

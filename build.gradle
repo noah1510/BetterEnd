@@ -46,9 +46,8 @@ dependencies {
     } else {
         modImplementation "com.github.quiqueck:BCLib:${project.bclib_version}"
     }
-
-    // useOptional "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
-    //useOptional "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.rei_version}"
+    useOptional "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
+    useOptional "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.rei_version}"
 }
 
 def useOptional(String dep) {

@@ -1,5 +1,11 @@
 package org.betterx.betterend.mixin.common;
 
+import org.betterx.bclib.api.v2.WorldDataAPI;
+import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.bclib.util.StructureHelper;
+import org.betterx.betterend.BetterEnd;
+import org.betterx.betterend.world.generator.GeneratorOptions;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Vec3i;
@@ -19,11 +25,6 @@ import net.minecraft.world.level.levelgen.feature.configurations.SpikeConfigurat
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 
-import org.betterx.bclib.api.v2.WorldDataAPI;
-import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.bclib.util.StructureHelper;
-import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.world.generator.GeneratorOptions;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -33,19 +34,23 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(SpikeFeature.class)
 public class SpikeFeatureMixin {
     @Inject(method = "place", at = @At("HEAD"), cancellable = true)
-    private void be_place(FeaturePlaceContext<SpikeConfiguration> featurePlaceContext,
-                          CallbackInfoReturnable<Boolean> info) {
+    private void be_place(
+            FeaturePlaceContext<SpikeConfiguration> featurePlaceContext,
+            CallbackInfoReturnable<Boolean> info
+    ) {
         if (!GeneratorOptions.hasPillars()) {
             info.setReturnValue(false);
         }
     }
 
     @Inject(method = "placeSpike", at = @At("HEAD"), cancellable = true)
-    private void be_placeSpike(ServerLevelAccessor world,
-                               RandomSource random,
-                               SpikeConfiguration config,
-                               SpikeFeature.EndSpike spike,
-                               CallbackInfo info) {
+    private void be_placeSpike(
+            ServerLevelAccessor world,
+            RandomSource random,
+            SpikeConfiguration config,
+            SpikeFeature.EndSpike spike,
+            CallbackInfo info
+    ) {
         int x = spike.getCenterX();
         int z = spike.getCenterZ();
         int radius = spike.getRadius();
@@ -157,19 +162,20 @@ public class SpikeFeatureMixin {
                                 BlockState blockState = Blocks.IRON_BARS
                                         .defaultBlockState()
                                         .setValue(IronBarsBlock.NORTH, bl4 && pz != -2).setValue(
-                                        IronBarsBlock.SOUTH,
-                                        bl4 && pz != 2
-                                                                                                ).setValue(
-                                        IronBarsBlock.WEST,
-                                        bl5 && px != -2).setValue(
-                                        IronBarsBlock.EAST,
-                                        bl5 && px != 2
-                                                                 );
+                                                IronBarsBlock.SOUTH,
+                                                bl4 && pz != 2
+                                        ).setValue(
+                                                IronBarsBlock.WEST,
+                                                bl5 && px != -2
+                                        ).setValue(
+                                                IronBarsBlock.EAST,
+                                                bl5 && px != 2
+                                        );
                                 BlocksHelper.setWithoutUpdate(
                                         world,
                                         mut.set(spike.getCenterX() + px, maxY + py, spike.getCenterZ() + pz),
                                         blockState
-                                                             );
+                                );
                             }
                         }
                     }

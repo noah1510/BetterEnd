@@ -1,5 +1,11 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.blocks.BaseBlockNotFull;
+import org.betterx.bclib.blocks.BlockProperties;
+import org.betterx.bclib.client.render.BCLRenderLayer;
+import org.betterx.bclib.interfaces.RenderLayerProvider;
+import org.betterx.betterend.registry.EndBlocks;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
@@ -14,12 +20,6 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-
-import org.betterx.bclib.blocks.BaseBlockNotFull;
-import org.betterx.bclib.blocks.BlockProperties;
-import org.betterx.bclib.client.render.BCLRenderLayer;
-import org.betterx.bclib.interfaces.RenderLayerProvider;
-import org.betterx.betterend.registry.EndBlocks;
 
 import java.util.Collections;
 import java.util.List;

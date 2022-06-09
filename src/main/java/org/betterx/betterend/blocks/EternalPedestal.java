@@ -1,5 +1,11 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.betterend.blocks.basis.PedestalBlock;
+import org.betterx.betterend.blocks.entities.EternalPedestalEntity;
+import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.registry.EndPortals;
+import org.betterx.betterend.rituals.EternalRitual;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
@@ -20,11 +26,6 @@ import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 
 import com.google.common.collect.Lists;
-import org.betterx.betterend.blocks.basis.PedestalBlock;
-import org.betterx.betterend.blocks.entities.EternalPedestalEntity;
-import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.betterend.registry.EndPortals;
-import org.betterx.betterend.rituals.EternalRitual;
 
 import java.util.List;
 
@@ -75,12 +76,14 @@ public class EternalPedestal extends PedestalBlock {
 
     @Override
     @Deprecated
-    public BlockState updateShape(BlockState state,
-                                  Direction direction,
-                                  BlockState newState,
-                                  LevelAccessor world,
-                                  BlockPos pos,
-                                  BlockPos posFrom) {
+    public BlockState updateShape(
+            BlockState state,
+            Direction direction,
+            BlockState newState,
+            LevelAccessor world,
+            BlockPos pos,
+            BlockPos posFrom
+    ) {
         BlockState updated = super.updateShape(state, direction, newState, world, pos, posFrom);
         if (!updated.is(this)) return updated;
         if (!this.isPlaceable(updated)) {

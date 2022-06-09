@@ -1,12 +1,12 @@
 package org.betterx.betterend.recipe;
 
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Blocks;
-
 import org.betterx.betterend.recipe.builders.AlloyingRecipe;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndItems;
 import org.betterx.betterend.registry.EndTags;
+
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Blocks;
 
 public class AlloyingRecipes {
     public static void register() {
