@@ -1,7 +1,6 @@
 package org.betterx.betterend.mixin.common;
 
 import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.interfaces.BetterEndElytra;
 import org.betterx.betterend.interfaces.MobEffectApplier;
 import org.betterx.betterend.item.CrystaliteArmor;
 import org.betterx.betterend.registry.EndAttributes;
@@ -18,16 +17,13 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
-import org.spongepowered.asm.mixin.injection.Slice;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
@@ -39,9 +35,6 @@ public abstract class LivingEntityMixin extends Entity {
     public LivingEntityMixin(EntityType<?> entityType, Level level) {
         super(entityType, level);
     }
-
-    @Shadow
-    public abstract ItemStack getItemBySlot(EquipmentSlot equipmentSlot);
 
 
     @Shadow
@@ -92,21 +85,6 @@ public abstract class LivingEntityMixin extends Entity {
             value += this.be_getKnockback(attacker.getMainHandItem().getItem());
         }
         return value;
-    }
-
-    @ModifyArg(
-            method = "travel",
-            slice = @Slice(
-                    from = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;isFallFlying()Z"),
-                    to = @At(value = "INVOKE:LAST", target = "Lnet/minecraft/world/entity/LivingEntity;setSharedFlag(IZ)V")
-            ),
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/LivingEntity;setDeltaMovement(Lnet/minecraft/world/phys/Vec3;)V")
-    )
-    public Vec3 be_travel(Vec3 moveDelta) {
-        ItemStack itemStack = getItemBySlot(EquipmentSlot.CHEST);
-        double movementFactor = ((BetterEndElytra) itemStack.getItem()).getMovementFactor();
-        moveDelta = moveDelta.multiply(movementFactor, 1.0D, movementFactor);
-        return moveDelta;
     }
 
     private double be_getKnockback(Item tool) {

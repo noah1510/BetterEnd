@@ -14,10 +14,9 @@ import net.minecraft.world.item.*;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.entity.event.v1.FabricElytraItem;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
 
-public class ArmoredElytra extends BaseArmorItem implements MultiModelItem, BetterEndElytra, FabricElytraItem {
+public class ArmoredElytra extends BaseArmorItem implements MultiModelItem, BetterEndElytra {
     private final ResourceLocation wingTexture;
     private final Item repairItem;
     private final double movementFactor;

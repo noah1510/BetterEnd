@@ -15,10 +15,9 @@ import net.minecraft.world.item.Rarity;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.entity.event.v1.FabricElytraItem;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
 
-public class CrystaliteElytra extends CrystaliteArmor implements MultiModelItem, BetterEndElytra, FabricElytraItem {
+public class CrystaliteElytra extends CrystaliteArmor implements MultiModelItem, BetterEndElytra {
 
     private final ResourceLocation wingTexture;
     private final double movementFactor;
