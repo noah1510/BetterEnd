@@ -139,11 +139,11 @@ public class EndItems {
                     EndArmorMaterial.AETERNIUM,
                     Items.PHANTOM_MEMBRANE,
                     900,
-                    0.975D,
+                    0.97D,
                     true
             )
     );
-    public static final Item CRYSTALITE_ELYTRA = registerEndItem("elytra_crystalite", new CrystaliteElytra(650, 0.99D));
+    public static final Item CRYSTALITE_ELYTRA = registerEndItem("elytra_crystalite", new CrystaliteElytra(650, 1.01D));
 
     // Tools //
     public static final TieredItem AETERNIUM_SHOVEL = registerEndTool("aeternium_shovel", new BaseShovelItem(

@@ -2,7 +2,7 @@ package org.betterx.betterend.item;
 
 import org.betterx.bclib.items.BaseArmorItem;
 import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.interfaces.FallFlyingItem;
+import org.betterx.betterend.interfaces.BetterEndElytra;
 import org.betterx.betterend.interfaces.MultiModelItem;
 import org.betterx.betterend.registry.EndItems;
 
@@ -14,9 +14,10 @@ import net.minecraft.world.item.*;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.entity.event.v1.FabricElytraItem;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
 
-public class ArmoredElytra extends BaseArmorItem implements MultiModelItem, FallFlyingItem {
+public class ArmoredElytra extends BaseArmorItem implements MultiModelItem, BetterEndElytra, FabricElytraItem {
     private final ResourceLocation wingTexture;
     private final Item repairItem;
     private final double movementFactor;
@@ -43,8 +44,8 @@ public class ArmoredElytra extends BaseArmorItem implements MultiModelItem, Fall
         this.wingTexture = BetterEnd.makeID("textures/entity/" + name + ".png");
         this.repairItem = repairItem;
         this.movementFactor = movementFactor;
-        this.defense = (int) ((double) material.getDefenseForSlot(EquipmentSlot.CHEST) / 1.75);
-        this.toughness = material.getToughness() / 1.75F;
+        this.defense = (int) ((double) material.getDefenseForSlot(EquipmentSlot.CHEST) / 1.15);
+        this.toughness = material.getToughness() / 1.15F;
         addAttributeModifier(
                 Attributes.ARMOR,
                 new AttributeModifier(

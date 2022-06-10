@@ -1,7 +1,6 @@
 package org.betterx.betterend.blocks.entities;
 
 import org.betterx.betterend.blocks.HydrothermalVentBlock;
-import org.betterx.betterend.interfaces.FallFlyingItem;
 import org.betterx.betterend.registry.EndBlockEntities;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndParticles;
@@ -19,6 +18,8 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+
+import net.fabricmc.fabric.api.entity.event.v1.FabricElytraItem;
 
 import java.util.List;
 
@@ -92,6 +93,6 @@ public class BlockEntityHydrothermalVent extends BlockEntity {
 
     private boolean hasElytra(LivingEntity entity) {
         Item item = entity.getItemBySlot(EquipmentSlot.CHEST).getItem();
-        return item instanceof ElytraItem || item instanceof FallFlyingItem;
+        return item instanceof ElytraItem /*|| item instanceof ElytraModelProvider*/ || item instanceof FabricElytraItem;
     }
 }

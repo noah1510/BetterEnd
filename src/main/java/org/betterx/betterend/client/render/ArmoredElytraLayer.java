@@ -1,6 +1,6 @@
 package org.betterx.betterend.client.render;
 
-import org.betterx.betterend.interfaces.FallFlyingItem;
+import org.betterx.betterend.interfaces.BetterEndElytra;
 import org.betterx.betterend.item.model.ArmoredElytraModel;
 import org.betterx.betterend.registry.EndEntitiesRenders;
 
@@ -42,8 +42,8 @@ public class ArmoredElytraLayer<T extends LivingEntity, M extends EntityModel<T>
             float l
     ) {
         ItemStack itemStack = livingEntity.getItemBySlot(EquipmentSlot.CHEST);
-        if (itemStack.getItem() instanceof FallFlyingItem) {
-            ResourceLocation wingsTexture = ((FallFlyingItem) itemStack.getItem()).getModelTexture();
+        if (itemStack.getItem() instanceof BetterEndElytra) {
+            ResourceLocation wingsTexture = ((BetterEndElytra) itemStack.getItem()).getModelTexture();
             if (livingEntity instanceof AbstractClientPlayer) {
                 AbstractClientPlayer abstractClientPlayer = (AbstractClientPlayer) livingEntity;
                 if (abstractClientPlayer.isElytraLoaded() && abstractClientPlayer.getElytraTextureLocation() != null) {

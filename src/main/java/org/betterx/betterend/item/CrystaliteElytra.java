@@ -1,7 +1,7 @@
 package org.betterx.betterend.item;
 
 import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.interfaces.FallFlyingItem;
+import org.betterx.betterend.interfaces.BetterEndElytra;
 import org.betterx.betterend.interfaces.MultiModelItem;
 import org.betterx.betterend.registry.EndItems;
 
@@ -15,9 +15,10 @@ import net.minecraft.world.item.Rarity;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.entity.event.v1.FabricElytraItem;
 import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
 
-public class CrystaliteElytra extends CrystaliteArmor implements MultiModelItem, FallFlyingItem {
+public class CrystaliteElytra extends CrystaliteArmor implements MultiModelItem, BetterEndElytra, FabricElytraItem {
 
     private final ResourceLocation wingTexture;
     private final double movementFactor;
@@ -28,8 +29,8 @@ public class CrystaliteElytra extends CrystaliteArmor implements MultiModelItem,
         super(EquipmentSlot.CHEST, EndItems.makeEndItemSettings().durability(durability).rarity(Rarity.EPIC));
         this.wingTexture = BetterEnd.makeID("textures/entity/elytra_crystalite.png");
         this.movementFactor = movementFactor;
-        this.defense = (int) ((double) material.getDefenseForSlot(EquipmentSlot.CHEST) / 1.75);
-        this.toughness = material.getToughness() / 1.75F;
+        this.defense = (int) ((double) material.getDefenseForSlot(EquipmentSlot.CHEST) / 1.25);
+        this.toughness = material.getToughness() / 1.25F;
         addAttributeModifier(
                 Attributes.ARMOR,
                 new AttributeModifier(

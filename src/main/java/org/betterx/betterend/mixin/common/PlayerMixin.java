@@ -4,19 +4,14 @@ import org.betterx.bclib.blocks.BlockProperties;
 import org.betterx.bclib.blocks.BlockProperties.TripleShape;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.interfaces.FallFlyingItem;
 import org.betterx.betterend.registry.EndBlocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ElytraItem;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
@@ -49,19 +44,6 @@ public abstract class PlayerMixin extends LivingEntity {
         if (blockState.is(EndBlocks.RESPAWN_OBELISK)) {
             info.setReturnValue(be_obeliskRespawnPosition(world, pos, blockState));
             info.cancel();
-        }
-    }
-
-    @Inject(method = "tryToStartFallFlying", at = @At("HEAD"), cancellable = true)
-    public void be_tryToStartFlying(CallbackInfoReturnable<Boolean> info) {
-        if (!onGround && !isFallFlying() && !isInWater() && !hasEffect(MobEffects.LEVITATION)) {
-            ItemStack itemStack = getItemBySlot(EquipmentSlot.CHEST);
-            if (itemStack.getItem() instanceof FallFlyingItem && ElytraItem.isFlyEnabled(itemStack)) {
-                setSharedFlag(7, true);
-                info.setReturnValue(true);
-                System.out.println("Started");
-                info.cancel();
-            }
         }
     }
 
