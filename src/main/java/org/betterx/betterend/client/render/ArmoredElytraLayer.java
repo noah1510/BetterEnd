@@ -1,6 +1,7 @@
 package org.betterx.betterend.client.render;
 
 import org.betterx.bclib.items.elytra.BCLElytraItem;
+import org.betterx.bclib.items.elytra.BCLElytraUtils;
 import org.betterx.betterend.item.model.ArmoredElytraModel;
 import org.betterx.betterend.registry.EndEntitiesRenders;
 
@@ -41,8 +42,11 @@ public class ArmoredElytraLayer<T extends LivingEntity, M extends EntityModel<T>
             float k,
             float l
     ) {
-        ItemStack itemStack = livingEntity.getItemBySlot(EquipmentSlot.CHEST);
-        if (itemStack.getItem() instanceof BCLElytraItem) {
+        ItemStack itemStack = (BCLElytraUtils.slotProvider == null)
+                ? livingEntity.getItemBySlot(EquipmentSlot.CHEST)
+                : BCLElytraUtils.slotProvider.getElytra(livingEntity, livingEntity::getItemBySlot);
+
+        if (itemStack != null && itemStack.getItem() instanceof BCLElytraItem) {
             ResourceLocation wingsTexture = ((BCLElytraItem) itemStack.getItem()).getModelTexture();
             if (livingEntity instanceof AbstractClientPlayer) {
                 AbstractClientPlayer abstractClientPlayer = (AbstractClientPlayer) livingEntity;

@@ -8,6 +8,7 @@ import org.betterx.betterend.commands.CommandRegistry;
 import org.betterx.betterend.config.Configs;
 import org.betterx.betterend.effects.EndPotions;
 import org.betterx.betterend.integration.Integrations;
+import org.betterx.betterend.integration.trinkets.Elytra;
 import org.betterx.betterend.recipe.*;
 import org.betterx.betterend.registry.*;
 import org.betterx.betterend.util.BonemealPlants;
@@ -24,9 +25,9 @@ import net.fabricmc.loader.api.FabricLoader;
 public class BetterEnd implements ModInitializer {
     public static final String MOD_ID = "betterend";
     public static final Logger LOGGER = new Logger(MOD_ID);
-    public static final boolean RUNS_FALL_FLYING_LIB = FabricLoader.getInstance()
-                                                                   .getModContainer("fallflyinglib")
-                                                                   .isPresent();
+    public static final boolean RUNS_TRINKETS = FabricLoader.getInstance()
+                                                            .getModContainer("trinkets")
+                                                            .isPresent();
 
     @Override
     public void onInitialize() {
@@ -77,11 +78,14 @@ public class BetterEnd implements ModInitializer {
                 EndStructures.addBiomeStructures(biomeID, biome);
             }
         });
-
+        if (RUNS_TRINKETS) {
+            Elytra.register();
+        }
     }
 
     public static ResourceLocation makeID(String path) {
         return new ResourceLocation(MOD_ID, path);
     }
+
 
 }

@@ -5,6 +5,7 @@ import org.betterx.bclib.util.TranslationHelper;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.client.render.BetterEndSkyRenderer;
 import org.betterx.betterend.events.ItemTooltipCallback;
+import org.betterx.betterend.integration.trinkets.ElytraClient;
 import org.betterx.betterend.interfaces.MultiModelItem;
 import org.betterx.betterend.item.CrystaliteArmor;
 import org.betterx.betterend.registry.*;
@@ -55,6 +56,10 @@ public class BetterEndClient implements ClientModInitializer {
 
         if (ClientOptions.isCustomSky()) {
             DimensionRenderingRegistry.registerSkyRenderer(Level.END, new BetterEndSkyRenderer());
+        }
+
+        if (BetterEnd.RUNS_TRINKETS) {
+            ElytraClient.register();
         }
     }
 

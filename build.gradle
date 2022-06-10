@@ -24,6 +24,7 @@ repositories {
     maven { url "https://maven.shedaniel.me/" }
     maven { url 'https://jitpack.io' }
     maven { url 'https://maven.terraformersmc.com/releases' }
+    maven { url "https://ladysnake.jfrog.io/artifactory/mods" }
     flatDir {
         dirs 'libs'
     }
@@ -48,6 +49,9 @@ dependencies {
     }
     useOptional "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
     useOptional "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.rei_version}"
+
+    modImplementation "dev.emi:trinkets:${project.trinkets_version}"
+
 }
 
 def useOptional(String dep) {
