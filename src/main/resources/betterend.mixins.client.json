@@ -1,23 +1,22 @@
 {
-	"required": true,
-	"minVersion": "0.8",
-	"package": "org.betterx.betterend.mixin.client",
-	"compatibilityLevel": "JAVA_16",
-	"client": [
-		"AbstractSoundInstanceAccessor",
-		"HumanoidMobRendererMixin",
-		"ArmorStandRendererMixin",
-		"MinecraftClientMixin",
-		"PlayerRendererMixin",
-		"MusicTrackerMixin",
-		"BiomeColorsMixin",
-		"LocalPlayerMixin",
-		"ModelLoaderMixin",
-		"EndEffectsMixin",
-		"CapeLayerMixin",
-		"ItemStackMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
-	}
+  "required": true,
+  "minVersion": "0.8",
+  "package": "org.betterx.betterend.mixin.client",
+  "compatibilityLevel": "JAVA_16",
+  "client": [
+	  "AbstractSoundInstanceAccessor",
+	  "ArmorStandRendererMixin",
+	  "BiomeColorsMixin",
+	  "CapeLayerMixin",
+	  "HumanoidMobRendererMixin",
+	  "ItemStackMixin",
+	  "LocalPlayerMixin",
+	  "MinecraftClientMixin",
+	  "ModelLoaderMixin",
+	  "MusicTrackerMixin",
+	  "PlayerRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
 }

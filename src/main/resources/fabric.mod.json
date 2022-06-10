@@ -44,7 +44,9 @@
     "minecraft": "1.19",
     "bclib": "2.0.x"
   },
-  "breaks": {"bclib": "<2.0.1"},
+  "breaks": {
+    "bclib": "<2.0.3"
+  },
   "suggests": {
     "byg": ">=1.1.3",
     "blockus": ">=2.0.2",
