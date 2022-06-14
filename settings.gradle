@@ -14,7 +14,7 @@ pluginManagement {
 def allowLocalLibUse = true
 
 //When true, the local BCLib is also used in commandline builds
-def allowLocalLibInConsoleMode = true
+def allowLocalLibInConsoleMode = false
 
 //The path were to look for the local BCLib
 def BCLibPath = '../BCLib'
