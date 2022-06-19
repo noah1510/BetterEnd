@@ -12,6 +12,7 @@ import org.betterx.betterend.recipe.CraftingRecipes;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndItems;
 
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.MaterialColor;
@@ -187,7 +188,7 @@ public class StoneMaterial {
         TagAPI.addBlockTags(pressurePlate, NamedBlockTags.PRESSURE_PLATES, NamedBlockTags.STONE_PRESSURE_PLATES);
         TagAPI.addBlockTag(CommonBlockTags.END_STONES, stone);
 
-        TagAPI.addBlockTag(CommonBlockTags.DRAGON_IMMUNE, stone, stairs, slab, wall);
+        TagAPI.addBlockTag(BlockTags.DRAGON_IMMUNE, stone, stairs, slab, wall);
 
         TagAPI.addBlockTag(CommonBlockTags.END_STONES, stone);
         TagAPI.addBlockTag(CommonBlockTags.END_STONES, stone);

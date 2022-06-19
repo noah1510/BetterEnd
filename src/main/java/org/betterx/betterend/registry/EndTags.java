@@ -11,6 +11,7 @@ import org.betterx.betterend.blocks.basis.PedestalBlock;
 import org.betterx.betterend.item.tool.EndHammerItem;
 import org.betterx.betterend.world.biome.EndBiome;
 
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
@@ -109,7 +110,7 @@ public class EndTags {
         TagAPI.addBlockTag(NamedBlockTags.BEACON_BASE_BLOCKS, EndBlocks.AETERNIUM_BLOCK);
         TagAPI.addItemTag(NamedItemTags.BEACON_PAYMENT_ITEMS, EndItems.AETERNIUM_INGOT);
         TagAPI.addBlockTag(
-                CommonBlockTags.DRAGON_IMMUNE,
+                BlockTags.DRAGON_IMMUNE,
                 EndBlocks.ENDER_ORE,
                 EndBlocks.ETERNAL_PEDESTAL,
                 EndBlocks.FLAVOLITE_RUNED_ETERNAL,

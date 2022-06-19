@@ -1,6 +1,5 @@
 package org.betterx.betterend.complexmaterials;
 
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.api.v2.tag.NamedBlockTags;
 import org.betterx.bclib.api.v2.tag.NamedItemTags;
 import org.betterx.bclib.api.v2.tag.TagAPI;
@@ -27,6 +26,7 @@ import org.betterx.betterend.recipe.builders.AlloyingRecipe;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndItems;
 
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorMaterial;
@@ -509,6 +509,6 @@ public class MetalMaterial {
         TagAPI.addBlockTag(NamedBlockTags.ANVIL, anvilBlock);
         TagAPI.addBlockTag(NamedBlockTags.BEACON_BASE_BLOCKS, block);
         TagAPI.addItemTag(NamedItemTags.BEACON_PAYMENT_ITEMS, ingot);
-        TagAPI.addBlockTag(CommonBlockTags.DRAGON_IMMUNE, ore, bars);
+        TagAPI.addBlockTag(BlockTags.DRAGON_IMMUNE, ore, bars);
     }
 }
