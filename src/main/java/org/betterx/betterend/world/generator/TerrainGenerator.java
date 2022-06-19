@@ -1,6 +1,5 @@
 package org.betterx.betterend.world.generator;
 
-import org.betterx.bclib.api.v2.generator.BCLibEndBiomeSource;
 import org.betterx.bclib.api.v2.levelgen.LevelGenUtil;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
@@ -66,7 +65,7 @@ public class TerrainGenerator {
     public static void fillTerrainDensity(double[] buffer, int posX, int posZ, int scaleXZ, int scaleY, int maxHeight) {
         LOCKER.lock();
         final float fadeOutDist = 27.0f;
-        final float fadOutStart = maxHeight - fadeOutDist;
+        final float fadOutStart = maxHeight - (fadeOutDist + 1);
         largeIslands.clearCache();
         mediumIslands.clearCache();
         smallIslands.clearCache();
@@ -84,9 +83,9 @@ public class TerrainGenerator {
         double px = (double) x * scaleXZ + distortion1;
         double pz = (double) z * scaleXZ + distortion2;
 
-        largeIslands.updatePositions(px, pz);
-        mediumIslands.updatePositions(px, pz);
-        smallIslands.updatePositions(px, pz);
+        largeIslands.updatePositions(px, pz, maxHeight);
+        mediumIslands.updatePositions(px, pz, maxHeight);
+        smallIslands.updatePositions(px, pz, maxHeight);
 
         float height = getAverageDepth(x << 1, z << 1) * 0.5F;
 
@@ -101,7 +100,8 @@ public class TerrainGenerator {
                 dist += noise1.eval(px * 0.1, py * 0.1, pz * 0.1) * 0.005 + 0.005;
             }
 
-            if (py > fadOutStart) {
+            if (py >= maxHeight) dist = -1;
+            else if (py > fadOutStart) {
                 dist = (float) Mth.lerp((py - fadOutStart) / fadeOutDist, dist, -1);
             }
             buffer[y] = dist;
@@ -151,10 +151,10 @@ public class TerrainGenerator {
         }
     }
 
-    public static Boolean isLand(int x, int z) {
+    public static Boolean isLand(int x, int z, int maxHeight) {
         int sectionX = TerrainBoolCache.scaleCoordinate(x);
         int sectionZ = TerrainBoolCache.scaleCoordinate(z);
-
+        final int stepY = (int) Math.ceil(maxHeight / SCALE_Y);
         LOCKER.lock();
         POS.setLocation(sectionX, sectionZ);
 
@@ -186,12 +186,12 @@ public class TerrainGenerator {
         px = px * SCALE_XZ + distortion1;
         pz = pz * SCALE_XZ + distortion2;
 
-        largeIslands.updatePositions(px, pz);
-        mediumIslands.updatePositions(px, pz);
-        smallIslands.updatePositions(px, pz);
+        largeIslands.updatePositions(px, pz, maxHeight);
+        mediumIslands.updatePositions(px, pz, maxHeight);
+        smallIslands.updatePositions(px, pz, maxHeight);
 
         boolean result = false;
-        for (int y = 0; y < 32; y++) {
+        for (int y = 0; y < stepY; y++) {
             double py = (double) y * SCALE_Y;
             float dist = largeIslands.getDensity(px, py, pz);
             dist = dist > 1 ? dist : MHelper.max(dist, mediumIslands.getDensity(px, py, pz));
@@ -220,9 +220,7 @@ public class TerrainGenerator {
                 Holder<NoiseGeneratorSettings> sHolder = ((NoiseBasedChunkGeneratorAccessor) chunkGenerator)
                         .be_getSettings();
                 if (LevelGenUtil.getWorldSettings() instanceof BCLWorldPresetSettings bset) {
-                    if (bset.endVersion != BCLibEndBiomeSource.BIOME_SOURCE_VERSION_VANILLA) {
-                        BETargetChecker.class.cast(sHolder.value()).be_setTarget(true);
-                    }
+                    BETargetChecker.class.cast(sHolder.value()).be_setTarget(bset.useEndTerrainGenerator);
                 }
 
             }

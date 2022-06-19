@@ -42,8 +42,8 @@ public class GeneratorOptions {
                 Configs.GENERATOR_CONFIG,
                 300,
                 200,
-                70,
-                10,
+                70f / 128,
+                10f / 128,
                 false
         );
         mediumOptions = new LayerOptions(
@@ -51,8 +51,8 @@ public class GeneratorOptions {
                 Configs.GENERATOR_CONFIG,
                 150,
                 100,
-                70,
-                20,
+                70f / 128,
+                20f / 128,
                 true
         );
         smallOptions = new LayerOptions(
@@ -60,8 +60,8 @@ public class GeneratorOptions {
                 Configs.GENERATOR_CONFIG,
                 60,
                 50,
-                70,
-                30,
+                70f / 128,
+                30f / 128,
                 false
         );
         changeSpawn = Configs.GENERATOR_CONFIG.getBoolean("spawn", "changeSpawn", false);

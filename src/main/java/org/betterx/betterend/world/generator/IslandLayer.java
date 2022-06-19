@@ -57,7 +57,7 @@ public class IslandLayer {
         return h ^ (h >> 16);
     }
 
-    public void updatePositions(double x, double z) {
+    public void updatePositions(double x, double z, int maxHeight) {
         int ix = MHelper.floor(x / options.distance);
         int iz = MHelper.floor(z / options.distance);
 
@@ -74,7 +74,7 @@ public class IslandLayer {
                     if (px2 * px2 + pz2 * pz2 > options.centerDist) {
                         RANDOM.setSeed(getSeed(px, pz));
                         double posX = (px + RANDOM.nextFloat()) * options.distance;
-                        double posY = MHelper.randRange(options.minY, options.maxY, RANDOM);
+                        double posY = MHelper.randRange(options.minY, options.maxY, RANDOM) * maxHeight;
                         double posZ = (pz + RANDOM.nextFloat()) * options.distance;
                         if (density.eval(posX * 0.01, posZ * 0.01) > options.coverage) {
                             positions.add(new BlockPos(posX, posY, posZ));
