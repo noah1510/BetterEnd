@@ -61,22 +61,7 @@ public class NoiseChunkMixin implements BETargetChecker {
         NoiseChunkAccessor accessor = (NoiseChunkAccessor) this;
         NoiseSettings noiseSettings = accessor.bnv_getNoiseSettings();
 
-        final int sizeY = noiseSettings.getCellHeight();
-        final int sizeXZ = noiseSettings.getCellWidth();
-        final int cellSizeXZ = accessor.bnv_getCellCountXZ() + 1;
-        final int firstCellZ = accessor.bnv_getFirstCellZ();
-
-        x *= sizeXZ;
-        for (int cellXZ = 0; cellXZ < cellSizeXZ; ++cellXZ) {
-            int z = (firstCellZ + cellXZ) * sizeXZ;
-            for (NoiseChunk.NoiseInterpolator noiseInterpolator : this.interpolators) {
-                if (noiseInterpolator instanceof NoiseInterpolatorAccessor interpolator) {
-                    final double[] ds = (primarySlice
-                            ? interpolator.be_getSlice0()
-                            : interpolator.be_getSlice1())[cellXZ];
-                    TerrainGenerator.fillTerrainDensity(ds, x, z, sizeXZ, sizeY);
-                }
-            }
-        }
+        TerrainGenerator.fillSlice(primarySlice, x, interpolators, accessor, noiseSettings);
     }
+
 }

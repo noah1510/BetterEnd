@@ -1,18 +1,33 @@
 package org.betterx.betterend.world.generator;
 
+import org.betterx.bclib.api.v2.generator.BCLibEndBiomeSource;
+import org.betterx.bclib.api.v2.levelgen.LevelGenUtil;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
+import org.betterx.bclib.presets.worldgen.BCLWorldPresetSettings;
 import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.interfaces.BETargetChecker;
+import org.betterx.betterend.mixin.common.NoiseBasedChunkGeneratorAccessor;
+import org.betterx.betterend.mixin.common.NoiseChunkAccessor;
+import org.betterx.betterend.mixin.common.NoiseInterpolatorAccessor;
 import org.betterx.betterend.noise.OpenSimplexNoise;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.BiomeSource;
 import net.minecraft.world.level.biome.Climate.Sampler;
-import net.minecraft.world.level.levelgen.LegacyRandomSource;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.dimension.LevelStem;
+import net.minecraft.world.level.levelgen.*;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.awt.*;
 import java.util.List;
@@ -48,7 +63,7 @@ public class TerrainGenerator {
         TerrainGenerator.sampler = sampler;
     }
 
-    public static void fillTerrainDensity(double[] buffer, int posX, int posZ, int scaleXZ, int scaleY) {
+    public static void fillTerrainDensity(double[] buffer, int posX, int posZ, int scaleXZ, int scaleY, int maxHeight) {
         LOCKER.lock();
 
         largeIslands.clearCache();
@@ -194,5 +209,70 @@ public class TerrainGenerator {
         LOCKER.unlock();
 
         return result;
+    }
+
+    public static void onServerLevelInit(ServerLevel level, LevelStem levelStem, long seed) {
+        if (level.dimension() == Level.END) {
+            final ChunkGenerator chunkGenerator = levelStem.generator();
+            if (chunkGenerator instanceof NoiseBasedChunkGenerator) {
+                Holder<NoiseGeneratorSettings> sHolder = ((NoiseBasedChunkGeneratorAccessor) chunkGenerator)
+                        .be_getSettings();
+                if (LevelGenUtil.getWorldSettings() instanceof BCLWorldPresetSettings bset) {
+                    if (bset.endVersion != BCLibEndBiomeSource.BIOME_SOURCE_VERSION_VANILLA) {
+                        BETargetChecker.class.cast(sHolder.value()).be_setTarget(true);
+                    }
+                }
+
+            }
+            initNoise(
+                    seed,
+                    chunkGenerator.getBiomeSource(),
+                    level.getChunkSource().randomState().sampler()
+            );
+        }
+    }
+
+    public static void makeObsidianPlatform(ServerLevel serverLevel, CallbackInfo info) {
+        if (!GeneratorOptions.generateObsidianPlatform()) {
+            info.cancel();
+        } else if (GeneratorOptions.changeSpawn()) {
+            BlockPos blockPos = GeneratorOptions.getSpawn();
+            int i = blockPos.getX();
+            int j = blockPos.getY() - 2;
+            int k = blockPos.getZ();
+            BlockPos.betweenClosed(i - 2, j + 1, k - 2, i + 2, j + 3, k + 2).forEach((blockPosx) -> {
+                serverLevel.setBlockAndUpdate(blockPosx, Blocks.AIR.defaultBlockState());
+            });
+            BlockPos.betweenClosed(i - 2, j, k - 2, i + 2, j, k + 2).forEach((blockPosx) -> {
+                serverLevel.setBlockAndUpdate(blockPosx, Blocks.OBSIDIAN.defaultBlockState());
+            });
+            info.cancel();
+        }
+    }
+
+    public static void fillSlice(
+            boolean primarySlice,
+            int x,
+            List<NoiseChunk.NoiseInterpolator> interpolators,
+            NoiseChunkAccessor accessor,
+            NoiseSettings noiseSettings
+    ) {
+        final int sizeY = noiseSettings.getCellHeight();
+        final int sizeXZ = noiseSettings.getCellWidth();
+        final int cellSizeXZ = accessor.bnv_getCellCountXZ() + 1;
+        final int firstCellZ = accessor.bnv_getFirstCellZ();
+
+        x *= sizeXZ;
+        for (int cellXZ = 0; cellXZ < cellSizeXZ; ++cellXZ) {
+            int z = (firstCellZ + cellXZ) * sizeXZ;
+            for (NoiseChunk.NoiseInterpolator noiseInterpolator : interpolators) {
+                if (noiseInterpolator instanceof NoiseInterpolatorAccessor interpolator) {
+                    final double[] ds = (primarySlice
+                            ? interpolator.be_getSlice0()
+                            : interpolator.be_getSlice1())[cellXZ];
+                    fillTerrainDensity(ds, x, z, sizeXZ, sizeY, noiseSettings.height());
+                }
+            }
+        }
     }
 }

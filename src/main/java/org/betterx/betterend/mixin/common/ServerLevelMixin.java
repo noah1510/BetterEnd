@@ -2,7 +2,6 @@ package org.betterx.betterend.mixin.common;
 
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
 import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.interfaces.BETargetChecker;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.world.generator.GeneratorOptions;
 import org.betterx.betterend.world.generator.TerrainGenerator;
@@ -18,12 +17,9 @@ import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.dimension.LevelStem;
-import net.minecraft.world.level.levelgen.NoiseBasedChunkGenerator;
-import net.minecraft.world.level.levelgen.NoiseGeneratorSettings;
 import net.minecraft.world.level.storage.LevelStorageSource.LevelStorageAccess;
 import net.minecraft.world.level.storage.ServerLevelData;
 import net.minecraft.world.level.storage.WritableLevelData;
@@ -83,41 +79,13 @@ public abstract class ServerLevelMixin extends Level {
             boolean bl2,
             CallbackInfo ci
     ) {
-        ServerLevel level = ServerLevel.class.cast(this);
-        if (level.dimension() == Level.END) {
-            final ChunkGenerator chunkGenerator = levelStem.generator();
-            if (chunkGenerator instanceof NoiseBasedChunkGenerator) {
-                Holder<NoiseGeneratorSettings> sHolder = ((NoiseBasedChunkGeneratorAccessor) chunkGenerator)
-                        .be_getSettings();
-                BETargetChecker.class.cast(sHolder.value()).be_setTarget(true);
-
-            }
-            TerrainGenerator.initNoise(
-                    seed,
-                    chunkGenerator.getBiomeSource(),
-                    level.getChunkSource().randomState().sampler()
-            );
-        }
+        TerrainGenerator.onServerLevelInit(ServerLevel.class.cast(this), levelStem, seed);
     }
 
 
     @Inject(method = "makeObsidianPlatform", at = @At("HEAD"), cancellable = true)
     private static void be_createObsidianPlatform(ServerLevel serverLevel, CallbackInfo info) {
-        if (!GeneratorOptions.generateObsidianPlatform()) {
-            info.cancel();
-        } else if (GeneratorOptions.changeSpawn()) {
-            BlockPos blockPos = GeneratorOptions.getSpawn();
-            int i = blockPos.getX();
-            int j = blockPos.getY() - 2;
-            int k = blockPos.getZ();
-            BlockPos.betweenClosed(i - 2, j + 1, k - 2, i + 2, j + 3, k + 2).forEach((blockPosx) -> {
-                serverLevel.setBlockAndUpdate(blockPosx, Blocks.AIR.defaultBlockState());
-            });
-            BlockPos.betweenClosed(i - 2, j, k - 2, i + 2, j, k + 2).forEach((blockPosx) -> {
-                serverLevel.setBlockAndUpdate(blockPosx, Blocks.OBSIDIAN.defaultBlockState());
-            });
-            info.cancel();
-        }
+        TerrainGenerator.makeObsidianPlatform(serverLevel, info);
     }
 
     @ModifyArg(method = "tickChunk", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/level/ServerLevel;setBlockAndUpdate(Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/state/BlockState;)Z"))
