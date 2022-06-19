@@ -65,7 +65,8 @@ public class TerrainGenerator {
 
     public static void fillTerrainDensity(double[] buffer, int posX, int posZ, int scaleXZ, int scaleY, int maxHeight) {
         LOCKER.lock();
-
+        final float fadeOutDist = 27.0f;
+        final float fadOutStart = maxHeight - fadeOutDist;
         largeIslands.clearCache();
         mediumIslands.clearCache();
         smallIslands.clearCache();
@@ -99,8 +100,9 @@ public class TerrainGenerator {
                 dist += noise2.eval(px * 0.05, py * 0.05, pz * 0.05) * 0.01 + 0.01;
                 dist += noise1.eval(px * 0.1, py * 0.1, pz * 0.1) * 0.005 + 0.005;
             }
-            if (py > 100) {
-                dist = (float) Mth.lerp((py - 100) / 27F, dist, -1);
+
+            if (py > fadOutStart) {
+                dist = (float) Mth.lerp((py - fadOutStart) / fadeOutDist, dist, -1);
             }
             buffer[y] = dist;
         }
