@@ -1,9 +1,9 @@
 package org.betterx.betterend.blocks;
 
-import org.betterx.bclib.api.v2.tag.NamedMineableTags;
 import org.betterx.bclib.blocks.BaseBlock;
 import org.betterx.bclib.interfaces.TagProvider;
 import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.worlds.together.tag.v3.MineableTags;
 
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -42,6 +42,6 @@ public class MossyGlowshroomCapBlock extends BaseBlock implements TagProvider {
 
     @Override
     public void addTags(List<TagKey<Block>> blockTags, List<TagKey<Item>> itemTags) {
-        blockTags.add(NamedMineableTags.AXE);
+        blockTags.add(MineableTags.AXE);
     }
 }

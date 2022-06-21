@@ -2,10 +2,10 @@ package org.betterx.betterend.registry;
 
 import org.betterx.bclib.api.v2.levelgen.structures.BCLStructure;
 import org.betterx.bclib.api.v2.levelgen.structures.BCLStructureBuilder;
-import org.betterx.bclib.api.v2.tag.TagAPI;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.world.structures.features.*;
 import org.betterx.betterend.world.structures.piece.*;
+import org.betterx.worlds.together.tag.v3.TagManager;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
@@ -73,7 +73,7 @@ public class EndStructures {
 
     public static void addBiomeStructures(ResourceLocation biomeID, Holder<Biome> biome) {
         if (!biomeID.getPath().contains("mountain") && !biomeID.getPath().contains("lake")) {
-            TagAPI.addBiomeTag(ETERNAL_PORTAL.biomeTag, biome.value());
+            TagManager.BIOMES.add(ETERNAL_PORTAL.biomeTag, biome.value());
         }
     }
 }

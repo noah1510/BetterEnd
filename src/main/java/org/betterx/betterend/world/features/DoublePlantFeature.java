@@ -34,6 +34,7 @@ public class DoublePlantFeature extends ScatterFeature {
                 center.getZ() - blockPos.getZ()
         ) / radius * 0.6F + random.nextFloat() * 0.4F;
         plant = d < 0.5F ? largePlant : smallPlant;
+        //noinspection deprecation
         return plant.canSurvive(plant.defaultBlockState(), world, blockPos);
     }
 

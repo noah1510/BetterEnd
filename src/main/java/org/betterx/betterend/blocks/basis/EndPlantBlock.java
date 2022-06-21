@@ -1,8 +1,8 @@
 package org.betterx.betterend.blocks.basis;
 
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.blocks.BasePlantBlock;
 import org.betterx.betterend.interfaces.PottablePlant;
+import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;

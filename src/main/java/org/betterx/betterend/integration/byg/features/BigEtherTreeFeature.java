@@ -1,11 +1,11 @@
 package org.betterx.betterend.integration.byg.features;
 
 import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.sdf.SDF;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.bclib.util.SplineHelper;
 import org.betterx.betterend.integration.Integrations;
+import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
 import com.mojang.math.Vector3f;
 import net.minecraft.core.BlockPos;

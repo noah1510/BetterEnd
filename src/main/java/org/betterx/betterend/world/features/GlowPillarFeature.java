@@ -20,6 +20,7 @@ public class GlowPillarFeature extends ScatterFeature {
             BlockPos blockPos,
             float radius
     ) {
+        //noinspection deprecation
         return EndBlocks.GLOWING_PILLAR_SEED.canSurvive(AIR, world, blockPos);
     }
 

@@ -12,7 +12,7 @@ public class BYGIntegration extends ModIntegration implements EndBiomeIntegratio
     public void init() {
 		/*Block block = Integrations.BYG.getBlock("ivis_phylium");
 		if (block != null) {
-			TagAPI.addTags(block, CommonBlockTags.END_STONES, CommonBlockTags.GEN_END_STONES);
+			TagManager.addTags(block, CommonBlockTags.END_STONES, CommonBlockTags.GEN_END_STONES);
 		}
 		BYGBlocks.register();
 		BYGFeatures.register();

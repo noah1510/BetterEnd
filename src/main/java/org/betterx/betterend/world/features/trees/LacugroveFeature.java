@@ -1,7 +1,6 @@
 package org.betterx.betterend.world.features.trees;
 
 import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.sdf.PosInfo;
 import org.betterx.bclib.sdf.SDF;
 import org.betterx.bclib.sdf.operator.SDFDisplacement;
@@ -13,6 +12,7 @@ import org.betterx.bclib.util.MHelper;
 import org.betterx.bclib.util.SplineHelper;
 import org.betterx.betterend.noise.OpenSimplexNoise;
 import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
 import com.mojang.math.Vector3f;
 import net.minecraft.core.BlockPos;

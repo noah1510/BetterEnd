@@ -1,7 +1,7 @@
 package org.betterx.betterend.world.structures.features;
 
+import org.betterx.bclib.api.v2.levelgen.structures.BCLStructure;
 import org.betterx.bclib.util.StructureHelper;
-import org.betterx.bclib.world.structures.BCLStructure;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.registry.EndStructures;
 import org.betterx.betterend.world.structures.piece.NBTPiece;

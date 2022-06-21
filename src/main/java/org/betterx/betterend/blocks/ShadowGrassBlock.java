@@ -1,9 +1,9 @@
 package org.betterx.betterend.blocks;
 
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.interfaces.TagProvider;
 import org.betterx.betterend.blocks.basis.EndTerrainBlock;
 import org.betterx.betterend.registry.EndParticles;
+import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.TagKey;

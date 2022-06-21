@@ -52,6 +52,7 @@ public class SinglePlantFeature extends ScatterFeature {
             BlockPos blockPos,
             float radius
     ) {
+        //noinspection deprecation
         return plant.canSurvive(plant.defaultBlockState(), world, blockPos);
     }
 

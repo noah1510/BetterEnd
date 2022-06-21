@@ -1,6 +1,5 @@
 package org.betterx.betterend.blocks;
 
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.blocks.BaseAttachedBlock;
 import org.betterx.bclib.client.render.BCLRenderLayer;
 import org.betterx.bclib.interfaces.RenderLayerProvider;
@@ -8,6 +7,7 @@ import org.betterx.bclib.items.tool.BaseShearsItem;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.betterend.interfaces.PottablePlant;
 import org.betterx.betterend.registry.EndFeatures;
+import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

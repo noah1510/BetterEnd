@@ -1,9 +1,9 @@
 package org.betterx.betterend.mixin.common;
 
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.world.generator.GeneratorOptions;
+import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;

@@ -1,12 +1,12 @@
 package org.betterx.betterend.world.structures.piece;
 
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndStructures;
 import org.betterx.betterend.util.GlobalState;
 import org.betterx.betterend.world.biome.EndBiome;
+import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;

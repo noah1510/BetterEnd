@@ -1,6 +1,5 @@
 package org.betterx.betterend.world.generator;
 
-import org.betterx.bclib.api.v2.levelgen.LevelGenUtil;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
 import org.betterx.bclib.presets.worldgen.BCLWorldPresetSettings;
@@ -10,6 +9,7 @@ import org.betterx.betterend.mixin.common.NoiseBasedChunkGeneratorAccessor;
 import org.betterx.betterend.mixin.common.NoiseChunkAccessor;
 import org.betterx.betterend.mixin.common.NoiseInterpolatorAccessor;
 import org.betterx.betterend.noise.OpenSimplexNoise;
+import org.betterx.worlds.together.world.WorldGenUtil;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
@@ -219,7 +219,7 @@ public class TerrainGenerator {
             if (chunkGenerator instanceof NoiseBasedChunkGenerator) {
                 Holder<NoiseGeneratorSettings> sHolder = ((NoiseBasedChunkGeneratorAccessor) chunkGenerator)
                         .be_getSettings();
-                if (LevelGenUtil.getWorldSettings() instanceof BCLWorldPresetSettings bset) {
+                if (WorldGenUtil.getWorldSettings() instanceof BCLWorldPresetSettings bset) {
                     BETargetChecker.class.cast(sHolder.value()).be_setTarget(bset.useEndTerrainGenerator);
                 }
 

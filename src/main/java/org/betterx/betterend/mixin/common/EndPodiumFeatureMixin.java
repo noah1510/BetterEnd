@@ -1,9 +1,9 @@
 package org.betterx.betterend.mixin.common;
 
-import org.betterx.bclib.api.v2.WorldDataAPI;
 import org.betterx.bclib.util.StructureHelper;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.world.generator.GeneratorOptions;
+import org.betterx.worlds.together.world.WorldConfig;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
@@ -74,7 +74,7 @@ public class EndPodiumFeatureMixin {
     }
 
     private BlockPos be_updatePortalPos(WorldGenLevel world) {
-        CompoundTag compound = WorldDataAPI.getRootTag(BetterEnd.MOD_ID).getCompound("portal");
+        CompoundTag compound = WorldConfig.getRootTag(BetterEnd.MOD_ID).getCompound("portal");
         be_portalPosition = NbtUtils.readBlockPos(compound);
 
         if (be_portalPosition.getY() == 0) {
@@ -87,8 +87,8 @@ public class EndPodiumFeatureMixin {
 			}*/
             int y = world.getHeight(Types.WORLD_SURFACE, 0, 0);
             be_portalPosition = new BlockPos(0, y, 0);
-            WorldDataAPI.getRootTag(BetterEnd.MOD_ID).put("portal", NbtUtils.writeBlockPos(be_portalPosition));
-            WorldDataAPI.saveFile(BetterEnd.MOD_ID);
+            WorldConfig.getRootTag(BetterEnd.MOD_ID).put("portal", NbtUtils.writeBlockPos(be_portalPosition));
+            WorldConfig.saveFile(BetterEnd.MOD_ID);
         }
 
         return be_portalPosition;

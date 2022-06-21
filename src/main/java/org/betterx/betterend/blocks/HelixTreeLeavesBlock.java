@@ -1,7 +1,5 @@
 package org.betterx.betterend.blocks;
 
-import org.betterx.bclib.api.v2.tag.NamedBlockTags;
-import org.betterx.bclib.api.v2.tag.TagAPI;
 import org.betterx.bclib.blocks.BaseBlock;
 import org.betterx.bclib.blocks.BaseLeavesBlock;
 import org.betterx.bclib.interfaces.CustomColorProvider;
@@ -10,9 +8,11 @@ import org.betterx.bclib.util.ColorUtil;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.noise.OpenSimplexNoise;
 import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.worlds.together.tag.v3.TagManager;
 
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -42,7 +42,7 @@ public class HelixTreeLeavesBlock extends BaseBlock implements CustomColorProvid
                 .strength(0.2F)
         );
 
-        TagAPI.addBlockTag(NamedBlockTags.LEAVES, this);
+        TagManager.BLOCKS.add(BlockTags.LEAVES, this);
     }
 
     @Override

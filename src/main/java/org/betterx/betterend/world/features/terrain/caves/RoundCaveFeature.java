@@ -1,9 +1,9 @@
 package org.betterx.betterend.world.features.terrain.caves;
 
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.noise.OpenSimplexNoise;
+import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;

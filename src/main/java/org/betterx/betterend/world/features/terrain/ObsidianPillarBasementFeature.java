@@ -1,7 +1,6 @@
 package org.betterx.betterend.world.features.terrain;
 
 import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.sdf.SDF;
 import org.betterx.bclib.sdf.operator.SDFDisplacement;
 import org.betterx.bclib.sdf.operator.SDFRotation;
@@ -12,6 +11,7 @@ import org.betterx.bclib.sdf.primitive.SDFFlatland;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.noise.OpenSimplexNoise;
 import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
 import com.mojang.math.Vector3f;
 import net.minecraft.core.BlockPos;

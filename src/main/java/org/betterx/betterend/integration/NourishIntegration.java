@@ -1,8 +1,8 @@
 package org.betterx.betterend.integration;
 
-import org.betterx.bclib.api.v2.tag.TagAPI;
 import org.betterx.bclib.integration.ModIntegration;
 import org.betterx.betterend.registry.EndItems;
+import org.betterx.worlds.together.tag.v3.TagManager;
 
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -19,8 +19,8 @@ public class NourishIntegration extends ModIntegration {
         TagKey<Item> protein = getItemTag("protein");
         TagKey<Item> sweets = getItemTag("sweets");
 
-        TagAPI.addItemTag(fats, EndItems.END_FISH_RAW, EndItems.END_FISH_COOKED);
-        TagAPI.addItemTag(
+        TagManager.ITEMS.add(fats, EndItems.END_FISH_RAW, EndItems.END_FISH_COOKED);
+        TagManager.ITEMS.add(
                 fruit,
                 EndItems.SHADOW_BERRY_RAW,
                 EndItems.SHADOW_BERRY_COOKED,
@@ -33,7 +33,7 @@ public class NourishIntegration extends ModIntegration {
                 EndItems.CHORUS_MUSHROOM_COOKED,
                 EndItems.BOLUX_MUSHROOM_COOKED
         );
-        TagAPI.addItemTag(
+        TagManager.ITEMS.add(
                 protein,
                 EndItems.END_FISH_RAW,
                 EndItems.END_FISH_COOKED,
@@ -41,7 +41,7 @@ public class NourishIntegration extends ModIntegration {
                 EndItems.BOLUX_MUSHROOM_COOKED,
                 EndItems.CAVE_PUMPKIN_PIE
         );
-        TagAPI.addItemTag(
+        TagManager.ITEMS.add(
                 sweets,
                 EndItems.SHADOW_BERRY_JELLY,
                 EndItems.SWEET_BERRY_JELLY,

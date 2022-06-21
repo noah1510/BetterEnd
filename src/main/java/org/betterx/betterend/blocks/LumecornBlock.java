@@ -1,6 +1,5 @@
 package org.betterx.betterend.blocks;
 
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.blocks.BaseBlockNotFull;
 import org.betterx.bclib.client.render.BCLRenderLayer;
 import org.betterx.bclib.interfaces.RenderLayerProvider;
@@ -8,6 +7,7 @@ import org.betterx.bclib.interfaces.tools.AddMineableAxe;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndItems;
+import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

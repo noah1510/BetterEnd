@@ -2,7 +2,6 @@ package org.betterx.betterend.world.features.terrain;
 
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
 import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.sdf.SDF;
 import org.betterx.bclib.sdf.operator.SDFDisplacement;
 import org.betterx.bclib.sdf.operator.SDFSmoothUnion;
@@ -13,6 +12,7 @@ import org.betterx.betterend.noise.OpenSimplexNoise;
 import org.betterx.betterend.registry.EndBiomes;
 import org.betterx.betterend.registry.EndFeatures;
 import org.betterx.betterend.world.biome.EndBiome;
+import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

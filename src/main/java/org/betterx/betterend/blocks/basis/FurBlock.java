@@ -1,16 +1,16 @@
 package org.betterx.betterend.blocks.basis;
 
-import org.betterx.bclib.api.v2.tag.NamedBlockTags;
-import org.betterx.bclib.api.v2.tag.TagAPI;
 import org.betterx.bclib.blocks.BaseAttachedBlock;
 import org.betterx.bclib.client.render.BCLRenderLayer;
 import org.betterx.bclib.interfaces.RenderLayerProvider;
 import org.betterx.bclib.interfaces.tools.AddMineableShears;
 import org.betterx.bclib.items.tool.BaseShearsItem;
 import org.betterx.bclib.util.MHelper;
+import org.betterx.worlds.together.tag.v3.TagManager;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
@@ -45,7 +45,7 @@ public class FurBlock extends BaseAttachedBlock implements RenderLayerProvider, 
                                  .noCollission());
         this.drop = drop;
         this.dropChance = dropChance;
-        TagAPI.addBlockTag(NamedBlockTags.LEAVES, this);
+        TagManager.BLOCKS.add(BlockTags.LEAVES, this);
     }
 
     public FurBlock(ItemLike drop, int dropChance) {
@@ -55,7 +55,7 @@ public class FurBlock extends BaseAttachedBlock implements RenderLayerProvider, 
                                  .noCollission());
         this.drop = drop;
         this.dropChance = dropChance;
-        TagAPI.addBlockTag(NamedBlockTags.LEAVES, this);
+        TagManager.BLOCKS.add(BlockTags.LEAVES, this);
     }
 
     @Override

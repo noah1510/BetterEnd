@@ -1,8 +1,5 @@
 package org.betterx.betterend.complexmaterials;
 
-import org.betterx.bclib.api.v2.tag.NamedBlockTags;
-import org.betterx.bclib.api.v2.tag.NamedItemTags;
-import org.betterx.bclib.api.v2.tag.TagAPI;
 import org.betterx.bclib.blocks.BaseSlabBlock;
 import org.betterx.bclib.blocks.BaseStairsBlock;
 import org.betterx.bclib.blocks.BaseWallBlock;
@@ -14,7 +11,10 @@ import org.betterx.betterend.blocks.basis.LitPillarBlock;
 import org.betterx.betterend.config.Configs;
 import org.betterx.betterend.recipe.CraftingRecipes;
 import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.worlds.together.tag.v3.TagManager;
 
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -122,14 +122,14 @@ public class CrystalSubblocksMaterial {
         CraftingRecipes.registerPedestal(name + "_pedestal", pedestal, slab, pillar);
 
         // Item Tags //
-        TagAPI.addItemTag(NamedItemTags.SLABS, slab, brick_slab);
-        TagAPI.addItemTag(NamedItemTags.STONE_BRICKS, bricks);
-        TagAPI.addItemTag(NamedItemTags.STONE_CRAFTING_MATERIALS, source);
-        TagAPI.addItemTag(NamedItemTags.STONE_TOOL_MATERIALS, source);
+        TagManager.ITEMS.add(ItemTags.SLABS, slab.asItem(), brick_slab.asItem());
+        TagManager.ITEMS.add(ItemTags.STONE_BRICKS, bricks.asItem());
+        TagManager.ITEMS.add(ItemTags.STONE_CRAFTING_MATERIALS, source.asItem());
+        TagManager.ITEMS.add(ItemTags.STONE_TOOL_MATERIALS, source.asItem());
 
         // Block Tags //
-        TagAPI.addBlockTag(NamedBlockTags.STONE_BRICKS, bricks);
-        TagAPI.addBlockTag(NamedBlockTags.WALLS, wall, brick_wall);
-        TagAPI.addBlockTag(NamedBlockTags.SLABS, slab, brick_slab);
+        TagManager.BLOCKS.add(BlockTags.STONE_BRICKS, bricks);
+        TagManager.BLOCKS.add(BlockTags.WALLS, wall, brick_wall);
+        TagManager.BLOCKS.add(BlockTags.SLABS, slab, brick_slab);
     }
 }

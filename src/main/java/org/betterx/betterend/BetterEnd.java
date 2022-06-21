@@ -1,6 +1,5 @@
 package org.betterx.betterend;
 
-import org.betterx.bclib.api.v2.WorldDataAPI;
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
 import org.betterx.bclib.util.Logger;
 import org.betterx.betterend.api.BetterEndPlugin;
@@ -15,6 +14,7 @@ import org.betterx.betterend.util.BonemealPlants;
 import org.betterx.betterend.util.LootTableUtil;
 import org.betterx.betterend.world.generator.GeneratorOptions;
 import org.betterx.betterend.world.generator.TerrainGenerator;
+import org.betterx.worlds.together.world.WorldConfig;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biomes;
@@ -31,7 +31,7 @@ public class BetterEnd implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        WorldDataAPI.registerModCache(MOD_ID);
+        WorldConfig.registerModCache(MOD_ID);
         EndPortals.loadPortals();
         EndSounds.register();
         EndBlockEntities.register();

@@ -1,6 +1,5 @@
 package org.betterx.betterend.complexmaterials;
 
-import org.betterx.bclib.api.v2.tag.*;
 import org.betterx.bclib.blocks.*;
 import org.betterx.bclib.recipes.GridRecipe;
 import org.betterx.betterend.BetterEnd;
@@ -11,8 +10,12 @@ import org.betterx.betterend.config.Configs;
 import org.betterx.betterend.recipe.CraftingRecipes;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndItems;
+import org.betterx.worlds.together.tag.v3.CommonBlockTags;
+import org.betterx.worlds.together.tag.v3.CommonItemTags;
+import org.betterx.worlds.together.tag.v3.TagManager;
 
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.MaterialColor;
@@ -175,22 +178,22 @@ public class StoneMaterial {
         CraftingRecipes.registerPedestal(name + "_pedestal", pedestal, slab, pillar);
 
         // Item Tags //
-        TagAPI.addItemTag(NamedItemTags.SLABS, slab, brickSlab);
-        TagAPI.addItemTag(NamedItemTags.STONE_BRICKS, bricks);
-        TagAPI.addItemTag(NamedItemTags.STONE_CRAFTING_MATERIALS, stone);
-        TagAPI.addItemTag(NamedItemTags.STONE_TOOL_MATERIALS, stone);
-        TagAPI.addItemTag(CommonItemTags.FURNACES, furnace);
+        TagManager.ITEMS.add(ItemTags.SLABS, slab.asItem(), brickSlab.asItem());
+        TagManager.ITEMS.add(ItemTags.STONE_BRICKS, bricks.asItem());
+        TagManager.ITEMS.add(ItemTags.STONE_CRAFTING_MATERIALS, stone.asItem());
+        TagManager.ITEMS.add(ItemTags.STONE_TOOL_MATERIALS, stone.asItem());
+        TagManager.ITEMS.add(CommonItemTags.FURNACES, furnace.asItem());
 
         // Block Tags //
-        TagAPI.addBlockTag(NamedBlockTags.STONE_BRICKS, bricks);
-        TagAPI.addBlockTag(NamedBlockTags.WALLS, wall, brickWall);
-        TagAPI.addBlockTag(NamedBlockTags.SLABS, slab, brickSlab);
-        TagAPI.addBlockTags(pressurePlate, NamedBlockTags.PRESSURE_PLATES, NamedBlockTags.STONE_PRESSURE_PLATES);
-        TagAPI.addBlockTag(CommonBlockTags.END_STONES, stone);
+        TagManager.BLOCKS.add(BlockTags.STONE_BRICKS, bricks);
+        TagManager.BLOCKS.add(BlockTags.WALLS, wall, brickWall);
+        TagManager.BLOCKS.add(BlockTags.SLABS, slab, brickSlab);
+        TagManager.BLOCKS.add(pressurePlate, BlockTags.PRESSURE_PLATES, BlockTags.STONE_PRESSURE_PLATES);
+        TagManager.BLOCKS.add(CommonBlockTags.END_STONES, stone);
 
-        TagAPI.addBlockTag(BlockTags.DRAGON_IMMUNE, stone, stairs, slab, wall);
+        TagManager.BLOCKS.add(BlockTags.DRAGON_IMMUNE, stone, stairs, slab, wall);
 
-        TagAPI.addBlockTag(CommonBlockTags.END_STONES, stone);
-        TagAPI.addBlockTag(CommonBlockTags.END_STONES, stone);
+        TagManager.BLOCKS.add(CommonBlockTags.END_STONES, stone);
+        TagManager.BLOCKS.add(CommonBlockTags.END_STONES, stone);
     }
 }

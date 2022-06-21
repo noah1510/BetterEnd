@@ -1,6 +1,6 @@
 package org.betterx.betterend.mixin.common;
 
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
+import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
 import net.minecraft.core.Registry;
 import net.minecraft.util.RandomSource;

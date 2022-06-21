@@ -1,8 +1,8 @@
 package org.betterx.betterend.mixin.common;
 
-import org.betterx.bclib.api.v2.WorldDataAPI;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.world.generator.GeneratorOptions;
+import org.betterx.worlds.together.world.WorldConfig;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.levelgen.feature.SpikeFeature.EndSpike;
@@ -26,7 +26,7 @@ public class EndSpikeMixin {
             int x = getCenterX();
             int z = getCenterZ();
             String pillarID = String.format("%d_%d", x, z);
-            CompoundTag pillar = WorldDataAPI.getCompoundTag(BetterEnd.MOD_ID, "pillars");
+            CompoundTag pillar = WorldConfig.getCompoundTag(BetterEnd.MOD_ID, "pillars");
             int minY = pillar.contains(pillarID) ? pillar.getInt(pillarID) : 65;
             int maxY = minY + height - 54;
             info.setReturnValue(maxY);

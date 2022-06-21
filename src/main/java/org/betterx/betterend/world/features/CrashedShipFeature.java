@@ -1,11 +1,11 @@
 package org.betterx.betterend.world.features;
 
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.bclib.util.StructureHelper;
 import org.betterx.betterend.util.BlockFixer;
 import org.betterx.betterend.util.StructureErode;
 import org.betterx.betterend.world.biome.EndBiome;
+import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;

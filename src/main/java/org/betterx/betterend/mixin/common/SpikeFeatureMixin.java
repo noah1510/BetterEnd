@@ -1,10 +1,10 @@
 package org.betterx.betterend.mixin.common;
 
-import org.betterx.bclib.api.v2.WorldDataAPI;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.StructureHelper;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.world.generator.GeneratorOptions;
+import org.betterx.worlds.together.world.WorldConfig;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
@@ -60,14 +60,14 @@ public class SpikeFeatureMixin {
         long lz = z;
         if (lx * lx + lz * lz < 10000) {
             String pillarID = String.format("%d_%d", x, z);
-            CompoundTag pillar = WorldDataAPI.getCompoundTag(BetterEnd.MOD_ID, "pillars");
+            CompoundTag pillar = WorldConfig.getCompoundTag(BetterEnd.MOD_ID, "pillars");
             boolean haveValue = pillar.contains(pillarID);
             minY = haveValue
                     ? pillar.getInt(pillarID)
                     : world.getChunk(x >> 4, z >> 4).getHeight(Types.WORLD_SURFACE, x & 15, z);
             if (!haveValue) {
                 pillar.putInt(pillarID, minY);
-                WorldDataAPI.saveFile(BetterEnd.MOD_ID);
+                WorldConfig.saveFile(BetterEnd.MOD_ID);
             }
         } else {
             minY = world.getChunk(x >> 4, z >> 4).getHeight(Types.WORLD_SURFACE, x & 15, z);

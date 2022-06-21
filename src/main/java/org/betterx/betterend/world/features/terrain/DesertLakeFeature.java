@@ -1,7 +1,6 @@
 package org.betterx.betterend.world.features.terrain;
 
 import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.noise.OpenSimplexNoise;
@@ -9,6 +8,7 @@ import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.util.BlockFixer;
 import org.betterx.betterend.util.GlobalState;
 import org.betterx.betterend.world.biome.EndBiome;
+import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;

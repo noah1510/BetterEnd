@@ -1,8 +1,5 @@
 package org.betterx.betterend.complexmaterials;
 
-import org.betterx.bclib.api.v2.tag.NamedBlockTags;
-import org.betterx.bclib.api.v2.tag.NamedItemTags;
-import org.betterx.bclib.api.v2.tag.TagAPI;
 import org.betterx.bclib.blocks.*;
 import org.betterx.bclib.items.ModelProviderItem;
 import org.betterx.bclib.items.tool.BaseAxeItem;
@@ -25,8 +22,10 @@ import org.betterx.betterend.item.tool.EndPickaxe;
 import org.betterx.betterend.recipe.builders.AlloyingRecipe;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndItems;
+import org.betterx.worlds.together.tag.v3.TagManager;
 
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorMaterial;
@@ -167,9 +166,9 @@ public class MetalMaterial {
 
         rawOre = hasOre ? EndItems.registerEndItem(name + "_raw", new ModelProviderItem(itemSettings)) : null;
         ore = hasOre ? EndBlocks.registerBlock(name + "_ore", new BaseOreBlock(() -> rawOre, 1, 3, 1)) : null;
-        alloyingOre = hasOre ? TagAPI.makeItemTag(BetterEnd.MOD_ID, name + "_alloying") : null;
+        alloyingOre = hasOre ? TagManager.ITEMS.makeTag(BetterEnd.MOD_ID, name + "_alloying") : null;
         if (hasOre) {
-            TagAPI.addItemTag(alloyingOre, ore, rawOre);
+            TagManager.ITEMS.add(alloyingOre, ore.asItem(), rawOre);
         }
 
         block = EndBlocks.registerBlock(name + "_block", new BaseBlock(settings));
@@ -506,9 +505,9 @@ public class MetalMaterial {
                   .setGroup("end_metal_boots")
                   .build();
 
-        TagAPI.addBlockTag(NamedBlockTags.ANVIL, anvilBlock);
-        TagAPI.addBlockTag(NamedBlockTags.BEACON_BASE_BLOCKS, block);
-        TagAPI.addItemTag(NamedItemTags.BEACON_PAYMENT_ITEMS, ingot);
-        TagAPI.addBlockTag(BlockTags.DRAGON_IMMUNE, ore, bars);
+        TagManager.BLOCKS.add(BlockTags.ANVIL, anvilBlock);
+        TagManager.BLOCKS.add(BlockTags.BEACON_BASE_BLOCKS, block);
+        TagManager.ITEMS.add(ItemTags.BEACON_PAYMENT_ITEMS, ingot);
+        TagManager.BLOCKS.add(BlockTags.DRAGON_IMMUNE, ore, bars);
     }
 }

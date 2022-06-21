@@ -25,6 +25,7 @@ public class UnderwaterPlantFeature extends UnderwaterPlantScatter {
             BlockPos blockPos,
             float radius
     ) {
+        //noinspection deprecation
         return super.canSpawn(world, blockPos) && plant.canSurvive(plant.defaultBlockState(), world, blockPos);
     }
 

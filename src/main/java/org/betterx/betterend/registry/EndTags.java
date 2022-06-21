@@ -2,7 +2,6 @@ package org.betterx.betterend.registry;
 
 import org.betterx.bclib.api.v2.BonemealAPI;
 import org.betterx.bclib.api.v2.ComposterAPI;
-import org.betterx.bclib.api.v2.tag.*;
 import org.betterx.bclib.blocks.BaseVineBlock;
 import org.betterx.bclib.blocks.SimpleLeavesBlock;
 import org.betterx.betterend.BetterEnd;
@@ -10,8 +9,13 @@ import org.betterx.betterend.blocks.basis.EndTerrainBlock;
 import org.betterx.betterend.blocks.basis.PedestalBlock;
 import org.betterx.betterend.item.tool.EndHammerItem;
 import org.betterx.betterend.world.biome.EndBiome;
+import org.betterx.worlds.together.tag.v3.CommonBlockTags;
+import org.betterx.worlds.together.tag.v3.CommonItemTags;
+import org.betterx.worlds.together.tag.v3.MineableTags;
+import org.betterx.worlds.together.tag.v3.TagManager;
 
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
@@ -34,12 +38,12 @@ public class EndTags {
     // https://fabricmc.net/wiki/tutorial:tags
 
     // Block Tags
-    public static final TagKey<Block> PEDESTALS = TagAPI.makeBlockTag(BetterEnd.MOD_ID, "pedestal");
+    public static final TagKey<Block> PEDESTALS = TagManager.BLOCKS.makeTag(BetterEnd.MOD_ID, "pedestal");
 
     // Item Tags
-    public static final TagKey<Item> ALLOYING_IRON = TagAPI.makeItemTag(BetterEnd.MOD_ID, "alloying_iron");
-    public static final TagKey<Item> ALLOYING_GOLD = TagAPI.makeItemTag(BetterEnd.MOD_ID, "alloying_gold");
-    public static final TagKey<Item> ALLOYING_COPPER = TagAPI.makeItemTag(BetterEnd.MOD_ID, "alloying_copper");
+    public static final TagKey<Item> ALLOYING_IRON = TagManager.ITEMS.makeTag(BetterEnd.MOD_ID, "alloying_iron");
+    public static final TagKey<Item> ALLOYING_GOLD = TagManager.ITEMS.makeTag(BetterEnd.MOD_ID, "alloying_gold");
+    public static final TagKey<Item> ALLOYING_COPPER = TagManager.ITEMS.makeTag(BetterEnd.MOD_ID, "alloying_copper");
 
     public static void register() {
         addEndGround(EndBlocks.THALLASIUM.ore);
@@ -52,27 +56,27 @@ public class EndTags {
             final Item item = block.asItem();
 
             if (material.equals(Material.STONE) || material.equals(Material.METAL) || material.equals(Material.HEAVY_METAL)) {
-                TagAPI.addBlockTag(NamedMineableTags.PICKAXE, block);
+                TagManager.BLOCKS.add(MineableTags.PICKAXE, block);
             } else if (material.equals(Material.WOOD)) {
-                TagAPI.addBlockTag(NamedMineableTags.AXE, block);
+                TagManager.BLOCKS.add(MineableTags.AXE, block);
             } else if (material.equals(Material.LEAVES) || material.equals(Material.PLANT) || material.equals(Material.WATER_PLANT) || material.equals(
                     Material.SPONGE)) {
-                TagAPI.addBlockTag(NamedMineableTags.HOE, block);
+                TagManager.BLOCKS.add(MineableTags.HOE, block);
             } else if (material.equals(Material.SAND)) {
-                TagAPI.addBlockTag(NamedMineableTags.SHOVEL, block);
+                TagManager.BLOCKS.add(MineableTags.SHOVEL, block);
             }
 
             if (block instanceof EndTerrainBlock) {
                 addEndGround(block);
-                TagAPI.addBlockTag(NamedBlockTags.NYLIUM, block);
+                TagManager.BLOCKS.add(BlockTags.NYLIUM, block);
                 BonemealAPI.addSpreadableBlock(block, Blocks.END_STONE);
             } else if (block instanceof LeavesBlock || block instanceof SimpleLeavesBlock) {
-                TagAPI.addBlockTag(NamedBlockTags.LEAVES, block);
+                TagManager.BLOCKS.add(BlockTags.LEAVES, block);
                 ComposterAPI.allowCompost(0.3f, item);
             } else if (block instanceof BaseVineBlock) {
-                TagAPI.addBlockTag(NamedBlockTags.CLIMBABLE, block);
+                TagManager.BLOCKS.add(BlockTags.CLIMBABLE, block);
             } else if (block instanceof PedestalBlock) {
-                TagAPI.addBlockTag(PEDESTALS, block);
+                TagManager.BLOCKS.add(PEDESTALS, block);
             }
 
             Material mat = block.defaultBlockState().getMaterial();
@@ -81,7 +85,7 @@ public class EndTags {
             }
         });
         addEndGround(EndBlocks.CAVE_MOSS);
-        TagAPI.addBlockTag(NamedBlockTags.NYLIUM, EndBlocks.CAVE_MOSS);
+        TagManager.BLOCKS.add(BlockTags.NYLIUM, EndBlocks.CAVE_MOSS);
         BonemealAPI.addSpreadableBlock(EndBlocks.CAVE_MOSS, Blocks.END_STONE);
         BonemealAPI.addSpreadableBlock(EndBlocks.MOSSY_OBSIDIAN, Blocks.OBSIDIAN);
         BonemealAPI.addSpreadableBlock(EndBlocks.MOSSY_DRAGON_BONE, EndBlocks.DRAGON_BONE_BLOCK);
@@ -100,31 +104,31 @@ public class EndTags {
             }
         });
 
-        TagAPI.addBlockTag(
+        TagManager.BLOCKS.add(
                 CommonBlockTags.END_STONES,
                 EndBlocks.ENDER_ORE,
                 EndBlocks.BRIMSTONE
         );
-        TagAPI.addBlockTag(CommonBlockTags.END_STONES, EndBlocks.BRIMSTONE);
-        TagAPI.addBlockTag(NamedBlockTags.ANVIL, EndBlocks.AETERNIUM_ANVIL);
-        TagAPI.addBlockTag(NamedBlockTags.BEACON_BASE_BLOCKS, EndBlocks.AETERNIUM_BLOCK);
-        TagAPI.addItemTag(NamedItemTags.BEACON_PAYMENT_ITEMS, EndItems.AETERNIUM_INGOT);
-        TagAPI.addBlockTag(
+        TagManager.BLOCKS.add(CommonBlockTags.END_STONES, EndBlocks.BRIMSTONE);
+        TagManager.BLOCKS.add(BlockTags.ANVIL, EndBlocks.AETERNIUM_ANVIL);
+        TagManager.BLOCKS.add(BlockTags.BEACON_BASE_BLOCKS, EndBlocks.AETERNIUM_BLOCK);
+        TagManager.ITEMS.add(ItemTags.BEACON_PAYMENT_ITEMS, EndItems.AETERNIUM_INGOT);
+        TagManager.BLOCKS.add(
                 BlockTags.DRAGON_IMMUNE,
                 EndBlocks.ENDER_ORE,
                 EndBlocks.ETERNAL_PEDESTAL,
                 EndBlocks.FLAVOLITE_RUNED_ETERNAL,
                 EndBlocks.FLAVOLITE_RUNED
         );
-        TagAPI.addItemTag(CommonItemTags.IRON_INGOTS, EndBlocks.THALLASIUM.ingot);
+        TagManager.ITEMS.add(CommonItemTags.IRON_INGOTS, EndBlocks.THALLASIUM.ingot);
 
-        TagAPI.addItemTag(ALLOYING_IRON, Items.IRON_ORE, Items.DEEPSLATE_IRON_ORE, Items.RAW_IRON);
-        TagAPI.addItemTag(ALLOYING_GOLD, Items.GOLD_ORE, Items.DEEPSLATE_GOLD_ORE, Items.RAW_GOLD);
-        TagAPI.addItemTag(ALLOYING_COPPER, Items.COPPER_ORE, Items.DEEPSLATE_COPPER_ORE, Items.RAW_COPPER);
+        TagManager.ITEMS.add(ALLOYING_IRON, Items.IRON_ORE, Items.DEEPSLATE_IRON_ORE, Items.RAW_IRON);
+        TagManager.ITEMS.add(ALLOYING_GOLD, Items.GOLD_ORE, Items.DEEPSLATE_GOLD_ORE, Items.RAW_GOLD);
+        TagManager.ITEMS.add(ALLOYING_COPPER, Items.COPPER_ORE, Items.DEEPSLATE_COPPER_ORE, Items.RAW_COPPER);
     }
 
     public static void addEndGround(Block bl) {
-        TagAPI.addBlockTag(CommonBlockTags.END_STONES, bl);
+        TagManager.BLOCKS.add(CommonBlockTags.END_STONES, bl);
     }
 
     public static void addBiomeSurfaceToEndGroup(EndBiome b) {

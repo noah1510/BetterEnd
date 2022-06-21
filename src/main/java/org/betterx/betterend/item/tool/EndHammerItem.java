@@ -1,11 +1,11 @@
 package org.betterx.betterend.item.tool;
 
-import org.betterx.bclib.api.v2.tag.CommonBlockTags;
-import org.betterx.bclib.api.v2.tag.CommonItemTags;
 import org.betterx.bclib.client.models.ModelsHelper;
 import org.betterx.bclib.interfaces.ItemModelProvider;
 import org.betterx.bclib.interfaces.TagProvider;
 import org.betterx.bclib.util.MHelper;
+import org.betterx.worlds.together.tag.v3.CommonBlockTags;
+import org.betterx.worlds.together.tag.v3.CommonItemTags;
 
 import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.core.BlockPos;

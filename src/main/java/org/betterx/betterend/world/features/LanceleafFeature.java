@@ -20,6 +20,7 @@ public class LanceleafFeature extends ScatterFeature {
             BlockPos blockPos,
             float radius
     ) {
+        //noinspection deprecation
         return EndBlocks.LANCELEAF_SEED.canSurvive(AIR, world, blockPos);
     }
 

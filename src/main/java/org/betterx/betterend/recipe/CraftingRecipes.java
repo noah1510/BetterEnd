@@ -1,11 +1,11 @@
 package org.betterx.betterend.recipe;
 
-import org.betterx.bclib.api.v2.tag.CommonItemTags;
 import org.betterx.bclib.recipes.GridRecipe;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.config.Configs;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndItems;
+import org.betterx.worlds.together.tag.v3.CommonItemTags;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
