@@ -41,7 +41,7 @@ public class BlockFixer {
         final int count = dx * dz;
         final int minY = Math.max(start.getY(), level.getMinBuildHeight());
         final int maxY = Math.min(end.getY(), level.getMaxBuildHeight());
-        IntStream.range(0, count).parallel().forEach(index -> {
+        IntStream.range(0, count).forEach(index -> {
             MutableBlockPos POS = new MutableBlockPos();
             POS.setX((index % dx) + start.getX());
             POS.setZ((index / dx) + start.getZ());
