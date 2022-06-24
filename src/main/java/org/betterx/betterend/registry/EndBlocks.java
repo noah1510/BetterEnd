@@ -41,6 +41,10 @@ public class EndBlocks {
             "crystal_moss",
             new EndTerrainBlock(MaterialColor.COLOR_PINK)
     );
+    public static final Block CRYSTAL_MOSS_COVER = registerBlock(
+            "crystal_moss_cover",
+            new CrystalMossCoverBlock(MaterialColor.COLOR_PINK)
+    );
     public static final Block SHADOW_GRASS = registerBlock("shadow_grass", new ShadowGrassBlock());
     public static final Block PINK_MOSS = registerBlock("pink_moss", new EndTerrainBlock(MaterialColor.COLOR_PINK));
     public static final Block AMBER_MOSS = registerBlock("amber_moss", new EndTerrainBlock(MaterialColor.COLOR_ORANGE));

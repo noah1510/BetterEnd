@@ -1,6 +1,7 @@
 package org.betterx.betterend.world.structures.piece;
 
 import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.blocks.CrystalMossCoverBlock;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndStructures;
 import org.betterx.betterend.util.GlobalState;
@@ -9,6 +10,7 @@ import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Mth;
@@ -36,6 +38,7 @@ public class CrystalMountainPiece extends MountainPiece {
 
     public CrystalMountainPiece(StructurePieceSerializationContext type, CompoundTag tag) {
         super(EndStructures.MOUNTAIN_PIECE, tag);
+        top = EndBlocks.CRYSTAL_MOSS.defaultBlockState();
     }
 
     @Override
@@ -97,16 +100,21 @@ public class CrystalMountainPiece extends MountainPiece {
 
                             final double noise = SplitNoiseCondition.DEFAULT.getNoise(px, pz);
                             boolean needCover = noise > 0;
-                            boolean needSurroundCover = noise > -0.2;
+                            boolean needSurroundCover = Math.abs(noise) < 0.2;
                             for (int y = minY - 1; y < maxYI; y++) {
                                 pos.setY(y);
                                 if (needCover && y == cover) {
                                     chunk.setBlockState(pos, top, false);
                                 } else {
                                     chunk.setBlockState(pos, Blocks.END_STONE.defaultBlockState(), false);
-                                    if (needSurroundCover) {
-                                        chunk.setBlockState(pos.above(), Blocks.SCULK_VEIN.defaultBlockState(), false);
-                                    }
+                                }
+                                if (needSurroundCover && chunk.getBlockState(pos.above()).is(Blocks.AIR)) {
+                                    chunk.setBlockState(
+                                            pos.above(),
+                                            EndBlocks.CRYSTAL_MOSS_COVER.defaultBlockState().setValue(
+                                                    CrystalMossCoverBlock.getFaceProperty(Direction.DOWN), true),
+                                            false
+                                    );
                                 }
                             }
                         }
