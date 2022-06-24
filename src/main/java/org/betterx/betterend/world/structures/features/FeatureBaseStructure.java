@@ -32,7 +32,7 @@ public abstract class FeatureBaseStructure extends Structure {
                 context.heightAccessor(),
                 context.randomState()
         );
-        if (pos.getZ() >= 20) {
+        if (pos.getY() >= 10) {
             return Optional.of(new Structure.GenerationStub(pos, (structurePiecesBuilder) -> {
                 generatePieces(structurePiecesBuilder, context);
             }));
@@ -58,46 +58,36 @@ public abstract class FeatureBaseStructure extends Structure {
         LegacyRandomSource random = new LegacyRandomSource(chunkPos.x + chunkPos.z * 10387313);
         Rotation blockRotation = Rotation.getRandom(random);
 
-        int i = 5;
-        int j = 5;
+        int offsetX = 5;
+        int offsetZ = 5;
         if (blockRotation == Rotation.CLOCKWISE_90) {
-            i = -5;
+            offsetX = -5;
         } else if (blockRotation == Rotation.CLOCKWISE_180) {
-            i = -5;
-            j = -5;
+            offsetX = -5;
+            offsetZ = -5;
         } else if (blockRotation == Rotation.COUNTERCLOCKWISE_90) {
-            j = -5;
+            offsetZ = -5;
         }
 
-        int k = chunkPos.getBlockX(7);
-        int l = chunkPos.getBlockZ(7);
-        int m = chunkGenerator.getFirstOccupiedHeight(
-                k,
-                l,
-                Heightmap.Types.WORLD_SURFACE_WG,
-                levelHeightAccessor,
-                rState
-        );
-        int n = chunkGenerator.getFirstOccupiedHeight(
-                k,
-                l + j,
-                Heightmap.Types.WORLD_SURFACE_WG,
-                levelHeightAccessor,
-                rState
-        );
-        int o = chunkGenerator.getFirstOccupiedHeight(
-                k + i,
-                l,
-                Heightmap.Types.WORLD_SURFACE_WG,
-                levelHeightAccessor,
-                rState
-        );
-        int p = chunkGenerator.getFirstOccupiedHeight(
-                k + i,
-                l + j,
-                Heightmap.Types.WORLD_SURFACE_WG,
-                levelHeightAccessor, rState
-        );
-        return new BlockPos(k, l, Math.min(Math.min(m, n), Math.min(o, p)));
+        int blockX = chunkPos.getBlockX(7);
+        int blockZ = chunkPos.getBlockZ(7);
+        int minZ = Integer.MAX_VALUE;
+        BlockPos.MutableBlockPos result = new BlockPos.MutableBlockPos(blockX, Integer.MIN_VALUE, blockZ);
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
+                int z = chunkGenerator.getFirstOccupiedHeight(
+                        blockX + i * offsetX,
+                        blockZ + j * offsetZ,
+                        Heightmap.Types.WORLD_SURFACE_WG,
+                        levelHeightAccessor,
+                        rState
+                );
+                if (z < minZ) {
+                    result.set(blockX + i * offsetX, z, blockZ + j * offsetZ);
+                }
+            }
+        }
+
+        return result;
     }
 }

@@ -49,5 +49,11 @@ public class SulphuricSurfaceNoiseCondition implements NumericProvider {
                 BetterEnd.makeID("sulphuric_surf"),
                 SulphuricSurfaceNoiseCondition.CODEC
         );
+
+        Registry.register(
+                NumericProvider.NUMERIC_PROVIDER,
+                BetterEnd.makeID("vertical_band"),
+                VerticalBandNoiseCondition.CODEC
+        );
     }
 }

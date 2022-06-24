@@ -28,6 +28,16 @@ public class SplitNoiseCondition implements NumericProvider {
         return noise > 0 ? 1 : 0;
     }
 
+    public double getNoise(int x, int z) {
+        float noise = (float) NOISE.eval(x * 0.1, z * 0.1) + MHelper.randRange(
+                -0.2F,
+                0.2F,
+                MHelper.RANDOM_SOURCE
+        );
+        return noise;
+    }
+
+
     @Override
     public Codec<? extends NumericProvider> pcodec() {
         return CODEC;

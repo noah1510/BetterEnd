@@ -1,11 +1,10 @@
 package org.betterx.betterend.world.structures.piece;
 
-import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndStructures;
 import org.betterx.betterend.util.GlobalState;
-import org.betterx.betterend.world.biome.EndBiome;
+import org.betterx.betterend.world.surface.SplitNoiseCondition;
 import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
 import net.minecraft.core.BlockPos;
@@ -32,7 +31,7 @@ public class CrystalMountainPiece extends MountainPiece {
 
     public CrystalMountainPiece(BlockPos center, float radius, float height, RandomSource random, Holder<Biome> biome) {
         super(EndStructures.MOUNTAIN_PIECE, center, radius, height, random, biome);
-        top = EndBiome.findTopMaterial(biome.value()); //biome.getGenerationSettings().getSurfaceBuilderConfig().getTopMaterial();
+        top = EndBlocks.CRYSTAL_MOSS.defaultBlockState(); //EndBiome.findTopMaterial(biome.value()); //biome.getGenerationSettings().getSurfaceBuilderConfig().getTopMaterial();
     }
 
     public CrystalMountainPiece(StructurePieceSerializationContext type, CompoundTag tag) {
@@ -42,7 +41,7 @@ public class CrystalMountainPiece extends MountainPiece {
     @Override
     protected void fromNbt(CompoundTag tag) {
         super.fromNbt(tag);
-        top = EndBiome.findTopMaterial(BiomeAPI.getBiome(biomeID)); //BiomeAPI.getBiome(biomeID).getBiome().getGenerationSettings().getSurfaceBuilderConfig().getTopMaterial();
+        //top = EndBiome.findTopMaterial(BiomeAPI.getBiome(biomeID)); //BiomeAPI.getBiome(biomeID).getBiome().getGenerationSettings().getSurfaceBuilderConfig().getTopMaterial();
     }
 
     @Override
@@ -79,9 +78,10 @@ public class CrystalMountainPiece extends MountainPiece {
                         continue;
                     }
                     pos.setY(minY);
-                    while (!chunk.getBlockState(pos)
-                                 .is(CommonBlockTags.GEN_END_STONES) && pos.getY() > 56 && !chunk.getBlockState(
-                            pos.below()).is(Blocks.CAVE_AIR)) {
+                    while (!chunk.getBlockState(pos).is(CommonBlockTags.GEN_END_STONES)
+                            && pos.getY() > 56
+                            && chunk.getBlockState(pos.below()).is(Blocks.CAVE_AIR)
+                    ) {
                         pos.setY(pos.getY() - 1);
                     }
                     minY = pos.getY();
@@ -94,18 +94,20 @@ public class CrystalMountainPiece extends MountainPiece {
                             maxY += center.getY();
                             int maxYI = (int) (maxY);
                             int cover = maxYI - 1;
-                            boolean needCover = (noise1.eval(px * 0.1, pz * 0.1) + MHelper.randRange(
-                                    -0.4,
-                                    0.4,
-                                    random
-                            ) - (center.getY() + 14) * 0.1) > 0;
+
+                            final double noise = SplitNoiseCondition.DEFAULT.getNoise(px, pz);
+                            boolean needCover = noise > 0;
+                            boolean needSurroundCover = noise > -0.2;
                             for (int y = minY - 1; y < maxYI; y++) {
                                 pos.setY(y);
-                                chunk.setBlockState(
-                                        pos,
-                                        needCover && y == cover ? top : Blocks.END_STONE.defaultBlockState(),
-                                        false
-                                );
+                                if (needCover && y == cover) {
+                                    chunk.setBlockState(pos, top, false);
+                                } else {
+                                    chunk.setBlockState(pos, Blocks.END_STONE.defaultBlockState(), false);
+                                    if (needSurroundCover) {
+                                        chunk.setBlockState(pos.above(), Blocks.SCULK_VEIN.defaultBlockState(), false);
+                                    }
+                                }
                             }
                         }
                     }
@@ -124,7 +126,7 @@ public class CrystalMountainPiece extends MountainPiece {
             int x = MHelper.randRange(radius, 15 - radius, random);
             int z = MHelper.randRange(radius, 15 - radius, random);
             int y = map.getFirstAvailable(x, z);
-            if (y > 80) {
+            if (y > 60) {
                 pos.set(x, y, z);
                 if (chunk.getBlockState(pos.below()).is(Blocks.END_STONE)) {
                     int height = MHelper.floor(radius * MHelper.randRange(1.5F, 3F, random) + (y - 80) * 0.3F);
@@ -142,7 +144,7 @@ public class CrystalMountainPiece extends MountainPiece {
             int x = MHelper.randRange(radius, 15 - radius, random);
             int z = MHelper.randRange(radius, 15 - radius, random);
             int y = map.getFirstAvailable(x, z);
-            if (y > 80) {
+            if (y > 20) {
                 pos.set(x, y, z);
                 if (chunk.getBlockState(pos.below()).getBlock() == Blocks.END_STONE) {
                     int height = MHelper.floor(radius * MHelper.randRange(1.5F, 3F, random) + (y - 80) * 0.3F);

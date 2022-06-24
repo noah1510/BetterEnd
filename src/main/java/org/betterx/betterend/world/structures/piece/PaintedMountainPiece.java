@@ -24,7 +24,7 @@ import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceSerializationContext;
 
 public class PaintedMountainPiece extends MountainPiece {
-    private BlockState[] slises;
+    private BlockState[] slices;
 
     public PaintedMountainPiece(
             BlockPos center,
@@ -32,10 +32,10 @@ public class PaintedMountainPiece extends MountainPiece {
             float height,
             RandomSource random,
             Holder<Biome> biome,
-            BlockState[] slises
+            BlockState[] slices
     ) {
         super(EndStructures.PAINTED_MOUNTAIN_PIECE, center, radius, height, random, biome);
-        this.slises = slises;
+        this.slices = slices;
     }
 
     public PaintedMountainPiece(StructurePieceSerializationContext type, CompoundTag tag) {
@@ -45,20 +45,20 @@ public class PaintedMountainPiece extends MountainPiece {
     @Override
     protected void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
-        ListTag slise = new ListTag();
-        for (BlockState state : slises) {
-            slise.add(NbtUtils.writeBlockState(state));
+        ListTag slice = new ListTag();
+        for (BlockState state : slices) {
+            slice.add(NbtUtils.writeBlockState(state));
         }
-        tag.put("slises", slise);
+        tag.put("slises", slice);
     }
 
     @Override
     protected void fromNbt(CompoundTag tag) {
         super.fromNbt(tag);
         ListTag slise = tag.getList("slises", 10);
-        slises = new BlockState[slise.size()];
-        for (int i = 0; i < slises.length; i++) {
-            slises[i] = NbtUtils.readBlockState(slise.getCompound(i));
+        slices = new BlockState[slise.size()];
+        for (int i = 0; i < slices.length; i++) {
+            slices[i] = NbtUtils.readBlockState(slise.getCompound(i));
         }
     }
 
@@ -110,8 +110,8 @@ public class PaintedMountainPiece extends MountainPiece {
                             ) * 2 + 7);
                             for (int y = minY - 1; y < maxY; y++) {
                                 pos.setY(y);
-                                int index = MHelper.floor((y + offset) * 0.65F) % slises.length;
-                                chunk.setBlockState(pos, slises[index], false);
+                                int index = MHelper.floor((y + offset) * 0.65F) % slices.length;
+                                chunk.setBlockState(pos, slices[index], false);
                             }
                         }
                     }

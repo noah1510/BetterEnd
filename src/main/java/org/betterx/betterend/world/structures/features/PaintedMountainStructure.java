@@ -20,7 +20,7 @@ import net.minecraft.world.level.levelgen.structure.StructureType;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
 
 public class PaintedMountainStructure extends FeatureBaseStructure {
-    private static final BlockState[] VARIANTS;
+    public static final BlockState[] VARIANTS;
 
     public PaintedMountainStructure(StructureSettings s) {
         super(s);
@@ -46,9 +46,9 @@ public class PaintedMountainStructure extends FeatureBaseStructure {
             float radius = MHelper.randRange(50, 100, random);
             float height = radius * MHelper.randRange(0.4F, 0.6F, random);
             int count = MHelper.floor(height * MHelper.randRange(0.1F, 0.35F, random) + 1);
-            BlockState[] slises = new BlockState[count];
+            BlockState[] slices = new BlockState[count];
             for (int i = 0; i < count; i++) {
-                slises[i] = VARIANTS[random.nextInt(VARIANTS.length)];
+                slices[i] = VARIANTS[random.nextInt(VARIANTS.length)];
             }
             structurePiecesBuilder.addPiece(new PaintedMountainPiece(
                     new BlockPos(x, y, z),
@@ -56,7 +56,7 @@ public class PaintedMountainStructure extends FeatureBaseStructure {
                     height,
                     random,
                     biome,
-                    slises
+                    slices
             ));
         }
 
