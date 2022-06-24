@@ -109,12 +109,21 @@ public class CrystalMountainPiece extends MountainPiece {
                                     chunk.setBlockState(pos, Blocks.END_STONE.defaultBlockState(), false);
                                 }
                                 if (needSurroundCover && chunk.getBlockState(pos.above()).is(Blocks.AIR)) {
-                                    chunk.setBlockState(
-                                            pos.above(),
-                                            EndBlocks.CRYSTAL_MOSS_COVER.defaultBlockState().setValue(
-                                                    CrystalMossCoverBlock.getFaceProperty(Direction.DOWN), true),
-                                            false
-                                    );
+                                    BlockState coverState = EndBlocks.CRYSTAL_MOSS_COVER
+                                            .defaultBlockState();
+                                    BlockPos above = pos.above();
+                                    boolean didChange = false;
+                                    for (Direction dir : Direction.values()) {
+                                        if (chunk.getBlockState(above.relative(dir)).is(CommonBlockTags.END_STONES)) {
+                                            coverState = coverState.setValue(
+                                                    CrystalMossCoverBlock.getFaceProperty(dir),
+                                                    true
+                                            );
+                                            didChange = true;
+                                        }
+                                    }
+                                    if (didChange) chunk.setBlockState(above, coverState, false);
+
                                 }
                             }
                         }
