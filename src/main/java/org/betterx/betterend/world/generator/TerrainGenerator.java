@@ -1,15 +1,15 @@
 package org.betterx.betterend.world.generator;
 
+import org.betterx.bclib.api.v2.generator.BCLibEndBiomeSource;
+import org.betterx.bclib.api.v2.generator.config.BCLEndBiomeSourceConfig;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
-import org.betterx.bclib.presets.worldgen.BCLWorldPresetSettings;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.interfaces.BETargetChecker;
 import org.betterx.betterend.mixin.common.NoiseBasedChunkGeneratorAccessor;
 import org.betterx.betterend.mixin.common.NoiseChunkAccessor;
 import org.betterx.betterend.mixin.common.NoiseInterpolatorAccessor;
 import org.betterx.betterend.noise.OpenSimplexNoise;
-import org.betterx.worlds.together.world.WorldGenUtil;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
@@ -219,8 +219,14 @@ public class TerrainGenerator {
             if (chunkGenerator instanceof NoiseBasedChunkGenerator) {
                 Holder<NoiseGeneratorSettings> sHolder = ((NoiseBasedChunkGeneratorAccessor) chunkGenerator)
                         .be_getSettings();
-                if (WorldGenUtil.getWorldSettings() instanceof BCLWorldPresetSettings bset) {
-                    BETargetChecker.class.cast(sHolder.value()).be_setTarget(bset.useEndTerrainGenerator);
+                if (chunkGenerator.getBiomeSource() instanceof BCLibEndBiomeSource bcl) {
+                    BETargetChecker.class
+                            .cast(sHolder.value())
+                            .be_setTarget(bcl.getTogetherConfig().generatorVersion == BCLEndBiomeSourceConfig.EndBiomeGeneratorType.PAULEVS);
+                } else {
+                    BETargetChecker.class
+                            .cast(sHolder.value())
+                            .be_setTarget(false);
                 }
 
             }
