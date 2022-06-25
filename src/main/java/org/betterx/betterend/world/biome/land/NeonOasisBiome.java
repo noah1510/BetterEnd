@@ -40,8 +40,8 @@ public class NeonOasisBiome extends EndBiome.Config {
                 .feature(EndFeatures.NEON_CACTUS)
                 .feature(EndFeatures.UMBRELLA_MOSS)
                 .feature(EndFeatures.CREEPING_MOSS)
-                .feature(EndFeatures.CHARNIA_GREEN)
                 .feature(EndFeatures.CHARNIA_CYAN)
+                .feature(EndFeatures.CHARNIA_GREEN)
                 .feature(EndFeatures.CHARNIA_RED)
                 .structure(BiomeTags.HAS_END_CITY)
                 .spawn(EntityType.ENDERMAN, 50, 1, 2);
