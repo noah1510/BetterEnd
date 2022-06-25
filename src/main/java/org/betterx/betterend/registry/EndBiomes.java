@@ -18,9 +18,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.biome.Biome;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class EndBiomes {
     public static final BiomeAPI.BiomeType END_CAVE = new BiomeAPI.BiomeType("END_CAVE", BiomeAPI.BiomeType.END);
-
+    public static final List<EndBiome> ALL_BE_BIOMES = new LinkedList<>();
     public static BiomePicker CAVE_BIOMES = null;
     private static HexBiomeMap caveBiomeMap;
     private static long lastSeed;
@@ -113,6 +116,7 @@ public class EndBiomes {
             } else {
                 BiomeAPI.registerEndVoidBiome(biome);
             }
+            ALL_BE_BIOMES.add(biome);
         }
         return biome;
     }
@@ -150,6 +154,7 @@ public class EndBiomes {
         final EndCaveBiome biome = EndCaveBiome.create(biomeConfig);
         if (Configs.BIOME_CONFIG.getBoolean(biome.getID(), "enabled", true)) {
             BiomeAPI.registerBiome(biome, END_CAVE);
+            //ALL_BE_BIOMES.add(biome);
         }
         return biome;
     }
