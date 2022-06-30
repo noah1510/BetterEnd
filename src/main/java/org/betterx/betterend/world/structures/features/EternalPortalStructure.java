@@ -1,6 +1,8 @@
 package org.betterx.betterend.world.structures.features;
 
 import org.betterx.bclib.api.v2.levelgen.structures.BCLStructure;
+import org.betterx.bclib.api.v2.levelgen.structures.StructurePlacementType;
+import org.betterx.bclib.api.v2.levelgen.structures.TemplateStructure;
 import org.betterx.bclib.util.StructureHelper;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.registry.EndStructures;
@@ -18,14 +20,18 @@ import net.minecraft.world.level.levelgen.structure.StructureType;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 
+import java.util.List;
 import java.util.Optional;
 
-public class EternalPortalStructure extends FeatureBaseStructure {
+public class EternalPortalStructure extends TemplateStructure {
     private static final ResourceLocation STRUCTURE_ID = BetterEnd.makeID("portal/eternal_portal");
     private static final StructureTemplate STRUCTURE = StructureHelper.readStructure(STRUCTURE_ID);
 
     public EternalPortalStructure(StructureSettings s) {
-        super(s);
+        super(s, List.of(
+                        cfg("portal/eternal_portal", 0, StructurePlacementType.FLOOR, 1.0f)
+                )
+        );
     }
 
     @Override
@@ -58,6 +64,16 @@ public class EternalPortalStructure extends FeatureBaseStructure {
         return EndStructures.ETERNAL_PORTAL.structureType;
     }
 
+    @Override
+    protected int erosion(RandomSource rnd) {
+        return rnd.nextInt(5);
+    }
+
+    @Override
+    protected boolean cover(RandomSource rnd) {
+        return true;
+    }
+
     protected void generatePieces(StructurePiecesBuilder structurePiecesBuilder, GenerationContext context) {
         final RandomSource random = context.random();
         final ChunkPos chunkPos = context.chunkPos();
@@ -74,5 +90,9 @@ public class EternalPortalStructure extends FeatureBaseStructure {
                 true,
                 random
         ));
+    }
+
+    public static TemplateStructure.Config cfg(String name, int offsetY, StructurePlacementType type, float chance) {
+        return new TemplateStructure.Config(BetterEnd.makeID(name), offsetY, type, chance);
     }
 }

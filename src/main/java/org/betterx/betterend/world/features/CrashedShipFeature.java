@@ -1,9 +1,9 @@
 package org.betterx.betterend.world.features;
 
 import org.betterx.bclib.util.MHelper;
+import org.betterx.bclib.util.StructureErode;
 import org.betterx.bclib.util.StructureHelper;
 import org.betterx.betterend.util.BlockFixer;
-import org.betterx.betterend.util.StructureErode;
 import org.betterx.betterend.world.biome.EndBiome;
 import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 

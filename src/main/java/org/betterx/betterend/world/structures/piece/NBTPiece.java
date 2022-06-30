@@ -1,9 +1,9 @@
 package org.betterx.betterend.world.structures.piece;
 
 import org.betterx.bclib.util.MHelper;
+import org.betterx.bclib.util.StructureErode;
 import org.betterx.bclib.util.StructureHelper;
 import org.betterx.betterend.registry.EndStructures;
-import org.betterx.betterend.util.StructureErode;
 import org.betterx.betterend.world.biome.EndBiome;
 
 import net.minecraft.core.BlockPos;
