@@ -47,42 +47,11 @@ dependencies {
     } else {
         modImplementation "com.github.quiqueck:BCLib:${project.bclib_version}"
     }
-    useOptional "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
-    useOptional "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.rei_version}"
+    modCompileOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
+    modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.rei_version}"
 
     modImplementation "dev.emi:trinkets:${project.trinkets_version}"
 
-}
-
-def useOptional(String dep) {
-    dependencies.modRuntimeOnly(dep) {
-        exclude group: 'net.fabricmc.fabric-api'
-        exclude group: 'net.fabricmc'
-        if (!dep.contains("me.shedaniel")) {
-            exclude group: 'me.shedaniel.cloth'
-            exclude group: 'me.shedaniel'
-        }
-    }
-    dependencies.modCompileOnly(dep) {
-        exclude group: 'net.fabricmc.fabric-api'
-        exclude group: 'net.fabricmc'
-        if (!dep.contains("me.shedaniel")) {
-            exclude group: 'me.shedaniel.cloth'
-            exclude group: 'me.shedaniel'
-        }
-    }
-}
-
-def useApi(String dep) {
-    dependencies.modApi(dep) {
-        exclude group: 'net.fabricmc.fabric-api'
-        exclude group: 'net.fabricmc'
-        exclude group: 'com.terraformersmc'
-        if (!dep.contains("me.shedaniel")) {
-            exclude group: 'me.shedaniel.cloth'
-            exclude group: 'me.shedaniel'
-        }
-    }
 }
 
 processResources {
