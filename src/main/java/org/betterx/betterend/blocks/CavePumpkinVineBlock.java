@@ -20,7 +20,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class CavePumpkinVineBlock extends EndPlantWithAgeBlock {
     public CavePumpkinVineBlock() {
-        super(p -> p.offsetType(BlockBehaviour.OffsetType.NONE));
+        super(basePlantSettings().offsetType(BlockBehaviour.OffsetType.NONE));
     }
 
     private static final VoxelShape SHAPE = Block.box(4, 0, 4, 12, 16, 12);

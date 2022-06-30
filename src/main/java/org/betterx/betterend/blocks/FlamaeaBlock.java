@@ -15,13 +15,11 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 import com.google.common.collect.Lists;
 
@@ -31,11 +29,10 @@ public class FlamaeaBlock extends EndPlantBlock implements CustomItemProvider, A
     private static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 1, 16);
 
     public FlamaeaBlock() {
-        //TODO: 1.19 Test if we can remove dynamic shape and offsetType
-        super(FabricBlockSettings.of(Material.PLANT)
-                                 .sound(SoundType.WET_GRASS)
-                                 .dynamicShape()
-                                 .offsetType(BlockBehaviour.OffsetType.NONE));
+        super(basePlantSettings()
+                .sound(SoundType.WET_GRASS)
+                .offsetType(BlockBehaviour.OffsetType.NONE)
+        );
     }
 
     @Override

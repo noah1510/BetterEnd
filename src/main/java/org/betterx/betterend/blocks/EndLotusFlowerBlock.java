@@ -10,14 +10,12 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 import com.google.common.collect.Lists;
 
@@ -29,11 +27,7 @@ public class EndLotusFlowerBlock extends EndPlantBlock {
 
     public EndLotusFlowerBlock() {
         //TODO: 1.19 Test if we can remove dynamic shape and offsetType
-        super(FabricBlockSettings.of(Material.PLANT)
-                                 .luminance(15)
-                                 .noOcclusion()
-                                 .dynamicShape()
-                                 .offsetType(BlockBehaviour.OffsetType.NONE));
+        super(basePlantSettings(15).offsetType(BlockBehaviour.OffsetType.NONE));
     }
 
     @Override

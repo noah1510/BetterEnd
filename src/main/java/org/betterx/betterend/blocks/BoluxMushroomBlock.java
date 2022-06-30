@@ -23,7 +23,7 @@ public class BoluxMushroomBlock extends EndPlantBlock {
     private static final VoxelShape SHAPE = Block.box(1, 0, 1, 15, 9, 15);
 
     public BoluxMushroomBlock() {
-        super(10, p -> p.offsetType(BlockBehaviour.OffsetType.NONE));
+        super(basePlantSettings(10).offsetType(BlockBehaviour.OffsetType.NONE));
     }
 
     @Override

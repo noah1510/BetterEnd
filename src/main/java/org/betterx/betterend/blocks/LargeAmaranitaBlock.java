@@ -12,16 +12,12 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 public class LargeAmaranitaBlock extends EndPlantBlock implements AddMineableShears {
     public static final EnumProperty<TripleShape> SHAPE = BlockProperties.TRIPLE_SHAPE;
@@ -29,13 +25,10 @@ public class LargeAmaranitaBlock extends EndPlantBlock implements AddMineableShe
     private static final VoxelShape SHAPE_TOP = Shapes.or(Block.box(1, 3, 1, 15, 16, 15), SHAPE_BOTTOM);
 
     public LargeAmaranitaBlock() {
-        //TODO: 1.19 Test if we can remove dynamic shape and offsetType
-        super(FabricBlockSettings.of(Material.PLANT)
-
-                                 .sound(SoundType.GRASS)
-                                 .lightLevel((state) -> (state.getValue(SHAPE) == TripleShape.TOP) ? 15 : 0)
-                                 .dynamicShape()
-                                 .offsetType(OffsetType.NONE));
+        super(basePlantSettings()
+                .lightLevel((state) -> (state.getValue(SHAPE) == TripleShape.TOP) ? 15 : 0)
+                .offsetType(OffsetType.NONE)
+        );
     }
 
     @Override

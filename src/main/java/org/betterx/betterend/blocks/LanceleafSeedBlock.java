@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class LanceleafSeedBlock extends EndPlantWithAgeBlock {
     public LanceleafSeedBlock() {
-        super(p -> p.offsetType(OffsetType.NONE));
+        super(basePlantSettings().offsetType(OffsetType.NONE));
     }
 
     @Override

@@ -5,15 +5,9 @@ import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
 import net.minecraft.world.level.block.state.BlockState;
 
-import java.util.function.Function;
-
 public abstract class EndPlantWithAgeBlock extends BasePlantWithAgeBlock {
-
-    public EndPlantWithAgeBlock() {
-    }
-
-    public EndPlantWithAgeBlock(Function<Properties, Properties> propMod) {
-        super(propMod);
+    protected EndPlantWithAgeBlock() {
+        super();
     }
 
     public EndPlantWithAgeBlock(Properties settings) {

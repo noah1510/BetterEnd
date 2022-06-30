@@ -11,24 +11,19 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 public class PondAnemoneBlock extends EndUnderwaterPlantBlock implements AddMineableShears {
     private static final VoxelShape SHAPE = Block.box(2, 0, 2, 14, 14, 14);
 
     public PondAnemoneBlock() {
-        super(FabricBlockSettings.of(Material.WATER_PLANT)
-
-                                 .luminance(13)
-                                 .sound(SoundType.CORAL_BLOCK)
-                                 .noCollission()
-                                 .offsetType(OffsetType.NONE));
+        super(baseUnderwaterPlantSettings(13).sound(SoundType.CORAL_BLOCK)
+                                             .offsetType(OffsetType.NONE)
+        );
     }
 
     @Environment(EnvType.CLIENT)

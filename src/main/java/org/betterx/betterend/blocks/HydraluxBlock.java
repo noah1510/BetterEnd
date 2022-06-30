@@ -15,16 +15,13 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.storage.loot.LootContext;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 import com.google.common.collect.Lists;
 
@@ -36,10 +33,9 @@ public class HydraluxBlock extends UnderwaterPlantBlock implements AddMineableSh
     public static final EnumProperty<HydraluxShape> SHAPE = EndBlockProperties.HYDRALUX_SHAPE;
 
     public HydraluxBlock() {
-        super(FabricBlockSettings.of(Material.WATER_PLANT)
-                                 .sound(SoundType.WET_GRASS)
-                                 .lightLevel((state) -> state.getValue(SHAPE).hasGlow() ? 15 : 0)
-                                 .noCollission());
+        super(baseUnderwaterPlantSettings()
+                .lightLevel((state) -> state.getValue(SHAPE).hasGlow() ? 15 : 0)
+        );
     }
 
     @Override

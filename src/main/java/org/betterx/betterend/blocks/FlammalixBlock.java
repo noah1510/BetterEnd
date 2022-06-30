@@ -20,7 +20,7 @@ public class FlammalixBlock extends EndPlantBlock {
     private static final VoxelShape SHAPE = Block.box(2, 0, 2, 14, 14, 14);
 
     public FlammalixBlock() {
-        super(false, 12, p -> p.offsetType(OffsetType.NONE));
+        super(basePlantSettings(12).offsetType(OffsetType.NONE));
     }
 
     @Override

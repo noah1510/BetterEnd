@@ -13,10 +13,6 @@ public class EndWallPlantBlock extends BaseWallPlantBlock {
         super(light);
     }
 
-    public EndWallPlantBlock(Properties settings) {
-        super(settings);
-    }
-
     @Override
     protected boolean isTerrain(BlockState state) {
         return state.is(CommonBlockTags.END_STONES);

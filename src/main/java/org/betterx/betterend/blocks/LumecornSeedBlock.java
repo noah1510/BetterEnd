@@ -17,7 +17,7 @@ import java.util.Optional;
 public class LumecornSeedBlock extends EndPlantWithAgeBlock {
 
     public LumecornSeedBlock() {
-        super(p -> p.offsetType(OffsetType.NONE));
+        super(basePlantSettings().offsetType(OffsetType.NONE));
     }
 
     @Override

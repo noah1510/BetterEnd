@@ -18,13 +18,11 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -32,7 +30,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 import com.google.common.collect.Lists;
 
@@ -45,10 +42,9 @@ public class EndLilyBlock extends EndUnderwaterPlantBlock implements AddMineable
     private static final VoxelShape SHAPE_TOP = Block.box(2, 0, 2, 14, 6, 14);
 
     public EndLilyBlock() {
-        super(FabricBlockSettings.of(Material.WATER_PLANT)
-                                 .sound(SoundType.WET_GRASS)
-                                 .lightLevel((state) -> state.getValue(SHAPE) == TripleShape.TOP ? 13 : 0)
-                                 .noCollission());
+        super(baseUnderwaterPlantSettings()
+                .lightLevel((state) -> state.getValue(SHAPE) == TripleShape.TOP ? 13 : 0)
+        );
     }
 
     @Override
