@@ -17,9 +17,11 @@ public class LevelMixin {
     @Inject(method = "getSharedSpawnPos", at = @At("HEAD"), cancellable = true)
     private void be_getSharedSpawnPos(CallbackInfoReturnable<BlockPos> info) {
         if (GeneratorOptions.changeSpawn()) {
-            if (ServerLevel.class.cast(this).dimension() == Level.END) {
-                BlockPos pos = GeneratorOptions.getSpawn();
-                info.setReturnValue(pos);
+            if ((Object) this instanceof ServerLevel server) {
+                if (server.dimension() == Level.END) {
+                    BlockPos pos = GeneratorOptions.getSpawn();
+                    info.setReturnValue(pos);
+                }
             }
         }
     }
