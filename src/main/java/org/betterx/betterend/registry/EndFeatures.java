@@ -1210,38 +1210,44 @@ public class EndFeatures {
     }
 
     public static void addBiomeFeatures(ResourceLocation id, Holder<Biome> biome) {
-        BiomeAPI.addBiomeFeature(biome, FLAVOLITE_LAYER);
-        BiomeAPI.addBiomeFeature(biome, THALLASIUM_ORE);
-        BiomeAPI.addBiomeFeature(biome, ENDER_ORE);
-        BiomeAPI.addBiomeFeature(biome, CRASHED_SHIP);
+        if (!BetterEnd.MOD_ID.equals(id.getNamespace())) {
+            BiomeAPI.addBiomeFeature(biome, FLAVOLITE_LAYER);
+            BiomeAPI.addBiomeFeature(biome, THALLASIUM_ORE);
+            BiomeAPI.addBiomeFeature(biome, ENDER_ORE);
+            BiomeAPI.addBiomeFeature(biome, CRASHED_SHIP);
 
-        BCLBiome bclbiome = BiomeAPI.getBiome(id);
-        BCLFeature feature = getBiomeStructures(bclbiome);
-        if (feature != null) {
-            BiomeAPI.addBiomeFeature(biome, feature);
-        }
+            BCLBiome bclbiome = BiomeAPI.getBiome(id);
+            BCLFeature feature = getBiomeStructures(bclbiome);
+            if (feature != null) {
+                BiomeAPI.addBiomeFeature(biome, feature);
+            }
 
-        if (id.getNamespace().equals(BetterEnd.MOD_ID)) {
-            return;
-        }
-
-        boolean hasCaves = bclbiome.getCustomData("has_caves", true) && !(bclbiome instanceof EndCaveBiome);
-        //TODO: 1.19 Test Cave generation
-        if (hasCaves && !BiomeAPI.wasRegisteredAsEndVoidBiome(id) /*!BiomeAPI.END_VOID_BIOME_PICKER.containsImmutable(id)*/) {
-            if (Configs.BIOME_CONFIG.getBoolean(id, "hasCaves", true)) {
-                BiomeAPI.addBiomeFeature(biome, ROUND_CAVE);
-                BiomeAPI.addBiomeFeature(biome, TUNEL_CAVE);
+            boolean hasCaves = bclbiome.getCustomData("has_caves", true) && !(bclbiome instanceof EndCaveBiome);
+            //TODO: 1.19 Test Cave generation
+            if (hasCaves && !BiomeAPI.wasRegisteredAsEndVoidBiome(id) /*!BiomeAPI.END_VOID_BIOME_PICKER.containsImmutable(id)*/) {
+                if (Configs.BIOME_CONFIG.getBoolean(id, "hasCaves", true)) {
+                    BiomeAPI.addBiomeFeature(biome, ROUND_CAVE);
+                    BiomeAPI.addBiomeFeature(biome, TUNEL_CAVE);
+                }
             }
         }
     }
 
     private static BCLFeature<BuildingListFeature, BuildingListFeatureConfig> getBiomeStructures(BCLBiome biome) {
-        String ns = biome.getID().getNamespace();
-        String nm = biome.getID().getPath();
+        return getBiomeStructures(biome.getID());
+    }
+
+    private static BCLFeature<BuildingListFeature, BuildingListFeatureConfig> getBiomeStructures(ResourceLocation loc) {
+        String ns = loc.getNamespace();
+        String nm = loc.getPath();
+        return getBiomeStructures(ns, nm);
+    }
+
+    private static BCLFeature<BuildingListFeature, BuildingListFeatureConfig> getBiomeStructures(String ns, String nm) {
         ResourceLocation id = new ResourceLocation(ns, nm + "_structures");
 
         if (BuiltinRegistries.PLACED_FEATURE.containsKey(id)) {
-            throw new IllegalStateException("Feature for " + id + "was already build");
+            throw new IllegalStateException("Feature for " + id + " was already build");
         }
 
         String path = "/data/" + ns + "/structures/biome/" + nm + "/";
@@ -1282,11 +1288,20 @@ public class EndFeatures {
         return null;
     }
 
-    public static BCLBiomeBuilder addDefaultFeatures(BCLBiomeBuilder builder, boolean hasCaves) {
+    public static BCLBiomeBuilder addDefaultFeatures(
+            ResourceLocation biomeID,
+            BCLBiomeBuilder builder,
+            boolean hasCaves
+    ) {
         builder.feature(FLAVOLITE_LAYER);
         builder.feature(THALLASIUM_ORE);
         builder.feature(ENDER_ORE);
         builder.feature(CRASHED_SHIP);
+
+        BCLFeature<BuildingListFeature, BuildingListFeatureConfig> feature = getBiomeStructures(biomeID);
+        if (feature != null) {
+            builder.feature(feature);
+        }
 
         if (hasCaves) {
             builder.feature(ROUND_CAVE);

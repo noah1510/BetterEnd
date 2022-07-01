@@ -117,7 +117,7 @@ public class EndBiome extends BCLBiome implements SurfaceMaterialProvider {
                 .surface(biomeConfig.surfaceMaterial().surface().build());
 
         biomeConfig.addCustomBuildData(builder);
-        EndFeatures.addDefaultFeatures(builder, biomeConfig.hasCaves());
+        EndFeatures.addDefaultFeatures(biomeConfig.ID, builder, biomeConfig.hasCaves());
 
 
         EndBiome biome = builder.build(biomeConfig.getSupplier());
