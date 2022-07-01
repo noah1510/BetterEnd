@@ -1,5 +1,6 @@
 package org.betterx.betterend.registry;
 
+import org.betterx.bclib.BCLib;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
@@ -1247,7 +1248,7 @@ public class EndFeatures {
         ResourceLocation id = new ResourceLocation(ns, nm + "_structures");
 
         if (BuiltinRegistries.PLACED_FEATURE.containsKey(id)) {
-            throw new IllegalStateException("Feature for " + id + " was already build");
+            BCLib.LOGGER.info("Feature for " + id + " was already build");
         }
 
         String path = "/data/" + ns + "/structures/biome/" + nm + "/";
