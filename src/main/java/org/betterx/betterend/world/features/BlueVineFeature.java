@@ -1,5 +1,6 @@
 package org.betterx.betterend.world.features;
 
+import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.blocks.basis.EndPlantWithAgeBlock;
@@ -9,16 +10,17 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 
-public class BlueVineFeature extends ScatterFeature {
+public class BlueVineFeature extends ScatterFeature<ScatterFeatureConfig> {
     private boolean small;
 
     public BlueVineFeature() {
-        super(5);
+        super(ScatterFeatureConfig.CODEC);
     }
 
     @Override
     @SuppressWarnings("deprecation")
     public boolean canGenerate(
+            ScatterFeatureConfig cfg,
             WorldGenLevel world,
             RandomSource random,
             BlockPos center,
@@ -30,11 +32,11 @@ public class BlueVineFeature extends ScatterFeature {
                 center.getZ() - blockPos.getZ()
         ) / radius * 0.6F + random.nextFloat() * 0.4F;
         small = d > 0.5F;
-        return EndBlocks.BLUE_VINE_SEED.canSurvive(AIR, world, blockPos);
+        return EndBlocks.BLUE_VINE_SEED.canSurvive(DefaultFeature.AIR, world, blockPos);
     }
 
     @Override
-    public void generate(WorldGenLevel world, RandomSource random, BlockPos blockPos) {
+    public void generate(ScatterFeatureConfig cfg, WorldGenLevel world, RandomSource random, BlockPos blockPos) {
         if (small) {
             BlocksHelper.setWithoutUpdate(
                     world,

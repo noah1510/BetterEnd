@@ -1,32 +1,32 @@
 package org.betterx.betterend.world.features;
 
-import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
 
+import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-public abstract class WallScatterFeature extends DefaultFeature {
+public abstract class WallScatterFeature<FC extends ScatterFeatureConfig> extends Feature<FC> {
     private static final Direction[] DIR = BlocksHelper.makeHorizontal();
-    private final int radius;
 
-    public WallScatterFeature(int radius) {
-        this.radius = radius;
+    public WallScatterFeature(Codec<FC> codec) {
+        super(codec);
     }
 
-    public abstract boolean canGenerate(WorldGenLevel world, RandomSource random, BlockPos pos, Direction dir);
+    public abstract boolean canGenerate(FC cfg, WorldGenLevel world, RandomSource random, BlockPos pos, Direction dir);
 
-    public abstract void generate(WorldGenLevel world, RandomSource random, BlockPos pos, Direction dir);
+    public abstract void generate(FC cfg, WorldGenLevel world, RandomSource random, BlockPos pos, Direction dir);
 
     @Override
-    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig) {
+    public boolean place(FeaturePlaceContext<FC> featureConfig) {
+        FC cfg = featureConfig.config();
         final RandomSource random = featureConfig.random();
         final BlockPos center = featureConfig.origin();
         final WorldGenLevel world = featureConfig.level();
@@ -38,17 +38,17 @@ public abstract class WallScatterFeature extends DefaultFeature {
         int py = MHelper.randRange(minY, maxY, random);
 
         MutableBlockPos mut = new MutableBlockPos();
-        for (int x = -radius; x <= radius; x++) {
+        for (int x = -cfg.radius; x <= cfg.radius; x++) {
             mut.setX(center.getX() + x);
-            for (int y = -radius; y <= radius; y++) {
+            for (int y = -cfg.radius; y <= cfg.radius; y++) {
                 mut.setY(py + y);
-                for (int z = -radius; z <= radius; z++) {
+                for (int z = -cfg.radius; z <= cfg.radius; z++) {
                     mut.setZ(center.getZ() + z);
                     if (random.nextInt(4) == 0 && world.isEmptyBlock(mut)) {
                         shuffle(random);
                         for (Direction dir : DIR) {
-                            if (canGenerate(world, random, mut, dir)) {
-                                generate(world, random, mut, dir);
+                            if (canGenerate(cfg, world, random, mut, dir)) {
+                                generate(cfg, world, random, mut, dir);
                                 break;
                             }
                         }

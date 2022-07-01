@@ -6,6 +6,7 @@ import org.betterx.bclib.api.v2.levelgen.structures.templatesystem.DestructionSt
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
+import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
@@ -16,13 +17,14 @@ import net.minecraft.nbt.NbtIo;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.RandomSource;
+import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
@@ -30,17 +32,14 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemp
 import java.io.IOException;
 import java.io.InputStream;
 
-//TODO: 1.19 Check if we can merge this with the new TemplateFeature!
-public abstract class NBTFeature extends DefaultFeature {
-    private final BlockState defaultBlock;
-
-    public NBTFeature(BlockState defaultBlock) {
-        this.defaultBlock = defaultBlock;
+public abstract class NBTFeature<FC extends NBTFeatureConfig> extends Feature<FC> {
+    public NBTFeature(Codec<FC> codec) {
+        super(codec);
     }
 
     protected static final DestructionStructureProcessor DESTRUCTION = new DestructionStructureProcessor();
 
-    protected abstract StructureTemplate getStructure(WorldGenLevel world, BlockPos pos, RandomSource random);
+    protected abstract StructureTemplate getStructure(FC cfg, WorldGenLevel world, BlockPos pos, RandomSource random);
 
     protected abstract boolean canSpawn(WorldGenLevel world, BlockPos pos, RandomSource random);
 
@@ -72,25 +71,26 @@ public abstract class NBTFeature extends DefaultFeature {
     }
 
     protected int getAverageY(WorldGenLevel world, BlockPos center) {
-        int y = getYOnSurface(world, center.getX(), center.getZ());
-        y += getYOnSurface(world, center.getX() - 2, center.getZ() - 2);
-        y += getYOnSurface(world, center.getX() + 2, center.getZ() - 2);
-        y += getYOnSurface(world, center.getX() - 2, center.getZ() + 2);
-        y += getYOnSurface(world, center.getX() + 2, center.getZ() + 2);
+        int y = DefaultFeature.getYOnSurface(world, center.getX(), center.getZ());
+        y += DefaultFeature.getYOnSurface(world, center.getX() - 2, center.getZ() - 2);
+        y += DefaultFeature.getYOnSurface(world, center.getX() + 2, center.getZ() - 2);
+        y += DefaultFeature.getYOnSurface(world, center.getX() - 2, center.getZ() + 2);
+        y += DefaultFeature.getYOnSurface(world, center.getX() + 2, center.getZ() + 2);
         return y / 5;
     }
 
     protected int getAverageYWG(WorldGenLevel world, BlockPos center) {
-        int y = getYOnSurfaceWG(world, center.getX(), center.getZ());
-        y += getYOnSurfaceWG(world, center.getX() - 2, center.getZ() - 2);
-        y += getYOnSurfaceWG(world, center.getX() + 2, center.getZ() - 2);
-        y += getYOnSurfaceWG(world, center.getX() - 2, center.getZ() + 2);
-        y += getYOnSurfaceWG(world, center.getX() + 2, center.getZ() + 2);
+        int y = DefaultFeature.getYOnSurfaceWG(world, center.getX(), center.getZ());
+        y += DefaultFeature.getYOnSurfaceWG(world, center.getX() - 2, center.getZ() - 2);
+        y += DefaultFeature.getYOnSurfaceWG(world, center.getX() + 2, center.getZ() - 2);
+        y += DefaultFeature.getYOnSurfaceWG(world, center.getX() - 2, center.getZ() + 2);
+        y += DefaultFeature.getYOnSurfaceWG(world, center.getX() + 2, center.getZ() + 2);
         return y / 5;
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> context) {
+    public boolean place(FeaturePlaceContext<FC> context) {
+        FC cfg = context.config();
         WorldGenLevel world = context.level();
         RandomSource random = context.random();
         BlockPos center = context.origin();
@@ -103,7 +103,7 @@ public abstract class NBTFeature extends DefaultFeature {
         }
 
         int posY = center.getY() + 1;
-        StructureTemplate structure = getStructure(world, center, random);
+        StructureTemplate structure = getStructure(cfg, world, center, random);
         Rotation rotation = getRotation(world, center, random);
         Mirror mirror = getMirror(world, center, random);
         BlockPos offset = StructureTemplate.transform(
@@ -160,7 +160,7 @@ public abstract class NBTFeature extends DefaultFeature {
                                     Holder<Biome> b = world.getBiome(mut);
                                     BlockState top = (isTop
                                             ? BiomeAPI.findTopMaterial(b)
-                                            : BiomeAPI.findUnderMaterial(b)).orElse(defaultBlock);
+                                            : BiomeAPI.findUnderMaterial(b)).orElse(cfg.defaultBlock);
                                     BlocksHelper.setWithoutUpdate(world, mut, top);
                                 } else {
                                     BlocksHelper.setWithoutUpdate(world, mut, state);
@@ -169,7 +169,7 @@ public abstract class NBTFeature extends DefaultFeature {
                                 if (isTerrain(state) && state.getMaterial().isSolidBlocking()) {
                                     if (merge == TerrainMerge.SURFACE) {
                                         Holder<Biome> b = world.getBiome(mut);
-                                        BlockState bottom = BiomeAPI.findUnderMaterial(b).orElse(defaultBlock);
+                                        BlockState bottom = BiomeAPI.findUnderMaterial(b).orElse(cfg.defaultBlock);
                                         BlocksHelper.setWithoutUpdate(world, mut, bottom);
                                     } else {
                                         BlocksHelper.setWithoutUpdate(world, mut, state);
@@ -222,8 +222,10 @@ public abstract class NBTFeature extends DefaultFeature {
         return template;
     }
 
-    public enum TerrainMerge {
+    public enum TerrainMerge implements StringRepresentable {
         NONE, SURFACE, OBJECT;
+
+        public static final Codec<TerrainMerge> CODEC = StringRepresentable.fromEnum(TerrainMerge::values);
 
         public static TerrainMerge getFromString(String type) {
             if (type.equals("surface")) {
@@ -233,6 +235,11 @@ public abstract class NBTFeature extends DefaultFeature {
             } else {
                 return NONE;
             }
+        }
+
+        @Override
+        public String getSerializedName() {
+            return this.name();
         }
     }
 }

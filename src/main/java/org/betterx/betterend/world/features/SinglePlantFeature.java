@@ -1,5 +1,6 @@
 package org.betterx.betterend.world.features;
 
+import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
 import org.betterx.bclib.blocks.BaseCropBlock;
 import org.betterx.bclib.blocks.BaseDoublePlantBlock;
 import org.betterx.bclib.util.BlocksHelper;
@@ -8,70 +9,53 @@ import org.betterx.betterend.blocks.basis.EndPlantWithAgeBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class SinglePlantFeature extends ScatterFeature {
-    private final Block plant;
-    private final boolean rawHeightmap;
-    private final int chance;
+public class SinglePlantFeature extends ScatterFeature<SinglePlantFeatureConfig> {
 
-    public SinglePlantFeature(Block plant, int radius) {
-        this(plant, radius, true, 1);
-    }
+    BlockState plant;
 
-    public SinglePlantFeature(Block plant, int radius, int chance) {
-        this(plant, radius, true, chance);
-    }
-
-    public SinglePlantFeature(Block plant, int radius, boolean rawHeightmap) {
-        this(plant, radius, rawHeightmap, 1);
-    }
-
-    public SinglePlantFeature(Block plant, int radius, boolean rawHeightmap, int chance) {
-        super(radius);
-        this.plant = plant;
-        this.rawHeightmap = rawHeightmap;
-        this.chance = chance;
-    }
-
-    protected int getChance() {
-        return chance;
+    public SinglePlantFeature() {
+        super(SinglePlantFeatureConfig.CODEC);
     }
 
     @Override
-    protected BlockPos getCenterGround(WorldGenLevel world, BlockPos pos) {
-        return rawHeightmap ? getPosOnSurfaceWG(world, pos) : getPosOnSurface(world, pos);
+    protected BlockPos getCenterGround(SinglePlantFeatureConfig cfg, WorldGenLevel world, BlockPos pos) {
+        return cfg.rawHeightmap
+                ? DefaultFeature.getPosOnSurfaceWG(world, pos)
+                : DefaultFeature.getPosOnSurface(world, pos);
     }
 
     @Override
     public boolean canGenerate(
+            SinglePlantFeatureConfig cfg,
             WorldGenLevel world,
             RandomSource random,
             BlockPos center,
             BlockPos blockPos,
             float radius
     ) {
+        this.plant = cfg.getPlantState(random, blockPos);
         //noinspection deprecation
-        return plant.canSurvive(plant.defaultBlockState(), world, blockPos);
+        return plant.getBlock().canSurvive(plant, world, blockPos);
     }
 
     @Override
-    public void generate(WorldGenLevel world, RandomSource random, BlockPos blockPos) {
-        if (plant instanceof BaseDoublePlantBlock) {
+    public void generate(SinglePlantFeatureConfig cfg, WorldGenLevel world, RandomSource random, BlockPos blockPos) {
+        if (this.plant.getBlock() instanceof BaseDoublePlantBlock) {
             int rot = random.nextInt(4);
-            BlockState state = plant.defaultBlockState().setValue(BaseDoublePlantBlock.ROTATION, rot);
+            BlockState state = this.plant.setValue(BaseDoublePlantBlock.ROTATION, rot);
             BlocksHelper.setWithoutUpdate(world, blockPos, state);
             BlocksHelper.setWithoutUpdate(world, blockPos.above(), state.setValue(BaseDoublePlantBlock.TOP, true));
-        } else if (plant instanceof BaseCropBlock) {
-            BlockState state = plant.defaultBlockState().setValue(BaseCropBlock.AGE, 3);
+        } else if (this.plant.getBlock() instanceof BaseCropBlock) {
+            BlockState state = this.plant.setValue(BaseCropBlock.AGE, 3);
             BlocksHelper.setWithoutUpdate(world, blockPos, state);
-        } else if (plant instanceof EndPlantWithAgeBlock) {
+        } else if (this.plant.getBlock() instanceof EndPlantWithAgeBlock) {
             int age = random.nextInt(4);
-            BlockState state = plant.defaultBlockState().setValue(EndPlantWithAgeBlock.AGE, age);
+            BlockState state = this.plant.setValue(EndPlantWithAgeBlock.AGE, age);
             BlocksHelper.setWithoutUpdate(world, blockPos, state);
         } else {
-            BlocksHelper.setWithoutUpdate(world, blockPos, plant);
+            BlocksHelper.setWithoutUpdate(world, blockPos, this.plant);
         }
     }
 }

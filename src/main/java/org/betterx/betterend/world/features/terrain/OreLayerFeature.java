@@ -1,59 +1,46 @@
 package org.betterx.betterend.world.features.terrain;
 
-import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
 import org.betterx.bclib.sdf.SDF;
 import org.betterx.bclib.sdf.operator.SDFCoordModify;
 import org.betterx.bclib.sdf.operator.SDFScale3D;
 import org.betterx.bclib.sdf.primitive.SDFSphere;
 import org.betterx.bclib.util.MHelper;
-import org.betterx.betterend.noise.OpenSimplexNoise;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-public class OreLayerFeature extends DefaultFeature {
+public class OreLayerFeature extends Feature<OreLayerFeatureConfig> {
     private static final SDFSphere SPHERE;
     private static final SDFCoordModify NOISE;
     private static final SDF FUNCTION;
 
-    private final BlockState state;
-    private final float radius;
-    private final int minY;
-    private final int maxY;
-    private OpenSimplexNoise noise;
 
-    public OreLayerFeature(BlockState state, float radius, int minY, int maxY) {
-        this.state = state;
-        this.radius = radius;
-        this.minY = minY;
-        this.maxY = maxY;
+    public OreLayerFeature() {
+        super(OreLayerFeatureConfig.CODEC);
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig) {
+    public boolean place(FeaturePlaceContext<OreLayerFeatureConfig> featureConfig) {
+        final OreLayerFeatureConfig cfg = featureConfig.config();
         final RandomSource random = featureConfig.random();
         final BlockPos pos = featureConfig.origin();
         final WorldGenLevel world = featureConfig.level();
-        float radius = this.radius * 0.5F;
+        float radius = cfg.radius * 0.5F;
         int r = MHelper.floor(radius + 1);
         int posX = MHelper.randRange(Math.max(r - 16, 0), Math.min(31 - r, 15), random) + pos.getX();
         int posZ = MHelper.randRange(Math.max(r - 16, 0), Math.min(31 - r, 15), random) + pos.getZ();
-        int posY = MHelper.randRange(minY, maxY, random);
+        int posY = MHelper.randRange(cfg.minY, cfg.maxY, random);
 
-        if (noise == null) {
-            noise = new OpenSimplexNoise(world.getSeed());
-        }
 
-        SPHERE.setRadius(radius).setBlock(state);
+        SPHERE.setRadius(radius).setBlock(cfg.state);
         NOISE.setFunction((vec) -> {
             double x = (vec.x() + pos.getX()) * 0.1;
             double z = (vec.z() + pos.getZ()) * 0.1;
-            double offset = noise.eval(x, z);
+            double offset = cfg.getNoise(world.getSeed()).eval(x, z);
             vec.set(vec.x(), vec.y() + (float) offset * 8, vec.z());
         });
         FUNCTION.fillRecursive(world, new BlockPos(posX, posY, posZ));

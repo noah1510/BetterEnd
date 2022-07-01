@@ -14,12 +14,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 public class FilaluxFeature extends SkyScatterFeature {
-    public FilaluxFeature() {
-        super(10);
-    }
-
     @Override
-    public void generate(WorldGenLevel world, RandomSource random, BlockPos blockPos) {
+    public void generate(ScatterFeatureConfig cfg, WorldGenLevel world, RandomSource random, BlockPos blockPos) {
         BlockState vine = EndBlocks.FILALUX.defaultBlockState();
         BlockState wings = EndBlocks.FILALUX_WINGS.defaultBlockState();
         BlocksHelper.setWithoutUpdate(world, blockPos, EndBlocks.FILALUX_LANTERN);

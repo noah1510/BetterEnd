@@ -1,10 +1,10 @@
 package org.betterx.betterend.world.features;
 
+import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.bclib.util.StructureErode;
 import org.betterx.bclib.util.StructureHelper;
 import org.betterx.betterend.util.BlockFixer;
-import org.betterx.betterend.world.biome.EndBiome;
 import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
 import net.minecraft.core.BlockPos;
@@ -17,23 +17,27 @@ import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.templatesystem.*;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate.StructureBlockInfo;
 import net.minecraft.world.level.material.Material;
 
-public class CrashedShipFeature extends NBTFeature {
+public class CrashedShipFeature extends NBTFeature<NBTFeatureConfig> {
     private static final StructureProcessor REPLACER;
     private static final String STRUCTURE_PATH = "/data/minecraft/structures/end_city/ship.nbt";
     private StructureTemplate structure;
 
     public CrashedShipFeature() {
-        super(EndBiome.Config.DEFAULT_MATERIAL.getTopMaterial());
+        super(NBTFeatureConfig.CODEC);
     }
 
     @Override
-    protected StructureTemplate getStructure(WorldGenLevel world, BlockPos pos, RandomSource random) {
+    protected StructureTemplate getStructure(
+            NBTFeatureConfig cfg,
+            WorldGenLevel world,
+            BlockPos pos,
+            RandomSource random
+    ) {
         if (structure == null) {
             structure = world.getLevel().getStructureManager().getOrCreate(new ResourceLocation("end_city/ship"));
             if (structure == null) {
@@ -76,7 +80,7 @@ public class CrashedShipFeature extends NBTFeature {
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig) {
+    public boolean place(FeaturePlaceContext<NBTFeatureConfig> featureConfig) {
         final RandomSource random = featureConfig.random();
         BlockPos center = featureConfig.origin();
         final WorldGenLevel world = featureConfig.level();
@@ -88,7 +92,7 @@ public class CrashedShipFeature extends NBTFeature {
             return false;
         }
 
-        StructureTemplate structure = getStructure(world, center, random);
+        StructureTemplate structure = getStructure(featureConfig.config(), world, center, random);
         Rotation rotation = getRotation(world, center, random);
         Mirror mirror = getMirror(world, center, random);
         BlockPos offset = StructureTemplate.transform(
@@ -135,7 +139,7 @@ public class CrashedShipFeature extends NBTFeature {
             ) {
                 BlockState state = structureBlockInfo2.state;
                 if (state.is(Blocks.SPAWNER) || state.getMaterial().equals(Material.WOOL)) {
-                    return new StructureBlockInfo(structureBlockInfo2.pos, AIR, null);
+                    return new StructureBlockInfo(structureBlockInfo2.pos, DefaultFeature.AIR, null);
                 }
                 return structureBlockInfo2;
             }

@@ -6,34 +6,35 @@ import org.betterx.bclib.util.BlocksHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class UnderwaterPlantFeature extends UnderwaterPlantScatter {
-    private final Block plant;
+public class UnderwaterPlantFeature extends UnderwaterPlantScatter<SinglePlantFeatureConfig> {
+    private BlockState plant;
 
-    public UnderwaterPlantFeature(Block plant, int radius) {
-        super(radius);
-        this.plant = plant;
+    public UnderwaterPlantFeature() {
+        super(SinglePlantFeatureConfig.CODEC);
+
     }
 
     @Override
     public boolean canGenerate(
+            SinglePlantFeatureConfig cfg,
             WorldGenLevel world,
             RandomSource random,
             BlockPos center,
             BlockPos blockPos,
             float radius
     ) {
+        plant = cfg.getPlantState(random, blockPos);
         //noinspection deprecation
-        return super.canSpawn(world, blockPos) && plant.canSurvive(plant.defaultBlockState(), world, blockPos);
+        return super.canSpawn(cfg, world, blockPos) && plant.getBlock().canSurvive(plant, world, blockPos);
     }
 
     @Override
-    public void generate(WorldGenLevel world, RandomSource random, BlockPos blockPos) {
-        if (plant instanceof BaseDoublePlantBlock) {
+    public void generate(SinglePlantFeatureConfig cfg, WorldGenLevel world, RandomSource random, BlockPos blockPos) {
+        if (plant.getBlock() instanceof BaseDoublePlantBlock) {
             int rot = random.nextInt(4);
-            BlockState state = plant.defaultBlockState().setValue(BaseDoublePlantBlock.ROTATION, rot);
+            BlockState state = plant.setValue(BaseDoublePlantBlock.ROTATION, rot);
             BlocksHelper.setWithoutUpdate(world, blockPos, state);
             BlocksHelper.setWithoutUpdate(world, blockPos.above(), state.setValue(BaseDoublePlantBlock.TOP, true));
         } else {

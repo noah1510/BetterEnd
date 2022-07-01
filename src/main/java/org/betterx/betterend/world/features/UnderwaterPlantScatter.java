@@ -2,19 +2,20 @@ package org.betterx.betterend.world.features;
 
 import org.betterx.betterend.util.GlobalState;
 
+import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
 
-public abstract class UnderwaterPlantScatter extends ScatterFeature {
-    public UnderwaterPlantScatter(int radius) {
-        super(radius);
+public abstract class UnderwaterPlantScatter<FC extends ScatterFeatureConfig> extends ScatterFeature<FC> {
+    public UnderwaterPlantScatter(Codec<FC> codec) {
+        super(codec);
     }
 
     @Override
-    protected BlockPos getCenterGround(WorldGenLevel world, BlockPos pos) {
+    protected BlockPos getCenterGround(FC cfg, WorldGenLevel world, BlockPos pos) {
         final MutableBlockPos POS = GlobalState.stateForThread().POS;
         POS.setX(pos.getX());
         POS.setZ(pos.getZ());
@@ -24,6 +25,7 @@ public abstract class UnderwaterPlantScatter extends ScatterFeature {
 
     @Override
     public boolean canGenerate(
+            FC cfg,
             WorldGenLevel world,
             RandomSource random,
             BlockPos center,
@@ -34,12 +36,12 @@ public abstract class UnderwaterPlantScatter extends ScatterFeature {
     }
 
     @Override
-    protected boolean canSpawn(WorldGenLevel world, BlockPos pos) {
+    protected boolean canSpawn(FC cfg, WorldGenLevel world, BlockPos pos) {
         return world.getBlockState(pos).is(Blocks.WATER);
     }
 
     @Override
-    protected boolean getGroundPlant(WorldGenLevel world, MutableBlockPos pos) {
+    protected boolean getGroundPlant(FC cfg, WorldGenLevel world, MutableBlockPos pos) {
         return getGround(world, pos).getY() < 128;
     }
 

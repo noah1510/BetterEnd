@@ -7,20 +7,19 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
-public class SingleInvertedScatterFeature extends InvertedScatterFeature {
-    private final Block block;
+public class SingleInvertedScatterFeature extends InvertedScatterFeature<SinglePlantFeatureConfig> {
+    private BlockState block;
 
-    public SingleInvertedScatterFeature(Block block, int radius) {
-        super(radius);
-        this.block = block;
+    public SingleInvertedScatterFeature() {
+        super(SinglePlantFeatureConfig.CODEC);
     }
 
     @Override
     public boolean canGenerate(
+            SinglePlantFeatureConfig cfg,
             WorldGenLevel world,
             RandomSource random,
             BlockPos center,
@@ -30,17 +29,18 @@ public class SingleInvertedScatterFeature extends InvertedScatterFeature {
         if (!world.isEmptyBlock(blockPos)) {
             return false;
         }
-        BlockState state = block.defaultBlockState();
-        if (block instanceof BaseAttachedBlock) {
+        block = cfg.getPlantState(random, blockPos);
+        BlockState state = block;
+        if (block.getBlock() instanceof BaseAttachedBlock) {
             state = state.setValue(BlockStateProperties.FACING, Direction.DOWN);
         }
         return state.canSurvive(world, blockPos);
     }
 
     @Override
-    public void generate(WorldGenLevel world, RandomSource random, BlockPos blockPos) {
-        BlockState state = block.defaultBlockState();
-        if (block instanceof BaseAttachedBlock) {
+    public void generate(SinglePlantFeatureConfig cfg, WorldGenLevel world, RandomSource random, BlockPos blockPos) {
+        BlockState state = block;
+        if (block.getBlock() instanceof BaseAttachedBlock) {
             state = state.setValue(BlockStateProperties.FACING, Direction.DOWN);
         }
         BlocksHelper.setWithoutUpdate(world, blockPos, state);

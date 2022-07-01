@@ -1,5 +1,6 @@
 package org.betterx.betterend.world.features;
 
+import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
 import org.betterx.bclib.blocks.BlockProperties.TripleShape;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.betterend.blocks.EndLotusLeafBlock;
@@ -13,13 +14,13 @@ import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class EndLotusLeafFeature extends ScatterFeature {
-    public EndLotusLeafFeature(int radius) {
-        super(radius);
+public class EndLotusLeafFeature extends ScatterFeature<ScatterFeatureConfig> {
+    public EndLotusLeafFeature() {
+        super(ScatterFeatureConfig.CODEC);
     }
 
     @Override
-    public void generate(WorldGenLevel world, RandomSource random, BlockPos blockPos) {
+    public void generate(ScatterFeatureConfig cfg, WorldGenLevel world, RandomSource random, BlockPos blockPos) {
         if (canGenerate(world, blockPos)) {
             generateLeaf(world, blockPos);
         }
@@ -31,8 +32,8 @@ public class EndLotusLeafFeature extends ScatterFeature {
     }
 
     @Override
-    protected BlockPos getCenterGround(WorldGenLevel world, BlockPos pos) {
-        return getPosOnSurface(world, pos);
+    protected BlockPos getCenterGround(ScatterFeatureConfig cfg, WorldGenLevel world, BlockPos pos) {
+        return DefaultFeature.getPosOnSurface(world, pos);
     }
 
     private void generateLeaf(WorldGenLevel world, BlockPos pos) {
@@ -75,6 +76,7 @@ public class EndLotusLeafFeature extends ScatterFeature {
 
     @Override
     public boolean canGenerate(
+            ScatterFeatureConfig cfg,
             WorldGenLevel world,
             RandomSource random,
             BlockPos center,

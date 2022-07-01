@@ -3,14 +3,15 @@ package org.betterx.betterend.world.biome.cave;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder.BiomeSupplier;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeSettings;
-import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
 import org.betterx.bclib.api.v3.levelgen.features.BCLFeature;
 import org.betterx.bclib.api.v3.levelgen.features.BCLFeatureBuilder;
 import org.betterx.bclib.util.WeightedList;
 import org.betterx.betterend.BetterEnd;
+import org.betterx.betterend.registry.EndFeatures;
 import org.betterx.betterend.registry.EndSounds;
 import org.betterx.betterend.world.biome.EndBiome;
 import org.betterx.betterend.world.features.terrain.caves.CaveChunkPopulatorFeature;
+import org.betterx.betterend.world.features.terrain.caves.CaveChunkPopulatorFeatureConfig;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
@@ -28,11 +29,13 @@ public class EndCaveBiome extends EndBiome {
 
         @Override
         protected void addCustomBuildData(BCLBiomeBuilder builder) {
-            BCLFeature feature = BCLFeatureBuilder
+
+            BCLFeature<CaveChunkPopulatorFeature, CaveChunkPopulatorFeatureConfig> feature = BCLFeatureBuilder
                     .start(
                             BetterEnd.makeID(ID.getPath() + "_cave_populator"),
-                            new CaveChunkPopulatorFeature(() -> (EndCaveBiome) BiomeAPI.getBiome(ID))
+                            EndFeatures.CAVE_CHUNK_POPULATOR
                     )
+                    .configuration(new CaveChunkPopulatorFeatureConfig(ID))
                     .buildAndRegister()
                     .place()
                     .decoration(GenerationStep.Decoration.RAW_GENERATION)

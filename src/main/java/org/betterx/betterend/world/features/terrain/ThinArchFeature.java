@@ -17,25 +17,28 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
-public class ThinArchFeature extends DefaultFeature {
-    private final Block block;
+public class ThinArchFeature extends Feature<ThinArchFeatureConfig> {
 
-    public ThinArchFeature(Block block) {
-        this.block = block;
+    public ThinArchFeature() {
+        super(ThinArchFeatureConfig.CODEC);
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featurePlaceContext) {
+    public boolean place(FeaturePlaceContext<ThinArchFeatureConfig> featurePlaceContext) {
+        final ThinArchFeatureConfig cfg = featurePlaceContext.config();
         final WorldGenLevel world = featurePlaceContext.level();
         BlockPos origin = featurePlaceContext.origin();
         RandomSource random = featurePlaceContext.random();
+        BlockState state = cfg.block.getState(random, origin);
+        Block block = state.getBlock();
 
-        BlockPos pos = getPosOnSurfaceWG(
+        BlockPos pos = DefaultFeature.getPosOnSurfaceWG(
                 world,
                 new BlockPos(
                         (origin.getX() & 0xFFFFFFF0) | 7,

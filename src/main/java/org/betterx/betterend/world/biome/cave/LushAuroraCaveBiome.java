@@ -26,8 +26,8 @@ public class LushAuroraCaveBiome extends EndCaveBiome.Config {
 
             this.addCeilFeature(EndFeatures.CAVE_BUSH, 1);
             this.addCeilFeature(EndFeatures.CAVE_PUMPKIN, 1);
-            this.addCeilFeature(EndFeatures.RUBINEA, 3);
-            this.addCeilFeature(EndFeatures.MAGNULA, 1);
+            this.addCeilFeature(EndFeatures.RUBINEA.getFeature(), 3);
+            this.addCeilFeature(EndFeatures.MAGNULA.getFeature(), 1);
             this.addCeilFeature(EndFeatures.END_STONE_STALACTITE_CAVEMOSS, 10);
         }
 

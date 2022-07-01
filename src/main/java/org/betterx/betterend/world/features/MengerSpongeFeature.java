@@ -11,15 +11,15 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.function.Function;
 
-public class MengerSpongeFeature extends UnderwaterPlantScatter {
+public class MengerSpongeFeature extends UnderwaterPlantScatter<ScatterFeatureConfig> {
     private static final Function<BlockState, Boolean> REPLACE;
 
-    public MengerSpongeFeature(int radius) {
-        super(radius);
+    public MengerSpongeFeature() {
+        super(ScatterFeatureConfig.CODEC);
     }
 
     @Override
-    public void generate(WorldGenLevel world, RandomSource random, BlockPos blockPos) {
+    public void generate(ScatterFeatureConfig cfg, WorldGenLevel world, RandomSource random, BlockPos blockPos) {
         BlocksHelper.setWithoutUpdate(world, blockPos, EndBlocks.MENGER_SPONGE_WET);
         if (random.nextBoolean()) {
             for (Direction dir : BlocksHelper.DIRECTIONS) {

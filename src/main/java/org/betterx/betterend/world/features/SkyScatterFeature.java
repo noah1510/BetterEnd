@@ -9,9 +9,9 @@ import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 
-public abstract class SkyScatterFeature extends ScatterFeature {
-    public SkyScatterFeature(int radius) {
-        super(radius);
+public abstract class SkyScatterFeature extends ScatterFeature<ScatterFeatureConfig> {
+    public SkyScatterFeature() {
+        super(ScatterFeatureConfig.CODEC);
     }
 
     @Override
@@ -21,6 +21,7 @@ public abstract class SkyScatterFeature extends ScatterFeature {
 
     @Override
     public boolean canGenerate(
+            ScatterFeatureConfig cfg,
             WorldGenLevel world,
             RandomSource random,
             BlockPos center,
@@ -44,12 +45,12 @@ public abstract class SkyScatterFeature extends ScatterFeature {
     }
 
     @Override
-    protected boolean canSpawn(WorldGenLevel world, BlockPos pos) {
+    protected boolean canSpawn(ScatterFeatureConfig cfg, WorldGenLevel world, BlockPos pos) {
         return true;
     }
 
     @Override
-    protected BlockPos getCenterGround(WorldGenLevel world, BlockPos pos) {
+    protected BlockPos getCenterGround(ScatterFeatureConfig cfg, WorldGenLevel world, BlockPos pos) {
         return new BlockPos(pos.getX(), MHelper.randRange(32, 192, world.getRandom()), pos.getZ());
     }
 

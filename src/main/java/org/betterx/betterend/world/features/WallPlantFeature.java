@@ -12,34 +12,47 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
-public class WallPlantFeature extends WallScatterFeature {
-    private final Block block;
+public class WallPlantFeature extends WallScatterFeature<WallPlantFeatureConfig> {
+    protected BlockState plant;
 
-    public WallPlantFeature(Block block, int radius) {
-        super(radius);
-        this.block = block;
+    public WallPlantFeature() {
+        super(WallPlantFeatureConfig.CODEC);
     }
 
     @Override
-    public boolean canGenerate(WorldGenLevel world, RandomSource random, BlockPos pos, Direction dir) {
+    public boolean canGenerate(
+            WallPlantFeatureConfig cfg,
+            WorldGenLevel world,
+            RandomSource random,
+            BlockPos pos,
+            Direction dir
+    ) {
+        plant = cfg.getPlantState(random, pos);
+        Block block = plant.getBlock();
         if (block instanceof BaseWallPlantBlock) {
-            BlockState state = block.defaultBlockState().setValue(BaseWallPlantBlock.FACING, dir);
+            BlockState state = plant.setValue(BaseWallPlantBlock.FACING, dir);
             return block.canSurvive(state, world, pos);
         } else if (block instanceof BaseAttachedBlock) {
-            BlockState state = block.defaultBlockState().setValue(BlockStateProperties.FACING, dir);
+            BlockState state = plant.setValue(BlockStateProperties.FACING, dir);
             return block.canSurvive(state, world, pos);
         }
-        return block.canSurvive(block.defaultBlockState(), world, pos);
+        return block.canSurvive(plant, world, pos);
     }
 
     @Override
-    public void generate(WorldGenLevel world, RandomSource random, BlockPos pos, Direction dir) {
-        BlockState state = block.defaultBlockState();
+    public void generate(
+            WallPlantFeatureConfig cfg,
+            WorldGenLevel world,
+            RandomSource random,
+            BlockPos pos,
+            Direction dir
+    ) {
+        Block block = plant.getBlock();
         if (block instanceof BaseWallPlantBlock) {
-            state = state.setValue(BaseWallPlantBlock.FACING, dir);
+            plant = plant.setValue(BaseWallPlantBlock.FACING, dir);
         } else if (block instanceof BaseAttachedBlock) {
-            state = state.setValue(BlockStateProperties.FACING, dir);
+            plant = plant.setValue(BlockStateProperties.FACING, dir);
         }
-        BlocksHelper.setWithoutUpdate(world, pos, state);
+        BlocksHelper.setWithoutUpdate(world, pos, plant);
     }
 }

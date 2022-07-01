@@ -7,13 +7,13 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 
-public class EndLilyFeature extends UnderwaterPlantScatter {
-    public EndLilyFeature(int radius) {
-        super(radius);
+public class EndLilyFeature extends UnderwaterPlantScatter<ScatterFeatureConfig> {
+    public EndLilyFeature() {
+        super(ScatterFeatureConfig.CODEC);
     }
 
     @Override
-    public void generate(WorldGenLevel world, RandomSource random, BlockPos blockPos) {
+    public void generate(ScatterFeatureConfig cfg, WorldGenLevel world, RandomSource random, BlockPos blockPos) {
         EndLilySeedBlock seed = (EndLilySeedBlock) EndBlocks.END_LILY_SEED;
         seed.grow(world, random, blockPos);
     }

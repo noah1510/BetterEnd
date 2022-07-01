@@ -1,26 +1,27 @@
 package org.betterx.betterend.world.features;
 
-import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.util.GlobalState;
 
+import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-public abstract class InvertedScatterFeature extends DefaultFeature {
-    private final int radius;
+public abstract class InvertedScatterFeature<FC extends ScatterFeatureConfig> extends Feature<FC> {
 
-    public InvertedScatterFeature(int radius) {
-        this.radius = radius;
+
+    public InvertedScatterFeature(Codec<FC> codec) {
+        super(codec);
     }
 
     public abstract boolean canGenerate(
+            FC cfg,
             WorldGenLevel world,
             RandomSource random,
             BlockPos center,
@@ -28,10 +29,11 @@ public abstract class InvertedScatterFeature extends DefaultFeature {
             float radius
     );
 
-    public abstract void generate(WorldGenLevel world, RandomSource random, BlockPos blockPos);
+    public abstract void generate(FC cfg, WorldGenLevel world, RandomSource random, BlockPos blockPos);
 
     @Override
-    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig) {
+    public boolean place(FeaturePlaceContext<FC> featureConfig) {
+        FC cfg = featureConfig.config();
         final MutableBlockPos POS = GlobalState.stateForThread().POS;
         final RandomSource random = featureConfig.random();
         final BlockPos center = featureConfig.origin();
@@ -41,7 +43,7 @@ public abstract class InvertedScatterFeature extends DefaultFeature {
         for (int y = maxY; y > minY; y--) {
             POS.set(center.getX(), y, center.getZ());
             if (world.getBlockState(POS).isAir() && !world.getBlockState(POS.above()).isAir()) {
-                float r = MHelper.randRange(radius * 0.5F, radius, random);
+                float r = MHelper.randRange(cfg.radius * 0.5F, cfg.radius, random);
                 int count = MHelper.floor(r * r * MHelper.randRange(0.5F, 1.5F, random));
                 for (int i = 0; i < count; i++) {
                     float pr = r * (float) Math.sqrt(random.nextFloat());
@@ -54,8 +56,8 @@ public abstract class InvertedScatterFeature extends DefaultFeature {
                     if (up > 14) continue;
                     POS.setY(POS.getY() + up);
 
-                    if (canGenerate(world, random, center, POS, r)) {
-                        generate(world, random, POS);
+                    if (canGenerate(cfg, world, random, center, POS, r)) {
+                        generate(cfg, world, random, POS);
                     }
                 }
             }

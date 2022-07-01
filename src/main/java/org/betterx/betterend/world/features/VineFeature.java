@@ -8,39 +8,37 @@ import org.betterx.bclib.util.BlocksHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class VineFeature extends InvertedScatterFeature {
-    private final Block vineBlock;
-    private final int maxLength;
-    private final boolean vine;
+public class VineFeature extends InvertedScatterFeature<VineFeatureConfig> {
+    private BlockState plant;
+    boolean vine;
 
-    public VineFeature(Block vineBlock, int maxLength) {
-        super(6);
-        this.vineBlock = vineBlock;
-        this.maxLength = maxLength;
-        this.vine = vineBlock instanceof BaseVineBlock;
+    public VineFeature() {
+        super(VineFeatureConfig.CODEC);
     }
 
     @Override
     public boolean canGenerate(
+            VineFeatureConfig cfg,
             WorldGenLevel world,
             RandomSource random,
             BlockPos center,
             BlockPos blockPos,
             float radius
     ) {
+        plant = cfg.getPlantState(random, blockPos);
+
         BlockState state = world.getBlockState(blockPos);
         return state.getMaterial().isReplaceable() && canPlaceBlock(state, world, blockPos);
     }
 
     @Override
-    public void generate(WorldGenLevel world, RandomSource random, BlockPos blockPos) {
-        int h = BlocksHelper.downRay(world, blockPos, random.nextInt(maxLength)) - 1;
+    public void generate(VineFeatureConfig cfg, WorldGenLevel world, RandomSource random, BlockPos blockPos) {
+        int h = BlocksHelper.downRay(world, blockPos, random.nextInt(cfg.maxLength)) - 1;
         if (h > 2) {
             BlockState top = getTopState();
-            BlockState middle = getMiggleState();
+            BlockState middle = getMiddleState();
             BlockState bottom = getBottomState();
             BlocksHelper.setWithoutUpdate(world, blockPos, top);
             for (int i = 1; i < h; i++) {
@@ -51,25 +49,28 @@ public class VineFeature extends InvertedScatterFeature {
     }
 
     private boolean canPlaceBlock(BlockState state, WorldGenLevel world, BlockPos blockPos) {
-        if (vine) {
-            return ((BaseVineBlock) vineBlock).canGenerate(state, world, blockPos);
+        if (plant == null) return false;
+        if (plant.getBlock() instanceof BaseVineBlock vineBlock) {
+            vine = true;
+            return vineBlock.canGenerate(state, world, blockPos);
         } else {
-            return vineBlock.canSurvive(state, world, blockPos);
+            vine = false;
+            return plant.getBlock().canSurvive(state, world, blockPos);
         }
     }
 
     private BlockState getTopState() {
-        BlockState state = vineBlock.defaultBlockState();
+        BlockState state = plant;
         return vine ? state.setValue(BlockProperties.TRIPLE_SHAPE, TripleShape.TOP) : state;
     }
 
-    private BlockState getMiggleState() {
-        BlockState state = vineBlock.defaultBlockState();
+    private BlockState getMiddleState() {
+        BlockState state = plant;
         return vine ? state.setValue(BlockProperties.TRIPLE_SHAPE, TripleShape.MIDDLE) : state;
     }
 
     private BlockState getBottomState() {
-        BlockState state = vineBlock.defaultBlockState();
+        BlockState state = plant;
         return vine ? state.setValue(BlockProperties.TRIPLE_SHAPE, TripleShape.BOTTOM) : state;
     }
 }

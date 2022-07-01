@@ -6,21 +6,21 @@ import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.util.GlobalState;
 import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
+import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-public abstract class ScatterFeature extends DefaultFeature {
-    private final int radius;
-
-    public ScatterFeature(int radius) {
-        this.radius = radius;
+public abstract class ScatterFeature<FC extends ScatterFeatureConfig> extends Feature<FC> {
+    public ScatterFeature(Codec<FC> codec) {
+        super(codec);
     }
 
     public abstract boolean canGenerate(
+            FC cfg,
             WorldGenLevel world,
             RandomSource random,
             BlockPos center,
@@ -28,19 +28,19 @@ public abstract class ScatterFeature extends DefaultFeature {
             float radius
     );
 
-    public abstract void generate(WorldGenLevel world, RandomSource random, BlockPos blockPos);
+    public abstract void generate(FC cfg, WorldGenLevel world, RandomSource random, BlockPos blockPos);
 
-    protected BlockPos getCenterGround(WorldGenLevel world, BlockPos pos) {
-        return getPosOnSurfaceWG(world, pos);
+    protected BlockPos getCenterGround(FC cfg, WorldGenLevel world, BlockPos pos) {
+        return DefaultFeature.getPosOnSurfaceWG(world, pos);
     }
 
-    protected boolean canSpawn(WorldGenLevel world, BlockPos pos) {
+    protected boolean canSpawn(FC cfg, WorldGenLevel world, BlockPos pos) {
         if (pos.getY() < 5) {
             return false;
         } else return world.getBlockState(pos.below()).is(CommonBlockTags.END_STONES);
     }
 
-    protected boolean getGroundPlant(WorldGenLevel world, MutableBlockPos pos) {
+    protected boolean getGroundPlant(FC cfg, WorldGenLevel world, MutableBlockPos pos) {
         int down = BlocksHelper.downRay(world, pos, 16);
         if (down > Math.abs(getYOffset() * 2)) {
             return false;
@@ -58,18 +58,19 @@ public abstract class ScatterFeature extends DefaultFeature {
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig) {
+    public boolean place(FeaturePlaceContext<FC> featureConfig) {
+        FC cfg = featureConfig.config();
         final MutableBlockPos POS = GlobalState.stateForThread().POS;
         final RandomSource random = featureConfig.random();
         BlockPos center = featureConfig.origin();
         final WorldGenLevel world = featureConfig.level();
-        center = getCenterGround(world, center);
+        center = getCenterGround(cfg, world, center);
 
-        if (!canSpawn(world, center)) {
+        if (!canSpawn(cfg, world, center)) {
             return false;
         }
 
-        float r = MHelper.randRange(radius * 0.5F, radius, random);
+        float r = MHelper.randRange(cfg.radius * 0.5F, cfg.radius, random);
         int count = MHelper.floor(r * r * MHelper.randRange(1.5F, 3F, random));
         for (int i = 0; i < count; i++) {
             float pr = r * (float) Math.sqrt(random.nextFloat());
@@ -78,14 +79,15 @@ public abstract class ScatterFeature extends DefaultFeature {
             float z = pr * (float) Math.sin(theta);
 
             POS.set(center.getX() + x, center.getY() + getYOffset(), center.getZ() + z);
-            if (getGroundPlant(world, POS) && canGenerate(
+            if (getGroundPlant(cfg, world, POS) && canGenerate(
+                    cfg,
                     world,
                     random,
                     center,
                     POS,
                     r
             ) && (getChance() < 2 || random.nextInt(getChance()) == 0)) {
-                generate(world, random, POS);
+                generate(cfg, world, random, POS);
             }
         }
 

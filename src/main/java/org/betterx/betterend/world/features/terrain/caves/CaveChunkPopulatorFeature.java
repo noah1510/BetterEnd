@@ -1,6 +1,5 @@
 package org.betterx.betterend.world.features.terrain.caves;
 
-import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.betterend.util.BlockFixer;
 import org.betterx.betterend.world.biome.cave.EndCaveBiome;
@@ -15,23 +14,21 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
 import com.google.common.collect.Sets;
 
 import java.util.Optional;
 import java.util.Set;
-import java.util.function.Supplier;
 
-public class CaveChunkPopulatorFeature extends DefaultFeature {
-    private final Supplier<EndCaveBiome> supplier;
+public class CaveChunkPopulatorFeature extends Feature<CaveChunkPopulatorFeatureConfig> {
 
-    public CaveChunkPopulatorFeature(Supplier<EndCaveBiome> biome) {
-        this.supplier = biome;
+    public CaveChunkPopulatorFeature() {
+        super(CaveChunkPopulatorFeatureConfig.CODEC);
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig) {
+    public boolean place(FeaturePlaceContext<CaveChunkPopulatorFeatureConfig> featureConfig) {
+        CaveChunkPopulatorFeatureConfig cfg = featureConfig.config();
         final RandomSource random = featureConfig.random();
         final BlockPos pos = featureConfig.origin();
         final WorldGenLevel world = featureConfig.level();
@@ -42,7 +39,7 @@ public class CaveChunkPopulatorFeature extends DefaultFeature {
         MutableBlockPos min = new MutableBlockPos().set(pos);
         MutableBlockPos max = new MutableBlockPos().set(pos);
         fillSets(sx, sz, world.getChunk(pos), floorPositions, ceilPositions, min, max);
-        EndCaveBiome biome = supplier.get();
+        EndCaveBiome biome = cfg.getCaveBiome();
         BlockState surfaceBlock = Blocks.END_STONE.defaultBlockState(); //biome.getBiome().getGenerationSettings().getSurfaceBuilderConfig().getTopMaterial();
         placeFloor(world, biome, floorPositions, random, surfaceBlock);
         placeCeil(world, biome, ceilPositions, random);
