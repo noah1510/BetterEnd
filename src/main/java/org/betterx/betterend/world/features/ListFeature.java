@@ -2,6 +2,7 @@ package org.betterx.betterend.world.features;
 
 
 import org.betterx.bclib.util.StructureHelper;
+import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
@@ -33,7 +34,9 @@ public class ListFeature extends NBTFeature {
     protected boolean canSpawn(WorldGenLevel world, BlockPos pos, RandomSource random) {
         int cx = pos.getX() >> 4;
         int cz = pos.getZ() >> 4;
-        return ((cx + cz) & 1) == 0 && pos.getY() > 58;// && world.getBlockState(pos.below()).is(EndTags.GEN_TERRAIN);
+        return ((cx + cz) & 1) == 0 && pos.getY() > 58
+                && world.getBlockState(pos).isAir()
+                && world.getBlockState(pos.below()).is(CommonBlockTags.TERRAIN);
     }
 
     @Override

@@ -31,7 +31,8 @@ public class FallenPillarFeature extends DefaultFeature {
                 world,
                 new BlockPos(pos.getX() + random.nextInt(16), pos.getY(), pos.getZ() + random.nextInt(16))
         );
-        if (!world.getBlockState(pos.below(5)).is(CommonBlockTags.GEN_END_STONES)) {
+        if (!world.getBlockState(pos.below(5)).is(CommonBlockTags.GEN_END_STONES)
+                || !world.getBlockState(pos).isAir()) {
             return false;
         }
 
