@@ -14,12 +14,13 @@ import org.betterx.betterend.world.features.terrain.caves.CaveChunkPopulatorFeat
 import org.betterx.betterend.world.features.terrain.caves.CaveChunkPopulatorFeatureConfig;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.GenerationStep;
-import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
 public class EndCaveBiome extends EndBiome {
     public static abstract class Config extends EndBiome.Config {
@@ -59,26 +60,26 @@ public class EndCaveBiome extends EndBiome {
         }
     }
 
-    private final WeightedList<Feature<?>> floorFeatures = new WeightedList<Feature<?>>();
-    private final WeightedList<Feature<?>> ceilFeatures = new WeightedList<Feature<?>>();
+    private final WeightedList<Holder<? extends ConfiguredFeature<?, ?>>> floorFeatures = new WeightedList<>();
+    private final WeightedList<Holder<? extends ConfiguredFeature<?, ?>>> ceilFeatures = new WeightedList<>();
 
     public EndCaveBiome(ResourceLocation biomeID, Biome biome, BCLBiomeSettings settings) {
         super(biomeID, biome, settings);
     }
 
-    public void addFloorFeature(Feature<?> feature, float weight) {
+    public void addFloorFeature(Holder<? extends ConfiguredFeature<?, ?>> feature, float weight) {
         floorFeatures.add(feature, weight);
     }
 
-    public void addCeilFeature(Feature<?> feature, float weight) {
+    public void addCeilFeature(Holder<? extends ConfiguredFeature<?, ?>> feature, float weight) {
         ceilFeatures.add(feature, weight);
     }
 
-    public Feature<?> getFloorFeature(RandomSource random) {
+    public Holder<? extends ConfiguredFeature<?, ?>> getFloorFeature(RandomSource random) {
         return floorFeatures.isEmpty() ? null : floorFeatures.get(random);
     }
 
-    public Feature<?> getCeilFeature(RandomSource random) {
+    public Holder<? extends ConfiguredFeature<?, ?>> getCeilFeature(RandomSource random) {
         return ceilFeatures.isEmpty() ? null : ceilFeatures.get(random);
     }
 

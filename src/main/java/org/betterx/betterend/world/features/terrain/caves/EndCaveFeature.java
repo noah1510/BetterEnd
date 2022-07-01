@@ -22,8 +22,9 @@ import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
@@ -31,7 +32,6 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 public abstract class EndCaveFeature extends DefaultFeature {
@@ -64,6 +64,7 @@ public abstract class EndCaveFeature extends DefaultFeature {
         Set<BlockPos> caveBlocks = generate(world, center, radius, random);
         if (!caveBlocks.isEmpty()) {
             if (biome != null) {
+                ChunkGenerator generator = featureConfig.chunkGenerator();
                 setBiomes(world, biome, caveBlocks);
                 Set<BlockPos> floorPositions = Sets.newConcurrentHashSet();
                 Set<BlockPos> ceilPositions = Sets.newConcurrentHashSet();
@@ -81,9 +82,9 @@ public abstract class EndCaveFeature extends DefaultFeature {
                 });
 
                 BlockState surfaceBlock = EndBiome.findTopMaterial(biome.bclBiome);
-                placeFloor(world, (EndCaveBiome) biome.bclBiome, floorPositions, random, surfaceBlock);
-                placeCeil(world, (EndCaveBiome) biome.bclBiome, ceilPositions, random);
-                placeWalls(world, (EndCaveBiome) biome.bclBiome, caveBlocks, random);
+                placeFloor(world, generator, (EndCaveBiome) biome.bclBiome, floorPositions, random, surfaceBlock);
+                placeCeil(world, generator, (EndCaveBiome) biome.bclBiome, ceilPositions, random);
+                placeWalls(world, generator, (EndCaveBiome) biome.bclBiome, caveBlocks, random);
             }
             fixBlocks(world, caveBlocks);
         }
@@ -95,6 +96,7 @@ public abstract class EndCaveFeature extends DefaultFeature {
 
     protected void placeFloor(
             WorldGenLevel world,
+            ChunkGenerator generator,
             EndCaveBiome biome,
             Set<BlockPos> floorPositions,
             RandomSource random,
@@ -106,9 +108,9 @@ public abstract class EndCaveFeature extends DefaultFeature {
                 BlocksHelper.setWithoutUpdate(world, pos, surfaceBlock);
             }
             if (density > 0 && random.nextFloat() <= density) {
-                Feature<?> feature = biome.getFloorFeature(random);
+                ConfiguredFeature<?, ?> feature = biome.getFloorFeature(random).value();
                 if (feature != null) {
-                    feature.place(new FeaturePlaceContext<>(Optional.empty(), world, null, random, pos.above(), null));
+                    feature.place(world, generator, random, pos.above());
                 }
             }
         });
@@ -116,6 +118,7 @@ public abstract class EndCaveFeature extends DefaultFeature {
 
     protected void placeCeil(
             WorldGenLevel world,
+            ChunkGenerator generator,
             EndCaveBiome biome,
             Set<BlockPos> ceilPositions,
             RandomSource random
@@ -127,15 +130,21 @@ public abstract class EndCaveFeature extends DefaultFeature {
                 BlocksHelper.setWithoutUpdate(world, pos, ceilBlock);
             }
             if (density > 0 && random.nextFloat() <= density) {
-                Feature<?> feature = biome.getCeilFeature(random);
+                ConfiguredFeature<?, ?> feature = biome.getCeilFeature(random).value();
                 if (feature != null) {
-                    feature.place(new FeaturePlaceContext<>(Optional.empty(), world, null, random, pos.below(), null));
+                    feature.place(world, generator, random, pos.below());
                 }
             }
         });
     }
 
-    protected void placeWalls(WorldGenLevel world, EndCaveBiome biome, Set<BlockPos> positions, RandomSource random) {
+    protected void placeWalls(
+            WorldGenLevel world,
+            ChunkGenerator generator,
+            EndCaveBiome biome,
+            Set<BlockPos> positions,
+            RandomSource random
+    ) {
         Set<BlockPos> placed = Sets.newHashSet();
         positions.forEach(pos -> {
             if (random.nextInt(4) == 0 && hasOpenSide(pos, positions)) {

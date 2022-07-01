@@ -12,12 +12,13 @@ import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkAccess;
+import net.minecraft.world.level.chunk.ChunkGenerator;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 
 import com.google.common.collect.Sets;
 
-import java.util.Optional;
 import java.util.Set;
 
 public class CaveChunkPopulatorFeature extends Feature<CaveChunkPopulatorFeatureConfig> {
@@ -32,6 +33,7 @@ public class CaveChunkPopulatorFeature extends Feature<CaveChunkPopulatorFeature
         final RandomSource random = featureConfig.random();
         final BlockPos pos = featureConfig.origin();
         final WorldGenLevel world = featureConfig.level();
+        final ChunkGenerator chunkGenerator = featureConfig.chunkGenerator();
         Set<BlockPos> floorPositions = Sets.newHashSet();
         Set<BlockPos> ceilPositions = Sets.newHashSet();
         int sx = (pos.getX() >> 4) << 4;
@@ -41,8 +43,8 @@ public class CaveChunkPopulatorFeature extends Feature<CaveChunkPopulatorFeature
         fillSets(sx, sz, world.getChunk(pos), floorPositions, ceilPositions, min, max);
         EndCaveBiome biome = cfg.getCaveBiome();
         BlockState surfaceBlock = Blocks.END_STONE.defaultBlockState(); //biome.getBiome().getGenerationSettings().getSurfaceBuilderConfig().getTopMaterial();
-        placeFloor(world, biome, floorPositions, random, surfaceBlock);
-        placeCeil(world, biome, ceilPositions, random);
+        placeFloor(world, chunkGenerator, biome, floorPositions, random, surfaceBlock);
+        placeCeil(world, chunkGenerator, biome, ceilPositions, random);
         BlockFixer.fixBlocks(world, min, max);
         return true;
     }
@@ -113,6 +115,7 @@ public class CaveChunkPopulatorFeature extends Feature<CaveChunkPopulatorFeature
 
     protected void placeFloor(
             WorldGenLevel world,
+            ChunkGenerator generator,
             EndCaveBiome biome,
             Set<BlockPos> floorPositions,
             RandomSource random,
@@ -122,9 +125,9 @@ public class CaveChunkPopulatorFeature extends Feature<CaveChunkPopulatorFeature
         floorPositions.forEach((pos) -> {
             BlocksHelper.setWithoutUpdate(world, pos, surfaceBlock);
             if (density > 0 && random.nextFloat() <= density) {
-                Feature<?> feature = biome.getFloorFeature(random);
+                ConfiguredFeature<?, ?> feature = biome.getFloorFeature(random).value();
                 if (feature != null) {
-                    feature.place(new FeaturePlaceContext<>(Optional.empty(), world, null, random, pos.above(), null));
+                    feature.place(world, generator, random, pos.above());
                 }
             }
         });
@@ -132,6 +135,7 @@ public class CaveChunkPopulatorFeature extends Feature<CaveChunkPopulatorFeature
 
     protected void placeCeil(
             WorldGenLevel world,
+            ChunkGenerator generator,
             EndCaveBiome biome,
             Set<BlockPos> ceilPositions,
             RandomSource random
@@ -143,9 +147,9 @@ public class CaveChunkPopulatorFeature extends Feature<CaveChunkPopulatorFeature
                 BlocksHelper.setWithoutUpdate(world, pos, ceilBlock);
             }
             if (density > 0 && random.nextFloat() <= density) {
-                Feature<?> feature = biome.getCeilFeature(random);
+                ConfiguredFeature<?, ?> feature = biome.getCeilFeature(random).value();
                 if (feature != null) {
-                    feature.place(new FeaturePlaceContext<>(Optional.empty(), world, null, random, pos.below(), null));
+                    feature.place(world, generator, random, pos.below());
                 }
             }
         });

@@ -1,6 +1,5 @@
 package org.betterx.betterend.world.features.terrain;
 
-import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
 import org.betterx.bclib.sdf.SDF;
 import org.betterx.bclib.sdf.operator.SDFRotation;
 import org.betterx.bclib.sdf.operator.SDFTranslate;
@@ -14,32 +13,27 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class IceStarFeature extends DefaultFeature {
-    private final float minSize;
-    private final float maxSize;
-    private final int minCount;
-    private final int maxCount;
+public class IceStarFeature extends Feature<IceStarFeatureConfig> {
 
-    public IceStarFeature(float minSize, float maxSize, int minCount, int maxCount) {
-        this.minSize = minSize;
-        this.maxSize = maxSize;
-        this.minCount = minCount;
-        this.maxCount = maxCount;
+
+    public IceStarFeature() {
+        super(IceStarFeatureConfig.CODEC);
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig) {
+    public boolean place(FeaturePlaceContext<IceStarFeatureConfig> featureConfig) {
         final RandomSource random = featureConfig.random();
         BlockPos pos = featureConfig.origin();
         final WorldGenLevel world = featureConfig.level();
-        float size = MHelper.randRange(minSize, maxSize, random);
-        int count = MHelper.randRange(minCount, maxCount, random);
+        IceStarFeatureConfig cfg = featureConfig.config();
+        float size = MHelper.randRange(cfg.minSize, cfg.maxSize, random);
+        int count = MHelper.randRange(cfg.minCount, cfg.maxCount, random);
         List<Vector3f> points = getFibonacciPoints(count);
         SDF sdf = null;
         SDF spike = new SDFCappedCone().setRadius1(3 + (size - 5) * 0.2F)

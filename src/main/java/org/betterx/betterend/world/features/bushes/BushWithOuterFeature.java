@@ -20,29 +20,30 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.material.Material;
 
 import java.util.function.Function;
 
-public class BushWithOuterFeature extends DefaultFeature {
+public class BushWithOuterFeature extends Feature<BushWithOuterFeatureConfig> {
     private static final Direction[] DIRECTIONS = Direction.values();
     private static final Function<BlockState, Boolean> REPLACE;
-    private final Block outer_leaves;
-    private final Block leaves;
-    private final Block stem;
 
-    public BushWithOuterFeature(Block leaves, Block outer_leaves, Block stem) {
-        this.outer_leaves = outer_leaves;
-        this.leaves = leaves;
-        this.stem = stem;
+
+    public BushWithOuterFeature() {
+        super(BushWithOuterFeatureConfig.CODEC);
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<NoneFeatureConfiguration> featureConfig) {
+    public boolean place(FeaturePlaceContext<BushWithOuterFeatureConfig> featureConfig) {
         final RandomSource random = featureConfig.random();
         final BlockPos pos = featureConfig.origin();
+        BushWithOuterFeatureConfig cfg = featureConfig.config();
+        BlockState outer_leaves = cfg.outer_leaves.getState(random, pos);
+        Block leaves = cfg.leaves.getState(random, pos).getBlock();
+        BlockState stem = cfg.stem.getState(random, pos);
+
         final WorldGenLevel world = featureConfig.level();
         if (!world.getBlockState(pos.below()).is(CommonBlockTags.END_STONES) && !world.getBlockState(pos.above())
                                                                                       .is(CommonBlockTags.END_STONES))
@@ -50,14 +51,14 @@ public class BushWithOuterFeature extends DefaultFeature {
 
         float radius = MHelper.randRange(1.8F, 3.5F, random);
         OpenSimplexNoise noise = new OpenSimplexNoise(random.nextInt());
-        SDF sphere = new SDFSphere().setRadius(radius).setBlock(this.leaves);
+        SDF sphere = new SDFSphere().setRadius(radius).setBlock(leaves);
         sphere = new SDFScale3D().setScale(1, 0.5F, 1).setSource(sphere);
-        sphere = new SDFDisplacement().setFunction((vec) -> {
-            return (float) noise.eval(vec.x() * 0.2, vec.y() * 0.2, vec.z() * 0.2) * 3;
-        }).setSource(sphere);
-        sphere = new SDFDisplacement().setFunction((vec) -> {
-            return MHelper.randRange(-2F, 2F, random);
-        }).setSource(sphere);
+        sphere = new SDFDisplacement().setFunction((vec) -> (float) noise.eval(
+                vec.x() * 0.2,
+                vec.y() * 0.2,
+                vec.z() * 0.2
+        ) * 3).setSource(sphere);
+        sphere = new SDFDisplacement().setFunction((vec) -> MHelper.randRange(-2F, 2F, random)).setSource(sphere);
         sphere = new SDFSubtraction().setSourceA(sphere)
                                      .setSourceB(new SDFTranslate().setTranslate(0, -radius, 0).setSource(sphere));
         sphere.setReplaceFunction(REPLACE);
@@ -67,7 +68,7 @@ public class BushWithOuterFeature extends DefaultFeature {
                 if (distance < 7) {
                     return info.getState().setValue(LeavesBlock.DISTANCE, distance);
                 } else {
-                    return AIR;
+                    return DefaultFeature.AIR;
                 }
             }
             return info.getState();
@@ -78,7 +79,7 @@ public class BushWithOuterFeature extends DefaultFeature {
                     if (info.getState(dir).isAir()) {
                         info.setBlockPos(
                                 info.getPos().relative(dir),
-                                outer_leaves.defaultBlockState().setValue(BlockStateProperties.FACING, dir)
+                                outer_leaves.setValue(BlockStateProperties.FACING, dir)
                         );
                     }
                 }

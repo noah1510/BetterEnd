@@ -19,16 +19,16 @@ public class LushAuroraCaveBiome extends EndCaveBiome.Config {
         public Biome(ResourceLocation biomeID, net.minecraft.world.level.biome.Biome biome, BCLBiomeSettings settings) {
             super(biomeID, biome, settings);
 
-            this.addFloorFeature(EndFeatures.BIG_AURORA_CRYSTAL, 1);
-            this.addFloorFeature(EndFeatures.CAVE_BUSH, 5);
-            this.addFloorFeature(EndFeatures.CAVE_GRASS, 40);
-            this.addFloorFeature(EndFeatures.END_STONE_STALAGMITE_CAVEMOSS, 5);
+            this.addFloorFeature(EndFeatures.BIG_AURORA_CRYSTAL.configuredFeature, 1);
+            this.addFloorFeature(EndFeatures.CAVE_BUSH.configuredFeature, 5);
+            this.addFloorFeature(EndFeatures.CAVE_GRASS.configuredFeature, 40);
+            this.addFloorFeature(EndFeatures.END_STONE_STALAGMITE_CAVEMOSS.configuredFeature, 5);
 
-            this.addCeilFeature(EndFeatures.CAVE_BUSH, 1);
-            this.addCeilFeature(EndFeatures.CAVE_PUMPKIN, 1);
-            this.addCeilFeature(EndFeatures.RUBINEA.getFeature(), 3);
-            this.addCeilFeature(EndFeatures.MAGNULA.getFeature(), 1);
-            this.addCeilFeature(EndFeatures.END_STONE_STALACTITE_CAVEMOSS, 10);
+            this.addCeilFeature(EndFeatures.CAVE_BUSH.configuredFeature, 1);
+            this.addCeilFeature(EndFeatures.CAVE_PUMPKIN.configuredFeature, 1);
+            this.addCeilFeature(EndFeatures.RUBINEA.configuredFeature, 3);
+            this.addCeilFeature(EndFeatures.MAGNULA.configuredFeature, 1);
+            this.addCeilFeature(EndFeatures.END_STONE_STALACTITE_CAVEMOSS.configuredFeature, 10);
         }
 
         @Override

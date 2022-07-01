@@ -14,10 +14,10 @@ public class EmptySmaragdantCaveBiome extends EndCaveBiome.Config {
         public Biome(ResourceLocation biomeID, net.minecraft.world.level.biome.Biome biome, BCLBiomeSettings settings) {
             super(biomeID, biome, settings);
 
-            this.addFloorFeature(EndFeatures.SMARAGDANT_CRYSTAL, 1);
-            this.addFloorFeature(EndFeatures.SMARAGDANT_CRYSTAL_SHARD, 20);
+            this.addFloorFeature(EndFeatures.SMARAGDANT_CRYSTAL.configuredFeature, 1);
+            this.addFloorFeature(EndFeatures.SMARAGDANT_CRYSTAL_SHARD.configuredFeature, 20);
 
-            this.addCeilFeature(EndFeatures.END_STONE_STALACTITE, 1);
+            this.addCeilFeature(EndFeatures.END_STONE_STALACTITE.configuredFeature, 1);
         }
 
         @Override
