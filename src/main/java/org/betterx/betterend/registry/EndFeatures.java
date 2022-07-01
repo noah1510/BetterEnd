@@ -36,7 +36,6 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
 import net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider;
-import net.minecraft.world.level.levelgen.placement.CountPlacement;
 
 import com.google.common.collect.Lists;
 import com.google.gson.JsonArray;
@@ -1085,7 +1084,7 @@ public class EndFeatures {
                                 .configuration(config)
                                 .buildAndRegister()
                                 .place()
-                                .countMax(density)
+                                .onEveryLayerMax(density)
                                 .onlyInBiome()
                                 .buildAndRegister();
     }
@@ -1195,7 +1194,7 @@ public class EndFeatures {
                 .buildAndRegister()
                 .place()
                 .decoration(GenerationStep.Decoration.UNDERGROUND_ORES)
-                .modifier(CountPlacement.of(count))
+                .count(count)
                 .buildAndRegister();
     }
 
