@@ -1,7 +1,7 @@
 package org.betterx.betterend.integration.byg.features;
 
-import org.betterx.bclib.api.v2.levelgen.features.BCLCommonFeatures;
-import org.betterx.bclib.api.v2.levelgen.features.BCLFeature;
+import org.betterx.bclib.api.v3.levelgen.features.BCLFeature;
+import org.betterx.bclib.api.v3.levelgen.features.BCLFeatureBuilder;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.integration.Integrations;
 import org.betterx.betterend.integration.byg.BYGBlocks;
@@ -10,6 +10,7 @@ import org.betterx.betterend.world.features.VineFeature;
 import org.betterx.betterend.world.features.WallPlantFeature;
 import org.betterx.betterend.world.features.WallPlantOnLogFeature;
 
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
@@ -61,6 +62,15 @@ public class BYGFeatures {
     }
 
     private static BCLFeature redisterVegetation(String name, Feature<NoneFeatureConfiguration> feature, int density) {
-        return BCLCommonFeatures.makeVegetationFeature(BetterEnd.makeID(name), feature, density);
+        ResourceLocation id = BetterEnd.makeID(name);
+        return BCLFeatureBuilder
+                .start(id, feature)
+                .buildAndRegister()
+                .place()
+                .countMax(density)
+                .squarePlacement()
+                .heightmap()
+                .onlyInBiome()
+                .buildAndRegister();
     }
 }

@@ -88,7 +88,7 @@ public class FloatingSpireFeature extends SpireFeature {
         support.forEach((bpos) -> {
             if (BiomeAPI.getFromBiome(world.getBiome(bpos)) == EndBiomes.BLOSSOMING_SPIRES) {
                 EndFeatures.TENANEA_BUSH.getFeature()
-                                        .place(new FeaturePlaceContext<>(
+                                        .place(new FeaturePlaceContext<NoneFeatureConfiguration>(
                                                 Optional.empty(),
                                                 world,
                                                 chunkGenerator,

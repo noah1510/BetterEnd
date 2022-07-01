@@ -33,7 +33,7 @@ public class SmallAmaranitaBlock extends EndPlantBlock {
         BlockPos bigPos = growBig(world, pos);
         if (bigPos != null) {
             if (EndFeatures.GIGANTIC_AMARANITA.getFeature()
-                                              .place(new FeaturePlaceContext<>(
+                                              .place(new FeaturePlaceContext<net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration>(
                                                       Optional.empty(),
                                                       world,
                                                       null,
@@ -48,14 +48,15 @@ public class SmallAmaranitaBlock extends EndPlantBlock {
             }
             return;
         }
-        EndFeatures.LARGE_AMARANITA.getFeature().place(new FeaturePlaceContext<>(
-                Optional.empty(),
-                world,
-                null,
-                random,
-                pos,
-                null
-        ));
+        EndFeatures.LARGE_AMARANITA.getFeature()
+                                   .place(new FeaturePlaceContext<net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration>(
+                                           Optional.empty(),
+                                           world,
+                                           null,
+                                           random,
+                                           pos,
+                                           null
+                                   ));
     }
 
     @Override

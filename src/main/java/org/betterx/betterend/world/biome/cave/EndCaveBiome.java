@@ -4,8 +4,8 @@ import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder.BiomeSupplier;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeSettings;
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
-import org.betterx.bclib.api.v2.levelgen.features.BCLCommonFeatures;
-import org.betterx.bclib.api.v2.levelgen.features.BCLFeature;
+import org.betterx.bclib.api.v3.levelgen.features.BCLFeature;
+import org.betterx.bclib.api.v3.levelgen.features.BCLFeatureBuilder;
 import org.betterx.bclib.util.WeightedList;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.registry.EndSounds;
@@ -28,11 +28,17 @@ public class EndCaveBiome extends EndBiome {
 
         @Override
         protected void addCustomBuildData(BCLBiomeBuilder builder) {
-            BCLFeature feature = BCLCommonFeatures.makeChunkFeature(
-                    BetterEnd.makeID(ID.getPath() + "_cave_populator"),
-                    GenerationStep.Decoration.RAW_GENERATION,
-                    new CaveChunkPopulatorFeature(() -> (EndCaveBiome) BiomeAPI.getBiome(ID))
-            );
+            BCLFeature feature = BCLFeatureBuilder
+                    .start(
+                            BetterEnd.makeID(ID.getPath() + "_cave_populator"),
+                            new CaveChunkPopulatorFeature(() -> (EndCaveBiome) BiomeAPI.getBiome(ID))
+                    )
+                    .buildAndRegister()
+                    .place()
+                    .decoration(GenerationStep.Decoration.RAW_GENERATION)
+                    .count(1)
+                    .onlyInBiome()
+                    .buildAndRegister();
 
             builder.feature(feature)
                    .music(EndSounds.MUSIC_CAVES)

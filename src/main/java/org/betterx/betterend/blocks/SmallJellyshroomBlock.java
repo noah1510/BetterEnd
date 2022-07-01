@@ -105,14 +105,15 @@ public class SmallJellyshroomBlock extends BaseAttachedBlock implements RenderLa
     @Override
     public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
         BlocksHelper.setWithUpdate(world, pos, Blocks.AIR);
-        EndFeatures.JELLYSHROOM.getFeature().place(new FeaturePlaceContext<>(
-                Optional.empty(),
-                world,
-                null,
-                random,
-                pos,
-                null
-        ));
+        EndFeatures.JELLYSHROOM.getFeature()
+                               .place(new FeaturePlaceContext<net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration>(
+                                       Optional.empty(),
+                                       world,
+                                       null,
+                                       random,
+                                       pos,
+                                       null
+                               ));
     }
 
     @Override

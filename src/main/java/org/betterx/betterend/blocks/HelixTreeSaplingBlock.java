@@ -3,15 +3,17 @@ package org.betterx.betterend.blocks;
 import org.betterx.betterend.blocks.basis.PottableFeatureSapling;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndFeatures;
+import org.betterx.betterend.world.features.trees.HelixTreeFeature;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-public class HelixTreeSaplingBlock extends PottableFeatureSapling {
+public class HelixTreeSaplingBlock extends PottableFeatureSapling<HelixTreeFeature, NoneFeatureConfiguration> {
     public HelixTreeSaplingBlock() {
-        super((state) -> EndFeatures.HELIX_TREE);
+        super((state) -> EndFeatures.HELIX_TREE.configuredFeature);
     }
 
     @Override

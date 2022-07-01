@@ -3,15 +3,17 @@ package org.betterx.betterend.blocks;
 import org.betterx.betterend.blocks.basis.PottableFeatureSapling;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndFeatures;
+import org.betterx.betterend.world.features.trees.TenaneaFeature;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-public class TenaneaSaplingBlock extends PottableFeatureSapling {
+public class TenaneaSaplingBlock extends PottableFeatureSapling<TenaneaFeature, NoneFeatureConfiguration> {
     public TenaneaSaplingBlock() {
-        super((state) -> EndFeatures.TENANEA);
+        super((state) -> EndFeatures.TENANEA.configuredFeature);
     }
 
     @Override

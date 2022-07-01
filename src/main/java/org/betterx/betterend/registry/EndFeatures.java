@@ -3,10 +3,9 @@ package org.betterx.betterend.registry;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
-import org.betterx.bclib.api.v2.levelgen.features.BCLCommonFeatures;
-import org.betterx.bclib.api.v2.levelgen.features.BCLFeature;
-import org.betterx.bclib.api.v2.levelgen.features.BCLFeatureBuilder;
 import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
+import org.betterx.bclib.api.v3.levelgen.features.BCLFeature;
+import org.betterx.bclib.api.v3.levelgen.features.BCLFeatureBuilder;
 import org.betterx.bclib.util.JsonFactory;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.complexmaterials.StoneMaterial;
@@ -29,11 +28,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
-import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.placement.CountPlacement;
-import net.minecraft.world.level.levelgen.placement.HeightRangePlacement;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 import com.google.common.collect.Lists;
@@ -50,26 +47,54 @@ public class EndFeatures {
             new MossyGlowshroomFeature(),
             2
     );
-    public static final BCLFeature PYTHADENDRON_TREE = registerVegetation(
+    public static final BCLFeature<PythadendronTreeFeature, NoneFeatureConfiguration> PYTHADENDRON_TREE = registerVegetation(
             "pythadendron_tree",
             new PythadendronTreeFeature(),
             1
     );
-    public static final BCLFeature LACUGROVE = registerVegetation("lacugrove", new LacugroveFeature(), 4);
-    public static final BCLFeature DRAGON_TREE = registerVegetation("dragon_tree", new DragonTreeFeature(), 2);
-    public static final BCLFeature TENANEA = registerVegetation("tenanea", new TenaneaFeature(), 2);
-    public static final BCLFeature HELIX_TREE = registerVegetation("helix_tree", new HelixTreeFeature(), 1);
-    public static final BCLFeature UMBRELLA_TREE = registerVegetation("umbrella_tree", new UmbrellaTreeFeature(), 2);
-    public static final BCLFeature JELLYSHROOM = registerVegetation("jellyshroom", new JellyshroomFeature(), 2);
-    public static final BCLFeature GIGANTIC_AMARANITA = registerVegetation(
+    public static final BCLFeature<LacugroveFeature, NoneFeatureConfiguration> LACUGROVE = registerVegetation(
+            "lacugrove",
+            new LacugroveFeature(),
+            4
+    );
+    public static final BCLFeature<DragonTreeFeature, NoneFeatureConfiguration> DRAGON_TREE = registerVegetation(
+            "dragon_tree",
+            new DragonTreeFeature(),
+            2
+    );
+    public static final BCLFeature<TenaneaFeature, NoneFeatureConfiguration> TENANEA = registerVegetation(
+            "tenanea",
+            new TenaneaFeature(),
+            2
+    );
+    public static final BCLFeature<HelixTreeFeature, NoneFeatureConfiguration> HELIX_TREE = registerVegetation(
+            "helix_tree",
+            new HelixTreeFeature(),
+            1
+    );
+    public static final BCLFeature<UmbrellaTreeFeature, NoneFeatureConfiguration> UMBRELLA_TREE = registerVegetation(
+            "umbrella_tree",
+            new UmbrellaTreeFeature(),
+            2
+    );
+    public static final BCLFeature<JellyshroomFeature, NoneFeatureConfiguration> JELLYSHROOM = registerVegetation(
+            "jellyshroom",
+            new JellyshroomFeature(),
+            2
+    );
+    public static final BCLFeature<GiganticAmaranitaFeature, NoneFeatureConfiguration> GIGANTIC_AMARANITA = registerVegetation(
             "gigantic_amaranita",
             new GiganticAmaranitaFeature(),
             1
     );
-    public static final BCLFeature LUCERNIA = registerVegetation("lucernia", new LucerniaFeature(), 3);
+    public static final BCLFeature<LucerniaFeature, NoneFeatureConfiguration> LUCERNIA = registerVegetation(
+            "lucernia",
+            new LucerniaFeature(),
+            3
+    );
 
     // Bushes //
-    public static final BCLFeature PYTHADENDRON_BUSH = registerVegetation(
+    public static final BCLFeature<BushFeature, NoneFeatureConfiguration> PYTHADENDRON_BUSH = registerVegetation(
             "pythadendron_bush",
             new BushFeature(
                     EndBlocks.PYTHADENDRON_LEAVES,
@@ -77,7 +102,7 @@ public class EndFeatures {
             ),
             3
     );
-    public static final BCLFeature DRAGON_TREE_BUSH = registerVegetation(
+    public static final BCLFeature<BushFeature, NoneFeatureConfiguration> DRAGON_TREE_BUSH = registerVegetation(
             "dragon_tree_bush",
             new BushFeature(
                     EndBlocks.DRAGON_TREE_LEAVES,
@@ -85,14 +110,22 @@ public class EndFeatures {
             ),
             5
     );
-    public static final BCLFeature TENANEA_BUSH = registerVegetation("tenanea_bush", new TenaneaBushFeature(), 6);
-    public static final BCLFeature LUMECORN = registerVegetation("lumecorn", new Lumecorn(), 5);
-    public static final BCLFeature LARGE_AMARANITA = registerVegetation(
+    public static final BCLFeature<TenaneaBushFeature, NoneFeatureConfiguration> TENANEA_BUSH = registerVegetation(
+            "tenanea_bush",
+            new TenaneaBushFeature(),
+            6
+    );
+    public static final BCLFeature<Lumecorn, NoneFeatureConfiguration> LUMECORN = registerVegetation(
+            "lumecorn",
+            new Lumecorn(),
+            5
+    );
+    public static final BCLFeature<LargeAmaranitaFeature, NoneFeatureConfiguration> LARGE_AMARANITA = registerVegetation(
             "large_amaranita",
             new LargeAmaranitaFeature(),
             5
     );
-    public static final BCLFeature LUCERNIA_BUSH = registerVegetation(
+    public static final BCLFeature<BushWithOuterFeature, NoneFeatureConfiguration> LUCERNIA_BUSH = registerVegetation(
             "lucernia_bush",
             new BushWithOuterFeature(
                     EndBlocks.LUCERNIA_LEAVES,
@@ -101,7 +134,7 @@ public class EndFeatures {
             ),
             10
     );
-    public static final BCLFeature LUCERNIA_BUSH_RARE = registerVegetation(
+    public static final BCLFeature<BushWithOuterFeature, NoneFeatureConfiguration> LUCERNIA_BUSH_RARE = registerVegetation(
             "lucernia_bush_rare",
             new BushWithOuterFeature(
                     EndBlocks.LUCERNIA_LEAVES,
@@ -110,10 +143,14 @@ public class EndFeatures {
             ),
             1
     );
-    public static final BCLFeature NEON_CACTUS = registerVegetation("neon_cactus", new NeonCactusFeature(), 2);
+    public static final BCLFeature<NeonCactusFeature, NoneFeatureConfiguration> NEON_CACTUS = registerVegetation(
+            "neon_cactus",
+            new NeonCactusFeature(),
+            2
+    );
 
     // Plants //
-    public static final BCLFeature UMBRELLA_MOSS = registerVegetation(
+    public static final BCLFeature<DoublePlantFeature, NoneFeatureConfiguration> UMBRELLA_MOSS = registerVegetation(
             "umbrella_moss",
             new DoublePlantFeature(
                     EndBlocks.UMBRELLA_MOSS,
@@ -122,7 +159,7 @@ public class EndFeatures {
             ),
             3
     );
-    public static final BCLFeature CREEPING_MOSS = registerVegetation(
+    public static final BCLFeature<SinglePlantFeature, NoneFeatureConfiguration> CREEPING_MOSS = registerVegetation(
             "creeping_moss",
             new SinglePlantFeature(
                     EndBlocks.CREEPING_MOSS,
@@ -130,13 +167,17 @@ public class EndFeatures {
             ),
             3
     );
-    public static final BCLFeature BLUE_VINE = registerVegetation("blue_vine", new BlueVineFeature(), 1);
-    public static final BCLFeature CHORUS_GRASS = registerVegetation(
+    public static final BCLFeature<BlueVineFeature, NoneFeatureConfiguration> BLUE_VINE = registerVegetation(
+            "blue_vine",
+            new BlueVineFeature(),
+            1
+    );
+    public static final BCLFeature<SinglePlantFeature, NoneFeatureConfiguration> CHORUS_GRASS = registerVegetation(
             "chorus_grass",
             new SinglePlantFeature(EndBlocks.CHORUS_GRASS, 4),
             3
     );
-    public static final BCLFeature CRYSTAL_GRASS = registerVegetation(
+    public static final BCLFeature<SinglePlantFeature, NoneFeatureConfiguration> CRYSTAL_GRASS = registerVegetation(
             "crystal_grass",
             new SinglePlantFeature(
                     EndBlocks.CRYSTAL_GRASS,
@@ -145,7 +186,7 @@ public class EndFeatures {
             ),
             5
     );
-    public static final BCLFeature SHADOW_PLANT = registerVegetation(
+    public static final BCLFeature<SinglePlantFeature, NoneFeatureConfiguration> SHADOW_PLANT = registerVegetation(
             "shadow_plant",
             new SinglePlantFeature(EndBlocks.SHADOW_PLANT, 6),
             5
@@ -567,6 +608,8 @@ public class EndFeatures {
                     BetterEnd.makeID("overworld_island"),
                     new BiomeIslandFeature()
             )
+            .buildAndRegister()
+            .place()
             .decoration(Decoration.RAW_GENERATION)
             .buildAndRegister();
     public static final BCLFeature FLAMAEA = registerVegetation(
@@ -585,12 +628,18 @@ public class EndFeatures {
     public static final BCLFeature FLOATING_SPIRE = registerRawGen("floating_spire", new FloatingSpireFeature(), 8);
     public static final BCLFeature GEYSER = registerRawGen("geyser", new GeyserFeature(), 8);
     public static final BCLFeature SULPHURIC_LAKE = registerLake("sulphuric_lake", new SulphuricLakeFeature(), 8);
-    public static final BCLFeature SULPHURIC_CAVE = BCLCommonFeatures.makeCountFeature(
-            BetterEnd.makeID("sulphuric_cave"),
-            Decoration.RAW_GENERATION,
-            new SulphuricCaveFeature(),
-            2
-    );
+    public static final BCLFeature SULPHURIC_CAVE = BCLFeatureBuilder
+            .start(
+                    BetterEnd.makeID("sulphuric_cave"),
+                    new SulphuricCaveFeature()
+            )
+            .buildAndRegister()
+            .place()
+            .decoration(Decoration.RAW_GENERATION)
+            .count(2)
+            .squarePlacement()
+            .onlyInBiome()
+            .buildAndRegister();
     public static final BCLFeature ICE_STAR = registerRawGen("ice_star", new IceStarFeature(5, 15, 10, 25), 15);
     public static final BCLFeature ICE_STAR_SMALL = registerRawGen(
             "ice_star_small",
@@ -610,11 +659,16 @@ public class EndFeatures {
             10
     );
     public static final BCLFeature FALLEN_PILLAR = registerChanced("fallen_pillar", new FallenPillarFeature(), 20);
-    public static final BCLFeature TUNEL_CAVE = BCLCommonFeatures.makeChunkFeature(
-            BetterEnd.makeID("tunel_cave"),
-            Decoration.RAW_GENERATION,
-            new TunelCaveFeature()
-    );
+    public static final BCLFeature TUNEL_CAVE = BCLFeatureBuilder
+            .start(
+                    BetterEnd.makeID("tunel_cave"),
+                    new TunelCaveFeature()
+            ).buildAndRegister()
+            .place()
+            .decoration(Decoration.RAW_GENERATION)
+            .count(1)
+            .onlyInBiome()
+            .buildAndRegister();
     public static final BCLFeature UMBRALITH_ARCH = registerChanced("umbralith_arch", new ArchFeature(
             EndBlocks.UMBRALITH.stone,
             pos -> UmbraValleyBiome.getSurface(pos.getX(), pos.getZ()).defaultBlockState()
@@ -695,46 +749,73 @@ public class EndFeatures {
             int density
     ) {
         ResourceLocation id = BetterEnd.makeID(name);
-        return BCLFeatureBuilder.start(id, feature).countLayersMax(density).onlyInBiome().buildAndRegister();
+        return BCLFeatureBuilder.start(id, feature)
+                                .buildAndRegister()
+                                .place()
+                                .countMax(density)
+                                .onlyInBiome()
+                                .buildAndRegister();
     }
 
     private static BCLFeature registerRawGen(String name, Feature<NoneFeatureConfiguration> feature, int chance) {
-        return BCLCommonFeatures.makeChancedFeature(BetterEnd.makeID(name), Decoration.RAW_GENERATION, feature, chance);
+        return BCLFeatureBuilder
+                .start(BetterEnd.makeID(name), feature)
+                .buildAndRegister()
+                .place()
+                .decoration(Decoration.RAW_GENERATION)
+                .onceEvery(chance)
+                .squarePlacement()
+                .onlyInBiome()
+                .buildAndRegister();
     }
 
     private static BCLFeature registerLake(String name, Feature<NoneFeatureConfiguration> feature, int chance) {
-        return BCLCommonFeatures.makeChancedFeature(BetterEnd.makeID(name), Decoration.LAKES, feature, chance);
+        return BCLFeatureBuilder
+                .start(BetterEnd.makeID(name), feature)
+                .buildAndRegister()
+                .place()
+                .decoration(Decoration.LAKES)
+                .onceEvery(chance)
+                .squarePlacement()
+                .onlyInBiome()
+                .buildAndRegister();
     }
 
     private static BCLFeature registerChanced(String name, Feature<NoneFeatureConfiguration> feature, int chance) {
-        return BCLCommonFeatures.makeChancedFeature(
-                BetterEnd.makeID(name),
-                Decoration.SURFACE_STRUCTURES,
-                feature,
-                chance
-        );
+        return
+                BCLFeatureBuilder
+                        .start(BetterEnd.makeID(name), feature)
+                        .buildAndRegister()
+                        .place()
+                        .decoration(Decoration.SURFACE_STRUCTURES)
+                        .onceEvery(chance)
+                        .squarePlacement()
+                        .onlyInBiome()
+                        .buildAndRegister();
     }
 
     private static BCLFeature registerOre(String name, Block blockOre, int veins, int veinSize) {
-        return BCLCommonFeatures.makeOreFeature(
-                BetterEnd.makeID(name),
-                blockOre,
-                Blocks.END_STONE,
-                veins,
-                veinSize,
-                0,
-                HeightRangePlacement.uniform(
-                        VerticalAnchor.bottom(),
-                        VerticalAnchor.absolute(128)
-                ),
-                false
-        );
+        return BCLFeatureBuilder
+                .startOre(BetterEnd.makeID(name))
+                .add(Blocks.END_STONE, blockOre)
+                .veinSize(veinSize)
+                .discardChanceOnAirExposure(0)
+                .buildAndRegister()
+                .place()
+                .decoration(Decoration.UNDERGROUND_ORES)
+                .count(veins)
+                .randomHeight8FromFloorCeil()
+                .squarePlacement()
+                .onlyInBiome()
+                .buildAndRegister();
     }
 
     private static BCLFeature registerLayer(String name, Block block, float radius, int minY, int maxY, int count) {
         OreLayerFeature layer = new OreLayerFeature(block.defaultBlockState(), radius, minY, maxY);
         return BCLFeatureBuilder
                 .start(BetterEnd.makeID(name), layer)
+                .buildAndRegister()
+                .place()
                 .decoration(GenerationStep.Decoration.UNDERGROUND_ORES)
                 .modifier(CountPlacement.of(count))
                 .buildAndRegister();
@@ -784,12 +865,15 @@ public class EndFeatures {
 
         if (BuiltinRegistries.PLACED_FEATURE.containsKey(id)) {
             PlacedFeature placed = BuiltinRegistries.PLACED_FEATURE.get(id);
-            Feature<?> feature = Registry.FEATURE.get(id);
+            Feature<NoneFeatureConfiguration> feature = (Feature<NoneFeatureConfiguration>) Registry.FEATURE.get(id);
             return BCLFeatureBuilder
                     .start(id, feature)
+                    .configuration((NoneFeatureConfiguration) placed.feature().value().config())
+                    .buildAndRegister()
+                    .place()
                     .decoration(Decoration.SURFACE_STRUCTURES)
                     .modifier(placed.placement())
-                    .buildAndRegister(placed.feature().value().config());
+                    .buildAndRegister();
         }
 
         String path = "/data/" + ns + "/structures/biome/" + nm + "/";
@@ -809,12 +893,17 @@ public class EndFeatures {
                     list.add(new ListFeature.StructureInfo(structure, offsetY, terrainMerge));
                 });
                 if (!list.isEmpty()) {
-                    return BCLCommonFeatures.makeChancedFeature(
-                            new ResourceLocation(ns, nm + "_structures"),
-                            Decoration.SURFACE_STRUCTURES,
-                            new BuildingListFeature(list, Blocks.END_STONE.defaultBlockState()),
-                            10
-                    );
+                    return BCLFeatureBuilder.start(
+                                                    new ResourceLocation(ns, nm + "_structures"),
+                                                    new BuildingListFeature(list, Blocks.END_STONE.defaultBlockState())
+                                            )
+                                            .buildAndRegister()
+                                            .place()
+                                            .decoration(Decoration.SURFACE_STRUCTURES)
+                                            .onceEvery(10)
+                                            .squarePlacement()
+                                            .onlyInBiome()
+                                            .buildAndRegister();
                 }
             }
         }
