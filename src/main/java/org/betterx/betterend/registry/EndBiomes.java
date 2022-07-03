@@ -22,7 +22,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class EndBiomes {
-    public static final BiomeAPI.BiomeType END_CAVE = new BiomeAPI.BiomeType("END_CAVE", BiomeAPI.BiomeType.END);
+    public static final BiomeAPI.BiomeType END_CAVE = new BiomeAPI.BiomeType("END_CAVE", BiomeAPI.BiomeType.END_IGNORE);
     public static final List<EndBiome> ALL_BE_BIOMES = new LinkedList<>();
     public static BiomePicker CAVE_BIOMES = null;
     private static HexBiomeMap caveBiomeMap;
