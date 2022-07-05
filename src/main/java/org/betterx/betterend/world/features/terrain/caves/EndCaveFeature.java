@@ -253,9 +253,12 @@ public abstract class EndCaveFeature extends DefaultFeature {
         for (int x = -2; x < 3; x++) {
             for (int z = -2; z < 3; z++) {
                 Holder<Biome> biome = world.getBiome(pos.offset(x << 4, 0, z << 4));
-                BCLBiome endBiome = BiomeAPI.getFromBiome(biome);
-                boolean hasCaves = endBiome.getCustomData("has_caves", true);
-                if (!hasCaves && BiomeAPI.wasRegisteredAsEndLandBiome(endBiome.getID())) {
+                BCLBiome bclBiome = BiomeAPI.getBiome(biome);
+                boolean hasCaves = true;
+                if (bclBiome instanceof EndBiome endBiome)
+                    hasCaves = endBiome.hasCaves();
+                
+                if (!hasCaves && BiomeAPI.wasRegisteredAsEndLandBiome(bclBiome.getID())) {
                     return true;
                 }
             }

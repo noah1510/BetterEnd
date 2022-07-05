@@ -89,7 +89,7 @@ public class EndSlimeEntity extends Slime {
             CompoundTag entityTag
     ) {
         SpawnGroupData data = super.finalizeSpawn(world, difficulty, spawnReason, entityData, entityTag);
-        BCLBiome biome = BiomeAPI.getFromBiome(world.getBiome(blockPosition()));
+        BCLBiome biome = BiomeAPI.getBiome(world.getBiome(blockPosition()));
         if (biome == EndBiomes.FOGGY_MUSHROOMLAND) {
             this.setMossy();
         } else if (biome == EndBiomes.MEGALAKE || biome == EndBiomes.MEGALAKE_GROVE) {
@@ -227,7 +227,7 @@ public class EndSlimeEntity extends Slime {
         if (!world.getBlockState(pos.below()).is(CommonBlockTags.END_STONES)) {
             return false;
         }
-        BCLBiome biome = BiomeAPI.getFromBiome(world.getBiome(pos));
+        BCLBiome biome = BiomeAPI.getBiome(world.getBiome(pos));
         if (biome == EndBiomes.CHORUS_FOREST || biome == EndBiomes.MEGALAKE) {
             return true;
         }

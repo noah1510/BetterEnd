@@ -259,7 +259,9 @@ public class TunelCaveFeature extends EndCaveFeature {
 
     protected boolean hasCavesInBiome(WorldGenLevel world, BlockPos pos) {
         Holder<Biome> biome = world.getBiome(pos);
-        BCLBiome endBiome = BiomeAPI.getFromBiome(biome);
-        return endBiome.getCustomData("has_caves", true);
+        BCLBiome bclBiome = BiomeAPI.getBiome(biome);
+        if (bclBiome instanceof EndBiome endBiome)
+            return endBiome.hasCaves();
+        return true;
     }
 }

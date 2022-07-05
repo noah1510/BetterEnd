@@ -23,6 +23,16 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.SurfaceRules;
 
 public class EndBiome extends BCLBiome implements SurfaceMaterialProvider {
+    private boolean hasCaves = true;
+
+    void setHasCaves(boolean v) {
+        this.hasCaves = v;
+    }
+
+    public boolean hasCaves() {
+        return hasCaves;
+    }
+
     public static class DefaultSurfaceMaterialProvider implements SurfaceMaterialProvider {
         public static final BlockState END_STONE = Blocks.END_STONE.defaultBlockState();
 
@@ -121,7 +131,7 @@ public class EndBiome extends BCLBiome implements SurfaceMaterialProvider {
 
 
         EndBiome biome = builder.build(biomeConfig.getSupplier());
-        biome.addCustomData("has_caves", biomeConfig.hasCaves());
+        biome.setHasCaves(biomeConfig.hasCaves());
         biome.setSurfaceMaterial(biomeConfig.surfaceMaterial());
 
         EndTags.addBiomeSurfaceToEndGroup(biome);

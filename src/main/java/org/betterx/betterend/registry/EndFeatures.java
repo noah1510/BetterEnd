@@ -1223,8 +1223,12 @@ public class EndFeatures {
                 BiomeAPI.addBiomeFeature(biome, feature);
             }
 
-            boolean hasCaves = bclbiome.getCustomData("has_caves", true) && !(bclbiome instanceof EndCaveBiome);
-            //TODO: 1.19 Test Cave generation
+
+            boolean hasCaves = !(bclbiome instanceof EndCaveBiome);
+            if (!(bclbiome instanceof EndCaveBiome) && bclbiome instanceof EndBiome endBiome) {
+                hasCaves = endBiome.hasCaves();
+            }
+
             if (hasCaves && !BiomeAPI.wasRegisteredAsEndVoidBiome(id) /*!BiomeAPI.END_VOID_BIOME_PICKER.containsImmutable(id)*/) {
                 if (Configs.BIOME_CONFIG.getBoolean(id, "hasCaves", true)) {
                     BiomeAPI.addBiomeFeature(biome, ROUND_CAVE);
