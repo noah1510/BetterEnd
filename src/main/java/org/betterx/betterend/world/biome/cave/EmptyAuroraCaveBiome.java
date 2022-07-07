@@ -13,7 +13,6 @@ public class EmptyAuroraCaveBiome extends EndCaveBiome.Config {
     public static class Biome extends EndCaveBiome {
         public Biome(ResourceLocation biomeID, net.minecraft.world.level.biome.Biome biome, BCLBiomeSettings settings) {
             super(biomeID, biome, settings);
-
             this.addFloorFeature(EndFeatures.BIG_AURORA_CRYSTAL.configuredFeature, 1);
 
             this.addCeilFeature(EndFeatures.END_STONE_STALACTITE.configuredFeature, 1);

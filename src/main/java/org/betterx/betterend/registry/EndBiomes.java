@@ -4,7 +4,9 @@ import org.betterx.bclib.api.v2.LifeCycleAPI;
 import org.betterx.bclib.api.v2.generator.BiomePicker;
 import org.betterx.bclib.api.v2.generator.map.hex.HexBiomeMap;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
+import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeRegistry;
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
+import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.config.Configs;
 import org.betterx.betterend.world.biome.EndBiome;
 import org.betterx.betterend.world.biome.air.BiomeIceStarfield;
@@ -60,6 +62,8 @@ public class EndBiomes {
     public static final EndCaveBiome JADE_CAVE = registerCaveBiome(new JadeCaveBiome());
 
     public static void register() {
+        BCLBiomeRegistry.registerBiomeCodec(BetterEnd.makeID("biome"), EndBiome.KEY_CODEC);
+        BCLBiomeRegistry.registerBiomeCodec(BetterEnd.makeID("cave_biome"), EndCaveBiome.KEY_CODEC);
         LifeCycleAPI.onLevelLoad(EndBiomes::onWorldLoad);
     }
 
@@ -162,4 +166,5 @@ public class EndBiomes {
     public static BiomePicker.ActualBiome getCaveBiome(int x, int z) {
         return caveBiomeMap.getBiome(x, 5, z);
     }
+
 }

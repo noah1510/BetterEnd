@@ -1,5 +1,6 @@
 package org.betterx.betterend.world.biome.cave;
 
+import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder.BiomeSupplier;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeSettings;
@@ -7,22 +8,74 @@ import org.betterx.bclib.api.v3.levelgen.features.BCLFeature;
 import org.betterx.bclib.api.v3.levelgen.features.BCLFeatureBuilder;
 import org.betterx.bclib.util.WeightedList;
 import org.betterx.betterend.BetterEnd;
+import org.betterx.betterend.registry.EndBiomes;
 import org.betterx.betterend.registry.EndFeatures;
 import org.betterx.betterend.registry.EndSounds;
 import org.betterx.betterend.world.biome.EndBiome;
 import org.betterx.betterend.world.features.terrain.caves.CaveChunkPopulatorFeature;
 import org.betterx.betterend.world.features.terrain.caves.CaveChunkPopulatorFeatureConfig;
 
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.KeyDispatchDataCodec;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
+import java.util.List;
+import java.util.Optional;
+
 public class EndCaveBiome extends EndBiome {
+    public static final Codec<EndCaveBiome> CODEC = RecordCodecBuilder.create(instance ->
+            codecWithSettings(
+                    instance,
+                    Codec.BOOL.fieldOf("has_caves").orElse(true).forGetter(EndBiome::hasCaves)
+            ).apply(instance, EndCaveBiome::new)
+    );
+
+    public static final KeyDispatchDataCodec<EndCaveBiome> KEY_CODEC = KeyDispatchDataCodec.of(CODEC);
+
+    @Override
+    public KeyDispatchDataCodec<? extends BCLBiome> codec() {
+        return KEY_CODEC;
+    }
+
+    protected EndCaveBiome(
+            float terrainHeight,
+            float fogDensity,
+            float genChance,
+            int edgeSize,
+            boolean vertical,
+            Optional<ResourceLocation> edge,
+            ResourceLocation biomeID,
+            Optional<List<Climate.ParameterPoint>> parameterPoints,
+            Optional<ResourceLocation> biomeParent,
+            Optional<WeightedList<ResourceLocation>> subbiomes,
+            Optional<String> intendedType,
+            boolean hasCaves
+    ) {
+        super(
+                terrainHeight,
+                fogDensity,
+                genChance,
+                edgeSize,
+                vertical,
+                edge,
+                biomeID,
+                parameterPoints,
+                biomeParent,
+                subbiomes,
+                intendedType,
+                hasCaves
+        );
+    }
+
     public static abstract class Config extends EndBiome.Config {
         protected Config(String name) {
             super(name);
@@ -45,6 +98,7 @@ public class EndCaveBiome extends EndBiome {
                     .buildAndRegister();
 
             builder.feature(feature)
+                   .intendedType(EndBiomes.END_CAVE)
                    .music(EndSounds.MUSIC_CAVES)
                    .loop(EndSounds.AMBIENT_CAVES);
         }
