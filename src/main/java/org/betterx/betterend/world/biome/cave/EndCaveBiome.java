@@ -35,7 +35,13 @@ public class EndCaveBiome extends EndBiome {
     public static final Codec<EndCaveBiome> CODEC = RecordCodecBuilder.create(instance ->
             codecWithSettings(
                     instance,
-                    Codec.BOOL.fieldOf("has_caves").orElse(true).forGetter(EndBiome::hasCaves)
+                    Codec.BOOL.fieldOf("has_caves").orElse(true).forGetter(EndBiome::hasCaves),
+                    WeightedList.listCodec(ConfiguredFeature.CODEC, "configured_features", "configured_feature")
+                                .fieldOf("floor_features")
+                                .forGetter(o -> (WeightedList) ((EndCaveBiome) o).floorFeatures),
+                    WeightedList.listCodec(ConfiguredFeature.CODEC, "configured_features", "configured_feature")
+                                .fieldOf("ceil_features")
+                                .forGetter(o -> (WeightedList) ((EndCaveBiome) o).ceilFeatures)
             ).apply(instance, EndCaveBiome::new)
     );
 
@@ -58,7 +64,9 @@ public class EndCaveBiome extends EndBiome {
             Optional<ResourceLocation> biomeParent,
             Optional<WeightedList<ResourceLocation>> subbiomes,
             Optional<String> intendedType,
-            boolean hasCaves
+            boolean hasCaves,
+            WeightedList<Holder<ConfiguredFeature<?, ?>>> floorFeatures,
+            WeightedList<Holder<ConfiguredFeature<?, ?>>> ceilFeatures
     ) {
         super(
                 terrainHeight,
@@ -74,6 +82,8 @@ public class EndCaveBiome extends EndBiome {
                 intendedType,
                 hasCaves
         );
+        this.floorFeatures.addAll((WeightedList) floorFeatures);
+        this.ceilFeatures.addAll((WeightedList) ceilFeatures);
     }
 
     public static abstract class Config extends EndBiome.Config {
