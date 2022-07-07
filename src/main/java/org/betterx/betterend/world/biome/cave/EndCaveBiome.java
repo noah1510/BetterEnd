@@ -15,6 +15,7 @@ import org.betterx.betterend.world.biome.EndBiome;
 import org.betterx.betterend.world.features.terrain.caves.CaveChunkPopulatorFeature;
 import org.betterx.betterend.world.features.terrain.caves.CaveChunkPopulatorFeatureConfig;
 
+import com.mojang.datafixers.util.Function14;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
@@ -32,18 +33,22 @@ import java.util.List;
 import java.util.Optional;
 
 public class EndCaveBiome extends EndBiome {
-    public static final Codec<EndCaveBiome> CODEC = RecordCodecBuilder.create(instance ->
-            codecWithSettings(
-                    instance,
-                    Codec.BOOL.fieldOf("has_caves").orElse(true).forGetter(EndBiome::hasCaves),
-                    WeightedList.listCodec(ConfiguredFeature.CODEC, "configured_features", "configured_feature")
-                                .fieldOf("floor_features")
-                                .forGetter(o -> (WeightedList) ((EndCaveBiome) o).floorFeatures),
-                    WeightedList.listCodec(ConfiguredFeature.CODEC, "configured_features", "configured_feature")
-                                .fieldOf("ceil_features")
-                                .forGetter(o -> (WeightedList) ((EndCaveBiome) o).ceilFeatures)
-            ).apply(instance, EndCaveBiome::new)
-    );
+    public static final Codec<EndCaveBiome> CODEC = simpleCaveBiomeCodec(EndCaveBiome::new);
+
+    public static <T extends EndCaveBiome> Codec<T> simpleCaveBiomeCodec(Function14<Float, Float, Float, Integer, Boolean, Optional<ResourceLocation>, ResourceLocation, Optional<List<Climate.ParameterPoint>>, Optional<ResourceLocation>, Optional<WeightedList<ResourceLocation>>, Optional<String>, Boolean, WeightedList<Holder<ConfiguredFeature<?, ?>>>, WeightedList<Holder<ConfiguredFeature<?, ?>>>, T> builder) {
+        return RecordCodecBuilder.create(instance ->
+                codecWithSettings(
+                        instance,
+                        Codec.BOOL.fieldOf("has_caves").orElse(true).forGetter(EndBiome::hasCaves),
+                        WeightedList.listCodec(ConfiguredFeature.CODEC, "configured_features", "configured_feature")
+                                    .fieldOf("floor_features")
+                                    .forGetter(o -> (WeightedList) ((EndCaveBiome) o).floorFeatures),
+                        WeightedList.listCodec(ConfiguredFeature.CODEC, "configured_features", "configured_feature")
+                                    .fieldOf("ceil_features")
+                                    .forGetter(o -> (WeightedList) ((EndCaveBiome) o).ceilFeatures)
+                ).apply(instance, builder)
+        );
+    }
 
     public static final KeyDispatchDataCodec<EndCaveBiome> KEY_CODEC = KeyDispatchDataCodec.of(CODEC);
 
@@ -102,9 +107,8 @@ public class EndCaveBiome extends EndBiome {
                     .configuration(new CaveChunkPopulatorFeatureConfig(ID))
                     .buildAndRegister()
                     .place()
-                    .decoration(GenerationStep.Decoration.RAW_GENERATION)
+                    .decoration(GenerationStep.Decoration.UNDERGROUND_DECORATION)
                     .count(1)
-                    .onlyInBiome()
                     .buildAndRegister();
 
             builder.feature(feature)

@@ -209,9 +209,9 @@ public class TunelCaveFeature extends EndCaveFeature {
                 BlocksHelper.setWithoutUpdate(world, pos, surfaceBlock);
             }
             if (density > 0 && random.nextFloat() <= density) {
-                ConfiguredFeature<?, ?> feature = biome.getFloorFeature(random).value();
-                if (feature != null) {
-                    feature.place(world, generator, random, pos.above());
+                Holder<? extends ConfiguredFeature<?, ?>> feature = biome.getFloorFeature(random);
+                if (feature != null && feature.isBound()) {
+                    feature.value().place(world, generator, random, pos.above());
                 }
             }
         });
@@ -232,9 +232,9 @@ public class TunelCaveFeature extends EndCaveFeature {
                 BlocksHelper.setWithoutUpdate(world, pos, ceilBlock);
             }
             if (density > 0 && random.nextFloat() <= density) {
-                ConfiguredFeature<?, ?> feature = biome.getCeilFeature(random).value();
-                if (feature != null) {
-                    feature.place(world, generator, random, pos.below());
+                Holder<? extends ConfiguredFeature<?, ?>> feature = biome.getCeilFeature(random);
+                if (feature != null && feature.isBound()) {
+                    feature.value().place(world, generator, random, pos.below());
                 }
             }
         });

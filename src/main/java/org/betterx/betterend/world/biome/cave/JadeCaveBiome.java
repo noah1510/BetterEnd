@@ -1,22 +1,36 @@
 package org.betterx.betterend.world.biome.cave;
 
+import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder.BiomeSupplier;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeSettings;
+import org.betterx.bclib.util.WeightedList;
 import org.betterx.betterend.noise.OpenSimplexNoise;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.world.biome.EndBiome;
 
+import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.KeyDispatchDataCodec;
 import net.minecraft.util.Mth;
+import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+
+import java.util.List;
+import java.util.Optional;
 
 public class JadeCaveBiome extends EndCaveBiome.Config {
+    public static final Codec<JadeCaveBiome.Biome> CODEC = EndCaveBiome.simpleCaveBiomeCodec(JadeCaveBiome.Biome::new);
+    public static final KeyDispatchDataCodec<JadeCaveBiome.Biome> KEY_CODEC = KeyDispatchDataCodec.of(CODEC);
+
     public static class Biome extends EndCaveBiome {
         private static final OpenSimplexNoise WALL_NOISE = new OpenSimplexNoise("jade_cave".hashCode());
         private static final OpenSimplexNoise DEPTH_NOISE = new OpenSimplexNoise("depth_noise".hashCode());
         private static final BlockState[] JADE = new BlockState[3];
+
 
         public Biome(ResourceLocation biomeID, net.minecraft.world.level.biome.Biome biome, BCLBiomeSettings settings) {
             super(biomeID, biome, settings);
@@ -24,6 +38,45 @@ public class JadeCaveBiome extends EndCaveBiome.Config {
             JADE[0] = EndBlocks.VIRID_JADESTONE.stone.defaultBlockState();
             JADE[1] = EndBlocks.AZURE_JADESTONE.stone.defaultBlockState();
             JADE[2] = EndBlocks.SANDY_JADESTONE.stone.defaultBlockState();
+        }
+
+        @Override
+        public KeyDispatchDataCodec<? extends BCLBiome> codec() {
+            return JadeCaveBiome.KEY_CODEC;
+        }
+
+        protected Biome(
+                float terrainHeight,
+                float fogDensity,
+                float genChance,
+                int edgeSize,
+                boolean vertical,
+                Optional<ResourceLocation> edge,
+                ResourceLocation biomeID,
+                Optional<List<Climate.ParameterPoint>> parameterPoints,
+                Optional<ResourceLocation> biomeParent,
+                Optional<WeightedList<ResourceLocation>> subbiomes,
+                Optional<String> intendedType,
+                boolean hasCaves,
+                WeightedList<Holder<ConfiguredFeature<?, ?>>> floorFeatures,
+                WeightedList<Holder<ConfiguredFeature<?, ?>>> ceilFeatures
+        ) {
+            super(
+                    terrainHeight,
+                    fogDensity,
+                    genChance,
+                    edgeSize,
+                    vertical,
+                    edge,
+                    biomeID,
+                    parameterPoints,
+                    biomeParent,
+                    subbiomes,
+                    intendedType,
+                    hasCaves,
+                    floorFeatures,
+                    ceilFeatures
+            );
         }
 
         @Override
@@ -41,6 +94,7 @@ public class JadeCaveBiome extends EndCaveBiome.Config {
     public JadeCaveBiome() {
         super("jade_cave");
     }
+
 
     @Override
     protected void addCustomBuildData(BCLBiomeBuilder builder) {

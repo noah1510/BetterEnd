@@ -64,6 +64,21 @@ public class EndBiomes {
     public static void register() {
         BCLBiomeRegistry.registerBiomeCodec(BetterEnd.makeID("biome"), EndBiome.KEY_CODEC);
         BCLBiomeRegistry.registerBiomeCodec(BetterEnd.makeID("cave_biome"), EndCaveBiome.KEY_CODEC);
+        BCLBiomeRegistry.registerBiomeCodec(
+                BetterEnd.makeID("empty_aurora_cave_biome"),
+                EmptyAuroraCaveBiome.KEY_CODEC
+        );
+        BCLBiomeRegistry.registerBiomeCodec(BetterEnd.makeID("empty_end_cave_biome"), EmptyEndCaveBiome.KEY_CODEC);
+        BCLBiomeRegistry.registerBiomeCodec(
+                BetterEnd.makeID("empty_smaragdant_cave_biome"),
+                EmptySmaragdantCaveBiome.KEY_CODEC
+        );
+        BCLBiomeRegistry.registerBiomeCodec(BetterEnd.makeID("jade_cave_biome"), JadeCaveBiome.KEY_CODEC);
+        BCLBiomeRegistry.registerBiomeCodec(BetterEnd.makeID("lush_aurora_cave_biome"), LushAuroraCaveBiome.KEY_CODEC);
+        BCLBiomeRegistry.registerBiomeCodec(
+                BetterEnd.makeID("lush_smaragdant_cave_biome"),
+                LushSmaragdantCaveBiome.KEY_CODEC
+        );
         LifeCycleAPI.onLevelLoad(EndBiomes::onWorldLoad);
     }
 
