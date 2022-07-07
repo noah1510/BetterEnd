@@ -1,5 +1,6 @@
 package org.betterx.betterend;
 
+import org.betterx.bclib.api.v2.generator.BiomeDecider;
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
 import org.betterx.bclib.util.Logger;
 import org.betterx.betterend.api.BetterEndPlugin;
@@ -11,8 +12,8 @@ import org.betterx.betterend.recipe.*;
 import org.betterx.betterend.registry.*;
 import org.betterx.betterend.util.BonemealPlants;
 import org.betterx.betterend.util.LootTableUtil;
+import org.betterx.betterend.world.generator.EndLandBiomeDecider;
 import org.betterx.betterend.world.generator.GeneratorOptions;
-import org.betterx.betterend.world.generator.TerrainGenerator;
 import org.betterx.worlds.together.world.WorldConfig;
 
 import net.minecraft.resources.ResourceLocation;
@@ -59,12 +60,7 @@ public class BetterEnd implements ModInitializer {
         Configs.saveConfigs();
 
         if (GeneratorOptions.useNewGenerator()) {
-            org.betterx.bclib.api.v2.generator.GeneratorOptions.setFarEndBiomes(GeneratorOptions.getIslandDistBlock());
-            org.betterx.bclib.api.v2.generator.GeneratorOptions.setEndLandFunction((pos, height) -> TerrainGenerator.isLand(
-                    pos.x,
-                    pos.y,
-                    height
-            ));
+            BiomeDecider.registerDecider(makeID("end_land"), new EndLandBiomeDecider());
         }
 
         BiomeAPI.registerEndBiomeModification((biomeID, biome) -> {
