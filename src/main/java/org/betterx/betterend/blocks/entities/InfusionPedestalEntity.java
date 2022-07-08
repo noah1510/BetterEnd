@@ -10,7 +10,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class InfusionPedestalEntity extends PedestalBlockEntity {
-
     private InfusionRitual linkedRitual;
 
     public InfusionPedestalEntity(BlockPos blockPos, BlockState blockState) {
@@ -23,12 +22,14 @@ public class InfusionPedestalEntity extends PedestalBlockEntity {
         if (hasRitual()) {
             linkedRitual.setLocation(world, this.getBlockPos());
         } else {
-            linkRitual(new InfusionRitual(this, world, this.getBlockPos()));
+            linkRitual(this, world, this.getBlockPos());
         }
     }
 
-    public void linkRitual(InfusionRitual ritual) {
-        linkedRitual = ritual;
+    public InfusionRitual linkRitual(InfusionPedestalEntity pedestal, Level world, BlockPos pos) {
+        linkedRitual = new InfusionRitual(pedestal, world, pos);
+        linkedRitual.configure();
+        return linkedRitual;
     }
 
     public InfusionRitual getRitual() {
@@ -53,6 +54,7 @@ public class InfusionPedestalEntity extends PedestalBlockEntity {
         if (tag.contains("ritual")) {
             linkedRitual = new InfusionRitual(this, level, worldPosition);
             linkedRitual.fromTag(tag.getCompound("ritual"));
+            linkedRitual.configure();
         }
     }
 

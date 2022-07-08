@@ -47,7 +47,6 @@ public class InfusionRitual implements Container {
         this.input = pedestal;
         this.world = world;
         this.worldPos = pos;
-        configure();
     }
 
     public void configure() {

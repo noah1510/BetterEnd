@@ -41,8 +41,7 @@ public class InfusionPedestal extends PedestalBlock {
                 }
                 pedestal.getRitual().checkRecipe();
             } else {
-                InfusionRitual ritual = new InfusionRitual(pedestal, world, pos);
-                pedestal.linkRitual(ritual);
+                InfusionRitual ritual = pedestal.linkRitual(pedestal, world, pos);
                 ritual.checkRecipe();
             }
         }
