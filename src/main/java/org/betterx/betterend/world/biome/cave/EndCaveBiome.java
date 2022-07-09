@@ -115,6 +115,7 @@ public class EndCaveBiome extends EndBiome {
                     .place()
                     .decoration(GenerationStep.Decoration.UNDERGROUND_DECORATION)
                     .count(1)
+                    .onlyInBiome()
                     .buildAndRegister();
 
             builder.feature(feature)
