@@ -60,7 +60,7 @@ public class BetterEnd implements ModInitializer {
         Configs.saveConfigs();
 
         if (GeneratorOptions.useNewGenerator()) {
-            BiomeDecider.registerDecider(makeID("end_land"), new EndLandBiomeDecider());
+            BiomeDecider.registerHighPriorityDecider(makeID("end_land"), new EndLandBiomeDecider());
         }
 
         BiomeAPI.registerEndBiomeModification((biomeID, biome) -> {
