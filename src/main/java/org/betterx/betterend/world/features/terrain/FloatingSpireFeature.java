@@ -73,7 +73,7 @@ public class FloatingSpireFeature extends SpireFeature {
                 return EndBiome.findTopMaterial(
                         world,
                         info.getPos()
-                );//world.getBiome(info.getPos()).getGenerationSettings().getSurfaceBuilderConfig().getTopMaterial();
+                );//world.getBiome(info.getPos()).value().getGenerationSettings().getSurfaceBuilderConfig().getTopMaterial();
             } else if (info.getState(Direction.UP, 3).isAir()) {
                 return EndBiome.findUnderMaterial(world, info.getPos());
 //				return world.getBiome(info.getPos())

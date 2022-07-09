@@ -4,6 +4,7 @@ import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder.BiomeSupplier;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeSettings;
+import org.betterx.bclib.interfaces.SurfaceMaterialProvider;
 import org.betterx.bclib.util.WeightedList;
 import org.betterx.betterend.noise.OpenSimplexNoise;
 import org.betterx.betterend.registry.EndBlocks;
@@ -58,6 +59,7 @@ public class JadeCaveBiome extends EndCaveBiome.Config {
                 Optional<WeightedList<ResourceLocation>> subbiomes,
                 Optional<String> intendedType,
                 boolean hasCaves,
+                SurfaceMaterialProvider surface,
                 WeightedList<Holder<ConfiguredFeature<?, ?>>> floorFeatures,
                 WeightedList<Holder<ConfiguredFeature<?, ?>>> ceilFeatures
         ) {
@@ -74,6 +76,7 @@ public class JadeCaveBiome extends EndCaveBiome.Config {
                     subbiomes,
                     intendedType,
                     hasCaves,
+                    surface,
                     floorFeatures,
                     ceilFeatures
             );

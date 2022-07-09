@@ -34,7 +34,10 @@ public class EndBiome extends BCLBiome implements SurfaceMaterialProvider {
     public static final Codec<EndBiome> CODEC = RecordCodecBuilder.create(instance ->
             codecWithSettings(
                     instance,
-                    Codec.BOOL.fieldOf("has_caves").orElse(true).forGetter(o -> o.hasCaves)
+                    Codec.BOOL.fieldOf("has_caves").orElse(true).forGetter(o -> o.hasCaves),
+                    SurfaceMaterialProvider.CODEC.fieldOf("surface")
+                                                 .orElse(Config.DEFAULT_MATERIAL)
+                                                 .forGetter(o -> o.surfMatProv)
             ).apply(instance, EndBiome::new)
     );
     public static final KeyDispatchDataCodec<EndBiome> KEY_CODEC = KeyDispatchDataCodec.of(CODEC);
@@ -56,7 +59,8 @@ public class EndBiome extends BCLBiome implements SurfaceMaterialProvider {
             Optional<ResourceLocation> biomeParent,
             Optional<WeightedList<ResourceLocation>> subbiomes,
             Optional<String> intendedType,
-            boolean hasCaves
+            boolean hasCaves,
+            SurfaceMaterialProvider surface
     ) {
         super(
                 terrainHeight,
@@ -72,6 +76,7 @@ public class EndBiome extends BCLBiome implements SurfaceMaterialProvider {
                 intendedType
         );
         this.hasCaves = hasCaves;
+        this.surfMatProv = surface;
     }
 
     private boolean hasCaves = true;
@@ -192,9 +197,9 @@ public class EndBiome extends BCLBiome implements SurfaceMaterialProvider {
     }
 
 
-    private SurfaceMaterialProvider surfMatProv = Config.DEFAULT_MATERIAL;
+    protected SurfaceMaterialProvider surfMatProv = Config.DEFAULT_MATERIAL;
 
-    private void setSurfaceMaterial(SurfaceMaterialProvider prov) {
+    protected void setSurfaceMaterial(SurfaceMaterialProvider prov) {
         surfMatProv = prov;
     }
 

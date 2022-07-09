@@ -55,6 +55,7 @@ public class LushSmaragdantCaveBiome extends EndCaveBiome.Config {
                 Optional<WeightedList<ResourceLocation>> subbiomes,
                 Optional<String> intendedType,
                 boolean hasCaves,
+                SurfaceMaterialProvider surface,
                 WeightedList<Holder<ConfiguredFeature<?, ?>>> floorFeatures,
                 WeightedList<Holder<ConfiguredFeature<?, ?>>> ceilFeatures
         ) {
@@ -71,6 +72,7 @@ public class LushSmaragdantCaveBiome extends EndCaveBiome.Config {
                     subbiomes,
                     intendedType,
                     hasCaves,
+                    surface,
                     floorFeatures,
                     ceilFeatures
             );

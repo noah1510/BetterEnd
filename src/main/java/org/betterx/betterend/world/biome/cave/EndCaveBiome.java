@@ -6,6 +6,7 @@ import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder.BiomeSupplier;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeSettings;
 import org.betterx.bclib.api.v3.levelgen.features.BCLFeature;
 import org.betterx.bclib.api.v3.levelgen.features.BCLFeatureBuilder;
+import org.betterx.bclib.interfaces.SurfaceMaterialProvider;
 import org.betterx.bclib.util.WeightedList;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.registry.EndBiomes;
@@ -15,7 +16,7 @@ import org.betterx.betterend.world.biome.EndBiome;
 import org.betterx.betterend.world.features.terrain.caves.CaveChunkPopulatorFeature;
 import org.betterx.betterend.world.features.terrain.caves.CaveChunkPopulatorFeatureConfig;
 
-import com.mojang.datafixers.util.Function14;
+import com.mojang.datafixers.util.Function15;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
@@ -35,11 +36,14 @@ import java.util.Optional;
 public class EndCaveBiome extends EndBiome {
     public static final Codec<EndCaveBiome> CODEC = simpleCaveBiomeCodec(EndCaveBiome::new);
 
-    public static <T extends EndCaveBiome> Codec<T> simpleCaveBiomeCodec(Function14<Float, Float, Float, Integer, Boolean, Optional<ResourceLocation>, ResourceLocation, Optional<List<Climate.ParameterPoint>>, Optional<ResourceLocation>, Optional<WeightedList<ResourceLocation>>, Optional<String>, Boolean, WeightedList<Holder<ConfiguredFeature<?, ?>>>, WeightedList<Holder<ConfiguredFeature<?, ?>>>, T> builder) {
+    public static <T extends EndCaveBiome> Codec<T> simpleCaveBiomeCodec(Function15<Float, Float, Float, Integer, Boolean, Optional<ResourceLocation>, ResourceLocation, Optional<List<Climate.ParameterPoint>>, Optional<ResourceLocation>, Optional<WeightedList<ResourceLocation>>, Optional<String>, Boolean, SurfaceMaterialProvider, WeightedList<Holder<ConfiguredFeature<?, ?>>>, WeightedList<Holder<ConfiguredFeature<?, ?>>>, T> builder) {
         return RecordCodecBuilder.create(instance ->
                 codecWithSettings(
                         instance,
                         Codec.BOOL.fieldOf("has_caves").orElse(true).forGetter(EndBiome::hasCaves),
+                        SurfaceMaterialProvider.CODEC.fieldOf("surface")
+                                                     .orElse(new DefaultSurfaceMaterialProvider())
+                                                     .forGetter(o -> o.surfMatProv),
                         WeightedList.listCodec(ConfiguredFeature.CODEC, "configured_features", "configured_feature")
                                     .fieldOf("floor_features")
                                     .forGetter(o -> (WeightedList) ((EndCaveBiome) o).floorFeatures),
@@ -70,6 +74,7 @@ public class EndCaveBiome extends EndBiome {
             Optional<WeightedList<ResourceLocation>> subbiomes,
             Optional<String> intendedType,
             boolean hasCaves,
+            SurfaceMaterialProvider surface,
             WeightedList<Holder<ConfiguredFeature<?, ?>>> floorFeatures,
             WeightedList<Holder<ConfiguredFeature<?, ?>>> ceilFeatures
     ) {
@@ -85,7 +90,8 @@ public class EndCaveBiome extends EndBiome {
                 biomeParent,
                 subbiomes,
                 intendedType,
-                hasCaves
+                hasCaves,
+                surface
         );
         this.floorFeatures.addAll((WeightedList) floorFeatures);
         this.ceilFeatures.addAll((WeightedList) ceilFeatures);

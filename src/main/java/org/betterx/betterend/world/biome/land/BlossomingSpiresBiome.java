@@ -51,6 +51,11 @@ public class BlossomingSpiresBiome extends EndBiome.Config {
             public BlockState getTopMaterial() {
                 return EndBlocks.PINK_MOSS.defaultBlockState();
             }
+
+            @Override
+            public BlockState getAltTopMaterial() {
+                return getTopMaterial();
+            }
         };
     }
 }

@@ -4,6 +4,7 @@ import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder.BiomeSupplier;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeSettings;
+import org.betterx.bclib.interfaces.SurfaceMaterialProvider;
 import org.betterx.bclib.util.WeightedList;
 import org.betterx.betterend.registry.EndFeatures;
 import org.betterx.betterend.registry.EndParticles;
@@ -49,6 +50,7 @@ public class EmptyAuroraCaveBiome extends EndCaveBiome.Config {
                 Optional<WeightedList<ResourceLocation>> subbiomes,
                 Optional<String> intendedType,
                 boolean hasCaves,
+                SurfaceMaterialProvider surface,
                 WeightedList<Holder<ConfiguredFeature<?, ?>>> floorFeatures,
                 WeightedList<Holder<ConfiguredFeature<?, ?>>> ceilFeatures
         ) {
@@ -65,6 +67,7 @@ public class EmptyAuroraCaveBiome extends EndCaveBiome.Config {
                     subbiomes,
                     intendedType,
                     hasCaves,
+                    surface,
                     floorFeatures,
                     ceilFeatures
             );
