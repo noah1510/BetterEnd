@@ -187,7 +187,7 @@ public class EndFeatures {
     public static final BCLFeature<TenaneaFeature, NoneFeatureConfiguration> TENANEA = registerVegetation(
             "tenanea",
             inlineBuild("tenanea", new TenaneaFeature()),
-            2
+            3
     );
     public static final BCLFeature<HelixTreeFeature, NoneFeatureConfiguration> HELIX_TREE = registerVegetation(
             "helix_tree",
@@ -237,7 +237,7 @@ public class EndFeatures {
     public static final BCLFeature<TenaneaBushFeature, NoneFeatureConfiguration> TENANEA_BUSH = registerVegetation(
             "tenanea_bush",
             inlineBuild("tenanea_bush", new TenaneaBushFeature()),
-            6
+            12
     );
     public static final BCLFeature<Lumecorn, NoneFeatureConfiguration> LUMECORN = registerVegetation(
             "lumecorn",
@@ -395,10 +395,10 @@ public class EndFeatures {
             "blossom_berry",
             new SinglePlantFeatureConfig(
                     EndBlocks.BLOSSOM_BERRY,
-                    3,
-                    3
+                    4,
+                    4
             ),
-            2
+            3
     );
     public static final BCLFeature<SinglePlantFeature, SinglePlantFeatureConfig> BLOOMING_COOKSONIA = registerVegetation(
             "blooming_cooksonia",
@@ -548,7 +548,7 @@ public class EndFeatures {
     public static final BCLFeature<VineFeature, VineFeatureConfig> BULB_VINE = registerVegetation(
             "bulb_vine",
             VINE_FEATURE, new VineFeatureConfig(EndBlocks.BULB_VINE, 24),
-            3
+            5
     );
     public static final BCLFeature<VineFeature, VineFeatureConfig> JUNGLE_VINE = registerVegetation(
             "jungle_vine",
