@@ -36,7 +36,8 @@ public class OldBulbisGardens extends EndBiome.Config {
         BiomeSpecialEffects effects = biome.value().getSpecialEffects();
 
         Block ivis = Integrations.BYG.getBlock("ivis_phylium");
-//		Block origin = biome.getGenerationSettings()
+//		Block origin = biome.value()
+//                            .getGenerationSettings()
 //							.getSurfaceBuilderConfig()
 //							.getTopMaterial()
 //							.getBlock();
