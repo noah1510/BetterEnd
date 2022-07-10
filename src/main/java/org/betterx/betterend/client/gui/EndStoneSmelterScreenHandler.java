@@ -1,8 +1,7 @@
 package org.betterx.betterend.client.gui;
 
-import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.blocks.EndStoneSmelter;
 import org.betterx.betterend.blocks.entities.EndStoneSmelterBlockEntity;
+import org.betterx.betterend.client.BetterEndClient;
 import org.betterx.betterend.client.gui.slot.SmelterFuelSlot;
 import org.betterx.betterend.client.gui.slot.SmelterOutputSlot;
 import org.betterx.betterend.recipe.builders.AlloyingRecipe;
@@ -19,17 +18,12 @@ import net.minecraft.world.level.Level;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
 
 import org.anti_ad.mc.ipn.api.IPNIgnore;
 
+@Environment(EnvType.CLIENT)
 @IPNIgnore
 public class EndStoneSmelterScreenHandler extends RecipeBookMenu<Container> {
-
-    public final static MenuType<EndStoneSmelterScreenHandler> HANDLER_TYPE = ScreenHandlerRegistry.registerSimple(
-            BetterEnd.makeID(EndStoneSmelter.ID),
-            EndStoneSmelterScreenHandler::new
-    );
 
     private final Container inventory;
     private final ContainerData propertyDelegate;
@@ -45,7 +39,7 @@ public class EndStoneSmelterScreenHandler extends RecipeBookMenu<Container> {
             Container inventory,
             ContainerData propertyDelegate
     ) {
-        super(HANDLER_TYPE, syncId);
+        super(BetterEndClient.HANDLER_TYPE, syncId);
         this.inventory = inventory;
         this.propertyDelegate = propertyDelegate;
         this.world = playerInventory.player.level;
@@ -68,7 +62,7 @@ public class EndStoneSmelterScreenHandler extends RecipeBookMenu<Container> {
 
     @Override
     public MenuType<?> getType() {
-        return HANDLER_TYPE;
+        return BetterEndClient.HANDLER_TYPE;
     }
 
     @Override
