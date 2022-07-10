@@ -2,7 +2,7 @@ package org.betterx.betterend.blocks.entities;
 
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.blocks.EndStoneSmelter;
-import org.betterx.betterend.client.gui.EndStoneSmelterScreenHandler;
+import org.betterx.betterend.client.gui.EndStoneSmelterMenu;
 import org.betterx.betterend.recipe.builders.AlloyingRecipe;
 import org.betterx.betterend.registry.EndBlockEntities;
 
@@ -49,9 +49,15 @@ import java.util.Map;
 
 public class EndStoneSmelterBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer, RecipeHolder, StackedContentsCompatible {
 
-    private static final int[] TOP_SLOTS = new int[]{0, 1};
-    private static final int[] BOTTOM_SLOTS = new int[]{2, 3};
-    private static final int[] SIDE_SLOTS = new int[]{1, 2};
+    private static final int[] TOP_SLOTS = new int[]{
+            EndStoneSmelterMenu.INGREDIENT_SLOT_A,
+            EndStoneSmelterMenu.INGREDIENT_SLOT_B
+    };
+    private static final int[] BOTTOM_SLOTS = new int[]{EndStoneSmelterMenu.FUEL_SLOT, EndStoneSmelterMenu.RESULT_SLOT};
+    private static final int[] SIDE_SLOTS = new int[]{
+            EndStoneSmelterMenu.INGREDIENT_SLOT_B,
+            EndStoneSmelterMenu.FUEL_SLOT
+    };
     private static final Map<Item, Integer> AVAILABLE_FUELS = Maps.newHashMap();
 
     private final Object2IntOpenHashMap<ResourceLocation> recipesUsed;
@@ -65,7 +71,7 @@ public class EndStoneSmelterBlockEntity extends BaseContainerBlockEntity impleme
 
     public EndStoneSmelterBlockEntity(BlockPos blockPos, BlockState blockState) {
         super(EndBlockEntities.END_STONE_SMELTER, blockPos, blockState);
-        this.inventory = NonNullList.withSize(4, ItemStack.EMPTY);
+        this.inventory = NonNullList.withSize(EndStoneSmelterMenu.SLOT_COUNT, ItemStack.EMPTY);
         this.recipesUsed = new Object2IntOpenHashMap<>();
         this.propertyDelegate = new ContainerData() {
             public int get(int index) {
@@ -151,7 +157,7 @@ public class EndStoneSmelterBlockEntity extends BaseContainerBlockEntity impleme
         if (stack.getCount() > getMaxStackSize()) {
             stack.setCount(getMaxStackSize());
         }
-        if ((slot == 0 || slot == 1) && !stackValid) {
+        if ((slot == EndStoneSmelterMenu.INGREDIENT_SLOT_A || slot == EndStoneSmelterMenu.INGREDIENT_SLOT_B) && !stackValid) {
             smeltTimeTotal = getSmeltTime();
             smeltTime = 0;
             setChanged();
@@ -231,7 +237,7 @@ public class EndStoneSmelterBlockEntity extends BaseContainerBlockEntity impleme
 
     @Override
     protected AbstractContainerMenu createMenu(int syncId, Inventory playerInventory) {
-        return new EndStoneSmelterScreenHandler(syncId, playerInventory, this, propertyDelegate);
+        return new EndStoneSmelterMenu(syncId, playerInventory, this, propertyDelegate);
     }
 
     public static void tick(
@@ -249,9 +255,11 @@ public class EndStoneSmelterBlockEntity extends BaseContainerBlockEntity impleme
 
         boolean burning = initialBurning;
         if (!tickLevel.isClientSide) {
-            ItemStack fuel = blockEntity.inventory.get(2);
-            if (!burning && (fuel.isEmpty() || blockEntity.inventory.get(0).isEmpty() && blockEntity.inventory.get(1)
-                                                                                                              .isEmpty())) {
+            ItemStack fuel = blockEntity.inventory.get(EndStoneSmelterMenu.FUEL_SLOT);
+            if (!burning && (fuel.isEmpty()
+                    || blockEntity.inventory.get(EndStoneSmelterMenu.INGREDIENT_SLOT_A).isEmpty()
+                    && blockEntity.inventory.get(EndStoneSmelterMenu.INGREDIENT_SLOT_B).isEmpty())
+            ) {
                 if (blockEntity.smeltTime > 0) {
                     blockEntity.smeltTime = Mth.clamp(blockEntity.smeltTime - 2, 0, blockEntity.smeltTimeTotal);
                 }
@@ -276,7 +284,7 @@ public class EndStoneSmelterBlockEntity extends BaseContainerBlockEntity impleme
                             if (fuel.isEmpty()) {
                                 Item remainFuel = item.getCraftingRemainingItem();
                                 blockEntity.inventory.set(
-                                        2,
+                                        EndStoneSmelterMenu.FUEL_SLOT,
                                         remainFuel == null ? ItemStack.EMPTY : new ItemStack(remainFuel)
                                 );
                             }
@@ -309,16 +317,18 @@ public class EndStoneSmelterBlockEntity extends BaseContainerBlockEntity impleme
         if (recipe == null) return false;
         boolean validInput;
         if (recipe instanceof AlloyingRecipe) {
-            validInput = !inventory.get(0).isEmpty() && !inventory.get(1).isEmpty();
+            validInput = !inventory.get(EndStoneSmelterMenu.INGREDIENT_SLOT_A).isEmpty()
+                    && !inventory.get(EndStoneSmelterMenu.INGREDIENT_SLOT_B).isEmpty();
         } else {
-            validInput = !inventory.get(0).isEmpty() || !inventory.get(1).isEmpty();
+            validInput = !inventory.get(EndStoneSmelterMenu.INGREDIENT_SLOT_A).isEmpty()
+                    || !inventory.get(EndStoneSmelterMenu.INGREDIENT_SLOT_B).isEmpty();
         }
         if (validInput) {
             ItemStack result = recipe.getResultItem();
             if (result.isEmpty()) {
                 return false;
             }
-            ItemStack output = this.inventory.get(3);
+            ItemStack output = this.inventory.get(EndStoneSmelterMenu.RESULT_SLOT);
             int outCount = output.getCount();
             int total = outCount + result.getCount();
             if (output.isEmpty()) {
@@ -339,9 +349,9 @@ public class EndStoneSmelterBlockEntity extends BaseContainerBlockEntity impleme
         if (recipe == null || !canAcceptRecipeOutput(recipe)) return;
 
         ItemStack result = recipe.getResultItem();
-        ItemStack output = inventory.get(3);
+        ItemStack output = inventory.get(EndStoneSmelterMenu.RESULT_SLOT);
         if (output.isEmpty()) {
-            inventory.set(3, result.copy());
+            inventory.set(EndStoneSmelterMenu.RESULT_SLOT, result.copy());
         } else if (output.getItem() == result.getItem()) {
             output.grow(result.getCount());
         }
@@ -352,13 +362,13 @@ public class EndStoneSmelterBlockEntity extends BaseContainerBlockEntity impleme
         }
 
         if (recipe instanceof AlloyingRecipe) {
-            inventory.get(0).shrink(1);
-            inventory.get(1).shrink(1);
+            inventory.get(EndStoneSmelterMenu.INGREDIENT_SLOT_A).shrink(1);
+            inventory.get(EndStoneSmelterMenu.INGREDIENT_SLOT_B).shrink(1);
         } else {
-            if (!inventory.get(0).isEmpty()) {
-                inventory.get(0).shrink(1);
+            if (!inventory.get(EndStoneSmelterMenu.INGREDIENT_SLOT_A).isEmpty()) {
+                inventory.get(EndStoneSmelterMenu.INGREDIENT_SLOT_A).shrink(1);
             } else {
-                inventory.get(1).shrink(1);
+                inventory.get(EndStoneSmelterMenu.INGREDIENT_SLOT_B).shrink(1);
             }
         }
     }
@@ -399,7 +409,7 @@ public class EndStoneSmelterBlockEntity extends BaseContainerBlockEntity impleme
 
     @Override
     public boolean canTakeItemThroughFace(int slot, ItemStack stack, Direction dir) {
-        if (dir == Direction.DOWN && slot == 2) {
+        if (dir == Direction.DOWN && slot == EndStoneSmelterMenu.FUEL_SLOT) {
             return stack.getItem() == Items.BUCKET;
         }
         return true;
@@ -443,12 +453,12 @@ public class EndStoneSmelterBlockEntity extends BaseContainerBlockEntity impleme
     }
 
     public boolean canPlaceItem(int slot, ItemStack stack) {
-        if (slot == 3) {
+        if (slot == EndStoneSmelterMenu.RESULT_SLOT) {
             return false;
-        } else if (slot != 2) {
+        } else if (slot != EndStoneSmelterMenu.FUEL_SLOT) {
             return true;
         }
-        ItemStack itemStack = this.inventory.get(2);
+        ItemStack itemStack = this.inventory.get(EndStoneSmelterMenu.FUEL_SLOT);
         return canUseAsFuel(stack) || stack.getItem() == Items.BUCKET && itemStack.getItem() != Items.BUCKET;
     }
 

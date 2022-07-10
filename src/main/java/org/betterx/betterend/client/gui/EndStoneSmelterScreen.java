@@ -18,7 +18,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
 @Environment(EnvType.CLIENT)
-public class EndStoneSmelterScreen extends AbstractContainerScreen<EndStoneSmelterScreenHandler> implements RecipeUpdateListener {
+public class EndStoneSmelterScreen extends AbstractContainerScreen<EndStoneSmelterMenu> implements RecipeUpdateListener {
 
     private final static ResourceLocation RECIPE_BUTTON_TEXTURE = new ResourceLocation("textures/gui/recipe_button.png");
     private final static ResourceLocation BACKGROUND_TEXTURE = BetterEnd.makeID("textures/gui/smelter_gui.png");
@@ -26,7 +26,7 @@ public class EndStoneSmelterScreen extends AbstractContainerScreen<EndStoneSmelt
     public final EndStoneSmelterRecipeBookScreen recipeBook;
     private boolean narrow;
 
-    public EndStoneSmelterScreen(EndStoneSmelterScreenHandler handler, Inventory inventory, Component title) {
+    public EndStoneSmelterScreen(EndStoneSmelterMenu handler, Inventory inventory, Component title) {
         super(handler, inventory, title);
         recipeBook = new EndStoneSmelterRecipeBookScreen();
     }

@@ -4,7 +4,7 @@ import org.betterx.bclib.BCLib;
 import org.betterx.bclib.util.TranslationHelper;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.blocks.EndStoneSmelter;
-import org.betterx.betterend.client.gui.EndStoneSmelterScreenHandler;
+import org.betterx.betterend.client.gui.EndStoneSmelterMenu;
 import org.betterx.betterend.client.render.BetterEndSkyRenderer;
 import org.betterx.betterend.events.ItemTooltipCallback;
 import org.betterx.betterend.interfaces.MultiModelItem;
@@ -26,9 +26,9 @@ import net.fabricmc.fabric.api.client.rendering.v1.DimensionRenderingRegistry;
 import net.fabricmc.fabric.api.screenhandler.v1.ScreenHandlerRegistry;
 
 public class BetterEndClient implements ClientModInitializer {
-    public final static MenuType<EndStoneSmelterScreenHandler> HANDLER_TYPE = ScreenHandlerRegistry.registerSimple(
+    public final static MenuType<EndStoneSmelterMenu> HANDLER_TYPE = ScreenHandlerRegistry.registerSimple(
             BetterEnd.makeID(EndStoneSmelter.ID),
-            EndStoneSmelterScreenHandler::new
+            EndStoneSmelterMenu::new
     );
 
     @Override

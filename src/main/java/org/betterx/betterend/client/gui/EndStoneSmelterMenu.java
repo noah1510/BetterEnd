@@ -23,17 +23,27 @@ import org.anti_ad.mc.ipn.api.IPNIgnore;
 
 @Environment(EnvType.CLIENT)
 @IPNIgnore
-public class EndStoneSmelterScreenHandler extends RecipeBookMenu<Container> {
+public class EndStoneSmelterMenu extends RecipeBookMenu<Container> {
+    public static final int INGREDIENT_SLOT_A = 0;
+    public static final int INGREDIENT_SLOT_B = 1;
+    public static final int FUEL_SLOT = 2;
+    public static final int RESULT_SLOT = 3;
+
+    public static final int SLOT_COUNT = 4;
+    private static final int INV_SLOT_START = SLOT_COUNT;
+    private static final int INV_SLOT_END = INV_SLOT_START + 3 * 9;
+    private static final int USE_ROW_SLOT_START = INV_SLOT_END;
+    private static final int USE_ROW_SLOT_END = USE_ROW_SLOT_START + 9;
 
     private final Container inventory;
     private final ContainerData propertyDelegate;
     protected final Level world;
 
-    public EndStoneSmelterScreenHandler(int syncId, Inventory playerInventory) {
-        this(syncId, playerInventory, new SimpleContainer(4), new SimpleContainerData(4));
+    public EndStoneSmelterMenu(int syncId, Inventory playerInventory) {
+        this(syncId, playerInventory, new SimpleContainer(SLOT_COUNT), new SimpleContainerData(4));
     }
 
-    public EndStoneSmelterScreenHandler(
+    public EndStoneSmelterMenu(
             int syncId,
             Inventory playerInventory,
             Container inventory,
@@ -45,10 +55,10 @@ public class EndStoneSmelterScreenHandler extends RecipeBookMenu<Container> {
         this.world = playerInventory.player.level;
 
         addDataSlots(propertyDelegate);
-        addSlot(new Slot(inventory, 0, 45, 17));
-        addSlot(new Slot(inventory, 1, 67, 17));
-        addSlot(new SmelterFuelSlot(this, inventory, 2, 56, 53));
-        addSlot(new SmelterOutputSlot(playerInventory.player, inventory, 3, 129, 35));
+        addSlot(new Slot(inventory, INGREDIENT_SLOT_A, 45, 17));
+        addSlot(new Slot(inventory, INGREDIENT_SLOT_B, 67, 17));
+        addSlot(new SmelterFuelSlot(this, inventory, FUEL_SLOT, 56, 53));
+        addSlot(new SmelterOutputSlot(playerInventory.player, inventory, RESULT_SLOT, 129, 35));
 
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 9; ++j) {
@@ -74,7 +84,9 @@ public class EndStoneSmelterScreenHandler extends RecipeBookMenu<Container> {
 
     @Override
     public void clearCraftingContent() {
-        inventory.clearContent();
+        this.getSlot(INGREDIENT_SLOT_A).set(ItemStack.EMPTY);
+        this.getSlot(INGREDIENT_SLOT_B).set(ItemStack.EMPTY);
+        this.getSlot(RESULT_SLOT).set(ItemStack.EMPTY);
     }
 
     @Override
@@ -84,7 +96,7 @@ public class EndStoneSmelterScreenHandler extends RecipeBookMenu<Container> {
 
     @Override
     public int getResultSlotIndex() {
-        return 3;
+        return RESULT_SLOT;
     }
 
     @Override
@@ -99,7 +111,7 @@ public class EndStoneSmelterScreenHandler extends RecipeBookMenu<Container> {
 
     @Override
     public int getSize() {
-        return 4;
+        return SLOT_COUNT;
     }
 
     @Override
@@ -109,7 +121,7 @@ public class EndStoneSmelterScreenHandler extends RecipeBookMenu<Container> {
 
     @Override
     public boolean shouldMoveToInventory(int i) {
-        return i != this.getResultSlotIndex();
+        return i != FUEL_SLOT;
     }
 
     @Override
@@ -134,28 +146,25 @@ public class EndStoneSmelterScreenHandler extends RecipeBookMenu<Container> {
 
         ItemStack slotStack = slot.getItem();
         ItemStack itemStack = slotStack.copy();
-        if (index == 3) {
-            if (!moveItemStackTo(slotStack, 4, 40, true)) {
+        if (index == RESULT_SLOT) {
+            if (!moveItemStackTo(slotStack, INV_SLOT_START, USE_ROW_SLOT_END, true)) {
                 return ItemStack.EMPTY;
             }
             slot.onQuickCraft(slotStack, itemStack);
-        } else if (index != 2 && index != 1 && index != 0) {
-            if (isSmeltable(slotStack)) {
-                if (!moveItemStackTo(slotStack, 0, 2, false)) {
-                    return ItemStack.EMPTY;
-                }
-            } else if (isFuel(slotStack)) {
-                if (!moveItemStackTo(slotStack, 2, 3, false)) {
-                    return ItemStack.EMPTY;
-                }
-            } else if (index < 31) {
-                if (!moveItemStackTo(slotStack, 31, 40, false)) {
-                    return ItemStack.EMPTY;
-                }
-            } else if (index < 40 && !moveItemStackTo(slotStack, 4, 31, false)) {
-                return ItemStack.EMPTY;
-            }
-        } else if (!moveItemStackTo(slotStack, 4, 40, false)) {
+        } else if (((index == FUEL_SLOT) || (index == INGREDIENT_SLOT_A) || (index == INGREDIENT_SLOT_B))
+                ? !this.moveItemStackTo(slotStack, USE_ROW_SLOT_START, USE_ROW_SLOT_END, false)
+                : (this.isSmeltable(slotStack)
+                        ? !this.moveItemStackTo(slotStack, INGREDIENT_SLOT_A, FUEL_SLOT, false)
+                        : (this.isFuel(slotStack)
+                                ? !this.moveItemStackTo(slotStack, FUEL_SLOT, RESULT_SLOT, false)
+                                : (((index >= INV_SLOT_START) && (index < INV_SLOT_END))
+                                        ? !this.moveItemStackTo(slotStack, USE_ROW_SLOT_START, USE_ROW_SLOT_END, false)
+                                        : ((index >= USE_ROW_SLOT_START) && (index < USE_ROW_SLOT_END) && !this.moveItemStackTo(
+                                                slotStack,
+                                                INV_SLOT_START,
+                                                INV_SLOT_END,
+                                                false
+                                        )))))) {
             return ItemStack.EMPTY;
         }
 
