@@ -45,12 +45,15 @@ public class EndLandBiomeDecider extends BiomeDecider {
             int quarterY,
             int quarterZ
     ) {
-        if (!TerrainGenerator.isLand(quarterX, quarterZ, maxHeight)) {
+        if (TerrainGenerator.isLand(quarterX, quarterZ, maxHeight)) {
+            return suggestedType.equals(BiomeAPI.BiomeType.END_CENTER)
+                    ? suggestedType
+                    : BiomeAPI.BiomeType.END_LAND;
+        } else {
             return suggestedType.equals(BiomeAPI.BiomeType.END_CENTER)
                     ? BiomeAPI.BiomeType.END_BARRENS
                     : BiomeAPI.BiomeType.END_VOID;
         }
-        return suggestedType;
     }
 
     @Override
