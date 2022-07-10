@@ -5,7 +5,10 @@ import org.betterx.betterend.integration.Integrations;
 import org.betterx.betterend.registry.EndBiomes;
 import org.betterx.betterend.world.biome.EndBiome;
 
+import net.minecraft.world.level.levelgen.SurfaceRules;
+
 public class BYGBiomes {
+    public static final SurfaceRules.ConditionSource BYG_WATER_CHECK = SurfaceRules.waterBlockCheck(-1, 0);
     // New Biomes
     public static final EndBiome OLD_BULBIS_GARDENS = EndBiomes.registerSubBiomeIntegration(new OldBulbisGardens());
     public static final EndBiome NIGHTSHADE_REDWOODS = EndBiomes.registerSubBiomeIntegration(new NightshadeRedwoods());

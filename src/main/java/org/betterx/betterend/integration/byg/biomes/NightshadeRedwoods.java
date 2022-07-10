@@ -2,6 +2,8 @@ package org.betterx.betterend.integration.byg.biomes;
 
 import org.betterx.bclib.BCLib;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
+import org.betterx.bclib.api.v2.levelgen.surface.SurfaceRuleBuilder;
+import org.betterx.bclib.interfaces.SurfaceMaterialProvider;
 import org.betterx.betterend.integration.Integrations;
 import org.betterx.betterend.integration.byg.features.BYGFeatures;
 import org.betterx.betterend.registry.EndFeatures;
@@ -16,7 +18,9 @@ import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeSpecialEffects;
 import net.minecraft.world.level.biome.MobSpawnSettings.SpawnerData;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
+import net.minecraft.world.level.levelgen.SurfaceRules;
 
 import java.util.List;
 
@@ -38,10 +42,6 @@ public class NightshadeRedwoods extends EndBiome.Config {
                        ParticleTypes.REVERSE_PORTAL,
                        0.002F
                )
-               //TODO: 1.18 surface rules
-//			  .setSurface(biome.getGenerationSettings()
-//							   .getSurfaceBuilder()
-//							   .get())
                .grassColor(48, 13, 89)
                .plantsColor(200, 125, 9)
                .feature(EndFeatures.END_LAKE_RARE)
@@ -83,5 +83,30 @@ public class NightshadeRedwoods extends EndBiome.Config {
                 builder.spawn((EntityType<? extends Mob>) entry.type, 1, entry.minCount, entry.maxCount);
             });
         }
+    }
+
+    @Override
+    protected SurfaceMaterialProvider surfaceMaterial() {
+        return new EndBiome.DefaultSurfaceMaterialProvider() {
+            @Override
+            public BlockState getTopMaterial() {
+                return Integrations.BYG.getBlock("nightshade_phylium").defaultBlockState();
+            }
+
+            @Override
+            public SurfaceRuleBuilder surface() {
+                return SurfaceRuleBuilder
+                        .start()
+                        .rule(4, SurfaceRules.sequence(SurfaceRules.ifTrue(
+                                                BYGBiomes.BYG_WATER_CHECK,
+                                                SurfaceRules.ifTrue(
+                                                        SurfaceRules.ON_FLOOR,
+                                                        SurfaceRules.state(getTopMaterial())
+                                                )
+                                        )
+                                )
+                        );
+            }
+        };
     }
 }

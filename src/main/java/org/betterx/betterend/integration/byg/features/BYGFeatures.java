@@ -56,14 +56,26 @@ public class BYGFeatures {
             8
     );
 
+    public static final NightshadeRedwoodTreeFeature NIGHTSHADE_REDWOOD_TREE_FEATURE =
+            EndFeatures.inlineBuild(
+                    "nightshade_redwood_tree",
+                    new NightshadeRedwoodTreeFeature()
+            );
+
     public static final BCLFeature<NightshadeRedwoodTreeFeature, NoneFeatureConfiguration> NIGHTSHADE_REDWOOD_TREE = redisterVegetation(
             "nightshade_redwood_tree",
-            new NightshadeRedwoodTreeFeature(),
+            NIGHTSHADE_REDWOOD_TREE_FEATURE,
             1
     );
+    public static final BigEtherTreeFeature BIG_ETHER_TREE_FEATURE =
+            EndFeatures.inlineBuild(
+                    "big_ether_tree",
+                    new BigEtherTreeFeature()
+            );
+
     public static final BCLFeature<BigEtherTreeFeature, NoneFeatureConfiguration> BIG_ETHER_TREE = redisterVegetation(
             "big_ether_tree",
-            new BigEtherTreeFeature(),
+            BIG_ETHER_TREE_FEATURE,
             1
     );
 

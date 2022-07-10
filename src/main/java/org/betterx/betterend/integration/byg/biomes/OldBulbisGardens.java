@@ -2,6 +2,9 @@ package org.betterx.betterend.integration.byg.biomes;
 
 import org.betterx.bclib.BCLib;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
+import org.betterx.bclib.api.v2.levelgen.surface.SurfaceRuleBuilder;
+import org.betterx.bclib.api.v2.levelgen.surface.rules.RoughNoiseCondition;
+import org.betterx.bclib.interfaces.SurfaceMaterialProvider;
 import org.betterx.betterend.integration.Integrations;
 import org.betterx.betterend.integration.byg.features.BYGFeatures;
 import org.betterx.betterend.registry.EndFeatures;
@@ -17,12 +20,13 @@ import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeSpecialEffects;
 import net.minecraft.world.level.biome.MobSpawnSettings.SpawnerData;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
+import net.minecraft.world.level.levelgen.Noises;
+import net.minecraft.world.level.levelgen.SurfaceRules;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 import java.util.List;
-import java.util.function.Supplier;
 
 
 public class OldBulbisGardens extends EndBiome.Config {
@@ -35,12 +39,6 @@ public class OldBulbisGardens extends EndBiome.Config {
         Holder<Biome> biome = Integrations.BYG.getBiome("bulbis_gardens");
         BiomeSpecialEffects effects = biome.value().getSpecialEffects();
 
-        Block ivis = Integrations.BYG.getBlock("ivis_phylium");
-//		Block origin = biome.value()
-//                            .getGenerationSettings()
-//							.getSurfaceBuilderConfig()
-//							.getTopMaterial()
-//							.getBlock();
         builder.fogColor(215, 132, 207)
                .fogDensity(1.8F)
                .waterAndFogColor(40, 0, 56)
@@ -49,8 +47,6 @@ public class OldBulbisGardens extends EndBiome.Config {
                        ParticleTypes.REVERSE_PORTAL,
                        0.002F
                )
-               //TODO: 1.18 surface rules
-               //.surface(ivis, origin)
                .feature(EndFeatures.END_LAKE_RARE)
                .feature(BYGFeatures.OLD_BULBIS_TREE);
 
@@ -85,12 +81,11 @@ public class OldBulbisGardens extends EndBiome.Config {
         List<HolderSet<PlacedFeature>> features = biome.value().getGenerationSettings()
                                                        .features();
         HolderSet<PlacedFeature> vegetal = features.get(Decoration.VEGETAL_DECORATION.ordinal());
-        if (vegetal.size() > 2) {
-            Supplier<PlacedFeature> getter;
-            //TODO: 1.18.2 BRING BACK FEATURE COPY CODE
-            for (var placed : vegetal) {
-                System.out.print(placed);
-            }
+//        if (vegetal.size() > 2) {
+//            Supplier<PlacedFeature> getter;
+        for (var feature : vegetal) {
+            builder.feature(Decoration.VEGETAL_DECORATION, feature);
+        }
 //			// Trees (first two features)
 //			// I couldn't process them with conditions, so that's why they are hardcoded (paulevs)
 //			for (int i = 0; i < 2; i++) {
@@ -110,7 +105,7 @@ public class OldBulbisGardens extends EndBiome.Config {
 //				Holder<PlacedFeature> feature = getter.get();
 //				builder.feature(Decoration.VEGETAL_DECORATION, feature);
 //			}
-        }
+//        }
 
         builder.feature(EndFeatures.PURPLE_POLYPORE)
                .feature(BYGFeatures.IVIS_MOSS_WOOD)
@@ -118,4 +113,41 @@ public class OldBulbisGardens extends EndBiome.Config {
                .feature(BYGFeatures.IVIS_VINE)
                .feature(BYGFeatures.IVIS_SPROUT);
     }
+
+    @Override
+    protected SurfaceMaterialProvider surfaceMaterial() {
+        return new EndBiome.DefaultSurfaceMaterialProvider() {
+            @Override
+            public BlockState getTopMaterial() {
+                return Integrations.BYG.getBlock("ivis_phylium").defaultBlockState();
+            }
+
+            @Override
+            public BlockState getAltTopMaterial() {
+                return Integrations.BYG.getBlock("bulbis_phycelium").defaultBlockState();
+            }
+
+            @Override
+            public SurfaceRuleBuilder surface() {
+                return SurfaceRuleBuilder
+                        .start()
+                        .rule(4, SurfaceRules.sequence(SurfaceRules.ifTrue(
+                                                BYGBiomes.BYG_WATER_CHECK,
+                                                SurfaceRules.ifTrue(
+                                                        SurfaceRules.ON_FLOOR,
+                                                        SurfaceRules.sequence(
+                                                                SurfaceRules.ifTrue(
+                                                                        new RoughNoiseCondition(Noises.NETHERRACK, 0.19),
+                                                                        SurfaceRules.state(getTopMaterial())
+                                                                ),
+                                                                SurfaceRules.state(getAltTopMaterial())
+                                                        )
+                                                )
+                                        )
+                                )
+                        );
+            }
+        };
+    }
+
 }
