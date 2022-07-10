@@ -2,7 +2,6 @@ package org.betterx.betterend;
 
 import org.betterx.bclib.api.v2.generator.BiomeDecider;
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
-import org.betterx.bclib.util.Logger;
 import org.betterx.betterend.api.BetterEndPlugin;
 import org.betterx.betterend.commands.CommandRegistry;
 import org.betterx.betterend.config.Configs;
@@ -14,6 +13,7 @@ import org.betterx.betterend.util.BonemealPlants;
 import org.betterx.betterend.util.LootTableUtil;
 import org.betterx.betterend.world.generator.EndLandBiomeDecider;
 import org.betterx.betterend.world.generator.GeneratorOptions;
+import org.betterx.worlds.together.util.Logger;
 import org.betterx.worlds.together.world.WorldConfig;
 
 import net.minecraft.resources.ResourceLocation;
