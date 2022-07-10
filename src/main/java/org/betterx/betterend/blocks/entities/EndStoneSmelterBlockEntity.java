@@ -48,14 +48,15 @@ import java.util.List;
 import java.util.Map;
 
 public class EndStoneSmelterBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer, RecipeHolder, StackedContentsCompatible {
-
     private static final int[] TOP_SLOTS = new int[]{
             EndStoneSmelterMenu.INGREDIENT_SLOT_A,
             EndStoneSmelterMenu.INGREDIENT_SLOT_B
     };
+    private static final int[] JUST_A = new int[]{
+            EndStoneSmelterMenu.INGREDIENT_SLOT_A,
+    };
     private static final int[] BOTTOM_SLOTS = new int[]{EndStoneSmelterMenu.FUEL_SLOT, EndStoneSmelterMenu.RESULT_SLOT};
     private static final int[] SIDE_SLOTS = new int[]{
-            EndStoneSmelterMenu.INGREDIENT_SLOT_B,
             EndStoneSmelterMenu.FUEL_SLOT
     };
     private static final Map<Item, Integer> AVAILABLE_FUELS = Maps.newHashMap();
@@ -396,10 +397,13 @@ public class EndStoneSmelterBlockEntity extends BaseContainerBlockEntity impleme
 
     @Override
     public int[] getSlotsForFace(Direction side) {
-        if (side == Direction.DOWN) {
-            return BOTTOM_SLOTS;
-        }
-        return side == Direction.UP ? TOP_SLOTS : SIDE_SLOTS;
+//        var facing = getBlockState().getValue(EndStoneSmelter.FACING);
+//        if (side == facing) return JUST_A;
+        return switch (side) {
+            case DOWN -> BOTTOM_SLOTS;
+            case UP -> TOP_SLOTS;
+            default -> SIDE_SLOTS;
+        };
     }
 
     @Override
