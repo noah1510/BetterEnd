@@ -63,12 +63,12 @@ public abstract class MixinArmorFeatureRenderer extends RenderLayer {
     }
 
     @Unique
-    private LivingEntity storedEntity;
+    private LivingEntity be_storedEntity;
     @Unique
-    private EquipmentSlot storedSlot;
+    private EquipmentSlot be_storedSlot;
 
     @Inject(method = "render", at = @At("HEAD"))
-    private void storeEntity(
+    private void be_storeEntity(
             PoseStack matrixStack,
             MultiBufferSource vertexConsumerProvider,
             int i,
@@ -82,11 +82,11 @@ public abstract class MixinArmorFeatureRenderer extends RenderLayer {
             CallbackInfo ci
     ) {
         // We store the living entity wearing the armor before we render
-        this.storedEntity = livingEntity;
+        this.be_storedEntity = livingEntity;
     }
 
     @Inject(method = "renderArmorPiece", at = @At("HEAD"))
-    private void storeSlot(
+    private void be_storeSlot(
             PoseStack matrices,
             MultiBufferSource vertexConsumers,
             LivingEntity livingEntity,
@@ -96,11 +96,11 @@ public abstract class MixinArmorFeatureRenderer extends RenderLayer {
             CallbackInfo ci
     ) {
         // We store the current armor slot that is rendering before we render each armor piece
-        this.storedSlot = slot;
+        this.be_storedSlot = slot;
     }
 
     @Inject(method = "render", at = @At("RETURN"))
-    private void removeStored(
+    private void be_removeStored(
             PoseStack matrixStack,
             MultiBufferSource vertexConsumerProvider,
             int i,
@@ -114,29 +114,31 @@ public abstract class MixinArmorFeatureRenderer extends RenderLayer {
             CallbackInfo ci
     ) {
         // We remove the stored data after we render
-        this.storedEntity = null;
-        this.storedSlot = null;
+        this.be_storedEntity = null;
+        this.be_storedSlot = null;
     }
 
     @Inject(method = "getArmorModel", at = @At("RETURN"), cancellable = true)
-    private void selectArmorModel(EquipmentSlot slot, CallbackInfoReturnable<HumanoidModel<LivingEntity>> cir) {
-        ItemStack stack = storedEntity.getItemBySlot(slot);
+    private void be_selectArmorModel(EquipmentSlot slot, CallbackInfoReturnable<HumanoidModel<LivingEntity>> cir) {
+        if (be_storedEntity != null) {
+            ItemStack stack = be_storedEntity.getItemBySlot(slot);
 
-        HumanoidModel<LivingEntity> defaultModel = cir.getReturnValue();
-        HumanoidModel<LivingEntity> model = ArmorRenderingRegistry.getArmorModel(
-                storedEntity,
-                stack,
-                slot,
-                defaultModel
-        );
+            HumanoidModel<LivingEntity> defaultModel = cir.getReturnValue();
+            HumanoidModel<LivingEntity> model = ArmorRenderingRegistry.getArmorModel(
+                    be_storedEntity,
+                    stack,
+                    slot,
+                    defaultModel
+            );
 
-        if (model != defaultModel) {
-            cir.setReturnValue(model);
+            if (model != defaultModel) {
+                cir.setReturnValue(model);
+            }
         }
     }
 
     @Inject(method = "getArmorLocation", at = @At(value = "INVOKE", target = "Ljava/util/Map;computeIfAbsent(Ljava/lang/Object;Ljava/util/function/Function;)Ljava/lang/Object;"), cancellable = true, locals = LocalCapture.CAPTURE_FAILHARD)
-    private void getArmorTexture(
+    private void be_getArmorTexture(
             ArmorItem armorItem,
             boolean secondLayer, /* @Nullable */
             String suffix,
@@ -144,9 +146,9 @@ public abstract class MixinArmorFeatureRenderer extends RenderLayer {
             String vanillaIdentifier
     ) {
         String texture = ArmorRenderingRegistry.getArmorTexture(
-                storedEntity,
-                storedEntity.getItemBySlot(storedSlot),
-                storedSlot,
+                be_storedEntity,
+                be_storedEntity.getItemBySlot(be_storedSlot),
+                be_storedSlot,
                 secondLayer,
                 suffix,
                 new ResourceLocation(vanillaIdentifier)
