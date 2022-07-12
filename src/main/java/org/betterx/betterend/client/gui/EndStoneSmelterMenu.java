@@ -21,7 +21,6 @@ import net.fabricmc.api.Environment;
 
 import org.anti_ad.mc.ipn.api.IPNIgnore;
 
-@Environment(EnvType.CLIENT)
 @IPNIgnore
 public class EndStoneSmelterMenu extends RecipeBookMenu<Container> {
     public static final int INGREDIENT_SLOT_A = 0;
