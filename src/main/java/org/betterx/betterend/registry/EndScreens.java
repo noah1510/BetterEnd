@@ -1,12 +1,11 @@
 package org.betterx.betterend.registry;
 
-import org.betterx.betterend.client.BetterEndClient;
 import org.betterx.betterend.client.gui.EndStoneSmelterScreen;
 
-import net.fabricmc.fabric.api.client.screenhandler.v1.ScreenRegistry;
+import net.minecraft.client.gui.screens.MenuScreens;
 
 public class EndScreens {
     public static void register() {
-        ScreenRegistry.register(BetterEndClient.HANDLER_TYPE, EndStoneSmelterScreen::new);
+        MenuScreens.register(EndMenuTypes.END_STONE_SMELTER, EndStoneSmelterScreen::new);
     }
 }

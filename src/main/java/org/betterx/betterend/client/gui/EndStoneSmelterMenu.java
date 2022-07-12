@@ -1,10 +1,10 @@
 package org.betterx.betterend.client.gui;
 
 import org.betterx.betterend.blocks.entities.EndStoneSmelterBlockEntity;
-import org.betterx.betterend.client.BetterEndClient;
 import org.betterx.betterend.client.gui.slot.SmelterFuelSlot;
 import org.betterx.betterend.client.gui.slot.SmelterOutputSlot;
 import org.betterx.betterend.recipe.builders.AlloyingRecipe;
+import org.betterx.betterend.registry.EndMenuTypes;
 
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
@@ -48,7 +48,7 @@ public class EndStoneSmelterMenu extends RecipeBookMenu<Container> {
             Container inventory,
             ContainerData propertyDelegate
     ) {
-        super(BetterEndClient.HANDLER_TYPE, syncId);
+        super(EndMenuTypes.END_STONE_SMELTER, syncId);
         this.inventory = inventory;
         this.propertyDelegate = propertyDelegate;
         this.world = playerInventory.player.level;
@@ -71,7 +71,7 @@ public class EndStoneSmelterMenu extends RecipeBookMenu<Container> {
 
     @Override
     public MenuType<?> getType() {
-        return BetterEndClient.HANDLER_TYPE;
+        return EndMenuTypes.END_STONE_SMELTER;
     }
 
     @Override

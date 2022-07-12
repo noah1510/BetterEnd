@@ -34,6 +34,7 @@ public class BetterEnd implements ModInitializer {
         WorldConfig.registerModCache(MOD_ID);
         EndPortals.loadPortals();
         EndSounds.register();
+        EndMenuTypes.ensureStaticallyLoaded();
         EndBlockEntities.register();
         EndPoiTypes.register();
         EndFeatures.register();
