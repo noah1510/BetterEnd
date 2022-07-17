@@ -4,10 +4,10 @@ import org.betterx.bclib.blocks.BaseBlock;
 import org.betterx.bclib.blocks.BaseLeavesBlock;
 import org.betterx.bclib.interfaces.CustomColorProvider;
 import org.betterx.bclib.interfaces.tools.AddMineableShears;
-import org.betterx.bclib.util.ColorUtil;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.noise.OpenSimplexNoise;
 import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.ui.ColorUtil;
 import org.betterx.worlds.together.tag.v3.TagManager;
 
 import net.minecraft.client.color.block.BlockColor;

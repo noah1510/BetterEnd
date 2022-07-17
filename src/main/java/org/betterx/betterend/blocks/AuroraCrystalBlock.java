@@ -5,9 +5,9 @@ import org.betterx.bclib.interfaces.CustomColorProvider;
 import org.betterx.bclib.interfaces.RenderLayerProvider;
 import org.betterx.bclib.interfaces.tools.AddMineableHammer;
 import org.betterx.bclib.interfaces.tools.AddMineablePickaxe;
-import org.betterx.bclib.util.ColorUtil;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.registry.EndItems;
+import org.betterx.ui.ColorUtil;
 
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;

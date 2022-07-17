@@ -5,10 +5,10 @@ import org.betterx.bclib.client.render.BCLRenderLayer;
 import org.betterx.bclib.interfaces.BlockModelProvider;
 import org.betterx.bclib.interfaces.CustomColorProvider;
 import org.betterx.bclib.interfaces.RenderLayerProvider;
-import org.betterx.bclib.util.ColorUtil;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.client.models.Patterns;
 import org.betterx.betterend.noise.OpenSimplexNoise;
+import org.betterx.ui.ColorUtil;
 
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;

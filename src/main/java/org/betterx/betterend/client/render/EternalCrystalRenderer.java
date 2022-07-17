@@ -1,9 +1,9 @@
 package org.betterx.betterend.client.render;
 
-import org.betterx.bclib.util.ColorUtil;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.blocks.AuroraCrystalBlock;
+import org.betterx.ui.ColorUtil;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;

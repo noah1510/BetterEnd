@@ -1,7 +1,7 @@
 package org.betterx.betterend.particle;
 
-import org.betterx.bclib.util.ColorUtil;
 import org.betterx.betterend.registry.EndParticles;
+import org.betterx.ui.ColorUtil;
 
 import com.mojang.brigadier.StringReader;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
