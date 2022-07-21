@@ -3,7 +3,6 @@ package org.betterx.betterend.integration.trinkets;
 import org.betterx.bclib.items.elytra.BCLElytraItem;
 import org.betterx.bclib.items.elytra.BCLElytraUtils;
 
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -56,7 +55,7 @@ public class Elytra {
                 }
             }
         };
-        
+
         EntityElytraEvents.CUSTOM.register(Elytra::useElytraTrinket);
     }
 
@@ -72,7 +71,7 @@ public class Elytra {
 
                 if (item instanceof ElytraItem) {
                     if (ElytraItem.isFlyEnabled(stack)) {
-                        INSTANCE.doVanillaElytraTick(entity, stack);
+                        BCLElytraItem.vanillaElytraTick(entity, stack);
                         return true;
                     }
                 } else if (item instanceof FabricElytraItem fabricElytraItem) {
@@ -84,18 +83,6 @@ public class Elytra {
         }
         return false;
     }
-
-    private static final BCLElytraItem INSTANCE = new BCLElytraItem() {
-        @Override
-        public ResourceLocation getModelTexture() {
-            return null;
-        }
-
-        @Override
-        public double getMovementFactor() {
-            return 0;
-        }
-    };
 }
 
 
