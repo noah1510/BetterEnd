@@ -2,6 +2,7 @@ package org.betterx.betterend;
 
 import org.betterx.bclib.api.v2.generator.BiomeDecider;
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
+import org.betterx.bclib.networking.VersionCheckEntryPoint;
 import org.betterx.betterend.api.BetterEndPlugin;
 import org.betterx.betterend.commands.CommandRegistry;
 import org.betterx.betterend.config.Configs;
@@ -22,7 +23,7 @@ import net.minecraft.world.level.biome.Biomes;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 
-public class BetterEnd implements ModInitializer {
+public class BetterEnd implements ModInitializer, VersionCheckEntryPoint {
     public static final String MOD_ID = "betterend";
     public static final Logger LOGGER = new Logger(MOD_ID);
     public static final boolean RUNS_TRINKETS = FabricLoader.getInstance()
@@ -84,5 +85,11 @@ public class BetterEnd implements ModInitializer {
         return new ResourceLocation(MOD_ID, path);
     }
 
+    @Override
+    public ResourceLocation updaterIcon(String modID) {
+        if (modID.equals(MOD_ID))
+            return makeID("icon_update.png");
 
+        return null;
+    }
 }

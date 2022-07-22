@@ -30,6 +30,9 @@
     ],
     "rei_client": [
       "org.betterx.betterend.integration.rei.REIPlugin"
+    ],
+    "bclib": [
+      "org.betterx.betterend.BetterEnd"
     ]
   },
   "accessWidener": "betterend.accesswidener",
