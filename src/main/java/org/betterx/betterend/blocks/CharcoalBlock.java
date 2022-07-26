@@ -1,15 +1,19 @@
 package org.betterx.betterend.blocks;
 
 import org.betterx.bclib.blocks.BaseBlock;
+import org.betterx.bclib.interfaces.Fuel;
 
 import net.minecraft.world.level.block.Blocks;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.fabricmc.fabric.api.registry.FuelRegistry;
 
-public class CharcoalBlock extends BaseBlock {
+public class CharcoalBlock extends BaseBlock implements Fuel {
     public CharcoalBlock() {
         super(FabricBlockSettings.copyOf(Blocks.COAL_BLOCK));
-        FuelRegistry.INSTANCE.add(this, 16000);
+    }
+
+    @Override
+    public int getFuelTime() {
+        return 16000;
     }
 }
