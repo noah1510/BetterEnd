@@ -275,7 +275,7 @@ public class EndStoneSmelterBlockEntity extends BaseContainerBlockEntity impleme
                 }
                 boolean accepted = blockEntity.canAcceptRecipeOutput(recipe);
                 if (!burning && accepted) {
-                    blockEntity.burnTime = blockEntity.getFuelTime(fuel);
+                    blockEntity.burnTime = EndStoneSmelterBlockEntity.getFuelTime(fuel);
                     blockEntity.fuelTime = blockEntity.burnTime;
                     burning = blockEntity.isBurning();
                     if (burning) {
@@ -419,7 +419,7 @@ public class EndStoneSmelterBlockEntity extends BaseContainerBlockEntity impleme
         return true;
     }
 
-    protected int getFuelTime(ItemStack fuel) {
+    public static int getFuelTime(ItemStack fuel) {
         if (fuel.isEmpty()) {
             return 0;
         }

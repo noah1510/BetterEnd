@@ -30,6 +30,9 @@
     ],
     "rei_client": [
       "org.betterx.betterend.integration.rei.REIPlugin"
+    ],
+    "jei_mod_plugin": [
+      "org.betterx.betterend.integration.jei.JEIPlugin"
     ]
   },
   "accessWidener": "betterend.accesswidener",
