@@ -30,9 +30,6 @@
     ],
     "rei_client": [
       "org.betterx.betterend.integration.rei.REIPlugin"
-    ],
-    "bclib": [
-      "org.betterx.betterend.BetterEnd"
     ]
   },
   "accessWidener": "betterend.accesswidener",
@@ -59,5 +56,10 @@
     "nourish": ">=1.2.0",
     "colored_lights": ">=1.0.3",
     "trinkets": ">=3.4.0"
+  },
+  "custom": {
+    "bclib": {
+      "updater_icon": "icon_updater.png"
+    }
   }
 }
