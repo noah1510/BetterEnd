@@ -20,6 +20,7 @@ import net.minecraft.world.level.material.MaterialColor;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 
 import java.util.List;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 public class EndBlocks {
@@ -656,5 +657,9 @@ public class EndBlocks {
     @NotNull
     public static BlockRegistry getBlockRegistry() {
         return REGISTRY;
+    }
+
+    @ApiStatus.Internal
+    public static void ensureStaticallyLoaded() {
     }
 }

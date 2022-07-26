@@ -33,6 +33,7 @@ import net.minecraft.world.item.Tiers;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 
 import java.util.List;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 public class EndItems {
@@ -353,5 +354,9 @@ public class EndItems {
     @NotNull
     public static ItemRegistry getItemRegistry() {
         return REGISTRY;
+    }
+
+    @ApiStatus.Internal
+    public static void ensureStaticallyLoaded() {
     }
 }
