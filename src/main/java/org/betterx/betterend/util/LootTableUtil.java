@@ -36,7 +36,7 @@ public class LootTableUtil {
             if (END_CITY_TREASURE_ID.equals(id)) {
                 LootPool.Builder builder = LootPool.lootPool();
                 builder.setRolls(ConstantValue.exactly(1));
-                builder.conditionally(LootItemRandomChanceCondition.randomChance(0.2f).build());
+                builder.when(LootItemRandomChanceCondition.randomChance(0.2f));
                 builder.add(LootItem.lootTableItem(Items.GHAST_TEAR));
                 table.withPool(builder);
 
