@@ -6,6 +6,7 @@ import org.betterx.betterend.item.material.EndToolMaterial;
 import org.betterx.betterend.registry.EndItems;
 
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.Tiers;
 
 public class AnvilRecipes {
     public static void register() {
@@ -13,6 +14,7 @@ public class AnvilRecipes {
                    .checkConfig(Configs.RECIPE_CONFIG)
                    .setInput(Items.ENDER_PEARL)
                    .setOutput(EndItems.ENDER_DUST)
+                   .setAnvilLevel(Tiers.IRON.getLevel())
                    .setToolLevel(4)
                    .setDamage(5)
                    .build();
@@ -20,6 +22,7 @@ public class AnvilRecipes {
                    .checkConfig(Configs.RECIPE_CONFIG)
                    .setInput(EndItems.ENDER_SHARD)
                    .setOutput(EndItems.ENDER_DUST)
+                   .setAnvilLevel(Tiers.IRON.getLevel())
                    .setToolLevel(0)
                    .setDamage(3)
                    .build();

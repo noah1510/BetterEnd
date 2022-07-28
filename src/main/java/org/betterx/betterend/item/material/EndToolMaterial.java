@@ -5,14 +5,15 @@ import org.betterx.betterend.registry.EndItems;
 
 import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.item.Tier;
+import net.minecraft.world.item.Tiers;
 import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.function.Supplier;
 
 public enum EndToolMaterial implements Tier {
-    THALLASIUM(2, 320, 7.0F, 1.5F, 12, () -> {
+    THALLASIUM(Tiers.IRON.getLevel(), 320, 7.0F, 1.5F, 12, () -> {
         return Ingredient.of(EndBlocks.THALLASIUM.ingot);
-    }), TERMINITE(3, 1230, 8.5F, 3.0F, 14, () -> {
+    }), TERMINITE(Tiers.DIAMOND.getLevel(), 1230, 8.5F, 3.0F, 14, () -> {
         return Ingredient.of(EndBlocks.TERMINITE.ingot);
     }), AETERNIUM(5, 2196, 10.0F, 4.5F, 18, () -> {
         return Ingredient.of(EndItems.AETERNIUM_INGOT);

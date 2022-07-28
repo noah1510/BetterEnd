@@ -545,15 +545,18 @@ public class EndBlocks {
             "thallasium",
             MaterialColor.COLOR_BLUE,
             EndToolMaterial.THALLASIUM,
-            EndArmorMaterial.THALLASIUM
+            EndArmorMaterial.THALLASIUM,
+            EndToolMaterial.THALLASIUM.getLevel()
     );
+
     public static final MetalMaterial TERMINITE = MetalMaterial.makeOreless(
             "terminite",
             MaterialColor.WARPED_WART_BLOCK,
             7F,
             9F,
             EndToolMaterial.TERMINITE,
-            EndArmorMaterial.TERMINITE
+            EndArmorMaterial.TERMINITE,
+            EndToolMaterial.TERMINITE.getLevel()
     );
     public static final Block AETERNIUM_BLOCK = registerBlock("aeternium_block", new AeterniumBlock());
     public static final Block CHARCOAL_BLOCK = registerBlock("charcoal_block", new CharcoalBlock());

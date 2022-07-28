@@ -85,14 +85,21 @@ public class MetalMaterial {
 
     public final TagKey<Item> alloyingOre;
 
-    public static MetalMaterial makeNormal(String name, MaterialColor color, Tier material, ArmorMaterial armor) {
+    public static MetalMaterial makeNormal(
+            String name,
+            MaterialColor color,
+            Tier material,
+            ArmorMaterial armor,
+            int anvilAndToolLevel
+    ) {
         return new MetalMaterial(
                 name,
                 true,
                 FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).mapColor(color),
                 EndItems.makeEndItemSettings(),
                 material,
-                armor
+                armor,
+                anvilAndToolLevel
         );
     }
 
@@ -102,7 +109,8 @@ public class MetalMaterial {
             float hardness,
             float resistance,
             Tier material,
-            ArmorMaterial armor
+            ArmorMaterial armor,
+            int anvilAndToolLevel
     ) {
         return new MetalMaterial(
                 name,
@@ -113,18 +121,26 @@ public class MetalMaterial {
                                    .resistance(resistance),
                 EndItems.makeEndItemSettings(),
                 material,
-                armor
+                armor,
+                anvilAndToolLevel
         );
     }
 
-    public static MetalMaterial makeOreless(String name, MaterialColor color, Tier material, ArmorMaterial armor) {
+    public static MetalMaterial makeOreless(
+            String name,
+            MaterialColor color,
+            Tier material,
+            ArmorMaterial armor,
+            int anvilAndToolLevel
+    ) {
         return new MetalMaterial(
                 name,
                 false,
                 FabricBlockSettings.copyOf(Blocks.IRON_BLOCK).mapColor(color),
                 EndItems.makeEndItemSettings(),
                 material,
-                armor
+                armor,
+                anvilAndToolLevel
         );
     }
 
@@ -134,7 +150,8 @@ public class MetalMaterial {
             float hardness,
             float resistance,
             Tier material,
-            ArmorMaterial armor
+            ArmorMaterial armor,
+            int anvilAndToolLevel
     ) {
         return new MetalMaterial(
                 name,
@@ -145,7 +162,8 @@ public class MetalMaterial {
                                    .resistance(resistance),
                 EndItems.makeEndItemSettings(),
                 material,
-                armor
+                armor,
+                anvilAndToolLevel
         );
     }
 
@@ -155,7 +173,8 @@ public class MetalMaterial {
             FabricBlockSettings settings,
             Properties itemSettings,
             Tier material,
-            ArmorMaterial armor
+            ArmorMaterial armor,
+            int anvilAndToolLevel
     ) {
         BlockBehaviour.Properties lanternProperties = FabricBlockSettings.copyOf(settings)
                                                                          .hardness(1)
@@ -219,7 +238,7 @@ public class MetalMaterial {
 
         anvilBlock = EndBlocks.registerBlock(
                 name + "_anvil",
-                new EndAnvilBlock(this, block.defaultMaterialColor(), level)
+                new EndAnvilBlock(this, block.defaultMaterialColor(), anvilAndToolLevel)
         );
 
         if (hasOre) {
@@ -387,7 +406,7 @@ public class MetalMaterial {
                    .checkConfig(Configs.RECIPE_CONFIG)
                    .setInput(ingot)
                    .setOutput(shovelHead)
-                   .setAnvilLevel(level)
+                   .setAnvilLevel(anvilAndToolLevel)
                    .setToolLevel(level)
                    .setDamage(level)
                    .build();
@@ -396,7 +415,7 @@ public class MetalMaterial {
                    .setInput(ingot)
                    .setInputCount(3)
                    .setOutput(pickaxeHead)
-                   .setAnvilLevel(level)
+                   .setAnvilLevel(anvilAndToolLevel)
                    .setToolLevel(level)
                    .setDamage(level)
                    .build();
@@ -405,7 +424,7 @@ public class MetalMaterial {
                    .setInput(ingot)
                    .setInputCount(3)
                    .setOutput(axeHead)
-                   .setAnvilLevel(level)
+                   .setAnvilLevel(anvilAndToolLevel)
                    .setToolLevel(level)
                    .setDamage(level)
                    .build();
@@ -414,7 +433,7 @@ public class MetalMaterial {
                    .setInput(ingot)
                    .setInputCount(2)
                    .setOutput(hoeHead)
-                   .setAnvilLevel(level)
+                   .setAnvilLevel(anvilAndToolLevel)
                    .setToolLevel(level)
                    .setDamage(level)
                    .build();
@@ -422,7 +441,7 @@ public class MetalMaterial {
                    .checkConfig(Configs.RECIPE_CONFIG)
                    .setInput(ingot)
                    .setOutput(swordBlade)
-                   .setAnvilLevel(level)
+                   .setAnvilLevel(anvilAndToolLevel)
                    .setToolLevel(level)
                    .setDamage(level)
                    .build();
@@ -430,7 +449,7 @@ public class MetalMaterial {
                    .checkConfig(Configs.RECIPE_CONFIG)
                    .setInput(ingot)
                    .setOutput(forgedPlate)
-                   .setAnvilLevel(level)
+                   .setAnvilLevel(anvilAndToolLevel)
                    .setToolLevel(level)
                    .setDamage(level)
                    .build();
