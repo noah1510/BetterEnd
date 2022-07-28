@@ -620,5 +620,14 @@
   "item.betterend.thallasium_sword_blade": "Thallasiumschwertklinge",
   "item.betterend.thallasium_sword_handle": "Thallasiumschwertgriff",
   "block.betterend.aeternium_anvil": "Ätheramboss",
-  "tag.betterend.alloying_iron": "Eisenlegierung"
+  "tag.betterend.alloying_iron": "Eisenlegierung",
+  "emi.category.betterend.infusion": "Elementarrituale",
+  "betterend.infusion.north": "Nördlicher  Sockel",
+  "betterend.infusion.north_west": "Nordwestlciher Sockel",
+  "betterend.infusion.west": "Westlicher Sockel",
+  "betterend.infusion.south_west": "Südwestlicher Sockel",
+  "betterend.infusion.south": "Südlicher Sockel",
+  "betterend.infusion.south_east": "Südöstlicher Sockel",
+  "betterend.infusion.east": "Östlicher Sockel",
+  "betterend.infusion.north_east": "Nordöstlicher Sockel"
 }

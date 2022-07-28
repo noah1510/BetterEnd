@@ -819,5 +819,14 @@
   "block.betterend.pallidium_thin": "Pallidium (Thin Cover)",
   "block.betterend.pallidium_tiny": "Pallidium (Tiny Cover)",
   "block.betterend.flammalix": "Flammalix",
-  "tag.betterend.alloying_iron": "Iron Alloys"
+  "tag.betterend.alloying_iron": "Iron Alloys",
+  "emi.category.betterend.infusion": "Infusion Ritual",
+  "betterend.infusion.north": "Northern Pedestal",
+  "betterend.infusion.north_west": "North-West Pedestal",
+  "betterend.infusion.west": "Western Pedestal",
+  "betterend.infusion.south_west": "South-West Pedestal",
+  "betterend.infusion.south": "Southern Pedestal",
+  "betterend.infusion.south_east": "South-East Pedestal",
+  "betterend.infusion.east": "Eastern Pedestal",
+  "betterend.infusion.north_east": "North-East Pedestal"
 }
