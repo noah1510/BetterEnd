@@ -1,7 +1,7 @@
 package org.betterx.betterend.integration.jei;
 
+import org.betterx.bclib.recipes.AlloyingRecipe;
 import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.recipe.builders.AlloyingRecipe;
 import org.betterx.betterend.registry.EndBlocks;
 
 import net.minecraft.client.Minecraft;

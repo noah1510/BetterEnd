@@ -16,8 +16,4 @@ public class EndAnvilBlock extends LeveledAnvilBlock {
         super(color, level);
         this.metalMaterial = metalMaterial;
     }
-
-    public int getCraftingLevel() {
-        return level;
-    }
 }

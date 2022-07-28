@@ -1,6 +1,7 @@
 package org.betterx.betterend.blocks;
 
 import org.betterx.bclib.blocks.BaseBlockWithEntity;
+import org.betterx.bclib.interfaces.AlloyingRecipeWorkstation;
 import org.betterx.betterend.blocks.entities.EndStoneSmelterBlockEntity;
 import org.betterx.betterend.registry.EndBlockEntities;
 
@@ -41,7 +42,7 @@ import com.google.common.collect.Lists;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
-public class EndStoneSmelter extends BaseBlockWithEntity {
+public class EndStoneSmelter extends BaseBlockWithEntity implements AlloyingRecipeWorkstation {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
     public static final String ID = "end_stone_smelter";

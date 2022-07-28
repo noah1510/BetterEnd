@@ -1,7 +1,7 @@
 package org.betterx.betterend.integration.rei;
 
+import org.betterx.bclib.recipes.AlloyingRecipe;
 import org.betterx.betterend.blocks.entities.EndStoneSmelterBlockEntity;
-import org.betterx.betterend.recipe.builders.AlloyingRecipe;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;

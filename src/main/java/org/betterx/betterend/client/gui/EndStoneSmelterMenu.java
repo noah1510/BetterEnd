@@ -1,9 +1,9 @@
 package org.betterx.betterend.client.gui;
 
+import org.betterx.bclib.recipes.AlloyingRecipe;
 import org.betterx.betterend.blocks.entities.EndStoneSmelterBlockEntity;
 import org.betterx.betterend.client.gui.slot.SmelterFuelSlot;
 import org.betterx.betterend.client.gui.slot.SmelterOutputSlot;
-import org.betterx.betterend.recipe.builders.AlloyingRecipe;
 import org.betterx.betterend.registry.EndMenuTypes;
 
 import net.minecraft.world.Container;

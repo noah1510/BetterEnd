@@ -1,9 +1,9 @@
 package org.betterx.betterend.blocks.entities;
 
+import org.betterx.bclib.recipes.AlloyingRecipe;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.blocks.EndStoneSmelter;
 import org.betterx.betterend.client.gui.EndStoneSmelterMenu;
-import org.betterx.betterend.recipe.builders.AlloyingRecipe;
 import org.betterx.betterend.registry.EndBlockEntities;
 
 import net.minecraft.core.BlockPos;

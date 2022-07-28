@@ -19,7 +19,7 @@ import org.betterx.betterend.config.Configs;
 import org.betterx.betterend.item.EndArmorItem;
 import org.betterx.betterend.item.tool.EndHammerItem;
 import org.betterx.betterend.item.tool.EndPickaxe;
-import org.betterx.betterend.recipe.builders.AlloyingRecipe;
+import org.betterx.betterend.recipe.builders.AlloyingRecipeBuilder;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndItems;
 import org.betterx.worlds.together.tag.v3.TagManager;
@@ -231,11 +231,11 @@ public class MetalMaterial {
                          .checkConfig(Configs.RECIPE_CONFIG)
                          .setGroup("end_ingot")
                          .buildWithBlasting();
-            AlloyingRecipe.Builder.create(name + "_ingot_alloy")
-                                  .setInput(alloyingOre, alloyingOre)
-                                  .setOutput(ingot, 3)
-                                  .setExpiriense(2.1F)
-                                  .build();
+            AlloyingRecipeBuilder.create(name + "_ingot_alloy")
+                                 .setInput(alloyingOre, alloyingOre)
+                                 .setOutput(ingot, 3)
+                                 .setExpiriense(2.1F)
+                                 .build();
         }
 
         // Basic recipes

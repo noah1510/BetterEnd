@@ -1,10 +1,10 @@
 package org.betterx.betterend.integration.rei;
 
 import org.betterx.bclib.blocks.BaseFurnaceBlock;
+import org.betterx.bclib.recipes.AlloyingRecipe;
 import org.betterx.bclib.recipes.AnvilRecipe;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.blocks.basis.EndAnvilBlock;
-import org.betterx.betterend.recipe.builders.AlloyingRecipe;
 import org.betterx.betterend.recipe.builders.InfusionRecipe;
 import org.betterx.betterend.registry.EndBlocks;
 

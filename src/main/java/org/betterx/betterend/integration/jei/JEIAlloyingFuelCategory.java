@@ -1,8 +1,8 @@
 package org.betterx.betterend.integration.jei;
 
+import org.betterx.bclib.recipes.AlloyingRecipe;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.blocks.entities.EndStoneSmelterBlockEntity;
-import org.betterx.betterend.recipe.builders.AlloyingRecipe;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.ui.layout.values.Rectangle;
 
