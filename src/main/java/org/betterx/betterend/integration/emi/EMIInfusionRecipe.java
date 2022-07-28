@@ -91,7 +91,7 @@ public class EMIInfusionRecipe implements EmiRecipe {
         final int radius = 36;
         final int halfSize = 9;
         final int left = 10;
-        final int top = 18;
+        final int top = 17;
 
         final int cx = left + 84 / 2;
         final int cy = top + 84 / 2;
