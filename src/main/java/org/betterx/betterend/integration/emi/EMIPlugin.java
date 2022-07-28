@@ -23,6 +23,10 @@ public class EMIPlugin implements dev.emi.emi.api.EmiPlugin {
         final RecipeManager manager = emiRegistry.getRecipeManager();
         emiRegistry.addCategory(INFUSION_CATEGORY);
         emiRegistry.addWorkstation(INFUSION_CATEGORY, INFUSION_WORKSTATION);
+
         EMIInfusionRecipe.addAllRecipes(emiRegistry, manager);
+        if (org.betterx.bclib.integration.emi.EMIPlugin.END_ALLOYING_CATEGORY != null) {
+            EMIBlastingRecipe.addAllRecipes(emiRegistry, manager);
+        }
     }
 }
