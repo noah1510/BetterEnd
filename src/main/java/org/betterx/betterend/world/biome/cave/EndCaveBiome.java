@@ -130,6 +130,11 @@ public class EndCaveBiome extends EndBiome {
         }
 
         @Override
+        protected boolean hasReturnGateway() {
+            return false;
+        }
+
+        @Override
         public BiomeSupplier<EndBiome> getSupplier() {
             return EndCaveBiome::new;
         }

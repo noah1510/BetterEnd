@@ -22,6 +22,11 @@ public class BlossomingSpiresBiome extends EndBiome.Config {
     }
 
     @Override
+    protected boolean hasReturnGateway() {
+        return false;
+    }
+
+    @Override
     protected void addCustomBuildData(BCLBiomeBuilder builder) {
         builder
                 .fogColor(241, 146, 229)

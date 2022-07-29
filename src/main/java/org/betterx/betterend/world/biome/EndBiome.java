@@ -17,6 +17,7 @@ import org.betterx.betterend.registry.EndTags;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
+import net.minecraft.data.worldgen.placement.EndPlacements;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.KeyDispatchDataCodec;
@@ -25,6 +26,7 @@ import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Climate;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.SurfaceRules;
 
 import java.util.List;
@@ -159,6 +161,10 @@ public class EndBiome extends BCLBiome implements SurfaceMaterialProvider {
             return true;
         }
 
+        protected boolean hasReturnGateway() {
+            return true;
+        }
+
         protected SurfaceMaterialProvider surfaceMaterial() {
             return DEFAULT_MATERIAL;
         }
@@ -187,6 +193,9 @@ public class EndBiome extends BCLBiome implements SurfaceMaterialProvider {
         biomeConfig.addCustomBuildData(builder);
         EndFeatures.addDefaultFeatures(biomeConfig.ID, builder, biomeConfig.hasCaves());
 
+        if (biomeConfig.hasReturnGateway()) {
+            builder.feature(GenerationStep.Decoration.SURFACE_STRUCTURES, EndPlacements.END_GATEWAY_RETURN);
+        }
 
         EndBiome biome = builder.build(biomeConfig.getSupplier());
         biome.setHasCaves(biomeConfig.hasCaves());
