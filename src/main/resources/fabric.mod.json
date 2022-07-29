@@ -18,7 +18,7 @@
     "issues": "https://github.com/quiqueck/BetterEnd/issues",
     "sources": "https://github.com/quiqueck/BetterEnd"
   },
-  "license": "MIT",
+  "license": "MIT (CC BY-NC-SA 4.0 for some Assets)",
   "icon": "assets/betterend/icon.png",
   "environment": "*",
   "entrypoints": {

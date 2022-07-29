@@ -112,6 +112,7 @@ java {
 
 jar {
     from "LICENSE"
+    from "LICENSE.ASSETS"
 }
 
 artifacts {
