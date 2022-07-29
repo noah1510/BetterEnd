@@ -1,6 +1,8 @@
 package org.betterx.betterend.integration.emi;
 
 import org.betterx.bclib.integration.emi.EMIAbstractAlloyingRecipe;
+import org.betterx.bclib.integration.emi.EMIPlugin;
+import org.betterx.betterend.BetterEnd;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
@@ -28,9 +30,11 @@ public class EMIBlastingRecipe extends EMIAbstractAlloyingRecipe<Container, Blas
         return recipe.getExperience();
     }
 
+
     static void addAllRecipes(EmiRegistry emiRegistry, RecipeManager manager) {
-        for (BlastingRecipe recipe : manager.getAllRecipesFor(RecipeType.BLASTING)) {
-            emiRegistry.addRecipe(new EMIBlastingRecipe(recipe));
-        }
+        EMIPlugin.addAllRecipes(
+                emiRegistry, manager, BetterEnd.LOGGER,
+                RecipeType.BLASTING, EMIBlastingRecipe::new
+        );
     }
 }

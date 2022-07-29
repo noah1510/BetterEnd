@@ -50,9 +50,10 @@ public class EMIInfusionRecipe implements EmiRecipe {
     }
 
     static void addAllRecipes(EmiRegistry emiRegistry, RecipeManager manager) {
-        for (InfusionRecipe recipe : manager.getAllRecipesFor(InfusionRecipe.TYPE)) {
-            emiRegistry.addRecipe(new EMIInfusionRecipe(recipe));
-        }
+        org.betterx.bclib.integration.emi.EMIPlugin.addAllRecipes(
+                emiRegistry, manager, BetterEnd.LOGGER,
+                InfusionRecipe.TYPE, EMIInfusionRecipe::new
+        );
     }
 
 
