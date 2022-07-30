@@ -17,7 +17,7 @@ public class EMIBlastingRecipe extends EMIAbstractAlloyingRecipe<Container, Blas
         super(recipe, new ResourceLocation(
                 "emi",
                 recipe.getId().getNamespace() + "/" + recipe.getId().getPath() + "/allloying"
-        ), 2, false);
+        ), 1, false);
     }
 
     @Override
