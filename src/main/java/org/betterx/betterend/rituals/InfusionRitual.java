@@ -1,5 +1,6 @@
 package org.betterx.betterend.rituals;
 
+import org.betterx.betterend.advancements.BECriteria;
 import org.betterx.betterend.blocks.entities.InfusionPedestalEntity;
 import org.betterx.betterend.blocks.entities.PedestalBlockEntity;
 import org.betterx.betterend.particle.InfusionParticleType;
@@ -15,6 +16,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.phys.Vec3;
 
 import java.awt.*;
 import java.util.Arrays;
@@ -111,6 +113,12 @@ public class InfusionRitual implements Container {
         if (progress == time) {
             clearContent();
             input.setItem(0, activeRecipe.assemble(this));
+            if (world instanceof ServerLevel sl) {
+                sl.getPlayers(p -> p.position()
+                                    .subtract(new Vec3(worldPos.getX(), worldPos.getY(), worldPos.getZ()))
+                                    .length() < 16)
+                  .forEach(p -> BECriteria.INFUSION_FINISHED.trigger(p));
+            }
             reset();
         } else if (world instanceof ServerLevel) {
             ServerLevel serverLevel = (ServerLevel) world;

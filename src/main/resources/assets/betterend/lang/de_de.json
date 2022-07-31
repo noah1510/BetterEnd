@@ -650,5 +650,11 @@
   "advancements.betterend.portal_on.title": "Wege der Ewigkeit",
   "advancements.betterend.portal_on.description": "Entfache ein ewiges Portal",
   "advancements.betterend.all_the_biomes.title": "Ein Neues Ende",
-  "advancements.betterend.all_the_biomes.description": "Besuche alle BetterEnd Biome"
+  "advancements.betterend.all_the_biomes.description": "Besuche alle BetterEnd Biome",
+  "advancements.betterend.all_elytras.title": "Flugshow",
+  "advancements.betterend.all_elytras.description": "Besitze alle Elytra Varianten",
+  "advancements.betterend.infusion.title": "Elementarmagie",
+  "advancements.betterend.infusion.description": "Erhalte eine Elementarsockel",
+  "advancements.betterend.infusion_finished.title": "Unendliche Möglichkeiten",
+  "advancements.betterend.infusion_finished.description": "Sei dabei wenn ein Elementarritual abgeschlossen wird."
 }

@@ -850,5 +850,11 @@
   "advancements.betterend.portal_travel.title": "Eternal Ways",
   "advancements.betterend.portal_travel.description": "Reise auf uralten Pfaden und benutze ein ewiges Portal",
   "advancements.betterend.all_the_biomes.title": "A New Ending",
-  "advancements.betterend.all_the_biomes.description": "Visit all BetterEnd Biomes"
+  "advancements.betterend.all_the_biomes.description": "Visit all BetterEnd Biomes",
+  "advancements.betterend.all_elytras.title": "Airshow",
+  "advancements.betterend.all_elytras.description": "Own all Elytra variants",
+  "advancements.betterend.infusion.title": "Old Rituals",
+  "advancements.betterend.infusion.description": "Obtain an Infusion Pedestal",
+  "advancements.betterend.infusion_finished.title": "Neverending Magic",
+  "advancements.betterend.infusion_finished.description": "Be close to an Infusion Ritual when it is finished"
 }
