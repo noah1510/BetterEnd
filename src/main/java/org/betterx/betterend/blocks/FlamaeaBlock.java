@@ -7,6 +7,7 @@ import org.betterx.betterend.blocks.basis.EndPlantBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.PlaceOnWaterBlockItem;
 import net.minecraft.world.level.BlockGetter;
@@ -18,8 +19,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 
 import com.google.common.collect.Lists;
 
@@ -56,7 +55,7 @@ public class FlamaeaBlock extends EndPlantBlock implements CustomItemProvider, A
     }
 
     @Override
-    public BlockItem getCustomItem(ResourceLocation resourceLocation, FabricItemSettings fabricItemSettings) {
-        return new PlaceOnWaterBlockItem(this, fabricItemSettings);
+    public BlockItem getCustomItem(ResourceLocation resourceLocation, Item.Properties itemSettings) {
+        return new PlaceOnWaterBlockItem(this, itemSettings);
     }
 }

@@ -7,8 +7,7 @@ import org.betterx.betterend.registry.EndBlocks;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
-
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.world.item.Item;
 
 public class AeterniumAnvil extends EndAnvilBlock {
     public AeterniumAnvil() {
@@ -21,7 +20,7 @@ public class AeterniumAnvil extends EndAnvilBlock {
     }
 
     @Override
-    public BlockItem getCustomItem(ResourceLocation blockID, FabricItemSettings settings) {
-        return new BaseAnvilItem(this, settings.fireproof());
+    public BlockItem getCustomItem(ResourceLocation blockID, Item.Properties settings) {
+        return new BaseAnvilItem(this, settings.fireResistant());
     }
 }

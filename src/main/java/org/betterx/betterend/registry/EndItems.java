@@ -30,8 +30,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TieredItem;
 import net.minecraft.world.item.Tiers;
 
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-
 import java.util.List;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
@@ -342,7 +340,7 @@ public class EndItems {
         return getItemRegistry().registerDrink(BetterEnd.makeID(name), hunger, saturation);
     }
 
-    public static FabricItemSettings makeEndItemSettings() {
+    public static Item.Properties makeEndItemSettings() {
         return getItemRegistry().makeItemSettings();
     }
 

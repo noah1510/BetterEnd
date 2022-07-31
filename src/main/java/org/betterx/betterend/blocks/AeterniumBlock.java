@@ -5,11 +5,11 @@ import org.betterx.bclib.interfaces.CustomItemProvider;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
 
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 public class AeterniumBlock extends BaseBlock implements CustomItemProvider {
@@ -24,7 +24,7 @@ public class AeterniumBlock extends BaseBlock implements CustomItemProvider {
     }
 
     @Override
-    public BlockItem getCustomItem(ResourceLocation blockID, FabricItemSettings settings) {
-        return new BlockItem(this, settings.fireproof());
+    public BlockItem getCustomItem(ResourceLocation blockID, Item.Properties settings) {
+        return new BlockItem(this, settings.fireResistant());
     }
 }

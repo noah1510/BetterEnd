@@ -17,8 +17,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.MaterialColor;
 
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-
 import java.util.List;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
@@ -653,7 +651,7 @@ public class EndBlocks {
         return getBlockRegistry().registerBlockOnly(BetterEnd.makeID(name), block);
     }
 
-    public static FabricItemSettings makeBlockItemSettings() {
+    public static Item.Properties makeBlockItemSettings() {
         return getBlockRegistry().makeItemSettings();
     }
 

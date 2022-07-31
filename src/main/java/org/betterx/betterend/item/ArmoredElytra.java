@@ -6,6 +6,7 @@ import org.betterx.betterend.interfaces.BetterEndElytra;
 import org.betterx.betterend.interfaces.MultiModelItem;
 import org.betterx.betterend.registry.EndItems;
 
+import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -14,7 +15,6 @@ import net.minecraft.world.item.*;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
 
 public class ArmoredElytra extends BaseArmorItem implements MultiModelItem, BetterEndElytra {
     private final ResourceLocation wingTexture;
@@ -94,7 +94,7 @@ public class ArmoredElytra extends BaseArmorItem implements MultiModelItem, Bett
     @Override
     @Environment(EnvType.CLIENT)
     public void registerModelPredicate() {
-        FabricModelPredicateProviderRegistry.register(
+        ItemProperties.register(
                 this,
                 new ResourceLocation("broken"),
                 (itemStack, clientLevel, livingEntity, id) -> ElytraItem.isFlyEnabled(itemStack) ? 0.0F : 1.0F
