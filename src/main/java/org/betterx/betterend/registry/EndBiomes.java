@@ -149,7 +149,7 @@ public class EndBiomes {
     public static EndBiome registerSubBiomeIntegration(EndBiome.Config biomeConfig) {
         EndBiome biome = EndBiome.create(biomeConfig);
         if (Configs.BIOME_CONFIG.getBoolean(biome.getID(), "enabled", true)) {
-            BiomeAPI.registerBiome(biome, BiomeAPI.BiomeType.END);
+            BiomeAPI.registerBuiltinBiomeAndOverrideIntendedDimension(biome, BiomeAPI.BiomeType.END);
         }
         return biome;
     }
@@ -172,7 +172,7 @@ public class EndBiomes {
     public static EndCaveBiome registerCaveBiome(EndCaveBiome.Config biomeConfig) {
         final EndCaveBiome biome = EndCaveBiome.create(biomeConfig);
         if (Configs.BIOME_CONFIG.getBoolean(biome.getID(), "enabled", true)) {
-            BiomeAPI.registerBiome(biome, END_CAVE);
+            BiomeAPI.registerBuiltinBiomeAndOverrideIntendedDimension(biome, END_CAVE);
             //ALL_BE_BIOMES.add(biome);
         }
         return biome;

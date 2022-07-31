@@ -304,11 +304,6 @@ public class EndItems {
         return BaseRegistry.getModItems(BetterEnd.MOD_ID);
     }
 
-    @Deprecated(forRemoval = true)
-    public static Item registerEndDisc(String name, int power, SoundEvent sound) {
-        return registerEndDisc(name, power, sound, 60);
-    }
-
     public static Item registerEndDisc(String name, int power, SoundEvent sound, int lengthInSeconds) {
         return getItemRegistry().registerDisc(BetterEnd.makeID(name), power, sound, lengthInSeconds);
     }
