@@ -118,14 +118,14 @@ public class PedestalBlock extends BaseBlockNotFull implements EntityBlock {
                 if (itemStack.isEmpty()) return InteractionResult.CONSUME;
                 pedestal.setItem(0, itemStack);
                 level.blockEntityChanged(pos);
-                checkRitual(level, pos);
+                checkRitual(level, player, pos);
                 return InteractionResult.sidedSuccess(level.isClientSide());
             } else {
                 ItemStack itemStack = pedestal.getItem(0);
                 if (player.addItem(itemStack)) {
                     pedestal.removeItemNoUpdate(0);
                     level.blockEntityChanged(pos);
-                    checkRitual(level, pos);
+                    checkRitual(level, player, pos);
                     return InteractionResult.sidedSuccess(level.isClientSide());
                 }
                 return InteractionResult.FAIL;
@@ -153,13 +153,13 @@ public class PedestalBlock extends BaseBlockNotFull implements EntityBlock {
         }
     }
 
-    public void checkRitual(Level world, BlockPos pos) {
+    public void checkRitual(Level world, Player player, BlockPos pos) {
         MutableBlockPos posMutable = new MutableBlockPos();
         for (Point point : InfusionRitual.getMap()) {
             posMutable.set(pos).move(point.x, 0, point.y);
             BlockState state = world.getBlockState(posMutable);
             if (state.getBlock() instanceof InfusionPedestal) {
-                ((InfusionPedestal) state.getBlock()).checkRitual(world, posMutable);
+                ((InfusionPedestal) state.getBlock()).checkRitual(world, player, posMutable);
                 break;
             }
         }

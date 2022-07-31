@@ -840,5 +840,15 @@
   "betterend.infusion.south": "Southern Pedestal",
   "betterend.infusion.south_east": "South-East Pedestal",
   "betterend.infusion.east": "Eastern Pedestal",
-  "betterend.infusion.north_east": "North-East Pedestal"
+  "betterend.infusion.north_east": "North-East Pedestal",
+  "advancements.betterend.root.title": "BetterEnd",
+  "advancements.betterend.root.description": "Discover the BetterEnd",
+  "advancements.betterend.portal.title": "On Eternal Paths",
+  "advancements.betterend.portal.description": "Discover a portal lost for eternity",
+  "advancements.betterend.portal_on.title": "Eternal Light",
+  "advancements.betterend.portal_on.description": "Light an eternal Portal",
+  "advancements.betterend.portal_travel.title": "Eternal Ways",
+  "advancements.betterend.portal_travel.description": "Reise auf uralten Pfaden und benutze ein ewiges Portal",
+  "advancements.betterend.all_the_biomes.title": "A New Ending",
+  "advancements.betterend.all_the_biomes.description": "Visit all BetterEnd Biomes"
 }

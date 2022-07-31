@@ -2,6 +2,7 @@ package org.betterx.betterend.rituals;
 
 import org.betterx.bclib.blocks.BlockProperties;
 import org.betterx.betterend.BetterEnd;
+import org.betterx.betterend.advancements.BECriteria;
 import org.betterx.betterend.blocks.EndPortalBlock;
 import org.betterx.betterend.blocks.RunedFlavolite;
 import org.betterx.betterend.blocks.entities.EternalPedestalEntity;
@@ -21,9 +22,11 @@ import net.minecraft.nbt.NbtUtils;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.ai.village.poi.PoiManager;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -130,7 +133,7 @@ public class EternalRitual {
         return world == null || world.isClientSide() || center == null || axis == null;
     }
 
-    public void checkStructure() {
+    public void checkStructure(Player player) {
         if (isInvalid()) return;
         Direction moveX, moveY;
         if (Direction.Axis.X == axis) {
@@ -160,6 +163,9 @@ public class EternalRitual {
         }
         if (valid && item != null) {
             activatePortal(item);
+            if (player instanceof ServerPlayer sp) {
+                BECriteria.PORTAL_ON.trigger(sp);
+            }
         }
     }
 

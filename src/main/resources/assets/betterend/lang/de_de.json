@@ -642,5 +642,13 @@
   "betterend.infusion.south": "Südlicher Sockel",
   "betterend.infusion.south_east": "Südöstlicher Sockel",
   "betterend.infusion.east": "Östlicher Sockel",
-  "betterend.infusion.north_east": "Nordöstlicher Sockel"
+  "betterend.infusion.north_east": "Nordöstlicher Sockel",
+  "advancements.betterend.root.title": "BetterEnd",
+  "advancements.betterend.root.description": "Pfad der Eweigkeit",
+  "advancements.betterend.portal.title": "Die Ewigkeit und zurück",
+  "advancements.betterend.portal.description": "Entdecke ein verlorenes seit Ewigkeiten verlorenes Portal",
+  "advancements.betterend.portal_on.title": "Wege der Ewigkeit",
+  "advancements.betterend.portal_on.description": "Entfache ein ewiges Portal",
+  "advancements.betterend.all_the_biomes.title": "Ein Neues Ende",
+  "advancements.betterend.all_the_biomes.description": "Besuche alle BetterEnd Biome"
 }

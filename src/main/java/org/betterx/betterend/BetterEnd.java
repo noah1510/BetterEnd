@@ -2,6 +2,7 @@ package org.betterx.betterend;
 
 import org.betterx.bclib.api.v2.generator.BiomeDecider;
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
+import org.betterx.betterend.advancements.BECriteria;
 import org.betterx.betterend.api.BetterEndPlugin;
 import org.betterx.betterend.commands.CommandRegistry;
 import org.betterx.betterend.config.Configs;
@@ -56,6 +57,8 @@ public class BetterEnd implements ModInitializer {
         GeneratorOptions.init();
         LootTableUtil.init();
         CommandRegistry.register();
+        BECriteria.register();
+        EndAdvancements.register();
         FabricLoader.getInstance()
                     .getEntrypoints("betterend", BetterEndPlugin.class)
                     .forEach(BetterEndPlugin::register);

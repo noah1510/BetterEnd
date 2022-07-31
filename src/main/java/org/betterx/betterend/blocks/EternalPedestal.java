@@ -38,7 +38,7 @@ public class EternalPedestal extends PedestalBlock {
     }
 
     @Override
-    public void checkRitual(Level world, BlockPos pos) {
+    public void checkRitual(Level world, Player player, BlockPos pos) {
         BlockEntity blockEntity = world.getBlockEntity(pos);
         if (blockEntity instanceof EternalPedestalEntity) {
             EternalPedestalEntity pedestal = (EternalPedestalEntity) blockEntity;
@@ -64,10 +64,10 @@ public class EternalPedestal extends PedestalBlock {
                 if (EndPortals.isAvailableItem(id)) {
                     world.setBlockAndUpdate(pos, updatedState.setValue(ACTIVATED, true).setValue(HAS_LIGHT, true));
                     if (pedestal.hasRitual()) {
-                        pedestal.getRitual().checkStructure();
+                        pedestal.getRitual().checkStructure(player);
                     } else {
                         EternalRitual ritual = new EternalRitual(world, pos);
-                        ritual.checkStructure();
+                        ritual.checkStructure(player);
                     }
                 }
             }

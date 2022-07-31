@@ -3,6 +3,7 @@ package org.betterx.betterend.blocks;
 import org.betterx.bclib.client.render.BCLRenderLayer;
 import org.betterx.bclib.interfaces.CustomColorProvider;
 import org.betterx.bclib.interfaces.RenderLayerProvider;
+import org.betterx.betterend.advancements.BECriteria;
 import org.betterx.betterend.interfaces.TeleportingEntity;
 import org.betterx.betterend.registry.EndParticles;
 import org.betterx.betterend.registry.EndPortals;
@@ -113,7 +114,7 @@ public class EndPortalBlock extends NetherPortalBlock implements RenderLayerProv
         ServerLevel destination = isInEnd ? targetWorld : server.getLevel(Level.END);
         BlockPos exitPos = findExitPos(currentWorld, destination, pos, entity);
         if (exitPos == null) return;
-        if (entity instanceof ServerPlayer && ((ServerPlayer) entity).isCreative()) {
+        if (entity instanceof ServerPlayer sp && sp.isCreative()) {
             ((ServerPlayer) entity).teleportTo(
                     destination,
                     exitPos.getX() + 0.5,
@@ -122,7 +123,11 @@ public class EndPortalBlock extends NetherPortalBlock implements RenderLayerProv
                     entity.getYRot(),
                     entity.getXRot()
             );
+            BECriteria.PORTAL_TRAVEL.trigger(sp);
         } else {
+            if (entity instanceof ServerPlayer sp) {
+                BECriteria.PORTAL_TRAVEL.trigger(sp);
+            }
             ((TeleportingEntity) entity).be_setExitPos(exitPos);
             Optional<Entity> teleported = Optional.ofNullable(entity.changeDimension(destination));
             teleported.ifPresent(Entity::setPortalCooldown);
