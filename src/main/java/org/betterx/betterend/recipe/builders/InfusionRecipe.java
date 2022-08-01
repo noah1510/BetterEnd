@@ -207,7 +207,7 @@ public class InfusionRecipe implements Recipe<InfusionRitual>, UnknownReceipBook
                     BetterEnd.LOGGER.warning("At least one catalyst must be non empty, recipe {} will be ignored!", id);
                     return;
                 }
-                BCLRecipeManager.addRecipeAndCreateAdvancement(TYPE, recipe);
+                BCLRecipeManager.addRecipe(TYPE, recipe);
             }
         }
     }
