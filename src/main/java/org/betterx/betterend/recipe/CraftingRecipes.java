@@ -199,31 +199,64 @@ public class CraftingRecipes {
                         .addMaterial('#', EndItems.HYDRALUX_PETAL)
                         .build();
 
-        BCLRecipeBuilder.crafting(BetterEnd.makeID("sweet_berry_jelly"), EndItems.SWEET_BERRY_JELLY)
+        BCLRecipeBuilder.crafting(BetterEnd.makeID("sweet_berry_jelly_potion"), EndItems.SWEET_BERRY_JELLY)
                         .checkConfig(Configs.RECIPE_CONFIG)
                         .setList("JWSB")
                         .addMaterial('J', EndItems.GELATINE)
                         .addMaterial('W', PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WATER))
                         .addMaterial('S', Items.SUGAR)
                         .addMaterial('B', Items.SWEET_BERRIES)
+                        .setGroup("end_berries")
                         .build();
 
-        BCLRecipeBuilder.crafting(BetterEnd.makeID("shadow_berry_jelly"), EndItems.SHADOW_BERRY_JELLY)
+        BCLRecipeBuilder.crafting(BetterEnd.makeID("shadow_berry_jelly_potion"), EndItems.SHADOW_BERRY_JELLY)
                         .checkConfig(Configs.RECIPE_CONFIG)
                         .setList("JWSB")
                         .addMaterial('J', EndItems.GELATINE)
                         .addMaterial('W', PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WATER))
                         .addMaterial('S', Items.SUGAR)
                         .addMaterial('B', EndItems.SHADOW_BERRY_COOKED)
+                        .setGroup("end_berries")
                         .build();
 
-        BCLRecipeBuilder.crafting(BetterEnd.makeID("blossom_berry_jelly"), EndItems.BLOSSOM_BERRY_JELLY)
+        BCLRecipeBuilder.crafting(BetterEnd.makeID("blossom_berry_jelly_potion"), EndItems.BLOSSOM_BERRY_JELLY)
                         .checkConfig(Configs.RECIPE_CONFIG)
                         .setList("JWSB")
                         .addMaterial('J', EndItems.GELATINE)
                         .addMaterial('W', PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WATER))
                         .addMaterial('S', Items.SUGAR)
                         .addMaterial('B', EndItems.BLOSSOM_BERRY)
+                        .setGroup("end_berries")
+                        .build();
+
+        BCLRecipeBuilder.crafting(BetterEnd.makeID("sweet_berry_jelly"), EndItems.SWEET_BERRY_JELLY)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setList("JWSB")
+                        .addMaterial('J', EndItems.GELATINE)
+                        .addMaterial('W', CommonItemTags.WATER_BOTTLES)
+                        .addMaterial('S', Items.SUGAR)
+                        .addMaterial('B', Items.SWEET_BERRIES)
+                        .setGroup("end_berries")
+                        .build();
+
+        BCLRecipeBuilder.crafting(BetterEnd.makeID("shadow_berry_jelly"), EndItems.SHADOW_BERRY_JELLY)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setList("JWSB")
+                        .addMaterial('J', EndItems.GELATINE)
+                        .addMaterial('W', CommonItemTags.WATER_BOTTLES)
+                        .addMaterial('S', Items.SUGAR)
+                        .addMaterial('B', EndItems.SHADOW_BERRY_COOKED)
+                        .setGroup("end_berries")
+                        .build();
+
+        BCLRecipeBuilder.crafting(BetterEnd.makeID("blossom_berry_jelly"), EndItems.BLOSSOM_BERRY_JELLY)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setList("JWSB")
+                        .addMaterial('J', EndItems.GELATINE)
+                        .addMaterial('W', CommonItemTags.WATER_BOTTLES)
+                        .addMaterial('S', Items.SUGAR)
+                        .addMaterial('B', EndItems.BLOSSOM_BERRY)
+                        .setGroup("end_berries")
                         .build();
 
         BCLRecipeBuilder.crafting(BetterEnd.makeID("sulphur_gunpowder"), Items.GUNPOWDER)
