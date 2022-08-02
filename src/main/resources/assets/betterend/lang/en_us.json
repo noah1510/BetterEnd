@@ -71,6 +71,7 @@
   "item.betterend.enchanted_membrane": "Enchanted Membrane",
   "effect.betterend.end_veil": "End Veil",
   "enchantment.betterend.end_veil": "End Veil",
+  "enchantment.betterend.end_veil.desc": "Allows the user to look at Enderman without angering them.",
   "item.minecraft.potion.effect.end_veil": "Potion Of End Veil",
   "item.minecraft.potion.effect.long_end_veil": "Potion Of End Veil",
   "item.minecraft.splash_potion.effect.end_veil": "Splash Potion Of End Veil",
