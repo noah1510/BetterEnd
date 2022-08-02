@@ -6,10 +6,7 @@ import org.betterx.bclib.items.tool.BaseAxeItem;
 import org.betterx.bclib.items.tool.BaseHoeItem;
 import org.betterx.bclib.items.tool.BaseShovelItem;
 import org.betterx.bclib.items.tool.BaseSwordItem;
-import org.betterx.bclib.recipes.AnvilRecipe;
-import org.betterx.bclib.recipes.FurnaceRecipe;
-import org.betterx.bclib.recipes.GridRecipe;
-import org.betterx.bclib.recipes.SmithingTableRecipe;
+import org.betterx.bclib.recipes.BCLRecipeBuilder;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.blocks.BulbVineLanternBlock;
 import org.betterx.betterend.blocks.BulbVineLanternColoredBlock;
@@ -19,7 +16,6 @@ import org.betterx.betterend.config.Configs;
 import org.betterx.betterend.item.EndArmorItem;
 import org.betterx.betterend.item.tool.EndHammerItem;
 import org.betterx.betterend.item.tool.EndPickaxe;
-import org.betterx.betterend.recipe.builders.AlloyingRecipeBuilder;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndItems;
 import org.betterx.worlds.together.tag.v3.TagManager;
@@ -242,287 +238,277 @@ public class MetalMaterial {
         );
 
         if (hasOre) {
-            FurnaceRecipe.make(BetterEnd.MOD_ID, name + "_ingot_furnace_ore", ore, ingot)
-                         .checkConfig(Configs.RECIPE_CONFIG)
-                         .setGroup("end_ingot")
-                         .buildWithBlasting();
-            FurnaceRecipe.make(BetterEnd.MOD_ID, name + "_ingot_furnace_raw", rawOre, ingot)
-                         .checkConfig(Configs.RECIPE_CONFIG)
-                         .setGroup("end_ingot")
-                         .buildWithBlasting();
-            AlloyingRecipeBuilder.create(name + "_ingot_alloy")
-                                 .setInput(alloyingOre, alloyingOre)
-                                 .setOutput(ingot, 3)
-                                 .setExpiriense(2.1F)
-                                 .build();
+            BCLRecipeBuilder.smelting(BetterEnd.makeID(name + "_ingot_furnace_ore"), ingot)
+                            .checkConfig(Configs.RECIPE_CONFIG)
+                            .setInput(ore)
+                            .setGroup("end_ingot")
+                            .buildWithBlasting();
+            BCLRecipeBuilder.smelting(BetterEnd.makeID(name + "_ingot_furnace_raw"), ingot)
+                            .checkConfig(Configs.RECIPE_CONFIG)
+                            .setInput(rawOre)
+                            .setGroup("end_ingot")
+                            .buildWithBlasting();
+            BCLRecipeBuilder.alloying(BetterEnd.makeID(name + "_ingot_alloy"), ingot)
+                            .checkConfig(Configs.RECIPE_CONFIG)
+                            .setInput(alloyingOre, alloyingOre)
+                            .setOutputCount(3)
+                            .setExperience(2.1F)
+                            .build();
         }
 
         // Basic recipes
-        GridRecipe.make(BetterEnd.MOD_ID, name + "_ingot_from_nuggets", ingot)
-                  .checkConfig(Configs.RECIPE_CONFIG)
-                  .setShape("###", "###", "###")
-                  .addMaterial('#', nugget)
-                  .setGroup("end_metal_ingots_nug")
-                  .build();
-        GridRecipe.make(BetterEnd.MOD_ID, name + "_nuggets_from_ingot", nugget)
-                  .checkConfig(Configs.RECIPE_CONFIG)
-                  .setOutputCount(9)
-                  .setList("#")
-                  .addMaterial('#', ingot)
-                  .setGroup("end_metal_nuggets_ing")
-                  .build();
-        GridRecipe.make(BetterEnd.MOD_ID, name + "_block", block)
-                  .checkConfig(Configs.RECIPE_CONFIG)
-                  .setShape("###", "###", "###")
-                  .addMaterial('#', ingot)
-                  .setGroup("end_metal_blocks")
-                  .build();
-        GridRecipe.make(BetterEnd.MOD_ID, name + "_ingot_from_block", ingot)
-                  .checkConfig(Configs.RECIPE_CONFIG)
-                  .setOutputCount(9)
-                  .setList("#")
-                  .addMaterial('#', block)
-                  .setGroup("end_metal_ingots")
-                  .build();
+        BCLRecipeBuilder.crafting(BetterEnd.makeID(name + "_ingot_from_nuggets"), ingot)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setShape("###", "###", "###")
+                        .addMaterial('#', nugget)
+                        .setGroup("end_metal_ingots_nug")
+                        .build();
+        BCLRecipeBuilder.crafting(BetterEnd.makeID(name + "_nuggets_from_ingot"), nugget)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setOutputCount(9)
+                        .setList("#")
+                        .addMaterial('#', ingot)
+                        .setGroup("end_metal_nuggets_ing")
+                        .build();
+        BCLRecipeBuilder.crafting(BetterEnd.makeID(name + "_block"), block)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setShape("###", "###", "###")
+                        .addMaterial('#', ingot)
+                        .setGroup("end_metal_blocks")
+                        .build();
+        BCLRecipeBuilder.crafting(BetterEnd.makeID(name + "_ingot_from_block"), ingot)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setOutputCount(9)
+                        .setList("#")
+                        .addMaterial('#', block)
+                        .setGroup("end_metal_ingots")
+                        .build();
 
         // Block recipes
-        GridRecipe.make(BetterEnd.MOD_ID, name + "_tile", tile)
-                  .checkConfig(Configs.RECIPE_CONFIG)
-                  .setOutputCount(4)
-                  .setShape("##", "##")
-                  .addMaterial('#', block)
-                  .setGroup("end_metal_tiles")
-                  .build();
-        GridRecipe.make(BetterEnd.MOD_ID, name + "_bars", bars)
-                  .checkConfig(Configs.RECIPE_CONFIG)
-                  .setOutputCount(16)
-                  .setShape("###", "###")
-                  .addMaterial('#', ingot)
-                  .setGroup("end_metal_bars")
-                  .build();
-        GridRecipe.make(BetterEnd.MOD_ID, name + "_pressure_plate", pressurePlate)
-                  .checkConfig(Configs.RECIPE_CONFIG)
-                  .setShape("##")
-                  .addMaterial('#', ingot)
-                  .setGroup("end_metal_plates")
-                  .build();
-        GridRecipe.make(BetterEnd.MOD_ID, name + "_door", door)
-                  .checkConfig(Configs.RECIPE_CONFIG)
-                  .setOutputCount(3)
-                  .setShape("##", "##", "##")
-                  .addMaterial('#', ingot)
-                  .setGroup("end_metal_doors")
-                  .build();
-        GridRecipe.make(BetterEnd.MOD_ID, name + "_trapdoor", trapdoor)
-                  .checkConfig(Configs.RECIPE_CONFIG)
-                  .setShape("##", "##")
-                  .addMaterial('#', ingot)
-                  .setGroup("end_metal_trapdoors")
-                  .build();
-        GridRecipe.make(BetterEnd.MOD_ID, name + "_stairs", stairs)
-                  .checkConfig(Configs.RECIPE_CONFIG)
-                  .setOutputCount(4)
-                  .setShape("#  ", "## ", "###")
-                  .addMaterial('#', block, tile)
-                  .setGroup("end_metal_stairs")
-                  .build();
-        GridRecipe.make(BetterEnd.MOD_ID, name + "_slab", slab)
-                  .checkConfig(Configs.RECIPE_CONFIG)
-                  .setOutputCount(6)
-                  .setShape("###")
-                  .addMaterial('#', block, tile)
-                  .setGroup("end_metal_slabs")
-                  .build();
-        GridRecipe.make(BetterEnd.MOD_ID, name + "_chain", chain)
-                  .checkConfig(Configs.RECIPE_CONFIG)
-                  .setShape("N", "#", "N")
-                  .addMaterial('#', ingot)
-                  .addMaterial('N', nugget)
-                  .setGroup("end_metal_chain")
-                  .build();
-        GridRecipe.make(BetterEnd.MOD_ID, name + "_anvil", anvilBlock)
-                  .checkConfig(Configs.RECIPE_CONFIG)
-                  .setShape("###", " I ", "III")
-                  .addMaterial('#', block, tile)
-                  .addMaterial('I', ingot)
-                  .setGroup("end_metal_anvil")
-                  .build();
-        GridRecipe.make(BetterEnd.MOD_ID, name + "_bulb_lantern", bulb_lantern)
-                  .checkConfig(Configs.RECIPE_CONFIG)
-                  .setShape("C", "I", "#")
-                  .addMaterial('C', chain)
-                  .addMaterial('I', ingot)
-                  .addMaterial('#', EndItems.GLOWING_BULB)
-                  .build();
+        BCLRecipeBuilder.crafting(BetterEnd.makeID(name + "_tile"), tile)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setOutputCount(4)
+                        .setShape("##", "##")
+                        .addMaterial('#', block)
+                        .setGroup("end_metal_tiles")
+                        .build();
+        BCLRecipeBuilder.crafting(BetterEnd.makeID(name + "_bars"), bars)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setOutputCount(16)
+                        .setShape("###", "###")
+                        .addMaterial('#', ingot)
+                        .setGroup("end_metal_bars")
+                        .build();
+        BCLRecipeBuilder.crafting(BetterEnd.makeID(name + "_pressure_plate"), pressurePlate)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setShape("##")
+                        .addMaterial('#', ingot)
+                        .setGroup("end_metal_plates")
+                        .build();
+        BCLRecipeBuilder.crafting(BetterEnd.makeID(name + "_door"), door)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setOutputCount(3)
+                        .setShape("##", "##", "##")
+                        .addMaterial('#', ingot)
+                        .setGroup("end_metal_doors")
+                        .build();
+        BCLRecipeBuilder.crafting(BetterEnd.makeID(name + "_trapdoor"), trapdoor)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setShape("##", "##")
+                        .addMaterial('#', ingot)
+                        .setGroup("end_metal_trapdoors")
+                        .build();
+        BCLRecipeBuilder.crafting(BetterEnd.makeID(name + "_stairs"), stairs)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setOutputCount(4)
+                        .setShape("#  ", "## ", "###")
+                        .addMaterial('#', block, tile)
+                        .setGroup("end_metal_stairs")
+                        .build();
+        BCLRecipeBuilder.crafting(BetterEnd.makeID(name + "_slab"), slab)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setOutputCount(6)
+                        .setShape("###")
+                        .addMaterial('#', block, tile)
+                        .setGroup("end_metal_slabs")
+                        .build();
+        BCLRecipeBuilder.crafting(BetterEnd.makeID(name + "_chain"), chain)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setShape("N", "#", "N")
+                        .addMaterial('#', ingot)
+                        .addMaterial('N', nugget)
+                        .setGroup("end_metal_chain")
+                        .build();
+        BCLRecipeBuilder.crafting(BetterEnd.makeID(name + "_anvil"), anvilBlock)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setShape("###", " I ", "III")
+                        .addMaterial('#', block, tile)
+                        .addMaterial('I', ingot)
+                        .setGroup("end_metal_anvil")
+                        .build();
+        BCLRecipeBuilder.crafting(BetterEnd.makeID(name + "_bulb_lantern"), bulb_lantern)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setShape("C", "I", "#")
+                        .addMaterial('C', chain)
+                        .addMaterial('I', ingot)
+                        .addMaterial('#', EndItems.GLOWING_BULB)
+                        .build();
 
-        GridRecipe.make(BetterEnd.MOD_ID, name + "_chandelier", chandelier)
-                  .checkConfig(Configs.RECIPE_CONFIG)
-                  .setShape("I#I", " # ")
-                  .addMaterial('#', ingot)
-                  .addMaterial('I', EndItems.LUMECORN_ROD)
-                  .setGroup("end_metal_chandelier")
-                  .build();
+        BCLRecipeBuilder.crafting(BetterEnd.makeID(name + "_chandelier"), chandelier)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setShape("I#I", " # ")
+                        .addMaterial('#', ingot)
+                        .addMaterial('I', EndItems.LUMECORN_ROD)
+                        .setGroup("end_metal_chandelier")
+                        .build();
 
         // Tools & armor into nuggets
-        FurnaceRecipe.make(BetterEnd.MOD_ID, name + "_axe_nugget", axe, nugget)
-                     .checkConfig(Configs.RECIPE_CONFIG)
-                     .setGroup("end_nugget")
-                     .buildWithBlasting();
-        FurnaceRecipe.make(BetterEnd.MOD_ID, name + "_hoe_nugget", hoe, nugget)
-                     .checkConfig(Configs.RECIPE_CONFIG)
-                     .setGroup("end_nugget")
-                     .buildWithBlasting();
-        FurnaceRecipe.make(BetterEnd.MOD_ID, name + "_pickaxe_nugget", pickaxe, nugget)
-                     .checkConfig(Configs.RECIPE_CONFIG)
-                     .setGroup("end_nugget")
-                     .buildWithBlasting();
-        FurnaceRecipe.make(BetterEnd.MOD_ID, name + "_sword_nugget", sword, nugget)
-                     .checkConfig(Configs.RECIPE_CONFIG)
-                     .setGroup("end_nugget")
-                     .buildWithBlasting();
-        FurnaceRecipe.make(BetterEnd.MOD_ID, name + "_hammer_nugget", hammer, nugget)
-                     .checkConfig(Configs.RECIPE_CONFIG)
-                     .setGroup("end_nugget")
-                     .buildWithBlasting();
-        FurnaceRecipe.make(BetterEnd.MOD_ID, name + "_helmet_nugget", helmet, nugget)
-                     .checkConfig(Configs.RECIPE_CONFIG)
-                     .setGroup("end_nugget")
-                     .buildWithBlasting();
-        FurnaceRecipe.make(BetterEnd.MOD_ID, name + "_chestplate_nugget", chestplate, nugget)
-                     .checkConfig(Configs.RECIPE_CONFIG)
-                     .setGroup("end_nugget")
-                     .buildWithBlasting();
-        FurnaceRecipe.make(BetterEnd.MOD_ID, name + "_leggings_nugget", leggings, nugget)
-                     .checkConfig(Configs.RECIPE_CONFIG)
-                     .setGroup("end_nugget")
-                     .buildWithBlasting();
-        FurnaceRecipe.make(BetterEnd.MOD_ID, name + "_boots_nugget", boots, nugget)
-                     .checkConfig(Configs.RECIPE_CONFIG)
-                     .setGroup("end_nugget")
-                     .buildWithBlasting();
+        BCLRecipeBuilder.smelting(BetterEnd.makeID(name + "_axe_nugget"), nugget).setInput(axe)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setGroup("end_nugget")
+                        .buildWithBlasting();
+        BCLRecipeBuilder.smelting(BetterEnd.makeID(name + "_hoe_nugget"), nugget).setInput(hoe)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setGroup("end_nugget")
+                        .buildWithBlasting();
+        BCLRecipeBuilder.smelting(BetterEnd.makeID(name + "_pickaxe_nugget"), nugget).setInput(pickaxe)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setGroup("end_nugget")
+                        .buildWithBlasting();
+        BCLRecipeBuilder.smelting(BetterEnd.makeID(name + "_sword_nugget"), nugget).setInput(sword)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setGroup("end_nugget")
+                        .buildWithBlasting();
+        BCLRecipeBuilder.smelting(BetterEnd.makeID(name + "_hammer_nugget"), nugget).setInput(hammer)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setGroup("end_nugget")
+                        .buildWithBlasting();
+        BCLRecipeBuilder.smelting(BetterEnd.makeID(name + "_helmet_nugget"), nugget).setInput(helmet)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setGroup("end_nugget")
+                        .buildWithBlasting();
+        BCLRecipeBuilder.smelting(BetterEnd.makeID(name + "_chestplate_nugget"), nugget).setInput(chestplate)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setGroup("end_nugget")
+                        .buildWithBlasting();
+        BCLRecipeBuilder.smelting(BetterEnd.makeID(name + "_leggings_nugget"), nugget).setInput(leggings)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setGroup("end_nugget")
+                        .buildWithBlasting();
+        BCLRecipeBuilder.smelting(BetterEnd.makeID(name + "_boots_nugget"), nugget).setInput(boots)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setGroup("end_nugget")
+                        .buildWithBlasting();
 
         // Tool parts from ingots
-        AnvilRecipe.create(name + "_shovel_head")
-                   .checkConfig(Configs.RECIPE_CONFIG)
-                   .setInput(ingot)
-                   .setOutput(shovelHead)
-                   .setAnvilLevel(anvilAndToolLevel)
-                   .setToolLevel(level)
-                   .setDamage(level)
-                   .build();
-        AnvilRecipe.create(name + "_pickaxe_head")
-                   .checkConfig(Configs.RECIPE_CONFIG)
-                   .setInput(ingot)
-                   .setInputCount(3)
-                   .setOutput(pickaxeHead)
-                   .setAnvilLevel(anvilAndToolLevel)
-                   .setToolLevel(level)
-                   .setDamage(level)
-                   .build();
-        AnvilRecipe.create(name + "_axe_head")
-                   .checkConfig(Configs.RECIPE_CONFIG)
-                   .setInput(ingot)
-                   .setInputCount(3)
-                   .setOutput(axeHead)
-                   .setAnvilLevel(anvilAndToolLevel)
-                   .setToolLevel(level)
-                   .setDamage(level)
-                   .build();
-        AnvilRecipe.create(name + "_hoe_head")
-                   .checkConfig(Configs.RECIPE_CONFIG)
-                   .setInput(ingot)
-                   .setInputCount(2)
-                   .setOutput(hoeHead)
-                   .setAnvilLevel(anvilAndToolLevel)
-                   .setToolLevel(level)
-                   .setDamage(level)
-                   .build();
-        AnvilRecipe.create(name + "_sword_blade")
-                   .checkConfig(Configs.RECIPE_CONFIG)
-                   .setInput(ingot)
-                   .setOutput(swordBlade)
-                   .setAnvilLevel(anvilAndToolLevel)
-                   .setToolLevel(level)
-                   .setDamage(level)
-                   .build();
-        AnvilRecipe.create(name + "_forged_plate")
-                   .checkConfig(Configs.RECIPE_CONFIG)
-                   .setInput(ingot)
-                   .setOutput(forgedPlate)
-                   .setAnvilLevel(anvilAndToolLevel)
-                   .setToolLevel(level)
-                   .setDamage(level)
-                   .build();
+        BCLRecipeBuilder.anvil(BetterEnd.makeID(name + "_shovel_head"), shovelHead)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setInput(ingot)
+                        .setAnvilLevel(anvilAndToolLevel)
+                        .setToolLevel(level)
+                        .setDamage(level)
+                        .build();
+        BCLRecipeBuilder.anvil(BetterEnd.makeID(name + "_pickaxe_head"), pickaxeHead)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setInput(ingot)
+                        .setInputCount(3)
+                        .setAnvilLevel(anvilAndToolLevel)
+                        .setToolLevel(level)
+                        .setDamage(level)
+                        .build();
+        BCLRecipeBuilder.anvil(BetterEnd.makeID(name + "_axe_head"), axeHead)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setInput(ingot)
+                        .setInputCount(3)
+                        .setAnvilLevel(anvilAndToolLevel)
+                        .setToolLevel(level)
+                        .setDamage(level)
+                        .build();
+        BCLRecipeBuilder.anvil(BetterEnd.makeID(name + "_hoe_head"), hoeHead)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setInput(ingot)
+                        .setInputCount(2)
+                        .setAnvilLevel(anvilAndToolLevel)
+                        .setToolLevel(level)
+                        .setDamage(level)
+                        .build();
+        BCLRecipeBuilder.anvil(BetterEnd.makeID(name + "_sword_blade"), swordBlade)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setInput(ingot)
+                        .setAnvilLevel(anvilAndToolLevel)
+                        .setToolLevel(level)
+                        .setDamage(level)
+                        .build();
+        BCLRecipeBuilder.anvil(BetterEnd.makeID(name + "_forged_plate"), forgedPlate)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setInput(ingot)
+                        .setAnvilLevel(anvilAndToolLevel)
+                        .setToolLevel(level)
+                        .setDamage(level)
+                        .build();
 
         // Tools from parts
-        SmithingTableRecipe.create(BetterEnd.MOD_ID, name + "_hammer")
-                           .checkConfig(Configs.RECIPE_CONFIG)
-                           .setResult(hammer)
-                           .setBase(block)
-                           .setAddition(Items.STICK)
-                           .build();
-        SmithingTableRecipe.create(BetterEnd.MOD_ID, name + "_axe")
-                           .checkConfig(Configs.RECIPE_CONFIG)
-                           .setResult(axe)
-                           .setBase(axeHead)
-                           .setAddition(Items.STICK)
-                           .build();
-        SmithingTableRecipe.create(BetterEnd.MOD_ID, name + "_pickaxe")
-                           .checkConfig(Configs.RECIPE_CONFIG)
-                           .setResult(pickaxe)
-                           .setBase(pickaxeHead)
-                           .setAddition(Items.STICK)
-                           .build();
-        SmithingTableRecipe.create(BetterEnd.MOD_ID, name + "_hoe")
-                           .checkConfig(Configs.RECIPE_CONFIG)
-                           .setResult(hoe)
-                           .setBase(hoeHead)
-                           .setAddition(Items.STICK)
-                           .build();
-        SmithingTableRecipe.create(BetterEnd.MOD_ID, name + "_sword_handle")
-                           .checkConfig(Configs.RECIPE_CONFIG)
-                           .setResult(swordHandle)
-                           .setBase(ingot)
-                           .setAddition(Items.STICK)
-                           .build();
-        SmithingTableRecipe.create(BetterEnd.MOD_ID, name + "_sword")
-                           .checkConfig(Configs.RECIPE_CONFIG)
-                           .setResult(sword)
-                           .setBase(swordBlade)
-                           .setAddition(swordHandle)
-                           .build();
-        SmithingTableRecipe.create(BetterEnd.MOD_ID, name + "_shovel")
-                           .checkConfig(Configs.RECIPE_CONFIG)
-                           .setResult(shovel)
-                           .setBase(shovelHead)
-                           .setAddition(Items.STICK)
-                           .build();
+        BCLRecipeBuilder.smithing(BetterEnd.makeID(name + "_hammer"), hammer)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setBase(block)
+                        .setAddition(Items.STICK)
+                        .build();
+        BCLRecipeBuilder.smithing(BetterEnd.makeID(name + "_axe"), axe)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setBase(axeHead)
+                        .setAddition(Items.STICK)
+                        .build();
+        BCLRecipeBuilder.smithing(BetterEnd.makeID(name + "_pickaxe"), pickaxe)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setBase(pickaxeHead)
+                        .setAddition(Items.STICK)
+                        .build();
+        BCLRecipeBuilder.smithing(BetterEnd.makeID(name + "_hoe"), hoe)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setBase(hoeHead)
+                        .setAddition(Items.STICK)
+                        .build();
+        BCLRecipeBuilder.smithing(BetterEnd.makeID(name + "_sword_handle"), swordHandle)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setBase(ingot)
+                        .setAddition(Items.STICK)
+                        .build();
+        BCLRecipeBuilder.smithing(BetterEnd.makeID(name + "_sword"), sword)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setBase(swordBlade)
+                        .setAddition(swordHandle)
+                        .build();
+        BCLRecipeBuilder.smithing(BetterEnd.makeID(name + "_shovel"), shovel)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setBase(shovelHead)
+                        .setAddition(Items.STICK)
+                        .build();
 
         // Armor crafting
-        GridRecipe.make(BetterEnd.MOD_ID, name + "_helmet", helmet)
-                  .checkConfig(Configs.RECIPE_CONFIG)
-                  .setShape("###", "# #")
-                  .addMaterial('#', forgedPlate)
-                  .setGroup("end_metal_helmets")
-                  .build();
-        GridRecipe.make(BetterEnd.MOD_ID, name + "_chestplate", chestplate)
-                  .checkConfig(Configs.RECIPE_CONFIG)
-                  .setShape("# #", "###", "###")
-                  .addMaterial('#', forgedPlate)
-                  .setGroup("end_metal_chestplates")
-                  .build();
-        GridRecipe.make(BetterEnd.MOD_ID, name + "_leggings", leggings)
-                  .checkConfig(Configs.RECIPE_CONFIG)
-                  .setShape("###", "# #", "# #")
-                  .addMaterial('#', forgedPlate)
-                  .setGroup("end_metal_leggings")
-                  .build();
-        GridRecipe.make(BetterEnd.MOD_ID, name + "_boots", boots)
-                  .checkConfig(Configs.RECIPE_CONFIG)
-                  .setShape("# #", "# #")
-                  .addMaterial('#', forgedPlate)
-                  .setGroup("end_metal_boots")
-                  .build();
+        BCLRecipeBuilder.crafting(BetterEnd.makeID(name + "_helmet"), helmet)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setShape("###", "# #")
+                        .addMaterial('#', forgedPlate)
+                        .setGroup("end_metal_helmets")
+                        .build();
+        BCLRecipeBuilder.crafting(BetterEnd.makeID(name + "_chestplate"), chestplate)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setShape("# #", "###", "###")
+                        .addMaterial('#', forgedPlate)
+                        .setGroup("end_metal_chestplates")
+                        .build();
+        BCLRecipeBuilder.crafting(BetterEnd.makeID(name + "_leggings"), leggings)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setShape("###", "# #", "# #")
+                        .addMaterial('#', forgedPlate)
+                        .setGroup("end_metal_leggings")
+                        .build();
+        BCLRecipeBuilder.crafting(BetterEnd.makeID(name + "_boots"), boots)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setShape("# #", "# #")
+                        .addMaterial('#', forgedPlate)
+                        .setGroup("end_metal_boots")
+                        .build();
 
         TagManager.BLOCKS.add(BlockTags.ANVIL, anvilBlock);
         TagManager.BLOCKS.add(BlockTags.BEACON_BASE_BLOCKS, block);

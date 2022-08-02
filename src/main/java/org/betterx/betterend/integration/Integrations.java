@@ -2,7 +2,7 @@ package org.betterx.betterend.integration;
 
 import org.betterx.bclib.api.v2.ModIntegrationAPI;
 import org.betterx.bclib.integration.ModIntegration;
-import org.betterx.bclib.recipes.GridRecipe;
+import org.betterx.bclib.recipes.BCLRecipeBuilder;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.config.Configs;
 import org.betterx.betterend.events.PlayerAdvancementsCallback;
@@ -34,13 +34,13 @@ public class Integrations {
                 }
             });
 
-            GridRecipe.make(BetterEnd.MOD_ID, "guide_book", GuideBookItem.GUIDE_BOOK)
-                      .checkConfig(Configs.RECIPE_CONFIG)
-                      .setShape("D", "B", "C")
-                      .addMaterial('D', EndItems.ENDER_DUST)
-                      .addMaterial('B', Items.BOOK)
-                      .addMaterial('C', EndItems.CRYSTAL_SHARDS)
-                      .build();
+            BCLRecipeBuilder.crafting(BetterEnd.makeID("guide_book"), GuideBookItem.GUIDE_BOOK)
+                            .checkConfig(Configs.RECIPE_CONFIG)
+                            .setShape("D", "B", "C")
+                            .addMaterial('D', EndItems.ENDER_DUST)
+                            .addMaterial('B', Items.BOOK)
+                            .addMaterial('C', EndItems.CRYSTAL_SHARDS)
+                            .build();
         }
         hasHydrogen = FabricLoader.getInstance().isModLoaded("hydrogen");
     }

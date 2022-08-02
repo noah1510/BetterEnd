@@ -1,6 +1,6 @@
 package org.betterx.betterend.complexmaterials;
 
-import org.betterx.bclib.recipes.GridRecipe;
+import org.betterx.bclib.recipes.BCLRecipeBuilder;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.config.Configs;
@@ -42,20 +42,20 @@ public class ColoredMaterial {
             Block block = constructor.apply(FabricBlockSettings.copyOf(source).mapColor(MaterialColor.COLOR_BLACK));
             EndBlocks.registerBlock(blockName, block);
             if (craftEight) {
-                GridRecipe.make(BetterEnd.MOD_ID, blockName, block)
-                          .checkConfig(Configs.RECIPE_CONFIG)
-                          .setOutputCount(8)
-                          .setShape("###", "#D#", "###")
-                          .addMaterial('#', source)
-                          .addMaterial('D', dyes.get(color))
-                          .build();
+                BCLRecipeBuilder.crafting(BetterEnd.makeID(blockName), block)
+                                .checkConfig(Configs.RECIPE_CONFIG)
+                                .setOutputCount(8)
+                                .setShape("###", "#D#", "###")
+                                .addMaterial('#', source)
+                                .addMaterial('D', dyes.get(color))
+                                .build();
             } else {
-                GridRecipe.make(BetterEnd.MOD_ID, blockName, block)
-                          .checkConfig(Configs.RECIPE_CONFIG)
-                          .setList("#D")
-                          .addMaterial('#', source)
-                          .addMaterial('D', dyes.get(color))
-                          .build();
+                BCLRecipeBuilder.crafting(BetterEnd.makeID(blockName), block)
+                                .checkConfig(Configs.RECIPE_CONFIG)
+                                .setList("#D")
+                                .addMaterial('#', source)
+                                .addMaterial('D', dyes.get(color))
+                                .build();
             }
             this.colors.put(color, block);
             BlocksHelper.addBlockColor(block, color);
