@@ -217,7 +217,7 @@ public class CraftingRecipes {
                         .addMaterial('B', EndItems.SHADOW_BERRY_COOKED)
                         .build();
 
-        BCLRecipeBuilder.crafting(BetterEnd.makeID("shadow_berry_jelly"), EndItems.BLOSSOM_BERRY_JELLY)
+        BCLRecipeBuilder.crafting(BetterEnd.makeID("blossom_berry_jelly"), EndItems.BLOSSOM_BERRY_JELLY)
                         .checkConfig(Configs.RECIPE_CONFIG)
                         .setList("JWSB")
                         .addMaterial('J', EndItems.GELATINE)
@@ -470,20 +470,20 @@ public class CraftingRecipes {
 
     public static void registerPedestal(String name, Block pedestal, Block slab, Block pillar) {
         BCLRecipeBuilder.crafting(BetterEnd.makeID(name), pedestal)
-                  .checkConfig(Configs.RECIPE_CONFIG)
-                  .setShape("S", "#", "S")
-                  .addMaterial('S', slab)
-                  .addMaterial('#', pillar)
-                  .setOutputCount(2)
-                  .build();
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setShape("S", "#", "S")
+                        .addMaterial('S', slab)
+                        .addMaterial('#', pillar)
+                        .setOutputCount(2)
+                        .build();
     }
 
     private static void registerHammer(String name, Item material, Item result) {
         BCLRecipeBuilder.crafting(BetterEnd.makeID(name + "_hammer"), result)
-                  .checkConfig(Configs.RECIPE_CONFIG)
-                  .setShape("I I", "I#I", " # ")
-                  .addMaterial('I', material)
-                  .addMaterial('#', Items.STICK)
-                  .build();
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setShape("I I", "I#I", " # ")
+                        .addMaterial('I', material)
+                        .addMaterial('#', Items.STICK)
+                        .build();
     }
 }
