@@ -68,6 +68,7 @@
   "item.betterend.leather_wrapped_stick": "Leder-umwickelter Stock",
   "effect.betterend.end_veil": "Endschleier",
   "enchantment.betterend.end_veil": "Endschleier",
+  "enchantment.betterend.end_veil.desc": "Enderman bemerken nicht wenn sie vom Spieler angesehen werden.",
   "item.minecraft.potion.effect.end_veil": "Trank des Endschleiers",
   "item.minecraft.potion.effect.long_end_veil": "Trank des Endschleiers",
   "item.minecraft.splash_potion.effect.end_veil": "Wurftrank des Endschleiers",
