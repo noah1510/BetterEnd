@@ -24,6 +24,7 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 public class StoneMaterial {
     public final Block stone;
+    public final String baseName;
 
     public final Block polished;
     public final Block tiles;
@@ -50,6 +51,7 @@ public class StoneMaterial {
     public StoneMaterial(String name, MaterialColor color) {
         FabricBlockSettings material = createMaterial(color);
 
+        this.baseName = name;
         stone = EndBlocks.registerBlock(name, new BaseBlock(material));
         polished = EndBlocks.registerBlock(name + "_polished", new BaseBlock(material));
         tiles = EndBlocks.registerBlock(name + "_tiles", new BaseBlock(material));
@@ -176,6 +178,7 @@ public class StoneMaterial {
                         .build();
 
         CraftingRecipes.registerPedestal(name + "_pedestal", pedestal, slab, pillar);
+        StoneMaterial.recipesForStoneMaterial(this);
 
         // Item Tags //
         TagManager.ITEMS.add(ItemTags.SLABS, slab.asItem(), brickSlab.asItem());
@@ -195,5 +198,139 @@ public class StoneMaterial {
 
         TagManager.BLOCKS.add(CommonBlockTags.END_STONES, stone);
         TagManager.BLOCKS.add(CommonBlockTags.END_STONES, stone);
+    }
+
+    public static void recipesForStoneMaterial(StoneMaterial mat) {
+        BCLRecipeBuilder
+                .stonecutting(
+                        BetterEnd.makeID(mat.baseName + "_bricks_stonecutting"),
+                        mat.bricks
+                )
+                .checkConfig(org.betterx.bclib.config.Configs.RECIPE_CONFIG)
+                .setInput(mat.stone)
+                .setGroup(mat.baseName + "_stonecutting")
+                .build();
+
+        BCLRecipeBuilder
+                .stonecutting(
+                        BetterEnd.makeID(mat.baseName + "_wall_stonecutting"),
+                        mat.wall
+                )
+                .checkConfig(org.betterx.bclib.config.Configs.RECIPE_CONFIG)
+                .setInput(mat.stone)
+                .setGroup(mat.baseName + "_stonecutting")
+                .build();
+
+        BCLRecipeBuilder
+                .stonecutting(
+                        BetterEnd.makeID(mat.baseName + "_slab_stonecutting"),
+                        mat.slab
+                )
+                .checkConfig(org.betterx.bclib.config.Configs.RECIPE_CONFIG)
+                .setInput(mat.stone)
+                .setGroup(mat.baseName + "_stonecutting")
+                .build();
+
+        BCLRecipeBuilder
+                .stonecutting(
+                        BetterEnd.makeID(mat.baseName + "_stairs_stonecutting"),
+                        mat.stairs
+                )
+                .checkConfig(org.betterx.bclib.config.Configs.RECIPE_CONFIG)
+                .setInput(mat.stone)
+                .setGroup(mat.baseName + "_stonecutting")
+                .build();
+
+        BCLRecipeBuilder
+                .stonecutting(
+                        BetterEnd.makeID(mat.baseName + "_tiles_stonecutting"),
+                        mat.tiles
+                )
+                .checkConfig(org.betterx.bclib.config.Configs.RECIPE_CONFIG)
+                .setInput(mat.stone)
+                .setGroup(mat.baseName + "_stonecutting")
+                .build();
+
+        BCLRecipeBuilder
+                .stonecutting(
+                        BetterEnd.makeID(mat.baseName + "_brick_slab_stonecutting"),
+                        mat.brickSlab
+                )
+                .setOutputCount(2)
+                .checkConfig(org.betterx.bclib.config.Configs.RECIPE_CONFIG)
+                .setInput(mat.stone)
+                .setGroup(mat.baseName + "_stonecutting")
+                .build();
+
+        BCLRecipeBuilder
+                .stonecutting(
+                        BetterEnd.makeID(mat.baseName + "_brick_stair_stonecutting"),
+                        mat.brickStairs
+                )
+                .checkConfig(org.betterx.bclib.config.Configs.RECIPE_CONFIG)
+                .setInput(mat.stone)
+                .setGroup(mat.baseName + "_stonecutting")
+                .build();
+
+        BCLRecipeBuilder
+                .stonecutting(
+                        BetterEnd.makeID(mat.baseName + "_brick_wall_stonecutting"),
+                        mat.brickWall
+                )
+                .checkConfig(org.betterx.bclib.config.Configs.RECIPE_CONFIG)
+                .setInput(mat.stone)
+                .setGroup(mat.baseName + "_stonecutting")
+                .build();
+
+        BCLRecipeBuilder
+                .stonecutting(
+                        BetterEnd.makeID(mat.baseName + "_pillar_stonecutting"),
+                        mat.pillar
+                )
+                .checkConfig(org.betterx.bclib.config.Configs.RECIPE_CONFIG)
+                .setInput(mat.stone)
+                .setGroup(mat.baseName + "_stonecutting")
+                .build();
+
+        BCLRecipeBuilder
+                .stonecutting(
+                        BetterEnd.makeID(mat.baseName + "_polished_stonecutting"),
+                        mat.polished
+                )
+                .checkConfig(org.betterx.bclib.config.Configs.RECIPE_CONFIG)
+                .setInput(mat.stone)
+                .setGroup(mat.baseName + "_stonecutting")
+                .build();
+
+        BCLRecipeBuilder
+                .stonecutting(
+                        BetterEnd.makeID(mat.baseName + "_brick_slabs_from_" + mat.baseName + "_brick_stonecutting"),
+                        mat.brickSlab
+                )
+                .setOutputCount(2)
+                .checkConfig(org.betterx.bclib.config.Configs.RECIPE_CONFIG)
+                .setInput(mat.bricks)
+                .setGroup(mat.baseName + "_stonecutting")
+                .build();
+
+        BCLRecipeBuilder
+                .stonecutting(
+                        BetterEnd.makeID(mat.baseName + "_brick_stair_from_" + mat.baseName + "_brick_stonecutting"),
+                        mat.brickStairs
+                )
+                .checkConfig(org.betterx.bclib.config.Configs.RECIPE_CONFIG)
+                .setInput(mat.bricks)
+                .setGroup(mat.baseName + "_stonecutting")
+                .build();
+
+        BCLRecipeBuilder
+                .stonecutting(
+                        BetterEnd.makeID(mat.baseName + "_brick_wall_from_" + mat.baseName + "_brick_stonecutting"),
+                        mat.brickWall
+                )
+                .checkConfig(org.betterx.bclib.config.Configs.RECIPE_CONFIG)
+                .setInput(mat.bricks)
+                .setGroup(mat.baseName + "_stonecutting")
+                .build();
     }
 }
