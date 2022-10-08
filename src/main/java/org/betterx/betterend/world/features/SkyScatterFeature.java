@@ -54,7 +54,7 @@ public abstract class SkyScatterFeature extends ScatterFeature<ScatterFeatureCon
         return new BlockPos(pos.getX(), MHelper.randRange(32, 192, world.getRandom()), pos.getZ());
     }
 
-    protected boolean getGroundPlant(WorldGenLevel world, MutableBlockPos pos) {
+    protected boolean getGroundPlant(ScatterFeatureConfig cfg, WorldGenLevel world, MutableBlockPos pos) {
         pos.setY(pos.getY() + MHelper.randRange(-getYOffset(), getYOffset(), world.getRandom()));
         return true;
     }
