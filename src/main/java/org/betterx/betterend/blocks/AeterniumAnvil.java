@@ -16,7 +16,7 @@ public class AeterniumAnvil extends EndAnvilBlock {
 
     @Override
     public int getMaxDurability() {
-        return 8;
+        return 12;
     }
 
     @Override
