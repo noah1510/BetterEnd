@@ -150,6 +150,11 @@ public class EndFeatures {
             new EndLotusFeature()
     );
 
+    public static final EndLotusLeafFeature END_LOTUS_LEAF_FEATURE = inlineBuild(
+            "end_lotus_leaf_feature",
+            new EndLotusLeafFeature()
+    );
+
     public static final BushFeature BUSH_FEATURE = inlineBuild(
             "bush_feature",
             new BushFeature()
@@ -712,12 +717,12 @@ public class EndFeatures {
             "end_lotus",
             END_LOTUS_FEATURE,
             new ScatterFeatureConfig(7),
-            5
+            6
     );
-    public static final BCLFeature<EndLotusFeature, ScatterFeatureConfig> END_LOTUS_LEAF = registerVegetation(
+    public static final BCLFeature<EndLotusLeafFeature, ScatterFeatureConfig> END_LOTUS_LEAF = registerVegetation(
             "end_lotus_leaf",
-            END_LOTUS_FEATURE, new ScatterFeatureConfig(20),
-            25
+            END_LOTUS_LEAF_FEATURE, new ScatterFeatureConfig(20),
+            4
     );
     public static final BCLFeature<HydraluxFeature, ScatterFeatureConfig> HYDRALUX = registerVegetation(
             "hydralux",
