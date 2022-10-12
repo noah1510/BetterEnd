@@ -24,12 +24,12 @@ public class EndCityFeatureMixin {
     ) {
         final ChunkPos pos = context.chunkPos();
         WorldgenRandom chunkRandom = new WorldgenRandom(new XoroshiroRandomSource(pos.x, pos.z));
+        chunkRandom.consumeCount(1);
 
         if (GeneratorOptions.useNewGenerator()) {
             int chance = GeneratorOptions.getEndCityFailChance();
             if (chance > 0 && chunkRandom.nextInt(chance) != 0) {
                 info.setReturnValue(Optional.empty());
-                info.cancel();
             }
         }
     }
