@@ -92,15 +92,15 @@ public class LootTableUtil {
 
     public static ResourceLocation getTable(Holder<Biome> biome) {
         BCLBiome bclBiome = BiomeAPI.getBiome(biome.value());
-        if (bclBiome == EndBiomes.FOGGY_MUSHROOMLAND) {
+        if (bclBiome.equals(EndBiomes.FOGGY_MUSHROOMLAND)) {
             return FOGGY_MUSHROOMLAND;
-        } else if (bclBiome == EndBiomes.CHORUS_FOREST) {
+        } else if (bclBiome.equals(EndBiomes.CHORUS_FOREST)) {
             return CHORUS_FOREST;
-        } else if (bclBiome == EndBiomes.SHADOW_FOREST) {
+        } else if (bclBiome.equals(EndBiomes.SHADOW_FOREST)) {
             return SHADOW_FOREST;
-        } else if (bclBiome == EndBiomes.LANTERN_WOODS) {
+        } else if (bclBiome.equals(EndBiomes.LANTERN_WOODS)) {
             return LANTERN_WOODS;
-        } else if (bclBiome == EndBiomes.UMBRELLA_JUNGLE) {
+        } else if (bclBiome.equals(EndBiomes.UMBRELLA_JUNGLE)) {
             return UMBRELLA_JUNGLE;
         }
         return COMMON;
