@@ -49,7 +49,7 @@ public class SmaragdantCrystalFeature extends DefaultFeature {
                 }
                 if (state.is(CommonBlockTags.GEN_END_STONES) && world.getBlockState(mut.above()).isAir()) {
                     for (int j = 0; j <= dist; j++) {
-                        if (random.nextInt(5) == 0) {
+                        if (random.nextInt(8) == 0) {
                             BlocksHelper.setWithoutUpdate(world, mut, buddingCrystal);
                             for (Direction k : BlocksHelper.HORIZONTAL) {
                                 BlockPos sidePos = mut.relative(k);

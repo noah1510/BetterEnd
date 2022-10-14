@@ -50,7 +50,7 @@ public class BuddingSmaragdantCrystalBlock extends LitPillarBlock implements Add
         Direction dir = BlocksHelper.randomDirection(random);
         BlockPos side = pos.relative(dir);
         BlockState sideState = world.getBlockState(side);
-        if (random.nextInt(5) == 0) {
+        if (random.nextInt(20) == 0) {
             if (canShardGrowAtState(sideState)) {
                 BlockState shard = EndBlocks.SMARAGDANT_CRYSTAL_SHARD.defaultBlockState()
                         .setValue(SmaragdantCrystalShardBlock.WATERLOGGED, sideState.getFluidState().getType() == Fluids.WATER)
