@@ -22,11 +22,9 @@ public class EndCityFeatureMixin {
             Structure.GenerationContext context,
             CallbackInfoReturnable<Optional<Structure.GenerationStub>> info
     ) {
-        final ChunkPos pos = context.chunkPos();
-        WorldgenRandom chunkRandom = new WorldgenRandom(new XoroshiroRandomSource(pos.x, pos.z));
-        chunkRandom.consumeCount(1);
-
         if (GeneratorOptions.useNewGenerator()) {
+            final ChunkPos pos = context.chunkPos();
+            WorldgenRandom chunkRandom = new WorldgenRandom(new XoroshiroRandomSource(context.seed() * pos.x, context.seed() * pos.z));
             int chance = GeneratorOptions.getEndCityFailChance();
             if (chance > 0 && chunkRandom.nextInt(chance) != 0) {
                 info.setReturnValue(Optional.empty());
