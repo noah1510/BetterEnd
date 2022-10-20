@@ -1,18 +1,5 @@
 package org.betterx.betterend.util;
 
-import net.minecraft.advancements.critereon.EntityPredicate;
-import net.minecraft.advancements.critereon.FishingHookPredicate;
-import net.minecraft.advancements.critereon.LocationPredicate;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.storage.loot.BuiltInLootTables;
-import net.minecraft.world.level.storage.loot.LootContext;
-import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.entries.LootTableReference;
-import net.minecraft.world.level.storage.loot.functions.EnchantWithLevelsFunction;
-import net.minecraft.world.level.storage.loot.functions.SetItemDamageFunction;
-import net.minecraft.world.level.storage.loot.predicates.LocationCheck;
-import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraft.world.level.storage.loot.predicates.LootItemEntityPropertyCondition;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
 import org.betterx.bclib.complexmaterials.WoodenComplexMaterial;
@@ -21,21 +8,29 @@ import org.betterx.betterend.registry.EndBiomes;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndItems;
 
+import net.minecraft.advancements.critereon.LocationPredicate;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.minecraft.world.level.storage.loot.BuiltInLootTables;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.entries.LootTableReference;
+import net.minecraft.world.level.storage.loot.functions.EnchantWithLevelsFunction;
+import net.minecraft.world.level.storage.loot.functions.SetItemDamageFunction;
+import net.minecraft.world.level.storage.loot.predicates.LocationCheck;
+import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 
 public class LootTableUtil {
-    private static final ResourceLocation END_CITY_TREASURE_ID = new ResourceLocation("chests/end_city_treasure");
     private static final ResourceLocation COMMON = BetterEnd.makeID("chests/common");
     private static final ResourceLocation FOGGY_MUSHROOMLAND = BetterEnd.makeID("chests/foggy_mushroomland");
     private static final ResourceLocation CHORUS_FOREST = BetterEnd.makeID("chests/chorus_forest");
@@ -73,7 +68,7 @@ public class LootTableUtil {
 
     public static void init() {
         LootTableEvents.MODIFY.register((resourceManager, lootManager, id, table, setter) -> {
-            if (END_CITY_TREASURE_ID.equals(id)) {
+            if (BuiltInLootTables.END_CITY_TREASURE.equals(id)) {
                 LootPool.Builder builder = LootPool.lootPool();
                 builder.setRolls(ConstantValue.exactly(1));
                 builder.when(LootItemRandomChanceCondition.randomChance(0.2f));
@@ -87,6 +82,12 @@ public class LootTableUtil {
                 builder.add(LootItem.lootTableItem(EndItems.MUSIC_DISC_ENDSEEKER));
                 builder.add(LootItem.lootTableItem(EndItems.MUSIC_DISC_EO_DRACONA));
                 table.withPool(builder);
+            } else if (BuiltInLootTables.FISHING.equals(id)) {
+                table.modifyPools((modifier) -> modifier.when(IN_END.invert()));
+                table.withPool(LootPool.lootPool().when(IN_END).setRolls(ConstantValue.exactly(1.0F))
+                        .add(LootTableReference.lootTableReference(FISHING_FISH).setWeight(85).setQuality(-1))
+                        .add(LootTableReference.lootTableReference(FISHING_TREASURE).setWeight(5).setQuality(2))
+                        .add(LootTableReference.lootTableReference(FISHING_JUNK).setWeight(10).setQuality(-2)));
             } else if (id.getNamespace().equals(BetterEnd.MOD_ID)) {
                 if (FISHING_FISH.equals(id)) {
                     LootPool.Builder builder = LootPool.lootPool()
@@ -158,24 +159,6 @@ public class LootTableUtil {
                     table.withPool(builder);
                 }
             }
-        });
-
-        LootTableEvents.REPLACE.register((resourceManager, lootManager, id, originalTable, setter) -> {
-            if (BuiltInLootTables.FISHING.equals(id)) {
-                LootTable.Builder builder = LootTable.lootTable()
-                        .withPool(LootPool.lootPool().when(IN_END.invert()).setRolls(ConstantValue.exactly(1.0F))
-                                .add(LootTableReference.lootTableReference(BuiltInLootTables.FISHING_JUNK).setWeight(10).setQuality(-2))
-                                .add(LootTableReference.lootTableReference(BuiltInLootTables.FISHING_TREASURE).setWeight(5).setQuality(2)
-                                        .when(LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS,
-                                                EntityPredicate.Builder.entity().subPredicate(FishingHookPredicate.inOpenWater(true)))))
-                                .add(LootTableReference.lootTableReference(BuiltInLootTables.FISHING_FISH).setWeight(85).setQuality(-1)))
-                        .withPool(LootPool.lootPool().when(IN_END).setRolls(ConstantValue.exactly(1.0F))
-                                .add(LootTableReference.lootTableReference(FISHING_FISH).setWeight(85).setQuality(-1))
-                                .add(LootTableReference.lootTableReference(FISHING_TREASURE).setWeight(5).setQuality(2))
-                                .add(LootTableReference.lootTableReference(FISHING_JUNK).setWeight(10).setQuality(-2)));
-                return builder.build();
-            }
-            return null;
         });
     }
 
