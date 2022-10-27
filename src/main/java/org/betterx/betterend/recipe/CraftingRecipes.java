@@ -489,6 +489,12 @@ public class CraftingRecipes {
                         .setOutputCount(4)
                         .addMaterial('#', EndBlocks.DRAGON_BONE_BLOCK)
                         .build();
+
+        BCLRecipeBuilder.crafting(BetterEnd.makeID("smaragdant_block"), EndBlocks.SMARAGDANT_CRYSTAL)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setShape("##", "##")
+                        .addMaterial('#', EndBlocks.SMARAGDANT_CRYSTAL_SHARD)
+                        .build();
     }
 
     private static void registerLantern(String name, Block lantern, Block slab) {
