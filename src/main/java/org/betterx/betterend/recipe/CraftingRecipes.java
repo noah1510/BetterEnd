@@ -490,7 +490,7 @@ public class CraftingRecipes {
                         .addMaterial('#', EndBlocks.DRAGON_BONE_BLOCK)
                         .build();
 
-        BCLRecipeBuilder.crafting(BetterEnd.makeID("smaragdant_block"), EndBlocks.SMARAGDANT_CRYSTAL)
+        BCLRecipeBuilder.crafting(BetterEnd.makeID("smaragdant_crystal"), EndBlocks.SMARAGDANT_CRYSTAL)
                         .checkConfig(Configs.RECIPE_CONFIG)
                         .setShape("##", "##")
                         .addMaterial('#', EndBlocks.SMARAGDANT_CRYSTAL_SHARD)
