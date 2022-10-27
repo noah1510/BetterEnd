@@ -100,14 +100,15 @@ public class LootTableUtil {
                             .add(LootItem.lootTableItem(Items.ENDER_PEARL))
                             .add(LootItem.lootTableItem(Items.CHORUS_FRUIT))
                             .add(LootItem.lootTableItem(EndItems.GELATINE))
-                            .add(LootItem.lootTableItem(EndItems.CRYSTAL_SHARDS));
+                            .add(LootItem.lootTableItem(EndItems.CRYSTAL_SHARDS))
+                            .add(LootItem.lootTableItem(EndItems.HYDRALUX_PETAL).when(IN_SULPHUR_SPRINGS));
                     addCharnia(builder);
                     table.withPool(builder);
                     return;
                 } else if (FISHING_TREASURE.equals(id)) {
                     LootPool.Builder builder = LootPool.lootPool()
-                            .add(LootItem.lootTableItem(EndItems.AETERNIUM_SWORD_BLADE))
-                            .add(LootItem.lootTableItem(EndItems.AETERNIUM_FORGED_PLATE))
+                            .add(LootItem.lootTableItem(EndBlocks.TERMINITE.swordBlade))
+                            .add(LootItem.lootTableItem(EndBlocks.TERMINITE.forgedPlate))
                             .add(LootItem.lootTableItem(EndBlocks.MENGER_SPONGE))
                             .add(LootItem.lootTableItem(Items.BOW)
                                     .apply(SetItemDamageFunction.setDamage(UniformGenerator.between(0.0F, 0.25F)))
