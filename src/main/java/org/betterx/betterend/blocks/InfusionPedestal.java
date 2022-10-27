@@ -84,7 +84,7 @@ public class InfusionPedestal extends PedestalBlock {
             BlockState blockState,
             BlockEntityType<T> blockEntityType
     ) {
-        return InfusionPedestalEntity::tickEnity;
+        return InfusionPedestalEntity::tickEntity;
     }
 
     static {

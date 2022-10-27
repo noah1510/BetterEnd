@@ -16,6 +16,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.chunk.LevelChunk.EntityCreationType;
 import net.minecraft.world.phys.Vec3;
 
 import java.awt.*;
@@ -56,7 +57,9 @@ public class InfusionRitual implements Container {
         for (int i = 0; i < catalysts.length; i++) {
             Point point = PEDESTALS_MAP[i];
             MutableBlockPos checkPos = worldPos.mutable().move(Direction.EAST, point.x).move(Direction.NORTH, point.y);
-            BlockEntity catalystEntity = world.getBlockEntity(checkPos);
+            BlockEntity catalystEntity = world.isClientSide
+                    ? world.getChunkAt(checkPos).getBlockEntity(checkPos, EntityCreationType.CHECK)
+                    : world.getBlockEntity(checkPos);
             if (catalystEntity instanceof PedestalBlockEntity) {
                 catalysts[i] = (PedestalBlockEntity) catalystEntity;
             } else {
