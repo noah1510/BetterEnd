@@ -29,6 +29,17 @@ repositories {
     maven { url "https://ladysnake.jfrog.io/artifactory/mods" }
     maven { url = "https://dvs1.progwml6.com/files/maven/" }
     maven { url = "https://modmaven.dev" }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Modrinth"
+                url = "https://api.modrinth.com/maven"
+            }
+        }
+        filter {
+            includeGroup "maven.modrinth"
+        }
+    }
     flatDir {
         dirs 'libs'
     }
@@ -53,7 +64,7 @@ dependencies {
     if (local_bclib) {
         implementation(project(path: ":BCLib", configuration: 'dev'))
     } else {
-        modImplementation "com.github.quiqueck:BCLib:${project.bclib_version}"
+        modImplementation "maven.modrinth:BCLib:${project.bclib_version}"
     }
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.rei_version}"
