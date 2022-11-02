@@ -32,12 +32,12 @@ public class EndEntitiesRenders {
     public static final ModelLayerLocation CRYSTALITE_BOOTS = registerMain("crystalite_boots");
 
     public static void register() {
-        register(EndEntities.DRAGONFLY, RendererEntityDragonfly::new);
-        register(EndEntities.END_SLIME, RendererEntityEndSlime::new);
-        register(EndEntities.END_FISH, RendererEntityEndFish::new);
-        register(EndEntities.SHADOW_WALKER, RendererEntityShadowWalker::new);
-        register(EndEntities.CUBOZOA, RendererEntityCubozoa::new);
-        register(EndEntities.SILK_MOTH, SilkMothEntityRenderer::new);
+        register(EndEntities.DRAGONFLY.type(), RendererEntityDragonfly::new);
+        register(EndEntities.END_SLIME.type(), RendererEntityEndSlime::new);
+        register(EndEntities.END_FISH.type(), RendererEntityEndFish::new);
+        register(EndEntities.SHADOW_WALKER.type(), RendererEntityShadowWalker::new);
+        register(EndEntities.CUBOZOA.type(), RendererEntityCubozoa::new);
+        register(EndEntities.SILK_MOTH.type(), SilkMothEntityRenderer::new);
 
         EntityModelLayerRegistry.registerModelLayer(DRAGONFLY_MODEL, DragonflyEntityModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(
