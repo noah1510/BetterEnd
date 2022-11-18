@@ -216,7 +216,18 @@ public class InfusionRecipe implements Recipe<InfusionRitual>, UnknownReceipBook
         @Override
         public InfusionRecipe fromJson(ResourceLocation id, JsonObject json) {
             InfusionRecipe recipe = new InfusionRecipe(id);
-            recipe.input = Ingredient.fromJson(json.get("input"));
+            JsonObject inputObject = GsonHelper.getAsJsonObject(json, "input");
+            recipe.input = Ingredient.fromJson(inputObject);
+            if (inputObject.has("nbt") && !recipe.input.isEmpty()) {
+                try {
+                    String nbtData = GsonHelper.getAsString(inputObject, "nbt");
+                    CompoundTag nbt = TagParser.parseTag(nbtData);
+                    recipe.input.getItems()[0].setTag(nbt);
+                } catch (CommandSyntaxException ex) {
+                    BetterEnd.LOGGER.warning("Error parse nbt data for input.", ex);
+                }
+            }
+
             JsonObject result = GsonHelper.getAsJsonObject(json, "result");
             recipe.output = ItemUtil.fromJsonRecipe(result);
             if (recipe.output == null) {
