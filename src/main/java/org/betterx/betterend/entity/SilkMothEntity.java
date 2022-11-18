@@ -12,6 +12,7 @@ import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.blocks.EndBlockProperties;
 import org.betterx.betterend.blocks.basis.EndPlantBlock;
 import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.registry.EndEntities;
 import org.betterx.betterend.registry.EndItems;
 
 import net.minecraft.core.BlockPos;
