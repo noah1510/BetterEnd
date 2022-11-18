@@ -1,6 +1,7 @@
 package org.betterx.betterend.registry;
 
 import org.betterx.bclib.api.v2.spawning.SpawnRuleBuilder;
+import org.betterx.bclib.entity.BCLEntityWrapper;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.config.Configs;
 import org.betterx.betterend.entity.*;
@@ -17,7 +18,7 @@ import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRe
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 
 public class EndEntities {
-    public static final EntityType<DragonflyEntity> DRAGONFLY = register(
+    public static final BCLEntityWrapper<DragonflyEntity> DRAGONFLY = register(
             "dragonfly",
             MobCategory.AMBIENT,
             0.6F,
@@ -28,7 +29,7 @@ public class EndEntities {
             ColorUtil.color(32, 42, 176),
             ColorUtil.color(115, 225, 249)
     );
-    public static final EntityType<EndSlimeEntity> END_SLIME = register(
+    public static final BCLEntityWrapper<EndSlimeEntity> END_SLIME = register(
             "end_slime",
             MobCategory.MONSTER,
             2F,
@@ -39,7 +40,7 @@ public class EndEntities {
             ColorUtil.color(28, 28, 28),
             ColorUtil.color(99, 11, 99)
     );
-    public static final EntityType<EndFishEntity> END_FISH = register(
+    public static final BCLEntityWrapper<EndFishEntity> END_FISH = register(
             "end_fish",
             MobCategory.WATER_AMBIENT,
             0.5F,
@@ -50,7 +51,7 @@ public class EndEntities {
             ColorUtil.color(3, 50, 76),
             ColorUtil.color(120, 206, 255)
     );
-    public static final EntityType<ShadowWalkerEntity> SHADOW_WALKER = register(
+    public static final BCLEntityWrapper<ShadowWalkerEntity> SHADOW_WALKER = register(
             "shadow_walker",
             MobCategory.MONSTER,
             0.6F,
@@ -61,7 +62,7 @@ public class EndEntities {
             ColorUtil.color(30, 30, 30),
             ColorUtil.color(5, 5, 5)
     );
-    public static final EntityType<CubozoaEntity> CUBOZOA = register(
+    public static final BCLEntityWrapper<CubozoaEntity> CUBOZOA = register(
             "cubozoa",
             MobCategory.WATER_AMBIENT,
             0.6F,
@@ -72,7 +73,7 @@ public class EndEntities {
             ColorUtil.color(151, 77, 181),
             ColorUtil.color(93, 176, 238)
     );
-    public static final EntityType<SilkMothEntity> SILK_MOTH = register(
+    public static final BCLEntityWrapper<SilkMothEntity> SILK_MOTH = register(
             "silk_moth",
             MobCategory.AMBIENT,
             0.6F,
@@ -127,7 +128,7 @@ public class EndEntities {
         return type;
     }
 
-    private static <T extends Mob> EntityType<T> register(
+    private static <T extends Mob> BCLEntityWrapper<T> register(
             String name,
             MobCategory group,
             float width,
@@ -145,11 +146,10 @@ public class EndEntities {
                         ? EntityDimensions.fixed(width, height)
                         : EntityDimensions.scalable(width, height))
                 .build();
-        if (Configs.ENTITY_CONFIG.getBooleanRoot(id.getPath(), true)) {
-            FabricDefaultAttributeRegistry.register(type, attributes);
-            EndItems.registerEndEgg("spawn_egg_" + name, type, eggColor, dotsColor);
-            return Registry.register(Registry.ENTITY_TYPE, BetterEnd.makeID(name), type);
-        }
-        return type;
+        FabricDefaultAttributeRegistry.register(type, attributes);
+        EndItems.registerEndEgg("spawn_egg_" + name, type, eggColor, dotsColor);
+        Registry.register(Registry.ENTITY_TYPE, BetterEnd.makeID(name), type);
+
+        return new BCLEntityWrapper<>(type, Configs.ENTITY_CONFIG.getBooleanRoot(id.getPath(), true));
     }
 }
