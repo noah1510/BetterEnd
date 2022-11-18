@@ -4,7 +4,6 @@ import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.blocks.EndBlockProperties;
-import org.betterx.betterend.blocks.basis.EndPlantBlock;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndEntities;
 import org.betterx.betterend.registry.EndItems;
@@ -26,10 +25,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.FlyingMoveControl;
 import net.minecraft.world.entity.ai.control.LookControl;
-import net.minecraft.world.entity.ai.goal.BreedGoal;
-import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.FollowParentGoal;
-import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.navigation.FlyingPathNavigation;
 import net.minecraft.world.entity.ai.navigation.PathNavigation;
 import net.minecraft.world.entity.ai.util.AirAndWaterRandomPos;
@@ -38,8 +34,8 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.FlyingAnimal;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -111,6 +107,7 @@ public class SilkMothEntity extends Animal implements FlyingAnimal {
     protected void registerGoals() {
         this.goalSelector.addGoal(1, new ReturnToHiveGoal());
         this.goalSelector.addGoal(2, new BreedGoal(this, 1.0D));
+        this.goalSelector.addGoal(3, new TemptGoal(this, 1.25, Ingredient.of(EndItems.BLOSSOM_BERRY), false));
         this.goalSelector.addGoal(5, new FollowParentGoal(this, 1.25D));
         this.goalSelector.addGoal(8, new WanderAroundGoal());
         this.goalSelector.addGoal(9, new FloatGoal(this));
@@ -136,7 +133,7 @@ public class SilkMothEntity extends Animal implements FlyingAnimal {
 
     @Override
     public boolean isPushable() {
-        return false;
+        return true;
     }
 
     @Override
@@ -331,10 +328,7 @@ public class SilkMothEntity extends Animal implements FlyingAnimal {
 
     @Override
     public boolean isFood(ItemStack itemStack) {
-        if (!(itemStack.getItem() instanceof BlockItem)) {
-            return false;
-        }
-        return ((BlockItem) (itemStack.getItem())).getBlock() instanceof EndPlantBlock;
+        return itemStack.is(EndItems.BLOSSOM_BERRY);
     }
 
     @Override
