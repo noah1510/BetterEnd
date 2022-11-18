@@ -59,7 +59,7 @@ public class EndFishEntity extends AbstractSchoolingFish {
     ) {
         SpawnGroupData data = super.finalizeSpawn(world, difficulty, spawnReason, entityData, entityTag);
 
-        if (BiomeAPI.getBiome(world.getBiome(blockPosition())) == EndBiomes.SULPHUR_SPRINGS) {
+        if (BiomeAPI.getBiome(world.getBiome(blockPosition())).equals(EndBiomes.SULPHUR_SPRINGS)) {
             this.entityData.set(VARIANT, (byte) (random.nextInt(VARIANTS_SULPHUR) + VARIANTS_NORMAL));
         }
 
