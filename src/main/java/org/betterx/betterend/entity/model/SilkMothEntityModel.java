@@ -1,5 +1,6 @@
 package org.betterx.betterend.entity.model;
 
+import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.entity.SilkMothEntity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -179,9 +180,17 @@ public class SilkMothEntityModel extends EntityModel<SilkMothEntity> {
             float blue,
             float alpha
     ) {
+        if (this.young) {
+            matrices.pushPose();
+            matrices.scale(0.6f, 0.6f, 0.6f);
+            matrices.translate(0f, 0.5f, 0f);
+        }
         bb_main.render(matrices, vertices, light, overlay);
         head_pivot.render(matrices, vertices, light, overlay);
         legsL.render(matrices, vertices, light, overlay);
         legsR.render(matrices, vertices, light, overlay);
+        if (this.young) {
+            matrices.popPose();
+        }
     }
 }

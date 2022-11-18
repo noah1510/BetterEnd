@@ -1,12 +1,17 @@
 package org.betterx.betterend.entity;
 
-import org.betterx.bclib.entity.DespawnableAnimal;
+import static org.betterx.betterend.registry.EndEntities.SILK_MOTH;
+
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.item.BlockItem;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.blocks.EndBlockProperties;
+import org.betterx.betterend.blocks.basis.EndPlantBlock;
 import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.betterend.registry.EndEntities;
 import org.betterx.betterend.registry.EndItems;
 
 import net.minecraft.core.BlockPos;
@@ -46,7 +51,7 @@ import net.minecraft.world.phys.Vec3;
 import java.util.EnumSet;
 import org.jetbrains.annotations.Nullable;
 
-public class SilkMothEntity extends DespawnableAnimal implements FlyingAnimal {
+public class SilkMothEntity extends Animal implements FlyingAnimal {
     private BlockPos hivePos;
     private BlockPos entrance;
     private Level hiveWorld;
@@ -76,11 +81,12 @@ public class SilkMothEntity extends DespawnableAnimal implements FlyingAnimal {
 
     @Override
     public boolean canBeLeashed(Player player) {
-        return false;
+        return true;
     }
 
     @Override
     public void addAdditionalSaveData(CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
         if (hivePos != null) {
             tag.put("HivePos", NbtUtils.writeBlockPos(hivePos));
             tag.putString("HiveWorld", hiveWorld.dimension().location().toString());
@@ -89,6 +95,7 @@ public class SilkMothEntity extends DespawnableAnimal implements FlyingAnimal {
 
     @Override
     public void readAdditionalSaveData(CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
         if (tag.contains("HivePos")) {
             hivePos = NbtUtils.readBlockPos(tag.getCompound("HivePos"));
             ResourceLocation worldID = new ResourceLocation(tag.getString("HiveWorld"));
@@ -321,5 +328,18 @@ public class SilkMothEntity extends DespawnableAnimal implements FlyingAnimal {
                 }
             }
         }
+    }
+
+    @Override
+    public boolean isFood(ItemStack itemStack) {
+        if (!(itemStack.getItem() instanceof BlockItem)){
+            return false;
+        }
+        return ((BlockItem) (itemStack.getItem())).getBlock() instanceof EndPlantBlock;
+    }
+
+    @Override
+    public InteractionResult mobInteract(Player player, InteractionHand interactionHand) {
+        return super.mobInteract(player, interactionHand);
     }
 }
