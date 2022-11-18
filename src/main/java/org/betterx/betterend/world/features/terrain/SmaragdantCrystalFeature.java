@@ -3,6 +3,8 @@ package org.betterx.betterend.world.features.terrain;
 import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.blocks.BuddingSmaragdantCrystalBlock;
+import org.betterx.betterend.blocks.SmaragdantCrystalShardBlock;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
@@ -14,6 +16,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.material.Fluids;
 
 public class SmaragdantCrystalFeature extends DefaultFeature {
     @Override
@@ -29,6 +33,7 @@ public class SmaragdantCrystalFeature extends DefaultFeature {
         int count = MHelper.randRange(15, 30, random);
         BlockState crystal = EndBlocks.SMARAGDANT_CRYSTAL.defaultBlockState();
         BlockState shard = EndBlocks.SMARAGDANT_CRYSTAL_SHARD.defaultBlockState();
+        BlockState buddingCrystal = EndBlocks.BUDDING_SMARAGDANT_CRYSTAL.defaultBlockState();
         for (int i = 0; i < count; i++) {
             mut.set(pos)
                .move(MHelper.floor(random.nextGaussian() * 2 + 0.5), 5, MHelper.floor(random.nextGaussian() * 2 + 0.5));
@@ -42,10 +47,26 @@ public class SmaragdantCrystalFeature extends DefaultFeature {
                     mut.setY(mut.getY() - 1);
                     state = world.getBlockState(mut);
                 }
-                if (state.is(CommonBlockTags.GEN_END_STONES) && !world.getBlockState(mut.above())
-                                                                      .is(crystal.getBlock())) {
+                if (state.is(CommonBlockTags.GEN_END_STONES) && world.getBlockState(mut.above()).isAir()) {
                     for (int j = 0; j <= dist; j++) {
-                        BlocksHelper.setWithoutUpdate(world, mut, crystal);
+                        if (random.nextInt(8) == 0) {
+                            BlocksHelper.setWithoutUpdate(world, mut, buddingCrystal);
+                            for (Direction k : BlocksHelper.HORIZONTAL) {
+                                BlockPos sidePos = mut.relative(k);
+                                BlockState sideState = world.getBlockState(sidePos);
+                                if (BuddingSmaragdantCrystalBlock.canShardGrowAtState(sideState)) {
+                                    if (random.nextBoolean()) {
+                                        BlockState attachedShard = EndBlocks.SMARAGDANT_CRYSTAL_SHARD.defaultBlockState()
+                                                .setValue(SmaragdantCrystalShardBlock.WATERLOGGED,
+                                                        sideState.getFluidState().getType() == Fluids.WATER)
+                                                .setValue(SmaragdantCrystalShardBlock.FACING, k);
+                                        BlocksHelper.setWithoutUpdate(world, sidePos, attachedShard);
+                                    }
+                                }
+                            }
+                        } else {
+                            BlocksHelper.setWithoutUpdate(world, mut, crystal);
+                        }
                         mut.setY(mut.getY() + 1);
                     }
                     boolean waterlogged = !world.getFluidState(mut).isEmpty();

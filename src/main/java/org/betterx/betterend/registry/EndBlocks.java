@@ -638,6 +638,7 @@ public class EndBlocks {
             "smaragdant_crystal",
             SMARAGDANT_CRYSTAL
     );
+    public static final Block BUDDING_SMARAGDANT_CRYSTAL = registerBlock("budding_smaragdant_crystal", new BuddingSmaragdantCrystalBlock());
 
     public static final Block RESPAWN_OBELISK = registerBlock("respawn_obelisk", new RespawnObeliskBlock());
 
