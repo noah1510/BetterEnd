@@ -495,6 +495,13 @@ public class CraftingRecipes {
                         .setShape("##", "##")
                         .addMaterial('#', EndBlocks.SMARAGDANT_CRYSTAL_SHARD)
                         .build();
+
+        BCLRecipeBuilder.crafting(BetterEnd.makeID("tined_glass_from_smaragdant"), Blocks.TINTED_GLASS)
+                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .setShape(" # ", "#G#", " # ")
+                        .addMaterial('#', EndBlocks.SMARAGDANT_CRYSTAL_SHARD)
+                        .addMaterial('G', Blocks.GLASS)
+                        .build();
     }
 
     private static void registerLantern(String name, Block lantern, Block slab) {
