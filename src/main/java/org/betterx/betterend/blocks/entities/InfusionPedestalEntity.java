@@ -52,13 +52,15 @@ public class InfusionPedestalEntity extends PedestalBlockEntity {
     protected void fromTag(CompoundTag tag) {
         super.fromTag(tag);
         if (tag.contains("ritual")) {
-            linkedRitual = new InfusionRitual(this, level, worldPosition);
+            if (!hasRitual()) {
+                linkedRitual = new InfusionRitual(this, level, worldPosition);
+            }
             linkedRitual.fromTag(tag.getCompound("ritual"));
             linkedRitual.configure();
         }
     }
 
-    public static <T extends BlockEntity> void tickEnity(
+    public static <T extends BlockEntity> void tickEntity(
             Level level,
             BlockPos blockPos,
             BlockState blockState,
