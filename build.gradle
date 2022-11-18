@@ -38,7 +38,7 @@ loom {
     accessWidenerPath = file("src/main/resources/betterend.accesswidener")
     interfaceInjection {
         // When enabled injected interfaces from dependecies will be applied.
-        enableDependencyInterfaceInjection = false
+        enableDependencyInterfaceInjection = true
     }
 }
 
