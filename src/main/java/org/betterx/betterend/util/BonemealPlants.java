@@ -2,8 +2,8 @@ package org.betterx.betterend.util;
 
 import org.betterx.bclib.api.v2.BonemealAPI;
 import org.betterx.betterend.blocks.basis.EndTerrainBlock;
-import org.betterx.betterend.registry.EndBiomes;
 import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.registry.EndFeatures;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -14,82 +14,155 @@ import java.util.List;
 
 public class BonemealPlants {
     public static void init() {
-        BonemealAPI.addLandGrass(EndBlocks.CREEPING_MOSS, EndBlocks.END_MOSS);
-        BonemealAPI.addLandGrass(EndBlocks.UMBRELLA_MOSS, EndBlocks.END_MOSS);
-        BonemealAPI.addLandGrass(EndBlocks.CREEPING_MOSS, EndBlocks.END_MYCELIUM);
-        BonemealAPI.addLandGrass(EndBlocks.UMBRELLA_MOSS, EndBlocks.END_MYCELIUM);
-
-        BonemealAPI.addLandGrass(EndBlocks.CAVE_GRASS, EndBlocks.CAVE_MOSS);
-        BonemealAPI.addLandGrass(EndBlocks.CHORUS_GRASS, EndBlocks.CHORUS_NYLIUM);
-        BonemealAPI.addLandGrass(EndBlocks.CRYSTAL_GRASS, EndBlocks.CRYSTAL_MOSS);
-        BonemealAPI.addLandGrass(EndBlocks.SHADOW_PLANT, EndBlocks.SHADOW_GRASS);
-        BonemealAPI.addLandGrass(EndBlocks.BUSHY_GRASS, EndBlocks.PINK_MOSS);
-        BonemealAPI.addLandGrass(EndBlocks.AMBER_GRASS, EndBlocks.AMBER_MOSS);
-
-        BonemealAPI.addLandGrass(EndBlocks.JUNGLE_GRASS, EndBlocks.JUNGLE_MOSS);
-        BonemealAPI.addLandGrass(EndBlocks.TWISTED_UMBRELLA_MOSS, EndBlocks.JUNGLE_MOSS);
-        BonemealAPI.addLandGrass(EndBlocks.SMALL_JELLYSHROOM, EndBlocks.JUNGLE_MOSS, 0.1F);
-
-        BonemealAPI.addLandGrass(
-                EndBiomes.GLOWING_GRASSLANDS.getID(),
-                EndBlocks.BLOOMING_COOKSONIA,
-                EndBlocks.END_MOSS
-        );
-        BonemealAPI.addLandGrass(EndBiomes.GLOWING_GRASSLANDS.getID(), EndBlocks.VAIOLUSH_FERN, EndBlocks.END_MOSS);
-        BonemealAPI.addLandGrass(EndBiomes.GLOWING_GRASSLANDS.getID(), EndBlocks.FRACTURN, EndBlocks.END_MOSS);
-        BonemealAPI.addLandGrass(EndBiomes.GLOWING_GRASSLANDS.getID(), EndBlocks.SALTEAGO, EndBlocks.END_MOSS);
-
-        BonemealAPI.addLandGrass(
-                EndBiomes.GLOWING_GRASSLANDS.getID(),
-                EndBlocks.CREEPING_MOSS,
+        org.betterx.bclib.api.v3.bonemeal.BonemealAPI.INSTANCE.addSpreadableFeatures(
                 EndBlocks.END_MOSS,
-                0.1F
-        );
-        BonemealAPI.addLandGrass(
-                EndBiomes.GLOWING_GRASSLANDS.getID(),
-                EndBlocks.UMBRELLA_MOSS,
-                EndBlocks.END_MOSS,
-                0.1F
-        );
-        BonemealAPI.addLandGrass(
-                EndBiomes.GLOWING_GRASSLANDS.getID(),
-                EndBlocks.TWISTED_UMBRELLA_MOSS,
-                EndBlocks.END_MOSS,
-                0.1F
+                EndFeatures.BONEMEAL_END_MOSS
         );
 
-        BonemealAPI.addLandGrass(EndBlocks.ORANGO, EndBlocks.RUTISCUS);
-        BonemealAPI.addLandGrass(EndBlocks.AERIDIUM, EndBlocks.RUTISCUS, 0.2F);
-        BonemealAPI.addLandGrass(EndBlocks.LUTEBUS, EndBlocks.RUTISCUS, 0.2F);
-        BonemealAPI.addLandGrass(EndBlocks.LAMELLARIUM, EndBlocks.RUTISCUS);
+        org.betterx.bclib.api.v3.bonemeal.BonemealAPI.INSTANCE.addSpreadableFeatures(
+                EndBlocks.RUTISCUS,
+                EndFeatures.BONEMEAL_RUTISCUS
+        );
 
-        BonemealAPI.addLandGrass(EndBiomes.LANTERN_WOODS.getID(), EndBlocks.AERIDIUM, EndBlocks.RUTISCUS, 0.2F);
-        BonemealAPI.addLandGrass(EndBiomes.LANTERN_WOODS.getID(), EndBlocks.LAMELLARIUM, EndBlocks.RUTISCUS);
-        BonemealAPI.addLandGrass(EndBiomes.LANTERN_WOODS.getID(), EndBlocks.BOLUX_MUSHROOM, EndBlocks.RUTISCUS, 0.05F);
+        org.betterx.bclib.api.v3.bonemeal.BonemealAPI.INSTANCE.addSpreadableFeatures(
+                EndBlocks.END_MYCELIUM,
+                EndFeatures.BONEMEAL_END_MYCELIUM
+        );
 
-        BonemealAPI.addLandGrass(
-                EndBlocks.GLOBULAGUS,
+        org.betterx.bclib.api.v3.bonemeal.BonemealAPI.INSTANCE.addSpreadableFeatures(
+                EndBlocks.JUNGLE_MOSS,
+                EndFeatures.BONEMEAL_JUNGLE_MOSS
+        );
+
+        org.betterx.bclib.api.v3.bonemeal.BonemealAPI.INSTANCE.addSpreadableFeatures(
                 EndBlocks.SANGNUM,
-                EndBlocks.MOSSY_OBSIDIAN,
-                EndBlocks.MOSSY_DRAGON_BONE
+                EndFeatures.BONEMEAL_SANGNUM
         );
-        BonemealAPI.addLandGrass(
-                EndBlocks.CLAWFERN,
-                EndBlocks.SANGNUM,
+
+        org.betterx.bclib.api.v3.bonemeal.BonemealAPI.INSTANCE.addSpreadableFeatures(
                 EndBlocks.MOSSY_OBSIDIAN,
-                EndBlocks.MOSSY_DRAGON_BONE
+                EndFeatures.BONEMEAL_MOSSY_OBSIDIAN
         );
-        BonemealAPI.addLandGrass(EndBlocks.SANGNUM, EndBlocks.SMALL_AMARANITA_MUSHROOM, 0.1F);
-        BonemealAPI.addLandGrass(EndBlocks.SMALL_AMARANITA_MUSHROOM, EndBlocks.MOSSY_OBSIDIAN, 0.1F);
-        BonemealAPI.addLandGrass(EndBlocks.SMALL_AMARANITA_MUSHROOM, EndBlocks.MOSSY_DRAGON_BONE, 0.1F);
 
-        BonemealAPI.addLandGrass(EndBlocks.GLOBULAGUS, EndBlocks.MOSSY_DRAGON_BONE);
-        BonemealAPI.addLandGrass(EndBlocks.CLAWFERN, EndBlocks.MOSSY_DRAGON_BONE);
-        BonemealAPI.addLandGrass(EndBlocks.SMALL_AMARANITA_MUSHROOM, EndBlocks.MOSSY_DRAGON_BONE, 0.1F);
+        org.betterx.bclib.api.v3.bonemeal.BonemealAPI.INSTANCE.addSpreadableFeatures(
+                EndBlocks.MOSSY_DRAGON_BONE,
+                EndFeatures.BONEMEAL_MOSSY_DRAGON_BONE
+        );
 
-        BonemealAPI.addLandGrass(EndBlocks.GLOBULAGUS, EndBlocks.MOSSY_OBSIDIAN);
-        BonemealAPI.addLandGrass(EndBlocks.CLAWFERN, EndBlocks.MOSSY_OBSIDIAN);
-        BonemealAPI.addLandGrass(EndBlocks.SMALL_AMARANITA_MUSHROOM, EndBlocks.MOSSY_OBSIDIAN, 0.1F);
+        org.betterx.bclib.api.v3.bonemeal.BonemealAPI.INSTANCE.addSpreadableFeatures(
+                EndBlocks.CAVE_MOSS,
+                EndFeatures.BONEMEAL_CAVE_MOSS
+        );
+
+        org.betterx.bclib.api.v3.bonemeal.BonemealAPI.INSTANCE.addSpreadableFeatures(
+                EndBlocks.CHORUS_NYLIUM,
+                EndFeatures.BONEMEAL_CHORUS_NYLIUM
+        );
+
+        org.betterx.bclib.api.v3.bonemeal.BonemealAPI.INSTANCE.addSpreadableFeatures(
+                EndBlocks.CRYSTAL_MOSS,
+                EndFeatures.BONEMEAL_CRYSTAL_MOSS
+        );
+
+        org.betterx.bclib.api.v3.bonemeal.BonemealAPI.INSTANCE.addSpreadableFeatures(
+                EndBlocks.SHADOW_GRASS,
+                EndFeatures.BONEMEAL_SHADOW_GRASS
+        );
+
+        org.betterx.bclib.api.v3.bonemeal.BonemealAPI.INSTANCE.addSpreadableFeatures(
+                EndBlocks.PINK_MOSS,
+                EndFeatures.BONEMEAL_PINK_MOSS
+        );
+
+        org.betterx.bclib.api.v3.bonemeal.BonemealAPI.INSTANCE.addSpreadableFeatures(
+                EndBlocks.AMBER_MOSS,
+                EndFeatures.BONEMEAL_AMBER_MOSS
+        );
+
+
+//        BonemealAPI.addLandGrass(EndBlocks.CAVE_GRASS, EndBlocks.CAVE_MOSS);
+//
+//        BonemealAPI.addLandGrass(EndBlocks.CHORUS_GRASS, EndBlocks.CHORUS_NYLIUM);
+//
+//        BonemealAPI.addLandGrass(EndBlocks.CRYSTAL_GRASS, EndBlocks.CRYSTAL_MOSS);
+//
+//        BonemealAPI.addLandGrass(EndBlocks.SHADOW_PLANT, EndBlocks.SHADOW_GRASS);
+//
+//        BonemealAPI.addLandGrass(EndBlocks.BUSHY_GRASS, EndBlocks.PINK_MOSS);
+//
+//        BonemealAPI.addLandGrass(EndBlocks.AMBER_GRASS, EndBlocks.AMBER_MOSS);
+
+//        BonemealAPI.addLandGrass(EndBlocks.CREEPING_MOSS, EndBlocks.END_MOSS);
+//        BonemealAPI.addLandGrass(EndBlocks.UMBRELLA_MOSS, EndBlocks.END_MOSS);
+//
+//        BonemealAPI.addLandGrass(
+//                EndBiomes.GLOWING_GRASSLANDS.getID(),
+//                EndBlocks.BLOOMING_COOKSONIA,
+//                EndBlocks.END_MOSS
+//        );
+//        BonemealAPI.addLandGrass(EndBiomes.GLOWING_GRASSLANDS.getID(), EndBlocks.VAIOLUSH_FERN, EndBlocks.END_MOSS);
+//        BonemealAPI.addLandGrass(EndBiomes.GLOWING_GRASSLANDS.getID(), EndBlocks.FRACTURN, EndBlocks.END_MOSS);
+//        BonemealAPI.addLandGrass(EndBiomes.GLOWING_GRASSLANDS.getID(), EndBlocks.SALTEAGO, EndBlocks.END_MOSS);
+//        BonemealAPI.addLandGrass(
+//                EndBiomes.GLOWING_GRASSLANDS.getID(),
+//                EndBlocks.CREEPING_MOSS,
+//                EndBlocks.END_MOSS,
+//                0.1F
+//        );
+//        BonemealAPI.addLandGrass(
+//                EndBiomes.GLOWING_GRASSLANDS.getID(),
+//                EndBlocks.UMBRELLA_MOSS,
+//                EndBlocks.END_MOSS,
+//                0.1F
+//        );
+//        BonemealAPI.addLandGrass(
+//                EndBiomes.GLOWING_GRASSLANDS.getID(),
+//                EndBlocks.TWISTED_UMBRELLA_MOSS,
+//                EndBlocks.END_MOSS,
+//                0.1F
+//        );
+
+//        BonemealAPI.addLandGrass(EndBlocks.CREEPING_MOSS, EndBlocks.END_MYCELIUM);
+//        BonemealAPI.addLandGrass(EndBlocks.UMBRELLA_MOSS, EndBlocks.END_MYCELIUM);
+
+
+//        BonemealAPI.addLandGrass(EndBlocks.JUNGLE_GRASS, EndBlocks.JUNGLE_MOSS);
+//        BonemealAPI.addLandGrass(EndBlocks.TWISTED_UMBRELLA_MOSS, EndBlocks.JUNGLE_MOSS);
+//        BonemealAPI.addLandGrass(EndBlocks.SMALL_JELLYSHROOM, EndBlocks.JUNGLE_MOSS, 0.1F);
+
+//        BonemealAPI.addLandGrass(EndBlocks.ORANGO, EndBlocks.RUTISCUS);
+//        BonemealAPI.addLandGrass(EndBlocks.AERIDIUM, EndBlocks.RUTISCUS, 0.2F);
+//        BonemealAPI.addLandGrass(EndBlocks.LUTEBUS, EndBlocks.RUTISCUS, 0.2F);
+//        BonemealAPI.addLandGrass(EndBlocks.LAMELLARIUM, EndBlocks.RUTISCUS);
+//
+//        BonemealAPI.addLandGrass(EndBiomes.LANTERN_WOODS.getID(), EndBlocks.AERIDIUM, EndBlocks.RUTISCUS, 0.2F);
+//        BonemealAPI.addLandGrass(EndBiomes.LANTERN_WOODS.getID(), EndBlocks.LAMELLARIUM, EndBlocks.RUTISCUS);
+//        BonemealAPI.addLandGrass(EndBiomes.LANTERN_WOODS.getID(), EndBlocks.BOLUX_MUSHROOM, EndBlocks.RUTISCUS, 0.05F);
+
+//        BonemealAPI.addLandGrass(
+//                EndBlocks.GLOBULAGUS,
+//                EndBlocks.SANGNUM,
+//                EndBlocks.MOSSY_OBSIDIAN,
+//                EndBlocks.MOSSY_DRAGON_BONE
+//        );
+//        BonemealAPI.addLandGrass(
+//                EndBlocks.CLAWFERN,
+//                EndBlocks.SANGNUM,
+//                EndBlocks.MOSSY_OBSIDIAN,
+//                EndBlocks.MOSSY_DRAGON_BONE
+//        );
+//        BonemealAPI.addLandGrass(EndBlocks.SMALL_AMARANITA_MUSHROOM, EndBlocks.SANGNUM, 0.1F);
+
+
+//        BonemealAPI.addLandGrass(EndBlocks.SMALL_AMARANITA_MUSHROOM, EndBlocks.MOSSY_DRAGON_BONE, 0.1F);
+//        BonemealAPI.addLandGrass(EndBlocks.GLOBULAGUS, EndBlocks.MOSSY_DRAGON_BONE);
+//        BonemealAPI.addLandGrass(EndBlocks.CLAWFERN, EndBlocks.MOSSY_DRAGON_BONE);
+//        BonemealAPI.addLandGrass(EndBlocks.SMALL_AMARANITA_MUSHROOM, EndBlocks.MOSSY_DRAGON_BONE, 0.1F);
+
+//        BonemealAPI.addLandGrass(EndBlocks.SMALL_AMARANITA_MUSHROOM, EndBlocks.MOSSY_OBSIDIAN, 0.1F);
+//        BonemealAPI.addLandGrass(EndBlocks.GLOBULAGUS, EndBlocks.MOSSY_OBSIDIAN);
+//        BonemealAPI.addLandGrass(EndBlocks.CLAWFERN, EndBlocks.MOSSY_OBSIDIAN);
+//        BonemealAPI.addLandGrass(EndBlocks.SMALL_AMARANITA_MUSHROOM, EndBlocks.MOSSY_OBSIDIAN, 0.1F);
 
         Block[] charnias = new Block[]{
                 EndBlocks.CHARNIA_CYAN,

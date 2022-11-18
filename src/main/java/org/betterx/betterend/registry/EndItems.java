@@ -277,9 +277,9 @@ public class EndItems {
     public final static Item END_FISH_COOKED = registerEndFood("end_fish_cooked", Foods.COOKED_SALMON);
     public final static Item BUCKET_END_FISH = registerEndItem(
             "bucket_end_fish",
-            new EndBucketItem(EndEntities.END_FISH)
+            new EndBucketItem(EndEntities.END_FISH.type())
     );
-    public final static Item BUCKET_CUBOZOA = registerEndItem("bucket_cubozoa", new EndBucketItem(EndEntities.CUBOZOA));
+    public final static Item BUCKET_CUBOZOA = registerEndItem("bucket_cubozoa", new EndBucketItem(EndEntities.CUBOZOA.type()));
     public final static Item SWEET_BERRY_JELLY = registerEndFood("sweet_berry_jelly", 8, 0.7F);
     public final static Item SHADOW_BERRY_JELLY = registerEndFood(
             "shadow_berry_jelly",

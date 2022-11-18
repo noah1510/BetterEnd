@@ -7,6 +7,8 @@ import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
 import org.betterx.bclib.api.v3.levelgen.features.BCLConfigureFeature;
 import org.betterx.bclib.api.v3.levelgen.features.BCLFeature;
 import org.betterx.bclib.api.v3.levelgen.features.BCLFeatureBuilder;
+import org.betterx.bclib.api.v3.levelgen.features.config.ConditionFeatureConfig;
+import org.betterx.bclib.api.v3.levelgen.features.placement.InBiome;
 import org.betterx.bclib.util.JsonFactory;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.complexmaterials.StoneMaterial;
@@ -32,11 +34,10 @@ import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.OreFeature;
-import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
+import net.minecraft.world.level.levelgen.feature.RandomPatchFeature;
+import net.minecraft.world.level.levelgen.feature.configurations.*;
 import net.minecraft.world.level.levelgen.feature.stateproviders.SimpleStateProvider;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 import com.google.common.collect.Lists;
 import com.google.gson.JsonArray;
@@ -1044,6 +1045,129 @@ public class EndFeatures {
                     BetterEnd.makeID("cave_pumpkin"),
                     inlineBuild("cave_pumpkin", new CavePumpkinFeature())
             )
+            .buildAndRegister();
+
+
+    private static final Holder<PlacedFeature> BONEMEAL_END_MOSS_NOT_GLOWING_GRASSLANDS = BCLFeatureBuilder
+            .startBonemealPatch(BetterEnd.makeID("bonemeal_end_moss_not_glowing_grasslands"))
+            .add(EndBlocks.CREEPING_MOSS, 10)
+            .add(EndBlocks.UMBRELLA_MOSS, 10)
+            .inlinePlace().build();
+
+    private static final Holder<PlacedFeature> BONEMEAL_END_MOSS_GLOWING_GRASSLANDS = BCLFeatureBuilder
+            .startBonemealPatch(BetterEnd.makeID("bonemeal_end_moss_glowing_grasslands"))
+            .add(EndBlocks.CREEPING_MOSS, 10)
+            .add(EndBlocks.UMBRELLA_MOSS, 10)
+            .add(EndBlocks.BLOOMING_COOKSONIA, 100)
+            .add(EndBlocks.VAIOLUSH_FERN, 100)
+            .add(EndBlocks.FRACTURN, 100)
+            .add(EndBlocks.SALTEAGO, 100)
+            .add(EndBlocks.TWISTED_UMBRELLA_MOSS, 10)
+            .inlinePlace().build();
+
+    public static final BCLConfigureFeature<Feature<ConditionFeatureConfig>, ConditionFeatureConfig> BONEMEAL_END_MOSS = BCLFeatureBuilder
+            .start(
+                    BetterEnd.makeID("bonemeal_end_moss"),
+                    BCLFeature.CONDITION
+            )
+            .configuration(new ConditionFeatureConfig(
+                    InBiome.matchingID(EndBiomes.GLOWING_GRASSLANDS.getID()),
+                    BONEMEAL_END_MOSS_GLOWING_GRASSLANDS,
+                    BONEMEAL_END_MOSS_NOT_GLOWING_GRASSLANDS
+            ))
+            .buildAndRegister();
+
+    private static final Holder<PlacedFeature> BONEMEAL_RUTISCUS_NOT_LANTERN_WOODS = BCLFeatureBuilder
+            .startBonemealPatch(BetterEnd.makeID("bonemeal_rutiscus_not_lantern_woods"))
+            .add(EndBlocks.ORANGO, 100)
+            .add(EndBlocks.AERIDIUM, 20)
+            .add(EndBlocks.LUTEBUS, 20)
+            .add(EndBlocks.LAMELLARIUM, 100)
+            .inlinePlace()
+            .build();
+
+    private static final Holder<PlacedFeature> BONEMEAL_RUTISCUS_LANTERN_WOODS = BCLFeatureBuilder
+            .startBonemealPatch(BetterEnd.makeID("bonemeal_rutiscus_lantern_woods"))
+            .add(EndBlocks.AERIDIUM, 20)
+            .add(EndBlocks.BOLUX_MUSHROOM, 5)
+            .add(EndBlocks.LAMELLARIUM, 100)
+            .inlinePlace()
+            .build();
+
+    public static final BCLConfigureFeature<Feature<ConditionFeatureConfig>, ConditionFeatureConfig> BONEMEAL_RUTISCUS = BCLFeatureBuilder
+            .start(
+                    BetterEnd.makeID("bonemeal_rutiscus"),
+                    BCLFeature.CONDITION
+            )
+            .configuration(new ConditionFeatureConfig(
+                    InBiome.matchingID(EndBiomes.LANTERN_WOODS.getID()),
+                    BONEMEAL_RUTISCUS_LANTERN_WOODS,
+                    BONEMEAL_RUTISCUS_NOT_LANTERN_WOODS
+            ))
+            .buildAndRegister();
+
+    public static final BCLConfigureFeature<RandomPatchFeature, RandomPatchConfiguration> BONEMEAL_END_MYCELIUM = BCLFeatureBuilder
+            .startBonemealPatch(BetterEnd.makeID("bonemeal_end_mycelium"))
+            .add(EndBlocks.CREEPING_MOSS, 100)
+            .add(EndBlocks.UMBRELLA_MOSS, 100)
+            .buildAndRegister();
+
+    public static final BCLConfigureFeature<RandomPatchFeature, RandomPatchConfiguration> BONEMEAL_JUNGLE_MOSS = BCLFeatureBuilder
+            .startBonemealPatch(BetterEnd.makeID("bonemeal_jungle_moss"))
+            .add(EndBlocks.JUNGLE_GRASS, 100)
+            .add(EndBlocks.TWISTED_UMBRELLA_MOSS, 100)
+            .add(EndBlocks.SMALL_JELLYSHROOM, 10)
+            .buildAndRegister();
+
+    public static final BCLConfigureFeature<RandomPatchFeature, RandomPatchConfiguration> BONEMEAL_SANGNUM = BCLFeatureBuilder
+            .startBonemealPatch(BetterEnd.makeID("bonemeal_sangnum"))
+            .add(EndBlocks.CLAWFERN, 100)
+            .add(EndBlocks.GLOBULAGUS, 100)
+            .add(EndBlocks.SMALL_AMARANITA_MUSHROOM, 10)
+            .buildAndRegister();
+
+    public static final BCLConfigureFeature<RandomPatchFeature, RandomPatchConfiguration> BONEMEAL_MOSSY_DRAGON_BONE = BCLFeatureBuilder
+            .startBonemealPatch(BetterEnd.makeID("bonemeal_mossy_dragon_bone"))
+            .add(EndBlocks.CLAWFERN, 100)
+            .add(EndBlocks.GLOBULAGUS, 100)
+            .add(EndBlocks.SMALL_AMARANITA_MUSHROOM, 10)
+            .buildAndRegister();
+
+    public static final BCLConfigureFeature<RandomPatchFeature, RandomPatchConfiguration> BONEMEAL_MOSSY_OBSIDIAN = BCLFeatureBuilder
+            .startBonemealPatch(BetterEnd.makeID("bonemeal_mossy_obsidian"))
+            .add(EndBlocks.CLAWFERN, 100)
+            .add(EndBlocks.GLOBULAGUS, 100)
+            .add(EndBlocks.SMALL_AMARANITA_MUSHROOM, 10)
+            .buildAndRegister();
+
+    public static final BCLConfigureFeature<RandomPatchFeature, RandomPatchConfiguration> BONEMEAL_CAVE_MOSS = BCLFeatureBuilder
+            .startBonemealPatch(BetterEnd.makeID("bonemeal_cave_moss"))
+            .add(EndBlocks.CAVE_GRASS, 100)
+            .buildAndRegister();
+
+    public static final BCLConfigureFeature<RandomPatchFeature, RandomPatchConfiguration> BONEMEAL_CHORUS_NYLIUM = BCLFeatureBuilder
+            .startBonemealPatch(BetterEnd.makeID("bonemeal_chorus_nylium"))
+            .add(EndBlocks.CHORUS_GRASS, 100)
+            .buildAndRegister();
+
+    public static final BCLConfigureFeature<RandomPatchFeature, RandomPatchConfiguration> BONEMEAL_CRYSTAL_MOSS = BCLFeatureBuilder
+            .startBonemealPatch(BetterEnd.makeID("bonemeal_crystal_moss"))
+            .add(EndBlocks.CRYSTAL_GRASS, 100)
+            .buildAndRegister();
+
+    public static final BCLConfigureFeature<RandomPatchFeature, RandomPatchConfiguration> BONEMEAL_SHADOW_GRASS = BCLFeatureBuilder
+            .startBonemealPatch(BetterEnd.makeID("bonemeal_shadow_grass"))
+            .add(EndBlocks.SHADOW_PLANT, 100)
+            .buildAndRegister();
+
+    public static final BCLConfigureFeature<RandomPatchFeature, RandomPatchConfiguration> BONEMEAL_PINK_MOSS = BCLFeatureBuilder
+            .startBonemealPatch(BetterEnd.makeID("bonemeal_pink_moss"))
+            .add(EndBlocks.BUSHY_GRASS, 100)
+            .buildAndRegister();
+
+    public static final BCLConfigureFeature<RandomPatchFeature, RandomPatchConfiguration> BONEMEAL_AMBER_MOSS = BCLFeatureBuilder
+            .startBonemealPatch(BetterEnd.makeID("bonemeal_amber_moss"))
+            .add(EndBlocks.AMBER_GRASS, 100)
             .buildAndRegister();
 
 

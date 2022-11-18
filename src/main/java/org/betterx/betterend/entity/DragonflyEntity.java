@@ -209,6 +209,6 @@ public class DragonflyEntity extends DespawnableAnimal implements FlyingAnimal {
 
     @Override
     public AgeableMob getBreedOffspring(ServerLevel world, AgeableMob entity) {
-        return EndEntities.DRAGONFLY.create(world);
+        return EndEntities.DRAGONFLY.type().create(world);
     }
 }

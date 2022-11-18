@@ -1,5 +1,6 @@
 package org.betterx.betterend.registry;
 
+import org.betterx.bclib.api.v3.tag.BCLBlockTags;
 import org.betterx.bclib.blocks.*;
 import org.betterx.bclib.registry.BlockRegistry;
 import org.betterx.betterend.BetterEnd;
@@ -10,8 +11,11 @@ import org.betterx.betterend.config.Configs;
 import org.betterx.betterend.item.material.EndArmorMaterial;
 import org.betterx.betterend.item.material.EndToolMaterial;
 import org.betterx.betterend.tab.CreativeTabs;
+import org.betterx.worlds.together.tag.v3.TagManager;
 
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -30,41 +34,89 @@ public class EndBlocks {
             "end_mycelium",
             new EndTerrainBlock(MaterialColor.COLOR_LIGHT_BLUE)
     );
-    public static final Block END_MOSS = registerBlock("end_moss", new EndTerrainBlock(MaterialColor.COLOR_CYAN));
+    public static final Block END_MOSS = registerBlock(
+            "end_moss",
+            new EndTerrainBlock(MaterialColor.COLOR_CYAN),
+            BCLBlockTags.BONEMEAL_SOURCE_END_STONE,
+            BlockTags.NYLIUM
+    );
     public static final Block CHORUS_NYLIUM = registerBlock(
             "chorus_nylium",
-            new EndTerrainBlock(MaterialColor.COLOR_MAGENTA)
+            new EndTerrainBlock(MaterialColor.COLOR_MAGENTA),
+            BCLBlockTags.BONEMEAL_SOURCE_END_STONE,
+            BlockTags.NYLIUM
     );
-    public static final Block CAVE_MOSS = registerBlock("cave_moss", new EndTripleTerrain(MaterialColor.COLOR_PURPLE));
+    public static final Block CAVE_MOSS = registerBlock(
+            "cave_moss",
+            new EndTripleTerrain(MaterialColor.COLOR_PURPLE),
+            BCLBlockTags.BONEMEAL_SOURCE_END_STONE,
+            BlockTags.NYLIUM
+    );
     public static final Block CRYSTAL_MOSS = registerBlock(
             "crystal_moss",
-            new EndTerrainBlock(MaterialColor.COLOR_PINK)
+            new EndTerrainBlock(MaterialColor.COLOR_PINK),
+            BCLBlockTags.BONEMEAL_SOURCE_END_STONE,
+            BlockTags.NYLIUM
     );
-    public static final Block CRYSTAL_MOSS_COVER = registerBlock(
-            "crystal_moss_cover",
-            new CrystalMossCoverBlock(MaterialColor.COLOR_PINK)
+    public static final Block SHADOW_GRASS = registerBlock(
+            "shadow_grass",
+            new ShadowGrassBlock(),
+            BCLBlockTags.BONEMEAL_SOURCE_END_STONE,
+            BlockTags.NYLIUM
     );
-    public static final Block SHADOW_GRASS = registerBlock("shadow_grass", new ShadowGrassBlock());
-    public static final Block PINK_MOSS = registerBlock("pink_moss", new EndTerrainBlock(MaterialColor.COLOR_PINK));
-    public static final Block AMBER_MOSS = registerBlock("amber_moss", new EndTerrainBlock(MaterialColor.COLOR_ORANGE));
+    public static final Block PINK_MOSS = registerBlock(
+            "pink_moss",
+            new EndTerrainBlock(MaterialColor.COLOR_PINK),
+            BCLBlockTags.BONEMEAL_SOURCE_END_STONE,
+            BlockTags.NYLIUM
+    );
+    public static final Block AMBER_MOSS = registerBlock(
+            "amber_moss",
+            new EndTerrainBlock(MaterialColor.COLOR_ORANGE),
+            BCLBlockTags.BONEMEAL_SOURCE_END_STONE,
+            BlockTags.NYLIUM
+    );
     public static final Block JUNGLE_MOSS = registerBlock(
             "jungle_moss",
-            new EndTerrainBlock(MaterialColor.COLOR_GREEN)
+            new EndTerrainBlock(MaterialColor.COLOR_GREEN),
+            BCLBlockTags.BONEMEAL_SOURCE_END_STONE,
+            BlockTags.NYLIUM
     );
-    public static final Block SANGNUM = registerBlock("sangnum", new EndTerrainBlock(MaterialColor.COLOR_RED));
-    public static final Block RUTISCUS = registerBlock("rutiscus", new EndTerrainBlock(MaterialColor.COLOR_ORANGE));
-    public static final Block PALLIDIUM_FULL = registerBlock("pallidium_full", new PallidiumBlock("full", null));
+    public static final Block SANGNUM = registerBlock(
+            "sangnum",
+            new EndTerrainBlock(MaterialColor.COLOR_RED),
+            BCLBlockTags.BONEMEAL_SOURCE_END_STONE,
+            BlockTags.NYLIUM
+    );
+    public static final Block RUTISCUS = registerBlock(
+            "rutiscus",
+            new EndTerrainBlock(MaterialColor.COLOR_ORANGE),
+            BCLBlockTags.BONEMEAL_SOURCE_END_STONE,
+            BlockTags.NYLIUM
+    );
+    public static final Block PALLIDIUM_FULL = registerBlock(
+            "pallidium_full",
+            new PallidiumBlock("full", null),
+            BCLBlockTags.BONEMEAL_SOURCE_END_STONE,
+            BlockTags.NYLIUM
+    );
     public static final Block PALLIDIUM_HEAVY = registerBlock(
             "pallidium_heavy",
-            new PallidiumBlock("heavy", PALLIDIUM_FULL)
+            new PallidiumBlock("heavy", PALLIDIUM_FULL),
+            BCLBlockTags.BONEMEAL_SOURCE_END_STONE,
+            BlockTags.NYLIUM
     );
     public static final Block PALLIDIUM_THIN = registerBlock(
             "pallidium_thin",
-            new PallidiumBlock("thin", PALLIDIUM_HEAVY)
+            new PallidiumBlock("thin", PALLIDIUM_HEAVY),
+            BCLBlockTags.BONEMEAL_SOURCE_END_STONE,
+            BlockTags.NYLIUM
     );
     public static final Block PALLIDIUM_TINY = registerBlock(
             "pallidium_tiny",
-            new PallidiumBlock("tiny", PALLIDIUM_THIN)
+            new PallidiumBlock("tiny", PALLIDIUM_THIN),
+            BCLBlockTags.BONEMEAL_SOURCE_END_STONE,
+            BlockTags.NYLIUM
     );
 
     // Roads //
@@ -83,10 +135,15 @@ public class EndBlocks {
     public static final Block SANGNUM_PATH = registerBlock("sangnum_path", new BasePathBlock(SANGNUM));
     public static final Block RUTISCUS_PATH = registerBlock("rutiscus_path", new BasePathBlock(RUTISCUS));
 
-    public static final Block MOSSY_OBSIDIAN = registerBlock("mossy_obsidian", new MossyObsidian());
+    public static final Block MOSSY_OBSIDIAN = registerBlock(
+            "mossy_obsidian",
+            new MossyObsidian(),
+            BCLBlockTags.BONEMEAL_SOURCE_OBSIDIAN
+    );
     public static final Block DRAGON_BONE_BLOCK = registerBlock(
             "dragon_bone_block",
-            new BaseRotatedPillarBlock(Blocks.BONE_BLOCK)
+            new BaseRotatedPillarBlock(Blocks.BONE_BLOCK),
+            EndTags.BONEMEAL_TARGET_DRAGON_BONE
     );
     public static final Block DRAGON_BONE_STAIRS = registerBlock(
             "dragon_bone_stairs",
@@ -96,7 +153,11 @@ public class EndBlocks {
             "dragon_bone_slab",
             new BaseSlabBlock(DRAGON_BONE_BLOCK)
     );
-    public static final Block MOSSY_DRAGON_BONE = registerBlock("mossy_dragon_bone", new MossyDragonBoneBlock());
+    public static final Block MOSSY_DRAGON_BONE = registerBlock(
+            "mossy_dragon_bone",
+            new MossyDragonBoneBlock(),
+            EndTags.BONEMEAL_SOURCE_DRAGON_BONE
+    );
 
     // Rocks //
     public static final StoneMaterial FLAVOLITE = new StoneMaterial("flavolite", MaterialColor.SAND);
@@ -382,6 +443,12 @@ public class EndBlocks {
     );
     public static final Block FLAMMALIX = registerBlock("flammalix", new FlammalixBlock());
 
+
+    public static final Block CRYSTAL_MOSS_COVER = registerBlock(
+            "crystal_moss_cover",
+            new CrystalMossCoverBlock(MaterialColor.COLOR_PINK)
+    );
+
     public static final Block BLUE_VINE_SEED = registerBlock("blue_vine_seed", new BlueVineSeedBlock());
     public static final Block BLUE_VINE = registerEndBlockOnly("blue_vine", new BlueVineBlock());
     public static final Block BLUE_VINE_LANTERN = registerBlock("blue_vine_lantern", new BlueVineLanternBlock());
@@ -571,6 +638,7 @@ public class EndBlocks {
             "smaragdant_crystal",
             SMARAGDANT_CRYSTAL
     );
+    public static final Block BUDDING_SMARAGDANT_CRYSTAL = registerBlock("budding_smaragdant_crystal", new BuddingSmaragdantCrystalBlock());
 
     public static final Block RESPAWN_OBELISK = registerBlock("respawn_obelisk", new RespawnObeliskBlock());
 
@@ -635,16 +703,17 @@ public class EndBlocks {
         return BlockRegistry.getModBlockItems(BetterEnd.MOD_ID);
     }
 
-    public static Block registerBlock(ResourceLocation id, Block block) {
+    public static Block registerBlock(ResourceLocation id, Block block, TagKey<Block>... tags) {
         if (!Configs.BLOCK_CONFIG.getBooleanRoot(id.getPath(), true)) {
             return block;
         }
         getBlockRegistry().register(id, block);
+        TagManager.BLOCKS.add(block, tags);
         return block;
     }
 
-    public static Block registerBlock(String name, Block block) {
-        return registerBlock(BetterEnd.makeID(name), block);
+    public static Block registerBlock(String name, Block block, TagKey<Block>... tags) {
+        return registerBlock(BetterEnd.makeID(name), block, tags);
     }
 
     public static Block registerEndBlockOnly(String name, Block block) {

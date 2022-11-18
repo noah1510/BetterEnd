@@ -82,13 +82,13 @@ public class SilkMothHiveBlock extends BaseBlock {
         if (!world.getBlockState(spawn).isAir()) {
             return;
         }
-        int count = world.getEntities(EndEntities.SILK_MOTH, new AABB(pos).inflate(16), (entity) -> {
+        int count = world.getEntities(EndEntities.SILK_MOTH.type(), new AABB(pos).inflate(16), (entity) -> {
             return true;
         }).size();
         if (count > 6) {
             return;
         }
-        SilkMothEntity moth = new SilkMothEntity(EndEntities.SILK_MOTH, world);
+        SilkMothEntity moth = new SilkMothEntity(EndEntities.SILK_MOTH.type(), world);
         moth.moveTo(spawn.getX() + 0.5, spawn.getY() + 0.5, spawn.getZ() + 0.5, dir.toYRot(), 0);
         moth.setDeltaMovement(new Vec3(dir.getStepX() * 0.4, 0, dir.getStepZ() * 0.4));
         moth.setHive(world, pos);
