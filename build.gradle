@@ -171,7 +171,8 @@ publishing {
 String generateChangelog() {
     println "Assembeling Changelog ..."
     def lastTag = "git describe --tags --abbrev=0".execute().text.trim()
-    def gitLogCmd = "git log $lastTag..HEAD --oneline --no-merges --pretty=format:\"%s\"".execute().text.trim()
+    //def gitLogCmd = "git log $lastTag..HEAD --oneline --no-merges --pretty=format:\"%s\"".execute().text.trim()
+    def gitLogCmd = "git log $lastTag..HEAD --oneline --pretty=format:\"%s\"".execute().text.trim()
 
     def features = ""
     def fixes = ""
