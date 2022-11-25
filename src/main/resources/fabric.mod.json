@@ -14,7 +14,7 @@
     "Firel (music)"
   ],
   "contact": {
-    "homepage": "https://www.curseforge.com/minecraft/mc-mods/betterend",
+    "homepage": "https://modrinth.com/mod/betterend",
     "issues": "https://github.com/quiqueck/BetterEnd/issues",
     "sources": "https://github.com/quiqueck/BetterEnd"
   },
@@ -66,7 +66,11 @@
   },
   "custom": {
     "bclib": {
-      "updater_icon": "icon_updater.png"
+      "updater_icon": "icon_updater.png",
+      "downloads": {
+        "modrinth": "https://modrinth.com/mod/betterend",
+        "curseforge": "https://www.curseforge.com/minecraft/mc-mods/betterend"
+      }
     }
   }
 }
