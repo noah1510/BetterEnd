@@ -179,6 +179,6 @@ public class EndCaveBiome extends EndBiome {
     }
 
     public static EndCaveBiome create(EndBiome.Config biomeConfig) {
-        return (EndCaveBiome) EndBiome.create(biomeConfig);
+        return (EndCaveBiome) EndBiome.create(biomeConfig, EndBiomes.END_CAVE);
     }
 }

@@ -31,6 +31,7 @@ import net.minecraft.world.level.levelgen.SurfaceRules;
 
 import java.util.List;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
 public class EndBiome extends BCLBiome implements SurfaceMaterialProvider {
     public static final Codec<EndBiome> CODEC = RecordCodecBuilder.create(instance ->
@@ -173,15 +174,15 @@ public class EndBiome extends BCLBiome implements SurfaceMaterialProvider {
         super(biomeID, settings);
     }
 
-    public static EndBiome create(Config biomeConfig) {
-        return create(biomeConfig, null);
+    public static EndBiome create(Config biomeConfig, BiomeAPI.BiomeType type) {
+        return create(biomeConfig, type, null);
     }
 
-    public static EndBiome createSubBiome(Config data, BCLBiome parentBiome) {
-        return create(data, parentBiome);
+    public static EndBiome createSubBiome(Config data, @NotNull BCLBiome parentBiome) {
+        return create(data, parentBiome.getIntendedType(), parentBiome);
     }
 
-    private static EndBiome create(Config biomeConfig, BCLBiome parentBiome) {
+    private static EndBiome create(Config biomeConfig, BiomeAPI.BiomeType type, BCLBiome parentBiome) {
         BCLBiomeBuilder builder = BCLBiomeBuilder
                 .start(biomeConfig.ID)
                 .music(SoundEvents.MUSIC_END)
@@ -195,7 +196,7 @@ public class EndBiome extends BCLBiome implements SurfaceMaterialProvider {
                 .parentBiome(parentBiome)
                 .precipitation(Biome.Precipitation.NONE)
                 .surface(biomeConfig.surfaceMaterial().surface().build())
-                .endLandBiome();
+                .type(type);
 
         biomeConfig.addCustomBuildData(builder);
         EndFeatures.addDefaultFeatures(biomeConfig.ID, builder, biomeConfig.hasCaves());
@@ -262,5 +263,9 @@ public class EndBiome extends BCLBiome implements SurfaceMaterialProvider {
 
     public static BlockState findUnderMaterial(WorldGenLevel world, BlockPos pos) {
         return findUnderMaterial(BiomeAPI.getBiome(world.getBiome(pos)));
+    }
+
+    public static List<BCLBiome> getAllBeBiomes() {
+        return BiomeAPI.getAllBiomes(BiomeAPI.BiomeType.END);
     }
 }

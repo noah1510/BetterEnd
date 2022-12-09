@@ -3,6 +3,7 @@ package org.betterx.betterend.registry;
 import org.betterx.bclib.api.v2.advancement.AdvancementManager;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.advancements.BECriteria;
+import org.betterx.betterend.world.biome.EndBiome;
 
 import net.minecraft.advancements.FrameType;
 import net.minecraft.advancements.RequirementsStrategy;
@@ -65,7 +66,7 @@ public class EndAdvancements {
                 .startDisplay(EndItems.AETERNIUM_BOOTS)
                 .frame(FrameType.CHALLENGE)
                 .endDisplay()
-                .addVisitBiomesCriterion(EndBiomes.ALL_BE_BIOMES.stream().map(b -> b.getBiomeKey()).toList())
+                .addVisitBiomesCriterion(EndBiome.getAllBeBiomes().stream().map(b -> b.getBiomeKey()).toList())
                 .requirements(RequirementsStrategy.AND)
                 .rewardXP(1500)
                 .buildAndRegister();
