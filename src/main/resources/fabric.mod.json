@@ -28,6 +28,9 @@
     "client": [
       "org.betterx.betterend.client.BetterEndClient"
     ],
+    "fabric-datagen": [
+      "org.betterx.datagen.betterend.BetterEndDatagen"
+    ],
     "rei_client": [
       "org.betterx.betterend.integration.rei.REIPlugin"
     ],
