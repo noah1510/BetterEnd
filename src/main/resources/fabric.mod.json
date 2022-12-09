@@ -45,17 +45,15 @@
     "betterend.mixins.shadow.json"
   ],
   "depends": {
-    "fabricloader": ">=0.14.8",
-    "fabric": ">=0.58.0",
+    "fabricloader": ">=0.14.11",
+    "fabric": ">=0.68.1",
     "minecraft": [
-      "1.19",
-      "1.19.1",
-      "1.19.2"
+      "1.19.3"
     ],
-    "bclib": "2.1.x"
+    "bclib": "2.2.x"
   },
   "breaks": {
-    "bclib": "<2.1.4"
+    "bclib": "<2.2.0"
   },
   "suggests": {
     "byg": ">=2.0.0",
