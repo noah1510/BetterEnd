@@ -67,6 +67,17 @@ loom {
     }
 }
 
+sourceSets {
+    main {
+        // Add the datagenned files into the jar.
+        resources {
+            srcDirs += [
+                    'src/main/generated'
+            ]
+        }
+    }
+}
+
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings loom.officialMojangMappings()
