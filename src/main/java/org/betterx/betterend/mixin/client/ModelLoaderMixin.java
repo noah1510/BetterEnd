@@ -12,7 +12,8 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 @Mixin(ModelBakery.class)
 public abstract class ModelLoaderMixin {
-    @ModifyArg(method = "loadModel", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/packs/resources/ResourceManager;getResourceStack(Lnet/minecraft/resources/ResourceLocation;)Ljava/util/List;"))
+    //TODO: 1.19.3 validate that alternative chorus model is loaded
+    @ModifyArg(method = "loadModel", at = @At(value = "INVOKE", target = "Lnet/minecraft/resources/FileToIdConverter;idToFile(Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/resources/ResourceLocation;"))
     public ResourceLocation be_switchModelOnLoad(ResourceLocation loc) {
         if (GeneratorOptions.changeChorusPlant() && be_changeModel(loc)) {
             String path = loc.getPath().replace("chorus", "custom_chorus");
@@ -21,19 +22,14 @@ public abstract class ModelLoaderMixin {
         return loc;
     }
 
-//    @ModifyVariable(method = "loadModel", ordinal = 2, at = @At(value = "INVOKE"))
-//    public ResourceLocation be_switchModel(ResourceLocation id) {
-//        if (GeneratorOptions.changeChorusPlant() && be_changeModel(id)) {
-//            String path = id.getPath().replace("chorus", "custom_chorus");
-//            id = BetterEnd.makeID(path);
-//        }
-//        return id;
-//    }
-
     private boolean be_changeModel(ResourceLocation id) {
-        return id.getNamespace().equals("minecraft")
-                && id.getPath().startsWith("blockstates/")
-                && id.getPath().contains("chorus")
-                && !id.getPath().contains("custom_");
+        if (id.getNamespace().equals("minecraft")) {
+            if (id.getPath().contains("chorus") && !id.getPath().contains("custom_")) {
+                return true || id.getPath().startsWith("blockstates/");
+
+            }
+            return false;
+        }
+        return false;
     }
 }
