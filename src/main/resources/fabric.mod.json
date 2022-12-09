@@ -53,7 +53,7 @@
     "bclib": "2.2.x"
   },
   "breaks": {
-    "bclib": "<2.2.0"
+    "bclib": "<2.2.1"
   },
   "suggests": {
     "byg": ">=2.0.0",
