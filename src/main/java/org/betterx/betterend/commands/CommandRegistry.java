@@ -3,7 +3,6 @@ package org.betterx.betterend.commands;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
 import org.betterx.bclib.api.v2.poi.BCLPoiType;
 import org.betterx.bclib.util.BlocksHelper;
-import org.betterx.betterend.registry.EndBiomes;
 import org.betterx.betterend.registry.EndPoiTypes;
 import org.betterx.betterend.world.biome.EndBiome;
 import org.betterx.worlds.together.world.event.WorldBootstrap;
@@ -126,7 +125,7 @@ public class CommandRegistry {
 
     private static int teleportToNextBiome(CommandContext<CommandSourceStack> ctx) throws CommandSyntaxException {
         final CommandSourceStack source = ctx.getSource();
-        List<EndBiome> biomes = EndBiomes.ALL_BE_BIOMES;
+        List<BCLBiome> biomes = EndBiome.getAllBeBiomes();
 
         if (biomeIndex < 0 || biomeIndex >= biomes.size()) {
             source.sendFailure(Component.literal("Failed to find the next Biome...")
