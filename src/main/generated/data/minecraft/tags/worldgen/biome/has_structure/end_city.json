@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "betterend:dust_wastelands",
+    "betterend:lantern_woods",
+    "betterend:dry_shrubland",
+    "betterend:foggy_mushroomland",
+    "betterend:chorus_forest",
+    "betterend:shadow_forest",
+    "betterend:neon_oasis",
+    "betterend:glowing_grasslands",
+    "betterend:amber_land",
+    "betterend:umbrella_jungle"
+  ]
+}
