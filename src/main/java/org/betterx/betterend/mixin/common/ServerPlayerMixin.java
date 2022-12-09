@@ -15,7 +15,6 @@ import net.minecraft.server.players.PlayerList;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.ProfilePublicKey;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.BiomeManager;
 import net.minecraft.world.level.portal.PortalInfo;
@@ -31,7 +30,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Optional;
-import org.jetbrains.annotations.Nullable;
 
 @Mixin(ServerPlayer.class)
 public abstract class ServerPlayerMixin extends Player implements TeleportingEntity {
@@ -55,14 +53,8 @@ public abstract class ServerPlayerMixin extends Player implements TeleportingEnt
     private BlockPos exitPos;
     private int be_teleportDelay = 0;
 
-    public ServerPlayerMixin(
-            Level level,
-            BlockPos blockPos,
-            float f,
-            GameProfile gameProfile,
-            @Nullable ProfilePublicKey profilePublicKey
-    ) {
-        super(level, blockPos, f, gameProfile, profilePublicKey);
+    public ServerPlayerMixin(Level level, BlockPos blockPos, float f, GameProfile gameProfile) {
+        super(level, blockPos, f, gameProfile);
     }
 
 
@@ -96,6 +88,7 @@ public abstract class ServerPlayerMixin extends Player implements TeleportingEnt
             ServerLevel serverWorld = getLevel();
             LevelData worldProperties = destination.getLevelData();
             ServerPlayer player = ServerPlayer.class.cast(this);
+            
             connection.send(new ClientboundRespawnPacket(
                     destination.dimensionTypeId(),
                     destination.dimension(),
@@ -104,7 +97,7 @@ public abstract class ServerPlayerMixin extends Player implements TeleportingEnt
                     gameMode.getPreviousGameModeForPlayer(),
                     destination.isDebug(),
                     destination.isFlat(),
-                    true,
+                    (byte) 1,
                     Optional.empty()
             ));
             connection.send(new ClientboundChangeDifficultyPacket(

@@ -10,7 +10,7 @@ import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndStructures;
 import org.betterx.betterend.world.structures.piece.VoxelPiece;
 
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.ChunkPos;
@@ -19,6 +19,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.structure.StructureType;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePiecesBuilder;
+
+import org.joml.Vector3f;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,12 +53,12 @@ public class GiantIceStarStructure extends SDFStructureFeature {
         for (Vector3f point : points) {
             SDF rotated = spike;
             point = MHelper.normalize(point);
-            float angle = MHelper.angle(Vector3f.YP, point);
+            float angle = MHelper.angle(MHelper.YP, point);
             if (angle > 0.01F && angle < 3.14F) {
-                Vector3f axis = MHelper.normalize(MHelper.cross(Vector3f.YP, point));
+                Vector3f axis = MHelper.normalize(MHelper.cross(MHelper.YP, point));
                 rotated = new SDFRotation().setRotation(axis, angle).setSource(spike);
             } else if (angle > 1) {
-                rotated = new SDFRotation().setRotation(Vector3f.YP, (float) Math.PI).setSource(spike);
+                rotated = new SDFRotation().setRotation(Axis.YP, (float) Math.PI).setSource(spike);
             }
             sdf = (sdf == null) ? rotated : new SDFUnion().setSourceA(sdf).setSourceB(rotated);
         }

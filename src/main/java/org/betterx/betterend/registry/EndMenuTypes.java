@@ -5,6 +5,7 @@ import org.betterx.betterend.blocks.EndStoneSmelter;
 import org.betterx.betterend.client.gui.EndStoneSmelterMenu;
 
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -23,7 +24,7 @@ public class EndMenuTypes {
             BiFunction<Integer, Inventory, T> factory
     ) {
         MenuType<T> type = new MenuType<>((syncId, inventory) -> factory.apply(syncId, inventory));
-        return Registry.register(Registry.MENU, id, type);
+        return Registry.register(BuiltInRegistries.MENU, id, type);
     }
 
     public final static void ensureStaticallyLoaded() {

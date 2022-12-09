@@ -116,7 +116,7 @@ public class DragonflyEntity extends DespawnableAnimal implements FlyingAnimal {
 
     @Override
     public SoundEvent getAmbientSound() {
-        return EndSounds.ENTITY_DRAGONFLY;
+        return EndSounds.ENTITY_DRAGONFLY.value();
     }
 
     @Override

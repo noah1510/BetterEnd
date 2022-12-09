@@ -3,10 +3,13 @@ package org.betterx.betterend.world.structures.piece;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.registry.EndStructures;
 import org.betterx.betterend.util.GlobalState;
+import org.betterx.worlds.together.world.event.WorldBootstrap;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtUtils;
@@ -15,6 +18,7 @@ import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.StructureManager;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkAccess;
 import net.minecraft.world.level.chunk.ChunkGenerator;
@@ -55,10 +59,14 @@ public class PaintedMountainPiece extends MountainPiece {
     @Override
     protected void fromNbt(CompoundTag tag) {
         super.fromNbt(tag);
+        //TODO: 1.19.3 check if this is the correct way to gte the HolderLookup
+        final HolderLookup<Block> blockLookup = WorldBootstrap.getLastRegistryAccess()
+                                                              .lookup(Registries.BLOCK)
+                                                              .orElseThrow();
         ListTag slise = tag.getList("slises", 10);
         slices = new BlockState[slise.size()];
         for (int i = 0; i < slices.length; i++) {
-            slices[i] = NbtUtils.readBlockState(slise.getCompound(i));
+            slices[i] = NbtUtils.readBlockState(blockLookup, slise.getCompound(i));
         }
     }
 

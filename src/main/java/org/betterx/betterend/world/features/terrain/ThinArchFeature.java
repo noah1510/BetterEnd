@@ -11,7 +11,7 @@ import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.noise.OpenSimplexNoise;
 import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -61,7 +61,7 @@ public class ThinArchFeature extends Feature<ThinArchFeatureConfig> {
                                      .setSmallRadius(smallRadius)
                                      .setBlock(block);
             float angle = (i - count * 0.5F) * 0.3F + random.nextFloat() * 0.05F + (float) Math.PI * 0.5F;
-            arch = new SDFRotation().setRotation(Vector3f.XP, angle).setSource(arch);
+            arch = new SDFRotation().setRotation(Axis.XP, angle).setSource(arch);
             sdf = sdf == null ? arch : new SDFUnion().setSourceA(sdf).setSourceB(arch);
         }
 

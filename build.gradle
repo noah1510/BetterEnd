@@ -60,7 +60,7 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    modApi "vazkii.patchouli:Patchouli:${project.patchouli_version}"
+    //1.19.3 modApi "vazkii.patchouli:Patchouli:${project.patchouli_version}"
     println "Using local BCLib: ${local_bclib}"
     if (local_bclib) {
         implementation(project(path: ":BCLib", configuration: 'dev'))
@@ -70,15 +70,9 @@ dependencies {
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.rei_version}"
 
-    // compile against the JEI API but do not include it at runtime
-    modCompileOnlyApi "mezz.jei:jei-1.19-common-api:${project.jei_version}"
-    modCompileOnlyApi "mezz.jei:jei-1.19-fabric-api:${project.jei_version}"
-    // at runtime, use the full JEI jar for Fabric
-    //modRuntimeOnly "mezz.jei:jei-${project.minecraft_version}-fabric:${project.jei_version}"
-
     //needed for trinkets, otherwise BetterEnd would require users to install trinkets
-    modApi "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cca_version}"
-    modCompileOnly "dev.emi:trinkets:${project.trinkets_version}"
+    //1.19.3 modApi "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${project.cca_version}"
+    //1.19.3 modCompileOnly "dev.emi:trinkets:${project.trinkets_version}"
     modCompileOnly "dev.emi:emi:${emi_version}"
     //modRuntimeOnly "dev.emi:emi:${emi_version}"
 }

@@ -13,7 +13,6 @@ import org.betterx.betterend.integration.Integrations;
 import org.betterx.betterend.noise.OpenSimplexNoise;
 import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
-import com.mojang.math.Vector3f;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -26,6 +25,7 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.AABB;
 
 import com.google.common.collect.Lists;
+import org.joml.Vector3f;
 
 import java.util.List;
 import java.util.function.Function;

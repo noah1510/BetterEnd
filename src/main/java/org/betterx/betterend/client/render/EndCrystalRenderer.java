@@ -2,8 +2,8 @@ package org.betterx.betterend.client.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Quaternion;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
+import com.mojang.math.Constants;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
@@ -15,6 +15,8 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 
+import org.joml.Quaternionf;
+
 public class EndCrystalRenderer {
     private static final ResourceLocation CRYSTAL_TEXTURE = new ResourceLocation(
             "textures/entity/end_crystal/end_crystal.png");
@@ -25,6 +27,7 @@ public class EndCrystalRenderer {
     private static final ModelPart FRAME;
     private static final int AGE_CYCLE = 240;
     private static final float SINE_45_DEGREES;
+    private static final Quaternionf ROTATOR;
 
     public static void render(
             int age,
@@ -40,17 +43,20 @@ public class EndCrystalRenderer {
         matrices.pushPose();
         matrices.scale(0.8F, 0.8F, 0.8F);
         matrices.translate(0.0D, -0.5D, 0.0D);
-        matrices.mulPose(Vector3f.YP.rotationDegrees(rotation));
+        matrices.mulPose(Axis.YP.rotationDegrees(rotation));
         matrices.translate(0.0D, 0.8F, 0.0D);
-        matrices.mulPose(new Quaternion(new Vector3f(SINE_45_DEGREES, 0.0F, SINE_45_DEGREES), 60.0F, true));
+        //matrices.mulPose(new Quaternion(new Vector3f(SINE_45_DEGREES, 0.0F, SINE_45_DEGREES), 60.0F, true));
+        matrices.mulPose(ROTATOR);
         FRAME.render(matrices, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
         matrices.scale(0.875F, 0.875F, 0.875F);
-        matrices.mulPose(new Quaternion(new Vector3f(SINE_45_DEGREES, 0.0F, SINE_45_DEGREES), 60.0F, true));
-        matrices.mulPose(Vector3f.YP.rotationDegrees(rotation));
+        //matrices.mulPose(new Quaternion(new Vector3f(SINE_45_DEGREES, 0.0F, SINE_45_DEGREES), 60.0F, true));
+        matrices.mulPose(ROTATOR);
+        matrices.mulPose(Axis.YP.rotationDegrees(rotation));
         FRAME.render(matrices, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
         matrices.scale(0.875F, 0.875F, 0.875F);
-        matrices.mulPose(new Quaternion(new Vector3f(SINE_45_DEGREES, 0.0F, SINE_45_DEGREES), 60.0F, true));
-        matrices.mulPose(Vector3f.YP.rotationDegrees(rotation));
+        //matrices.mulPose(new Quaternion(new Vector3f(SINE_45_DEGREES, 0.0F, SINE_45_DEGREES), 60.0F, true));
+        matrices.mulPose(ROTATOR);
+        matrices.mulPose(Axis.YP.rotationDegrees(rotation));
         CORE.render(matrices, vertexConsumer, light, OverlayTexture.NO_OVERLAY);
         matrices.popPose();
     }
@@ -81,5 +87,12 @@ public class EndCrystalRenderer {
         ModelPart root = getTexturedModelData().bakeRoot();
         FRAME = root.getChild("FRAME");
         CORE = root.getChild("CORE");
+
+        ROTATOR = new Quaternionf().setAngleAxis(
+                60.0f * Constants.DEG_TO_RAD,
+                SINE_45_DEGREES,
+                0.0F,
+                SINE_45_DEGREES
+        );
     }
 }

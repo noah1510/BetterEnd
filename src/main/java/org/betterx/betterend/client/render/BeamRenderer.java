@@ -2,14 +2,15 @@ package org.betterx.betterend.client.render;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Matrix3f;
-import com.mojang.math.Matrix4f;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
+
+import org.joml.Matrix3f;
+import org.joml.Matrix4f;
 
 public class BeamRenderer {
     private static final ResourceLocation BEAM_TEXTURE = new ResourceLocation("textures/entity/end_gateway_beam.png");
@@ -41,7 +42,7 @@ public class BeamRenderer {
         VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderType.beaconBeam(BEAM_TEXTURE, true));
 
         matrices.pushPose();
-        matrices.mulPose(Vector3f.YP.rotation(-rotation));
+        matrices.mulPose(Axis.YP.rotation(-rotation));
         renderBeam(
                 matrices,
                 vertexConsumer,

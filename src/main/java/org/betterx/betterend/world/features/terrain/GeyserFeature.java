@@ -16,7 +16,7 @@ import org.betterx.betterend.registry.EndFeatures;
 import org.betterx.betterend.util.BlockFixer;
 import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
@@ -111,7 +111,7 @@ public class GeyserFeature extends DefaultFeature {
             bowl = new SDFSubtraction().setSourceA(bowl).setSourceB(cut);
 
             bowl = new SDFTranslate().setTranslate(radius, py - radius, 0).setSource(bowl);
-            bowl = new SDFRotation().setRotation(Vector3f.YP, i * 4F).setSource(bowl);
+            bowl = new SDFRotation().setRotation(Axis.YP, i * 4F).setSource(bowl);
             sdf = new SDFUnion().setSourceA(sdf).setSourceB(bowl);
         }
         sdf.setReplaceFunction(REPLACE2).fillRecursive(world, pos);

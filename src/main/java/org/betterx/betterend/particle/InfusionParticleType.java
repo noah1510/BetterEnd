@@ -8,10 +8,9 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.serialization.Codec;
 import net.minecraft.commands.arguments.item.ItemInput;
 import net.minecraft.commands.arguments.item.ItemParser;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.core.Registry;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.item.ItemStack;
 
@@ -31,8 +30,9 @@ public class InfusionParticleType extends ParticleType<InfusionParticleType> imp
                 StringReader stringReader
         ) throws CommandSyntaxException {
             stringReader.expect(' ');
+            //TODO: 1.19.3 check if this is the correct way to gte the HolderLookup, or if  PaintedMountainPiece is correct
             ItemParser.ItemResult itemResult = ItemParser.parseForItem(
-                    HolderLookup.forRegistry(Registry.ITEM),
+                    BuiltInRegistries.ITEM.asLookup(),
                     stringReader
             );
             ItemStack itemStack = new ItemInput(itemResult.item(), itemResult.nbt()).createItemStack(1, false);
@@ -79,7 +79,7 @@ public class InfusionParticleType extends ParticleType<InfusionParticleType> imp
 
     @Override
     public String writeToString() {
-        return Registry.PARTICLE_TYPE.getKey(this).toString();
+        return BuiltInRegistries.PARTICLE_TYPE.getKey(this).toString();
     }
 
     @Override

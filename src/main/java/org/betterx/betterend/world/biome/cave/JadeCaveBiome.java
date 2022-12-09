@@ -13,6 +13,7 @@ import org.betterx.betterend.world.biome.EndBiome;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.KeyDispatchDataCodec;
 import net.minecraft.util.Mth;
@@ -33,8 +34,8 @@ public class JadeCaveBiome extends EndCaveBiome.Config {
         private static final BlockState[] JADE = new BlockState[3];
 
 
-        public Biome(ResourceLocation biomeID, net.minecraft.world.level.biome.Biome biome, BCLBiomeSettings settings) {
-            super(biomeID, biome, settings);
+        public Biome(ResourceKey<net.minecraft.world.level.biome.Biome> biomeID, BCLBiomeSettings settings) {
+            super(biomeID, settings);
 
             JADE[0] = EndBlocks.VIRID_JADESTONE.stone.defaultBlockState();
             JADE[1] = EndBlocks.AZURE_JADESTONE.stone.defaultBlockState();
@@ -56,7 +57,6 @@ public class JadeCaveBiome extends EndCaveBiome.Config {
                 ResourceLocation biomeID,
                 Optional<List<Climate.ParameterPoint>> parameterPoints,
                 Optional<ResourceLocation> biomeParent,
-                Optional<WeightedList<ResourceLocation>> subbiomes,
                 Optional<String> intendedType,
                 boolean hasCaves,
                 SurfaceMaterialProvider surface,
@@ -73,7 +73,6 @@ public class JadeCaveBiome extends EndCaveBiome.Config {
                     biomeID,
                     parameterPoints,
                     biomeParent,
-                    subbiomes,
                     intendedType,
                     hasCaves,
                     surface,

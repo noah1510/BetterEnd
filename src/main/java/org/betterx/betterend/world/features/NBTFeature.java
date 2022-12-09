@@ -5,13 +5,12 @@ import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
 import org.betterx.bclib.api.v2.levelgen.structures.templatesystem.DestructionStructureProcessor;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.worlds.together.tag.v3.CommonBlockTags;
+import org.betterx.worlds.together.world.event.WorldBootstrap;
 
 import com.mojang.serialization.Codec;
-import net.minecraft.core.BlockPos;
+import net.minecraft.core.*;
 import net.minecraft.core.BlockPos.MutableBlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.core.Holder;
-import net.minecraft.core.Vec3i;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtIo;
 import net.minecraft.resources.ResourceLocation;
@@ -20,6 +19,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
@@ -214,10 +214,13 @@ public abstract class NBTFeature<FC extends NBTFeatureConfig> extends Feature<FC
     }
 
     private static StructureTemplate readStructureFromStream(InputStream stream) throws IOException {
+        final HolderLookup<Block> blockLookup = WorldBootstrap.getLastRegistryAccess()
+                                                              .lookup(Registries.BLOCK)
+                                                              .orElseThrow();
         CompoundTag nbttagcompound = NbtIo.readCompressed(stream);
 
         StructureTemplate template = new StructureTemplate();
-        template.load(nbttagcompound);
+        template.load(blockLookup, nbttagcompound);
 
         return template;
     }

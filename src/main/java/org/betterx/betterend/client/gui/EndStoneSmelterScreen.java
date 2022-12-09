@@ -139,10 +139,4 @@ public class EndStoneSmelterScreen extends AbstractContainerScreen<EndStoneSmelt
         progress = menu.getSmeltProgress();
         blit(matrices, leftPos + 92, topPos + 34, 176, 14, progress + 1, 16);
     }
-
-    @Override
-    public void removed() {
-        recipeBook.removed();
-        super.removed();
-    }
 }

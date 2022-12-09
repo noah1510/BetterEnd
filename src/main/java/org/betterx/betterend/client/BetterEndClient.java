@@ -1,7 +1,5 @@
 package org.betterx.betterend.client;
 
-import org.betterx.bclib.BCLib;
-import org.betterx.bclib.util.TranslationHelper;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.client.render.BetterEndSkyRenderer;
 import org.betterx.betterend.events.ItemTooltipCallback;
@@ -33,11 +31,6 @@ public class BetterEndClient implements ClientModInitializer {
         ClientOptions.init();
         registerTooltips();
 
-        if (BCLib.isDevEnvironment()) {
-            TranslationHelper.printMissingEnNames(BetterEnd.MOD_ID);
-            TranslationHelper.printMissingNames(BetterEnd.MOD_ID, "ru_ru");
-        }
-
         ResourceLocation checkFlowerId = new ResourceLocation("item/chorus_flower");
         ResourceLocation checkPlantId = new ResourceLocation("item/chorus_plant");
         ResourceLocation toLoadFlowerId = new ResourceLocation("betterend", "item/custom_chorus_flower");
@@ -58,7 +51,8 @@ public class BetterEndClient implements ClientModInitializer {
         }
 
         if (BetterEnd.RUNS_TRINKETS) {
-            org.betterx.betterend.integration.trinkets.ElytraClient.register();
+            //TODO: 1.19.3 Reenable when Trinkets is available
+            //org.betterx.betterend.integration.trinkets.ElytraClient.register();
         }
     }
 

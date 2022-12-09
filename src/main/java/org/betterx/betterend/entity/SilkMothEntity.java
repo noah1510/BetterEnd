@@ -9,7 +9,7 @@ import org.betterx.betterend.registry.EndEntities;
 import org.betterx.betterend.registry.EndItems;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.resources.ResourceKey;
@@ -95,7 +95,7 @@ public class SilkMothEntity extends Animal implements FlyingAnimal {
             hivePos = NbtUtils.readBlockPos(tag.getCompound("HivePos"));
             ResourceLocation worldID = new ResourceLocation(tag.getString("HiveWorld"));
             try {
-                hiveWorld = level.getServer().getLevel(ResourceKey.create(Registry.DIMENSION_REGISTRY, worldID));
+                hiveWorld = level.getServer().getLevel(ResourceKey.create(Registries.DIMENSION, worldID));
             } catch (Exception e) {
                 BetterEnd.LOGGER.warning("Silk Moth Hive World {} is missing!", worldID);
                 hivePos = null;

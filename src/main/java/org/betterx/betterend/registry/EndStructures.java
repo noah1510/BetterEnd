@@ -9,6 +9,7 @@ import org.betterx.worlds.together.tag.v3.TagManager;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
@@ -68,7 +69,7 @@ public class EndStructures {
     }
 
     private static StructurePieceType register(String id, StructurePieceType pieceType) {
-        return Registry.register(Registry.STRUCTURE_PIECE, BetterEnd.makeID(id), pieceType);
+        return Registry.register(BuiltInRegistries.STRUCTURE_PIECE, BetterEnd.makeID(id), pieceType);
     }
 
     public static void addBiomeStructures(ResourceLocation biomeID, Holder<Biome> biome) {

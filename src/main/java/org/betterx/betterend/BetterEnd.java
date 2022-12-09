@@ -81,7 +81,8 @@ public class BetterEnd implements ModInitializer {
             }
         });
         if (RUNS_TRINKETS) {
-            org.betterx.betterend.integration.trinkets.Elytra.register();
+            //TODO: 1.19.3 Reenable when Trinkets is available
+            //org.betterx.betterend.integration.trinkets.Elytra.register();
         }
     }
 

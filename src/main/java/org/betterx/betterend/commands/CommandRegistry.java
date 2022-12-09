@@ -6,6 +6,7 @@ import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.betterend.registry.EndBiomes;
 import org.betterx.betterend.registry.EndPoiTypes;
 import org.betterx.betterend.world.biome.EndBiome;
+import org.betterx.worlds.together.world.event.WorldBootstrap;
 
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
@@ -14,16 +15,16 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.DynamicCommandExceptionType;
 import com.mojang.datafixers.util.Either;
 import com.mojang.datafixers.util.Pair;
-import com.mojang.math.Vector3d;
 import net.minecraft.ChatFormatting;
+import net.minecraft.Util;
 import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
-import net.minecraft.commands.arguments.ResourceOrTagLocationArgument;
+import net.minecraft.commands.arguments.ResourceOrTagKeyArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Holder;
-import net.minecraft.data.BuiltinRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceKey;
@@ -37,6 +38,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+
+import com.google.common.base.Stopwatch;
+import org.joml.Vector3d;
 
 import java.util.*;
 
@@ -174,14 +178,14 @@ public class CommandRegistry {
                     0,
                     Collections.EMPTY_SET
             );
-            ResourceOrTagLocationArgument.Result result = new ResourceOrTagLocationArgument.Result() {
+            ResourceOrTagKeyArgument.Result result = new ResourceOrTagKeyArgument.Result() {
                 @Override
                 public Either<ResourceKey, TagKey> unwrap() {
                     return Either.left(biome.getBiomeKey());
                 }
 
                 @Override
-                public Optional<ResourceOrTagLocationArgument.Result> cast(ResourceKey resourceKey) {
+                public Optional<ResourceOrTagKeyArgument.Result> cast(ResourceKey resourceKey) {
                     return Optional.empty();
                 }
 
@@ -196,15 +200,24 @@ public class CommandRegistry {
                 }
             };
             ResourceKey<Biome> a = biome.getBiomeKey();
-            Holder<Biome> h = BuiltinRegistries.BIOME.getHolder(a).orElseThrow();
-            return LocateCommand.showLocateResult(
-                    source,
-                    result,
-                    currentPosition,
-                    new Pair<>(biomePosition, h),
-                    "commands.locatebiome.success",
-                    false
-            );
+            if (WorldBootstrap.getLastRegistryAccess() != null) {
+                Stopwatch stopwatch = Stopwatch.createStarted(Util.TICKER);
+                Holder<Biome> h = WorldBootstrap.getLastRegistryAccess()
+                                                .registryOrThrow(Registries.BIOME)
+                                                .getHolder(a)
+                                                .orElseThrow();
+                stopwatch.stop();
+                return LocateCommand.showLocateResult(
+                        source,
+                        result,
+                        currentPosition,
+                        new Pair<>(biomePosition, h),
+                        "commands.locatebiome.success",
+                        false,
+                        stopwatch.elapsed()
+                );
+            }
+            return Command.SINGLE_SUCCESS;
         }
     }
 }

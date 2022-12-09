@@ -82,17 +82,17 @@ public class ShadowWalkerEntity extends Monster {
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return EndSounds.ENTITY_SHADOW_WALKER;
+        return EndSounds.ENTITY_SHADOW_WALKER.value();
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource source) {
-        return EndSounds.ENTITY_SHADOW_WALKER_DAMAGE;
+        return EndSounds.ENTITY_SHADOW_WALKER_DAMAGE.value();
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return EndSounds.ENTITY_SHADOW_WALKER_DEATH;
+        return EndSounds.ENTITY_SHADOW_WALKER_DEATH.value();
     }
 
     @Override

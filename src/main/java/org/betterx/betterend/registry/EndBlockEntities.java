@@ -6,6 +6,7 @@ import org.betterx.betterend.blocks.basis.PedestalBlock;
 import org.betterx.betterend.blocks.entities.*;
 
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -38,7 +39,7 @@ public class EndBlockEntities {
             String id,
             FabricBlockEntityTypeBuilder<T> builder
     ) {
-        return Registry.register(Registry.BLOCK_ENTITY_TYPE, BetterEnd.makeID(id), builder.build(null));
+        return Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, BetterEnd.makeID(id), builder.build(null));
 
         //return Registry.register(Registry.BLOCK_ENTITY_TYPE, BetterEnd.makeID(id), builder.build(null));
     }

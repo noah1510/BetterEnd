@@ -51,17 +51,17 @@ public class OldBulbisGardens extends EndBiome.Config {
                .feature(BYGFeatures.OLD_BULBIS_TREE);
 
         if (BCLib.isClient()) {
-            SoundEvent loop = effects.getAmbientLoopSoundEvent()
-                                     .get();
-            SoundEvent music = effects.getBackgroundMusic()
-                                      .get()
-                                      .getEvent();
-            SoundEvent additions = effects.getAmbientAdditionsSettings()
-                                          .get()
-                                          .getSoundEvent();
-            SoundEvent mood = effects.getAmbientMoodSettings()
-                                     .get()
-                                     .getSoundEvent();
+            Holder<SoundEvent> loop = effects.getAmbientLoopSoundEvent()
+                                             .get();
+            Holder<SoundEvent> music = effects.getBackgroundMusic()
+                                              .get()
+                                              .getEvent();
+            Holder<SoundEvent> additions = effects.getAmbientAdditionsSettings()
+                                                  .get()
+                                                  .getSoundEvent();
+            Holder<SoundEvent> mood = effects.getAmbientMoodSettings()
+                                             .get()
+                                             .getSoundEvent();
             builder.loop(loop)
                    .music(music)
                    .additions(additions)

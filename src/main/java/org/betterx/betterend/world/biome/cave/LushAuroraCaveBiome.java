@@ -15,6 +15,7 @@ import org.betterx.betterend.world.biome.EndBiome;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.KeyDispatchDataCodec;
 import net.minecraft.world.level.biome.Climate;
@@ -29,8 +30,8 @@ public class LushAuroraCaveBiome extends EndCaveBiome.Config {
     public static final KeyDispatchDataCodec<LushAuroraCaveBiome.Biome> KEY_CODEC = KeyDispatchDataCodec.of(CODEC);
 
     public static class Biome extends EndCaveBiome {
-        public Biome(ResourceLocation biomeID, net.minecraft.world.level.biome.Biome biome, BCLBiomeSettings settings) {
-            super(biomeID, biome, settings);
+        public Biome(ResourceKey<net.minecraft.world.level.biome.Biome> biomeID, BCLBiomeSettings settings) {
+            super(biomeID, settings);
 
             this.addFloorFeature(EndFeatures.BIG_AURORA_CRYSTAL.configuredFeature, 1);
             this.addFloorFeature(EndFeatures.CAVE_BUSH.configuredFeature, 5);
@@ -59,7 +60,6 @@ public class LushAuroraCaveBiome extends EndCaveBiome.Config {
                 ResourceLocation biomeID,
                 Optional<List<Climate.ParameterPoint>> parameterPoints,
                 Optional<ResourceLocation> biomeParent,
-                Optional<WeightedList<ResourceLocation>> subbiomes,
                 Optional<String> intendedType,
                 boolean hasCaves,
                 SurfaceMaterialProvider surface,
@@ -76,7 +76,6 @@ public class LushAuroraCaveBiome extends EndCaveBiome.Config {
                     biomeID,
                     parameterPoints,
                     biomeParent,
-                    subbiomes,
                     intendedType,
                     hasCaves,
                     surface,

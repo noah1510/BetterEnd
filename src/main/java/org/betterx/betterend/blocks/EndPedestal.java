@@ -3,7 +3,7 @@ package org.betterx.betterend.blocks;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.blocks.basis.PedestalBlock;
 
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 
@@ -19,7 +19,7 @@ public class EndPedestal extends PedestalBlock {
 
     @Override
     protected Map<String, String> createTexturesMap() {
-        ResourceLocation blockId = Registry.BLOCK.getKey(parent);
+        ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(parent);
         String name = blockId.getPath();
         Map<String, String> textures = Maps.newHashMap();
         textures.put("%mod%", BetterEnd.MOD_ID);

@@ -87,7 +87,7 @@ public class EndBiomes {
             CAVE_BIOMES = new BiomePicker(registry);
             registry.stream()
                     .filter(biome -> registry.getResourceKey(biome).isPresent())
-                    .map(biome -> registry.getOrCreateHolderOrThrow(registry.getResourceKey(biome).get()))
+                    .map(biome -> registry.getHolderOrThrow(registry.getResourceKey(biome).get()))
                     .map(biome -> biome.unwrapKey().orElseThrow().location())
                     .filter(id -> BiomeAPI.wasRegisteredAs(id, END_CAVE))
                     .map(id -> BiomeAPI.getBiome(id))
@@ -112,12 +112,7 @@ public class EndBiomes {
      * @return registered {@link EndBiome}
      */
     public static EndBiome registerSubBiome(EndBiome.Config biomeConfig, EndBiome parent) {
-        final EndBiome biome = EndBiome.create(biomeConfig);
-
-        if (Configs.BIOME_CONFIG.getBoolean(biome.getID(), "enabled", true)) {
-            BiomeAPI.registerSubBiome(parent, biome);
-        }
-        return biome;
+        return EndBiome.createSubBiome(biomeConfig, parent);
     }
 
     /**
@@ -129,14 +124,7 @@ public class EndBiomes {
      */
     public static EndBiome registerBiome(EndBiome.Config biomeConfig, BiomeType type) {
         final EndBiome biome = EndBiome.create(biomeConfig);
-        if (Configs.BIOME_CONFIG.getBoolean(biome.getID(), "enabled", true)) {
-            if (type == BiomeType.LAND) {
-                BiomeAPI.registerEndLandBiome(biome);
-            } else {
-                BiomeAPI.registerEndVoidBiome(biome);
-            }
-            ALL_BE_BIOMES.add(biome);
-        }
+        ALL_BE_BIOMES.add(biome);
         return biome;
     }
 
@@ -147,11 +135,8 @@ public class EndBiomes {
      * @return registered {@link EndBiome}
      */
     public static EndBiome registerSubBiomeIntegration(EndBiome.Config biomeConfig) {
-        EndBiome biome = EndBiome.create(biomeConfig);
-        if (Configs.BIOME_CONFIG.getBoolean(biome.getID(), "enabled", true)) {
-            BiomeAPI.registerBuiltinBiomeAndOverrideIntendedDimension(biome, BiomeAPI.BiomeType.END);
-        }
-        return biome;
+        //TODO: 1.19.3 this was don on runtime, but biomes are now created in DataGen, so we need a fix...
+        return EndBiome.create(biomeConfig);
     }
 
     /**
@@ -163,19 +148,14 @@ public class EndBiomes {
     public static void addSubBiomeIntegration(EndBiome biome, ResourceLocation parent) {
         if (Configs.BIOME_CONFIG.getBoolean(biome.getID(), "enabled", true)) {
             BCLBiome parentBiome = BiomeAPI.getBiome(parent);
-            if (parentBiome != null && !parentBiome.containsSubBiome(biome)) {
+            if (parentBiome != null && biome.getParentBiome().getID().equals(biome.getID())) {
                 parentBiome.addSubBiome(biome);
             }
         }
     }
 
     public static EndCaveBiome registerCaveBiome(EndCaveBiome.Config biomeConfig) {
-        final EndCaveBiome biome = EndCaveBiome.create(biomeConfig);
-        if (Configs.BIOME_CONFIG.getBoolean(biome.getID(), "enabled", true)) {
-            BiomeAPI.registerBuiltinBiomeAndOverrideIntendedDimension(biome, END_CAVE);
-            //ALL_BE_BIOMES.add(biome);
-        }
-        return biome;
+        return EndCaveBiome.create(biomeConfig);
     }
 
     public static BiomePicker.ActualBiome getCaveBiome(int x, int z) {

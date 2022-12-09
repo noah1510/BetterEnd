@@ -10,6 +10,7 @@ import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndFeatures;
 import org.betterx.betterend.registry.EndPoiTypes;
 import org.betterx.betterend.registry.EndPortals;
+import org.betterx.worlds.together.world.event.WorldBootstrap;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -17,6 +18,8 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.resources.ResourceLocation;
@@ -189,7 +192,7 @@ public class EternalRitual {
 
     private void activatePortal(Item keyItem) {
         if (active) return;
-        ResourceLocation itemId = Registry.ITEM.getKey(keyItem);
+        ResourceLocation itemId = BuiltInRegistries.ITEM.getKey(keyItem);
         int portalId = EndPortals.getPortalIdByItem(itemId);
         Level targetWorld = getTargetWorld(portalId);
         ResourceLocation worldId = targetWorld.dimension().location();
@@ -404,7 +407,7 @@ public class EternalRitual {
         ServerLevel targetWorld = (ServerLevel) getTargetWorld(portalId);
         Registry<DimensionType> registry = Objects.requireNonNull(server)
                                                   .registryAccess()
-                                                  .registryOrThrow(Registry.DIMENSION_TYPE_REGISTRY);
+                                                  .registryOrThrow(Registries.DIMENSION_TYPE);
         double multiplier = Objects.requireNonNull(registry.get(targetWorldId)).coordinateScale();
         BlockPos.MutableBlockPos basePos = center.mutable()
                                                  .set(
@@ -461,12 +464,15 @@ public class EternalRitual {
             }
         }
         if (targetWorld.dimension() == Level.END) {
-            net.minecraft.data.worldgen.features.EndFeatures.END_ISLAND.value().place(
-                    targetWorld,
-                    targetWorld.getChunkSource().getGenerator(),
-                    new LegacyRandomSource(basePos.asLong()),
-                    basePos.below()
-            );
+            WorldBootstrap.getLastRegistryAccess()
+                          .registryOrThrow(Registries.CONFIGURED_FEATURE)
+                          .get(net.minecraft.data.worldgen.features.EndFeatures.END_ISLAND)
+                          .place(
+                                  targetWorld,
+                                  targetWorld.getChunkSource().getGenerator(),
+                                  new LegacyRandomSource(basePos.asLong()),
+                                  basePos.below()
+                          );
         } else if (targetWorld.dimension() == Level.OVERWORLD) {
             basePos.setY(targetWorld.getChunk(basePos)
                                     .getHeight(Heightmap.Types.WORLD_SURFACE, basePos.getX(), basePos.getZ()) + 1);

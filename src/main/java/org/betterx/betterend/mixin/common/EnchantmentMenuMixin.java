@@ -2,7 +2,7 @@ package org.betterx.betterend.mixin.common;
 
 import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Container;
 import net.minecraft.world.inventory.*;
@@ -122,7 +122,7 @@ public abstract class EnchantmentMenuMixin extends AbstractContainerMenu {
                             if (list != null && !list.isEmpty()) {
                                 EnchantmentInstance enchantmentLevelEntry = list.get(this.random.nextInt(
                                         list.size()));
-                                enchantClue[j] = Registry.ENCHANTMENT.getId(enchantmentLevelEntry.enchantment);
+                                enchantClue[j] = BuiltInRegistries.ENCHANTMENT.getId(enchantmentLevelEntry.enchantment);
                                 levelClue[j] = enchantmentLevelEntry.level;
                             }
                         }

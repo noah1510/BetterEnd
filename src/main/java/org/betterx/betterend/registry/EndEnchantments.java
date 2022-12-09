@@ -5,6 +5,7 @@ import org.betterx.betterend.config.Configs;
 import org.betterx.betterend.effects.enchantment.EndVeilEnchantment;
 
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.enchantment.Enchantment;
 
 public class EndEnchantments {
@@ -14,7 +15,7 @@ public class EndEnchantments {
         if (!Configs.ENCHANTMENT_CONFIG.getBooleanRoot(name, true)) {
             return enchantment;
         }
-        return Registry.register(Registry.ENCHANTMENT, BetterEnd.makeID(name), enchantment);
+        return Registry.register(BuiltInRegistries.ENCHANTMENT, BetterEnd.makeID(name), enchantment);
     }
 
     public static void register() {

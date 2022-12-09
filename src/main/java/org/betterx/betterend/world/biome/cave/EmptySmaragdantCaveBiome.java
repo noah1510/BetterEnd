@@ -12,6 +12,7 @@ import org.betterx.betterend.world.biome.EndBiome;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.KeyDispatchDataCodec;
 import net.minecraft.world.level.biome.Climate;
@@ -26,8 +27,8 @@ public class EmptySmaragdantCaveBiome extends EndCaveBiome.Config {
     public static final KeyDispatchDataCodec<EmptySmaragdantCaveBiome.Biome> KEY_CODEC = KeyDispatchDataCodec.of(CODEC);
 
     public static class Biome extends EndCaveBiome {
-        public Biome(ResourceLocation biomeID, net.minecraft.world.level.biome.Biome biome, BCLBiomeSettings settings) {
-            super(biomeID, biome, settings);
+        public Biome(ResourceKey<net.minecraft.world.level.biome.Biome> biomeID, BCLBiomeSettings settings) {
+            super(biomeID, settings);
 
             this.addFloorFeature(EndFeatures.SMARAGDANT_CRYSTAL.configuredFeature, 1);
             this.addFloorFeature(EndFeatures.SMARAGDANT_CRYSTAL_SHARD.configuredFeature, 20);
@@ -50,7 +51,6 @@ public class EmptySmaragdantCaveBiome extends EndCaveBiome.Config {
                 ResourceLocation biomeID,
                 Optional<List<Climate.ParameterPoint>> parameterPoints,
                 Optional<ResourceLocation> biomeParent,
-                Optional<WeightedList<ResourceLocation>> subbiomes,
                 Optional<String> intendedType,
                 boolean hasCaves,
                 SurfaceMaterialProvider surface,
@@ -67,7 +67,6 @@ public class EmptySmaragdantCaveBiome extends EndCaveBiome.Config {
                     biomeID,
                     parameterPoints,
                     biomeParent,
-                    subbiomes,
                     intendedType,
                     hasCaves,
                     surface,

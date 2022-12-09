@@ -16,7 +16,7 @@ import net.minecraft.client.resources.model.UnbakedModel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.InteractionHand;
@@ -433,7 +433,7 @@ public class PedestalBlock extends BaseBlockNotFull implements EntityBlock {
     }
 
     protected Map<String, String> createTexturesMap() {
-        ResourceLocation blockId = Registry.BLOCK.getKey(parent);
+        ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(parent);
         String name = blockId.getPath();
         Map<String, String> textures = Maps.newHashMap();
         textures.put("%mod%", blockId.getNamespace());

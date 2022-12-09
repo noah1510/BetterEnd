@@ -100,12 +100,12 @@ public class BYGFeatures {
         return BCLFeatureBuilder
                 .start(id, feature)
                 .configuration(config)
-                .buildAndRegister()
+                .build()
                 .place()
                 .countMax(density)
                 .squarePlacement()
                 .heightmap()
                 .onlyInBiome()
-                .buildAndRegister();
+                .build();
     }
 }

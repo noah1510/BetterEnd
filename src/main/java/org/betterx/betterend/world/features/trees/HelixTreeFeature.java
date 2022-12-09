@@ -10,7 +10,7 @@ import org.betterx.bclib.util.SplineHelper;
 import org.betterx.betterend.blocks.HelixTreeLeavesBlock;
 import org.betterx.betterend.registry.EndBlocks;
 
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.tags.BlockTags;
@@ -21,6 +21,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.phys.AABB;
+
+import org.joml.Vector3f;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +55,7 @@ public class HelixTreeFeature extends DefaultFeature {
         SDF sdf = SplineHelper.buildSDF(spline, 1.7F, 0.5F, (p) -> {
             return EndBlocks.HELIX_TREE.getBark().defaultBlockState();
         });
-        SDF rotated = new SDFRotation().setRotation(Vector3f.YP, (float) Math.PI).setSource(sdf);
+        SDF rotated = new SDFRotation().setRotation(Axis.YP, (float) Math.PI).setSource(sdf);
         sdf = new SDFUnion().setSourceA(rotated).setSourceB(sdf);
 
         Vector3f lastPoint = spline.get(spline.size() - 1);

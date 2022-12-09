@@ -8,6 +8,7 @@ import org.betterx.betterend.entity.*;
 import org.betterx.ui.ColorUtil;
 
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.EntityType.EntityFactory;
@@ -123,7 +124,7 @@ public class EndEntities {
                 .dimensions(EntityDimensions.fixed(width, height))
                 .build();
         if (Configs.ENTITY_CONFIG.getBooleanRoot(id.getPath(), true)) {
-            return Registry.register(Registry.ENTITY_TYPE, id, type);
+            return Registry.register(BuiltInRegistries.ENTITY_TYPE, id, type);
         }
         return type;
     }
@@ -148,7 +149,7 @@ public class EndEntities {
                 .build();
         FabricDefaultAttributeRegistry.register(type, attributes);
         EndItems.registerEndEgg("spawn_egg_" + name, type, eggColor, dotsColor);
-        Registry.register(Registry.ENTITY_TYPE, BetterEnd.makeID(name), type);
+        Registry.register(BuiltInRegistries.ENTITY_TYPE, BetterEnd.makeID(name), type);
 
         return new BCLEntityWrapper<>(type, Configs.ENTITY_CONFIG.getBooleanRoot(id.getPath(), true));
     }

@@ -6,7 +6,7 @@ import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.config.Configs;
 import org.betterx.betterend.registry.EndBlocks;
 
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.level.ItemLike;
@@ -36,7 +36,7 @@ public class ColoredMaterial {
             Map<Integer, ItemLike> dyes,
             boolean craftEight
     ) {
-        String id = Registry.BLOCK.getKey(source).getPath();
+        String id = BuiltInRegistries.BLOCK.getKey(source).getPath();
         colors.forEach((color, name) -> {
             String blockName = id + "_" + name;
             Block block = constructor.apply(FabricBlockSettings.copyOf(source).mapColor(MaterialColor.COLOR_BLACK));

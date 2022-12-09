@@ -2,7 +2,7 @@ package org.betterx.betterend.blocks;
 
 import org.betterx.betterend.blocks.basis.PedestalBlock;
 
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 
@@ -17,7 +17,7 @@ public class PedestalVanilla extends PedestalBlock {
 
     @Override
     protected Map<String, String> createTexturesMap() {
-        ResourceLocation blockId = Registry.BLOCK.getKey(parent);
+        ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(parent);
         String name = blockId.getPath().replace("_block", "");
         return new HashMap<String, String>() {
             private static final long serialVersionUID = 1L;

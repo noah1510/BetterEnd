@@ -1,19 +1,18 @@
 package org.betterx.betterend.integration.emi;
 
-import org.betterx.ui.layout.components.render.RenderHelper;
-
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.renderer.GameRenderer;
 
 import dev.emi.emi.EmiClient;
-import dev.emi.emi.EmiConfig;
 import dev.emi.emi.EmiRenderHelper;
 import dev.emi.emi.api.render.EmiRender;
 import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.widget.Bounds;
 import dev.emi.emi.api.widget.SlotWidget;
+import dev.emi.emi.config.EmiConfig;
+import org.wunder.lib.ui.layout.components.render.RenderHelper;
 
 public class TransparentSlotWidget extends SlotWidget {
 

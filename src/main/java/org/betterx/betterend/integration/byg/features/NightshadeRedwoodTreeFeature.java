@@ -14,7 +14,6 @@ import org.betterx.bclib.util.SplineHelper;
 import org.betterx.betterend.integration.Integrations;
 import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
-import com.mojang.math.Vector3f;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
@@ -29,6 +28,7 @@ import net.minecraft.world.level.material.Material;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
+import org.joml.Vector3f;
 
 import java.util.List;
 

@@ -91,8 +91,10 @@ public abstract class MusicTrackerMixin {
     }
 
     private boolean be_shouldChangeSound(Music musicSound) {
+        //TODO: 1.19.3 do we need this?
         return currentMusic != null && !musicSound
                 .getEvent()
+                .value()
                 .getLocation()
                 .equals(this.currentMusic.getLocation()) && musicSound.replaceCurrentMusic();
     }

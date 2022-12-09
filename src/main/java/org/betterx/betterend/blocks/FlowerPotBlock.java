@@ -19,14 +19,13 @@ import org.betterx.betterend.interfaces.PottableTerrain;
 import org.betterx.betterend.registry.EndBlocks;
 
 import com.mojang.math.Transformation;
-import com.mojang.math.Vector3f;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.client.resources.model.UnbakedModel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -58,6 +57,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import org.joml.Vector3f;
 
 import java.io.File;
 import java.util.List;
@@ -191,7 +191,7 @@ public class FlowerPotBlock extends BaseBlockNotFull implements RenderLayerProvi
     }
 
     private void processBlock(Block[] target, Block block, String path, Map<String, Integer> idMap) {
-        ResourceLocation location = Registry.BLOCK.getKey(block);
+        ResourceLocation location = BuiltInRegistries.BLOCK.getKey(block);
         if (idMap.containsKey(location.getPath())) {
             target[idMap.get(location.getPath())] = block;
         } else {
@@ -315,7 +315,7 @@ public class FlowerPotBlock extends BaseBlockNotFull implements RenderLayerProvi
             }
 
             final int compareID = i + 1;
-            ResourceLocation modelPath = Registry.BLOCK.getKey(plants[i]);
+            ResourceLocation modelPath = BuiltInRegistries.BLOCK.getKey(plants[i]);
             ResourceLocation objSource = new ResourceLocation(
                     modelPath.getNamespace(),
                     "models/block/" + modelPath.getPath() + "_potted.json"
@@ -329,7 +329,7 @@ public class FlowerPotBlock extends BaseBlockNotFull implements RenderLayerProvi
                      .add();
                 continue;
             } else if (plants[i] instanceof SaplingBlock) {
-                ResourceLocation loc = Registry.BLOCK.getKey(plants[i]);
+                ResourceLocation loc = BuiltInRegistries.BLOCK.getKey(plants[i]);
                 modelPath = new ResourceLocation(loc.getNamespace(), "block/" + loc.getPath() + "_potted");
                 Map<String, String> textures = Maps.newHashMap();
                 textures.put("%modid%", loc.getNamespace());
@@ -343,7 +343,7 @@ public class FlowerPotBlock extends BaseBlockNotFull implements RenderLayerProvi
                      .add();
                 continue;
             } else if (plants[i] instanceof PottableLeavesBlock) {
-                ResourceLocation loc = Registry.BLOCK.getKey(plants[i]);
+                ResourceLocation loc = BuiltInRegistries.BLOCK.getKey(plants[i]);
                 modelPath = new ResourceLocation(loc.getNamespace(), "block/" + loc.getPath() + "_potted");
                 Map<String, String> textures = Maps.newHashMap();
                 textures.put("%leaves%", loc.getPath().contains("lucernia") ? loc.getPath() + "_1" : loc.getPath());
@@ -396,7 +396,7 @@ public class FlowerPotBlock extends BaseBlockNotFull implements RenderLayerProvi
                      .setCondition(state -> state.getValue(PLANT_ID) == compareID)
                      .add();
             } else {
-                ResourceLocation loc = Registry.BLOCK.getKey(plants[i]);
+                ResourceLocation loc = BuiltInRegistries.BLOCK.getKey(plants[i]);
                 modelPath = new ResourceLocation(loc.getNamespace(), "block/" + loc.getPath() + "_potted");
                 Map<String, String> textures = Maps.newHashMap();
                 textures.put("%modid%", loc.getNamespace());
@@ -418,7 +418,7 @@ public class FlowerPotBlock extends BaseBlockNotFull implements RenderLayerProvi
 
             ResourceLocation soilLoc = BetterEnd.makeID("flower_pot_soil_" + i);
             if (!modelCache.containsKey(soilLoc)) {
-                String texture = Registry.BLOCK.getKey(soils[i]).getPath() + "_top";
+                String texture = BuiltInRegistries.BLOCK.getKey(soils[i]).getPath() + "_top";
                 if (texture.contains("rutiscus")) {
                     texture += "_1";
                 }

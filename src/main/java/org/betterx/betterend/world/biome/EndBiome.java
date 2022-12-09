@@ -7,7 +7,6 @@ import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeSettings;
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
 import org.betterx.bclib.api.v2.levelgen.surface.SurfaceRuleBuilder;
 import org.betterx.bclib.interfaces.SurfaceMaterialProvider;
-import org.betterx.bclib.util.WeightedList;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndFeatures;
@@ -18,6 +17,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.data.worldgen.placement.EndPlacements;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.KeyDispatchDataCodec;
@@ -59,7 +59,6 @@ public class EndBiome extends BCLBiome implements SurfaceMaterialProvider {
             ResourceLocation biomeID,
             Optional<List<Climate.ParameterPoint>> parameterPoints,
             Optional<ResourceLocation> biomeParent,
-            Optional<WeightedList<ResourceLocation>> subbiomes,
             Optional<String> intendedType,
             boolean hasCaves,
             SurfaceMaterialProvider surface
@@ -74,7 +73,6 @@ public class EndBiome extends BCLBiome implements SurfaceMaterialProvider {
                 biomeID,
                 parameterPoints,
                 biomeParent,
-                subbiomes,
                 intendedType
         );
         this.hasCaves = hasCaves;
@@ -171,21 +169,30 @@ public class EndBiome extends BCLBiome implements SurfaceMaterialProvider {
     }
 
 
-    public EndBiome(ResourceLocation biomeID, Biome biome, BCLBiomeSettings settings) {
-        super(biomeID, biome, settings);
+    public EndBiome(ResourceKey<Biome> biomeID, BCLBiomeSettings settings) {
+        super(biomeID, settings);
     }
 
     public static EndBiome create(Config biomeConfig) {
+        return create(biomeConfig, null);
+    }
+
+    public static EndBiome createSubBiome(Config data, BCLBiome parentBiome) {
+        return create(data, parentBiome);
+    }
+
+    private static EndBiome create(Config biomeConfig, BCLBiome parentBiome) {
         BCLBiomeBuilder builder = BCLBiomeBuilder
                 .start(biomeConfig.ID)
                 .music(SoundEvents.MUSIC_END)
-                .waterColor(4159204)
-                .waterFogColor(329011)
-                .fogColor(0xA080A0)
-                .skyColor(0)
+                .waterColor(BCLBiomeBuilder.DEFAULT_END_WATER_COLOR)
+                .waterFogColor(BCLBiomeBuilder.DEFAULT_END_WATER_FOG_COLOR)
+                .fogColor(BCLBiomeBuilder.DEFAULT_END_FOG_COLOR)
+                .skyColor(BCLBiomeBuilder.DEFAULT_END_SKY_COLOR)
                 .mood(EndSounds.AMBIENT_DUST_WASTELANDS)
-                .temperature(0.5f)
-                .wetness(0.5f)
+                .temperature(BCLBiomeBuilder.DEFAULT_END_TEMPERATURE)
+                .wetness(BCLBiomeBuilder.DEFAULT_END_WETNESS)
+                .parentBiome(parentBiome)
                 .precipitation(Biome.Precipitation.NONE)
                 .surface(biomeConfig.surfaceMaterial().surface().build())
                 .endLandBiome();
@@ -197,7 +204,7 @@ public class EndBiome extends BCLBiome implements SurfaceMaterialProvider {
             builder.feature(GenerationStep.Decoration.SURFACE_STRUCTURES, EndPlacements.END_GATEWAY_RETURN);
         }
 
-        EndBiome biome = builder.build(biomeConfig.getSupplier());
+        EndBiome biome = builder.build(biomeConfig.getSupplier()).biome();
         biome.setHasCaves(biomeConfig.hasCaves());
         biome.setSurfaceMaterial(biomeConfig.surfaceMaterial());
 

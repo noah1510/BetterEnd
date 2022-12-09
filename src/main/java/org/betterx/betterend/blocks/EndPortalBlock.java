@@ -17,6 +17,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
 import net.minecraft.core.Direction.AxisDirection;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
@@ -151,7 +152,7 @@ public class EndPortalBlock extends NetherPortalBlock implements RenderLayerProv
     ) {
         if (targetWorld == null) return null;
         Registry<DimensionType> registry = targetWorld.registryAccess()
-                                                      .registryOrThrow(Registry.DIMENSION_TYPE_REGISTRY);
+                                                      .registryOrThrow(Registries.DIMENSION_TYPE);
         ResourceLocation targetWorldId = targetWorld.dimension().location();
         ResourceLocation currentWorldId = currentWorld.dimension().location();
         double targetMultiplier = Objects.requireNonNull(registry.get(targetWorldId)).coordinateScale();

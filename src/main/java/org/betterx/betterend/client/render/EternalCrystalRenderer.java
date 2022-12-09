@@ -7,7 +7,7 @@ import org.betterx.ui.ColorUtil;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.CubeListBuilder;
@@ -38,7 +38,7 @@ public class EternalCrystalRenderer {
         float rotation = (age + tickDelta) / 25.0F + 6.0F;
         matrices.pushPose();
         matrices.scale(0.6F, 0.6F, 0.6F);
-        matrices.mulPose(Vector3f.YP.rotation(rotation));
+        matrices.mulPose(Axis.YP.rotation(rotation));
         CORE.render(
                 matrices,
                 vertexConsumer,

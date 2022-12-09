@@ -7,10 +7,13 @@ import org.betterx.betterend.world.structures.piece.PaintedMountainPiece;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.LevelHeightAccessor;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.chunk.ChunkGenerator;
@@ -50,6 +53,7 @@ public class PaintedMountainStructure extends FeatureBaseStructure {
             for (int i = 0; i < count; i++) {
                 slices[i] = VARIANTS[random.nextInt(VARIANTS.length)];
             }
+            HolderLookup<Block> blockHolderLookup = context.registryAccess().lookup(Registries.BLOCK).orElseThrow();
             structurePiecesBuilder.addPiece(new PaintedMountainPiece(
                     new BlockPos(x, y, z),
                     radius,

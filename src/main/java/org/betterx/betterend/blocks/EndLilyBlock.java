@@ -114,7 +114,7 @@ public class EndLilyBlock extends EndUnderwaterPlantBlock implements AddMineable
     }
 
     @Override
-    public boolean isValidBonemealTarget(BlockGetter world, BlockPos pos, BlockState state, boolean isClient) {
+    public boolean isValidBonemealTarget(LevelReader world, BlockPos pos, BlockState state, boolean isClient) {
         return false;
     }
 

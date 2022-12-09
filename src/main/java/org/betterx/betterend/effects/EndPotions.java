@@ -6,6 +6,7 @@ import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndItems;
 
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.Items;
@@ -21,7 +22,7 @@ public class EndPotions {
     }
 
     public static Potion registerPotion(String name, Potion potion) {
-        return Registry.register(Registry.POTION, BetterEnd.makeID(name), potion);
+        return Registry.register(BuiltInRegistries.POTION, BetterEnd.makeID(name), potion);
     }
 
     public static void register() {

@@ -12,6 +12,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
@@ -30,7 +31,7 @@ public class BlockFixer {
 
     public static void fixBlocks(LevelAccessor level, BlockPos start, BlockPos end) {
         final Registry<DimensionType> registry = level.registryAccess()
-                                                      .registryOrThrow(Registry.DIMENSION_TYPE_REGISTRY);
+                                                      .registryOrThrow(Registries.DIMENSION_TYPE);
         final ResourceLocation dimKey = registry.getKey(level.dimensionType());
         if (dimKey != null && "world_blender".equals(dimKey.getNamespace())) {
             return;

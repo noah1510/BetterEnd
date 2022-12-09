@@ -10,7 +10,6 @@ import org.betterx.betterend.blocks.JellyshroomCapBlock;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
-import com.mojang.math.Vector3f;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.Mth;
@@ -22,6 +21,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 import net.minecraft.world.level.material.Material;
 
 import com.google.common.collect.Lists;
+import org.joml.Vector3f;
 
 import java.util.List;
 import java.util.function.Function;

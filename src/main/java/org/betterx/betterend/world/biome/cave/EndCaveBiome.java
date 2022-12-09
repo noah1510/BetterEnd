@@ -16,11 +16,12 @@ import org.betterx.betterend.world.biome.EndBiome;
 import org.betterx.betterend.world.features.terrain.caves.CaveChunkPopulatorFeature;
 import org.betterx.betterend.world.features.terrain.caves.CaveChunkPopulatorFeatureConfig;
 
-import com.mojang.datafixers.util.Function15;
+import com.mojang.datafixers.util.Function14;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.KeyDispatchDataCodec;
 import net.minecraft.util.RandomSource;
@@ -36,7 +37,7 @@ import java.util.Optional;
 public class EndCaveBiome extends EndBiome {
     public static final Codec<EndCaveBiome> CODEC = simpleCaveBiomeCodec(EndCaveBiome::new);
 
-    public static <T extends EndCaveBiome> Codec<T> simpleCaveBiomeCodec(Function15<Float, Float, Float, Integer, Boolean, Optional<ResourceLocation>, ResourceLocation, Optional<List<Climate.ParameterPoint>>, Optional<ResourceLocation>, Optional<WeightedList<ResourceLocation>>, Optional<String>, Boolean, SurfaceMaterialProvider, WeightedList<Holder<ConfiguredFeature<?, ?>>>, WeightedList<Holder<ConfiguredFeature<?, ?>>>, T> builder) {
+    public static <T extends EndCaveBiome> Codec<T> simpleCaveBiomeCodec(Function14<Float, Float, Float, Integer, Boolean, Optional<ResourceLocation>, ResourceLocation, Optional<List<Climate.ParameterPoint>>, Optional<ResourceLocation>, Optional<String>, Boolean, SurfaceMaterialProvider, WeightedList<Holder<ConfiguredFeature<?, ?>>>, WeightedList<Holder<ConfiguredFeature<?, ?>>>, T> builder) {
         return RecordCodecBuilder.create(instance ->
                 codecWithSettings(
                         instance,
@@ -71,7 +72,6 @@ public class EndCaveBiome extends EndBiome {
             ResourceLocation biomeID,
             Optional<List<Climate.ParameterPoint>> parameterPoints,
             Optional<ResourceLocation> biomeParent,
-            Optional<WeightedList<ResourceLocation>> subbiomes,
             Optional<String> intendedType,
             boolean hasCaves,
             SurfaceMaterialProvider surface,
@@ -88,7 +88,6 @@ public class EndCaveBiome extends EndBiome {
                 biomeID,
                 parameterPoints,
                 biomeParent,
-                subbiomes,
                 intendedType,
                 hasCaves,
                 surface
@@ -104,19 +103,19 @@ public class EndCaveBiome extends EndBiome {
 
         @Override
         protected void addCustomBuildData(BCLBiomeBuilder builder) {
-
+            builder.type(EndBiomes.END_CAVE);
             BCLFeature<CaveChunkPopulatorFeature, CaveChunkPopulatorFeatureConfig> feature = BCLFeatureBuilder
                     .start(
                             BetterEnd.makeID(ID.getPath() + "_cave_populator"),
                             EndFeatures.CAVE_CHUNK_POPULATOR
                     )
                     .configuration(new CaveChunkPopulatorFeatureConfig(ID))
-                    .buildAndRegister()
+                    .build()
                     .place()
                     .decoration(GenerationStep.Decoration.UNDERGROUND_DECORATION)
                     .count(1)
                     .onlyInBiome()
-                    .buildAndRegister();
+                    .build();
 
             builder.feature(feature)
                    .intendedType(EndBiomes.END_CAVE)
@@ -143,8 +142,8 @@ public class EndCaveBiome extends EndBiome {
     private final WeightedList<Holder<? extends ConfiguredFeature<?, ?>>> floorFeatures = new WeightedList<>();
     private final WeightedList<Holder<? extends ConfiguredFeature<?, ?>>> ceilFeatures = new WeightedList<>();
 
-    public EndCaveBiome(ResourceLocation biomeID, Biome biome, BCLBiomeSettings settings) {
-        super(biomeID, biome, settings);
+    public EndCaveBiome(ResourceKey<Biome> biomeID, BCLBiomeSettings settings) {
+        super(biomeID, settings);
     }
 
     public void addFloorFeature(Holder<? extends ConfiguredFeature<?, ?>> feature, float weight) {

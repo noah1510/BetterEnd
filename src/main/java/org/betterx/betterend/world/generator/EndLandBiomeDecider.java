@@ -6,7 +6,7 @@ import org.betterx.bclib.api.v2.generator.BiomeDecider;
 import org.betterx.bclib.api.v2.generator.config.BCLEndBiomeSourceConfig;
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
 
-import net.minecraft.core.Registry;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.BiomeSource;
 
@@ -15,7 +15,7 @@ public class EndLandBiomeDecider extends BiomeDecider {
         this(null);
     }
 
-    protected EndLandBiomeDecider(Registry<Biome> biomeRegistry) {
+    protected EndLandBiomeDecider(HolderGetter<Biome> biomeRegistry) {
         super(biomeRegistry, (biome) -> false);
     }
 

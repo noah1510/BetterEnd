@@ -7,7 +7,7 @@ import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndItems;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;
@@ -23,6 +23,8 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+
+import org.joml.Vector3f;
 
 @Environment(EnvType.CLIENT)
 public class PedestalItemRenderer<T extends PedestalBlockEntity> implements BlockEntityRenderer<T> {
@@ -84,7 +86,7 @@ public class PedestalItemRenderer<T extends PedestalBlockEntity> implements Bloc
             EternalCrystalRenderer.render(age, tickDelta, matrices, vertexConsumers, light);
         } else {
             float rotation = (age + tickDelta) / 25.0F + 6.0F;
-            matrices.mulPose(Vector3f.YP.rotation(rotation));
+            matrices.mulPose(Axis.YP.rotation(rotation));
             minecraft.getItemRenderer()
                      .render(
                              activeItem,

@@ -7,9 +7,6 @@ import org.betterx.betterend.BetterEnd;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
-import com.mojang.math.Matrix4f;
-import com.mojang.math.Quaternion;
-import com.mojang.math.Vector3f;
 import net.minecraft.client.renderer.FogRenderer;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
@@ -18,6 +15,10 @@ import net.minecraft.world.level.levelgen.LegacyRandomSource;
 
 import net.fabricmc.fabric.api.client.rendering.v1.DimensionRenderingRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderContext;
+
+import org.joml.Matrix4f;
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
 
 public class BetterEndSkyRenderer implements DimensionRenderingRegistry.SkyRenderer {
     @FunctionalInterface
@@ -90,7 +91,7 @@ public class BetterEndSkyRenderer implements DimensionRenderingRegistry.SkyRende
 
         if (blindA > 0) {
             matrices.pushPose();
-            matrices.mulPose(new Quaternion(0, time, 0, false));
+            matrices.mulPose(new Quaternionf().rotationXYZ(0, time, 0));
             RenderSystem.setShaderTexture(0, HORIZON);
             renderBuffer(
                     matrices,
@@ -105,7 +106,7 @@ public class BetterEndSkyRenderer implements DimensionRenderingRegistry.SkyRende
             matrices.popPose();
 
             matrices.pushPose();
-            matrices.mulPose(new Quaternion(0, -time, 0, false));
+            matrices.mulPose(new Quaternionf().rotationXYZ(0, -time, 0));
             RenderSystem.setShaderTexture(0, NEBULA_1);
             renderBuffer(
                     matrices,
@@ -120,7 +121,7 @@ public class BetterEndSkyRenderer implements DimensionRenderingRegistry.SkyRende
             matrices.popPose();
 
             matrices.pushPose();
-            matrices.mulPose(new Quaternion(0, time2, 0, false));
+            matrices.mulPose(new Quaternionf().rotationXYZ(0, time2, 0));
             RenderSystem.setShaderTexture(0, NEBULA_2);
             renderBuffer(
                     matrices,
@@ -137,7 +138,7 @@ public class BetterEndSkyRenderer implements DimensionRenderingRegistry.SkyRende
             RenderSystem.setShaderTexture(0, STARS);
 
             matrices.pushPose();
-            matrices.mulPose(axis3.rotation(time));
+            matrices.mulPose(new Quaternionf().setAngleAxis(time, axis3.x, axis3.y, axis3.z));
             renderBuffer(
                     matrices,
                     projectionMatrix,
@@ -151,7 +152,7 @@ public class BetterEndSkyRenderer implements DimensionRenderingRegistry.SkyRende
             matrices.popPose();
 
             matrices.pushPose();
-            matrices.mulPose(axis4.rotation(time2));
+            matrices.mulPose(new Quaternionf().setAngleAxis(time2, axis4.x, axis4.y, axis4.z));
             renderBuffer(matrices, projectionMatrix, stars4, DefaultVertexFormat.POSITION_TEX, 1F, 1F, 1F, blind06);
             matrices.popPose();
         }
@@ -176,12 +177,12 @@ public class BetterEndSkyRenderer implements DimensionRenderingRegistry.SkyRende
 
         if (blindA > 0) {
             matrices.pushPose();
-            matrices.mulPose(axis1.rotation(time3));
+            matrices.mulPose(new Quaternionf().setAngleAxis(time3, axis1.x, axis1.y, axis1.z));
             renderBuffer(matrices, projectionMatrix, stars1, DefaultVertexFormat.POSITION, 1, 1, 1, blind06);
             matrices.popPose();
 
             matrices.pushPose();
-            matrices.mulPose(axis2.rotation(time2));
+            matrices.mulPose(new Quaternionf().setAngleAxis(time2, axis2.x, axis2.y, axis2.z));
             renderBuffer(
                     matrices,
                     projectionMatrix,

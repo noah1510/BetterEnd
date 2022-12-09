@@ -114,14 +114,14 @@ public class TerrainGenerator {
         if (biomeSource == null) {
             return 0;
         }
-        if (getBiome(biomeSource, x, z).getTerrainHeight() < 0.1F) {
+        if (getBiome(biomeSource, x, z).settings.getTerrainHeight() < 0.1F) {
             return 0F;
         }
         float depth = 0F;
         for (int i = 0; i < OFFS.length; i++) {
             int px = x + OFFS[i].x;
             int pz = z + OFFS[i].y;
-            depth += getBiome(biomeSource, px, pz).getTerrainHeight() * COEF[i];
+            depth += getBiome(biomeSource, px, pz).settings.getTerrainHeight() * COEF[i];
         }
         return depth;
     }

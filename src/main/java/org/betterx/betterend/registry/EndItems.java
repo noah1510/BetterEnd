@@ -17,6 +17,7 @@ import org.betterx.betterend.item.tool.EndHammerItem;
 import org.betterx.betterend.item.tool.EndPickaxe;
 import org.betterx.betterend.tab.CreativeTabs;
 
+import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -279,7 +280,10 @@ public class EndItems {
             "bucket_end_fish",
             new EndBucketItem(EndEntities.END_FISH.type())
     );
-    public final static Item BUCKET_CUBOZOA = registerEndItem("bucket_cubozoa", new EndBucketItem(EndEntities.CUBOZOA.type()));
+    public final static Item BUCKET_CUBOZOA = registerEndItem(
+            "bucket_cubozoa",
+            new EndBucketItem(EndEntities.CUBOZOA.type())
+    );
     public final static Item SWEET_BERRY_JELLY = registerEndFood("sweet_berry_jelly", 8, 0.7F);
     public final static Item SHADOW_BERRY_JELLY = registerEndFood(
             "shadow_berry_jelly",
@@ -302,8 +306,8 @@ public class EndItems {
         return BaseRegistry.getModItems(BetterEnd.MOD_ID);
     }
 
-    public static Item registerEndDisc(String name, int power, SoundEvent sound, int lengthInSeconds) {
-        return getItemRegistry().registerDisc(BetterEnd.makeID(name), power, sound, lengthInSeconds);
+    public static Item registerEndDisc(String name, int power, Holder<SoundEvent> sound, int lengthInSeconds) {
+        return getItemRegistry().registerDisc(BetterEnd.makeID(name), power, sound.value(), lengthInSeconds);
     }
 
     public static Item registerEndItem(String name) {

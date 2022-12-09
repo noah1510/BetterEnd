@@ -8,7 +8,7 @@ import org.betterx.betterend.rituals.EternalRitual;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -60,7 +60,7 @@ public class EternalPedestal extends PedestalBlock {
                 world.setBlockAndUpdate(pos, updatedState.setValue(ACTIVATED, false).setValue(HAS_LIGHT, false));
             } else {
                 ItemStack itemStack = pedestal.getItem(0);
-                ResourceLocation id = Registry.ITEM.getKey(itemStack.getItem());
+                ResourceLocation id = BuiltInRegistries.ITEM.getKey(itemStack.getItem());
                 if (EndPortals.isAvailableItem(id)) {
                     world.setBlockAndUpdate(pos, updatedState.setValue(ACTIVATED, true).setValue(HAS_LIGHT, true));
                     if (pedestal.hasRitual()) {
