@@ -26,6 +26,7 @@ import org.betterx.worlds.together.world.event.WorldBootstrap;
 
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
@@ -1072,7 +1073,7 @@ public class EndFeatures {
                     BCLFeature.CONDITION
             )
             .configuration(new ConditionFeatureConfig(
-                    InBiome.matchingID(EndBiomes.GLOWING_GRASSLANDS.getID()),
+                    InBiome.matchingID(EndBiomes.GLOWING_GRASSLANDS.location()),
                     BONEMEAL_END_MOSS_GLOWING_GRASSLANDS,
                     BONEMEAL_END_MOSS_NOT_GLOWING_GRASSLANDS
             ))
@@ -1101,7 +1102,7 @@ public class EndFeatures {
                     BCLFeature.CONDITION
             )
             .configuration(new ConditionFeatureConfig(
-                    InBiome.matchingID(EndBiomes.LANTERN_WOODS.getID()),
+                    InBiome.matchingID(EndBiomes.LANTERN_WOODS.location()),
                     BONEMEAL_RUTISCUS_LANTERN_WOODS,
                     BONEMEAL_RUTISCUS_NOT_LANTERN_WOODS
             ))
@@ -1175,12 +1176,17 @@ public class EndFeatures {
     public static <F extends Feature<FC>, FC extends FeatureConfiguration> F inlineBuild(String name, F feature) {
         ResourceLocation l = BetterEnd.makeID(name);
 
+        final Registry<Feature<?>> features;
         if (WorldBootstrap.getLastRegistryAccess() != null) {
-            Registry<Feature<?>> features = WorldBootstrap.getLastRegistryAccess().registryOrThrow(Registries.FEATURE);
-            if (features.containsKey(l)) {
-                return (F) features.get(l);
-            }
+            features = WorldBootstrap.getLastRegistryAccess().registryOrThrow(Registries.FEATURE);
+        } else {
+            features = BuiltInRegistries.FEATURE;
         }
+
+        if (features.containsKey(l)) {
+            return (F) features.get(l);
+        }
+
 
         return BCLFeature.register(l, feature);
     }

@@ -12,21 +12,21 @@ import net.minecraft.advancements.critereon.LocationPredicate;
 import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
-import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
-import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
-import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootTableReference;
 import net.minecraft.world.level.storage.loot.functions.EnchantWithLevelsFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemDamageFunction;
 import net.minecraft.world.level.storage.loot.predicates.LocationCheck;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 
@@ -44,27 +44,27 @@ public class LootTableUtil {
     private static final LootItemCondition.Builder IN_END
             = LocationCheck.checkLocation(LocationPredicate.Builder.location().setDimension(Level.END));
     private static final LootItemCondition.Builder IN_FOGGY_MUSHROOMLAND
-            = LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiome(EndBiomes.FOGGY_MUSHROOMLAND.getBiomeKey()));
+            = LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiome(EndBiomes.FOGGY_MUSHROOMLAND));
     private static final LootItemCondition.Builder IN_CHORUS_FOREST
-            = LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiome(EndBiomes.CHORUS_FOREST.getBiomeKey()));
+            = LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiome(EndBiomes.CHORUS_FOREST));
     private static final LootItemCondition.Builder IN_AMBER_LAND
-            = LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiome(EndBiomes.AMBER_LAND.getBiomeKey()));
+            = LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiome(EndBiomes.AMBER_LAND));
     private static final LootItemCondition.Builder IN_GLOWING_GRASSLANDS
-            = LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiome(EndBiomes.GLOWING_GRASSLANDS.getBiomeKey()));
+            = LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiome(EndBiomes.GLOWING_GRASSLANDS));
     private static final LootItemCondition.Builder IN_LANTERN_WOODS
-            = LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiome(EndBiomes.LANTERN_WOODS.getBiomeKey()));
+            = LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiome(EndBiomes.LANTERN_WOODS));
     private static final LootItemCondition.Builder IN_MEGALAKE
-            = LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiome(EndBiomes.MEGALAKE.getBiomeKey()));
+            = LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiome(EndBiomes.MEGALAKE));
     private static final LootItemCondition.Builder IN_MEGALAKE_GROVE
-            = LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiome(EndBiomes.MEGALAKE_GROVE.getBiomeKey()));
+            = LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiome(EndBiomes.MEGALAKE_GROVE));
     private static final LootItemCondition.Builder IN_NEON_OASIS
-            = LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiome(EndBiomes.NEON_OASIS.getBiomeKey()));
+            = LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiome(EndBiomes.NEON_OASIS));
     private static final LootItemCondition.Builder IN_SHADOW_FOREST
-            = LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiome(EndBiomes.SHADOW_FOREST.getBiomeKey()));
+            = LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiome(EndBiomes.SHADOW_FOREST));
     private static final LootItemCondition.Builder IN_SULPHUR_SPRINGS
-            = LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiome(EndBiomes.SULPHUR_SPRINGS.getBiomeKey()));
+            = LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiome(EndBiomes.SULPHUR_SPRINGS));
     private static final LootItemCondition.Builder IN_UMBRELLA_JUNGLE
-            = LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiome(EndBiomes.UMBRELLA_JUNGLE.getBiomeKey()));
+            = LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiome(EndBiomes.UMBRELLA_JUNGLE));
 
     public static void init() {
         LootTableEvents.MODIFY.register((resourceManager, lootManager, id, table, setter) -> {
@@ -85,39 +85,54 @@ public class LootTableUtil {
             } else if (BuiltInLootTables.FISHING.equals(id)) {
                 table.modifyPools((modifier) -> modifier.when(IN_END.invert()));
                 table.withPool(LootPool.lootPool().when(IN_END).setRolls(ConstantValue.exactly(1.0F))
-                        .add(LootTableReference.lootTableReference(FISHING_FISH).setWeight(85).setQuality(-1))
-                        .add(LootTableReference.lootTableReference(FISHING_TREASURE).setWeight(5).setQuality(2))
-                        .add(LootTableReference.lootTableReference(FISHING_JUNK).setWeight(10).setQuality(-2)));
+                                       .add(LootTableReference.lootTableReference(FISHING_FISH)
+                                                              .setWeight(85)
+                                                              .setQuality(-1))
+                                       .add(LootTableReference.lootTableReference(FISHING_TREASURE)
+                                                              .setWeight(5)
+                                                              .setQuality(2))
+                                       .add(LootTableReference.lootTableReference(FISHING_JUNK)
+                                                              .setWeight(10)
+                                                              .setQuality(-2)));
             } else if (id.getNamespace().equals(BetterEnd.MOD_ID)) {
                 if (FISHING_FISH.equals(id)) {
                     LootPool.Builder builder = LootPool.lootPool()
-                            .add(LootItem.lootTableItem(EndItems.END_FISH_RAW));
+                                                       .add(LootItem.lootTableItem(EndItems.END_FISH_RAW));
                     table.withPool(builder);
                     return;
                 } else if (FISHING_JUNK.equals(id)) {
                     LootPool.Builder builder = LootPool.lootPool()
-                            .add(LootItem.lootTableItem(EndItems.END_LILY_LEAF))
-                            .add(LootItem.lootTableItem(Items.ENDER_PEARL))
-                            .add(LootItem.lootTableItem(Items.CHORUS_FRUIT))
-                            .add(LootItem.lootTableItem(EndItems.GELATINE))
-                            .add(LootItem.lootTableItem(EndItems.CRYSTAL_SHARDS))
-                            .add(LootItem.lootTableItem(EndItems.HYDRALUX_PETAL).when(IN_SULPHUR_SPRINGS));
+                                                       .add(LootItem.lootTableItem(EndItems.END_LILY_LEAF))
+                                                       .add(LootItem.lootTableItem(Items.ENDER_PEARL))
+                                                       .add(LootItem.lootTableItem(Items.CHORUS_FRUIT))
+                                                       .add(LootItem.lootTableItem(EndItems.GELATINE))
+                                                       .add(LootItem.lootTableItem(EndItems.CRYSTAL_SHARDS))
+                                                       .add(LootItem.lootTableItem(EndItems.HYDRALUX_PETAL)
+                                                                    .when(IN_SULPHUR_SPRINGS));
                     addCharnia(builder);
                     table.withPool(builder);
                     return;
                 } else if (FISHING_TREASURE.equals(id)) {
                     LootPool.Builder builder = LootPool.lootPool()
-                            .add(LootItem.lootTableItem(EndBlocks.TERMINITE.swordBlade))
-                            .add(LootItem.lootTableItem(EndBlocks.TERMINITE.forgedPlate))
-                            .add(LootItem.lootTableItem(EndBlocks.MENGER_SPONGE))
-                            .add(LootItem.lootTableItem(Items.BOW)
-                                    .apply(SetItemDamageFunction.setDamage(UniformGenerator.between(0.0F, 0.25F)))
-                                    .apply(EnchantWithLevelsFunction.enchantWithLevels(ConstantValue.exactly(30.0F)).allowTreasure()))
-                            .add(LootItem.lootTableItem(Items.FISHING_ROD)
-                                    .apply(SetItemDamageFunction.setDamage(UniformGenerator.between(0.0F, 0.25F)))
-                                    .apply(EnchantWithLevelsFunction.enchantWithLevels(ConstantValue.exactly(30.0F)).allowTreasure()))
-                            .add(LootItem.lootTableItem(Items.BOOK)
-                                    .apply(EnchantWithLevelsFunction.enchantWithLevels(ConstantValue.exactly(30.0F)).allowTreasure()));
+                                                       .add(LootItem.lootTableItem(EndBlocks.TERMINITE.swordBlade))
+                                                       .add(LootItem.lootTableItem(EndBlocks.TERMINITE.forgedPlate))
+                                                       .add(LootItem.lootTableItem(EndBlocks.MENGER_SPONGE))
+                                                       .add(LootItem.lootTableItem(Items.BOW)
+                                                                    .apply(SetItemDamageFunction.setDamage(
+                                                                            UniformGenerator.between(0.0F, 0.25F)))
+                                                                    .apply(EnchantWithLevelsFunction.enchantWithLevels(
+                                                                                                            ConstantValue.exactly(30.0F))
+                                                                                                    .allowTreasure()))
+                                                       .add(LootItem.lootTableItem(Items.FISHING_ROD)
+                                                                    .apply(SetItemDamageFunction.setDamage(
+                                                                            UniformGenerator.between(0.0F, 0.25F)))
+                                                                    .apply(EnchantWithLevelsFunction.enchantWithLevels(
+                                                                                                            ConstantValue.exactly(30.0F))
+                                                                                                    .allowTreasure()))
+                                                       .add(LootItem.lootTableItem(Items.BOOK)
+                                                                    .apply(EnchantWithLevelsFunction.enchantWithLevels(
+                                                                                                            ConstantValue.exactly(30.0F))
+                                                                                                    .allowTreasure()));
                     table.withPool(builder);
                     return;
                 }
@@ -181,17 +196,20 @@ public class LootTableUtil {
 
     private static void addCharnia(LootPool.Builder pool) {
         pool.add(LootItem.lootTableItem(EndBlocks.CHARNIA_CYAN)
-                .when(IN_GLOWING_GRASSLANDS.or(IN_MEGALAKE).or(IN_MEGALAKE_GROVE).or(IN_NEON_OASIS)));
+                         .when(IN_GLOWING_GRASSLANDS.or(IN_MEGALAKE).or(IN_MEGALAKE_GROVE).or(IN_NEON_OASIS)));
         pool.add(LootItem.lootTableItem(EndBlocks.CHARNIA_LIGHT_BLUE)
-                .when(IN_FOGGY_MUSHROOMLAND.or(IN_GLOWING_GRASSLANDS).or(IN_MEGALAKE).or(IN_MEGALAKE_GROVE).or(IN_UMBRELLA_JUNGLE)));
+                         .when(IN_FOGGY_MUSHROOMLAND.or(IN_GLOWING_GRASSLANDS)
+                                                    .or(IN_MEGALAKE)
+                                                    .or(IN_MEGALAKE_GROVE)
+                                                    .or(IN_UMBRELLA_JUNGLE)));
         pool.add(LootItem.lootTableItem(EndBlocks.CHARNIA_GREEN)
-                .when(IN_GLOWING_GRASSLANDS.or(IN_NEON_OASIS).or(IN_SULPHUR_SPRINGS).or(IN_UMBRELLA_JUNGLE)));
+                         .when(IN_GLOWING_GRASSLANDS.or(IN_NEON_OASIS).or(IN_SULPHUR_SPRINGS).or(IN_UMBRELLA_JUNGLE)));
         pool.add(LootItem.lootTableItem(EndBlocks.CHARNIA_RED)
-                .when(IN_AMBER_LAND.or(IN_LANTERN_WOODS).or(IN_NEON_OASIS)));
+                         .when(IN_AMBER_LAND.or(IN_LANTERN_WOODS).or(IN_NEON_OASIS)));
         pool.add(LootItem.lootTableItem(EndBlocks.CHARNIA_ORANGE)
-                .when(IN_AMBER_LAND.or(IN_LANTERN_WOODS).or(IN_SULPHUR_SPRINGS)));
+                         .when(IN_AMBER_LAND.or(IN_LANTERN_WOODS).or(IN_SULPHUR_SPRINGS)));
         pool.add(LootItem.lootTableItem(EndBlocks.CHARNIA_PURPLE)
-                .when(IN_CHORUS_FOREST.or(IN_SHADOW_FOREST)));
+                         .when(IN_CHORUS_FOREST.or(IN_SHADOW_FOREST)));
     }
 
     private static void addCommonItems(LootTable.Builder table) {

@@ -150,6 +150,10 @@ public class EndBiome extends BCLBiome implements SurfaceMaterialProvider {
             this.ID = BetterEnd.makeID(name);
         }
 
+        protected Config(ResourceLocation ID) {
+            this.ID = ID;
+        }
+
         protected abstract void addCustomBuildData(BCLBiomeBuilder builder);
 
         public BiomeSupplier<EndBiome> getSupplier() {

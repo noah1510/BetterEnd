@@ -22,33 +22,33 @@ import java.util.concurrent.CompletableFuture;
 
 public class EndBiomesDataProvider extends TagDataProvider<Biome> {
     // Better End Land
-    public static final EndBiome FOGGY_MUSHROOMLAND = registerBiome(new FoggyMushroomlandBiome(), BiomeType.END_LAND);
-    public static final EndBiome CHORUS_FOREST = registerBiome(new ChorusForestBiome(), BiomeType.END_LAND);
-    public static final EndBiome DUST_WASTELANDS = registerBiome(new DustWastelandsBiome(), BiomeType.END_LAND);
-    public static final EndBiome NEON_OASIS = registerSubBiome(new NeonOasisBiome(), DUST_WASTELANDS);
-    public static final EndBiome PAINTED_MOUNTAINS = registerSubBiome(new PaintedMountainsBiome(), DUST_WASTELANDS);
-    public static final EndBiome MEGALAKE = registerBiome(new MegalakeBiome(), BiomeType.END_LAND);
-    public static final EndBiome MEGALAKE_GROVE = registerSubBiome(new MegalakeGroveBiome(), MEGALAKE);
-    public static final EndBiome CRYSTAL_MOUNTAINS = registerBiome(new CrystalMountainsBiome(), BiomeType.END_LAND);
-    public static final EndBiome SHADOW_FOREST = registerBiome(new ShadowForestBiome(), BiomeType.END_LAND);
-    public static final EndBiome AMBER_LAND = registerBiome(new AmberLandBiome(), BiomeType.END_LAND);
-    public static final EndBiome BLOSSOMING_SPIRES = registerBiome(new BlossomingSpiresBiome(), BiomeType.END_LAND);
-    public static final EndBiome SULPHUR_SPRINGS = registerBiome(new SulphurSpringsBiome(), BiomeType.END_LAND);
-    public static final EndBiome UMBRELLA_JUNGLE = registerBiome(new UmbrellaJungleBiome(), BiomeType.END_LAND);
-    public static final EndBiome GLOWING_GRASSLANDS = registerBiome(new GlowingGrasslandsBiome(), BiomeType.END_LAND);
-    public static final EndBiome DRAGON_GRAVEYARDS = registerBiome(new DragonGraveyardsBiome(), BiomeType.END_LAND);
-    public static final EndBiome DRY_SHRUBLAND = registerBiome(new DryShrublandBiome(), BiomeType.END_LAND);
-    public static final EndBiome LANTERN_WOODS = registerBiome(new LanternWoodsBiome(), BiomeType.END_LAND);
-    public static final EndBiome UMBRA_VALLEY = registerBiome(new UmbraValleyBiome(), BiomeType.END_LAND);
+    private static final EndBiome FOGGY_MUSHROOMLAND = registerBiome(new FoggyMushroomlandBiome(), BiomeType.END_LAND);
+    private static final EndBiome CHORUS_FOREST = registerBiome(new ChorusForestBiome(), BiomeType.END_LAND);
+    private static final EndBiome DUST_WASTELANDS = registerBiome(new DustWastelandsBiome(), BiomeType.END_LAND);
+    private static final EndBiome NEON_OASIS = registerSubBiome(new NeonOasisBiome(), DUST_WASTELANDS);
+    private static final EndBiome PAINTED_MOUNTAINS = registerSubBiome(new PaintedMountainsBiome(), DUST_WASTELANDS);
+    private static final EndBiome MEGALAKE = registerBiome(new MegalakeBiome(), BiomeType.END_LAND);
+    private static final EndBiome MEGALAKE_GROVE = registerSubBiome(new MegalakeGroveBiome(), MEGALAKE);
+    private static final EndBiome CRYSTAL_MOUNTAINS = registerBiome(new CrystalMountainsBiome(), BiomeType.END_LAND);
+    private static final EndBiome SHADOW_FOREST = registerBiome(new ShadowForestBiome(), BiomeType.END_LAND);
+    private static final EndBiome AMBER_LAND = registerBiome(new AmberLandBiome(), BiomeType.END_LAND);
+    private static final EndBiome BLOSSOMING_SPIRES = registerBiome(new BlossomingSpiresBiome(), BiomeType.END_LAND);
+    private static final EndBiome SULPHUR_SPRINGS = registerBiome(new SulphurSpringsBiome(), BiomeType.END_LAND);
+    private static final EndBiome UMBRELLA_JUNGLE = registerBiome(new UmbrellaJungleBiome(), BiomeType.END_LAND);
+    private static final EndBiome GLOWING_GRASSLANDS = registerBiome(new GlowingGrasslandsBiome(), BiomeType.END_LAND);
+    private static final EndBiome DRAGON_GRAVEYARDS = registerBiome(new DragonGraveyardsBiome(), BiomeType.END_LAND);
+    private static final EndBiome DRY_SHRUBLAND = registerBiome(new DryShrublandBiome(), BiomeType.END_LAND);
+    private static final EndBiome LANTERN_WOODS = registerBiome(new LanternWoodsBiome(), BiomeType.END_LAND);
+    private static final EndBiome UMBRA_VALLEY = registerBiome(new UmbraValleyBiome(), BiomeType.END_LAND);
     // Better End Void
-    public static final EndBiome ICE_STARFIELD = registerBiome(new BiomeIceStarfield(), BiomeType.END_VOID);
+    private static final EndBiome ICE_STARFIELD = registerBiome(new BiomeIceStarfield(), BiomeType.END_VOID);
     // Better End Caves
-    public static final EndCaveBiome EMPTY_END_CAVE = registerCaveBiome(new EmptyEndCaveBiome());
-    public static final EndCaveBiome EMPTY_SMARAGDANT_CAVE = registerCaveBiome(new EmptySmaragdantCaveBiome());
-    public static final EndCaveBiome LUSH_SMARAGDANT_CAVE = registerCaveBiome(new LushSmaragdantCaveBiome());
-    public static final EndCaveBiome EMPTY_AURORA_CAVE = registerCaveBiome(new EmptyAuroraCaveBiome());
-    public static final EndCaveBiome LUSH_AURORA_CAVE = registerCaveBiome(new LushAuroraCaveBiome());
-    public static final EndCaveBiome JADE_CAVE = registerCaveBiome(new JadeCaveBiome());
+    private static final EndCaveBiome EMPTY_END_CAVE = registerCaveBiome(new EmptyEndCaveBiome());
+    private static final EndCaveBiome EMPTY_SMARAGDANT_CAVE = registerCaveBiome(new EmptySmaragdantCaveBiome());
+    private static final EndCaveBiome LUSH_SMARAGDANT_CAVE = registerCaveBiome(new LushSmaragdantCaveBiome());
+    private static final EndCaveBiome EMPTY_AURORA_CAVE = registerCaveBiome(new EmptyAuroraCaveBiome());
+    private static final EndCaveBiome LUSH_AURORA_CAVE = registerCaveBiome(new LushAuroraCaveBiome());
+    private static final EndCaveBiome JADE_CAVE = registerCaveBiome(new JadeCaveBiome());
 
     /**
      * Constructs a new {@link FabricTagProvider} with the default computed path.

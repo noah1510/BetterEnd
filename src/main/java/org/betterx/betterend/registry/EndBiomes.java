@@ -13,6 +13,8 @@ import org.betterx.betterend.world.biome.cave.*;
 import org.betterx.betterend.world.generator.GeneratorOptions;
 
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.biome.Biome;
@@ -22,6 +24,24 @@ public class EndBiomes {
     public static BiomePicker CAVE_BIOMES = null;
     private static HexBiomeMap caveBiomeMap;
     private static long lastSeed;
+
+    public static final ResourceKey<Biome> AMBER_LAND = cKey("amber_land");
+    public static final ResourceKey<Biome> BLOSSOMING_SPIRES = cKey("blossoming_spires");
+    public static final ResourceKey<Biome> CHORUS_FOREST = cKey("chorus_forest");
+    public static final ResourceKey<Biome> FOGGY_MUSHROOMLAND = cKey("foggy_mushroomland");
+    public static final ResourceKey<Biome> GLOWING_GRASSLANDS = cKey("glowing_grasslands");
+    public static final ResourceKey<Biome> LANTERN_WOODS = cKey("lantern_woods");
+    public static final ResourceKey<Biome> MEGALAKE = cKey("megalake");
+    public static final ResourceKey<Biome> MEGALAKE_GROVE = cKey("megalake_grove");
+    public static final ResourceKey<Biome> NEON_OASIS = cKey("neon_oasis");
+    public static final ResourceKey<Biome> SHADOW_FOREST = cKey("shadow_forest");
+    public static final ResourceKey<Biome> SULPHUR_SPRINGS = cKey("sulphur_springs");
+    public static final ResourceKey<Biome> UMBRELLA_JUNGLE = cKey("umbrella_jungle");
+
+
+    private static ResourceKey<Biome> cKey(String path) {
+        return ResourceKey.create(Registries.BIOME, BetterEnd.makeID(path));
+    }
 
     public static void register() {
         BCLBiomeRegistry.registerBiomeCodec(BetterEnd.makeID("biome"), EndBiome.KEY_CODEC);

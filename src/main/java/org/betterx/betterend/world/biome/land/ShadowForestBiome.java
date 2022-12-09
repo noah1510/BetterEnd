@@ -2,10 +2,7 @@ package org.betterx.betterend.world.biome.land;
 
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
 import org.betterx.bclib.interfaces.SurfaceMaterialProvider;
-import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.betterend.registry.EndEntities;
-import org.betterx.betterend.registry.EndFeatures;
-import org.betterx.betterend.registry.EndSounds;
+import org.betterx.betterend.registry.*;
 import org.betterx.betterend.world.biome.EndBiome;
 
 import net.minecraft.core.particles.ParticleTypes;
@@ -15,7 +12,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class ShadowForestBiome extends EndBiome.Config {
     public ShadowForestBiome() {
-        super("shadow_forest");
+        super(EndBiomes.SHADOW_FOREST.location());
     }
 
     @Override

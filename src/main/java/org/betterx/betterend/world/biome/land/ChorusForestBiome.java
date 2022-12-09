@@ -2,10 +2,7 @@ package org.betterx.betterend.world.biome.land;
 
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
 import org.betterx.bclib.interfaces.SurfaceMaterialProvider;
-import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.betterend.registry.EndEntities;
-import org.betterx.betterend.registry.EndFeatures;
-import org.betterx.betterend.registry.EndSounds;
+import org.betterx.betterend.registry.*;
 import org.betterx.betterend.world.biome.EndBiome;
 
 import net.minecraft.core.particles.ParticleTypes;
@@ -17,7 +14,7 @@ import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
 
 public class ChorusForestBiome extends EndBiome.Config {
     public ChorusForestBiome() {
-        super("chorus_forest");
+        super(EndBiomes.CHORUS_FOREST.location());
     }
 
     @Override

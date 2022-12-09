@@ -51,7 +51,8 @@ public class CubozoaEntity extends AbstractSchoolingFish {
     ) {
         SpawnGroupData data = super.finalizeSpawn(world, difficulty, spawnReason, entityData, entityTag);
 
-        if (BiomeAPI.getBiome(world.getBiome(blockPosition())).equals(EndBiomes.SULPHUR_SPRINGS)) {
+        if (BiomeAPI.getBiome(world.getBiome(blockPosition())).is(EndBiomes.SULPHUR_SPRINGS)) {
+            //TODO: 1.19.3 test if this still works
             this.entityData.set(VARIANT, (byte) 1);
         }
 

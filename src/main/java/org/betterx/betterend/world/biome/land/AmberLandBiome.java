@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class AmberLandBiome extends EndBiome.Config {
     public AmberLandBiome() {
-        super("amber_land");
+        super(EndBiomes.AMBER_LAND.location());
     }
 
     @Override

@@ -18,8 +18,9 @@ import net.minecraft.world.level.levelgen.placement.CaveSurface;
 import java.util.List;
 
 public class SulphurSpringsBiome extends EndBiome.Config {
+
     public SulphurSpringsBiome() {
-        super("sulphur_springs");
+        super(EndBiomes.SULPHUR_SPRINGS.location());
     }
 
     @Override
