@@ -33,6 +33,7 @@ public class BetterEnd implements ModInitializer {
     @Override
     public void onInitialize() {
         WorldConfig.registerModCache(MOD_ID);
+        EndNumericProviders.register();
         EndPortals.loadPortals();
         EndSounds.register();
         EndMenuTypes.ensureStaticallyLoaded();
