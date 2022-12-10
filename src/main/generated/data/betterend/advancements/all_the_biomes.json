@@ -468,88 +468,88 @@
   },
   "requirements": [
     [
-      "betterend:ice_starfield"
-    ],
-    [
-      "betterend:dragon_graveyards"
-    ],
-    [
-      "betterend:crystal_mountains"
-    ],
-    [
-      "bclib:the_blue"
-    ],
-    [
-      "betterend:glowing_grasslands"
-    ],
-    [
-      "betterend:chorus_forest"
-    ],
-    [
-      "betterend:dry_shrubland"
-    ],
-    [
-      "betterend:umbrella_jungle"
+      "betterend:sulphur_springs"
     ],
     [
       "betterend:neon_oasis"
     ],
     [
-      "bclib:the_gray"
-    ],
-    [
-      "betterend:blossoming_spires"
+      "betterend:jade_cave"
     ],
     [
       "bclib:the_yellow"
     ],
     [
-      "betterend:sulphur_springs"
+      "betterend:ice_starfield"
+    ],
+    [
+      "betterend:blossoming_spires"
+    ],
+    [
+      "betterend:dry_shrubland"
     ],
     [
       "betterend:megalake"
     ],
     [
-      "betterend:megalake_grove"
+      "betterend:dragon_graveyards"
     ],
     [
-      "betterend:umbra_valley"
+      "betterend:umbrella_jungle"
     ],
     [
-      "betterend:dust_wastelands"
+      "betterend:painted_mountains"
     ],
     [
-      "betterend:jade_cave"
-    ],
-    [
-      "betterend:lush_smaragdant_cave"
-    ],
-    [
-      "betterend:shadow_forest"
-    ],
-    [
-      "betterend:lantern_woods"
-    ],
-    [
-      "betterend:empty_smaragdant_cave"
-    ],
-    [
-      "betterend:empty_end_cave"
-    ],
-    [
-      "betterend:foggy_mushroomland"
-    ],
-    [
-      "betterend:empty_aurora_cave"
-    ],
-    [
-      "betterend:amber_land"
+      "betterend:crystal_mountains"
     ],
     [
       "betterend:lush_aurora_cave"
     ],
     [
-      "betterend:painted_mountains"
+      "betterend:empty_smaragdant_cave"
+    ],
+    [
+      "betterend:umbra_valley"
+    ],
+    [
+      "betterend:empty_aurora_cave"
+    ],
+    [
+      "betterend:megalake_grove"
+    ],
+    [
+      "betterend:amber_land"
+    ],
+    [
+      "betterend:lush_smaragdant_cave"
+    ],
+    [
+      "betterend:empty_end_cave"
+    ],
+    [
+      "betterend:lantern_woods"
+    ],
+    [
+      "betterend:glowing_grasslands"
+    ],
+    [
+      "betterend:shadow_forest"
+    ],
+    [
+      "bclib:the_blue"
+    ],
+    [
+      "betterend:chorus_forest"
+    ],
+    [
+      "betterend:dust_wastelands"
+    ],
+    [
+      "betterend:foggy_mushroomland"
+    ],
+    [
+      "bclib:the_gray"
     ]
   ],
   "rewards": {
