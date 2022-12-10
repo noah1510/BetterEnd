@@ -1,0 +1,75 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_594_ender_pearl": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:ender_pearl"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_595_ender_eye": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:ender_eye"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_596_obsidian": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:obsidian"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:infusion_pedestal"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/decorations/infusion_pedestal.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betterend:infusion_pedestal"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/decorations/infusion_pedestal.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_594_ender_pearl",
+      "has_595_ender_eye",
+      "has_596_obsidian",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:infusion_pedestal"
+    ]
+  }
+}

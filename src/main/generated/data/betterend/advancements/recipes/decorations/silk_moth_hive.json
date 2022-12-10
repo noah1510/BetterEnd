@@ -1,0 +1,75 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_696_tenanea_planks": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:tenanea_planks"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_697_tenanea_leaves": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:tenanea_leaves"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_698_silk_moth_matrix": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:silk_moth_matrix"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:silk_moth_hive"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/decorations/silk_moth_hive.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betterend:silk_moth_hive"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/decorations/silk_moth_hive.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_696_tenanea_planks",
+      "has_697_tenanea_leaves",
+      "has_698_silk_moth_matrix",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:silk_moth_hive"
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_522_terminite_block_terminite_tile": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:terminite_block"
+            ]
+          },
+          {
+            "items": [
+              "betterend:terminite_tile"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:terminite_slab"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/decorations/terminite_slab.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betterend:terminite_slab"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/decorations/terminite_slab.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_522_terminite_block_terminite_tile",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:terminite_slab"
+    ]
+  }
+}

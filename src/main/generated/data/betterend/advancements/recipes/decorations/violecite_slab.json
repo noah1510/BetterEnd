@@ -1,0 +1,49 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_29_violecite": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:violecite"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:violecite_slab"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/decorations/violecite_slab.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betterend:violecite_slab"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/decorations/violecite_slab.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_29_violecite",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:violecite_slab"
+    ]
+  }
+}

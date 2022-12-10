@@ -1,0 +1,49 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_74_virid_jadestone": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:virid_jadestone"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:virid_jadestone_furnace"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/decorations/virid_jadestone_furnace.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betterend:virid_jadestone_furnace"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/decorations/virid_jadestone_furnace.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_74_virid_jadestone",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:virid_jadestone_furnace"
+    ]
+  }
+}

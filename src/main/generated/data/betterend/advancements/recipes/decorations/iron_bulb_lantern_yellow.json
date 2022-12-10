@@ -1,0 +1,62 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_574_iron_bulb_lantern": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:iron_bulb_lantern"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_575_yellow_dye": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:yellow_dye"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:iron_bulb_lantern_yellow"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/decorations/iron_bulb_lantern_yellow.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betterend:iron_bulb_lantern_yellow"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/decorations/iron_bulb_lantern_yellow.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_574_iron_bulb_lantern",
+      "has_575_yellow_dye",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:iron_bulb_lantern_yellow"
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_208_end_lotus_stripped_bark": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:end_lotus_stripped_bark"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:end_lotus_stripped_log"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/decorations/end_lotus_stripped_log.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betterend:end_lotus_stripped_log"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/decorations/end_lotus_stripped_log.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_208_end_lotus_stripped_bark",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:end_lotus_stripped_log"
+    ]
+  }
+}

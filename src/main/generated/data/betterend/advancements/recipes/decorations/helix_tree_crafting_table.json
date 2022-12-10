@@ -1,0 +1,49 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_299_helix_tree_planks": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:helix_tree_planks"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:helix_tree_crafting_table"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/decorations/helix_tree_crafting_table.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betterend:helix_tree_crafting_table"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/decorations/helix_tree_crafting_table.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_299_helix_tree_planks",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:helix_tree_crafting_table"
+    ]
+  }
+}

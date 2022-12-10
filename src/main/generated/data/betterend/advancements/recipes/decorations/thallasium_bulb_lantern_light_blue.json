@@ -1,0 +1,62 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_454_thallasium_bulb_lantern": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:thallasium_bulb_lantern"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_455_light_blue_dye": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:light_blue_dye"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:thallasium_bulb_lantern_light_blue"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/decorations/thallasium_bulb_lantern_light_blue.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betterend:thallasium_bulb_lantern_light_blue"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/decorations/thallasium_bulb_lantern_light_blue.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_454_thallasium_bulb_lantern",
+      "has_455_light_blue_dye",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:thallasium_bulb_lantern_light_blue"
+    ]
+  }
+}

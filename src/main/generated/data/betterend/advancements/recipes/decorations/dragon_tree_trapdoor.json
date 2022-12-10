@@ -1,0 +1,49 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_245_dragon_tree_planks": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:dragon_tree_planks"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:dragon_tree_trapdoor"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/decorations/dragon_tree_trapdoor.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betterend:dragon_tree_trapdoor"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/decorations/dragon_tree_trapdoor.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_245_dragon_tree_planks",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:dragon_tree_trapdoor"
+    ]
+  }
+}

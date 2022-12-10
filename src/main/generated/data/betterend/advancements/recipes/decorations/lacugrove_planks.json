@@ -1,0 +1,64 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_210_lacugrove_log_lacugrove_bark_lacug": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:lacugrove_log"
+            ]
+          },
+          {
+            "items": [
+              "betterend:lacugrove_bark"
+            ]
+          },
+          {
+            "items": [
+              "betterend:lacugrove_stripped_log"
+            ]
+          },
+          {
+            "items": [
+              "betterend:lacugrove_stripped_bark"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:lacugrove_planks"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/decorations/lacugrove_planks.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betterend:lacugrove_planks"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/decorations/lacugrove_planks.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_210_lacugrove_log_lacugrove_bark_lacug",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:lacugrove_planks"
+    ]
+  }
+}

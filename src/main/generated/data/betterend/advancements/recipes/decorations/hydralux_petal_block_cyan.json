@@ -1,0 +1,62 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_412_hydralux_petal_block": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:hydralux_petal_block"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_413_cyan_dye": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:cyan_dye"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:hydralux_petal_block_cyan"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/decorations/hydralux_petal_block_cyan.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betterend:hydralux_petal_block_cyan"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/decorations/hydralux_petal_block_cyan.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_412_hydralux_petal_block",
+      "has_413_cyan_dye",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:hydralux_petal_block_cyan"
+    ]
+  }
+}

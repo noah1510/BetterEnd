@@ -1,0 +1,62 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_586_polished_diorite_slab": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:polished_diorite_slab"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_587_polished_diorite": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:polished_diorite"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:diorite_pedestal"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/decorations/diorite_pedestal.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betterend:diorite_pedestal"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/decorations/diorite_pedestal.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_586_polished_diorite_slab",
+      "has_587_polished_diorite",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:diorite_pedestal"
+    ]
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_478_thallasium_forged_plate": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:thallasium_forged_plate"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:thallasium_leggings"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/tools/thallasium_leggings.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betterend:thallasium_leggings",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/tools/thallasium_leggings.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_478_thallasium_forged_plate",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:thallasium_leggings"
+    ]
+  }
+}

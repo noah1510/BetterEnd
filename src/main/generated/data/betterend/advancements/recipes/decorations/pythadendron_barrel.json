@@ -1,0 +1,62 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_175_pythadendron_planks": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:pythadendron_planks"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_176_pythadendron_slab": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:pythadendron_slab"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:pythadendron_barrel"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/decorations/pythadendron_barrel.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betterend:pythadendron_barrel"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/decorations/pythadendron_barrel.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_175_pythadendron_planks",
+      "has_176_pythadendron_slab",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:pythadendron_barrel"
+    ]
+  }
+}

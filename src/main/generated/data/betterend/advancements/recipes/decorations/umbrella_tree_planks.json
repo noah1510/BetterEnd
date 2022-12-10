@@ -1,0 +1,64 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_314_umbrella_tree_log_umbrella_tree_ba": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:umbrella_tree_log"
+            ]
+          },
+          {
+            "items": [
+              "betterend:umbrella_tree_bark"
+            ]
+          },
+          {
+            "items": [
+              "betterend:umbrella_tree_stripped_log"
+            ]
+          },
+          {
+            "items": [
+              "betterend:umbrella_tree_stripped_bark"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:umbrella_tree_planks"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/decorations/umbrella_tree_planks.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betterend:umbrella_tree_planks"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/decorations/umbrella_tree_planks.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_314_umbrella_tree_log_umbrella_tree_ba",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:umbrella_tree_planks"
+    ]
+  }
+}

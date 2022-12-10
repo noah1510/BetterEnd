@@ -1,0 +1,49 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_712_smaragdant_crystal_shard": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:smaragdant_crystal_shard"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:smaragdant_crystal"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/decorations/smaragdant_crystal.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betterend:smaragdant_crystal"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/decorations/smaragdant_crystal.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_712_smaragdant_crystal_shard",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:smaragdant_crystal"
+    ]
+  }
+}

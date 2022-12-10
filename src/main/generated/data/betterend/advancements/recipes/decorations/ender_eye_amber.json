@@ -1,0 +1,75 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_677_crystal_shards": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:crystal_shards"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_678_amber_gem": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:amber_gem"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_679_ender_pearl": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:ender_pearl"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:ender_eye_amber"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/decorations/ender_eye_amber.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:ender_eye"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/decorations/ender_eye_amber.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_677_crystal_shards",
+      "has_678_amber_gem",
+      "has_679_ender_pearl",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:ender_eye_amber"
+    ]
+  }
+}

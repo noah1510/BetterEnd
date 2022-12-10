@@ -1,0 +1,62 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_530_terminite_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:terminite_ingot"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_531_lumecorn_rod": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:lumecorn_rod"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:terminite_chandelier"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/decorations/terminite_chandelier.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betterend:terminite_chandelier"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/decorations/terminite_chandelier.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_530_terminite_ingot",
+      "has_531_lumecorn_rod",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:terminite_chandelier"
+    ]
+  }
+}

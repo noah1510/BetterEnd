@@ -1,0 +1,62 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_177_pythadendron_planks": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:pythadendron_planks"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_178_book": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:book"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:pythadendron_bookshelf"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/decorations/pythadendron_bookshelf.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betterend:pythadendron_bookshelf"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/decorations/pythadendron_bookshelf.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_177_pythadendron_planks",
+      "has_178_book",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:pythadendron_bookshelf"
+    ]
+  }
+}

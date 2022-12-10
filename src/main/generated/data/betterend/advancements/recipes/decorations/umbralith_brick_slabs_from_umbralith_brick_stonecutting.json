@@ -1,0 +1,49 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_0_umbralith_bricks": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:umbralith_bricks"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:umbralith_brick_slabs_from_umbralith_brick_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/decorations/umbralith_brick_slabs_from_umbralith_brick_stonecutting.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betterend:umbralith_bricks_slab"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/decorations/umbralith_brick_slabs_from_umbralith_brick_stonecutting.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_0_umbralith_bricks",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:umbralith_brick_slabs_from_umbralith_brick_stonecutting"
+    ]
+  }
+}

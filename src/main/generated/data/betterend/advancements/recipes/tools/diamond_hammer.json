@@ -1,0 +1,63 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_690_diamond": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:diamond"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_691_stick": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:stick"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:diamond_hammer"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/tools/diamond_hammer.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betterend:diamond_hammer",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/tools/diamond_hammer.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_690_diamond",
+      "has_691_stick",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:diamond_hammer"
+    ]
+  }
+}

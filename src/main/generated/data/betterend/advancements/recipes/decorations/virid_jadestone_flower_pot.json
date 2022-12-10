@@ -1,0 +1,49 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_75_virid_jadestone_bricks": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:virid_jadestone_bricks"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:virid_jadestone_flower_pot"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/decorations/virid_jadestone_flower_pot.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betterend:virid_jadestone_flower_pot"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/decorations/virid_jadestone_flower_pot.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_75_virid_jadestone_bricks",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:virid_jadestone_flower_pot"
+    ]
+  }
+}

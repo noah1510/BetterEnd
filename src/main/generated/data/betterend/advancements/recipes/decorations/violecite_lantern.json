@@ -1,0 +1,67 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_36_crystal_shards": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:crystal_shards"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_37_violecite_slab_violecite_bricks_slab": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:violecite_slab"
+            ]
+          },
+          {
+            "items": [
+              "betterend:violecite_bricks_slab"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:violecite_lantern"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/decorations/violecite_lantern.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betterend:violecite_lantern"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/decorations/violecite_lantern.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_36_crystal_shards",
+      "has_37_violecite_slab_violecite_bricks_slab",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:violecite_lantern"
+    ]
+  }
+}

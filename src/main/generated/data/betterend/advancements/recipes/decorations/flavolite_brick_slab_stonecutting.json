@@ -1,0 +1,49 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_0_flavolite": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:flavolite"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:flavolite_brick_slab_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/decorations/flavolite_brick_slab_stonecutting.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betterend:flavolite_bricks_slab"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/decorations/flavolite_brick_slab_stonecutting.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_0_flavolite",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:flavolite_brick_slab_stonecutting"
+    ]
+  }
+}

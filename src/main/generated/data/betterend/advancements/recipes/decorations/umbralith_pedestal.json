@@ -1,0 +1,62 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_130_umbralith_slab": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:umbralith_slab"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_131_umbralith_pillar": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:umbralith_pillar"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:umbralith_pedestal"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/decorations/umbralith_pedestal.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betterend:umbralith_pedestal"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/decorations/umbralith_pedestal.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_130_umbralith_slab",
+      "has_131_umbralith_pillar",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:umbralith_pedestal"
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_602_umbrella_moss_tall": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:umbrella_moss_tall"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:umbrella_moss_tall_dye"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/decorations/umbrella_moss_tall_dye.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "minecraft:yellow_dye"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/decorations/umbrella_moss_tall_dye.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_602_umbrella_moss_tall",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:umbrella_moss_tall_dye"
+    ]
+  }
+}

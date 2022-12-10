@@ -1,0 +1,63 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_0_aeternium_hoe_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:aeternium_hoe_head"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_1_leather_wrapped_stick": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:leather_wrapped_stick"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:aeternium_hoe"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/decorations/aeternium_hoe.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betterend:aeternium_hoe",
+      "nbt": "{Damage:0}"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/decorations/aeternium_hoe.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_0_aeternium_hoe_head",
+      "has_1_leather_wrapped_stick",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:aeternium_hoe"
+    ]
+  }
+}

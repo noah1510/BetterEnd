@@ -1,0 +1,62 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_592_purpur_slab": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:purpur_slab"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_593_purpur_pillar": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:purpur_pillar"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:purpur_pedestal"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/decorations/purpur_pedestal.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betterend:purpur_pedestal"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/decorations/purpur_pedestal.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_592_purpur_slab",
+      "has_593_purpur_pillar",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:purpur_pedestal"
+    ]
+  }
+}

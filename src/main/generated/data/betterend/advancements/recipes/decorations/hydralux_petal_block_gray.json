@@ -1,0 +1,62 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_394_hydralux_petal_block": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:hydralux_petal_block"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_395_gray_dye": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:gray_dye"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:hydralux_petal_block_gray"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/decorations/hydralux_petal_block_gray.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betterend:hydralux_petal_block_gray"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/decorations/hydralux_petal_block_gray.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_394_hydralux_petal_block",
+      "has_395_gray_dye",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:hydralux_petal_block_gray"
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_92_azure_jadestone": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:azure_jadestone"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:azure_jadestone_furnace"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/decorations/azure_jadestone_furnace.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betterend:azure_jadestone_furnace"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/decorations/azure_jadestone_furnace.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_92_azure_jadestone",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:azure_jadestone_furnace"
+    ]
+  }
+}

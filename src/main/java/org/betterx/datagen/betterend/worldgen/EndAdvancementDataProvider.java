@@ -1,8 +1,12 @@
-package org.betterx.betterend.registry;
+package org.betterx.datagen.betterend.worldgen;
 
 import org.betterx.bclib.api.v2.advancement.AdvancementManager;
+import org.betterx.bclib.api.v3.datagen.AdvancementDataProvider;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.advancements.BECriteria;
+import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.registry.EndItems;
+import org.betterx.betterend.registry.EndStructures;
 import org.betterx.betterend.world.biome.EndBiome;
 
 import net.minecraft.advancements.FrameType;
@@ -12,8 +16,19 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 
-public class EndAdvancements {
-    public static void register() {
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
+
+import java.util.List;
+
+public class EndAdvancementDataProvider extends AdvancementDataProvider {
+    public EndAdvancementDataProvider(
+            FabricDataOutput output
+    ) {
+        super(List.of(BetterEnd.MOD_ID), output);
+    }
+
+    @Override
+    protected void bootstrap() {
         ResourceLocation root = AdvancementManager.Builder
                 .create(BetterEnd.makeID("root"))
                 .startDisplay(EndBlocks.CAVE_MOSS)
@@ -29,7 +44,7 @@ public class EndAdvancements {
                                 .changedDimensionTo(Level.END)
                 )
                 .requirements(RequirementsStrategy.OR)
-                .buildAndRegister();
+                .build();
 
         ResourceLocation portal = AdvancementManager.Builder
                 .create(BetterEnd.makeID("portal"))
@@ -39,7 +54,7 @@ public class EndAdvancements {
                 .endDisplay()
                 .addAtStructureCriterion("eternal_portal", EndStructures.ETERNAL_PORTAL)
                 .requirements(RequirementsStrategy.OR)
-                .buildAndRegister();
+                .build();
 
         ResourceLocation portalOn = AdvancementManager.Builder
                 .create(BetterEnd.makeID("portal_on"))
@@ -48,7 +63,7 @@ public class EndAdvancements {
                 .endDisplay()
                 .addCriterion("turn_on", BECriteria.PORTAL_ON_TRIGGER)
                 .requirements(RequirementsStrategy.OR)
-                .buildAndRegister();
+                .build();
 
         ResourceLocation portalTravel = AdvancementManager.Builder
                 .create(BetterEnd.makeID("portal_travel"))
@@ -58,7 +73,7 @@ public class EndAdvancements {
                 .endDisplay()
                 .addCriterion("travel", BECriteria.PORTAL_TRAVEL_TRIGGER)
                 .requirements(RequirementsStrategy.OR)
-                .buildAndRegister();
+                .build();
 
         ResourceLocation allTheBiomes = AdvancementManager.Builder
                 .create(BetterEnd.makeID("all_the_biomes"))
@@ -69,7 +84,7 @@ public class EndAdvancements {
                 .addVisitBiomesCriterion(EndBiome.getAllBeBiomes().stream().map(b -> b.getBiomeKey()).toList())
                 .requirements(RequirementsStrategy.AND)
                 .rewardXP(1500)
-                .buildAndRegister();
+                .build();
 
         ResourceLocation allElytras = AdvancementManager.Builder
                 .create(BetterEnd.makeID("all_elytras"))
@@ -81,7 +96,7 @@ public class EndAdvancements {
                 .addInventoryChangedCriterion("crystalite", EndItems.CRYSTALITE_ELYTRA)
                 .addInventoryChangedCriterion("armored", EndItems.ARMORED_ELYTRA)
                 .requirements(RequirementsStrategy.AND)
-                .buildAndRegister();
+                .build();
 
         ResourceLocation infusion = AdvancementManager.Builder
                 .create(BetterEnd.makeID("infusion"))
@@ -90,7 +105,7 @@ public class EndAdvancements {
                 .endDisplay()
                 .addInventoryChangedCriterion("infusion_pedestal", EndBlocks.INFUSION_PEDESTAL)
                 .requirements(RequirementsStrategy.OR)
-                .buildAndRegister();
+                .build();
 
         ResourceLocation infusionFinished = AdvancementManager.Builder
                 .create(BetterEnd.makeID("infusion_finished"))
@@ -100,6 +115,6 @@ public class EndAdvancements {
                 .endDisplay()
                 .addCriterion("finished", BECriteria.INFUSION_FINISHED_TRIGGER)
                 .requirements(RequirementsStrategy.OR)
-                .buildAndRegister();
+                .build();
     }
 }

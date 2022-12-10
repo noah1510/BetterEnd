@@ -1,0 +1,62 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_564_iron_bulb_lantern": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:iron_bulb_lantern"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_565_orange_dye": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:orange_dye"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:iron_bulb_lantern_orange"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/decorations/iron_bulb_lantern_orange.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betterend:iron_bulb_lantern_orange"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/decorations/iron_bulb_lantern_orange.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_564_iron_bulb_lantern",
+      "has_565_orange_dye",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:iron_bulb_lantern_orange"
+    ]
+  }
+}

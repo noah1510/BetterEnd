@@ -1,0 +1,49 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_103_sandy_jadestone_bricks": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:sandy_jadestone_bricks"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:sandy_jadestone_bricks_slab"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/decorations/sandy_jadestone_bricks_slab.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betterend:sandy_jadestone_bricks_slab"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/decorations/sandy_jadestone_bricks_slab.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_103_sandy_jadestone_bricks",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:sandy_jadestone_bricks_slab"
+    ]
+  }
+}

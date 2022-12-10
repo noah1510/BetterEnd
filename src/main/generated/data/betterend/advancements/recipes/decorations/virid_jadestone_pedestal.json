@@ -1,0 +1,62 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_76_virid_jadestone_slab": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:virid_jadestone_slab"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_77_virid_jadestone_pillar": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:virid_jadestone_pillar"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:virid_jadestone_pedestal"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/decorations/virid_jadestone_pedestal.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betterend:virid_jadestone_pedestal"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/decorations/virid_jadestone_pedestal.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_76_virid_jadestone_slab",
+      "has_77_virid_jadestone_pillar",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:virid_jadestone_pedestal"
+    ]
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_383_lucernia_planks": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:lucernia_planks"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_384_lucernia_slab": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:lucernia_slab"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:lucernia_barrel"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "advancements.betterend.recipes/decorations/lucernia_barrel.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "betterend:lucernia_barrel"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.betterend.recipes/decorations/lucernia_barrel.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_383_lucernia_planks",
+      "has_384_lucernia_slab",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "betterend:lucernia_barrel"
+    ]
+  }
+}
