@@ -14,42 +14,42 @@ import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfigur
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
 public class BYGFeatures {
-    public static final BCLFeature<OldBulbisTreeFeature, NoneFeatureConfiguration> OLD_BULBIS_TREE = redisterVegetation(
+    public static final BCLFeature<OldBulbisTreeFeature, NoneFeatureConfiguration> OLD_BULBIS_TREE = registerVegetation(
             "old_bulbis_tree",
             EndFeatures.inlineBuild("old_bulbis_tree_feature", new OldBulbisTreeFeature()),
             1
     );
-    public static final BCLFeature<SinglePlantFeature, SinglePlantFeatureConfig> IVIS_SPROUT = redisterVegetation(
+    public static final BCLFeature<SinglePlantFeature, SinglePlantFeatureConfig> IVIS_SPROUT = registerVegetation(
             "ivis_sprout",
             EndFeatures.SINGLE_PLANT_FEATURE,
             new SinglePlantFeatureConfig(Integrations.BYG.getBlock("ivis_sprout"), 6, 2),
             6
     );
-    public static final BCLFeature<VineFeature, VineFeatureConfig> IVIS_VINE = redisterVegetation(
+    public static final BCLFeature<VineFeature, VineFeatureConfig> IVIS_VINE = registerVegetation(
             "ivis_vine",
             EndFeatures.VINE_FEATURE,
             new VineFeatureConfig(BYGBlocks.IVIS_VINE, 24),
             5
     );
-    public static final BCLFeature<WallPlantFeature, WallPlantFeatureConfig> IVIS_MOSS = redisterVegetation(
+    public static final BCLFeature<WallPlantFeature, WallPlantFeatureConfig> IVIS_MOSS = registerVegetation(
             "ivis_moss",
             EndFeatures.WALL_PLANT_FEATURE,
             new WallPlantFeatureConfig(BYGBlocks.IVIS_MOSS, 6),
             1
     );
-    public static final BCLFeature<WallPlantOnLogFeature, WallPlantFeatureConfig> IVIS_MOSS_WOOD = redisterVegetation(
+    public static final BCLFeature<WallPlantOnLogFeature, WallPlantFeatureConfig> IVIS_MOSS_WOOD = registerVegetation(
             "ivis_moss_wood",
             EndFeatures.WALL_PLANT_ON_LOG_FEATURE,
             new WallPlantFeatureConfig(BYGBlocks.IVIS_MOSS, 6),
             15
     );
-    public static final BCLFeature<WallPlantFeature, WallPlantFeatureConfig> NIGHTSHADE_MOSS = redisterVegetation(
+    public static final BCLFeature<WallPlantFeature, WallPlantFeatureConfig> NIGHTSHADE_MOSS = registerVegetation(
             "nightshade_moss",
             EndFeatures.WALL_PLANT_FEATURE,
             new WallPlantFeatureConfig(BYGBlocks.NIGHTSHADE_MOSS, 5),
             2
     );
-    public static final BCLFeature<WallPlantOnLogFeature, WallPlantFeatureConfig> NIGHTSHADE_MOSS_WOOD = redisterVegetation(
+    public static final BCLFeature<WallPlantOnLogFeature, WallPlantFeatureConfig> NIGHTSHADE_MOSS_WOOD = registerVegetation(
             "nightshade_moss_wood",
             EndFeatures.WALL_PLANT_ON_LOG_FEATURE,
             new WallPlantFeatureConfig(BYGBlocks.NIGHTSHADE_MOSS, 5),
@@ -62,7 +62,7 @@ public class BYGFeatures {
                     new NightshadeRedwoodTreeFeature()
             );
 
-    public static final BCLFeature<NightshadeRedwoodTreeFeature, NoneFeatureConfiguration> NIGHTSHADE_REDWOOD_TREE = redisterVegetation(
+    public static final BCLFeature<NightshadeRedwoodTreeFeature, NoneFeatureConfiguration> NIGHTSHADE_REDWOOD_TREE = registerVegetation(
             "nightshade_redwood_tree",
             NIGHTSHADE_REDWOOD_TREE_FEATURE,
             1
@@ -73,7 +73,7 @@ public class BYGFeatures {
                     new BigEtherTreeFeature()
             );
 
-    public static final BCLFeature<BigEtherTreeFeature, NoneFeatureConfiguration> BIG_ETHER_TREE = redisterVegetation(
+    public static final BCLFeature<BigEtherTreeFeature, NoneFeatureConfiguration> BIG_ETHER_TREE = registerVegetation(
             "big_ether_tree",
             BIG_ETHER_TREE_FEATURE,
             1
@@ -82,15 +82,15 @@ public class BYGFeatures {
     public static void register() {
     }
 
-    private static <F extends Feature<NoneFeatureConfiguration>> BCLFeature<F, NoneFeatureConfiguration> redisterVegetation(
+    private static <F extends Feature<NoneFeatureConfiguration>> BCLFeature<F, NoneFeatureConfiguration> registerVegetation(
             String name,
             F feature,
             int density
     ) {
-        return redisterVegetation(name, feature, NoneFeatureConfiguration.NONE, density);
+        return registerVegetation(name, feature, NoneFeatureConfiguration.NONE, density);
     }
 
-    private static <F extends Feature<FC>, FC extends FeatureConfiguration> BCLFeature<F, FC> redisterVegetation(
+    private static <F extends Feature<FC>, FC extends FeatureConfiguration> BCLFeature<F, FC> registerVegetation(
             String name,
             F feature,
             FC config,

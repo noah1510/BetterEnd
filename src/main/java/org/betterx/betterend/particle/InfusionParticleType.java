@@ -30,7 +30,6 @@ public class InfusionParticleType extends ParticleType<InfusionParticleType> imp
                 StringReader stringReader
         ) throws CommandSyntaxException {
             stringReader.expect(' ');
-            //TODO: 1.19.3 check if this is the correct way to gte the HolderLookup, or if  PaintedMountainPiece is correct
             ItemParser.ItemResult itemResult = ItemParser.parseForItem(
                     BuiltInRegistries.ITEM.asLookup(),
                     stringReader

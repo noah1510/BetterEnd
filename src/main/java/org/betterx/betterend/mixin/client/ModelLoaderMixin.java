@@ -12,9 +12,9 @@ import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 @Mixin(ModelBakery.class)
 public abstract class ModelLoaderMixin {
-    //TODO: 1.19.3 validate that alternative chorus model is loaded
     @ModifyArg(method = "loadModel", at = @At(value = "INVOKE", target = "Lnet/minecraft/resources/FileToIdConverter;idToFile(Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/resources/ResourceLocation;"))
     public ResourceLocation be_switchModelOnLoad(ResourceLocation loc) {
+        //this should allways be a block state, as it is supplied a BLOCKSTATE_LISTER
         if (GeneratorOptions.changeChorusPlant() && be_changeModel(loc)) {
             String path = loc.getPath().replace("chorus", "custom_chorus");
             return BetterEnd.makeID(path);
@@ -25,8 +25,7 @@ public abstract class ModelLoaderMixin {
     private boolean be_changeModel(ResourceLocation id) {
         if (id.getNamespace().equals("minecraft")) {
             if (id.getPath().contains("chorus") && !id.getPath().contains("custom_")) {
-                return true || id.getPath().startsWith("blockstates/");
-
+                return true;
             }
             return false;
         }

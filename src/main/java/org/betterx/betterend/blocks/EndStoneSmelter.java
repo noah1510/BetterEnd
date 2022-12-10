@@ -116,7 +116,6 @@ public class EndStoneSmelter extends BaseBlockWithEntity implements AlloyingReci
     @Override
     @SuppressWarnings("deprecation")
     public int getAnalogOutputSignal(BlockState state, Level world, BlockPos pos) {
-        //TODO
         return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(world.getBlockEntity(pos));
     }
 

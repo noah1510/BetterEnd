@@ -3,13 +3,12 @@ package org.betterx.betterend.world.structures.piece;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.registry.EndStructures;
 import org.betterx.betterend.util.GlobalState;
-import org.betterx.worlds.together.world.event.WorldBootstrap;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.Registries;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtUtils;
@@ -59,10 +58,7 @@ public class PaintedMountainPiece extends MountainPiece {
     @Override
     protected void fromNbt(CompoundTag tag) {
         super.fromNbt(tag);
-        //TODO: 1.19.3 check if this is the correct way to gte the HolderLookup
-        final HolderLookup<Block> blockLookup = WorldBootstrap.getLastRegistryAccess()
-                                                              .lookup(Registries.BLOCK)
-                                                              .orElseThrow();
+        final HolderLookup<Block> blockLookup = BuiltInRegistries.BLOCK.asLookup();
         ListTag slise = tag.getList("slises", 10);
         slices = new BlockState[slise.size()];
         for (int i = 0; i < slices.length; i++) {

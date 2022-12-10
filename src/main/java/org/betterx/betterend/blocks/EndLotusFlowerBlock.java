@@ -26,7 +26,6 @@ public class EndLotusFlowerBlock extends EndPlantBlock {
     private static final VoxelShape SHAPE_COLLISION = Block.box(0, 0, 0, 16, 2, 16);
 
     public EndLotusFlowerBlock() {
-        //TODO: 1.19 Test if we can remove dynamic shape and offsetType
         super(basePlantSettings(15).offsetType(BlockBehaviour.OffsetType.NONE));
     }
 
