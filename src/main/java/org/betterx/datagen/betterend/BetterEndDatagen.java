@@ -1,7 +1,7 @@
 package org.betterx.datagen.betterend;
 
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeRegistry;
-import org.betterx.datagen.betterend.worldgen.EndAdvancementDataProvider;
+import org.betterx.datagen.betterend.advancement.EndAdvancementDataProvider;
 import org.betterx.datagen.betterend.worldgen.EndBiomesDataProvider;
 import org.betterx.datagen.betterend.worldgen.EndRegistriesDataProvider;
 
