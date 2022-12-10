@@ -84,11 +84,11 @@ public class BlockFixer {
                             break;
                         }
                     }
-                } else if (state.is(EndBlocks.SMARAGDANT_CRYSTAL)) {
+                } else if (state.is(EndBlocks.SMARAGDANT_CRYSTAL) || state.is(EndBlocks.BUDDING_SMARAGDANT_CRYSTAL)) {
                     POS.setY(POS.getY() - 1);
                     if (level.isEmptyBlock(POS)) {
                         POS.setY(POS.getY() + 1);
-                        while (state.is(EndBlocks.SMARAGDANT_CRYSTAL)) {
+                        while (state.is(EndBlocks.SMARAGDANT_CRYSTAL) || state.is(EndBlocks.BUDDING_SMARAGDANT_CRYSTAL)) {
                             setWithoutUpdate(level, POS, AIR);
                             POS.setY(POS.getY() + 1);
                             state = level.getBlockState(POS);
