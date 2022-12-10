@@ -12,6 +12,8 @@ import org.betterx.betterend.world.biome.EndBiome;
 import net.minecraft.advancements.FrameType;
 import net.minecraft.advancements.RequirementsStrategy;
 import net.minecraft.advancements.critereon.ChangeDimensionTrigger;
+import net.minecraft.advancements.critereon.LocationPredicate;
+import net.minecraft.advancements.critereon.PlayerTrigger;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -31,12 +33,23 @@ public class EndAdvancementDataProvider extends AdvancementDataProvider {
     protected void bootstrap() {
         ResourceLocation root = AdvancementManager.Builder
                 .create(BetterEnd.makeID("root"))
-                .startDisplay(EndBlocks.CAVE_MOSS)
+                .startDisplay(EndBlocks.END_MYCELIUM)
                 .frame(FrameType.TASK)
-                .hideToast()
                 .hideFromChat()
                 .background(new ResourceLocation("textures/gui/advancements/backgrounds/end.png"))
                 .endDisplay()
+                .addCriterion(
+                        "welcome",
+                        PlayerTrigger.TriggerInstance.located(LocationPredicate.ANY)
+                )
+                .requirements(RequirementsStrategy.OR)
+                .build();
+
+        ResourceLocation enterEnd = AdvancementManager.Builder
+                .create(BetterEnd.makeID("enter_end"))
+                .startDisplay(EndBlocks.CAVE_MOSS)
+                .endDisplay()
+                .parent(root)
                 .addCriterion(
                         "entered_end",
                         ChangeDimensionTrigger
@@ -77,7 +90,7 @@ public class EndAdvancementDataProvider extends AdvancementDataProvider {
 
         ResourceLocation allTheBiomes = AdvancementManager.Builder
                 .create(BetterEnd.makeID("all_the_biomes"))
-                .parent(root)
+                .parent(enterEnd)
                 .startDisplay(EndItems.AETERNIUM_BOOTS)
                 .frame(FrameType.CHALLENGE)
                 .endDisplay()

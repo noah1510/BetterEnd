@@ -1,10 +1,16 @@
 {
   "criteria": {
-    "entered_end": {
+    "welcome": {
       "conditions": {
-        "to": "minecraft:the_end"
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {}
+          }
+        ]
       },
-      "trigger": "minecraft:changed_dimension"
+      "trigger": "minecraft:location"
     }
   },
   "display": {
@@ -16,16 +22,16 @@
     "frame": "task",
     "hidden": false,
     "icon": {
-      "item": "betterend:cave_moss"
+      "item": "betterend:end_mycelium"
     },
-    "show_toast": false,
+    "show_toast": true,
     "title": {
       "translate": "advancements.betterend.root.title"
     }
   },
   "requirements": [
     [
-      "entered_end"
+      "welcome"
     ]
   ]
 }
