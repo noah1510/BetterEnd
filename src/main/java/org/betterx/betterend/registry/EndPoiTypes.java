@@ -14,6 +14,12 @@ public class EndPoiTypes {
             0, 1
     );
 
+    public static final BCLPoiType ETERNAL_PORTAL_ACTIVE = PoiManager.register(
+            BetterEnd.makeID("eternal_portal_active"),
+            Set.of(EndBlocks.FLAVOLITE_RUNED_ETERNAL.defaultBlockState().setValue(RunedFlavolite.ACTIVATED, true)),
+            0, 1
+    );
+
     public static void register() {
 
     }
