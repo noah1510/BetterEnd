@@ -29,7 +29,7 @@ public class EternalPortalStructure extends TemplateStructure {
 
     public EternalPortalStructure(StructureSettings s) {
         super(s, List.of(
-                        cfg("portal/eternal_portal", 0, StructurePlacementType.FLOOR, 1.0f)
+                        cfg("portal/eternal_portal", -2, StructurePlacementType.FLOOR, 1.0f)
                 )
         );
     }
