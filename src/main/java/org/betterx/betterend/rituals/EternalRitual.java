@@ -40,11 +40,9 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.LegacyRandomSource;
 import net.minecraft.world.level.material.Material;
 
-import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
 import java.awt.*;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -724,6 +722,17 @@ public class EternalRitual {
             Block searchBlock,
             Predicate<BlockState> condition
     ) {
+        if (world instanceof ServerLevel server) {
+            BlockPos.MutableBlockPos altCheckPos = new BlockPos.MutableBlockPos(
+                    checkPos.getX(),
+                    checkPos.getY(),
+                    checkPos.getZ()
+            );
+            var pos = findClosestPoi(server, altCheckPos);
+            if (pos != null) {
+                checkPos = pos.mutable();
+            }
+        }
         Direction moveDirection = Direction.EAST;
         for (int step = 1; step < radius; step++) {
             for (int i = 0; i < (step >> 1); i++) {
@@ -746,7 +755,9 @@ public class EternalRitual {
                         }
                     }
                 }
+                System.out.print(checkPos + " -> " + moveDirection + " -> ");
                 checkPos.move(moveDirection, 16);
+                System.out.println(checkPos);
             }
             moveDirection = moveDirection.getClockWise();
         }
@@ -754,52 +765,20 @@ public class EternalRitual {
     }
 
     /**
-     * @param world       World for search
-     * @param checkPos    Start search position
-     * @param radius      Search radius
-     * @param searchBlock Target block
-     * @param condition   Predicate for test block states in the chunk section
+     * @param world    World for search
+     * @param checkPos Start search position
+     * @param radius   Search radius
      * @return List of positions of the all found blocks or empty list.
      */
-    public static List<BlockPos.MutableBlockPos> findAllBlockPos(
+    public static BlockPos findClosestPoi(
             ServerLevel world,
-            BlockPos.MutableBlockPos checkPos,
-            int radius,
-            Block searchBlock,
-            Predicate<BlockState> condition
+            BlockPos.MutableBlockPos checkPos
     ) {
         //make sure chunks are properly loaded for faster searches
         PoiManager poiManager = world.getPoiManager();
-        poiManager.ensureLoadedAndValid(world, checkPos, radius >> 4);
-
-        List<BlockPos.MutableBlockPos> posFound = Lists.newArrayList();
-        Direction moveDirection = Direction.EAST;
-        for (int step = 1; step < radius; step++) {
-            for (int i = 0; i < (step >> 1); i++) {
-                ChunkAccess chunk = world.getChunk(checkPos);
-                if (!(chunk instanceof LevelChunk) || ((LevelChunk) chunk).isEmpty()) continue;
-                for (LevelChunkSection section : chunk.getSections()) {
-                    if (section == null || !section.getStates().maybeHas(condition)) continue;
-                    for (int x = 0; x < 16; x++) {
-                        for (int y = 0; y < 16; y++) {
-                            for (int z = 0; z < 16; z++) {
-                                BlockState checkState = section.getBlockState(x, y, z);
-                                if (checkState.is(searchBlock)) {
-                                    int worldX = (chunk.getPos().x << 4) + x;
-                                    int worldY = section.bottomBlockY() + y;
-                                    int worldZ = (chunk.getPos().z << 4) + z;
-                                    checkPos.set(worldX, worldY, worldZ);
-                                    posFound.add(checkPos.mutable());
-                                }
-                            }
-                        }
-                    }
-                }
-                checkPos.move(moveDirection, 16);
-            }
-            moveDirection = moveDirection.getClockWise();
-        }
-        return posFound;
+        poiManager.ensureLoadedAndValid(world, checkPos, 128);
+        return EndPoiTypes.ETERNAL_PORTAL_ACTIVE.findClosest(world, checkPos, 128)
+                                                .orElse(null);
     }
 
     public static int calculateSearchSteps(int chunkRadius) {
