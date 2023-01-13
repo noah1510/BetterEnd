@@ -1,7 +1,7 @@
 {
   "itemGroup.betterend.end_items": "Better End: Items",
   "itemGroup.betterend.end_blocks": "Better End: Blocks",
-  "item.betterend.guidebook": "初心者の為のジエンド",
+  "item.betterend.guidebook": "初心者の為のエンド攻略",
   "book.betterend.landing": "エンドにおける過酷な環境で生き残る為の短いガイドブック",
   "book.betterend.subtitle": "エンドで生き残る",
   "category.rei.damage.amount&dmg": "ツールダメージ: %s",
@@ -80,7 +80,7 @@
   "item.minecraft.lingering_potion.effect.long_end_veil": "エンドヴェールの残留ポーション",
   "item.minecraft.tipped_arrow.effect.end_veil": "エンドヴェールの矢",
   "item.minecraft.tipped_arrow.effect.long_end_veil": "エンドヴェールの矢",
-  "block.betterend.mossy_glowshroom_sapling": "苔むした輝くキノコの苗",
+  "block.betterend.mossy_glowshroom_sapling": "苔むしたグロウシュルームの苗",
   "block.betterend.mossy_glowshroom_cap": "苔むしたグロウシュルームのかさ",
   "block.betterend.mossy_glowshroom_fur": "苔むしたグロウシュルームの菌糸毛",
   "block.betterend.mossy_glowshroom_hymenophore": "苔むしたグロウシュルームのひだ",
