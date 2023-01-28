@@ -3,9 +3,8 @@ package org.betterx.betterend.integration.emi;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.GuiComponent;
-import net.minecraft.client.renderer.GameRenderer;
 
-import dev.emi.emi.EmiClient;
+import dev.emi.emi.EmiPort;
 import dev.emi.emi.EmiRenderHelper;
 import dev.emi.emi.api.render.EmiRender;
 import dev.emi.emi.api.stack.EmiIngredient;
@@ -24,7 +23,7 @@ public class TransparentSlotWidget extends SlotWidget {
     @Override
     public void render(PoseStack matrices, int mouseX, int mouseY, float delta) {
         Bounds bounds = this.getBounds();
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        EmiPort.setPositionTexShader();
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         int width = bounds.width();
         int height = bounds.height();
@@ -41,17 +40,17 @@ public class TransparentSlotWidget extends SlotWidget {
             }
         }
 
-        if (this.getRecipe() == null
-                && EmiClient.availableForCrafting.containsKey(this.getStack())
-                && !this.getStack().isEmpty()
-                && !(Boolean) EmiClient.availableForCrafting.get(this.getStack())) {
-            GuiComponent.fill(
-                    matrices,
-                    bounds.x(), bounds.y(),
-                    bounds.x() + bounds.width(), bounds.y() + bounds.height(),
-                    0x44FF0000
-            );
-        }
+//        if (this.getRecipe() == null
+//                && EmiClient.availableForCrafting.containsKey(this.getStack())
+//                && !this.getStack().isEmpty()
+//                && !(Boolean) EmiClient.availableForCrafting.get(this.getStack())) {
+//            GuiComponent.fill(
+//                    matrices,
+//                    bounds.x(), bounds.y(),
+//                    bounds.x() + bounds.width(), bounds.y() + bounds.height(),
+//                    0x44FF0000
+//            );
+//        }
 
         int xOff = (width - 16) / 2;
         int yOff = (height - 16) / 2;
