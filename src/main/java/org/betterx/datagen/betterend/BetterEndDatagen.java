@@ -1,6 +1,5 @@
 package org.betterx.datagen.betterend;
 
-import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeRegistry;
 import org.betterx.datagen.betterend.advancement.EndAdvancementDataProvider;
 import org.betterx.datagen.betterend.worldgen.EndBiomesDataProvider;
 import org.betterx.datagen.betterend.worldgen.EndRegistriesDataProvider;
@@ -14,7 +13,6 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 public class BetterEndDatagen implements DataGeneratorEntrypoint {
     @Override
     public void onInitializeDataGenerator(FabricDataGenerator dataGenerator) {
-        BCLBiomeRegistry.prepareForDatagen();
         EndBiomesDataProvider.ensureStaticallyLoaded();
 
         final FabricDataGenerator.Pack pack = dataGenerator.createPack();
