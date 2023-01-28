@@ -771,7 +771,6 @@ public class EternalRitual {
     /**
      * @param world    World for search
      * @param checkPos Start search position
-     * @param radius   Search radius
      * @return List of positions of the all found blocks or empty list.
      */
     public static BlockPos findClosestPoi(
