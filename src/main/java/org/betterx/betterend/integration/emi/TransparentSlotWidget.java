@@ -7,7 +7,6 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.renderer.GameRenderer;
 
-import dev.emi.emi.EmiClient;
 import dev.emi.emi.EmiConfig;
 import dev.emi.emi.EmiRenderHelper;
 import dev.emi.emi.api.render.EmiRender;
@@ -42,17 +41,17 @@ public class TransparentSlotWidget extends SlotWidget {
             }
         }
 
-        if (this.getRecipe() == null
-                && EmiClient.availableForCrafting.containsKey(this.getStack())
-                && !this.getStack().isEmpty()
-                && !(Boolean) EmiClient.availableForCrafting.get(this.getStack())) {
-            GuiComponent.fill(
-                    matrices,
-                    bounds.x(), bounds.y(),
-                    bounds.x() + bounds.width(), bounds.y() + bounds.height(),
-                    0x44FF0000
-            );
-        }
+//        if (this.getRecipe() == null
+//                && EmiClient.availableForCrafting.containsKey(this.getStack())
+//                && !this.getStack().isEmpty()
+//                && !(Boolean) EmiClient.availableForCrafting.get(this.getStack())) {
+//            GuiComponent.fill(
+//                    matrices,
+//                    bounds.x(), bounds.y(),
+//                    bounds.x() + bounds.width(), bounds.y() + bounds.height(),
+//                    0x44FF0000
+//            );
+//        }
 
         int xOff = (width - 16) / 2;
         int yOff = (height - 16) / 2;
