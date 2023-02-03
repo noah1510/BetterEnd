@@ -1,5 +1,6 @@
 package org.betterx.betterend.rituals;
 
+import org.betterx.bclib.BCLib;
 import org.betterx.bclib.blocks.BlockProperties;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.advancements.BECriteria;
@@ -722,6 +723,7 @@ public class EternalRitual {
             Block searchBlock,
             Predicate<BlockState> condition
     ) {
+        BCLib.LOGGER.info("Checking " + checkPos + " for Portal");
         if (world instanceof ServerLevel server) {
             BlockPos.MutableBlockPos altCheckPos = new BlockPos.MutableBlockPos(
                     checkPos.getX(),
@@ -731,6 +733,7 @@ public class EternalRitual {
             var pos = findClosestPoi(server, altCheckPos);
             if (pos != null) {
                 checkPos = pos.mutable();
+                BCLib.LOGGER.info("Moving to " + checkPos);
             }
         }
         Direction moveDirection = Direction.EAST;
@@ -755,9 +758,10 @@ public class EternalRitual {
                         }
                     }
                 }
-                System.out.print(checkPos + " -> " + moveDirection + " -> ");
+                String s = checkPos + " -> " + moveDirection + " -> ";
                 checkPos.move(moveDirection, 16);
-                System.out.println(checkPos);
+                s += checkPos;
+                BCLib.LOGGER.info(s);
             }
             moveDirection = moveDirection.getClockWise();
         }
@@ -767,7 +771,6 @@ public class EternalRitual {
     /**
      * @param world    World for search
      * @param checkPos Start search position
-     * @param radius   Search radius
      * @return List of positions of the all found blocks or empty list.
      */
     public static BlockPos findClosestPoi(
