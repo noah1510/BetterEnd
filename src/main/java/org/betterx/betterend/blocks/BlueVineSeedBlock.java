@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class BlueVineSeedBlock extends EndPlantWithAgeBlock {
     public BlueVineSeedBlock() {
-        super(basePlantSettings().offsetType(BlockBehaviour.OffsetType.NONE));
+        super(basePlantSettings().offsetType(BlockBehaviour.OffsetType.NONE).randomTicks());
     }
 
     @Override
