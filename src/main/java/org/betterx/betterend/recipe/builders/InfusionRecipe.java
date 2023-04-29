@@ -272,8 +272,7 @@ public class InfusionRecipe implements Recipe<InfusionRitual>, UnknownReceipBook
                     }
                 } else if (el.isJsonArray()) {
                     //this is an Ingredient-Array, so read as such
-                    JsonObject o = el.getAsJsonObject();
-                    return ItemUtil.fromJsonIngredientWithNBT(o);
+                    return Ingredient.fromJson(el);
                 } else if (obj.isJsonPrimitive()) {
                     String s = GsonHelper.getAsString(obj, key, "");
                     ItemStack catalyst = ItemUtil.fromStackString(s);
@@ -332,5 +331,9 @@ public class InfusionRecipe implements Recipe<InfusionRitual>, UnknownReceipBook
                 recipe.catalysts[i].toNetwork(buffer);
             }
         }
+    }
+
+    public static void register() {
+        //we call this to make sure that TYPE is initialized
     }
 }

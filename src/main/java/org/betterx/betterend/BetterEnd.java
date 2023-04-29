@@ -8,6 +8,7 @@ import org.betterx.betterend.commands.CommandRegistry;
 import org.betterx.betterend.config.Configs;
 import org.betterx.betterend.effects.EndPotions;
 import org.betterx.betterend.integration.Integrations;
+import org.betterx.betterend.recipe.builders.InfusionRecipe;
 import org.betterx.betterend.registry.*;
 import org.betterx.betterend.util.BonemealPlants;
 import org.betterx.betterend.util.LootTableUtil;
@@ -46,6 +47,7 @@ public class BetterEnd implements ModInitializer {
         EndItems.ensureStaticallyLoaded();
         EndEnchantments.register();
         EndPotions.register();
+        InfusionRecipe.register();
         EndStructures.register();
         BonemealPlants.init();
         GeneratorOptions.init();
