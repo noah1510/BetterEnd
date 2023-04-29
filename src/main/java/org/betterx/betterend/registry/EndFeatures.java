@@ -1335,6 +1335,7 @@ public class EndFeatures {
                 .configuration(new OreLayerFeatureConfig(block.defaultBlockState(), radius, minY, maxY))
                 .build()
                 .place()
+                .onlyInBiome()
                 .decoration(GenerationStep.Decoration.UNDERGROUND_ORES)
                 .count(count)
                 .build();

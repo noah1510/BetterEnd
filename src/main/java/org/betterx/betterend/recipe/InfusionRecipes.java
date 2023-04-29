@@ -248,6 +248,19 @@ public class InfusionRecipes {
                       .setGroup("enchantment")
                       .setTime(300)
                       .build();
+        InfusionRecipe.create("swift_sneak_book", Enchantments.SWIFT_SNEAK, 1)
+                      .setPrimaryInputAndUnlock(Items.BOOK)
+                      .addCatalyst(InfusionRecipe.Catalysts.NORTH, EndItems.ETERNAL_CRYSTAL)
+                      .addCatalyst(InfusionRecipe.Catalysts.EAST, Items.SCULK_SENSOR)
+                      .addCatalyst(InfusionRecipe.Catalysts.SOUTH, Items.SCULK_CATALYST)
+                      .addCatalyst(InfusionRecipe.Catalysts.WEST, Items.SCULK_SENSOR)
+                      .addCatalyst(InfusionRecipe.Catalysts.NORTH_EAST, Items.SCULK_VEIN)
+                      .addCatalyst(InfusionRecipe.Catalysts.SOUTH_EAST, EndItems.ENCHANTED_PETAL)
+                      .addCatalyst(InfusionRecipe.Catalysts.SOUTH_WEST, EndItems.ENCHANTED_PETAL)
+                      .addCatalyst(InfusionRecipe.Catalysts.NORTH_WEST, Items.SCULK_VEIN)
+                      .setGroup("enchantment")
+                      .setTime(500)
+                      .build();
         InfusionRecipe.create("sharpness_book", Enchantments.SHARPNESS, 1)
                       .setPrimaryInputAndUnlock(Items.BOOK)
                       .addCatalyst(InfusionRecipe.Catalysts.NORTH, EndItems.ENCHANTED_PETAL)
@@ -260,6 +273,7 @@ public class InfusionRecipes {
                       .setTime(300)
                       .build();
         InfusionRecipe.create("smite_book", Enchantments.SMITE, 1)
+                      .setPrimaryInputAndUnlock(Items.BOOK)
                       .addCatalyst(InfusionRecipe.Catalysts.NORTH, EndItems.ENCHANTED_PETAL)
                       .addCatalyst(InfusionRecipe.Catalysts.EAST, Blocks.SUNFLOWER)
                       .addCatalyst(InfusionRecipe.Catalysts.SOUTH, Items.GOLD_INGOT)

@@ -243,7 +243,7 @@ public class InfusionRecipe implements Recipe<InfusionRitual>, UnknownReceipBook
         NORTH(0, "north"),
         NORTH_EAST(1, "north_east"),
         EAST(2, "east"),
-        SOUTH_EAST(3, ""),
+        SOUTH_EAST(3, "south_east"),
         SOUTH(4, "south"),
         SOUTH_WEST(5, "south_west"),
         WEST(6, "west"),
