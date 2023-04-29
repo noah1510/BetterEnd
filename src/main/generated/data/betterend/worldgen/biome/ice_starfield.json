@@ -48,7 +48,7 @@
       "betterend:ender_ore"
     ]
   ],
-  "precipitation": "none",
+  "has_precipitation": false,
   "spawn_costs": {},
   "spawners": {
     "ambient": [],

@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_183_pythadendron_slab": {
+    "has_pythadendron_slab": {
       "conditions": {
         "items": [
           {
@@ -20,24 +20,9 @@
       "trigger": "minecraft:recipe_unlocked"
     }
   },
-  "display": {
-    "announce_to_chat": false,
-    "description": {
-      "translate": "advancements.betterend.recipes/decorations/pythadendron_composter.description"
-    },
-    "frame": "task",
-    "hidden": false,
-    "icon": {
-      "item": "betterend:pythadendron_composter"
-    },
-    "show_toast": false,
-    "title": {
-      "translate": "advancements.betterend.recipes/decorations/pythadendron_composter.title"
-    }
-  },
   "requirements": [
     [
-      "has_183_pythadendron_slab",
+      "has_pythadendron_slab",
       "has_the_recipe"
     ]
   ],

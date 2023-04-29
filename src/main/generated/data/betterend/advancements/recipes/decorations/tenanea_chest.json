@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_278_tenanea_planks": {
+    "has_tenanea_planks": {
       "conditions": {
         "items": [
           {
@@ -20,24 +20,9 @@
       "trigger": "minecraft:recipe_unlocked"
     }
   },
-  "display": {
-    "announce_to_chat": false,
-    "description": {
-      "translate": "advancements.betterend.recipes/decorations/tenanea_chest.description"
-    },
-    "frame": "task",
-    "hidden": false,
-    "icon": {
-      "item": "betterend:tenanea_chest"
-    },
-    "show_toast": false,
-    "title": {
-      "translate": "advancements.betterend.recipes/decorations/tenanea_chest.title"
-    }
-  },
   "requirements": [
     [
-      "has_278_tenanea_planks",
+      "has_tenanea_planks",
       "has_the_recipe"
     ]
   ],

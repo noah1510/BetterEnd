@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_226_lacugrove_planks": {
+    "has_lacugrove_planks": {
       "conditions": {
         "items": [
           {
@@ -20,24 +20,9 @@
       "trigger": "minecraft:recipe_unlocked"
     }
   },
-  "display": {
-    "announce_to_chat": false,
-    "description": {
-      "translate": "advancements.betterend.recipes/decorations/lacugrove_chest.description"
-    },
-    "frame": "task",
-    "hidden": false,
-    "icon": {
-      "item": "betterend:lacugrove_chest"
-    },
-    "show_toast": false,
-    "title": {
-      "translate": "advancements.betterend.recipes/decorations/lacugrove_chest.title"
-    }
-  },
   "requirements": [
     [
-      "has_226_lacugrove_planks",
+      "has_lacugrove_planks",
       "has_the_recipe"
     ]
   ],

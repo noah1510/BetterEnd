@@ -41,7 +41,7 @@
       "betterend:empty_end_cave_cave_populator"
     ]
   ],
-  "precipitation": "none",
+  "has_precipitation": false,
   "spawn_costs": {},
   "spawners": {
     "ambient": [],

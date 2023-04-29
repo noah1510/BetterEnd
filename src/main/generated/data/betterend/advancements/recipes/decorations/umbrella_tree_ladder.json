@@ -1,19 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_326_umbrella_tree_planks": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "betterend:umbrella_tree_planks"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "has_327_stick": {
+    "has_stick": {
       "conditions": {
         "items": [
           {
@@ -30,27 +18,24 @@
         "recipe": "betterend:umbrella_tree_ladder"
       },
       "trigger": "minecraft:recipe_unlocked"
-    }
-  },
-  "display": {
-    "announce_to_chat": false,
-    "description": {
-      "translate": "advancements.betterend.recipes/decorations/umbrella_tree_ladder.description"
     },
-    "frame": "task",
-    "hidden": false,
-    "icon": {
-      "item": "betterend:umbrella_tree_ladder"
-    },
-    "show_toast": false,
-    "title": {
-      "translate": "advancements.betterend.recipes/decorations/umbrella_tree_ladder.title"
+    "has_umbrella_tree_planks": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "betterend:umbrella_tree_planks"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
     }
   },
   "requirements": [
     [
-      "has_326_umbrella_tree_planks",
-      "has_327_stick",
+      "has_umbrella_tree_planks",
+      "has_stick",
       "has_the_recipe"
     ]
   ],

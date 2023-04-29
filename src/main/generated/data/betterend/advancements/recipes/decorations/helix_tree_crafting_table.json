@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_299_helix_tree_planks": {
+    "has_helix_tree_planks": {
       "conditions": {
         "items": [
           {
@@ -20,24 +20,9 @@
       "trigger": "minecraft:recipe_unlocked"
     }
   },
-  "display": {
-    "announce_to_chat": false,
-    "description": {
-      "translate": "advancements.betterend.recipes/decorations/helix_tree_crafting_table.description"
-    },
-    "frame": "task",
-    "hidden": false,
-    "icon": {
-      "item": "betterend:helix_tree_crafting_table"
-    },
-    "show_toast": false,
-    "title": {
-      "translate": "advancements.betterend.recipes/decorations/helix_tree_crafting_table.title"
-    }
-  },
   "requirements": [
     [
-      "has_299_helix_tree_planks",
+      "has_helix_tree_planks",
       "has_the_recipe"
     ]
   ],

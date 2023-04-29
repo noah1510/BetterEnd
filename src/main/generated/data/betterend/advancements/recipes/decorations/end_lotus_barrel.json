@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_201_end_lotus_planks": {
+    "has_end_lotus_planks": {
       "conditions": {
         "items": [
           {
@@ -13,7 +13,7 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_202_end_lotus_slab": {
+    "has_end_lotus_slab": {
       "conditions": {
         "items": [
           {
@@ -32,25 +32,10 @@
       "trigger": "minecraft:recipe_unlocked"
     }
   },
-  "display": {
-    "announce_to_chat": false,
-    "description": {
-      "translate": "advancements.betterend.recipes/decorations/end_lotus_barrel.description"
-    },
-    "frame": "task",
-    "hidden": false,
-    "icon": {
-      "item": "betterend:end_lotus_barrel"
-    },
-    "show_toast": false,
-    "title": {
-      "translate": "advancements.betterend.recipes/decorations/end_lotus_barrel.title"
-    }
-  },
   "requirements": [
     [
-      "has_201_end_lotus_planks",
-      "has_202_end_lotus_slab",
+      "has_end_lotus_slab",
+      "has_end_lotus_planks",
       "has_the_recipe"
     ]
   ],

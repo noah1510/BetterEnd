@@ -1,54 +1,6 @@
 {
   "parent": "betterend:enter_end",
   "criteria": {
-    "bclib:the_blue": {
-      "conditions": {
-        "player": [
-          {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "location": {
-                "biome": "bclib:the_blue"
-              }
-            }
-          }
-        ]
-      },
-      "trigger": "minecraft:location"
-    },
-    "bclib:the_gray": {
-      "conditions": {
-        "player": [
-          {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "location": {
-                "biome": "bclib:the_gray"
-              }
-            }
-          }
-        ]
-      },
-      "trigger": "minecraft:location"
-    },
-    "bclib:the_yellow": {
-      "conditions": {
-        "player": [
-          {
-            "condition": "minecraft:entity_properties",
-            "entity": "this",
-            "predicate": {
-              "location": {
-                "biome": "bclib:the_yellow"
-              }
-            }
-          }
-        ]
-      },
-      "trigger": "minecraft:location"
-    },
     "betterend:amber_land": {
       "conditions": {
         "player": [
@@ -468,34 +420,67 @@
   },
   "requirements": [
     [
+      "betterend:sulphur_springs"
+    ],
+    [
+      "betterend:shadow_forest"
+    ],
+    [
+      "betterend:glowing_grasslands"
+    ],
+    [
+      "betterend:empty_end_cave"
+    ],
+    [
       "betterend:amber_land"
     ],
     [
       "betterend:megalake_grove"
     ],
     [
-      "betterend:empty_aurora_cave"
-    ],
-    [
-      "betterend:neon_oasis"
+      "betterend:foggy_mushroomland"
     ],
     [
       "betterend:dry_shrubland"
     ],
     [
-      "betterend:sulphur_springs"
+      "betterend:dust_wastelands"
     ],
     [
-      "betterend:foggy_mushroomland"
+      "betterend:empty_smaragdant_cave"
     ],
     [
-      "betterend:megalake"
+      "betterend:painted_mountains"
+    ],
+    [
+      "betterend:ice_starfield"
+    ],
+    [
+      "betterend:dragon_graveyards"
+    ],
+    [
+      "betterend:neon_oasis"
     ],
     [
       "betterend:jade_cave"
     ],
     [
+      "betterend:megalake"
+    ],
+    [
+      "betterend:empty_aurora_cave"
+    ],
+    [
+      "betterend:lush_aurora_cave"
+    ],
+    [
       "betterend:crystal_mountains"
+    ],
+    [
+      "betterend:lush_smaragdant_cave"
+    ],
+    [
+      "betterend:umbra_valley"
     ],
     [
       "betterend:lantern_woods"
@@ -504,52 +489,10 @@
       "betterend:blossoming_spires"
     ],
     [
-      "betterend:chorus_forest"
-    ],
-    [
-      "bclib:the_gray"
-    ],
-    [
-      "betterend:empty_smaragdant_cave"
-    ],
-    [
-      "bclib:the_blue"
-    ],
-    [
-      "betterend:lush_smaragdant_cave"
-    ],
-    [
-      "betterend:painted_mountains"
-    ],
-    [
       "betterend:umbrella_jungle"
     ],
     [
-      "betterend:dust_wastelands"
-    ],
-    [
-      "betterend:ice_starfield"
-    ],
-    [
-      "betterend:umbra_valley"
-    ],
-    [
-      "betterend:glowing_grasslands"
-    ],
-    [
-      "bclib:the_yellow"
-    ],
-    [
-      "betterend:shadow_forest"
-    ],
-    [
-      "betterend:empty_end_cave"
-    ],
-    [
-      "betterend:lush_aurora_cave"
-    ],
-    [
-      "betterend:dragon_graveyards"
+      "betterend:chorus_forest"
     ]
   ],
   "rewards": {

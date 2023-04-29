@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_198_end_lotus_planks": {
+    "has_end_lotus_planks": {
       "conditions": {
         "items": [
           {
@@ -13,7 +13,7 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_199_stick": {
+    "has_stick": {
       "conditions": {
         "items": [
           {
@@ -32,25 +32,10 @@
       "trigger": "minecraft:recipe_unlocked"
     }
   },
-  "display": {
-    "announce_to_chat": false,
-    "description": {
-      "translate": "advancements.betterend.recipes/decorations/end_lotus_sign.description"
-    },
-    "frame": "task",
-    "hidden": false,
-    "icon": {
-      "item": "betterend:end_lotus_sign"
-    },
-    "show_toast": false,
-    "title": {
-      "translate": "advancements.betterend.recipes/decorations/end_lotus_sign.title"
-    }
-  },
   "requirements": [
     [
-      "has_198_end_lotus_planks",
-      "has_199_stick",
+      "has_stick",
+      "has_end_lotus_planks",
       "has_the_recipe"
     ]
   ],

@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_209_end_lotus_slab": {
+    "has_end_lotus_slab": {
       "conditions": {
         "items": [
           {
@@ -20,24 +20,9 @@
       "trigger": "minecraft:recipe_unlocked"
     }
   },
-  "display": {
-    "announce_to_chat": false,
-    "description": {
-      "translate": "advancements.betterend.recipes/decorations/end_lotus_composter.description"
-    },
-    "frame": "task",
-    "hidden": false,
-    "icon": {
-      "item": "betterend:end_lotus_composter"
-    },
-    "show_toast": false,
-    "title": {
-      "translate": "advancements.betterend.recipes/decorations/end_lotus_composter.title"
-    }
-  },
   "requirements": [
     [
-      "has_209_end_lotus_slab",
+      "has_end_lotus_slab",
       "has_the_recipe"
     ]
   ],

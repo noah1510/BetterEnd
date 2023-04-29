@@ -1,24 +1,24 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_274_tenanea_planks": {
+    "has_stick": {
       "conditions": {
         "items": [
           {
             "items": [
-              "betterend:tenanea_planks"
+              "minecraft:stick"
             ]
           }
         ]
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_275_stick": {
+    "has_tenanea_planks": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:stick"
+              "betterend:tenanea_planks"
             ]
           }
         ]
@@ -32,25 +32,10 @@
       "trigger": "minecraft:recipe_unlocked"
     }
   },
-  "display": {
-    "announce_to_chat": false,
-    "description": {
-      "translate": "advancements.betterend.recipes/decorations/tenanea_ladder.description"
-    },
-    "frame": "task",
-    "hidden": false,
-    "icon": {
-      "item": "betterend:tenanea_ladder"
-    },
-    "show_toast": false,
-    "title": {
-      "translate": "advancements.betterend.recipes/decorations/tenanea_ladder.title"
-    }
-  },
   "requirements": [
     [
-      "has_274_tenanea_planks",
-      "has_275_stick",
+      "has_stick",
+      "has_tenanea_planks",
       "has_the_recipe"
     ]
   ],

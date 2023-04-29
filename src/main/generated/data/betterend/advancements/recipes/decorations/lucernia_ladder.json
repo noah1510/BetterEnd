@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_378_lucernia_planks": {
+    "has_lucernia_planks": {
       "conditions": {
         "items": [
           {
@@ -13,7 +13,7 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_379_stick": {
+    "has_stick": {
       "conditions": {
         "items": [
           {
@@ -32,25 +32,10 @@
       "trigger": "minecraft:recipe_unlocked"
     }
   },
-  "display": {
-    "announce_to_chat": false,
-    "description": {
-      "translate": "advancements.betterend.recipes/decorations/lucernia_ladder.description"
-    },
-    "frame": "task",
-    "hidden": false,
-    "icon": {
-      "item": "betterend:lucernia_ladder"
-    },
-    "show_toast": false,
-    "title": {
-      "translate": "advancements.betterend.recipes/decorations/lucernia_ladder.title"
-    }
-  },
   "requirements": [
     [
-      "has_378_lucernia_planks",
-      "has_379_stick",
+      "has_stick",
+      "has_lucernia_planks",
       "has_the_recipe"
     ]
   ],

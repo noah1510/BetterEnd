@@ -58,7 +58,7 @@
       "betterend:menger_sponge"
     ]
   ],
-  "precipitation": "none",
+  "has_precipitation": false,
   "spawn_costs": {},
   "spawners": {
     "ambient": [

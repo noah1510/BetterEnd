@@ -1,7 +1,13 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_331_umbrella_tree_planks": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "betterend:umbrella_tree_barrel"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_umbrella_tree_planks": {
       "conditions": {
         "items": [
           {
@@ -13,7 +19,7 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_332_umbrella_tree_slab": {
+    "has_umbrella_tree_slab": {
       "conditions": {
         "items": [
           {
@@ -24,33 +30,12 @@
         ]
       },
       "trigger": "minecraft:inventory_changed"
-    },
-    "has_the_recipe": {
-      "conditions": {
-        "recipe": "betterend:umbrella_tree_barrel"
-      },
-      "trigger": "minecraft:recipe_unlocked"
-    }
-  },
-  "display": {
-    "announce_to_chat": false,
-    "description": {
-      "translate": "advancements.betterend.recipes/decorations/umbrella_tree_barrel.description"
-    },
-    "frame": "task",
-    "hidden": false,
-    "icon": {
-      "item": "betterend:umbrella_tree_barrel"
-    },
-    "show_toast": false,
-    "title": {
-      "translate": "advancements.betterend.recipes/decorations/umbrella_tree_barrel.title"
     }
   },
   "requirements": [
     [
-      "has_331_umbrella_tree_planks",
-      "has_332_umbrella_tree_slab",
+      "has_umbrella_tree_planks",
+      "has_umbrella_tree_slab",
       "has_the_recipe"
     ]
   ],
