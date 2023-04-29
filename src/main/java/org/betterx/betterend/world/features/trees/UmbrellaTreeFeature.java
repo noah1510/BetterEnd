@@ -74,15 +74,13 @@ public class UmbrellaTreeFeature extends DefaultFeature {
 
             if (SplineHelper.canGenerate(spline, pos, world, REPLACE)) {
                 float rScale = (scale - 1) * 0.4F + 1;
-                SDF branch = SplineHelper.buildSDF(spline, 1.2F * rScale, 0.8F * rScale, (bpos) -> {
-                    return wood;
-                });
+                SDF branch = SplineHelper.buildSDF(spline, 1.2F * rScale, 0.8F * rScale, (bpos) -> wood);
 
                 Vector3f vec = spline.get(spline.size() - 1);
                 float radius = (size + MHelper.randRange(0, size * 0.5F, random)) * 0.4F;
 
                 sdf = (sdf == null) ? branch : new SDFUnion().setSourceA(sdf).setSourceB(branch);
-                SDF mem = makeMembrane(world, radius, random, membrane, center);
+                SDF mem = makeMembrane(radius, random, membrane, center);
 
                 float px = MHelper.floor(vec.x()) + 0.5F;
                 float py = MHelper.floor(vec.y()) + 0.5F;
@@ -95,8 +93,6 @@ public class UmbrellaTreeFeature extends DefaultFeature {
                         pos.getZ() + (double) (pz * scale),
                         radius * scale
                 ));
-
-                vec = spline.get(0);
             }
         }
 
@@ -131,7 +127,7 @@ public class UmbrellaTreeFeature extends DefaultFeature {
         makeRoots(world, pos, (size * 0.5F + 3) * scale, random, wood);
 
         for (Center c : centers) {
-            if (!world.getBlockState(new BlockPos(c.px, c.py, c.pz)).isAir()) {
+            if (!world.getBlockState(new BlockPos((int) c.px, (int) c.py, (int) c.pz)).isAir()) {
                 count = MHelper.floor(MHelper.randRange(5F, 10F, random) * scale);
                 float startAngle = random.nextFloat() * MHelper.PI2;
                 for (int i = 0; i < count; i++) {
@@ -139,7 +135,7 @@ public class UmbrellaTreeFeature extends DefaultFeature {
                     float dist = MHelper.randRange(1.5F, 2.5F, random) * scale;
                     double px = c.px + Math.sin(angle) * dist;
                     double pz = c.pz + Math.cos(angle) * dist;
-                    makeFruits(world, px, c.py - 1, pz, fruit, scale);
+                    makeFruits(world, px, c.py - 1, pz, fruit);
                 }
             }
         }
@@ -157,14 +153,14 @@ public class UmbrellaTreeFeature extends DefaultFeature {
             SplineHelper.rotateSpline(branch, angle);
             SplineHelper.scale(branch, scale);
             Vector3f last = branch.get(branch.size() - 1);
-            if (world.getBlockState(pos.offset(last.x(), last.y(), last.z())).is(CommonBlockTags.GEN_END_STONES)) {
+            if (world.getBlockState(pos.offset((int) last.x(), (int) last.y(), (int) last.z()))
+                     .is(CommonBlockTags.GEN_END_STONES)) {
                 SplineHelper.fillSplineForce(branch, world, wood, pos, REPLACE);
             }
         }
     }
 
     private SDF makeMembrane(
-            WorldGenLevel world,
             float radius,
             RandomSource random,
             BlockState membrane,
@@ -189,7 +185,7 @@ public class UmbrellaTreeFeature extends DefaultFeature {
         return sphere;
     }
 
-    private void makeFruits(WorldGenLevel world, double px, double py, double pz, BlockState fruit, float scale) {
+    private void makeFruits(WorldGenLevel world, double px, double py, double pz, BlockState fruit) {
         MutableBlockPos mut = new MutableBlockPos().set(px, py, pz);
         for (int i = 0; i < 8; i++) {
             mut.move(Direction.DOWN);
@@ -230,7 +226,7 @@ public class UmbrellaTreeFeature extends DefaultFeature {
         };
     }
 
-    private class Center {
+    private static class Center {
         final double px;
         final double py;
         final double pz;

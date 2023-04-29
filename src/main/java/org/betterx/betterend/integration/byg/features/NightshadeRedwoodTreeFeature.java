@@ -26,11 +26,11 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.material.Material;
 
-import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import org.joml.Vector3f;
 
 import java.util.List;
+import java.util.function.Function;
 
 public class NightshadeRedwoodTreeFeature extends DefaultFeature {
     private static final List<Vector3f> BRANCH;
@@ -47,23 +47,17 @@ public class NightshadeRedwoodTreeFeature extends DefaultFeature {
         BlockState leaves = Integrations.BYG.getDefaultState("nightshade_leaves");
         BlockState leaves_flower = Integrations.BYG.getDefaultState("flowering_nightshade_leaves");
 
-        Function<BlockPos, BlockState> splinePlacer = (bpos) -> {
-            return log;
-        };
-        Function<BlockState, Boolean> replace = (state) -> {
-            return state.is(CommonBlockTags.END_STONES) || state.getMaterial()
-                                                                .equals(Material.PLANT) || state.getMaterial()
-                                                                                                .isReplaceable();
-        };
+        Function<BlockPos, BlockState> splinePlacer = (bpos) -> log;
+        Function<BlockState, Boolean> replace = (state) -> state.is(CommonBlockTags.END_STONES) || state.getMaterial()
+                                                                                                        .equals(Material.PLANT) || state.getMaterial()
+                                                                                                                                        .isReplaceable();
         Function<PosInfo, BlockState> post = (info) -> {
             if (info.getState().equals(log) && (!info.getStateUp().equals(log) || !info.getStateDown().equals(log))) {
                 return wood;
             }
             return info.getState();
         };
-        Function<BlockState, Boolean> ignore = (state) -> {
-            return state.equals(log) || state.equals(wood);
-        };
+        Function<BlockState, Boolean> ignore = (state) -> state.equals(log) || state.equals(wood);
 
         int height = MHelper.randRange(40, 60, random);
         List<Vector3f> trunk = SplineHelper.makeSpline(0, 0, 0, 0, height, 0, height / 4);
@@ -102,12 +96,12 @@ public class NightshadeRedwoodTreeFeature extends DefaultFeature {
         sdf.setReplaceFunction(replace).addPostProcess(post).fillRecursive(world, pos);
         Vector3f last = SplineHelper.getPos(trunk, trunk.size() - 1.35F);
         for (int y = 0; y < 8; y++) {
-            BlockPos p = pos.offset(last.x() + 0.5, last.y() + y, last.z() + 0.5);
+            BlockPos p = pos.offset((int) (last.x() + 0.5), (int) (last.y() + y), (int) (last.z() + 0.5));
             BlocksHelper.setWithoutUpdate(world, p, y == 4 ? wood : log);
         }
 
         for (int y = 0; y < 16; y++) {
-            BlockPos p = pos.offset(last.x() + 0.5, last.y() + y, last.z() + 0.5);
+            BlockPos p = pos.offset((int) (last.x() + 0.5), (int) (last.y() + y), (int) (last.z() + 0.5));
             if (world.isEmptyBlock(p)) {
                 BlocksHelper.setWithoutUpdate(world, p, leaves);
             }
@@ -162,8 +156,8 @@ public class NightshadeRedwoodTreeFeature extends DefaultFeature {
                 if (distance > MHelper.randRange(2, 4, random)) {
                     return Blocks.AIR.defaultBlockState();
                 }
+                int airCount = 0;
                 for (Direction d : BlocksHelper.DIRECTIONS) {
-                    int airCount = 0;
                     if (info.getState(d).isAir()) {
                         airCount++;
                     }
@@ -179,12 +173,10 @@ public class NightshadeRedwoodTreeFeature extends DefaultFeature {
         };
 
         SDF canopy = new SDFCappedCone().setRadius1(12F).setRadius2(1f).setHeight(height * 0.3F).setBlock(leaves);
-        canopy = new SDFDisplacement().setFunction((vec) -> {
-            return MHelper.randRange(-3F, 3F, random);
-        }).setSource(canopy);
+        canopy = new SDFDisplacement().setFunction((vec) -> MHelper.randRange(-3F, 3F, random)).setSource(canopy);
         canopy.addPostProcess(leavesPost1)
               .addPostProcess(leavesPost2)
-              .fillRecursiveIgnore(world, pos.offset(0, height * 0.75, 0), ignore);
+              .fillRecursiveIgnore(world, pos.offset(0, (int) (height * 0.75), 0), ignore);
 
         return true;
     }

@@ -58,7 +58,9 @@ public class GiganticAmaranitaFeature extends DefaultFeature {
         );
 
         Vector3f capPos = spline.get(spline.size() - 1);
-        makeHead(world, pos.offset(capPos.x() + 0.5F, capPos.y() + 1.5F, capPos.z() + 0.5F), Mth.floor(size / 1.6F));
+        makeHead(world, pos.offset((int) (capPos.x() + 0.5F), (int) (capPos.y() + 1.5F),
+                (int) (capPos.z() + 0.5F)
+        ), Mth.floor(size / 1.6F));
 
         function.setReplaceFunction(REPLACE);
         function.addPostProcess(POST);

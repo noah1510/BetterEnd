@@ -6,7 +6,6 @@ import org.betterx.betterend.blocks.basis.EndPlantBlock;
 import org.betterx.betterend.registry.EndBlocks;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -29,7 +28,7 @@ public class NeedlegrassBlock extends EndPlantBlock {
     @SuppressWarnings("deprecation")
     public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
         if (entity instanceof LivingEntity) {
-            entity.hurt(DamageSource.CACTUS, 0.1F);
+            entity.hurt(world.damageSources().cactus(), 0.1F);
         }
     }
 

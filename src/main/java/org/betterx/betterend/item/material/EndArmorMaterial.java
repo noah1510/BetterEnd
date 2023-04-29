@@ -6,7 +6,7 @@ import org.betterx.betterend.registry.EndItems;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.LazyLoadedValue;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.crafting.Ingredient;
 
@@ -56,13 +56,13 @@ public enum EndArmorMaterial implements ArmorMaterial {
     }
 
     @Override
-    public int getDurabilityForSlot(EquipmentSlot slot) {
-        return BASE_DURABILITY[slot.getIndex()] * this.durabilityMultiplier;
+    public int getDurabilityForType(ArmorItem.Type type) {
+        return BASE_DURABILITY[type.getSlot().getIndex()] * this.durabilityMultiplier;
     }
 
     @Override
-    public int getDefenseForSlot(EquipmentSlot slot) {
-        return this.protectionAmounts[slot.getIndex()];
+    public int getDefenseForType(ArmorItem.Type type) {
+        return this.protectionAmounts[type.getSlot().getIndex()];
     }
 
     @Override

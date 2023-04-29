@@ -4,7 +4,6 @@ import org.betterx.bclib.api.v2.ModIntegrationAPI;
 import org.betterx.bclib.integration.ModIntegration;
 import org.betterx.bclib.recipes.BCLRecipeBuilder;
 import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.config.Configs;
 import org.betterx.betterend.events.PlayerAdvancementsCallback;
 import org.betterx.betterend.integration.byg.BYGIntegration;
 import org.betterx.betterend.item.GuideBookItem;
@@ -35,7 +34,6 @@ public class Integrations {
             });
 
             BCLRecipeBuilder.crafting(BetterEnd.makeID("guide_book"), GuideBookItem.GUIDE_BOOK)
-                            .checkConfig(Configs.RECIPE_CONFIG)
                             .setShape("D", "B", "C")
                             .addMaterial('D', EndItems.ENDER_DUST)
                             .addMaterial('B', Items.BOOK)

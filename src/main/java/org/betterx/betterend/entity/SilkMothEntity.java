@@ -220,7 +220,7 @@ public class SilkMothEntity extends Animal implements FlyingAnimal {
             if (vec3d != null) {
                 try {
                     SilkMothEntity.this.navigation.moveTo(SilkMothEntity.this.navigation.createPath(
-                            new BlockPos(vec3d),
+                            new BlockPos((int) vec3d.x, (int) vec3d.y, (int) vec3d.z),
                             1
                     ), 1.0D);
                 } catch (Exception e) {

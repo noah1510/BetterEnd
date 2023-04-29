@@ -8,7 +8,6 @@ import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.blocks.EndPedestal;
 import org.betterx.betterend.blocks.basis.LitBaseBlock;
 import org.betterx.betterend.blocks.basis.LitPillarBlock;
-import org.betterx.betterend.config.Configs;
 import org.betterx.betterend.recipe.CraftingRecipes;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.worlds.together.tag.v3.TagManager;
@@ -48,56 +47,48 @@ public class CrystalSubblocksMaterial {
 
         // Recipes //
         BCLRecipeBuilder.crafting(BetterEnd.makeID(name + "_bricks"), bricks)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setOutputCount(4)
                         .setShape("##", "##")
                         .addMaterial('#', source)
                         .setGroup("end_bricks")
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID(name + "_polished"), polished)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setOutputCount(4)
                         .setShape("##", "##")
                         .addMaterial('#', bricks)
                         .setGroup("end_tile")
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID(name + "_tiles"), tiles)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setOutputCount(4)
                         .setShape("##", "##")
                         .addMaterial('#', polished)
                         .setGroup("end_small_tile")
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID(name + "_pillar"), pillar)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setShape("#", "#")
                         .addMaterial('#', slab)
                         .setGroup("end_pillar")
                         .build();
 
         BCLRecipeBuilder.crafting(BetterEnd.makeID(name + "_stairs"), stairs)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setOutputCount(4)
                         .setShape("#  ", "## ", "###")
                         .addMaterial('#', source)
                         .setGroup("end_stone_stairs")
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID(name + "_slab"), slab)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setOutputCount(6)
                         .setShape("###")
                         .addMaterial('#', source)
                         .setGroup("end_stone_slabs")
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID(name + "_bricks_stairs"), brick_stairs)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setOutputCount(4)
                         .setShape("#  ", "## ", "###")
                         .addMaterial('#', bricks)
                         .setGroup("end_stone_stairs")
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID(name + "_bricks_slab"), brick_slab)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setOutputCount(6)
                         .setShape("###")
                         .addMaterial('#', bricks)
@@ -105,14 +96,12 @@ public class CrystalSubblocksMaterial {
                         .build();
 
         BCLRecipeBuilder.crafting(BetterEnd.makeID(name + "_wall"), wall)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setOutputCount(6)
                         .setShape("###", "###")
                         .addMaterial('#', source)
                         .setGroup("end_wall")
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID(name + "_bricks_wall"), brick_wall)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setOutputCount(6)
                         .setShape("###", "###")
                         .addMaterial('#', bricks)

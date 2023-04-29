@@ -58,7 +58,7 @@ public class TenaneaFeature extends DefaultFeature {
             Vector3f last = spline.get(spline.size() - 1);
             float leavesRadius = (size * 0.3F + MHelper.randRange(0.8F, 1.5F, random)) * 1.4F;
             OpenSimplexNoise noise = new OpenSimplexNoise(random.nextLong());
-            leavesBall(world, pos.offset(last.x(), last.y(), last.z()), leavesRadius, random, noise);
+            leavesBall(world, pos.offset((int) last.x(), (int) last.y(), (int) last.z()), leavesRadius, random, noise);
         }
 
         return true;

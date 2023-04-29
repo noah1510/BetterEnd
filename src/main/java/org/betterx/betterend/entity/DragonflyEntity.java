@@ -150,7 +150,7 @@ public class DragonflyEntity extends DespawnableAnimal implements FlyingAnimal {
         public void start() {
             Vec3 vec3d = this.getRandomLocation();
             if (vec3d != null) {
-                BlockPos pos = new BlockPos(vec3d);
+                BlockPos pos = new BlockPos((int) vec3d.x, (int) vec3d.y, (int) vec3d.z);
                 try {
                     Path path = DragonflyEntity.this.navigation.createPath(pos, 1);
                     if (path != null) {
@@ -202,7 +202,11 @@ public class DragonflyEntity extends DespawnableAnimal implements FlyingAnimal {
         }
 
         private boolean isInVoid(Vec3 pos) {
-            int h = BlocksHelper.downRay(DragonflyEntity.this.level, new BlockPos(pos), 128);
+            int h = BlocksHelper.downRay(
+                    DragonflyEntity.this.level,
+                    new BlockPos((int) pos.x, (int) pos.y, (int) pos.z),
+                    128
+            );
             return h > 100;
         }
     }

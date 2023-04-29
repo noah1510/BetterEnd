@@ -56,12 +56,15 @@ public class LacugroveFeature extends DefaultFeature {
         float radius = MHelper.randRange(6F, 8F, random);
         radius *= (size - 15F) / 20F + 1F;
         Vector3f center = spline.get(4);
-        leavesBall(world, pos.offset(center.x(), center.y(), center.z()), radius, random, noise);
+        leavesBall(world, pos.offset((int) center.x(), (int) center.y(), (int) center.z()), radius, random, noise);
 
         radius = MHelper.randRange(1.2F, 1.8F, random);
-        SDF function = SplineHelper.buildSDF(spline, radius, 0.7F, (bpos) -> {
-            return EndBlocks.LACUGROVE.getBark().defaultBlockState();
-        });
+        SDF function = SplineHelper.buildSDF(
+                spline,
+                radius,
+                0.7F,
+                (bpos) -> EndBlocks.LACUGROVE.getBark().defaultBlockState()
+        );
 
         function.setReplaceFunction(REPLACE);
         function.addPostProcess(POST);
@@ -125,12 +128,12 @@ public class LacugroveFeature extends DefaultFeature {
         SDF sphere = new SDFSphere().setRadius(radius)
                                     .setBlock(EndBlocks.LACUGROVE_LEAVES.defaultBlockState()
                                                                         .setValue(LeavesBlock.DISTANCE, 6));
-        sphere = new SDFDisplacement().setFunction((vec) -> {
-            return (float) noise.eval(vec.x() * 0.2, vec.y() * 0.2, vec.z() * 0.2) * 3;
-        }).setSource(sphere);
-        sphere = new SDFDisplacement().setFunction((vec) -> {
-            return random.nextFloat() * 3F - 1.5F;
-        }).setSource(sphere);
+        sphere = new SDFDisplacement().setFunction((vec) -> (float) noise.eval(
+                vec.x() * 0.2,
+                vec.y() * 0.2,
+                vec.z() * 0.2
+        ) * 3).setSource(sphere);
+        sphere = new SDFDisplacement().setFunction((vec) -> random.nextFloat() * 3F - 1.5F).setSource(sphere);
         sphere = new SDFSubtraction().setSourceA(sphere)
                                      .setSourceB(new SDFTranslate().setTranslate(0, -radius - 2, 0).setSource(sphere));
         MutableBlockPos mut = new MutableBlockPos();
@@ -174,9 +177,9 @@ public class LacugroveFeature extends DefaultFeature {
             int count = (int) (radius * 2.5F);
             for (int i = 0; i < count; i++) {
                 BlockPos p = pos.offset(
-                        random.nextGaussian() * 1,
-                        random.nextGaussian() * 1,
-                        random.nextGaussian() * 1
+                        (int) (random.nextGaussian() * 1),
+                        (int) (random.nextGaussian() * 1),
+                        (int) (random.nextGaussian() * 1)
                 );
                 boolean place = true;
                 for (Direction d : Direction.values()) {
@@ -212,9 +215,7 @@ public class LacugroveFeature extends DefaultFeature {
             return state.getMaterial().isReplaceable();
         };
 
-        IGNORE = (state) -> {
-            return EndBlocks.LACUGROVE.isTreeLog(state);
-        };
+        IGNORE = EndBlocks.LACUGROVE::isTreeLog;
 
         POST = (info) -> {
             if (EndBlocks.LACUGROVE.isTreeLog(info.getStateUp()) && EndBlocks.LACUGROVE.isTreeLog(info.getStateDown())) {

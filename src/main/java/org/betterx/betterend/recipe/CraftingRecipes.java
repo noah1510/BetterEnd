@@ -2,7 +2,6 @@ package org.betterx.betterend.recipe;
 
 import org.betterx.bclib.recipes.BCLRecipeBuilder;
 import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.config.Configs;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndItems;
 import org.betterx.worlds.together.tag.v3.CommonItemTags;
@@ -19,19 +18,16 @@ public class CraftingRecipes {
 
     public static void register() {
         BCLRecipeBuilder.crafting(BetterEnd.makeID("ender_perl_to_block"), EndBlocks.ENDER_BLOCK)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setShape("OO", "OO")
                         .addMaterial('O', Items.ENDER_PEARL)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("ender_block_to_perl"), Items.ENDER_PEARL)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .addMaterial('#', EndBlocks.ENDER_BLOCK)
                         .setOutputCount(4)
-                        .setList("#")
+                        .shapeless()
                         .build();
 
         BCLRecipeBuilder.crafting(BetterEnd.makeID("end_stone_smelter"), EndBlocks.END_STONE_SMELTER)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setShape("T#T", "V V", "T#T")
                         .addMaterial('#', Blocks.END_STONE_BRICKS)
                         .addMaterial('T', EndBlocks.THALLASIUM.ingot)
@@ -60,7 +56,6 @@ public class CraftingRecipes {
         registerPedestal("purpur_pedestal", EndBlocks.PURPUR_PEDESTAL, Blocks.PURPUR_SLAB, Blocks.PURPUR_PILLAR);
 
         BCLRecipeBuilder.crafting(BetterEnd.makeID("infusion_pedestal"), EndBlocks.INFUSION_PEDESTAL)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setShape(" Y ", "O#O", " # ")
                         .addMaterial('O', Items.ENDER_PEARL)
                         .addMaterial('Y', Items.ENDER_EYE)
@@ -69,76 +64,63 @@ public class CraftingRecipes {
 
         String material = "aeternium";
         BCLRecipeBuilder.crafting(BetterEnd.makeID(material + "_block"), EndBlocks.AETERNIUM_BLOCK)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setShape("III", "III", "III")
                         .addMaterial('I', EndItems.AETERNIUM_INGOT)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID(material + "_block_to_ingot"), EndItems.AETERNIUM_INGOT)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .addMaterial('#', EndBlocks.AETERNIUM_BLOCK)
                         .setOutputCount(9)
-                        .setList("#")
+                        .shapeless()
                         .build();
 
         BCLRecipeBuilder.crafting(BetterEnd.makeID("blue_vine_seed_dye"), Items.BLUE_DYE)
-                        .checkConfig(Configs.RECIPE_CONFIG)
-                        .setList("#")
+                        .shapeless()
                         .addMaterial('#', EndBlocks.BLUE_VINE_SEED)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("creeping_moss_dye"), Items.CYAN_DYE)
-                        .checkConfig(Configs.RECIPE_CONFIG)
-                        .setList("#")
+                        .shapeless()
                         .addMaterial('#', EndBlocks.CREEPING_MOSS)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("umbrella_moss_dye"), Items.YELLOW_DYE)
-                        .checkConfig(Configs.RECIPE_CONFIG)
-                        .setList("#")
+                        .shapeless()
                         .addMaterial('#', EndBlocks.UMBRELLA_MOSS)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("umbrella_moss_tall_dye"), Items.YELLOW_DYE)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setOutputCount(2)
-                        .setList("#")
+                        .shapeless()
                         .addMaterial('#', EndBlocks.UMBRELLA_MOSS_TALL)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("shadow_plant_dye"), Items.BLACK_DYE)
-                        .checkConfig(Configs.RECIPE_CONFIG)
-                        .setList("#")
+                        .shapeless()
                         .addMaterial('#', EndBlocks.SHADOW_PLANT)
                         .build();
 
         BCLRecipeBuilder.crafting(BetterEnd.makeID("paper"), Items.PAPER)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setShape("###")
                         .addMaterial('#', EndItems.END_LILY_LEAF_DRIED)
                         .setOutputCount(3)
                         .build();
 
         BCLRecipeBuilder.crafting(BetterEnd.makeID("aurora_block"), EndBlocks.AURORA_CRYSTAL)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setShape("##", "##")
                         .addMaterial('#', EndItems.CRYSTAL_SHARDS)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("lotus_block"), EndBlocks.END_LOTUS.getLog())
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setShape("##", "##")
                         .addMaterial('#', EndBlocks.END_LOTUS_STEM)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("needlegrass_stick"), Items.STICK)
-                        .setList("#")
-                        .checkConfig(Configs.RECIPE_CONFIG)
+                        .shapeless()
                         .setOutputCount(2)
                         .addMaterial('#', EndBlocks.NEEDLEGRASS)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("shadow_berry_seeds"), EndBlocks.SHADOW_BERRY)
-                        .checkConfig(Configs.RECIPE_CONFIG)
-                        .setList("#")
+                        .shapeless()
                         .setOutputCount(4)
                         .addMaterial('#', EndItems.SHADOW_BERRY_RAW)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("purple_polypore_dye"), Items.PURPLE_DYE)
-                        .checkConfig(Configs.RECIPE_CONFIG)
-                        .setList("#")
+                        .shapeless()
                         .addMaterial('#', EndBlocks.PURPLE_POLYPORE)
                         .build();
 
@@ -151,57 +133,47 @@ public class CraftingRecipes {
         registerLantern("blackstone_lantern", EndBlocks.BLACKSTONE_LANTERN, Blocks.BLACKSTONE_SLAB);
 
         BCLRecipeBuilder.crafting(BetterEnd.makeID("amber_gem"), EndItems.AMBER_GEM)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setShape("##", "##")
                         .addMaterial('#', EndItems.RAW_AMBER)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("amber_block"), EndBlocks.AMBER_BLOCK)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setShape("##", "##")
                         .addMaterial('#', EndItems.AMBER_GEM)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("amber_gem_block"), EndItems.AMBER_GEM)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setOutputCount(4)
-                        .setList("#")
+                        .shapeless()
                         .addMaterial('#', EndBlocks.AMBER_BLOCK)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("iron_bulb_lantern"), EndBlocks.IRON_BULB_LANTERN)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setShape("C", "I", "#")
                         .addMaterial('C', Items.CHAIN)
                         .addMaterial('I', Items.IRON_INGOT)
                         .addMaterial('#', EndItems.GLOWING_BULB)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("twisted_moss_dye"), Items.PINK_DYE)
-                        .checkConfig(Configs.RECIPE_CONFIG)
-                        .setList("#")
+                        .shapeless()
                         .addMaterial('#', EndBlocks.TWISTED_MOSS)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("byshy_grass_dye"), Items.MAGENTA_DYE)
-                        .checkConfig(Configs.RECIPE_CONFIG)
-                        .setList("#")
+                        .shapeless()
                         .addMaterial('#', EndBlocks.BUSHY_GRASS)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("tail_moss_dye"), Items.GRAY_DYE)
-                        .checkConfig(Configs.RECIPE_CONFIG)
-                        .setList("#")
+                        .shapeless()
                         .addMaterial('#', EndBlocks.TAIL_MOSS)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("petal_block"), EndBlocks.HYDRALUX_PETAL_BLOCK)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setShape("##", "##")
                         .addMaterial('#', EndItems.HYDRALUX_PETAL)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("petal_white_dye"), Items.WHITE_DYE)
-                        .checkConfig(Configs.RECIPE_CONFIG)
-                        .setList("#")
+                        .shapeless()
                         .addMaterial('#', EndItems.HYDRALUX_PETAL)
                         .build();
 
         BCLRecipeBuilder.crafting(BetterEnd.makeID("sweet_berry_jelly_potion"), EndItems.SWEET_BERRY_JELLY)
-                        .checkConfig(Configs.RECIPE_CONFIG)
-                        .setList("JWSB")
+                        .shapeless()
                         .addMaterial('J', EndItems.GELATINE)
                         .addMaterial('W', PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WATER))
                         .addMaterial('S', Items.SUGAR)
@@ -210,8 +182,7 @@ public class CraftingRecipes {
                         .build();
 
         BCLRecipeBuilder.crafting(BetterEnd.makeID("shadow_berry_jelly_potion"), EndItems.SHADOW_BERRY_JELLY)
-                        .checkConfig(Configs.RECIPE_CONFIG)
-                        .setList("JWSB")
+                        .shapeless()
                         .addMaterial('J', EndItems.GELATINE)
                         .addMaterial('W', PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WATER))
                         .addMaterial('S', Items.SUGAR)
@@ -220,8 +191,7 @@ public class CraftingRecipes {
                         .build();
 
         BCLRecipeBuilder.crafting(BetterEnd.makeID("blossom_berry_jelly_potion"), EndItems.BLOSSOM_BERRY_JELLY)
-                        .checkConfig(Configs.RECIPE_CONFIG)
-                        .setList("JWSB")
+                        .shapeless()
                         .addMaterial('J', EndItems.GELATINE)
                         .addMaterial('W', PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.WATER))
                         .addMaterial('S', Items.SUGAR)
@@ -230,8 +200,7 @@ public class CraftingRecipes {
                         .build();
 
         BCLRecipeBuilder.crafting(BetterEnd.makeID("sweet_berry_jelly"), EndItems.SWEET_BERRY_JELLY)
-                        .checkConfig(Configs.RECIPE_CONFIG)
-                        .setList("JWSB")
+                        .shapeless()
                         .addMaterial('J', EndItems.GELATINE)
                         .addMaterial('W', CommonItemTags.WATER_BOTTLES)
                         .addMaterial('S', Items.SUGAR)
@@ -240,8 +209,7 @@ public class CraftingRecipes {
                         .build();
 
         BCLRecipeBuilder.crafting(BetterEnd.makeID("shadow_berry_jelly"), EndItems.SHADOW_BERRY_JELLY)
-                        .checkConfig(Configs.RECIPE_CONFIG)
-                        .setList("JWSB")
+                        .shapeless()
                         .addMaterial('J', EndItems.GELATINE)
                         .addMaterial('W', CommonItemTags.WATER_BOTTLES)
                         .addMaterial('S', Items.SUGAR)
@@ -250,8 +218,7 @@ public class CraftingRecipes {
                         .build();
 
         BCLRecipeBuilder.crafting(BetterEnd.makeID("blossom_berry_jelly"), EndItems.BLOSSOM_BERRY_JELLY)
-                        .checkConfig(Configs.RECIPE_CONFIG)
-                        .setList("JWSB")
+                        .shapeless()
                         .addMaterial('J', EndItems.GELATINE)
                         .addMaterial('W', CommonItemTags.WATER_BOTTLES)
                         .addMaterial('S', Items.SUGAR)
@@ -260,57 +227,47 @@ public class CraftingRecipes {
                         .build();
 
         BCLRecipeBuilder.crafting(BetterEnd.makeID("sulphur_gunpowder"), Items.GUNPOWDER)
-                        .checkConfig(Configs.RECIPE_CONFIG)
-                        .setList("SCB")
+                        .shapeless()
                         .addMaterial('S', EndItems.CRYSTALLINE_SULPHUR)
                         .addMaterial('C', Items.COAL, Items.CHARCOAL)
                         .addMaterial('B', Items.BONE_MEAL)
                         .build();
 
         BCLRecipeBuilder.crafting(BetterEnd.makeID("dense_emerald_ice"), EndBlocks.DENSE_EMERALD_ICE)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setShape("##", "##")
                         .addMaterial('#', EndBlocks.EMERALD_ICE)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("ancient_emerald_ice"), EndBlocks.ANCIENT_EMERALD_ICE)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setShape("###", "###", "###")
                         .addMaterial('#', EndBlocks.DENSE_EMERALD_ICE)
                         .build();
 
         BCLRecipeBuilder.crafting(BetterEnd.makeID("charnia_cyan_dye"), Items.CYAN_DYE)
-                        .checkConfig(Configs.RECIPE_CONFIG)
-                        .setList("#")
+                        .shapeless()
                         .addMaterial('#', EndBlocks.CHARNIA_CYAN)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("charnia_green_dye"), Items.GREEN_DYE)
-                        .checkConfig(Configs.RECIPE_CONFIG)
-                        .setList("#")
+                        .shapeless()
                         .addMaterial('#', EndBlocks.CHARNIA_GREEN)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("charnia_light_blue_dye"), Items.LIGHT_BLUE_DYE)
-                        .checkConfig(Configs.RECIPE_CONFIG)
-                        .setList("#")
+                        .shapeless()
                         .addMaterial('#', EndBlocks.CHARNIA_LIGHT_BLUE)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("charnia_orange_dye"), Items.ORANGE_DYE)
-                        .checkConfig(Configs.RECIPE_CONFIG)
-                        .setList("#")
+                        .shapeless()
                         .addMaterial('#', EndBlocks.CHARNIA_ORANGE)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("charnia_purple_dye"), Items.PURPLE_DYE)
-                        .checkConfig(Configs.RECIPE_CONFIG)
-                        .setList("#")
+                        .shapeless()
                         .addMaterial('#', EndBlocks.CHARNIA_PURPLE)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("charnia_red_dye"), Items.RED_DYE)
-                        .checkConfig(Configs.RECIPE_CONFIG)
-                        .setList("#")
+                        .shapeless()
                         .addMaterial('#', EndBlocks.CHARNIA_RED)
                         .build();
 
         BCLRecipeBuilder.crafting(BetterEnd.makeID("respawn_obelisk"), EndBlocks.RESPAWN_OBELISK)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setShape("CSC", "CSC", "AAA")
                         .addMaterial('C', EndBlocks.AURORA_CRYSTAL)
                         .addMaterial('S', EndItems.ETERNAL_CRYSTAL)
@@ -318,44 +275,37 @@ public class CraftingRecipes {
                         .build();
 
         BCLRecipeBuilder.crafting(BetterEnd.makeID("twisted_umbrella_moss_dye"), Items.PURPLE_DYE)
-                        .checkConfig(Configs.RECIPE_CONFIG)
-                        .setList("#")
+                        .shapeless()
                         .addMaterial('#', EndBlocks.TWISTED_UMBRELLA_MOSS)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("twisted_umbrella_moss_dye_tall"), Items.PURPLE_DYE)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setOutputCount(2)
-                        .setList("#")
+                        .shapeless()
                         .addMaterial('#', EndBlocks.TWISTED_UMBRELLA_MOSS_TALL)
                         .build();
 
         BCLRecipeBuilder.crafting(BetterEnd.makeID("leather_to_stripes"), EndItems.LEATHER_STRIPE)
-                        .checkConfig(Configs.RECIPE_CONFIG)
-                        .setList("L")
+                        .shapeless()
                         .addMaterial('L', Items.LEATHER)
                         .setOutputCount(3)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("stripes_to_leather"), Items.LEATHER)
-                        .checkConfig(Configs.RECIPE_CONFIG)
-                        .setList("SSS")
+                        .setShape("SSS")
                         .addMaterial('S', EndItems.LEATHER_STRIPE)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("leather_wrapped_stick"), EndItems.LEATHER_WRAPPED_STICK)
-                        .checkConfig(Configs.RECIPE_CONFIG)
-                        .setList("SL")
+                        .shapeless()
                         .addMaterial('S', Items.STICK)
                         .addMaterial('L', EndItems.LEATHER_STRIPE)
                         .build();
 
         BCLRecipeBuilder.crafting(BetterEnd.makeID("fiber_string"), Items.STRING)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setOutputCount(6)
                         .setShape("#", "#", "#")
                         .addMaterial('#', EndItems.SILK_FIBER)
                         .build();
 
         BCLRecipeBuilder.crafting(BetterEnd.makeID("ender_eye_amber"), Items.ENDER_EYE)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setShape("SAS", "APA", "SAS")
                         .addMaterial('S', EndItems.CRYSTAL_SHARDS)
                         .addMaterial('A', EndItems.AMBER_GEM)
@@ -363,14 +313,12 @@ public class CraftingRecipes {
                         .build();
 
         BCLRecipeBuilder.crafting(BetterEnd.makeID("iron_chandelier"), EndBlocks.IRON_CHANDELIER)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setShape("I#I", " # ")
                         .addMaterial('#', Items.IRON_INGOT)
                         .addMaterial('I', EndItems.LUMECORN_ROD)
                         .setGroup("end_metal_chandelier")
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("gold_chandelier"), EndBlocks.GOLD_CHANDELIER)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setShape("I#I", " # ")
                         .addMaterial('#', Items.GOLD_INGOT)
                         .addMaterial('I', EndItems.LUMECORN_ROD)
@@ -378,7 +326,6 @@ public class CraftingRecipes {
                         .build();
 
         BCLRecipeBuilder.crafting(BetterEnd.makeID("missing_tile"), EndBlocks.MISSING_TILE)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setOutputCount(4)
                         .setShape("#P", "P#")
                         .addMaterial(
@@ -395,29 +342,24 @@ public class CraftingRecipes {
         registerHammer("diamond", Items.DIAMOND, EndItems.DIAMOND_HAMMER);
 
         BCLRecipeBuilder.crafting(BetterEnd.makeID("charcoal_block"), EndBlocks.CHARCOAL_BLOCK)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setShape("###", "###", "###")
                         .addMaterial('#', Items.CHARCOAL)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("charcoal_from_block"), Items.CHARCOAL)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setOutputCount(9)
-                        .setList("#")
+                        .shapeless()
                         .addMaterial('#', EndBlocks.CHARCOAL_BLOCK)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("end_stone_furnace"), EndBlocks.END_STONE_FURNACE)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setShape("###", "# #", "###")
                         .addMaterial('#', Blocks.END_STONE)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("filalux_lantern"), EndBlocks.FILALUX_LANTERN)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setShape("###", "###", "###")
                         .addMaterial('#', EndBlocks.FILALUX)
                         .build();
 
         BCLRecipeBuilder.crafting(BetterEnd.makeID("silk_moth_hive"), EndBlocks.SILK_MOTH_HIVE)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setShape("#L#", "LML", "#L#")
                         .addMaterial('#', EndBlocks.TENANEA.getBlock("planks"))
                         .addMaterial('L', EndBlocks.TENANEA_LEAVES)
@@ -425,7 +367,6 @@ public class CraftingRecipes {
                         .build();
 
         BCLRecipeBuilder.crafting(BetterEnd.makeID("cave_pumpkin_pie"), EndItems.CAVE_PUMPKIN_PIE)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setShape("SBS", "BPB", "SBS")
                         .addMaterial('P', EndBlocks.CAVE_PUMPKIN)
                         .addMaterial('B', EndItems.BLOSSOM_BERRY, EndItems.SHADOW_BERRY_RAW)
@@ -433,37 +374,31 @@ public class CraftingRecipes {
                         .build();
 
         BCLRecipeBuilder.crafting(BetterEnd.makeID("cave_pumpkin_seeds"), EndBlocks.CAVE_PUMPKIN_SEED)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setOutputCount(4)
-                        .setList("#")
+                        .shapeless()
                         .addMaterial('#', EndBlocks.CAVE_PUMPKIN)
                         .build();
 
         BCLRecipeBuilder.crafting(BetterEnd.makeID("neon_cactus_block"), EndBlocks.NEON_CACTUS_BLOCK)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setShape("##", "##")
                         .addMaterial('#', EndBlocks.NEON_CACTUS)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("neon_cactus_block_slab"), EndBlocks.NEON_CACTUS_BLOCK_SLAB)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setShape("###")
                         .setOutputCount(6)
                         .addMaterial('#', EndBlocks.NEON_CACTUS_BLOCK)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("neon_cactus_block_stairs"), EndBlocks.NEON_CACTUS_BLOCK_STAIRS)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setShape("#  ", "## ", "###")
                         .setOutputCount(4)
                         .addMaterial('#', EndBlocks.NEON_CACTUS_BLOCK)
                         .build();
 
         BCLRecipeBuilder.crafting(BetterEnd.makeID("sugar_from_root"), Items.SUGAR)
-                        .checkConfig(Configs.RECIPE_CONFIG)
-                        .setList("###")
+                        .setShape("###")
                         .addMaterial('#', EndItems.AMBER_ROOT_RAW)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("endstone_flower_pot"), EndBlocks.ENDSTONE_FLOWER_POT)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setOutputCount(3)
                         .setShape("# #", " # ")
                         .addMaterial('#', Blocks.END_STONE_BRICKS)
@@ -471,33 +406,28 @@ public class CraftingRecipes {
                         .build();
 
         BCLRecipeBuilder.crafting(BetterEnd.makeID("dragon_bone_block"), EndBlocks.DRAGON_BONE_BLOCK)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setOutputCount(8)
                         .setShape("###", "#D#", "###")
                         .addMaterial('#', Blocks.BONE_BLOCK)
                         .addMaterial('D', Items.DRAGON_BREATH)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("dragon_bone_slab"), EndBlocks.DRAGON_BONE_SLAB)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setShape("###")
                         .setOutputCount(6)
                         .addMaterial('#', EndBlocks.DRAGON_BONE_BLOCK)
                         .build();
         BCLRecipeBuilder.crafting(BetterEnd.makeID("dragon_bone_stairs"), EndBlocks.DRAGON_BONE_STAIRS)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setShape("#  ", "## ", "###")
                         .setOutputCount(4)
                         .addMaterial('#', EndBlocks.DRAGON_BONE_BLOCK)
                         .build();
 
         BCLRecipeBuilder.crafting(BetterEnd.makeID("smaragdant_crystal"), EndBlocks.SMARAGDANT_CRYSTAL)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setShape("##", "##")
                         .addMaterial('#', EndBlocks.SMARAGDANT_CRYSTAL_SHARD)
                         .build();
 
         BCLRecipeBuilder.crafting(BetterEnd.makeID("tined_glass_from_smaragdant"), Blocks.TINTED_GLASS)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setShape(" # ", "#G#", " # ")
                         .addMaterial('#', EndBlocks.SMARAGDANT_CRYSTAL_SHARD)
                         .addMaterial('G', Blocks.GLASS)
@@ -506,7 +436,6 @@ public class CraftingRecipes {
 
     private static void registerLantern(String name, Block lantern, Block slab) {
         BCLRecipeBuilder.crafting(BetterEnd.makeID(name), lantern)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setShape("S", "#", "S")
                         .addMaterial('#', EndItems.CRYSTAL_SHARDS)
                         .addMaterial('S', slab)
@@ -516,7 +445,6 @@ public class CraftingRecipes {
 
     public static void registerPedestal(String name, Block pedestal, Block slab, Block pillar) {
         BCLRecipeBuilder.crafting(BetterEnd.makeID(name), pedestal)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setShape("S", "#", "S")
                         .addMaterial('S', slab)
                         .addMaterial('#', pillar)
@@ -526,7 +454,6 @@ public class CraftingRecipes {
 
     private static void registerHammer(String name, Item material, Item result) {
         BCLRecipeBuilder.crafting(BetterEnd.makeID(name + "_hammer"), result)
-                        .checkConfig(Configs.RECIPE_CONFIG)
                         .setShape("I I", "I#I", " # ")
                         .addMaterial('I', material)
                         .addMaterial('#', Items.STICK)

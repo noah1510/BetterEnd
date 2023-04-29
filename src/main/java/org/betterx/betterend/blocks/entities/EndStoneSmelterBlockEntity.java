@@ -9,6 +9,7 @@ import org.betterx.betterend.registry.EndBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -52,9 +53,6 @@ public class EndStoneSmelterBlockEntity extends BaseContainerBlockEntity impleme
             EndStoneSmelterMenu.INGREDIENT_SLOT_A,
             EndStoneSmelterMenu.INGREDIENT_SLOT_B
     };
-    private static final int[] JUST_A = new int[]{
-            EndStoneSmelterMenu.INGREDIENT_SLOT_A,
-    };
     private static final int[] BOTTOM_SLOTS = new int[]{EndStoneSmelterMenu.FUEL_SLOT, EndStoneSmelterMenu.RESULT_SLOT};
     private static final int[] SIDE_SLOTS = new int[]{
             EndStoneSmelterMenu.FUEL_SLOT
@@ -76,33 +74,21 @@ public class EndStoneSmelterBlockEntity extends BaseContainerBlockEntity impleme
         this.recipesUsed = new Object2IntOpenHashMap<>();
         this.propertyDelegate = new ContainerData() {
             public int get(int index) {
-                switch (index) {
-                    case 0:
-                        return EndStoneSmelterBlockEntity.this.burnTime;
-                    case 1:
-                        return EndStoneSmelterBlockEntity.this.fuelTime;
-                    case 2:
-                        return EndStoneSmelterBlockEntity.this.smeltTime;
-                    case 3:
-                        return EndStoneSmelterBlockEntity.this.smeltTimeTotal;
-                    default:
-                        return 0;
-                }
+                return switch (index) {
+                    case 0 -> EndStoneSmelterBlockEntity.this.burnTime;
+                    case 1 -> EndStoneSmelterBlockEntity.this.fuelTime;
+                    case 2 -> EndStoneSmelterBlockEntity.this.smeltTime;
+                    case 3 -> EndStoneSmelterBlockEntity.this.smeltTimeTotal;
+                    default -> 0;
+                };
             }
 
             public void set(int index, int value) {
                 switch (index) {
-                    case 0:
-                        EndStoneSmelterBlockEntity.this.burnTime = value;
-                        break;
-                    case 1:
-                        EndStoneSmelterBlockEntity.this.fuelTime = value;
-                        break;
-                    case 2:
-                        EndStoneSmelterBlockEntity.this.smeltTime = value;
-                        break;
-                    case 3:
-                        EndStoneSmelterBlockEntity.this.smeltTimeTotal = value;
+                    case 0 -> EndStoneSmelterBlockEntity.this.burnTime = value;
+                    case 1 -> EndStoneSmelterBlockEntity.this.fuelTime = value;
+                    case 2 -> EndStoneSmelterBlockEntity.this.smeltTime = value;
+                    case 3 -> EndStoneSmelterBlockEntity.this.smeltTimeTotal = value;
                 }
             }
 
@@ -187,8 +173,7 @@ public class EndStoneSmelterBlockEntity extends BaseContainerBlockEntity impleme
         for (Entry<ResourceLocation> entry : recipesUsed.object2IntEntrySet()) {
             level.getRecipeManager().byKey(entry.getKey()).ifPresent((recipe) -> {
                 list.add(recipe);
-                if (recipe instanceof AlloyingRecipe) {
-                    AlloyingRecipe alloying = (AlloyingRecipe) recipe;
+                if (recipe instanceof AlloyingRecipe alloying) {
                     dropExperience(player.level, player.position(), entry.getIntValue(), alloying.getExperience());
                 } else {
                     BlastingRecipe blasting = (BlastingRecipe) recipe;
@@ -273,7 +258,7 @@ public class EndStoneSmelterBlockEntity extends BaseContainerBlockEntity impleme
                                       .getRecipeFor(RecipeType.BLASTING, blockEntity, tickLevel)
                                       .orElse(null);
                 }
-                boolean accepted = blockEntity.canAcceptRecipeOutput(recipe);
+                boolean accepted = blockEntity.canAcceptRecipeOutput(recipe, tickLevel.registryAccess());
                 if (!burning && accepted) {
                     blockEntity.burnTime = EndStoneSmelterBlockEntity.getFuelTime(fuel);
                     blockEntity.fuelTime = blockEntity.burnTime;
@@ -299,7 +284,7 @@ public class EndStoneSmelterBlockEntity extends BaseContainerBlockEntity impleme
                     if (blockEntity.smeltTime == blockEntity.smeltTimeTotal) {
                         blockEntity.smeltTime = 0;
                         blockEntity.smeltTimeTotal = blockEntity.getSmeltTime();
-                        blockEntity.craftRecipe(recipe);
+                        blockEntity.craftRecipe(recipe, tickLevel.registryAccess());
                         blockEntity.setChanged();
                     }
                 } else {
@@ -314,7 +299,7 @@ public class EndStoneSmelterBlockEntity extends BaseContainerBlockEntity impleme
         }
     }
 
-    protected boolean canAcceptRecipeOutput(Recipe<?> recipe) {
+    protected boolean canAcceptRecipeOutput(Recipe<?> recipe, RegistryAccess acc) {
         if (recipe == null) return false;
         boolean validInput;
         if (recipe instanceof AlloyingRecipe) {
@@ -325,7 +310,7 @@ public class EndStoneSmelterBlockEntity extends BaseContainerBlockEntity impleme
                     || !inventory.get(EndStoneSmelterMenu.INGREDIENT_SLOT_B).isEmpty();
         }
         if (validInput) {
-            ItemStack result = recipe.getResultItem();
+            ItemStack result = recipe.getResultItem(acc);
             if (result.isEmpty()) {
                 return false;
             }
@@ -346,10 +331,10 @@ public class EndStoneSmelterBlockEntity extends BaseContainerBlockEntity impleme
         return false;
     }
 
-    private void craftRecipe(Recipe<?> recipe) {
-        if (recipe == null || !canAcceptRecipeOutput(recipe)) return;
+    private void craftRecipe(Recipe<?> recipe, RegistryAccess acc) {
+        if (recipe == null || !canAcceptRecipeOutput(recipe, acc)) return;
 
-        ItemStack result = recipe.getResultItem();
+        ItemStack result = recipe.getResultItem(acc);
         ItemStack output = inventory.get(EndStoneSmelterMenu.RESULT_SLOT);
         if (output.isEmpty()) {
             inventory.set(EndStoneSmelterMenu.RESULT_SLOT, result.copy());

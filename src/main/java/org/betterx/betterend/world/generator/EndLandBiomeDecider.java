@@ -29,7 +29,8 @@ public class EndLandBiomeDecider extends BiomeDecider {
 
     @Override
     public BiomeDecider createInstance(BCLBiomeSource biomeSource) {
-        return new EndLandBiomeDecider(biomeSource.getBiomeRegistry());
+        //TODO: 1.19.4: This ok?
+        return new EndLandBiomeDecider(/*biomeSource.getBiomeRegistry()*/);
     }
 
     @Override

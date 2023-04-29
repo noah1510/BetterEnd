@@ -18,7 +18,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.*;
@@ -330,7 +329,7 @@ public class NeonCactusPlantBlock extends BaseBlockNotFull implements SimpleWate
 
     @Override
     public void entityInside(BlockState blockState, Level level, BlockPos blockPos, Entity entity) {
-        entity.hurt(DamageSource.CACTUS, 1.0F);
+        entity.hurt(level.damageSources().cactus(), 1.0F);
     }
 
     private int getLength(BlockState state, ServerLevel world, BlockPos pos, int max) {

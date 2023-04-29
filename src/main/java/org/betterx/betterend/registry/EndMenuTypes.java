@@ -8,6 +8,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 
@@ -23,10 +24,10 @@ public class EndMenuTypes {
             ResourceLocation id,
             BiFunction<Integer, Inventory, T> factory
     ) {
-        MenuType<T> type = new MenuType<>((syncId, inventory) -> factory.apply(syncId, inventory));
+        MenuType<T> type = new MenuType<>(factory::apply, FeatureFlags.DEFAULT_FLAGS);
         return Registry.register(BuiltInRegistries.MENU, id, type);
     }
 
-    public final static void ensureStaticallyLoaded() {
+    public static void ensureStaticallyLoaded() {
     }
 }

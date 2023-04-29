@@ -61,7 +61,14 @@ public class LucerniaFeature extends DefaultFeature {
             Vector3f last = spline.get(spline.size() - 1);
             float leavesRadius = (size * 0.13F + MHelper.randRange(0.8F, 1.5F, random)) * 1.4F;
             OpenSimplexNoise noise = new OpenSimplexNoise(random.nextLong());
-            leavesBall(world, pos.offset(last.x(), last.y(), last.z()), leavesRadius, random, noise, config != null);
+            leavesBall(
+                    world,
+                    pos.offset((int) last.x(), (int) last.y(), (int) last.z()),
+                    leavesRadius,
+                    random,
+                    noise,
+                    config != null
+            );
         }
 
         makeRoots(world, pos.offset(0, MHelper.randRange(3, 5, random), 0), size * 0.35F, random);
@@ -191,7 +198,8 @@ public class LucerniaFeature extends DefaultFeature {
             SplineHelper.rotateSpline(branch, angle);
             SplineHelper.scale(branch, scale);
             Vector3f last = branch.get(branch.size() - 1);
-            if (world.getBlockState(pos.offset(last.x(), last.y(), last.z())).is(CommonBlockTags.GEN_END_STONES)) {
+            if (world.getBlockState(pos.offset((int) last.x(), (int) last.y(), (int) last.z()))
+                     .is(CommonBlockTags.GEN_END_STONES)) {
                 SplineHelper.fillSplineForce(
                         branch,
                         world,

@@ -101,9 +101,9 @@ public class CrashedShipFeature extends NBTFeature<NBTFeatureConfig> {
                 rotation,
                 BlockPos.ZERO
         );
-        center = center.offset(0, getYOffset(structure, world, center, random) + 0.5, 0);
+        center = center.offset(0, (int) (getYOffset(structure, world, center, random) + 0.5), 0);
         StructurePlaceSettings placementData = new StructurePlaceSettings().setRotation(rotation).setMirror(mirror);
-        center = center.offset(-offset.getX() * 0.5, 0, -offset.getZ() * 0.5);
+        center = center.offset((int) (-offset.getX() * 0.5), 0, (int) (-offset.getZ() * 0.5));
 
         BoundingBox structB = structure.getBoundingBox(placementData, center);
         bounds = StructureHelper.intersectBoxes(bounds, structB);

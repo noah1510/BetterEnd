@@ -9,6 +9,7 @@ import org.betterx.betterend.rituals.InfusionRitual;
 
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.TagParser;
 import net.minecraft.network.FriendlyByteBuf;
@@ -72,7 +73,7 @@ public class InfusionRecipe implements Recipe<InfusionRitual>, UnknownReceipBook
     }
 
     @Override
-    public ItemStack assemble(InfusionRitual ritual) {
+    public ItemStack assemble(InfusionRitual ritual, RegistryAccess acc) {
         return output.copy();
     }
 
@@ -90,7 +91,7 @@ public class InfusionRecipe implements Recipe<InfusionRitual>, UnknownReceipBook
     }
 
     @Override
-    public ItemStack getResultItem() {
+    public ItemStack getResultItem(RegistryAccess acc) {
         return this.output;
     }
 

@@ -19,18 +19,18 @@ public class CreativeTabs {
         TAB_BLOCKS = FabricItemGroup
                 .builder(BetterEnd.makeID("end_blocks"))
                 .icon(() -> new ItemStack(EndBlocks.END_MYCELIUM))
-                .displayItems((featureFlagSet, output, bl) -> output.acceptAll(EndBlocks.getModBlockItems()
-                                                                                        .stream()
-                                                                                        .map(ItemStack::new)
-                                                                                        .collect(Collectors.toList())))
+                .displayItems((featureFlagSet, output) -> output.acceptAll(EndBlocks.getModBlockItems()
+                                                                                    .stream()
+                                                                                    .map(ItemStack::new)
+                                                                                    .collect(Collectors.toList())))
                 .build();
         TAB_ITEMS = FabricItemGroup
                 .builder(BetterEnd.makeID("end_items"))
                 .icon(() -> new ItemStack(EndItems.ETERNAL_CRYSTAL))
-                .displayItems((featureFlagSet, output, bl) -> output.acceptAll(EndItems.getModItems()
-                                                                                       .stream()
-                                                                                       .map(ItemStack::new)
-                                                                                       .collect(Collectors.toList())))
+                .displayItems((featureFlagSet, output) -> output.acceptAll(EndItems.getModItems()
+                                                                                   .stream()
+                                                                                   .map(ItemStack::new)
+                                                                                   .collect(Collectors.toList())))
                 .build();
     }
 }

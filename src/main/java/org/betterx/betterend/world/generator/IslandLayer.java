@@ -24,7 +24,7 @@ public class IslandLayer {
     private final SDFRadialNoiseMap noise;
     private final SDF island;
 
-    private final List<BlockPos> positions = new ArrayList<BlockPos>(9);
+    private final List<BlockPos> positions = new ArrayList<>(9);
     private final Map<BlockPos, SDF> islands = Maps.newHashMap();
     private final OpenSimplexNoise density;
     private final int seed;
@@ -67,17 +67,15 @@ public class IslandLayer {
             positions.clear();
             for (int pox = -1; pox < 2; pox++) {
                 int px = pox + ix;
-                long px2 = px;
                 for (int poz = -1; poz < 2; poz++) {
                     int pz = poz + iz;
-                    long pz2 = pz;
-                    if (px2 * px2 + pz2 * pz2 > options.centerDist) {
+                    if ((long) px * (long) px + (long) pz * (long) pz > options.centerDist) {
                         RANDOM.setSeed(getSeed(px, pz));
                         double posX = (px + RANDOM.nextFloat()) * options.distance;
                         double posY = MHelper.randRange(options.minY, options.maxY, RANDOM) * maxHeight;
                         double posZ = (pz + RANDOM.nextFloat()) * options.distance;
                         if (density.eval(posX * 0.01, posZ * 0.01) > options.coverage) {
-                            positions.add(new BlockPos(posX, posY, posZ));
+                            positions.add(new BlockPos((int) posX, (int) posY, (int) posZ));
                         }
                     }
                 }

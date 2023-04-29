@@ -46,7 +46,7 @@ public class EMIInfusionRecipe implements EmiRecipe {
     public EMIInfusionRecipe(InfusionRecipe recipe) {
         this.id = recipe.getId();
         this.input = recipe.getIngredients().stream().map(i -> EmiIngredient.of(i)).toList();
-        this.output = List.of(EmiStack.of(recipe.getResultItem()));
+        this.output = List.of(EmiStack.of(recipe.getResultItem(Minecraft.getInstance().level.registryAccess())));
     }
 
     static void addAllRecipes(EmiRegistry emiRegistry, RecipeManager manager) {

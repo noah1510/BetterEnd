@@ -12,7 +12,7 @@ import java.util.UUID;
 public class CrystaliteLeggings extends CrystaliteArmor {
 
     public CrystaliteLeggings() {
-        super(EquipmentSlot.LEGS, EndItems.makeEndItemSettings().rarity(Rarity.RARE));
+        super(Type.LEGGINGS, EndItems.makeEndItemSettings().rarity(Rarity.RARE));
         UUID uuid = ARMOR_MODIFIER_UUID_PER_SLOT[EquipmentSlot.LEGS.getIndex()];
         addAttributeModifier(
                 Attributes.MAX_HEALTH,

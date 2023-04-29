@@ -64,9 +64,12 @@ public class PythadendronTreeFeature extends DefaultFeature {
                 pos
         );
 
-        SDF function = SplineHelper.buildSDF(spline, 1.7F, 1.1F, (bpos) -> {
-            return EndBlocks.PYTHADENDRON.getBark().defaultBlockState();
-        });
+        SDF function = SplineHelper.buildSDF(
+                spline,
+                1.7F,
+                1.1F,
+                (bpos) -> EndBlocks.PYTHADENDRON.getBark().defaultBlockState()
+        );
         function.setReplaceFunction(REPLACE);
         function.addPostProcess(POST);
         function.fillRecursive(world, pos);
@@ -124,10 +127,10 @@ public class PythadendronTreeFeature extends DefaultFeature {
         OpenSimplexNoise noise = new OpenSimplexNoise(random.nextInt());
         if (depth < 3) {
             if (s1) {
-                leavesBall(world, pos.offset(pos1.x(), pos1.y(), pos1.z()), random, noise);
+                leavesBall(world, pos.offset((int) pos1.x(), (int) pos1.y(), (int) pos1.z()), random, noise);
             }
             if (s2) {
-                leavesBall(world, pos.offset(pos2.x(), pos2.y(), pos2.z()), random, noise);
+                leavesBall(world, pos.offset((int) pos2.x(), (int) pos2.y(), (int) pos2.z()), random, noise);
             }
         }
 
@@ -151,12 +154,12 @@ public class PythadendronTreeFeature extends DefaultFeature {
                                     .setBlock(EndBlocks.PYTHADENDRON_LEAVES.defaultBlockState()
                                                                            .setValue(LeavesBlock.DISTANCE, 6));
         sphere = new SDFScale3D().setScale(1, 0.6F, 1).setSource(sphere);
-        sphere = new SDFDisplacement().setFunction((vec) -> {
-            return (float) noise.eval(vec.x() * 0.2, vec.y() * 0.2, vec.z() * 0.2) * 3;
-        }).setSource(sphere);
-        sphere = new SDFDisplacement().setFunction((vec) -> {
-            return random.nextFloat() * 3F - 1.5F;
-        }).setSource(sphere);
+        sphere = new SDFDisplacement().setFunction((vec) -> (float) noise.eval(
+                vec.x() * 0.2,
+                vec.y() * 0.2,
+                vec.z() * 0.2
+        ) * 3).setSource(sphere);
+        sphere = new SDFDisplacement().setFunction((vec) -> random.nextFloat() * 3F - 1.5F).setSource(sphere);
         sphere = new SDFSubtraction().setSourceA(sphere)
                                      .setSourceB(new SDFTranslate().setTranslate(0, -radius, 0).setSource(sphere));
         MutableBlockPos mut = new MutableBlockPos();
@@ -211,9 +214,7 @@ public class PythadendronTreeFeature extends DefaultFeature {
             return state.getMaterial().isReplaceable();
         };
 
-        IGNORE = (state) -> {
-            return EndBlocks.PYTHADENDRON.isTreeLog(state);
-        };
+        IGNORE = EndBlocks.PYTHADENDRON::isTreeLog;
 
         POST = (info) -> {
             if (EndBlocks.PYTHADENDRON.isTreeLog(info.getStateUp()) && EndBlocks.PYTHADENDRON.isTreeLog(info.getStateDown())) {

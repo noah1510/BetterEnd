@@ -8,7 +8,6 @@ import org.betterx.betterend.registry.EndItems;
 
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.*;
@@ -33,7 +32,7 @@ public class ArmoredElytra extends BaseArmorItem implements MultiModelItem, Bett
     ) {
         super(
                 material,
-                EquipmentSlot.CHEST,
+                Type.CHESTPLATE,
                 fireproof ? EndItems
                         .makeEndItemSettings()
                         .durability(durability)
@@ -43,7 +42,7 @@ public class ArmoredElytra extends BaseArmorItem implements MultiModelItem, Bett
         this.wingTexture = BetterEnd.makeID("textures/entity/" + name + ".png");
         this.repairItem = repairItem;
         this.movementFactor = movementFactor;
-        this.defense = (int) ((double) material.getDefenseForSlot(EquipmentSlot.CHEST) / 1.15);
+        this.defense = (int) ((double) material.getDefenseForType(Type.CHESTPLATE) / 1.15);
         this.toughness = material.getToughness() / 1.15F;
         addAttributeModifier(
                 Attributes.ARMOR,

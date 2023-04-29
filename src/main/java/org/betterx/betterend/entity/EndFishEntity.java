@@ -11,10 +11,10 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.EntityDamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobSpawnType;
@@ -163,10 +163,9 @@ public class EndFishEntity extends AbstractSchoolingFish {
 
     @Override
     protected void dropFromLootTable(DamageSource source, boolean causedByPlayer) {
-        Item item = source.isFire() ? EndItems.END_FISH_COOKED : EndItems.END_FISH_RAW;
-        if (causedByPlayer && source instanceof EntityDamageSource) {
-            EntityDamageSource damageSource = (EntityDamageSource) source;
-            ItemStack handItem = ((Player) damageSource.getEntity()).getItemInHand(InteractionHand.MAIN_HAND);
+        Item item = source.is(DamageTypeTags.IS_FIRE) ? EndItems.END_FISH_COOKED : EndItems.END_FISH_RAW;
+        if (causedByPlayer) {
+            ItemStack handItem = ((Player) source.getEntity()).getItemInHand(InteractionHand.MAIN_HAND);
             if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.FIRE_ASPECT, handItem) > 0) {
                 item = EndItems.END_FISH_COOKED;
             }

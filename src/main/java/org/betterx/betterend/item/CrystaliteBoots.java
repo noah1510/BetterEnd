@@ -6,7 +6,6 @@ import org.betterx.betterend.registry.EndItems;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
@@ -22,7 +21,7 @@ import org.jetbrains.annotations.Nullable;
 public class CrystaliteBoots extends CrystaliteArmor implements MobEffectApplier {
 
     public CrystaliteBoots() {
-        super(EquipmentSlot.FEET, EndItems.makeEndItemSettings().rarity(Rarity.RARE));
+        super(Type.BOOTS, EndItems.makeEndItemSettings().rarity(Rarity.RARE));
     }
 
     @Override

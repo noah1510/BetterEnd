@@ -2,6 +2,7 @@ package org.betterx.betterend.integration.rei;
 
 import org.betterx.bclib.recipes.AnvilRecipe;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
@@ -22,7 +23,7 @@ public class REIAnvilDisplay extends BasicDisplay implements SimpleGridMenuDispl
     public REIAnvilDisplay(AnvilRecipe recipe) {
         super(
                 EntryIngredients.ofIngredients(recipe.getIngredients()),
-                Collections.singletonList(EntryIngredients.of(recipe.getResultItem()))
+                Collections.singletonList(EntryIngredients.of(recipe.getResultItem(Minecraft.getInstance().level.registryAccess())))
         );
         this.recipe = recipe;
 

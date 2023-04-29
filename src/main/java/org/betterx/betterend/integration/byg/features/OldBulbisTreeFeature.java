@@ -78,15 +78,29 @@ public class OldBulbisTreeFeature extends DefaultFeature {
             SplineHelper.offset(spline, new Vector3f(size * random.nextFloat() * 0.3F, 0, 0));
             SplineHelper.rotateSpline(spline, angle);
             SplineHelper.offsetParts(spline, random, 1F, 0, 1F);// 1.3F 0.8F
-            SDF branch = SplineHelper.buildSDF(spline, 2.3F * addRad, 1.3F * addRad, (bpos) -> {
-                return stem;
-            });
+            SDF branch = SplineHelper.buildSDF(spline, 2.3F * addRad, 1.3F * addRad, (bpos) -> stem);
 
             Vector3f vec = spline.get(spline.size() - 1);
             float radius = (size + MHelper.randRange(0, size * 0.5F, random)) * 0.35F;
-            bigSphere(world, pos.offset(vec.x(), vec.y(), vec.z()), radius, cap, glow, wood, replacement, random);
+            bigSphere(
+                    world,
+                    pos.offset((int) vec.x(), (int) vec.y(), (int) vec.z()),
+                    radius,
+                    cap,
+                    glow,
+                    wood,
+                    replacement,
+                    random
+            );
             vec = SplineHelper.getPos(spline, 0.3F);
-            makeRoots(world, pos.offset(vec.x(), vec.y(), vec.z()), size * 0.4F + 5, random, wood, replacement);
+            makeRoots(
+                    world,
+                    pos.offset((int) vec.x(), (int) vec.y(), (int) vec.z()),
+                    size * 0.4F + 5,
+                    random,
+                    wood,
+                    replacement
+            );
 
             sdf = (sdf == null) ? branch : new SDFUnion().setSourceA(sdf).setSourceB(branch);
         }
@@ -116,14 +130,18 @@ public class OldBulbisTreeFeature extends DefaultFeature {
         SDF sphere = new SDFSphere().setRadius(radius).setBlock(cap);
 
         SDF sphereInner = new SDFSphere().setRadius(radius * 0.53F).setBlock(Blocks.AIR);
-        sphereInner = new SDFDisplacement().setFunction((vec) -> {
-            return (float) noise.eval(vec.x() * 0.1, vec.y() * 0.1, vec.z() * 0.1);
-        }).setSource(sphereInner);
+        sphereInner = new SDFDisplacement().setFunction((vec) -> (float) noise.eval(
+                vec.x() * 0.1,
+                vec.y() * 0.1,
+                vec.z() * 0.1
+        )).setSource(sphereInner);
 
         SDF sphereGlow = new SDFSphere().setRadius(radius * 0.6F).setBlock(glow);
-        sphereGlow = new SDFDisplacement().setFunction((vec) -> {
-            return (float) noise.eval(vec.x() * 0.1, vec.y() * 0.1, vec.z() * 0.1) * 2F;
-        }).setSource(sphereGlow);
+        sphereGlow = new SDFDisplacement().setFunction((vec) -> (float) noise.eval(
+                vec.x() * 0.1,
+                vec.y() * 0.1,
+                vec.z() * 0.1
+        ) * 2F).setSource(sphereGlow);
         sphereGlow = new SDFSubtraction().setSourceA(sphereGlow).setSourceB(sphereInner);
 
         sphere = new SDFSubtraction().setSourceA(sphere).setSourceB(sphereGlow);
@@ -150,7 +168,7 @@ public class OldBulbisTreeFeature extends DefaultFeature {
                 List<Vector3f> side = SplineHelper.copySpline(SIDE);
                 SplineHelper.rotateSpline(side, angle);
                 SplineHelper.scale(side, scale * radius);
-                BlockPos p = pos.offset(point.x() + 0.5F, point.y() + 0.5F, point.z() + 0.5F);
+                BlockPos p = pos.offset((int) (point.x() + 0.5F), (int) (point.y() + 0.5F), (int) (point.z() + 0.5F));
                 SplineHelper.fillSplineForce(side, world, wood, p, replacement);
             }
         }
@@ -175,7 +193,8 @@ public class OldBulbisTreeFeature extends DefaultFeature {
             SplineHelper.rotateSpline(branch, angle);
             SplineHelper.scale(branch, scale);
             Vector3f last = branch.get(branch.size() - 1);
-            if (world.getBlockState(pos.offset(last.x(), last.y(), last.z())).is(CommonBlockTags.GEN_END_STONES)) {
+            if (world.getBlockState(pos.offset((int) last.x(), (int) last.y(), (int) last.z()))
+                     .is(CommonBlockTags.GEN_END_STONES)) {
                 SplineHelper.fillSpline(branch, world, wood, pos, replacement);
             }
         }

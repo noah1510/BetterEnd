@@ -2,6 +2,7 @@ package org.betterx.betterend.integration.rei;
 
 import org.betterx.betterend.recipe.builders.InfusionRecipe;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Recipe;
 
@@ -22,7 +23,7 @@ public class REIInfusionDisplay extends BasicDisplay implements SimpleGridMenuDi
     public REIInfusionDisplay(InfusionRecipe recipe) {
         super(
                 EntryIngredients.ofIngredients(recipe.getIngredients()),
-                Collections.singletonList(EntryIngredients.of(recipe.getResultItem()))
+                Collections.singletonList(EntryIngredients.of(recipe.getResultItem(Minecraft.getInstance().level.registryAccess())))
         );
         this.recipe = recipe;
         this.time = recipe.getInfusionTime();

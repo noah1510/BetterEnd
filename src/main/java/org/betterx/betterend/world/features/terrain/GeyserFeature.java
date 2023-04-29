@@ -127,15 +127,19 @@ public class GeyserFeature extends DefaultFeature {
 
         obj1 = new SDFCappedCone().setHeight(halfHeight + 5).setRadius1(radius1 * 0.5F).setRadius2(radius2);
         sdf = new SDFTranslate().setTranslate(0, halfHeight - 13, 0).setSource(obj1);
-        sdf = new SDFDisplacement().setFunction((vec) -> {
-            return (float) noise.eval(vec.x() * 0.3F, vec.y() * 0.3F, vec.z() * 0.3F) * 0.5F;
-        }).setSource(sdf);
+        sdf = new SDFDisplacement().setFunction((vec) -> (float) noise.eval(
+                vec.x() * 0.3F,
+                vec.y() * 0.3F,
+                vec.z() * 0.3F
+        ) * 0.5F).setSource(sdf);
 
         obj2 = new SDFSphere().setRadius(radius1);
         SDF cave = new SDFScale3D().setScale(1.5F, 1, 1.5F).setSource(obj2);
-        cave = new SDFDisplacement().setFunction((vec) -> {
-            return (float) noise.eval(vec.x() * 0.1F, vec.y() * 0.1F, vec.z() * 0.1F) * 2F;
-        }).setSource(cave);
+        cave = new SDFDisplacement().setFunction((vec) -> (float) noise.eval(
+                vec.x() * 0.1F,
+                vec.y() * 0.1F,
+                vec.z() * 0.1F
+        ) * 2F).setSource(cave);
         cave = new SDFTranslate().setTranslate(0, -halfHeight - 10, 0).setSource(cave);
 
         sdf = new SDFSmoothUnion().setRadius(5).setSourceA(cave).setSourceB(sdf);
@@ -147,21 +151,24 @@ public class GeyserFeature extends DefaultFeature {
 
         obj1.setBlock(EndBlocks.BRIMSTONE);
         obj2.setBlock(EndBlocks.BRIMSTONE);
-        new SDFDisplacement().setFunction((vec) -> {
-            return -2F;
-        }).setSource(sdf).setReplaceFunction(REPLACE1).fillRecursiveIgnore(world, pos, IGNORE);
+        new SDFDisplacement().setFunction((vec) -> -2F)
+                             .setSource(sdf)
+                             .setReplaceFunction(REPLACE1)
+                             .fillRecursiveIgnore(world, pos, IGNORE);
 
         obj1.setBlock(EndBlocks.SULPHURIC_ROCK.stone);
         obj2.setBlock(EndBlocks.SULPHURIC_ROCK.stone);
-        new SDFDisplacement().setFunction((vec) -> {
-            return -4F;
-        }).setSource(cave).setReplaceFunction(REPLACE1).fillRecursiveIgnore(world, pos, IGNORE);
+        new SDFDisplacement().setFunction((vec) -> -4F)
+                             .setSource(cave)
+                             .setReplaceFunction(REPLACE1)
+                             .fillRecursiveIgnore(world, pos, IGNORE);
 
         obj1.setBlock(Blocks.END_STONE);
         obj2.setBlock(Blocks.END_STONE);
-        new SDFDisplacement().setFunction((vec) -> {
-            return -6F;
-        }).setSource(cave).setReplaceFunction(REPLACE1).fillRecursiveIgnore(world, pos, IGNORE);
+        new SDFDisplacement().setFunction((vec) -> -6F)
+                             .setSource(cave)
+                             .setReplaceFunction(REPLACE1)
+                             .fillRecursiveIgnore(world, pos, IGNORE);
 
         BlocksHelper.setWithoutUpdate(world, pos, WATER);
         MutableBlockPos mut = new MutableBlockPos().set(pos);
@@ -266,17 +273,15 @@ public class GeyserFeature extends DefaultFeature {
                                   ));
 
         double distance = radius1 * 1.7;
-        BlockPos start = pos.offset(-distance, -halfHeight - 15 - distance, -distance);
-        BlockPos end = pos.offset(distance, -halfHeight - 5 + distance, distance);
+        BlockPos start = pos.offset((int) -distance, (int) (-halfHeight - 15 - distance), (int) -distance);
+        BlockPos end = pos.offset((int) distance, (int) (-halfHeight - 5 + distance), (int) distance);
         BlockFixer.fixBlocks(world, start, end);
 
         return true;
     }
 
     static {
-        REPLACE1 = (state) -> {
-            return state.isAir() || (state.is(CommonBlockTags.GEN_END_STONES));
-        };
+        REPLACE1 = (state) -> state.isAir() || (state.is(CommonBlockTags.GEN_END_STONES));
 
         REPLACE2 = (state) -> {
             if (state.is(CommonBlockTags.GEN_END_STONES) || state.is(EndBlocks.HYDROTHERMAL_VENT) || state.is(EndBlocks.SULPHUR_CRYSTAL)) {
@@ -288,9 +293,7 @@ public class GeyserFeature extends DefaultFeature {
             return state.getMaterial().isReplaceable();
         };
 
-        IGNORE = (state) -> {
-            return state.is(Blocks.WATER) || state.is(Blocks.CAVE_AIR) || state.is(EndBlocks.SULPHURIC_ROCK.stone) || state
-                    .is(EndBlocks.BRIMSTONE);
-        };
+        IGNORE = (state) -> state.is(Blocks.WATER) || state.is(Blocks.CAVE_AIR) || state.is(EndBlocks.SULPHURIC_ROCK.stone) || state
+                .is(EndBlocks.BRIMSTONE);
     }
 }

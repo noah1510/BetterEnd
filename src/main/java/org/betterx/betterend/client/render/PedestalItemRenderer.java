@@ -10,12 +10,12 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
@@ -90,7 +90,7 @@ public class PedestalItemRenderer<T extends PedestalBlockEntity> implements Bloc
             minecraft.getItemRenderer()
                      .render(
                              activeItem,
-                             ItemTransforms.TransformType.GROUND,
+                             ItemDisplayContext.GROUND,
                              false,
                              matrices,
                              vertexConsumers,

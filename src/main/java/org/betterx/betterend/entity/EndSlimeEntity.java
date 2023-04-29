@@ -64,11 +64,16 @@ public class EndSlimeEntity extends Slime {
         this.goalSelector.addGoal(5, new MoveGoal());
         this.targetSelector.addGoal(
                 1,
-                new NearestAttackableTargetGoal<Player>(this, Player.class, 10, true, false, (livingEntity) -> {
-                    return Math.abs(livingEntity.getY() - this.getY()) <= 4.0D;
-                })
+                new NearestAttackableTargetGoal<>(
+                        this,
+                        Player.class,
+                        10,
+                        true,
+                        false,
+                        (livingEntity) -> Math.abs(livingEntity.getY() - this.getY()) <= 4.0D
+                )
         );
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<IronGolem>(this, IronGolem.class, true));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, true));
     }
 
     public static AttributeSupplier.Builder createMobAttributes() {
@@ -270,7 +275,11 @@ public class EndSlimeEntity extends Slime {
             if (speed > 0.1) {
                 float dx = Mth.sin(-yaw * 0.017453292F);
                 float dz = Mth.cos(-yaw * 0.017453292F);
-                BlockPos pos = EndSlimeEntity.this.blockPosition().offset(dx * speed * 4, 0, dz * speed * 4);
+                BlockPos pos = EndSlimeEntity.this.blockPosition().offset(
+                        (int) (dx * speed * 4),
+                        0,
+                        (int) (dz * speed * 4)
+                );
                 int down = BlocksHelper.downRay(EndSlimeEntity.this.level, pos, 16);
                 return down < 5;
             }

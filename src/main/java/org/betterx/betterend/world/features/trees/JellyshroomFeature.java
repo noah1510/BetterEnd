@@ -44,9 +44,7 @@ public class JellyshroomFeature extends DefaultFeature {
         float radius = height * MHelper.randRange(0.15F, 0.25F, random);
         List<Vector3f> spline = SplineHelper.makeSpline(0, -1, 0, 0, height, 0, 3);
         SplineHelper.offsetParts(spline, random, 0.5F, 0, 0.5F);
-        SDF sdf = SplineHelper.buildSDF(spline, radius, 0.8F, (bpos) -> {
-            return bark;
-        });
+        SDF sdf = SplineHelper.buildSDF(spline, radius, 0.8F, (bpos) -> bark);
 
         radius = height * MHelper.randRange(0.7F, 0.9F, random);
         if (radius < 1.5F) {
@@ -87,7 +85,8 @@ public class JellyshroomFeature extends DefaultFeature {
             SplineHelper.rotateSpline(branch, angle);
             SplineHelper.scale(branch, scale);
             Vector3f last = branch.get(branch.size() - 1);
-            if (world.getBlockState(pos.offset(last.x(), last.y(), last.z())).is(CommonBlockTags.GEN_END_STONES)) {
+            if (world.getBlockState(pos.offset((int) last.x(), (int) last.y(), (int) last.z()))
+                     .is(CommonBlockTags.GEN_END_STONES)) {
                 SplineHelper.fillSpline(branch, world, wood, pos, REPLACE);
             }
         }

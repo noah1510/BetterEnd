@@ -142,7 +142,7 @@ public class CubozoaEntity extends AbstractSchoolingFish {
 
     @Override
     public void playerTouch(Player player) {
-        if (player instanceof ServerPlayer && player.hurt(DamageSource.mobAttack(this), 0.5F)) {
+        if (player instanceof ServerPlayer && player.hurt(player.damageSources().mobAttack(this), 0.5F)) {
             if (!this.isSilent()) {
                 ((ServerPlayer) player).connection.send(new ClientboundGameEventPacket(
                         ClientboundGameEventPacket.PUFFER_FISH_STING,

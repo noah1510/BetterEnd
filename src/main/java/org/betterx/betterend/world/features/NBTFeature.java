@@ -5,21 +5,18 @@ import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
 import org.betterx.bclib.api.v2.levelgen.structures.templatesystem.DestructionStructureProcessor;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.worlds.together.tag.v3.CommonBlockTags;
-import org.betterx.worlds.together.world.event.WorldBootstrap;
 
 import com.mojang.serialization.Codec;
-import net.minecraft.core.*;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.NbtIo;
+import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
+import net.minecraft.core.Vec3i;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
@@ -28,9 +25,6 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
-
-import java.io.IOException;
-import java.io.InputStream;
 
 public abstract class NBTFeature<FC extends NBTFeatureConfig> extends Feature<FC> {
     public NBTFeature(Codec<FC> codec) {
@@ -112,7 +106,7 @@ public abstract class NBTFeature<FC extends NBTFeatureConfig> extends Feature<FC
                 rotation,
                 BlockPos.ZERO
         );
-        center = center.offset(0, getYOffset(structure, world, center, random) + 0.5, 0);
+        center = center.offset(0, (int) (getYOffset(structure, world, center, random) + 0.5), 0);
 
         BoundingBox bounds = makeBox(center);
         StructurePlaceSettings placementData = new StructurePlaceSettings()
@@ -120,7 +114,7 @@ public abstract class NBTFeature<FC extends NBTFeatureConfig> extends Feature<FC
                 .setMirror(mirror)
                 .setBoundingBox(bounds);
         addStructureData(placementData);
-        center = center.offset(-offset.getX() * 0.5, 0, -offset.getZ() * 0.5);
+        center = center.offset((int) (-offset.getX() * 0.5), 0, (int) (-offset.getZ() * 0.5));
         structure.placeInWorld(world, center, center, placementData, random, 4);
 
         TerrainMerge merge = getTerrainMerge(world, center, random);
@@ -197,32 +191,6 @@ public abstract class NBTFeature<FC extends NBTFeatureConfig> extends Feature<FC
         int ex = sx + 47;
         int ez = sz + 47;
         return BoundingBox.fromCorners(new Vec3i(sx, 0, sz), new Vec3i(ex, 255, ez));
-    }
-
-    protected static StructureTemplate readStructure(ResourceLocation resource) {
-        String ns = resource.getNamespace();
-        String nm = resource.getPath();
-
-        try {
-            InputStream inputstream = MinecraftServer.class.getResourceAsStream("/data/" + ns + "/structures/" + nm + ".nbt");
-            return readStructureFromStream(inputstream);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-    private static StructureTemplate readStructureFromStream(InputStream stream) throws IOException {
-        final HolderLookup<Block> blockLookup = WorldBootstrap.getLastRegistryAccess()
-                                                              .lookup(Registries.BLOCK)
-                                                              .orElseThrow();
-        CompoundTag nbttagcompound = NbtIo.readCompressed(stream);
-
-        StructureTemplate template = new StructureTemplate();
-        template.load(blockLookup, nbttagcompound);
-
-        return template;
     }
 
     public enum TerrainMerge implements StringRepresentable {

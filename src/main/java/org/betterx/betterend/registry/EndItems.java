@@ -22,14 +22,10 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.food.Foods;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.TieredItem;
-import net.minecraft.world.item.Tiers;
+import net.minecraft.world.item.*;
 
 import java.util.List;
 import org.jetbrains.annotations.ApiStatus;
@@ -101,7 +97,7 @@ public class EndItems {
             "aeternium_helmet",
             new BaseArmorItem(
                     EndArmorMaterial.AETERNIUM,
-                    EquipmentSlot.HEAD,
+                    ArmorItem.Type.HELMET,
                     makeEndItemSettings().fireResistant()
             )
     );
@@ -109,7 +105,7 @@ public class EndItems {
             "aeternium_chestplate",
             new BaseArmorItem(
                     EndArmorMaterial.AETERNIUM,
-                    EquipmentSlot.CHEST,
+                    ArmorItem.Type.CHESTPLATE,
                     makeEndItemSettings().fireResistant()
             )
     );
@@ -117,7 +113,7 @@ public class EndItems {
             "aeternium_leggings",
             new BaseArmorItem(
                     EndArmorMaterial.AETERNIUM,
-                    EquipmentSlot.LEGS,
+                    ArmorItem.Type.LEGGINGS,
                     makeEndItemSettings().fireResistant()
             )
     );
@@ -125,7 +121,7 @@ public class EndItems {
             "aeternium_boots",
             new BaseArmorItem(
                     EndArmorMaterial.AETERNIUM,
-                    EquipmentSlot.FEET,
+                    ArmorItem.Type.BOOTS,
                     makeEndItemSettings().fireResistant()
             )
     );

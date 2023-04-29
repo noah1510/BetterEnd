@@ -115,7 +115,7 @@ public class InfusionRitual implements Container {
         progress++;
         if (progress == time) {
             clearContent();
-            input.setItem(0, activeRecipe.assemble(this));
+            input.setItem(0, activeRecipe.assemble(this, world.registryAccess()));
             if (world instanceof ServerLevel sl) {
                 sl.getPlayers(p -> p.position()
                                     .subtract(new Vec3(worldPos.getX(), worldPos.getY(), worldPos.getZ()))
@@ -123,8 +123,7 @@ public class InfusionRitual implements Container {
                   .forEach(p -> BECriteria.INFUSION_FINISHED.trigger(p));
             }
             reset();
-        } else if (world instanceof ServerLevel) {
-            ServerLevel serverLevel = (ServerLevel) world;
+        } else if (world instanceof ServerLevel serverLevel) {
             BlockPos target = worldPos.above();
             double tx = target.getX() + 0.5;
             double ty = target.getY() + 0.5;

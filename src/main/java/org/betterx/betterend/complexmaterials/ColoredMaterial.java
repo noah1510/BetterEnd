@@ -3,7 +3,6 @@ package org.betterx.betterend.complexmaterials;
 import org.betterx.bclib.recipes.BCLRecipeBuilder;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.config.Configs;
 import org.betterx.betterend.registry.EndBlocks;
 
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -43,7 +42,6 @@ public class ColoredMaterial {
             EndBlocks.registerBlock(blockName, block);
             if (craftEight) {
                 BCLRecipeBuilder.crafting(BetterEnd.makeID(blockName), block)
-                                .checkConfig(Configs.RECIPE_CONFIG)
                                 .setOutputCount(8)
                                 .setShape("###", "#D#", "###")
                                 .addMaterial('#', source)
@@ -51,7 +49,6 @@ public class ColoredMaterial {
                                 .build();
             } else {
                 BCLRecipeBuilder.crafting(BetterEnd.makeID(blockName), block)
-                                .checkConfig(Configs.RECIPE_CONFIG)
                                 .setList("#D")
                                 .addMaterial('#', source)
                                 .addMaterial('D', dyes.get(color))

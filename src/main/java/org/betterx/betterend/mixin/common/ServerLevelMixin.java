@@ -8,6 +8,7 @@ import org.betterx.betterend.world.generator.TerrainGenerator;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
@@ -36,9 +37,18 @@ import java.util.function.Supplier;
 
 @Mixin(ServerLevel.class)
 public abstract class ServerLevelMixin extends Level {
+
+
+    private final static List<ResourceKey<DimensionType>> BE_TEST_DIMENSIONS = List.of(
+            BuiltinDimensionTypes.OVERWORLD,
+            BuiltinDimensionTypes.OVERWORLD_CAVES,
+            BuiltinDimensionTypes.NETHER
+    );
+
     protected ServerLevelMixin(
             WritableLevelData writableLevelData,
             ResourceKey<Level> resourceKey,
+            RegistryAccess registryAccess,
             Holder<DimensionType> holder,
             Supplier<ProfilerFiller> supplier,
             boolean bl,
@@ -46,14 +56,8 @@ public abstract class ServerLevelMixin extends Level {
             long l,
             int i
     ) {
-        super(writableLevelData, resourceKey, holder, supplier, bl, bl2, l, i);
+        super(writableLevelData, resourceKey, registryAccess, holder, supplier, bl, bl2, l, i);
     }
-
-    private final static List<ResourceKey<DimensionType>> BE_TEST_DIMENSIONS = List.of(
-            BuiltinDimensionTypes.OVERWORLD,
-            BuiltinDimensionTypes.OVERWORLD_CAVES,
-            BuiltinDimensionTypes.NETHER
-    );
 
     @ModifyArg(method = "<init>", at = @At(value = "INVOKE", target = "Lnet/minecraft/core/Holder;is(Lnet/minecraft/resources/ResourceKey;)Z"))
     ResourceKey<DimensionType> be_dragonFight(ResourceKey<DimensionType> resourceKey) {

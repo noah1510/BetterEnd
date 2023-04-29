@@ -58,15 +58,18 @@ public class DragonTreeFeature extends DefaultFeature {
         Vector3f last = SplineHelper.getPos(spline, 3.5F);
         OpenSimplexNoise noise = new OpenSimplexNoise(random.nextLong());
         float radius = size * MHelper.randRange(0.5F, 0.7F, random);
-        makeCap(world, pos.offset(last.x(), last.y(), last.z()), radius, random, noise);
+        makeCap(world, pos.offset((int) last.x(), (int) last.y(), (int) last.z()), radius, random, noise);
 
         last = spline.get(0);
-        makeRoots(world, pos.offset(last.x(), last.y(), last.z()), radius, random);
+        makeRoots(world, pos.offset((int) last.x(), (int) last.y(), (int) last.z()), radius, random);
 
         radius = MHelper.randRange(1.2F, 2.3F, random);
-        SDF function = SplineHelper.buildSDF(spline, radius, 1.2F, (bpos) -> {
-            return EndBlocks.DRAGON_TREE.getBark().defaultBlockState();
-        });
+        SDF function = SplineHelper.buildSDF(
+                spline,
+                radius,
+                1.2F,
+                (bpos) -> EndBlocks.DRAGON_TREE.getBark().defaultBlockState()
+        );
 
         function.setReplaceFunction(REPLACE);
         function.addPostProcess(POST);
@@ -110,7 +113,8 @@ public class DragonTreeFeature extends DefaultFeature {
             SplineHelper.rotateSpline(branch, angle);
             SplineHelper.scale(branch, scale);
             Vector3f last = branch.get(branch.size() - 1);
-            if (world.getBlockState(pos.offset(last.x(), last.y(), last.z())).is(CommonBlockTags.GEN_END_STONES)) {
+            if (world.getBlockState(pos.offset((int) last.x(), (int) last.y(), (int) last.z()))
+                     .is(CommonBlockTags.GEN_END_STONES)) {
                 SplineHelper.fillSpline(
                         branch,
                         world,
@@ -136,12 +140,12 @@ public class DragonTreeFeature extends DefaultFeature {
         sub = new SDFTranslate().setTranslate(0, -radius * 5, 0).setSource(sub);
         sphere = new SDFSubtraction().setSourceA(sphere).setSourceB(sub);
         sphere = new SDFScale3D().setScale(1, 0.5F, 1).setSource(sphere);
-        sphere = new SDFDisplacement().setFunction((vec) -> {
-            return (float) noise.eval(vec.x() * 0.2, vec.y() * 0.2, vec.z() * 0.2) * 1.5F;
-        }).setSource(sphere);
-        sphere = new SDFDisplacement().setFunction((vec) -> {
-            return random.nextFloat() * 3F - 1.5F;
-        }).setSource(sphere);
+        sphere = new SDFDisplacement().setFunction((vec) -> (float) noise.eval(
+                vec.x() * 0.2,
+                vec.y() * 0.2,
+                vec.z() * 0.2
+        ) * 1.5F).setSource(sphere);
+        sphere = new SDFDisplacement().setFunction((vec) -> random.nextFloat() * 3F - 1.5F).setSource(sphere);
         MutableBlockPos mut = new MutableBlockPos();
         sphere.addPostProcess((info) -> {
             if (random.nextInt(5) == 0) {
@@ -183,9 +187,9 @@ public class DragonTreeFeature extends DefaultFeature {
             int count = (int) (radius * 2.5F);
             for (int i = 0; i < count; i++) {
                 BlockPos p = pos.offset(
-                        random.nextGaussian() * 1,
-                        random.nextGaussian() * 1,
-                        random.nextGaussian() * 1
+                        (int) (random.nextGaussian() * 1),
+                        (int) (random.nextGaussian() * 1),
+                        (int) (random.nextGaussian() * 1)
                 );
                 boolean place = true;
                 for (Direction d : Direction.values()) {
@@ -218,9 +222,7 @@ public class DragonTreeFeature extends DefaultFeature {
             return state.getMaterial().isReplaceable();
         };
 
-        IGNORE = (state) -> {
-            return EndBlocks.DRAGON_TREE.isTreeLog(state);
-        };
+        IGNORE = EndBlocks.DRAGON_TREE::isTreeLog;
 
         POST = (info) -> {
             if (EndBlocks.DRAGON_TREE.isTreeLog(info.getStateUp()) && EndBlocks.DRAGON_TREE.isTreeLog(info.getStateDown())) {

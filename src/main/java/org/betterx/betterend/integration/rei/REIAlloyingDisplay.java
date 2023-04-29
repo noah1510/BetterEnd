@@ -4,6 +4,7 @@ import org.betterx.bclib.recipes.AlloyingRecipe;
 import org.betterx.betterend.blocks.entities.EndStoneSmelterBlockEntity;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -38,7 +39,7 @@ public class REIAlloyingDisplay extends BasicDisplay implements SimpleGridMenuDi
     protected REIAlloyingDisplay(Recipe<?> recipe, float xp, double smeltTime) {
         super(
                 EntryIngredients.ofIngredients(recipe.getIngredients()),
-                Collections.singletonList(EntryIngredients.of(recipe.getResultItem()))
+                Collections.singletonList(EntryIngredients.of(recipe.getResultItem(Minecraft.getInstance().level.registryAccess())))
         );
         this.recipe = recipe;
         this.xp = xp;

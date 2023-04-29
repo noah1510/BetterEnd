@@ -42,7 +42,7 @@ public class ParticleTenaneaPetal extends TextureSheetParticle {
             CustomColorProvider block = (CustomColorProvider) EndBlocks.TENANEA_FLOWERS;
             provider = block.getProvider();
         }
-        int color = provider.getColor(null, null, new BlockPos(x, y, z), 0);
+        int color = provider.getColor(null, null, new BlockPos((int) x, (int) y, (int) z), 0);
         this.rCol = ((color >> 16) & 255) / 255F;
         this.gCol = ((color >> 8) & 255) / 255F;
         this.bCol = ((color) & 255) / 255F;

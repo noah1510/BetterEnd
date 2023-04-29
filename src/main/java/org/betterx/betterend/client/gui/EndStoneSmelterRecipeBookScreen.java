@@ -2,6 +2,7 @@ package org.betterx.betterend.client.gui;
 
 import org.betterx.betterend.blocks.entities.EndStoneSmelterBlockEntity;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.recipebook.BlastingRecipeBookComponent;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.inventory.Slot;
@@ -38,7 +39,7 @@ public class EndStoneSmelterRecipeBookScreen extends BlastingRecipeBookComponent
     @Override
     public void setupGhostRecipe(Recipe<?> recipe, List<Slot> slots) {
         this.ghostRecipe.clear();
-        ItemStack result = recipe.getResultItem();
+        ItemStack result = recipe.getResultItem(Minecraft.getInstance().level.registryAccess());
         this.ghostRecipe.setRecipe(recipe);
         this.ghostRecipe.addIngredient(Ingredient.of(result), (slots.get(3)).x, (slots.get(3)).y);
         NonNullList<Ingredient> inputs = recipe.getIngredients();
