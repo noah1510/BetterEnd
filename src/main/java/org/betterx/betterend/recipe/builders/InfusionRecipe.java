@@ -59,8 +59,10 @@ public class InfusionRecipe implements Recipe<InfusionRitual>, UnknownReceipBook
         this.id = id;
         this.input = input;
         this.output = output;
-        this.catalysts = new Ingredient[8];
-        Arrays.fill(catalysts, Ingredient.EMPTY);
+        this.catalysts = new Ingredient[]{
+                Ingredient.EMPTY, Ingredient.EMPTY, Ingredient.EMPTY, Ingredient.EMPTY,
+                Ingredient.EMPTY, Ingredient.EMPTY, Ingredient.EMPTY, Ingredient.EMPTY
+        };
     }
 
     public static Builder create(String id, ItemLike output) {
@@ -266,13 +268,19 @@ public class InfusionRecipe implements Recipe<InfusionRitual>, UnknownReceipBook
                     JsonObject o = el.getAsJsonObject();
                     //directly read as ingredient
                     if (o.has("tag")) {
-                        return ItemUtil.fromJsonIngredientWithNBT(o);
+                        final Ingredient res = ItemUtil.fromJsonIngredientWithNBT(o);
+                        if (res == null) return Ingredient.EMPTY;
+                        return res;
                     } else {
-                        return Ingredient.of(ItemUtil.fromJsonRecipeWithNBT(o));
+                        final Ingredient res = Ingredient.of(ItemUtil.fromJsonRecipeWithNBT(o));
+                        if (res == null) return Ingredient.EMPTY;
+                        return res;
                     }
                 } else if (el.isJsonArray()) {
                     //this is an Ingredient-Array, so read as such
-                    return Ingredient.fromJson(el);
+                    final Ingredient res = Ingredient.fromJson(el);
+                    if (res == null) return Ingredient.EMPTY;
+                    return res;
                 } else if (obj.isJsonPrimitive()) {
                     String s = GsonHelper.getAsString(obj, key, "");
                     ItemStack catalyst = ItemUtil.fromStackString(s);
@@ -283,7 +291,7 @@ public class InfusionRecipe implements Recipe<InfusionRitual>, UnknownReceipBook
                     throw new IllegalStateException("Invalid catalyst ingredient for " + key + ": " + el.toString());
                 }
             }
-            return null;
+            return Ingredient.EMPTY;
         }
 
         @Override
