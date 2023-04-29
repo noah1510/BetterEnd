@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "addition": {
+    "item": "betterend:terminite_sword_handle"
+  },
+  "base": {
+    "item": "betterend:terminite_sword_blade"
+  },
+  "result": {
+    "item": "betterend:terminite_sword"
+  }
+}

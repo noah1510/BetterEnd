@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "addition": {
+    "item": "minecraft:stick"
+  },
+  "base": {
+    "item": "betterend:terminite_shovel_head"
+  },
+  "result": {
+    "item": "betterend:terminite_shovel"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "addition": {
+    "item": "minecraft:stick"
+  },
+  "base": {
+    "item": "betterend:thallasium_ingot"
+  },
+  "result": {
+    "item": "betterend:thallasium_sword_handle"
+  }
+}

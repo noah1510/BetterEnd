@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "addition": {
+    "item": "betterend:aeternium_sword_handle"
+  },
+  "base": {
+    "item": "betterend:aeternium_sword_blade"
+  },
+  "result": {
+    "item": "betterend:aeternium_sword"
+  }
+}
