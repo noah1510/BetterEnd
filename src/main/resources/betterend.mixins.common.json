@@ -17,7 +17,6 @@
     "EntityMixin",
     "LevelMixin",
     "LivingEntityMixin",
-    "MonsterMixin",
     "NoiseBasedChunkGeneratorAccessor",
     "NoiseChunkAccessor",
     "NoiseChunkMixin",
