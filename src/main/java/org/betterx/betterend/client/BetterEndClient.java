@@ -51,8 +51,7 @@ public class BetterEndClient implements ClientModInitializer {
         }
 
         if (BetterEnd.RUNS_TRINKETS) {
-            //TODO: 1.19.3 Reenable when Trinkets is available
-            //org.betterx.betterend.integration.trinkets.ElytraClient.register();
+            org.betterx.betterend.integration.trinkets.ElytraClient.register();
         }
     }
 
