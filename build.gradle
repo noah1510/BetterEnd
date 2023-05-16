@@ -18,6 +18,7 @@ archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 def local_bclib = findProject(':BCLib') != null
+def local_wunderlib = findProject(':WunderLib') != null
 
 repositories {
     maven { url "https://maven.dblsaiko.net/" }
@@ -89,7 +90,7 @@ dependencies {
     if (local_bclib) {
         implementation(project(path: ":BCLib", configuration: 'dev'))
     } else {
-        modImplementation "maven.modrinth:BCLib:${project.bclib_version}"
+        modImplementation "com.github.quiqueck:BCLib:${project.bclib_version}"
     }
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-fabric:${project.rei_version}"
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${project.rei_version}"
@@ -99,6 +100,11 @@ dependencies {
     modCompileOnly "dev.emi:trinkets:${project.trinkets_version}"
     modCompileOnly "dev.emi:emi:${emi_version}"
     //modRuntimeOnly "dev.emi:emi:${emi_version}"
+
+    if (local_wunderlib) {
+        println "Using local WunderLib"
+        implementation project(path: ":WunderLib", configuration: 'dev')
+    }
 }
 
 processResources {
