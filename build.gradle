@@ -271,7 +271,7 @@ modrinth {
         required.project "fabric-api"
         required.project "bclib"
         optional.project "emi"
-        optional.project "roughly-enough-items"
+        optional.project "rei"
         optional.project "trinkets"
         optional.project "patchouli"
     }
