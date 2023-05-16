@@ -59,4 +59,7 @@ public class EndParticles {
     ) {
         return BCLParticleType.register(BetterEnd.makeID(name), type, codec);
     }
+
+    public static void ensureStaticallyLoadedServerside() {
+    }
 }
