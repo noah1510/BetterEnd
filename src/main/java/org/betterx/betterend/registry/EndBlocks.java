@@ -11,6 +11,7 @@ import org.betterx.betterend.config.Configs;
 import org.betterx.betterend.item.material.EndArmorMaterial;
 import org.betterx.betterend.item.material.EndToolMaterial;
 import org.betterx.betterend.tab.CreativeTabs;
+import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 import org.betterx.worlds.together.tag.v3.TagManager;
 
 import net.minecraft.resources.ResourceLocation;
@@ -638,7 +639,11 @@ public class EndBlocks {
             "smaragdant_crystal",
             SMARAGDANT_CRYSTAL
     );
-    public static final Block BUDDING_SMARAGDANT_CRYSTAL = registerBlock("budding_smaragdant_crystal", new BuddingSmaragdantCrystalBlock());
+    public static final Block BUDDING_SMARAGDANT_CRYSTAL = registerBlock(
+            "budding_smaragdant_crystal",
+            new BuddingSmaragdantCrystalBlock(),
+            CommonBlockTags.BUDDING_BLOCKS
+    );
 
     public static final Block RESPAWN_OBELISK = registerBlock("respawn_obelisk", new RespawnObeliskBlock());
 
