@@ -53,6 +53,7 @@ public class BetterEnd implements ModInitializer {
         GeneratorOptions.init();
         LootTableUtil.init();
         CommandRegistry.register();
+        EndParticles.ensureStaticallyLoadedServerside();
         BECriteria.register();
         FabricLoader.getInstance()
                     .getEntrypoints("betterend", BetterEndPlugin.class)
