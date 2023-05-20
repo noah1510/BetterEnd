@@ -15,6 +15,10 @@ public class CreativeTabs {
     public static final CreativeModeTab TAB_BLOCKS;
     public static final CreativeModeTab TAB_ITEMS;
 
+    public static void ensureStaticallyLoaded() {
+        // NO-OP
+    }
+
     static {
         TAB_BLOCKS = FabricItemGroup
                 .builder(BetterEnd.makeID("end_blocks"))

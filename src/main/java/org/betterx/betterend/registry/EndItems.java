@@ -15,7 +15,6 @@ import org.betterx.betterend.item.material.EndArmorMaterial;
 import org.betterx.betterend.item.material.EndToolMaterial;
 import org.betterx.betterend.item.tool.EndHammerItem;
 import org.betterx.betterend.item.tool.EndPickaxe;
-import org.betterx.betterend.tab.CreativeTabs;
 
 import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundEvent;
@@ -32,7 +31,7 @@ import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 public class EndItems {
-    private static final ItemRegistry REGISTRY = new ItemRegistry(CreativeTabs.TAB_ITEMS, Configs.ITEM_CONFIG);
+    private static final ItemRegistry REGISTRY = new ItemRegistry(Configs.ITEM_CONFIG);
 
     // Materials //
     public final static Item ENDER_DUST = registerEndItem("ender_dust");

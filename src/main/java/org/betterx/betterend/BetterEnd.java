@@ -10,6 +10,7 @@ import org.betterx.betterend.effects.EndPotions;
 import org.betterx.betterend.integration.Integrations;
 import org.betterx.betterend.recipe.builders.InfusionRecipe;
 import org.betterx.betterend.registry.*;
+import org.betterx.betterend.tab.CreativeTabs;
 import org.betterx.betterend.util.BonemealPlants;
 import org.betterx.betterend.util.LootTableUtil;
 import org.betterx.betterend.world.generator.EndLandBiomeDecider;
@@ -60,6 +61,7 @@ public class BetterEnd implements ModInitializer {
                     .forEach(BetterEndPlugin::register);
         Integrations.init();
         Configs.saveConfigs();
+        CreativeTabs.ensureStaticallyLoaded();
 
         if (GeneratorOptions.useNewGenerator()) {
             BiomeDecider.registerHighPriorityDecider(makeID("end_land"), new EndLandBiomeDecider());
