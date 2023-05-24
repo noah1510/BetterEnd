@@ -189,7 +189,7 @@ public class MetalMaterial {
         door = EndBlocks.registerBlock(name + "_door", new BaseDoorBlock.Metal(block, BlockSetType.IRON));
         trapdoor = EndBlocks.registerBlock(name + "_trapdoor", new BaseTrapdoorBlock.Metal(block, BlockSetType.IRON));
         bars = EndBlocks.registerBlock(name + "_bars", new BaseMetalBarsBlock(block));
-        chain = EndBlocks.registerBlock(name + "_chain", new BaseChainBlock(block.defaultMaterialColor()));
+        chain = EndBlocks.registerBlock(name + "_chain", new BaseChainBlock(block.defaultMapColor()));
         pressurePlate = EndBlocks.registerBlock(
                 name + "_plate",
                 new BasePressurePlateBlock.Wood(block, BlockSetType.IRON)
@@ -236,7 +236,7 @@ public class MetalMaterial {
 
         anvilBlock = EndBlocks.registerBlock(
                 name + "_anvil",
-                new EndAnvilBlock(this, block.defaultMaterialColor(), anvilAndToolLevel)
+                new EndAnvilBlock(this, block.defaultMapColor(), anvilAndToolLevel)
         );
 
         if (hasOre) {

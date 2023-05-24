@@ -11,7 +11,7 @@ import net.minecraft.world.item.Item;
 
 public class AeterniumAnvil extends EndAnvilBlock {
     public AeterniumAnvil() {
-        super(EndBlocks.AETERNIUM_BLOCK.defaultMaterialColor(), EndToolMaterial.AETERNIUM.getLevel());
+        super(EndBlocks.AETERNIUM_BLOCK.defaultMapColor(), EndToolMaterial.AETERNIUM.getLevel());
     }
 
     @Override

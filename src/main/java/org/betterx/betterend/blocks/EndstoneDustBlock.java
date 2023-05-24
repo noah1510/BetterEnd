@@ -30,7 +30,7 @@ public class EndstoneDustBlock extends FallingBlock implements TagProvider, AddM
     public EndstoneDustBlock() {
         super(FabricBlockSettings
                 .copyOf(Blocks.SAND)
-                .mapColor(Blocks.END_STONE.defaultMaterialColor())
+                .mapColor(Blocks.END_STONE.defaultMapColor())
         );
     }
 
