@@ -21,7 +21,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.material.MapColor;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
@@ -29,7 +29,7 @@ public class CrystalMossCoverBlock extends MultifaceBlock implements Bonemealabl
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     private final MultifaceSpreader spreader = new MultifaceSpreader(this);
 
-    public CrystalMossCoverBlock(MaterialColor color) {
+    public CrystalMossCoverBlock(MapColor color) {
         super(FabricBlockSettings.of(Material.REPLACEABLE_PLANT, color)
                                  .noCollission()
                                  .strength(0.2f)

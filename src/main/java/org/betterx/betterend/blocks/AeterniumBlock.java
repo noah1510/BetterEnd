@@ -8,14 +8,14 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.material.MapColor;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 public class AeterniumBlock extends BaseBlock implements CustomItemProvider {
     public AeterniumBlock() {
         super(FabricBlockSettings
-                .of(Material.METAL, MaterialColor.COLOR_GRAY)
+                .of(Material.METAL, MapColor.COLOR_GRAY)
                 .hardness(65F)
                 .resistance(1200F)
                 .requiresCorrectToolForDrops()

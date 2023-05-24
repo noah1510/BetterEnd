@@ -18,7 +18,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.material.MapColor;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
@@ -44,11 +44,11 @@ public class StoneMaterial {
     public final Block furnace;
     public final Block flowerPot;
 
-    public static FabricBlockSettings createMaterial(MaterialColor color) {
+    public static FabricBlockSettings createMaterial(MapColor color) {
         return FabricBlockSettings.copyOf(Blocks.END_STONE).mapColor(color);
     }
 
-    public StoneMaterial(String name, MaterialColor color) {
+    public StoneMaterial(String name, MapColor color) {
         FabricBlockSettings material = createMaterial(color);
 
         this.baseName = name;

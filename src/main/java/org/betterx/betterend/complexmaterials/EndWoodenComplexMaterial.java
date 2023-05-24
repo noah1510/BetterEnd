@@ -7,13 +7,13 @@ import org.betterx.betterend.registry.EndItems;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.material.MapColor;
 
 public class EndWoodenComplexMaterial extends WoodenComplexMaterial {
     private Block bark;
     private Block log;
 
-    public EndWoodenComplexMaterial(String name, MaterialColor woodColor, MaterialColor planksColor) {
+    public EndWoodenComplexMaterial(String name, MapColor woodColor, MapColor planksColor) {
         super(BetterEnd.MOD_ID, name, name, woodColor, planksColor);
     }
 

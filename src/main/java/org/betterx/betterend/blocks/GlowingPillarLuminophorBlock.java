@@ -15,7 +15,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.material.MapColor;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
@@ -24,7 +24,7 @@ public class GlowingPillarLuminophorBlock extends BaseBlock implements AddMineab
 
     public GlowingPillarLuminophorBlock() {
         super(FabricBlockSettings.of(Material.LEAVES)
-                                 .mapColor(MaterialColor.COLOR_ORANGE)
+                                 .mapColor(MapColor.COLOR_ORANGE)
                                  .strength(0.2F)
                                  .luminance(15)
                                  .sound(SoundType.GRASS));

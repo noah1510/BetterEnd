@@ -22,7 +22,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.storage.loot.LootContext;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -36,7 +36,7 @@ public class HelixTreeLeavesBlock extends BaseBlock implements CustomColorProvid
     public HelixTreeLeavesBlock() {
         super(FabricBlockSettings
                 .of(Material.LEAVES)
-                .mapColor(MaterialColor.COLOR_ORANGE)
+                .mapColor(MapColor.COLOR_ORANGE)
                 .sound(SoundType.WART_BLOCK)
                 .sound(SoundType.GRASS)
                 .strength(0.2F)

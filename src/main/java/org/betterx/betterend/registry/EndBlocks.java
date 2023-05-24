@@ -19,7 +19,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.material.MapColor;
 
 import java.util.List;
 import org.jetbrains.annotations.ApiStatus;
@@ -32,29 +32,29 @@ public class EndBlocks {
     public static final Block ENDSTONE_DUST = registerBlock("endstone_dust", new EndstoneDustBlock());
     public static final Block END_MYCELIUM = registerBlock(
             "end_mycelium",
-            new EndTerrainBlock(MaterialColor.COLOR_LIGHT_BLUE)
+            new EndTerrainBlock(MapColor.COLOR_LIGHT_BLUE)
     );
     public static final Block END_MOSS = registerBlock(
             "end_moss",
-            new EndTerrainBlock(MaterialColor.COLOR_CYAN),
+            new EndTerrainBlock(MapColor.COLOR_CYAN),
             BCLBlockTags.BONEMEAL_SOURCE_END_STONE,
             BlockTags.NYLIUM
     );
     public static final Block CHORUS_NYLIUM = registerBlock(
             "chorus_nylium",
-            new EndTerrainBlock(MaterialColor.COLOR_MAGENTA),
+            new EndTerrainBlock(MapColor.COLOR_MAGENTA),
             BCLBlockTags.BONEMEAL_SOURCE_END_STONE,
             BlockTags.NYLIUM
     );
     public static final Block CAVE_MOSS = registerBlock(
             "cave_moss",
-            new EndTripleTerrain(MaterialColor.COLOR_PURPLE),
+            new EndTripleTerrain(MapColor.COLOR_PURPLE),
             BCLBlockTags.BONEMEAL_SOURCE_END_STONE,
             BlockTags.NYLIUM
     );
     public static final Block CRYSTAL_MOSS = registerBlock(
             "crystal_moss",
-            new EndTerrainBlock(MaterialColor.COLOR_PINK),
+            new EndTerrainBlock(MapColor.COLOR_PINK),
             BCLBlockTags.BONEMEAL_SOURCE_END_STONE,
             BlockTags.NYLIUM
     );
@@ -66,31 +66,31 @@ public class EndBlocks {
     );
     public static final Block PINK_MOSS = registerBlock(
             "pink_moss",
-            new EndTerrainBlock(MaterialColor.COLOR_PINK),
+            new EndTerrainBlock(MapColor.COLOR_PINK),
             BCLBlockTags.BONEMEAL_SOURCE_END_STONE,
             BlockTags.NYLIUM
     );
     public static final Block AMBER_MOSS = registerBlock(
             "amber_moss",
-            new EndTerrainBlock(MaterialColor.COLOR_ORANGE),
+            new EndTerrainBlock(MapColor.COLOR_ORANGE),
             BCLBlockTags.BONEMEAL_SOURCE_END_STONE,
             BlockTags.NYLIUM
     );
     public static final Block JUNGLE_MOSS = registerBlock(
             "jungle_moss",
-            new EndTerrainBlock(MaterialColor.COLOR_GREEN),
+            new EndTerrainBlock(MapColor.COLOR_GREEN),
             BCLBlockTags.BONEMEAL_SOURCE_END_STONE,
             BlockTags.NYLIUM
     );
     public static final Block SANGNUM = registerBlock(
             "sangnum",
-            new EndTerrainBlock(MaterialColor.COLOR_RED),
+            new EndTerrainBlock(MapColor.COLOR_RED),
             BCLBlockTags.BONEMEAL_SOURCE_END_STONE,
             BlockTags.NYLIUM
     );
     public static final Block RUTISCUS = registerBlock(
             "rutiscus",
-            new EndTerrainBlock(MaterialColor.COLOR_ORANGE),
+            new EndTerrainBlock(MapColor.COLOR_ORANGE),
             BCLBlockTags.BONEMEAL_SOURCE_END_STONE,
             BlockTags.NYLIUM
     );
@@ -160,19 +160,19 @@ public class EndBlocks {
     );
 
     // Rocks //
-    public static final StoneMaterial FLAVOLITE = new StoneMaterial("flavolite", MaterialColor.SAND);
-    public static final StoneMaterial VIOLECITE = new StoneMaterial("violecite", MaterialColor.COLOR_PURPLE);
-    public static final StoneMaterial SULPHURIC_ROCK = new StoneMaterial("sulphuric_rock", MaterialColor.COLOR_BROWN);
-    public static final StoneMaterial VIRID_JADESTONE = new StoneMaterial("virid_jadestone", MaterialColor.COLOR_GREEN);
+    public static final StoneMaterial FLAVOLITE = new StoneMaterial("flavolite", MapColor.SAND);
+    public static final StoneMaterial VIOLECITE = new StoneMaterial("violecite", MapColor.COLOR_PURPLE);
+    public static final StoneMaterial SULPHURIC_ROCK = new StoneMaterial("sulphuric_rock", MapColor.COLOR_BROWN);
+    public static final StoneMaterial VIRID_JADESTONE = new StoneMaterial("virid_jadestone", MapColor.COLOR_GREEN);
     public static final StoneMaterial AZURE_JADESTONE = new StoneMaterial(
             "azure_jadestone",
-            MaterialColor.COLOR_LIGHT_BLUE
+            MapColor.COLOR_LIGHT_BLUE
     );
     public static final StoneMaterial SANDY_JADESTONE = new StoneMaterial(
             "sandy_jadestone",
-            MaterialColor.COLOR_YELLOW
+            MapColor.COLOR_YELLOW
     );
-    public static final StoneMaterial UMBRALITH = new StoneMaterial("umbralith", MaterialColor.DEEPSLATE);
+    public static final StoneMaterial UMBRALITH = new StoneMaterial("umbralith", MapColor.DEEPSLATE);
     public static final Block BRIMSTONE = registerBlock("brimstone", new BrimstoneBlock());
     public static final Block SULPHUR_CRYSTAL = registerBlock("sulphur_crystal", new SulphurCrystalBlock());
     public static final Block MISSING_TILE = registerBlock("missing_tile", new MissingTileBlock());
@@ -246,8 +246,8 @@ public class EndBlocks {
     );
     public static final EndWoodenComplexMaterial MOSSY_GLOWSHROOM = new EndWoodenComplexMaterial(
             "mossy_glowshroom",
-            MaterialColor.COLOR_GRAY,
-            MaterialColor.WOOD
+            MapColor.COLOR_GRAY,
+            MapColor.WOOD
     ).init();
 
     public static final Block PYTHADENDRON_SAPLING = registerBlock(
@@ -258,13 +258,13 @@ public class EndBlocks {
             "pythadendron_leaves",
             new PottableLeavesBlock(
                     PYTHADENDRON_SAPLING,
-                    MaterialColor.COLOR_MAGENTA
+                    MapColor.COLOR_MAGENTA
             )
     );
     public static final EndWoodenComplexMaterial PYTHADENDRON = new EndWoodenComplexMaterial(
             "pythadendron",
-            MaterialColor.COLOR_MAGENTA,
-            MaterialColor.COLOR_PURPLE
+            MapColor.COLOR_MAGENTA,
+            MapColor.COLOR_PURPLE
     ).init();
 
     public static final Block END_LOTUS_SEED = registerBlock("end_lotus_seed", new EndLotusSeedBlock());
@@ -273,8 +273,8 @@ public class EndBlocks {
     public static final Block END_LOTUS_FLOWER = registerEndBlockOnly("end_lotus_flower", new EndLotusFlowerBlock());
     public static final EndWoodenComplexMaterial END_LOTUS = new EndWoodenComplexMaterial(
             "end_lotus",
-            MaterialColor.COLOR_LIGHT_BLUE,
-            MaterialColor.COLOR_CYAN
+            MapColor.COLOR_LIGHT_BLUE,
+            MapColor.COLOR_CYAN
     ).init();
 
     public static final Block LACUGROVE_SAPLING = registerBlock("lacugrove_sapling", new LacugroveSaplingBlock());
@@ -282,13 +282,13 @@ public class EndBlocks {
             "lacugrove_leaves",
             new PottableLeavesBlock(
                     LACUGROVE_SAPLING,
-                    MaterialColor.COLOR_CYAN
+                    MapColor.COLOR_CYAN
             )
     );
     public static final EndWoodenComplexMaterial LACUGROVE = new EndWoodenComplexMaterial(
             "lacugrove",
-            MaterialColor.COLOR_BROWN,
-            MaterialColor.COLOR_YELLOW
+            MapColor.COLOR_BROWN,
+            MapColor.COLOR_YELLOW
     ).init();
 
     public static final Block DRAGON_TREE_SAPLING = registerBlock("dragon_tree_sapling", new DragonTreeSaplingBlock());
@@ -296,13 +296,13 @@ public class EndBlocks {
             "dragon_tree_leaves",
             new PottableLeavesBlock(
                     DRAGON_TREE_SAPLING,
-                    MaterialColor.COLOR_MAGENTA
+                    MapColor.COLOR_MAGENTA
             )
     );
     public static final EndWoodenComplexMaterial DRAGON_TREE = new EndWoodenComplexMaterial(
             "dragon_tree",
-            MaterialColor.COLOR_BLACK,
-            MaterialColor.COLOR_MAGENTA
+            MapColor.COLOR_BLACK,
+            MapColor.COLOR_MAGENTA
     ).init();
 
     public static final Block TENANEA_SAPLING = registerBlock("tenanea_sapling", new TenaneaSaplingBlock());
@@ -310,7 +310,7 @@ public class EndBlocks {
             "tenanea_leaves",
             new PottableLeavesBlock(
                     TENANEA_SAPLING,
-                    MaterialColor.COLOR_PINK
+                    MapColor.COLOR_PINK
             )
     );
     public static final Block TENANEA_FLOWERS = registerBlock("tenanea_flowers", new TenaneaFlowersBlock());
@@ -320,16 +320,16 @@ public class EndBlocks {
     );
     public static final EndWoodenComplexMaterial TENANEA = new EndWoodenComplexMaterial(
             "tenanea",
-            MaterialColor.COLOR_BROWN,
-            MaterialColor.COLOR_PINK
+            MapColor.COLOR_BROWN,
+            MapColor.COLOR_PINK
     ).init();
 
     public static final Block HELIX_TREE_SAPLING = registerBlock("helix_tree_sapling", new HelixTreeSaplingBlock());
     public static final Block HELIX_TREE_LEAVES = registerBlock("helix_tree_leaves", new HelixTreeLeavesBlock());
     public static final EndWoodenComplexMaterial HELIX_TREE = new EndWoodenComplexMaterial(
             "helix_tree",
-            MaterialColor.COLOR_GRAY,
-            MaterialColor.COLOR_ORANGE
+            MapColor.COLOR_GRAY,
+            MapColor.COLOR_ORANGE
     ).init();
 
     public static final Block UMBRELLA_TREE_SAPLING = registerBlock(
@@ -350,8 +350,8 @@ public class EndBlocks {
     );
     public static final EndWoodenComplexMaterial UMBRELLA_TREE = new EndWoodenComplexMaterial(
             "umbrella_tree",
-            MaterialColor.COLOR_BLUE,
-            MaterialColor.COLOR_GREEN
+            MapColor.COLOR_BLUE,
+            MapColor.COLOR_GREEN
     ).init();
 
     public static final Block JELLYSHROOM_CAP_PURPLE = registerBlock(
@@ -367,8 +367,8 @@ public class EndBlocks {
     );
     public static final EndWoodenComplexMaterial JELLYSHROOM = new EndWoodenComplexMaterial(
             "jellyshroom",
-            MaterialColor.COLOR_PURPLE,
-            MaterialColor.COLOR_LIGHT_BLUE
+            MapColor.COLOR_PURPLE,
+            MapColor.COLOR_LIGHT_BLUE
     ).init();
 
     public static final Block LUCERNIA_SAPLING = registerBlock("lucernia_sapling", new LucerniaSaplingBlock());
@@ -376,7 +376,7 @@ public class EndBlocks {
             "lucernia_leaves",
             new PottableLeavesBlock(
                     LUCERNIA_SAPLING,
-                    MaterialColor.COLOR_ORANGE
+                    MapColor.COLOR_ORANGE
             )
     );
     public static final Block LUCERNIA_OUTER_LEAVES = registerBlock(
@@ -385,8 +385,8 @@ public class EndBlocks {
     );
     public static final EndWoodenComplexMaterial LUCERNIA = new EndWoodenComplexMaterial(
             "lucernia",
-            MaterialColor.COLOR_ORANGE,
-            MaterialColor.COLOR_ORANGE
+            MapColor.COLOR_ORANGE,
+            MapColor.COLOR_ORANGE
     ).init();
 
     // Small Plants //
@@ -446,7 +446,7 @@ public class EndBlocks {
 
     public static final Block CRYSTAL_MOSS_COVER = registerBlock(
             "crystal_moss_cover",
-            new CrystalMossCoverBlock(MaterialColor.COLOR_PINK)
+            new CrystalMossCoverBlock(MapColor.COLOR_PINK)
     );
 
     public static final Block BLUE_VINE_SEED = registerBlock("blue_vine_seed", new BlueVineSeedBlock());
@@ -562,7 +562,7 @@ public class EndBlocks {
 
     public static final Block CAVE_BUSH = registerBlock(
             "cave_bush",
-            new SimpleLeavesBlock(MaterialColor.COLOR_MAGENTA)
+            new SimpleLeavesBlock(MapColor.COLOR_MAGENTA)
     );
 
     public static final Block MURKWEED = registerBlock("murkweed", new MurkweedBlock());
@@ -608,7 +608,7 @@ public class EndBlocks {
     // Materials //
     public static final MetalMaterial THALLASIUM = MetalMaterial.makeNormal(
             "thallasium",
-            MaterialColor.COLOR_BLUE,
+            MapColor.COLOR_BLUE,
             EndToolMaterial.THALLASIUM,
             EndArmorMaterial.THALLASIUM,
             EndToolMaterial.THALLASIUM.getLevel()
@@ -616,7 +616,7 @@ public class EndBlocks {
 
     public static final MetalMaterial TERMINITE = MetalMaterial.makeOreless(
             "terminite",
-            MaterialColor.WARPED_WART_BLOCK,
+            MapColor.WARPED_WART_BLOCK,
             7F,
             9F,
             EndToolMaterial.TERMINITE,

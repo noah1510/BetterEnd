@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.material.MapColor;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
@@ -22,7 +22,7 @@ public class UmbrellaTreeClusterEmptyBlock extends BaseBlock {
     public UmbrellaTreeClusterEmptyBlock() {
         super(FabricBlockSettings
                 .copyOf(Blocks.NETHER_WART_BLOCK)
-                .mapColor(MaterialColor.COLOR_PURPLE)
+                .mapColor(MapColor.COLOR_PURPLE)
                 .randomTicks()
         );
         registerDefaultState(stateDefinition.any().setValue(NATURAL, false));

@@ -15,7 +15,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 
 import net.fabricmc.api.EnvType;
@@ -27,7 +27,7 @@ public class PallidiumBlock extends EndTerrainBlock {
     private final Block nextLevel;
 
     public PallidiumBlock(String thickness, Block nextLevel) {
-        super(MaterialColor.COLOR_LIGHT_GRAY);
+        super(MapColor.COLOR_LIGHT_GRAY);
         this.nextLevel = nextLevel;
     }
 

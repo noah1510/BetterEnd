@@ -28,7 +28,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
@@ -48,7 +48,7 @@ public class EndStoneSmelter extends BaseBlockWithEntity implements AlloyingReci
     public static final String ID = "end_stone_smelter";
 
     public EndStoneSmelter() {
-        super(FabricBlockSettings.of(Material.STONE, MaterialColor.COLOR_GRAY)
+        super(FabricBlockSettings.of(Material.STONE, MapColor.COLOR_GRAY)
                                  .luminance(state -> state.getValue(LIT) ? 15 : 0)
                                  .hardness(4F)
                                  .resistance(100F)

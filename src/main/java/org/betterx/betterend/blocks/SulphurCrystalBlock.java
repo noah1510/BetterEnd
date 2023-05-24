@@ -47,7 +47,7 @@ public class SulphurCrystalBlock extends BaseAttachedBlock implements AddMineabl
 
     public SulphurCrystalBlock() {
         super(FabricBlockSettings.of(Material.STONE)
-                                 .materialColor(MaterialColor.COLOR_YELLOW)
+                                 .materialColor(MapColor.COLOR_YELLOW)
                                  .sound(SoundType.GLASS)
                                  .requiresCorrectToolForDrops()
                                  .noCollission());

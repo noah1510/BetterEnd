@@ -7,7 +7,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.material.MapColor;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -16,7 +16,7 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 public class EnderBlock extends BaseBlock {
 
     public EnderBlock() {
-        super(FabricBlockSettings.of(Material.STONE, MaterialColor.WARPED_WART_BLOCK)
+        super(FabricBlockSettings.of(Material.STONE, MapColor.WARPED_WART_BLOCK)
                                  .hardness(5F)
                                  .resistance(6F)
                                  .requiresCorrectToolForDrops()

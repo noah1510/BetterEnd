@@ -10,7 +10,7 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.material.MapColor;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
@@ -38,7 +38,7 @@ public class ColoredMaterial {
         String id = BuiltInRegistries.BLOCK.getKey(source).getPath();
         colors.forEach((color, name) -> {
             String blockName = id + "_" + name;
-            Block block = constructor.apply(FabricBlockSettings.copyOf(source).mapColor(MaterialColor.COLOR_BLACK));
+            Block block = constructor.apply(FabricBlockSettings.copyOf(source).mapColor(MapColor.COLOR_BLACK));
             EndBlocks.registerBlock(blockName, block);
             if (craftEight) {
                 BCLRecipeBuilder.crafting(BetterEnd.makeID(blockName), block)

@@ -9,12 +9,12 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.material.MapColor;
 
 import java.util.List;
 
 public class EndTerrainBlock extends BaseTerrainBlock implements PottableTerrain, TagProvider {
-    public EndTerrainBlock(MaterialColor color) {
+    public EndTerrainBlock(MapColor color) {
         super(Blocks.END_STONE, color);
     }
 

@@ -29,7 +29,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.material.MapColor;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
@@ -79,7 +79,7 @@ public class MetalMaterial {
 
     public static MetalMaterial makeNormal(
             String name,
-            MaterialColor color,
+            MapColor color,
             Tier material,
             ArmorMaterial armor,
             int anvilAndToolLevel
@@ -97,7 +97,7 @@ public class MetalMaterial {
 
     public static MetalMaterial makeNormal(
             String name,
-            MaterialColor color,
+            MapColor color,
             float hardness,
             float resistance,
             Tier material,
@@ -120,7 +120,7 @@ public class MetalMaterial {
 
     public static MetalMaterial makeOreless(
             String name,
-            MaterialColor color,
+            MapColor color,
             Tier material,
             ArmorMaterial armor,
             int anvilAndToolLevel
@@ -138,7 +138,7 @@ public class MetalMaterial {
 
     public static MetalMaterial makeOreless(
             String name,
-            MaterialColor color,
+            MapColor color,
             float hardness,
             float resistance,
             Tier material,

@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
@@ -38,7 +38,7 @@ public class BulbVineLanternBlock extends EndLanternBlock implements RenderLayer
         this(FabricBlockSettings.of(Material.METAL)
                                 .hardness(1)
                                 .resistance(1)
-                                .mapColor(MaterialColor.COLOR_LIGHT_GRAY)
+                                .mapColor(MapColor.COLOR_LIGHT_GRAY)
                                 .luminance(15)
                                 .requiresCorrectToolForDrops()
                                 .sound(SoundType.LANTERN));
