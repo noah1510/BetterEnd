@@ -17,5 +17,6 @@
     "recipes": [
       "betterend:thallasium_forged_plate"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

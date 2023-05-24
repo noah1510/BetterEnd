@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:fiber_string"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

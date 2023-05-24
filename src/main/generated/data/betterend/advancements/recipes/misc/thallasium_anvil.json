@@ -48,5 +48,6 @@
     "recipes": [
       "betterend:thallasium_anvil"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -43,5 +43,6 @@
     "recipes": [
       "betterend:pythadendron_ladder"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

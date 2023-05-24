@@ -61,5 +61,6 @@
     "recipes": [
       "betterend:sulphur_gunpowder"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

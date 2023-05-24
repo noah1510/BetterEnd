@@ -43,5 +43,6 @@
     "recipes": [
       "betterend:pythadendron_gate"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

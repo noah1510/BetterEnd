@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:thallasium_chestplate"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

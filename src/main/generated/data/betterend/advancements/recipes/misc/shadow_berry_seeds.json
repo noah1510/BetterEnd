@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:shadow_berry_seeds"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

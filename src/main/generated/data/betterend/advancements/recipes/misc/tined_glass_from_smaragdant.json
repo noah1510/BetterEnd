@@ -43,5 +43,6 @@
     "recipes": [
       "betterend:tined_glass_from_smaragdant"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -17,5 +17,6 @@
     "recipes": [
       "betterend:terminite_axe_head"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

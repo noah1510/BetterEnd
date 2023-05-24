@@ -43,5 +43,6 @@
     "recipes": [
       "betterend:jellyshroom_barrel"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

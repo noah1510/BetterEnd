@@ -43,5 +43,6 @@
     "recipes": [
       "betterend:terminite_chain"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

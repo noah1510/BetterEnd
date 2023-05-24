@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:thallasium_chestplate_nugget_blasting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -17,5 +17,6 @@
     "recipes": [
       "betterend:terminite_ingot_thallasium"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

@@ -17,5 +17,6 @@
     "recipes": [
       "betterend:additional_iron"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

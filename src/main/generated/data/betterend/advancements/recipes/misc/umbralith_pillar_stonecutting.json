@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:umbralith_pillar_stonecutting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -43,5 +43,6 @@
     "recipes": [
       "betterend:purpur_lantern"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

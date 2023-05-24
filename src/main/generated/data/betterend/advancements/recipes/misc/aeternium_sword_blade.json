@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:aeternium_sword_blade"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

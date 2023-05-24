@@ -43,5 +43,6 @@
     "recipes": [
       "betterend:thallasium_chandelier"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

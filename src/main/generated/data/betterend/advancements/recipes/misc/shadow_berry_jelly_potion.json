@@ -69,5 +69,6 @@
     "recipes": [
       "betterend:shadow_berry_jelly_potion"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

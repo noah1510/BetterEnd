@@ -56,5 +56,6 @@
     "recipes": [
       "betterend:silk_moth_hive"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

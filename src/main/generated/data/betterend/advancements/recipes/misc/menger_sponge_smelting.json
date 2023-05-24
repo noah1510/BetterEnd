@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:menger_sponge_smelting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:lacugrove_slab"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

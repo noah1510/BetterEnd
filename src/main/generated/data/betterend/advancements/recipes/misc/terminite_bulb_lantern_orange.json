@@ -43,5 +43,6 @@
     "recipes": [
       "betterend:terminite_bulb_lantern_orange"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

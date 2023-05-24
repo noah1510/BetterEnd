@@ -67,5 +67,6 @@
     "recipes": [
       "betterend:blossom_berry_jelly"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

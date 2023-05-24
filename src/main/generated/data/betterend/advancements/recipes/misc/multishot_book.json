@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:multishot_book"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

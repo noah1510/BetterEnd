@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:crystalite_boots"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

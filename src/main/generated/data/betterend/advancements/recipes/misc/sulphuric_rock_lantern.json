@@ -48,5 +48,6 @@
     "recipes": [
       "betterend:sulphuric_rock_lantern"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

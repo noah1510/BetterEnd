@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:soul_speed_book"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

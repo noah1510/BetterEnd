@@ -43,5 +43,6 @@
     "recipes": [
       "betterend:flavolite_pedestal"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:thallasium_nuggets_from_ingot"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -43,5 +43,6 @@
     "recipes": [
       "betterend:gold_chandelier"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

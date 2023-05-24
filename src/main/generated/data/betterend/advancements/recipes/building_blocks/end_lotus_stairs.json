@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:end_lotus_stairs"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -43,5 +43,6 @@
     "recipes": [
       "betterend:end_stone_lantern"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

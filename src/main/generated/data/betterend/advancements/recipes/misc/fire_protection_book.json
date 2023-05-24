@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:fire_protection_book"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

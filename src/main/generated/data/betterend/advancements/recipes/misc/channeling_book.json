@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:channeling_book"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

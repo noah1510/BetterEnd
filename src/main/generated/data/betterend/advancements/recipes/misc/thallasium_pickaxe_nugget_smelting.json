@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:thallasium_pickaxe_nugget_smelting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

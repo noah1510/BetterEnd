@@ -17,5 +17,6 @@
     "recipes": [
       "betterend:aeternium_ingot"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

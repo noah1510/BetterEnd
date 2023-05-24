@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:leather_to_stripes"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

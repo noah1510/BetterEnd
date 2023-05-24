@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:sulphuric_rock_bricks"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

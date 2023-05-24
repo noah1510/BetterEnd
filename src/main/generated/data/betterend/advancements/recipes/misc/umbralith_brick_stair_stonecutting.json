@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:umbralith_brick_stair_stonecutting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

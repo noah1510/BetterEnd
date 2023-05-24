@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:dragon_tree_stairs"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

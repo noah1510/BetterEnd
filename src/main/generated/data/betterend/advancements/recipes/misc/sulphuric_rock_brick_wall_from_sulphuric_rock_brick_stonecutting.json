@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:sulphuric_rock_brick_wall_from_sulphuric_rock_brick_stonecutting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

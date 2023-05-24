@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:umbralith_flower_pot"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:helix_tree_stripped_log"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

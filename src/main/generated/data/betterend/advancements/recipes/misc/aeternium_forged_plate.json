@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:aeternium_forged_plate"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

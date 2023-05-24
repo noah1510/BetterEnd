@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:power_book"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

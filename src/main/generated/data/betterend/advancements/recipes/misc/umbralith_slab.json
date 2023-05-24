@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:umbralith_slab"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

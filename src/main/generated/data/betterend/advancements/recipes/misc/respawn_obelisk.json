@@ -56,5 +56,6 @@
     "recipes": [
       "betterend:respawn_obelisk"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

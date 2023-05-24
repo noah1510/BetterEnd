@@ -17,5 +17,6 @@
     "recipes": [
       "betterend:terminite_shovel_head"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

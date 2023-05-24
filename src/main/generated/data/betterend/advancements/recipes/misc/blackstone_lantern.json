@@ -43,5 +43,6 @@
     "recipes": [
       "betterend:blackstone_lantern"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

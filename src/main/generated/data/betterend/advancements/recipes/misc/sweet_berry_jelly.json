@@ -67,5 +67,6 @@
     "recipes": [
       "betterend:sweet_berry_jelly"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

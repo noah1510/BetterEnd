@@ -43,5 +43,6 @@
     "recipes": [
       "betterend:lacugrove_barrel"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

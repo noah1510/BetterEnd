@@ -35,5 +35,6 @@
     "recipes": [
       "betterend:terminite_slab"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

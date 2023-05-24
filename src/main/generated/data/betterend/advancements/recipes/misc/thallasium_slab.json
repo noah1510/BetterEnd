@@ -35,5 +35,6 @@
     "recipes": [
       "betterend:thallasium_slab"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

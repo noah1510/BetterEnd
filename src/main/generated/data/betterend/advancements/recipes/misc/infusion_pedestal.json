@@ -56,5 +56,6 @@
     "recipes": [
       "betterend:infusion_pedestal"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

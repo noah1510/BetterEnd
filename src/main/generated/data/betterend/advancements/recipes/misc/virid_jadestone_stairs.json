@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:virid_jadestone_stairs"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

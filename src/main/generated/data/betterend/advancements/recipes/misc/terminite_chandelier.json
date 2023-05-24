@@ -43,5 +43,6 @@
     "recipes": [
       "betterend:terminite_chandelier"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:blue_vine_seed_dye"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

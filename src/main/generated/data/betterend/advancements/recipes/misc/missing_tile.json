@@ -53,5 +53,6 @@
     "recipes": [
       "betterend:missing_tile"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

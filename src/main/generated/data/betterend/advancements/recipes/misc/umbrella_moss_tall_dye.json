@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:umbrella_moss_tall_dye"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

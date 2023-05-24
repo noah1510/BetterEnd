@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:umbralith_tiles"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

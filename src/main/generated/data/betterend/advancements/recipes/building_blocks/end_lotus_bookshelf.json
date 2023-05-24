@@ -43,5 +43,6 @@
     "recipes": [
       "betterend:end_lotus_bookshelf"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

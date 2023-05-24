@@ -43,5 +43,6 @@
     "recipes": [
       "betterend:jellyshroom_ladder"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

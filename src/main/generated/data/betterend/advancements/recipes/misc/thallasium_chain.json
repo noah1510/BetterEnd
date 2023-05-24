@@ -43,5 +43,6 @@
     "recipes": [
       "betterend:thallasium_chain"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

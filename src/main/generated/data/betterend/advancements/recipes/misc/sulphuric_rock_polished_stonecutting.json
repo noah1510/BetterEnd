@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:sulphuric_rock_polished_stonecutting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

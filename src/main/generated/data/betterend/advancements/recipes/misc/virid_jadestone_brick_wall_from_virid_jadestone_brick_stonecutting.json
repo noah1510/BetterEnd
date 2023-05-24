@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:virid_jadestone_brick_wall_from_virid_jadestone_brick_stonecutting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

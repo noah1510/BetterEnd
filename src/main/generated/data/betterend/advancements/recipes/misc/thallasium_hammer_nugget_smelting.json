@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:thallasium_hammer_nugget_smelting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

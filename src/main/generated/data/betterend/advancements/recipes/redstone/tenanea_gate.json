@@ -43,5 +43,6 @@
     "recipes": [
       "betterend:tenanea_gate"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

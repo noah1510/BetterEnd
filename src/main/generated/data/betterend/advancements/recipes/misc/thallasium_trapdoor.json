@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:thallasium_trapdoor"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

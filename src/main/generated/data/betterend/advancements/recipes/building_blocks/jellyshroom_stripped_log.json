@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:jellyshroom_stripped_log"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

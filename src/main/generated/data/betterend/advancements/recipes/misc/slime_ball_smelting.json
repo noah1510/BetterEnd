@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:slime_ball_smelting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

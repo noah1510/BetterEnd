@@ -45,5 +45,6 @@
     "recipes": [
       "betterend:lucernia_planks"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

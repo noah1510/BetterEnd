@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:thallasium_bars"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:sandy_jadestone_furnace"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

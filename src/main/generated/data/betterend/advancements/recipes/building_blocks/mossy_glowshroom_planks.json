@@ -45,5 +45,6 @@
     "recipes": [
       "betterend:mossy_glowshroom_planks"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

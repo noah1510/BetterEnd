@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:respiration_book"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

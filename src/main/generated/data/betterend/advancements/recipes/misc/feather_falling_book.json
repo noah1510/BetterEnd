@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:feather_falling_book"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

@@ -37,5 +37,6 @@
     [
       "eternal_portal"
     ]
-  ]
+  ],
+  "sends_telemetry_event": false
 }

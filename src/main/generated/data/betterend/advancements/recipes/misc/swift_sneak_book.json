@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:swift_sneak_book"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

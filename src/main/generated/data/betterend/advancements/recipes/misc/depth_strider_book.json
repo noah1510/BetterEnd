@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:depth_strider_book"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

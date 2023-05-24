@@ -56,5 +56,6 @@
     "recipes": [
       "betterend:iron_bulb_lantern"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

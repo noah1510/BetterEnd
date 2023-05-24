@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:dense_emerald_ice"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

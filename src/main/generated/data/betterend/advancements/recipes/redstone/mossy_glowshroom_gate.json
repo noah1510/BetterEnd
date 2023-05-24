@@ -43,5 +43,6 @@
     "recipes": [
       "betterend:mossy_glowshroom_gate"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

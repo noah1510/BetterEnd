@@ -25,5 +25,6 @@
     [
       "turn_on"
     ]
-  ]
+  ],
+  "sends_telemetry_event": false
 }

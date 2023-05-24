@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:aeternium_block"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

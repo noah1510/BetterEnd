@@ -48,5 +48,6 @@
     "recipes": [
       "betterend:virid_jadestone_lantern"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

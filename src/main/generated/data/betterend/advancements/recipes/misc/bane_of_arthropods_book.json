@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:bane_of_arthropods_book"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:pythadendron_log"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -43,5 +43,6 @@
     "recipes": [
       "betterend:hydralux_petal_block_white"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

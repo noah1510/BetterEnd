@@ -56,5 +56,6 @@
     "recipes": [
       "betterend:ender_eye_amber"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

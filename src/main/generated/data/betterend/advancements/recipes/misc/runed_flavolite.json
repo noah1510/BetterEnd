@@ -17,5 +17,6 @@
     "recipes": [
       "betterend:runed_flavolite"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

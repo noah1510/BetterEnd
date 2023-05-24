@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:virid_jadestone_flower_pot"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

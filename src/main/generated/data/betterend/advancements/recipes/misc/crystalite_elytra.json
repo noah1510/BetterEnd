@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:crystalite_elytra"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

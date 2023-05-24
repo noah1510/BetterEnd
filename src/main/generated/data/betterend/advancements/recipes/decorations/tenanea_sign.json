@@ -43,5 +43,6 @@
     "recipes": [
       "betterend:tenanea_sign"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

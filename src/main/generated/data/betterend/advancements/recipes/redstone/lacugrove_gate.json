@@ -43,5 +43,6 @@
     "recipes": [
       "betterend:lacugrove_gate"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

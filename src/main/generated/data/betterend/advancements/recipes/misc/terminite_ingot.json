@@ -17,5 +17,6 @@
     "recipes": [
       "betterend:terminite_ingot"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

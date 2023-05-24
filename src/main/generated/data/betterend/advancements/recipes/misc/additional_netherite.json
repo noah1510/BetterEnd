@@ -17,5 +17,6 @@
     "recipes": [
       "betterend:additional_netherite"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

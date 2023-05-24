@@ -43,5 +43,6 @@
     "recipes": [
       "betterend:umbrella_tree_bookshelf"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

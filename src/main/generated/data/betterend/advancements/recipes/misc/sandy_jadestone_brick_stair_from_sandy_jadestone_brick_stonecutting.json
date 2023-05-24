@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:sandy_jadestone_brick_stair_from_sandy_jadestone_brick_stonecutting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

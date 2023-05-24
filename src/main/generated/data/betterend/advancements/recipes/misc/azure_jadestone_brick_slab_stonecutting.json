@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:azure_jadestone_brick_slab_stonecutting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

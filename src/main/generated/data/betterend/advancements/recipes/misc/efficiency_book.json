@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:efficiency_book"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

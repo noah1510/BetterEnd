@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:terminite_chestplate"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

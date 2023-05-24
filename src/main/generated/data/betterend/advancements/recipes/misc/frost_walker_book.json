@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:frost_walker_book"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

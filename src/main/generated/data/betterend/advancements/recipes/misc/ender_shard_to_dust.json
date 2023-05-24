@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:ender_shard_to_dust"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

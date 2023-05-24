@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:sugar_from_root"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

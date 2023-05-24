@@ -61,5 +61,6 @@
     "recipes": [
       "betterend:cave_pumpkin_pie"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

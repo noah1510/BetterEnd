@@ -54,5 +54,6 @@
     "recipes": [
       "betterend:end_stone_smelter"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

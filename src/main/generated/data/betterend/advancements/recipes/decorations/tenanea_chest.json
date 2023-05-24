@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:tenanea_chest"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

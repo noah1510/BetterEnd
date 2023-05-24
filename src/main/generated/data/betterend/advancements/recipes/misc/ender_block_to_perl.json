@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:ender_block_to_perl"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

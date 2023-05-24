@@ -43,5 +43,6 @@
     "recipes": [
       "betterend:quartz_pedestal"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

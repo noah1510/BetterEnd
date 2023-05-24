@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:quick_charge_book"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

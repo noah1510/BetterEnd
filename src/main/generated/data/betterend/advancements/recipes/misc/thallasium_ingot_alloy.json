@@ -17,5 +17,6 @@
     "recipes": [
       "betterend:thallasium_ingot_alloy"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

@@ -43,5 +43,6 @@
     "recipes": [
       "betterend:leather_wrapped_stick"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

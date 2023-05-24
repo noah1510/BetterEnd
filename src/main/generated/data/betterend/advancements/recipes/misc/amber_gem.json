@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:amber_gem"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

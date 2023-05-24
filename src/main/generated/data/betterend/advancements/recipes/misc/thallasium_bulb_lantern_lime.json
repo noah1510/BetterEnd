@@ -43,5 +43,6 @@
     "recipes": [
       "betterend:thallasium_bulb_lantern_lime"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

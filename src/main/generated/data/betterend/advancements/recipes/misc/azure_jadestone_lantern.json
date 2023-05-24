@@ -48,5 +48,6 @@
     "recipes": [
       "betterend:azure_jadestone_lantern"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

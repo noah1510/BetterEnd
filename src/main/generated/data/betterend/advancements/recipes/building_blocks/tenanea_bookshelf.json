@@ -43,5 +43,6 @@
     "recipes": [
       "betterend:tenanea_bookshelf"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

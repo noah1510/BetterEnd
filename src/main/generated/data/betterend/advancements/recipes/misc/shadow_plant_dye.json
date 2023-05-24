@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:shadow_plant_dye"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

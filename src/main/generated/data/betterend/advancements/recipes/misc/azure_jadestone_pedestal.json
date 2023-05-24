@@ -43,5 +43,6 @@
     "recipes": [
       "betterend:azure_jadestone_pedestal"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

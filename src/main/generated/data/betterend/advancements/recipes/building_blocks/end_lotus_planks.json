@@ -45,5 +45,6 @@
     "recipes": [
       "betterend:end_lotus_planks"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

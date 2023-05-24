@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:charnia_green_dye"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

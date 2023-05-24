@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:aqua_affinity_book"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

@@ -30,5 +30,6 @@
     "recipes": [
       "betterend:tenanea_log"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

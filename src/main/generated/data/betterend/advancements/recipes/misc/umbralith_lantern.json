@@ -48,5 +48,6 @@
     "recipes": [
       "betterend:umbralith_lantern"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }
