@@ -61,7 +61,7 @@ public class BetterEnd implements ModInitializer {
                     .forEach(BetterEndPlugin::register);
         Integrations.init();
         Configs.saveConfigs();
-        CreativeTabs.ensureStaticallyLoaded();
+        CreativeTabs.register();
 
         if (GeneratorOptions.useNewGenerator()) {
             BiomeDecider.registerHighPriorityDecider(makeID("end_land"), new EndLandBiomeDecider());
@@ -78,7 +78,7 @@ public class BetterEnd implements ModInitializer {
                 EndStructures.addBiomeStructures(biomeID, biome);
             }
         });
-        
+
         //TODO: 1.20 Re-enable when Trinkets is back
 //        if (RUNS_TRINKETS) {
 //            org.betterx.betterend.integration.trinkets.Elytra.register();
