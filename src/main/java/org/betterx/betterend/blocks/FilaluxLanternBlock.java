@@ -1,17 +1,13 @@
 package org.betterx.betterend.blocks;
 
 import org.betterx.bclib.blocks.BaseBlock;
-import org.betterx.bclib.interfaces.tools.AddMineableAxe;
 
 import net.minecraft.world.level.block.SoundType;
 
-
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-
-public class FilaluxLanternBlock extends BaseBlock implements AddMineableAxe {
+public class FilaluxLanternBlock extends BaseBlock.Wood {
     public FilaluxLanternBlock() {
-        super(FabricBlockSettings.of(Material.WOOD)
-                                 .luminance(15)
-                                 .sound(SoundType.WOOD));
+        super(Properties.of()
+                        .lightLevel((bs) -> 15)
+                        .sound(SoundType.WOOD));
     }
 }

@@ -1,8 +1,9 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
+import org.betterx.bclib.behaviours.interfaces.BehaviourPlant;
 import org.betterx.bclib.blocks.BlockProperties;
 import org.betterx.bclib.blocks.BlockProperties.TripleShape;
-import org.betterx.bclib.interfaces.tools.AddMineableShears;
 import org.betterx.betterend.blocks.basis.EndPlantBlock;
 import org.betterx.betterend.registry.EndBlocks;
 
@@ -19,15 +20,15 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class LargeAmaranitaBlock extends EndPlantBlock implements AddMineableShears {
+public class LargeAmaranitaBlock extends EndPlantBlock implements BehaviourPlant {
     public static final EnumProperty<TripleShape> SHAPE = BlockProperties.TRIPLE_SHAPE;
     private static final VoxelShape SHAPE_BOTTOM = Block.box(4, 0, 4, 12, 14, 12);
     private static final VoxelShape SHAPE_TOP = Shapes.or(Block.box(1, 3, 1, 15, 16, 15), SHAPE_BOTTOM);
 
     public LargeAmaranitaBlock() {
-        super(basePlantSettings()
+        super(BehaviourBuilders
+                .createPlant()
                 .lightLevel((state) -> (state.getValue(SHAPE) == TripleShape.TOP) ? 15 : 0)
-                .offsetType(OffsetType.NONE)
         );
     }
 

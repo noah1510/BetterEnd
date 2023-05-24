@@ -50,7 +50,7 @@ public class EndPortalBlock extends NetherPortalBlock implements RenderLayerProv
     public EndPortalBlock() {
         super(FabricBlockSettings.copyOf(Blocks.NETHER_PORTAL)
                                  .resistance(Blocks.BEDROCK.getExplosionResistance())
-                                 .luminance(15));
+                                 .lightLevel((bs) -> 15));
     }
 
     @Override

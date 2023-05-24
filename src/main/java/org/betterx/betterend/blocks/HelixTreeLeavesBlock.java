@@ -1,5 +1,7 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
+import org.betterx.bclib.behaviours.interfaces.BehaviourLeaves;
 import org.betterx.bclib.blocks.BaseBlock;
 import org.betterx.bclib.blocks.BaseLeavesBlock;
 import org.betterx.bclib.interfaces.CustomColorProvider;
@@ -21,25 +23,19 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.storage.loot.LootParams;
 
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-
 import java.util.List;
 
-public class HelixTreeLeavesBlock extends BaseBlock implements CustomColorProvider, AddMineableShears {
+public class HelixTreeLeavesBlock extends BaseBlock implements BehaviourLeaves, CustomColorProvider, AddMineableShears {
     public static final IntegerProperty COLOR = EndBlockProperties.COLOR;
     private static final OpenSimplexNoise NOISE = new OpenSimplexNoise(0);
 
     public HelixTreeLeavesBlock() {
-        super(FabricBlockSettings
-                .of(Material.LEAVES)
-                .mapColor(MapColor.COLOR_ORANGE)
+        super(BehaviourBuilders
+                .createLeaves(MapColor.COLOR_ORANGE, true)
                 .sound(SoundType.WART_BLOCK)
-                .sound(SoundType.GRASS)
-                .strength(0.2F)
         );
 
         TagManager.BLOCKS.add(BlockTags.LEAVES, this);

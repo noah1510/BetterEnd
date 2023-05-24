@@ -1,5 +1,7 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
+import org.betterx.bclib.behaviours.interfaces.BehaviourPlant;
 import org.betterx.bclib.interfaces.CustomItemProvider;
 import org.betterx.bclib.interfaces.tools.AddMineableShears;
 import org.betterx.betterend.blocks.basis.EndPlantBlock;
@@ -24,11 +26,12 @@ import com.google.common.collect.Lists;
 
 import java.util.List;
 
-public class FlamaeaBlock extends EndPlantBlock implements CustomItemProvider, AddMineableShears {
+public class FlamaeaBlock extends EndPlantBlock implements CustomItemProvider, BehaviourPlant, AddMineableShears {
     private static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 1, 16);
 
     public FlamaeaBlock() {
-        super(basePlantSettings()
+        super(BehaviourBuilders
+                .createPlant()
                 .sound(SoundType.WET_GRASS)
                 .offsetType(BlockBehaviour.OffsetType.NONE)
         );

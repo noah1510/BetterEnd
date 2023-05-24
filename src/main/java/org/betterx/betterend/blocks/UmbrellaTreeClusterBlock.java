@@ -25,14 +25,14 @@ import net.minecraft.world.phys.BlockHitResult;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
-public class UmbrellaTreeClusterBlock extends BaseBlock {
+public class UmbrellaTreeClusterBlock extends BaseBlock.Wood {
     public static final BooleanProperty NATURAL = BlockProperties.NATURAL;
 
     public UmbrellaTreeClusterBlock() {
         super(FabricBlockSettings
                 .copyOf(Blocks.NETHER_WART_BLOCK)
                 .mapColor(MapColor.COLOR_PURPLE)
-                .luminance(15)
+                .lightLevel((bs) -> 15)
         );
         registerDefaultState(stateDefinition.any().setValue(NATURAL, false));
     }

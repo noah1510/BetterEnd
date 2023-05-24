@@ -1,12 +1,10 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
+import org.betterx.bclib.behaviours.interfaces.BehaviourWood;
 import org.betterx.bclib.blocks.BaseBlock;
-import org.betterx.bclib.interfaces.TagProvider;
 import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.worlds.together.tag.v3.MineableTags;
 
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
@@ -14,16 +12,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 
-
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-
-import java.util.List;
-
-public class MossyGlowshroomCapBlock extends BaseBlock implements TagProvider {
+public class MossyGlowshroomCapBlock extends BaseBlock implements BehaviourWood {
     public static final BooleanProperty TRANSITION = EndBlockProperties.TRANSITION;
 
     public MossyGlowshroomCapBlock() {
-        super(FabricBlockSettings.of(Material.WOOD).sound(SoundType.WOOD));
+        super(BehaviourBuilders.createWood().sound(SoundType.WOOD));
         this.registerDefaultState(this.stateDefinition.any().setValue(TRANSITION, false));
     }
 
@@ -38,10 +31,5 @@ public class MossyGlowshroomCapBlock extends BaseBlock implements TagProvider {
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(TRANSITION);
-    }
-
-    @Override
-    public void addTags(List<TagKey<Block>> blockTags, List<TagKey<Item>> itemTags) {
-        blockTags.add(MineableTags.AXE);
     }
 }

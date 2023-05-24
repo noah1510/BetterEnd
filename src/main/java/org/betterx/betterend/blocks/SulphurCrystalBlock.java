@@ -3,7 +3,6 @@ package org.betterx.betterend.blocks;
 import org.betterx.bclib.blocks.BaseAttachedBlock;
 import org.betterx.bclib.client.render.BCLRenderLayer;
 import org.betterx.bclib.interfaces.RenderLayerProvider;
-import org.betterx.bclib.interfaces.tools.AddMineablePickaxe;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndItems;
@@ -24,13 +23,14 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.material.*;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -40,17 +40,17 @@ import java.util.EnumMap;
 import java.util.List;
 
 @SuppressWarnings("deprecation")
-public class SulphurCrystalBlock extends BaseAttachedBlock implements AddMineablePickaxe, RenderLayerProvider, SimpleWaterloggedBlock, LiquidBlockContainer {
+public class SulphurCrystalBlock extends BaseAttachedBlock.Glass implements RenderLayerProvider, SimpleWaterloggedBlock, LiquidBlockContainer {
     private static final EnumMap<Direction, VoxelShape> BOUNDING_SHAPES = Maps.newEnumMap(Direction.class);
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 2);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public SulphurCrystalBlock() {
-        super(FabricBlockSettings.of(Material.STONE)
-                                 .materialColor(MapColor.COLOR_YELLOW)
-                                 .sound(SoundType.GLASS)
-                                 .requiresCorrectToolForDrops()
-                                 .noCollission());
+        super(Properties.of()
+                        .mapColor(MapColor.COLOR_YELLOW)
+                        .sound(SoundType.GLASS)
+                        .requiresCorrectToolForDrops()
+                        .noCollission());
     }
 
     @Override

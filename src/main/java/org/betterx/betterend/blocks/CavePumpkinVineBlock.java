@@ -1,5 +1,6 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
 import org.betterx.bclib.blocks.BlockProperties;
 import org.betterx.betterend.blocks.basis.EndPlantWithAgeBlock;
 import org.betterx.betterend.registry.EndBlocks;
@@ -13,14 +14,13 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class CavePumpkinVineBlock extends EndPlantWithAgeBlock {
     public CavePumpkinVineBlock() {
-        super(basePlantSettings().offsetType(BlockBehaviour.OffsetType.NONE));
+        super(BehaviourBuilders.createPlant());
     }
 
     private static final VoxelShape SHAPE = Block.box(4, 0, 4, 12, 16, 12);

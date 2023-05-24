@@ -1,33 +1,32 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
+import org.betterx.bclib.behaviours.interfaces.BehaviourPlant;
 import org.betterx.bclib.blocks.BaseAttachedBlock;
 import org.betterx.bclib.client.render.BCLRenderLayer;
 import org.betterx.bclib.interfaces.RenderLayerProvider;
-import org.betterx.bclib.interfaces.tools.AddMineableShears;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
-
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 import com.google.common.collect.Maps;
 
 import java.util.EnumMap;
 
-public class FilaluxWingsBlock extends BaseAttachedBlock implements RenderLayerProvider, AddMineableShears {
+public class FilaluxWingsBlock extends BaseAttachedBlock implements RenderLayerProvider, BehaviourPlant {
     private static final EnumMap<Direction, VoxelShape> BOUNDING_SHAPES = Maps.newEnumMap(Direction.class);
 
     public FilaluxWingsBlock() {
-        super(FabricBlockSettings.of(Material.PLANT)
-                                 .sound(SoundType.WET_GRASS)
-                                 .noCollission());
+        super(BehaviourBuilders
+                .createPlant()
+                .sound(SoundType.WET_GRASS)
+        );
     }
 
     @Override

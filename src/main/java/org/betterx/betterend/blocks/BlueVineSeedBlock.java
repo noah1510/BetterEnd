@@ -1,5 +1,6 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
 import org.betterx.bclib.blocks.BlockProperties;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
@@ -11,12 +12,11 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class BlueVineSeedBlock extends EndPlantWithAgeBlock {
     public BlueVineSeedBlock() {
-        super(basePlantSettings().offsetType(BlockBehaviour.OffsetType.NONE));
+        super(BehaviourBuilders.createPlant());
     }
 
     @Override

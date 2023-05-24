@@ -48,7 +48,7 @@ import com.google.common.collect.Lists;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
-public class RespawnObeliskBlock extends BaseBlock implements CustomColorProvider, RenderLayerProvider {
+public class RespawnObeliskBlock extends BaseBlock.Stone implements CustomColorProvider, RenderLayerProvider {
     private static final VoxelShape VOXEL_SHAPE_BOTTOM = Block.box(1, 0, 1, 15, 16, 15);
     private static final VoxelShape VOXEL_SHAPE_MIDDLE_TOP = Block.box(2, 0, 2, 14, 16, 14);
 

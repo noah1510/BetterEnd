@@ -31,12 +31,12 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import java.util.Map;
 
 @SuppressWarnings("deprecation")
-public class EndLanternBlock extends BaseBlockNotFull implements SimpleWaterloggedBlock, LiquidBlockContainer {
+public class EndLanternBlock extends BaseBlockNotFull.Wood implements SimpleWaterloggedBlock, LiquidBlockContainer {
     public static final BooleanProperty IS_FLOOR = BlockProperties.IS_FLOOR;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public EndLanternBlock(Block source) {
-        this(FabricBlockSettings.copyOf(source).luminance(15).noOcclusion());
+        this(FabricBlockSettings.copyOf(source).lightLevel((bs) -> 15).noOcclusion());
     }
 
     public EndLanternBlock(Properties settings) {

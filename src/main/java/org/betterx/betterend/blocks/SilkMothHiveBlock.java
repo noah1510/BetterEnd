@@ -30,24 +30,20 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-
-public class SilkMothHiveBlock extends BaseBlock {
+public class SilkMothHiveBlock extends BaseBlock.Wood {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final IntegerProperty FULLNESS = EndBlockProperties.FULLNESS;
 
     public SilkMothHiveBlock() {
-        super(FabricBlockSettings.of(Material.WOOD)
-                                 .hardness(0.5F)
-                                 .resistance(0.1F)
-                                 .sound(SoundType.WOOL)
-                                 .noOcclusion()
-                                 .randomTicks());
+        super(Properties.of().of()
+                        .strength(0.5F, 0.1f)
+                        .sound(SoundType.WOOL)
+                        .noOcclusion()
+                        .randomTicks());
         this.registerDefaultState(defaultBlockState().setValue(FULLNESS, 0));
     }
 

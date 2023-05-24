@@ -1,7 +1,9 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
 import org.betterx.bclib.client.render.BCLRenderLayer;
 import org.betterx.bclib.interfaces.RenderLayerProvider;
+import org.betterx.bclib.interfaces.tools.AddMineableShears;
 import org.betterx.betterend.registry.EndBlocks;
 
 import net.minecraft.core.BlockPos;
@@ -20,21 +22,17 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-
 import net.minecraft.world.level.material.MapColor;
 
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-
-public class CrystalMossCoverBlock extends MultifaceBlock implements BonemealableBlock, SimpleWaterloggedBlock, RenderLayerProvider {
+public class CrystalMossCoverBlock extends MultifaceBlock implements BonemealableBlock, SimpleWaterloggedBlock, RenderLayerProvider, AddMineableShears {
     private static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     private final MultifaceSpreader spreader = new MultifaceSpreader(this);
 
     public CrystalMossCoverBlock(MapColor color) {
-        super(FabricBlockSettings.of(Material.REPLACEABLE_PLANT, color)
-                                 .noCollission()
-                                 .strength(0.2f)
-                                 .sound(SoundType.GLOW_LICHEN)
-                                 .lightLevel(GlowLichenBlock.emission(7)));
+        super(BehaviourBuilders.createReplaceablePlant(color)
+                               .strength(0.2f)
+                               .sound(SoundType.GLOW_LICHEN)
+                               .lightLevel(GlowLichenBlock.emission(7)));
         this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, false));
     }
 

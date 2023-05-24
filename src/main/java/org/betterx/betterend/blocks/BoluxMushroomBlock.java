@@ -1,5 +1,6 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
 import org.betterx.betterend.blocks.basis.EndPlantBlock;
 import org.betterx.betterend.registry.EndBlocks;
 
@@ -24,7 +25,7 @@ public class BoluxMushroomBlock extends EndPlantBlock {
     private static final VoxelShape SHAPE = Block.box(1, 0, 1, 15, 9, 15);
 
     public BoluxMushroomBlock() {
-        super(basePlantSettings(10).offsetType(BlockBehaviour.OffsetType.NONE));
+        super(BehaviourBuilders.createPlant().lightLevel((bs)->10));
     }
 
     @Override

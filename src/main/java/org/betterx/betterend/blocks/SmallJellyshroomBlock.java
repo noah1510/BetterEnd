@@ -1,5 +1,7 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
+import org.betterx.bclib.behaviours.interfaces.BehaviourPlant;
 import org.betterx.bclib.blocks.BaseAttachedBlock;
 import org.betterx.bclib.client.render.BCLRenderLayer;
 import org.betterx.bclib.interfaces.RenderLayerProvider;
@@ -25,7 +27,6 @@ import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -34,7 +35,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -43,11 +43,11 @@ import java.util.EnumMap;
 import java.util.List;
 import java.util.Optional;
 
-public class SmallJellyshroomBlock extends BaseAttachedBlock implements RenderLayerProvider, BonemealableBlock, PottablePlant {
+public class SmallJellyshroomBlock extends BaseAttachedBlock implements RenderLayerProvider, BonemealableBlock, PottablePlant, BehaviourPlant {
     private static final EnumMap<Direction, VoxelShape> BOUNDING_SHAPES = Maps.newEnumMap(Direction.class);
 
     public SmallJellyshroomBlock() {
-        super(FabricBlockSettings.of(Material.PLANT).sound(SoundType.NETHER_WART).noCollission());
+        super(BehaviourBuilders.createPlant().sound(SoundType.NETHER_WART));
     }
 
     @Override

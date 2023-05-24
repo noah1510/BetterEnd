@@ -3,6 +3,7 @@ package org.betterx.betterend.blocks;
 import org.betterx.bclib.blocks.BaseBlock;
 import org.betterx.bclib.client.render.BCLRenderLayer;
 import org.betterx.bclib.interfaces.RenderLayerProvider;
+import org.betterx.bclib.interfaces.tools.AddMineableShears;
 import org.betterx.bclib.items.tool.BaseShearsItem;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
@@ -33,7 +34,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
@@ -46,7 +46,7 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import java.util.Collections;
 import java.util.List;
 
-public class SilkMothNestBlock extends BaseBlock implements RenderLayerProvider {
+public class SilkMothNestBlock extends BaseBlock implements RenderLayerProvider, AddMineableShears {
     public static final BooleanProperty ACTIVE = EndBlockProperties.ACTIVE;
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final IntegerProperty FULLNESS = EndBlockProperties.FULLNESS;
@@ -54,7 +54,7 @@ public class SilkMothNestBlock extends BaseBlock implements RenderLayerProvider 
     private static final VoxelShape BOTTOM = box(0, 0, 0, 16, 16, 16);
 
     public SilkMothNestBlock() {
-        super(FabricBlockSettings.of(Material.WOOL)
+        super(FabricBlockSettings.copyOf(Blocks.WHITE_WOOL)
                                  .hardness(0.5F)
                                  .resistance(0.1F)
                                  .sound(SoundType.WOOL)

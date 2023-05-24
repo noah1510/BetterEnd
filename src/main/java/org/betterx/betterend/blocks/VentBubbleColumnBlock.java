@@ -23,7 +23,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -36,7 +35,7 @@ import java.util.Optional;
 
 public class VentBubbleColumnBlock extends Block implements BucketPickup, LiquidBlockContainer {
     public VentBubbleColumnBlock() {
-        super(FabricBlockSettings.of(Material.BUBBLE_COLUMN).nonOpaque().noCollision().noLootTable());
+        super(FabricBlockSettings.copyOf(Blocks.BUBBLE_COLUMN).nonOpaque().noCollision().noLootTable());
     }
 
     @Override

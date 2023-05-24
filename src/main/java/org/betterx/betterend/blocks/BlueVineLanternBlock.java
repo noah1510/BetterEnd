@@ -2,7 +2,6 @@ package org.betterx.betterend.blocks;
 
 import org.betterx.bclib.blocks.BaseBlock;
 import org.betterx.bclib.blocks.BlockProperties;
-import org.betterx.bclib.interfaces.tools.AddMineableAxe;
 import org.betterx.betterend.registry.EndBlocks;
 
 import net.minecraft.core.BlockPos;
@@ -16,16 +15,14 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 
-
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-
-public class BlueVineLanternBlock extends BaseBlock implements AddMineableAxe {
+public class BlueVineLanternBlock extends BaseBlock.Wood {
     public static final BooleanProperty NATURAL = BlockProperties.NATURAL;
 
     public BlueVineLanternBlock() {
-        super(FabricBlockSettings.of(Material.WOOD)
-                                 .luminance(15)
-                                 .sound(SoundType.WART_BLOCK));
+        super(Properties.of()
+                        .lightLevel((bs) -> 15)
+                        .sound(SoundType.WART_BLOCK)
+        );
         this.registerDefaultState(this.stateDefinition.any().setValue(NATURAL, false));
     }
 

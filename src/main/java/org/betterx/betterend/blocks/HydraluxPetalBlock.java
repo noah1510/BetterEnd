@@ -1,26 +1,21 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
 import org.betterx.bclib.blocks.BaseBlock;
-import org.betterx.bclib.interfaces.tools.AddMineableAxe;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
-
 import net.minecraft.world.level.material.MapColor;
 
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-
-public class HydraluxPetalBlock extends BaseBlock implements AddMineableAxe {
+public class HydraluxPetalBlock extends BaseBlock.Wood {
     public HydraluxPetalBlock() {
         this(
-                FabricBlockSettings
-                        .of(Material.PLANT)
-                        .hardness(1)
-                        .resistance(1)
-                        .mapColor(MapColor.PODZOL)
+                BehaviourBuilders
+                        .createPlant(MapColor.PODZOL)
+                        .strength(1)
                         .sound(SoundType.WART_BLOCK)
         );
     }

@@ -1,5 +1,6 @@
 package org.betterx.betterend.blocks.basis;
 
+import org.betterx.bclib.behaviours.interfaces.BehaviourWood;
 import org.betterx.bclib.client.models.ModelsHelper;
 import org.betterx.bclib.interfaces.CustomColorProvider;
 import org.betterx.betterend.client.models.Patterns;
@@ -23,12 +24,12 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import java.util.Optional;
 import org.jetbrains.annotations.Nullable;
 
-public class StoneLanternBlock extends EndLanternBlock implements CustomColorProvider {
+public class StoneLanternBlock extends EndLanternBlock implements CustomColorProvider, BehaviourWood {
     private static final VoxelShape SHAPE_CEIL = box(3, 1, 3, 13, 16, 13);
     private static final VoxelShape SHAPE_FLOOR = box(3, 0, 3, 13, 15, 13);
 
     public StoneLanternBlock(Block source) {
-        super(FabricBlockSettings.copyOf(source).luminance(15));
+        super(FabricBlockSettings.copyOf(source).lightLevel((bs) -> 15));
     }
 
     @Override

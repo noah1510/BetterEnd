@@ -1,5 +1,6 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
 import org.betterx.bclib.blocks.BaseBlock;
 import org.betterx.bclib.interfaces.tools.AddMineableShears;
 import org.betterx.betterend.registry.EndBlocks;
@@ -14,20 +15,17 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-
 import net.minecraft.world.level.material.MapColor;
-
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 public class GlowingPillarLuminophorBlock extends BaseBlock implements AddMineableShears {
     public static final BooleanProperty NATURAL = EndBlockProperties.NATURAL;
 
     public GlowingPillarLuminophorBlock() {
-        super(FabricBlockSettings.of(Material.LEAVES)
-                                 .mapColor(MapColor.COLOR_ORANGE)
-                                 .strength(0.2F)
-                                 .luminance(15)
-                                 .sound(SoundType.GRASS));
+        super(BehaviourBuilders
+                .createMetal(MapColor.COLOR_ORANGE)
+                .strength(0.2F)
+                .lightLevel((bs) -> 15)
+                .sound(SoundType.GRASS));
         this.registerDefaultState(this.stateDefinition.any().setValue(NATURAL, false));
     }
 

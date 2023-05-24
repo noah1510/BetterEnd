@@ -1,15 +1,12 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
 import org.betterx.bclib.blocks.BaseBlock;
-import org.betterx.bclib.interfaces.tools.AddMineableAxe;
 
 import net.minecraft.world.level.block.SoundType;
 
-
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-
-public class AmaranitaCapBlock extends BaseBlock implements AddMineableAxe {
+public class AmaranitaCapBlock extends BaseBlock.Wood {
     public AmaranitaCapBlock() {
-        super(FabricBlockSettings.of(Material.WOOD).sound(SoundType.WOOD));
+        super(BehaviourBuilders.createWood().sound(SoundType.WOOD));
     }
 }

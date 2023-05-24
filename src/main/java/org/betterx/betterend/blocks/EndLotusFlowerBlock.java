@@ -1,5 +1,7 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
+import org.betterx.bclib.behaviours.interfaces.BehaviourPlant;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.blocks.basis.EndPlantBlock;
 import org.betterx.betterend.registry.EndBlocks;
@@ -8,7 +10,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -21,12 +22,12 @@ import com.google.common.collect.Lists;
 
 import java.util.List;
 
-public class EndLotusFlowerBlock extends EndPlantBlock {
+public class EndLotusFlowerBlock extends EndPlantBlock implements BehaviourPlant {
     private static final VoxelShape SHAPE_OUTLINE = Block.box(2, 0, 2, 14, 14, 14);
     private static final VoxelShape SHAPE_COLLISION = Block.box(0, 0, 0, 16, 2, 16);
 
     public EndLotusFlowerBlock() {
-        super(basePlantSettings(15).offsetType(BlockBehaviour.OffsetType.NONE));
+        super(BehaviourBuilders.createPlant().lightLevel((bs) -> 15));
     }
 
     @Override

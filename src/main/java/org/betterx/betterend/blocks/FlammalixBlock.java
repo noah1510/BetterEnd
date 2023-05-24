@@ -1,5 +1,7 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
+import org.betterx.bclib.behaviours.interfaces.BehaviourPlant;
 import org.betterx.bclib.client.models.ModelsHelper;
 import org.betterx.betterend.blocks.basis.EndPlantBlock;
 import org.betterx.betterend.registry.EndBlocks;
@@ -10,17 +12,18 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
-public class FlammalixBlock extends EndPlantBlock {
+public class FlammalixBlock extends EndPlantBlock implements BehaviourPlant {
     private static final VoxelShape SHAPE = Block.box(2, 0, 2, 14, 14, 14);
 
     public FlammalixBlock() {
-        super(basePlantSettings(12).offsetType(OffsetType.NONE));
+        super(BehaviourBuilders.createPlant(MapColor.COLOR_ORANGE).lightLevel((bs) -> 12));
     }
 
     @Override

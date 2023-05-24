@@ -1,5 +1,7 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
+import org.betterx.bclib.behaviours.interfaces.BehaviourPlant;
 import org.betterx.bclib.blocks.BaseBlockNotFull;
 import org.betterx.bclib.blocks.BlockProperties;
 import org.betterx.bclib.blocks.BlockProperties.TripleShape;
@@ -21,22 +23,20 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-
 import net.minecraft.world.level.material.WaterFluid;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
-public class EndLotusLeafBlock extends BaseBlockNotFull implements RenderLayerProvider {
+public class EndLotusLeafBlock extends BaseBlockNotFull implements RenderLayerProvider, BehaviourPlant {
     public static final EnumProperty<Direction> HORIZONTAL_FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<TripleShape> SHAPE = BlockProperties.TRIPLE_SHAPE;
     private static final VoxelShape VSHAPE = Block.box(0, 0, 0, 16, 1, 16);
 
     public EndLotusLeafBlock() {
-        super(FabricBlockSettings.of(Material.PLANT).noOcclusion().sound(SoundType.WET_GRASS));
+        super(BehaviourBuilders.createPlant().noOcclusion().sound(SoundType.WET_GRASS));
     }
 
     @Override

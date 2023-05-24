@@ -1,26 +1,26 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
 import org.betterx.bclib.blocks.BaseBlock;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
-
 import net.minecraft.world.level.material.MapColor;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
-public class EnderBlock extends BaseBlock {
+public class EnderBlock extends BaseBlock.Stone {
 
     public EnderBlock() {
-        super(FabricBlockSettings.of(Material.STONE, MapColor.WARPED_WART_BLOCK)
-                                 .hardness(5F)
-                                 .resistance(6F)
-                                 .requiresCorrectToolForDrops()
-                                 .sound(SoundType.STONE));
+        super(BehaviourBuilders
+                .createStone(MapColor.WARPED_WART_BLOCK)
+                .strength(5F, 6F)
+                .requiresCorrectToolForDrops()
+                .sound(SoundType.STONE)
+        );
     }
 
     @Environment(EnvType.CLIENT)

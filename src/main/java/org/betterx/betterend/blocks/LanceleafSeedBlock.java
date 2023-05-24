@@ -1,5 +1,6 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
 import org.betterx.bclib.blocks.BlockProperties;
 import org.betterx.bclib.blocks.BlockProperties.PentaShape;
 import org.betterx.bclib.util.BlocksHelper;
@@ -16,7 +17,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class LanceleafSeedBlock extends EndPlantWithAgeBlock {
     public LanceleafSeedBlock() {
-        super(basePlantSettings().offsetType(OffsetType.NONE));
+        super(BehaviourBuilders.createPlant().offsetType(OffsetType.NONE));
     }
 
     @Override

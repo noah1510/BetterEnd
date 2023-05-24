@@ -1,8 +1,8 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
 import org.betterx.bclib.blocks.BaseBlockNotFull;
 import org.betterx.bclib.blocks.BlockProperties;
-import org.betterx.bclib.interfaces.tools.AddMineablePickaxe;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.betterend.blocks.entities.BlockEntityHydrothermalVent;
 import org.betterx.betterend.registry.EndBlocks;
@@ -30,27 +30,27 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 import org.jetbrains.annotations.Nullable;
 
 @SuppressWarnings("deprecation")
-public class HydrothermalVentBlock extends BaseBlockNotFull implements EntityBlock, LiquidBlockContainer, SimpleWaterloggedBlock, AddMineablePickaxe {
+public class HydrothermalVentBlock extends BaseBlockNotFull.Stone implements EntityBlock, LiquidBlockContainer, SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final BooleanProperty ACTIVATED = BlockProperties.ACTIVE;
     private static final VoxelShape SHAPE = Block.box(1, 1, 1, 15, 16, 15);
 
     public HydrothermalVentBlock() {
-        super(FabricBlockSettings.of(Material.STONE)
-                                 .sound(SoundType.STONE)
-                                 .noCollission()
-                                 .requiresCorrectToolForDrops());
+        super(BehaviourBuilders
+                .createStone()
+                .sound(SoundType.STONE)
+                .noCollission()
+                .requiresCorrectToolForDrops()
+        );
         this.registerDefaultState(defaultBlockState().setValue(WATERLOGGED, true).setValue(ACTIVATED, false));
     }
 

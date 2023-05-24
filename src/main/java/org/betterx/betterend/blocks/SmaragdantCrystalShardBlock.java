@@ -1,5 +1,6 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
 import org.betterx.bclib.blocks.BaseAttachedBlock;
 import org.betterx.bclib.client.render.BCLRenderLayer;
 import org.betterx.bclib.interfaces.RenderLayerProvider;
@@ -19,12 +20,13 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.material.*;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 import com.google.common.collect.Maps;
 
@@ -36,12 +38,12 @@ public class SmaragdantCrystalShardBlock extends BaseAttachedBlock implements Ad
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public SmaragdantCrystalShardBlock() {
-        super(FabricBlockSettings.of(Material.STONE)
-                                 .materialColor(MapColor.COLOR_GREEN)
-                                 .luminance(15)
-                                 .sound(SoundType.AMETHYST_CLUSTER)
-                                 .requiresCorrectToolForDrops()
-                                 .noCollission());
+        super(BehaviourBuilders.createStone(MapColor.COLOR_GREEN)
+                               .lightLevel((bs) -> 15)
+                               .sound(SoundType.AMETHYST_CLUSTER)
+                               .requiresCorrectToolForDrops()
+                               .noCollission()
+        );
     }
 
     @Override

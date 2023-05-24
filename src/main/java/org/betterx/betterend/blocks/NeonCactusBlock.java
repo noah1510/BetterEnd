@@ -8,6 +8,6 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 public class NeonCactusBlock extends LitPillarBlock {
     public NeonCactusBlock() {
-        super(FabricBlockSettings.copyOf(Blocks.CACTUS).luminance(15));
+        super(FabricBlockSettings.copyOf(Blocks.CACTUS).lightLevel((bs) -> 15));
     }
 }

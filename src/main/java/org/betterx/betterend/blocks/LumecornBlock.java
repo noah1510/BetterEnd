@@ -1,9 +1,9 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
 import org.betterx.bclib.blocks.BaseBlockNotFull;
 import org.betterx.bclib.client.render.BCLRenderLayer;
 import org.betterx.bclib.interfaces.RenderLayerProvider;
-import org.betterx.bclib.interfaces.tools.AddMineableAxe;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndItems;
@@ -20,20 +20,18 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 import java.util.Collections;
 import java.util.List;
 
 @SuppressWarnings("deprecation")
-public class LumecornBlock extends BaseBlockNotFull implements RenderLayerProvider, AddMineableAxe {
+public class LumecornBlock extends BaseBlockNotFull.Wood implements RenderLayerProvider {
     public static final EnumProperty<EndBlockProperties.LumecornShape> SHAPE = EnumProperty.create(
             "shape",
             EndBlockProperties.LumecornShape.class
@@ -42,9 +40,11 @@ public class LumecornBlock extends BaseBlockNotFull implements RenderLayerProvid
     private static final VoxelShape SHAPE_TOP = Block.box(6, 0, 6, 10, 8, 10);
 
     public LumecornBlock() {
-        super(FabricBlockSettings.of(Material.WOOD)
-                                 .hardness(0.5F)
-                                 .luminance(state -> state.getValue(SHAPE).getLight()));
+        super(BehaviourBuilders
+                .createWood()
+                .strength(0.5F)
+                .lightLevel(state -> state.getValue(SHAPE).getLight())
+        );
     }
 
     @Override

@@ -1,5 +1,7 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
+import org.betterx.bclib.behaviours.interfaces.BehaviourSeed;
 import org.betterx.betterend.blocks.basis.EndPlantWithAgeBlock;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndFeatures;
@@ -14,10 +16,10 @@ import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConf
 
 import java.util.Optional;
 
-public class LumecornSeedBlock extends EndPlantWithAgeBlock {
+public class LumecornSeedBlock extends EndPlantWithAgeBlock implements BehaviourSeed {
 
     public LumecornSeedBlock() {
-        super(basePlantSettings().offsetType(OffsetType.NONE));
+        super(BehaviourBuilders.createPlant());
     }
 
     @Override

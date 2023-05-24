@@ -3,6 +3,7 @@ package org.betterx.betterend.blocks;
 import org.betterx.bclib.blocks.BaseBlockNotFull;
 import org.betterx.bclib.client.render.BCLRenderLayer;
 import org.betterx.bclib.interfaces.RenderLayerProvider;
+import org.betterx.bclib.interfaces.tools.AddMineableHoe;
 import org.betterx.betterend.registry.EndBlocks;
 
 import net.minecraft.core.BlockPos;
@@ -18,7 +19,6 @@ import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
-
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -30,7 +30,7 @@ import com.google.common.collect.Lists;
 import java.util.Queue;
 
 @SuppressWarnings("deprecation")
-public class MengerSpongeBlock extends BaseBlockNotFull implements RenderLayerProvider {
+public class MengerSpongeBlock extends BaseBlockNotFull implements RenderLayerProvider, AddMineableHoe {
     private static final VoxelShape SHAPE;
 
     public MengerSpongeBlock() {

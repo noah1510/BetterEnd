@@ -1,11 +1,12 @@
 package org.betterx.betterend.blocks.basis;
 
+import org.betterx.bclib.behaviours.interfaces.BehaviourPlant;
 import org.betterx.bclib.blocks.BasePlantWithAgeBlock;
 import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
 import net.minecraft.world.level.block.state.BlockState;
 
-public abstract class EndPlantWithAgeBlock extends BasePlantWithAgeBlock {
+public abstract class EndPlantWithAgeBlock extends BasePlantWithAgeBlock implements BehaviourPlant {
     protected EndPlantWithAgeBlock() {
         super();
     }

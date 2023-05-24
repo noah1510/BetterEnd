@@ -1,6 +1,7 @@
 package org.betterx.betterend.blocks;
 
-import org.betterx.bclib.interfaces.tools.AddMineablePickaxe;
+import org.betterx.bclib.behaviours.BehaviourBuilders;
+import org.betterx.bclib.behaviours.interfaces.BehaviourGlass;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.betterend.blocks.basis.LitPillarBlock;
 import org.betterx.betterend.registry.EndBlocks;
@@ -14,24 +15,21 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
-
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.storage.loot.LootParams;
-
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 import java.util.Collections;
 import java.util.List;
 
-public class BuddingSmaragdantCrystalBlock extends LitPillarBlock implements AddMineablePickaxe {
+public class BuddingSmaragdantCrystalBlock extends LitPillarBlock implements BehaviourGlass {
     public BuddingSmaragdantCrystalBlock() {
-        super(FabricBlockSettings.of(Material.GLASS)
-                                 .luminance(15)
-                                 .hardness(1F)
-                                 .resistance(1F)
-                                 .noOcclusion()
-                                 .sound(SoundType.AMETHYST)
-                                 .randomTicks());
+        super(BehaviourBuilders
+                .createGlass()
+                .lightLevel((bs) -> 15)
+                .strength(1F)
+                .noOcclusion()
+                .sound(SoundType.AMETHYST)
+                .randomTicks());
     }
 
     @Override
@@ -53,8 +51,12 @@ public class BuddingSmaragdantCrystalBlock extends LitPillarBlock implements Add
         if (random.nextInt(20) == 0) {
             if (canShardGrowAtState(sideState)) {
                 BlockState shard = EndBlocks.SMARAGDANT_CRYSTAL_SHARD.defaultBlockState()
-                        .setValue(SmaragdantCrystalShardBlock.WATERLOGGED, sideState.getFluidState().getType() == Fluids.WATER)
-                        .setValue(SmaragdantCrystalShardBlock.FACING, dir);
+                                                                     .setValue(
+                                                                             SmaragdantCrystalShardBlock.WATERLOGGED,
+                                                                             sideState.getFluidState()
+                                                                                      .getType() == Fluids.WATER
+                                                                     )
+                                                                     .setValue(SmaragdantCrystalShardBlock.FACING, dir);
                 world.setBlockAndUpdate(side, shard);
             }
         }

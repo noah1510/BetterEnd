@@ -1,5 +1,6 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
 import org.betterx.bclib.client.render.BCLRenderLayer;
 import org.betterx.bclib.interfaces.CustomColorProvider;
 import org.betterx.bclib.interfaces.RenderLayerProvider;
@@ -19,15 +20,11 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.AbstractGlassBlock;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
-
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 import com.google.common.collect.Lists;
 
@@ -39,14 +36,11 @@ public class AuroraCrystalBlock extends AbstractGlassBlock implements RenderLaye
     private static final int MAX_DROP = 4;
 
     public AuroraCrystalBlock() {
-        super(FabricBlockSettings
-                .of(Material.GLASS)
-                .hardness(1F)
-                .resistance(1F)
-                .luminance(15)
-                .noOcclusion()
-                .isSuffocating((state, world, pos) -> false)
-                .sound(SoundType.GLASS));
+        super(BehaviourBuilders
+                .createGlass()
+                .strength(1F)
+                .lightLevel((bs) -> 15)
+        );
     }
 
     @Override

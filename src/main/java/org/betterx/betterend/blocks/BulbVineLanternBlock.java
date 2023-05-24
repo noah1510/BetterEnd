@@ -1,10 +1,11 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
+import org.betterx.bclib.behaviours.interfaces.BehaviourWood;
 import org.betterx.bclib.client.models.ModelsHelper;
 import org.betterx.bclib.client.render.BCLRenderLayer;
 import org.betterx.bclib.interfaces.BlockModelProvider;
 import org.betterx.bclib.interfaces.RenderLayerProvider;
-import org.betterx.bclib.interfaces.tools.AddMineablePickaxe;
 import org.betterx.betterend.blocks.basis.EndLanternBlock;
 import org.betterx.betterend.client.models.Patterns;
 
@@ -15,14 +16,12 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
-
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 import com.google.common.collect.Maps;
 
@@ -30,18 +29,16 @@ import java.util.Map;
 import java.util.Optional;
 import org.jetbrains.annotations.Nullable;
 
-public class BulbVineLanternBlock extends EndLanternBlock implements RenderLayerProvider, BlockModelProvider, AddMineablePickaxe {
+public class BulbVineLanternBlock extends EndLanternBlock implements RenderLayerProvider, BlockModelProvider, BehaviourWood {
     private static final VoxelShape SHAPE_CEIL = Block.box(4, 4, 4, 12, 16, 12);
     private static final VoxelShape SHAPE_FLOOR = Block.box(4, 0, 4, 12, 12, 12);
 
     public BulbVineLanternBlock() {
-        this(FabricBlockSettings.of(Material.METAL)
-                                .hardness(1)
-                                .resistance(1)
-                                .mapColor(MapColor.COLOR_LIGHT_GRAY)
-                                .luminance(15)
-                                .requiresCorrectToolForDrops()
-                                .sound(SoundType.LANTERN));
+        this(BehaviourBuilders.createMetal(MapColor.COLOR_LIGHT_GRAY)
+                              .strength(1)
+                              .lightLevel((bs) -> 15)
+                              .requiresCorrectToolForDrops()
+                              .sound(SoundType.LANTERN));
     }
 
     public BulbVineLanternBlock(Properties settings) {

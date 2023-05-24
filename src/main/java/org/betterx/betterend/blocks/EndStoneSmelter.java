@@ -1,5 +1,6 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
 import org.betterx.bclib.blocks.BaseBlockWithEntity;
 import org.betterx.bclib.interfaces.AlloyingRecipeWorkstation;
 import org.betterx.betterend.blocks.entities.EndStoneSmelterBlockEntity;
@@ -27,7 +28,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
-
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
@@ -35,25 +35,23 @@ import net.minecraft.world.phys.BlockHitResult;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 import com.google.common.collect.Lists;
 
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
-public class EndStoneSmelter extends BaseBlockWithEntity implements AlloyingRecipeWorkstation {
+public class EndStoneSmelter extends BaseBlockWithEntity.Stone implements AlloyingRecipeWorkstation {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
     public static final String ID = "end_stone_smelter";
 
     public EndStoneSmelter() {
-        super(FabricBlockSettings.of(Material.STONE, MapColor.COLOR_GRAY)
-                                 .luminance(state -> state.getValue(LIT) ? 15 : 0)
-                                 .hardness(4F)
-                                 .resistance(100F)
-                                 .requiresCorrectToolForDrops()
-                                 .sound(SoundType.STONE));
+        super(BehaviourBuilders.createStone(MapColor.COLOR_YELLOW)
+                               .lightLevel(state -> state.getValue(LIT) ? 15 : 0)
+                               .strength(4F, 100F)
+                               .requiresCorrectToolForDrops()
+        );
         registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, false));
     }
 

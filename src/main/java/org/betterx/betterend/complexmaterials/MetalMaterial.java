@@ -171,7 +171,7 @@ public class MetalMaterial {
         BlockBehaviour.Properties lanternProperties = FabricBlockSettings.copyOf(settings)
                                                                          .hardness(1)
                                                                          .resistance(1)
-                                                                         .luminance(15)
+                                                                         .lightLevel((bs) -> 15)
                                                                          .sound(SoundType.LANTERN);
         final int level = material.getLevel();
 

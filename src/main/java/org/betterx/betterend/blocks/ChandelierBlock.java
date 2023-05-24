@@ -31,12 +31,12 @@ import java.util.Map;
 import java.util.Optional;
 import org.jetbrains.annotations.Nullable;
 
-public class ChandelierBlock extends BaseAttachedBlock implements RenderLayerProvider, BlockModelProvider {
+public class ChandelierBlock extends BaseAttachedBlock.Metal implements RenderLayerProvider, BlockModelProvider {
     private static final EnumMap<Direction, VoxelShape> BOUNDING_SHAPES = Maps.newEnumMap(Direction.class);
 
     public ChandelierBlock(Block source) {
         super(FabricBlockSettings.copyOf(source)
-                                 .luminance(15)
+                                 .lightLevel((bs) -> 15)
                                  .noCollission()
                                  .noOcclusion()
                                  .requiresCorrectToolForDrops());

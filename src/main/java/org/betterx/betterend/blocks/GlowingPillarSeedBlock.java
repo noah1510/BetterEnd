@@ -1,5 +1,6 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
 import org.betterx.bclib.blocks.BlockProperties;
 import org.betterx.bclib.blocks.BlockProperties.TripleShape;
 import org.betterx.bclib.interfaces.tools.AddMineableShears;
@@ -17,18 +18,16 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
-
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-
 public class GlowingPillarSeedBlock extends EndPlantWithAgeBlock implements AddMineableShears {
 
     public GlowingPillarSeedBlock() {
-        super(FabricBlockSettings.of(Material.PLANT)
-                                 .sound(SoundType.GRASS)
-                                 .lightLevel(state -> state.getValue(AGE) * 3 + 3)
-                                 .randomTicks()
-                                 .noCollission()
-                                 .offsetType(OffsetType.NONE));
+        super(BehaviourBuilders
+                .createPlant()
+                .sound(SoundType.GRASS)
+                .lightLevel(state -> state.getValue(AGE) * 3 + 3)
+                .randomTicks()
+                .noCollission()
+        );
     }
 
     @Override

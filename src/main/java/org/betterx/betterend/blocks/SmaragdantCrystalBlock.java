@@ -1,20 +1,18 @@
 package org.betterx.betterend.blocks;
 
-import org.betterx.bclib.interfaces.tools.AddMineablePickaxe;
+import org.betterx.bclib.behaviours.BehaviourBuilders;
+import org.betterx.bclib.behaviours.interfaces.BehaviourGlass;
 import org.betterx.betterend.blocks.basis.LitPillarBlock;
 
 import net.minecraft.world.level.block.SoundType;
 
-
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-
-public class SmaragdantCrystalBlock extends LitPillarBlock implements AddMineablePickaxe {
+public class SmaragdantCrystalBlock extends LitPillarBlock implements BehaviourGlass {
     public SmaragdantCrystalBlock() {
-        super(FabricBlockSettings.of(Material.GLASS)
-                                 .luminance(15)
-                                 .hardness(1F)
-                                 .resistance(1F)
-                                 .noOcclusion()
-                                 .sound(SoundType.AMETHYST));
+        super(BehaviourBuilders
+                .createGlass()
+                .lightLevel((bs) -> 15)
+                .strength(1F)
+                .noOcclusion()
+                .sound(SoundType.AMETHYST));
     }
 }

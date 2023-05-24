@@ -1,5 +1,6 @@
 package org.betterx.betterend.blocks.basis;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
 import org.betterx.bclib.blocks.BaseAttachedBlock;
 import org.betterx.bclib.client.render.BCLRenderLayer;
 import org.betterx.bclib.interfaces.RenderLayerProvider;
@@ -18,14 +19,11 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
-
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -39,20 +37,19 @@ public class FurBlock extends BaseAttachedBlock implements RenderLayerProvider, 
     private final int dropChance;
 
     public FurBlock(ItemLike drop, int light, int dropChance, boolean wet) {
-        super(FabricBlockSettings.of(Material.REPLACEABLE_PLANT)
-                                 .luminance(light)
-                                 .sound(wet ? SoundType.WET_GRASS : SoundType.GRASS)
-                                 .noCollission());
+        super(BehaviourBuilders.createReplaceablePlant()
+                               .lightLevel(bs -> light)
+                               .sound(wet ? SoundType.WET_GRASS : SoundType.GRASS)
+        );
         this.drop = drop;
         this.dropChance = dropChance;
         TagManager.BLOCKS.add(BlockTags.LEAVES, this);
     }
 
     public FurBlock(ItemLike drop, int dropChance) {
-        super(FabricBlockSettings.of(Material.REPLACEABLE_PLANT)
-
-                                 .sound(SoundType.GRASS)
-                                 .noCollission());
+        super(BehaviourBuilders.createReplaceablePlant()
+                               .sound(SoundType.GRASS)
+        );
         this.drop = drop;
         this.dropChance = dropChance;
         TagManager.BLOCKS.add(BlockTags.LEAVES, this);
