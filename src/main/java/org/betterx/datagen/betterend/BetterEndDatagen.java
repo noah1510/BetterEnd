@@ -23,6 +23,8 @@ public class BetterEndDatagen implements DataGeneratorEntrypoint {
         pack.addProvider(EndRecipeDataProvider::new);
         pack.addProvider(EndRegistriesDataProvider::new);
         pack.addProvider(EndAdvancementDataProvider::new);
+        pack.addProvider(EndBlockTagDataProvider::new);
+        pack.addProvider(EndItemTagDataProvider::new);
     }
 
     @Override
