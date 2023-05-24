@@ -20,7 +20,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.level.material.Material;
+
 import net.minecraft.world.level.material.MapColor;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;

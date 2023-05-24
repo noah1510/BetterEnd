@@ -20,7 +20,7 @@ import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.templatesystem.*;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate.StructureBlockInfo;
-import net.minecraft.world.level.material.Material;
+
 
 public class CrashedShipFeature extends NBTFeature<NBTFeatureConfig> {
     private static final StructureProcessor REPLACER;
