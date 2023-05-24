@@ -14,6 +14,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 
@@ -64,7 +65,7 @@ public class CreativeTabs {
                 .title(Component.translatable("itemGroup.betterend.blocks"))
                 .displayItems((featureFlagSet, output) -> output.acceptAll(EndBlocks.getModBlockItems()
                                                                                     .stream()
-                                                                                    .map(ItemStack::new)
+                                                                                    .map(b -> new ItemStack(b, 1))
                                                                                     .collect(Collectors.toList())))
                 .build();
         TAB_ITEMS = FabricItemGroup
@@ -73,7 +74,7 @@ public class CreativeTabs {
                 .icon(() -> new ItemStack(EndItems.ETERNAL_CRYSTAL))
                 .displayItems((featureFlagSet, output) -> output.acceptAll(EndItems.getModItems()
                                                                                    .stream()
-                                                                                   .map(ItemStack::new)
+                                                                                   .map(b -> new ItemStack(b, 1))
                                                                                    .collect(Collectors.toList())))
                 .build();
         TAB_PLANTS = FabricItemGroup
@@ -83,7 +84,7 @@ public class CreativeTabs {
                 .displayItems((featureFlagSet, output) -> {
                     output.acceptAll(EndItems.getModItems()
                                              .stream()
-                                             .map(ItemStack::new)
+                                             .map(b -> new ItemStack(b, 1))
                                              .filter(s -> s.is(CommonItemTags.COMPOSTABLE)
                                                      || s.is(CommonItemTags.LEAVES)
                                                      || s.is(CommonItemTags.SAPLINGS)
@@ -92,6 +93,7 @@ public class CreativeTabs {
 
                     output.acceptAll(EndBlocks.getModBlocks()
                                               .stream()
+                                              .filter(b -> b.asItem() != null && b.asItem() != Items.AIR)
                                               .filter(b -> b instanceof BehaviourVine
                                                       || b instanceof BehaviourLeaves
                                                       || b instanceof BehaviourPlant
@@ -104,7 +106,7 @@ public class CreativeTabs {
                                                       || b.defaultBlockState().is(CommonBlockTags.SEEDS)
                                                       || b.defaultBlockState().is(CommonBlockTags.SAPLINGS)
                                                       || b.defaultBlockState().is(CommonBlockTags.LEAVES))
-                                              .map(ItemStack::new)
+                                              .map(b -> new ItemStack(b, 1))
 
                                               .collect(Collectors.toList()));
                 })
