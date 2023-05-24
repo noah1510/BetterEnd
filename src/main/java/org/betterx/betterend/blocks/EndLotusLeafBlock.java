@@ -23,6 +23,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.WaterFluid;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -36,7 +37,7 @@ public class EndLotusLeafBlock extends BaseBlockNotFull implements RenderLayerPr
     private static final VoxelShape VSHAPE = Block.box(0, 0, 0, 16, 1, 16);
 
     public EndLotusLeafBlock() {
-        super(BehaviourBuilders.createPlant().noOcclusion().sound(SoundType.WET_GRASS));
+        super(BehaviourBuilders.createPlant(MapColor.PLANT, true).noOcclusion().sound(SoundType.WET_GRASS));
     }
 
     @Override

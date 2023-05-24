@@ -140,8 +140,11 @@ public class LakePiece extends BasePiece {
                                 world,
                                 worldPos
                         )) {
-                            state = chunk.getBlockState(mut.above());
-                            if (state.isAir()) {
+                            state = chunk.getBlockState(mut.above(3));
+                            final BlockState stateAbove = chunk.getBlockState(mut.above());
+                            if (stateAbove.isAir() && state.isAir()) {
+                                state = random.nextInt(10) == 0 ? ENDSTONE : EndBiome.findTopMaterial(world, worldPos);
+                            } else if (stateAbove.isAir()) {
                                 state = random.nextBoolean() ? ENDSTONE : EndBiome.findTopMaterial(world, worldPos);
                             } else {
                                 state = state.getFluidState().isEmpty()
