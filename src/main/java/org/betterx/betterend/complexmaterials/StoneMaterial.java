@@ -55,22 +55,22 @@ public class StoneMaterial {
         stone = EndBlocks.registerBlock(name, new BaseBlock(material));
         polished = EndBlocks.registerBlock(name + "_polished", new BaseBlock(material));
         tiles = EndBlocks.registerBlock(name + "_tiles", new BaseBlock(material));
-        pillar = EndBlocks.registerBlock(name + "_pillar", new BaseRotatedPillarBlock(material));
-        stairs = EndBlocks.registerBlock(name + "_stairs", new BaseStairsBlock(stone));
-        slab = EndBlocks.registerBlock(name + "_slab", new BaseSlabBlock(stone));
-        wall = EndBlocks.registerBlock(name + "_wall", new BaseWallBlock(stone));
-        button = EndBlocks.registerBlock(name + "_button", new BaseStoneButtonBlock(stone, BlockSetType.STONE));
+        pillar = EndBlocks.registerBlock(name + "_pillar", new BaseRotatedPillarBlock.Stone(material));
+        stairs = EndBlocks.registerBlock(name + "_stairs", new BaseStairsBlock.Stone(stone));
+        slab = EndBlocks.registerBlock(name + "_slab", new BaseSlabBlock.Stone(stone));
+        wall = EndBlocks.registerBlock(name + "_wall", new BaseWallBlock.Stone(stone));
+        button = EndBlocks.registerBlock(name + "_button", new BaseButtonBlock.Stone(stone, BlockSetType.STONE));
         pressurePlate = EndBlocks.registerBlock(
                 name + "_plate",
-                new StonePressurePlateBlock(stone, BlockSetType.STONE)
+                new BasePressurePlateBlock.Stone(stone, BlockSetType.STONE)
         );
         pedestal = EndBlocks.registerBlock(name + "_pedestal", new EndPedestal(stone));
         lantern = EndBlocks.registerBlock(name + "_lantern", new StoneLanternBlock(stone));
 
         bricks = EndBlocks.registerBlock(name + "_bricks", new BaseBlock(material));
-        brickStairs = EndBlocks.registerBlock(name + "_bricks_stairs", new BaseStairsBlock(bricks));
-        brickSlab = EndBlocks.registerBlock(name + "_bricks_slab", new BaseSlabBlock(bricks));
-        brickWall = EndBlocks.registerBlock(name + "_bricks_wall", new BaseWallBlock(bricks));
+        brickStairs = EndBlocks.registerBlock(name + "_bricks_stairs", new BaseStairsBlock.Stone(bricks));
+        brickSlab = EndBlocks.registerBlock(name + "_bricks_slab", new BaseSlabBlock.Stone(bricks));
+        brickWall = EndBlocks.registerBlock(name + "_bricks_wall", new BaseWallBlock.Stone(bricks));
         furnace = EndBlocks.registerBlock(name + "_furnace", new BaseFurnaceBlock(bricks));
         flowerPot = EndBlocks.registerBlock(name + "_flower_pot", new FlowerPotBlock(bricks));
 

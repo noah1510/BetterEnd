@@ -182,17 +182,17 @@ public class MetalMaterial {
             TagManager.ITEMS.add(alloyingOre, ore.asItem(), rawOre);
         }
 
-        block = EndBlocks.registerBlock(name + "_block", new BaseBlock(settings));
-        tile = EndBlocks.registerBlock(name + "_tile", new BaseBlock(settings));
-        stairs = EndBlocks.registerBlock(name + "_stairs", new BaseStairsBlock(tile));
-        slab = EndBlocks.registerBlock(name + "_slab", new BaseSlabBlock(tile));
-        door = EndBlocks.registerBlock(name + "_door", new BaseDoorBlock(block, BlockSetType.IRON));
-        trapdoor = EndBlocks.registerBlock(name + "_trapdoor", new BaseTrapdoorBlock(block, BlockSetType.IRON));
+        block = EndBlocks.registerBlock(name + "_block", new BaseBlock.Metal(settings));
+        tile = EndBlocks.registerBlock(name + "_tile", new BaseBlock.Metal(settings));
+        stairs = EndBlocks.registerBlock(name + "_stairs", new BaseStairsBlock.Metal(tile));
+        slab = EndBlocks.registerBlock(name + "_slab", new BaseSlabBlock.Metal(tile));
+        door = EndBlocks.registerBlock(name + "_door", new BaseDoorBlock.Metal(block, BlockSetType.IRON));
+        trapdoor = EndBlocks.registerBlock(name + "_trapdoor", new BaseTrapdoorBlock.Metal(block, BlockSetType.IRON));
         bars = EndBlocks.registerBlock(name + "_bars", new BaseMetalBarsBlock(block));
         chain = EndBlocks.registerBlock(name + "_chain", new BaseChainBlock(block.defaultMaterialColor()));
         pressurePlate = EndBlocks.registerBlock(
                 name + "_plate",
-                new WoodenPressurePlateBlock(block, BlockSetType.IRON)
+                new BasePressurePlateBlock.Wood(block, BlockSetType.IRON)
         );
 
         chandelier = EndBlocks.registerBlock(name + "_chandelier", new ChandelierBlock(block));

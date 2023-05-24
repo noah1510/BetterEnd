@@ -142,16 +142,16 @@ public class EndBlocks {
     );
     public static final Block DRAGON_BONE_BLOCK = registerBlock(
             "dragon_bone_block",
-            new BaseRotatedPillarBlock(Blocks.BONE_BLOCK),
+            new BaseRotatedPillarBlock.Wood(Blocks.BONE_BLOCK, false),
             EndTags.BONEMEAL_TARGET_DRAGON_BONE
     );
     public static final Block DRAGON_BONE_STAIRS = registerBlock(
             "dragon_bone_stairs",
-            new BaseStairsBlock(DRAGON_BONE_BLOCK)
+            new BaseStairsBlock.Wood(DRAGON_BONE_BLOCK)
     );
     public static final Block DRAGON_BONE_SLAB = registerBlock(
             "dragon_bone_slab",
-            new BaseSlabBlock(DRAGON_BONE_BLOCK)
+            new BaseSlabBlock.Wood(DRAGON_BONE_BLOCK)
     );
     public static final Block MOSSY_DRAGON_BONE = registerBlock(
             "mossy_dragon_bone",
@@ -505,11 +505,11 @@ public class EndBlocks {
     public static final Block NEON_CACTUS_BLOCK = registerBlock("neon_cactus_block", new NeonCactusBlock());
     public static final Block NEON_CACTUS_BLOCK_STAIRS = registerBlock(
             "neon_cactus_stairs",
-            new BaseStairsBlock(NEON_CACTUS_BLOCK)
+            new BaseStairsBlock.Wood(NEON_CACTUS_BLOCK)
     );
     public static final Block NEON_CACTUS_BLOCK_SLAB = registerBlock(
             "neon_cactus_slab",
-            new BaseSlabBlock(NEON_CACTUS_BLOCK)
+            new BaseSlabBlock.Wood(NEON_CACTUS_BLOCK)
     );
 
     // Crops
