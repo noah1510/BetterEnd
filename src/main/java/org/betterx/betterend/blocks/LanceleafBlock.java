@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
 
 import java.util.Collections;
 import java.util.List;
@@ -66,7 +66,7 @@ public class LanceleafBlock extends EndPlantBlock {
     }
 
     @Override
-    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
+    public List<ItemStack> getDrops(BlockState state, LootParams.Builder builder) {
         if (state.getValue(SHAPE) == PentaShape.BOTTOM) {
             return Collections.singletonList(new ItemStack(EndBlocks.LANCELEAF_SEED));
         }

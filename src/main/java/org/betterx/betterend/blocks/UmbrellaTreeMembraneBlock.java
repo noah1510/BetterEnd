@@ -20,7 +20,7 @@ import net.minecraft.world.level.block.SlimeBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -59,7 +59,7 @@ public class UmbrellaTreeMembraneBlock extends SlimeBlock implements RenderLayer
 
     @Override
     @SuppressWarnings("deprecation")
-    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
+    public List<ItemStack> getDrops(BlockState state, LootParams.Builder builder) {
         if (state.getValue(COLOR) > 0) {
             return Lists.newArrayList(new ItemStack(this));
         } else {

@@ -11,7 +11,7 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 
 import com.google.common.collect.Lists;
@@ -27,7 +27,7 @@ public abstract class BlockBehaviourMixin {
     @Inject(method = "getDrops", at = @At("HEAD"), cancellable = true)
     public void be_getDroppedStacks(
             BlockState state,
-            LootContext.Builder builder,
+            LootParams.Builder builder,
             CallbackInfoReturnable<List<ItemStack>> info
     ) {
         if (state.is(Blocks.GLOWSTONE)) {

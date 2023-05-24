@@ -10,7 +10,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
 
 import com.google.common.collect.Lists;
 
@@ -22,7 +22,7 @@ public class BulbVineBlock extends BaseVineBlock {
     }
 
     @Override
-    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
+    public List<ItemStack> getDrops(BlockState state, LootParams.Builder builder) {
         if (state.getValue(SHAPE) == TripleShape.BOTTOM) {
             return Lists.newArrayList(new ItemStack(EndItems.GLOWING_BULB));
         } else if (MHelper.RANDOM.nextInt(8) == 0) {

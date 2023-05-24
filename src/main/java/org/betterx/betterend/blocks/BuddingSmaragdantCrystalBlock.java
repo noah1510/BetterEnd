@@ -16,7 +16,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
 
 import net.minecraft.world.level.material.PushReaction;
-import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
@@ -40,7 +40,7 @@ public class BuddingSmaragdantCrystalBlock extends LitPillarBlock implements Add
     }
 
     @Override
-    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
+    public List<ItemStack> getDrops(BlockState state, LootParams.Builder builder) {
         return Collections.emptyList();
     }
 

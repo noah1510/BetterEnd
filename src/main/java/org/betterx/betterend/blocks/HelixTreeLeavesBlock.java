@@ -23,7 +23,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 
 import net.minecraft.world.level.material.MapColor;
-import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
@@ -78,7 +78,7 @@ public class HelixTreeLeavesBlock extends BaseBlock implements CustomColorProvid
     }
 
     @Override
-    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
+    public List<ItemStack> getDrops(BlockState state, LootParams.Builder builder) {
         return BaseLeavesBlock.getLeaveDrops(this, EndBlocks.HELIX_TREE_SAPLING, builder, 16, 32);
     }
 }

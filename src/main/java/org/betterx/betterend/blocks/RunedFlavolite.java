@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
@@ -48,7 +48,7 @@ public class RunedFlavolite extends BaseBlock {
     }
 
     @Override
-    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
+    public List<ItemStack> getDrops(BlockState state, LootParams.Builder builder) {
         if (BlocksHelper.isInvulnerableUnsafe(this.defaultBlockState())) {
             return Lists.newArrayList();
         }
