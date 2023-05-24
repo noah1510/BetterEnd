@@ -29,14 +29,10 @@ public class BuddingSmaragdantCrystalBlock extends LitPillarBlock implements Beh
                 .strength(1F)
                 .noOcclusion()
                 .sound(SoundType.AMETHYST)
-                .randomTicks());
+                .randomTicks()
+                .pushReaction(PushReaction.DESTROY));
     }
-
-    @Override
-    public PushReaction getPistonPushReaction(BlockState blockState) {
-        return PushReaction.DESTROY;
-    }
-
+    
     @Override
     public List<ItemStack> getDrops(BlockState state, LootParams.Builder builder) {
         return Collections.emptyList();

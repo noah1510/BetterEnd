@@ -83,12 +83,12 @@ public abstract class ServerPlayerMixin extends Player implements TeleportingEnt
 
     @Inject(method = "changeDimension", at = @At("HEAD"), cancellable = true)
     public void be_changeDimension(ServerLevel destination, CallbackInfoReturnable<Entity> info) {
-        if (be_canTeleport() && level instanceof ServerLevel) {
+        if (be_canTeleport() && level() instanceof ServerLevel) {
             isChangingDimension = true;
             ServerLevel serverWorld = getLevel();
             LevelData worldProperties = destination.getLevelData();
             ServerPlayer player = ServerPlayer.class.cast(this);
-            
+
             connection.send(new ClientboundRespawnPacket(
                     destination.dimensionTypeId(),
                     destination.dimension(),
@@ -98,7 +98,8 @@ public abstract class ServerPlayerMixin extends Player implements TeleportingEnt
                     destination.isDebug(),
                     destination.isFlat(),
                     (byte) 1,
-                    Optional.empty()
+                    Optional.empty(),
+                    getPortalCooldown()
             ));
             connection.send(new ClientboundChangeDifficultyPacket(
                     worldProperties.getDifficulty(),
@@ -113,7 +114,7 @@ public abstract class ServerPlayerMixin extends Player implements TeleportingEnt
                 serverWorld.getProfiler().push("moving");
                 serverWorld.getProfiler().pop();
                 serverWorld.getProfiler().push("placing");
-                this.level = destination;
+                this.setLevel(destination);
                 destination.addDuringPortalTeleport(player);
                 setRot(teleportTarget.yRot, teleportTarget.xRot);
                 moveTo(teleportTarget.pos.x, teleportTarget.pos.y, teleportTarget.pos.z);

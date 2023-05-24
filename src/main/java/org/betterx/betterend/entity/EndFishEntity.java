@@ -137,7 +137,7 @@ public class EndFishEntity extends AbstractSchoolingFish {
             double x = getX() + random.nextGaussian() * 0.2;
             double y = getY() + random.nextGaussian() * 0.2;
             double z = getZ() + random.nextGaussian() * 0.2;
-            level.addParticle(ParticleTypes.BUBBLE, x, y, z, 0, 0, 0);
+            level().addParticle(ParticleTypes.BUBBLE, x, y, z, 0, 0, 0);
         }
     }
 
@@ -170,7 +170,7 @@ public class EndFishEntity extends AbstractSchoolingFish {
                 item = EndItems.END_FISH_COOKED;
             }
         }
-        ItemEntity drop = new ItemEntity(level, getX(), getY(), getZ(), new ItemStack(item));
-        this.level.addFreshEntity(drop);
+        ItemEntity drop = new ItemEntity(level(), getX(), getY(), getZ(), new ItemStack(item));
+        this.level().addFreshEntity(drop);
     }
 }

@@ -139,7 +139,9 @@ public class EndStoneSmelterBlockEntity extends BaseContainerBlockEntity impleme
     @Override
     public void setItem(int slot, ItemStack stack) {
         ItemStack itemStack = inventory.get(slot);
-        boolean stackValid = !stack.isEmpty() && stack.sameItem(itemStack) && ItemStack.tagMatches(stack, itemStack);
+        boolean stackValid = !stack.isEmpty()
+                && ItemStack.isSameItem(stack, itemStack)
+                && ItemStack.isSameItemSameTags(stack, itemStack);
         inventory.set(slot, stack);
         if (stack.getCount() > getMaxStackSize()) {
             stack.setCount(getMaxStackSize());
@@ -174,10 +176,10 @@ public class EndStoneSmelterBlockEntity extends BaseContainerBlockEntity impleme
             level.getRecipeManager().byKey(entry.getKey()).ifPresent((recipe) -> {
                 list.add(recipe);
                 if (recipe instanceof AlloyingRecipe alloying) {
-                    dropExperience(player.level, player.position(), entry.getIntValue(), alloying.getExperience());
+                    dropExperience(player.level(), player.position(), entry.getIntValue(), alloying.getExperience());
                 } else {
                     BlastingRecipe blasting = (BlastingRecipe) recipe;
-                    dropExperience(player.level, player.position(), entry.getIntValue(), blasting.getExperience());
+                    dropExperience(player.level(), player.position(), entry.getIntValue(), blasting.getExperience());
                 }
             });
         }
@@ -320,7 +322,7 @@ public class EndStoneSmelterBlockEntity extends BaseContainerBlockEntity impleme
             if (output.isEmpty()) {
                 return true;
             }
-            if (!output.sameItem(result)) {
+            if (!ItemStack.isSameItem(output, result)) {
                 return false;
             }
             if (outCount < getMaxStackSize() && outCount < output.getMaxStackSize()) {

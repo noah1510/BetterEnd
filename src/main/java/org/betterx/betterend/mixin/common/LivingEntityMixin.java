@@ -49,7 +49,7 @@ public abstract class LivingEntityMixin extends Entity {
 
     @Inject(method = "tickEffects", at = @At("HEAD"))
     protected void be_applyEffects(CallbackInfo info) {
-        if (!level.isClientSide()) {
+        if (!level().isClientSide()) {
             LivingEntity owner = LivingEntity.class.cast(this);
             if (CrystaliteArmor.hasFullSet(owner)) {
                 CrystaliteArmor.applySetEffect(owner);

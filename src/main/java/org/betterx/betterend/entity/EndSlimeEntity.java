@@ -134,7 +134,7 @@ public class EndSlimeEntity extends Slime {
     @Override
     public void remove(RemovalReason reason) {
         int i = this.getSize();
-        if (!this.level.isClientSide && i > 1 && this.isDeadOrDying()) {
+        if (!this.level().isClientSide && i > 1 && this.isDeadOrDying()) {
             Component text = this.getCustomName();
             boolean bl = this.isNoAi();
             float f = (float) i / 4.0F;
@@ -145,7 +145,7 @@ public class EndSlimeEntity extends Slime {
             for (int l = 0; l < k; ++l) {
                 float g = ((float) (l % 2) - 0.5F) * f;
                 float h = ((float) (l / 2) - 0.5F) * f;
-                EndSlimeEntity slimeEntity = (EndSlimeEntity) this.getType().create(this.level);
+                EndSlimeEntity slimeEntity = (EndSlimeEntity) this.getType().create(this.level());
                 if (this.isPersistenceRequired()) {
                     slimeEntity.setPersistenceRequired();
                 }
@@ -163,7 +163,7 @@ public class EndSlimeEntity extends Slime {
                         this.random.nextFloat() * 360.0F,
                         0.0F
                 );
-                this.level.addFreshEntity(slimeEntity);
+                this.level().addFreshEntity(slimeEntity);
             }
         }
 
@@ -182,8 +182,8 @@ public class EndSlimeEntity extends Slime {
             minCount += looting;
         }
         int count = minCount < maxCount ? MHelper.randRange(minCount, maxCount, random) : maxCount;
-        ItemEntity drop = new ItemEntity(level, getX(), getY(), getZ(), new ItemStack(Items.SLIME_BALL, count));
-        this.level.addFreshEntity(drop);
+        ItemEntity drop = new ItemEntity(level(), getX(), getY(), getZ(), new ItemStack(Items.SLIME_BALL, count));
+        this.level().addFreshEntity(drop);
     }
 
     public int getSlimeType() {
@@ -280,7 +280,7 @@ public class EndSlimeEntity extends Slime {
                         0,
                         (int) (dz * speed * 4)
                 );
-                int down = BlocksHelper.downRay(EndSlimeEntity.this.level, pos, 16);
+                int down = BlocksHelper.downRay(EndSlimeEntity.this.level(), pos, 16);
                 return down < 5;
             }
 
@@ -320,7 +320,7 @@ public class EndSlimeEntity extends Slime {
         }
 
         public boolean canUse() {
-            return EndSlimeEntity.this.getTarget() == null && (EndSlimeEntity.this.onGround || EndSlimeEntity.this.isInWater() || EndSlimeEntity.this
+            return EndSlimeEntity.this.getTarget() == null && (EndSlimeEntity.this.onGround() || EndSlimeEntity.this.isInWater() || EndSlimeEntity.this
                     .isInLava() || EndSlimeEntity.this.hasEffect(MobEffects.LEVITATION)) && EndSlimeEntity.this.getMoveControl() instanceof EndSlimeMoveControl;
         }
 
@@ -408,7 +408,7 @@ public class EndSlimeEntity extends Slime {
                 this.mob.setZza(0.0F);
             } else {
                 this.operation = MoveControl.Operation.WAIT;
-                if (this.mob.isOnGround()) {
+                if (this.mob.onGround()) {
                     this.mob.setSpeed((float) (this.speedModifier * this.mob.getAttributeValue(Attributes.MOVEMENT_SPEED)));
                     if (this.ticksUntilJump-- <= 0) {
                         this.ticksUntilJump = EndSlimeEntity.this.getJumpDelay();

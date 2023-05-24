@@ -60,7 +60,7 @@ public class ColoredMaterial {
     }
 
     public Block getByColor(DyeColor color) {
-        return colors.get(color.getMaterialColor().col);
+        return colors.get(color.getMapColor().col);
     }
 
     public Block getByColor(int color) {
@@ -69,7 +69,7 @@ public class ColoredMaterial {
 
     static {
         for (DyeColor color : DyeColor.values()) {
-            int colorRGB = color.getMaterialColor().col;
+            int colorRGB = color.getMapColor().col;
             COLORS.put(colorRGB, color.getName());
             DYES.put(colorRGB, DyeItem.byColor(color));
         }

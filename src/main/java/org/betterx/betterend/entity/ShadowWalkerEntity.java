@@ -51,7 +51,7 @@ public class ShadowWalkerEntity extends Monster {
     @Override
     public void tick() {
         super.tick();
-        level.addParticle(
+        level().addParticle(
                 ParticleTypes.ASH,
                 getX() + random.nextGaussian() * 0.2,
                 getY() + random.nextGaussian() * 0.5 + 1,
@@ -60,7 +60,7 @@ public class ShadowWalkerEntity extends Monster {
                 0,
                 0
         );
-        level.addParticle(
+        level().addParticle(
                 ParticleTypes.SMOKE,
                 getX() + random.nextGaussian() * 0.2,
                 getY() + random.nextGaussian() * 0.5 + 1,
@@ -69,7 +69,7 @@ public class ShadowWalkerEntity extends Monster {
                 0,
                 0
         );
-        level.addParticle(
+        level().addParticle(
                 ParticleTypes.ENTITY_EFFECT,
                 getX() + random.nextGaussian() * 0.2,
                 getY() + random.nextGaussian() * 0.5 + 1,

@@ -78,9 +78,11 @@ public class BetterEnd implements ModInitializer {
                 EndStructures.addBiomeStructures(biomeID, biome);
             }
         });
-        if (RUNS_TRINKETS) {
-            org.betterx.betterend.integration.trinkets.Elytra.register();
-        }
+        
+        //TODO: 1.20 Re-enable when Trinkets is back
+//        if (RUNS_TRINKETS) {
+//            org.betterx.betterend.integration.trinkets.Elytra.register();
+//        }
     }
 
     public static ResourceLocation makeID(String path) {

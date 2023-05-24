@@ -106,7 +106,7 @@ public class DragonflyEntity extends DespawnableAnimal implements FlyingAnimal {
 
     @Override
     public boolean isFlying() {
-        return !this.onGround;
+        return !this.onGround();
     }
 
     @Override
@@ -163,7 +163,7 @@ public class DragonflyEntity extends DespawnableAnimal implements FlyingAnimal {
         }
 
         private Vec3 getRandomLocation() {
-            int h = BlocksHelper.downRay(DragonflyEntity.this.level, DragonflyEntity.this.blockPosition(), 16);
+            int h = BlocksHelper.downRay(DragonflyEntity.this.level(), DragonflyEntity.this.blockPosition(), 16);
             Vec3 rotation = DragonflyEntity.this.getViewVector(0.0F);
             Vec3 airPos = HoverRandomPos.getPos(DragonflyEntity.this, 8, 7, rotation.x, rotation.z, 1.5707964F, 3, 1);
             if (airPos != null) {
@@ -203,7 +203,7 @@ public class DragonflyEntity extends DespawnableAnimal implements FlyingAnimal {
 
         private boolean isInVoid(Vec3 pos) {
             int h = BlocksHelper.downRay(
-                    DragonflyEntity.this.level,
+                    DragonflyEntity.this.level(),
                     new BlockPos((int) pos.x, (int) pos.y, (int) pos.z),
                     128
             );

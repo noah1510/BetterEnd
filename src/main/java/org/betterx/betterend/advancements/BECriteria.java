@@ -3,7 +3,7 @@ package org.betterx.betterend.advancements;
 import org.betterx.betterend.BetterEnd;
 
 import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.advancements.critereon.EntityPredicate;
+import net.minecraft.advancements.critereon.ContextAwarePredicate;
 import net.minecraft.advancements.critereon.PlayerTrigger;
 
 public class BECriteria {
@@ -23,15 +23,15 @@ public class BECriteria {
 
         PORTAL_ON_TRIGGER = new PlayerTrigger.TriggerInstance(
                 PORTAL_ON.getId(),
-                EntityPredicate.Composite.ANY
+                ContextAwarePredicate.ANY
         );
         PORTAL_TRAVEL_TRIGGER = new PlayerTrigger.TriggerInstance(
                 PORTAL_TRAVEL.getId(),
-                EntityPredicate.Composite.ANY
+                ContextAwarePredicate.ANY
         );
         INFUSION_FINISHED_TRIGGER = new PlayerTrigger.TriggerInstance(
                 INFUSION_FINISHED.getId(),
-                EntityPredicate.Composite.ANY
+                ContextAwarePredicate.ANY
         );
     }
 }

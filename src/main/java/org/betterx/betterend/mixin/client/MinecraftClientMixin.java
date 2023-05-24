@@ -37,7 +37,7 @@ public class MinecraftClientMixin {
     @Inject(method = "getSituationalMusic", at = @At("HEAD"), cancellable = true)
     private void be_getEndMusic(CallbackInfoReturnable<Music> info) {
         if (!(this.screen instanceof WinScreen) && this.player != null) {
-            if (this.player.level.dimension() == Level.END) {
+            if (this.player.level().dimension() == Level.END) {
                 if (this.gui.getBossOverlay().shouldPlayMusic() && MHelper.lengthSqr(
                         this.player.getX(),
                         this.player.getZ()
