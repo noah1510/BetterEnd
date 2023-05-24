@@ -6,6 +6,7 @@ import org.betterx.bclib.sdf.operator.SDFDisplacement;
 import org.betterx.bclib.sdf.operator.SDFRotation;
 import org.betterx.bclib.sdf.operator.SDFTranslate;
 import org.betterx.bclib.sdf.primitive.SDFCappedCone;
+import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.noise.OpenSimplexNoise;
 import org.betterx.betterend.registry.EndBlocks;
@@ -18,7 +19,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-
 
 import org.joml.Vector3f;
 
@@ -59,9 +59,7 @@ public class FallenPillarFeature extends DefaultFeature {
             }
             return info.getState();
         }).setReplaceFunction((state) -> {
-            return state.getMaterial()
-                        .isReplaceable() || state.is(CommonBlockTags.GEN_END_STONES) || state.getMaterial()
-                                                                                             .equals(Material.PLANT);
+            return state.is(CommonBlockTags.GEN_END_STONES) || BlocksHelper.replaceableOrPlant(state);
         }).fillRecursive(world, pos);
 
         return true;

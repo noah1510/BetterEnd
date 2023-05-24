@@ -69,7 +69,7 @@ public abstract class EndCaveFeature extends DefaultFeature {
                 Set<BlockPos> floorPositions = Sets.newConcurrentHashSet();
                 Set<BlockPos> ceilPositions = Sets.newConcurrentHashSet();
                 caveBlocks.parallelStream().forEach((bpos) -> {
-                    if (world.getBlockState(bpos).getMaterial().isReplaceable()) {
+                    if (world.getBlockState(bpos).canBeReplaced()){
                         BlockPos side = bpos.below();
                         if (world.getBlockState(side).is(CommonBlockTags.GEN_END_STONES)) {
                             floorPositions.add(side);

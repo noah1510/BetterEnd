@@ -25,7 +25,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-
 import org.joml.Vector3f;
 
 import java.util.List;
@@ -98,9 +97,7 @@ public class LacugroveFeature extends DefaultFeature {
                         for (int y = top; y >= minY; y--) {
                             mut.setY(y);
                             BlockState state = world.getBlockState(mut);
-                            if (state.getMaterial().isReplaceable() || state.getMaterial()
-                                                                            .equals(Material.PLANT) || state.is(
-                                    CommonBlockTags.END_STONES)) {
+                            if (BlocksHelper.replaceableOrPlant(state) || state.is(CommonBlockTags.END_STONES)) {
                                 BlocksHelper.setWithoutUpdate(
                                         world,
                                         mut,
@@ -209,10 +206,7 @@ public class LacugroveFeature extends DefaultFeature {
             if (state.getBlock() == EndBlocks.LACUGROVE_LEAVES) {
                 return true;
             }
-            if (state.getMaterial().equals(Material.PLANT)) {
-                return true;
-            }
-            return state.getMaterial().isReplaceable();
+            return BlocksHelper.replaceableOrPlant(state);
         };
 
         IGNORE = EndBlocks.LACUGROVE::isTreeLog;

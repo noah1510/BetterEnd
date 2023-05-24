@@ -23,7 +23,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-
 import com.google.common.collect.Lists;
 import org.joml.Vector3f;
 
@@ -216,10 +215,7 @@ public class DragonTreeFeature extends DefaultFeature {
             if (state.getBlock() == EndBlocks.DRAGON_TREE_LEAVES) {
                 return true;
             }
-            if (state.getMaterial().equals(Material.PLANT)) {
-                return true;
-            }
-            return state.getMaterial().isReplaceable();
+            return BlocksHelper.replaceableOrPlant(state);
         };
 
         IGNORE = EndBlocks.DRAGON_TREE::isTreeLog;

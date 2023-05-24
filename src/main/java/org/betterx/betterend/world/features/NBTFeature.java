@@ -150,7 +150,7 @@ public abstract class NBTFeature<FC extends NBTFeatureConfig> extends Feature<FC
                             BlockState stateSt = world.getBlockState(mut);
                             if (!isTerrain(stateSt)) {
                                 if (merge == TerrainMerge.SURFACE) {
-                                    boolean isTop = mut.getY() == surfMax && state.getMaterial().isSolidBlocking();
+                                    boolean isTop = mut.getY() == surfMax && state.isSolid();
                                     Holder<Biome> b = world.getBiome(mut);
                                     BlockState top = (isTop
                                             ? BiomeAPI.findTopMaterial(b)
@@ -160,7 +160,7 @@ public abstract class NBTFeature<FC extends NBTFeatureConfig> extends Feature<FC
                                     BlocksHelper.setWithoutUpdate(world, mut, state);
                                 }
                             } else {
-                                if (isTerrain(state) && state.getMaterial().isSolidBlocking()) {
+                                if (isTerrain(state) && state.isSolid()) {
                                     if (merge == TerrainMerge.SURFACE) {
                                         Holder<Biome> b = world.getBiome(mut);
                                         BlockState bottom = BiomeAPI.findUnderMaterial(b).orElse(cfg.defaultBlock);

@@ -62,8 +62,7 @@ public class BiomeIslandFeature extends DefaultFeature {
                                            return (float) simplexNoise.eval(CENTER.getX() + pos.x(), CENTER.getY() + pos.y(), CENTER.getZ() + pos.z());
                                        })
                                        .setSource(sdfCone)
-                                       .setReplaceFunction(state -> BlocksHelper.isFluid(state) || state.getMaterial()
-                                                                                                        .isReplaceable());
+                                       .setReplaceFunction(state -> BlocksHelper.isFluid(state) || state.canBeReplaced());
         return sdfCone;
     }
 

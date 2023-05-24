@@ -38,7 +38,7 @@ public class StalactiteFeature extends Feature<StalactiteFeatureConfig> {
         for (int i = 1; i <= height; i++) {
             mut.setY(pos.getY() + i * dir);
             BlockState state = world.getBlockState(mut);
-            if (!state.getMaterial().isReplaceable()) {
+            if (!state.canBeReplaced()){
                 stalagnate = state.is(CommonBlockTags.GEN_END_STONES);
                 height = i;
                 break;

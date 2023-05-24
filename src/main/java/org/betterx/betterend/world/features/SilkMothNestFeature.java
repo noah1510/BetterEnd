@@ -25,7 +25,7 @@ public class SilkMothNestFeature extends DefaultFeature {
             state = world.getBlockState(pos);
             if ((state.isAir() || state.is(EndBlocks.TENANEA_OUTER_LEAVES)) && world.isEmptyBlock(pos.below())) {
                 for (Direction dir : BlocksHelper.HORIZONTAL) {
-                    return !world.getBlockState(pos.below().relative(dir)).getMaterial().blocksMotion();
+                    return !world.getBlockState(pos.below().relative(dir)).blocksMotion();
                 }
             }
         }

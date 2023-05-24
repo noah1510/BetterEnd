@@ -51,7 +51,7 @@ public class EndStoneSmelterMenu extends RecipeBookMenu<Container> {
         super(EndMenuTypes.END_STONE_SMELTER, syncId);
         this.inventory = inventory;
         this.propertyDelegate = propertyDelegate;
-        this.world = playerInventory.player.level;
+        this.world = playerInventory.player.level();
 
         addDataSlots(propertyDelegate);
         addSlot(new Slot(inventory, INGREDIENT_SLOT_A, 45, 17));

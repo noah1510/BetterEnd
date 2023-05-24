@@ -36,7 +36,7 @@ public class MengerSpongeFeature extends UnderwaterPlantScatter<ScatterFeatureCo
             if (state.is(EndBlocks.END_LOTUS_STEM)) {
                 return false;
             }
-            return !state.getFluidState().isEmpty() || state.getMaterial().isReplaceable();
+            return !state.getFluidState().isEmpty() || state.canBeReplaced();
         };
     }
 }

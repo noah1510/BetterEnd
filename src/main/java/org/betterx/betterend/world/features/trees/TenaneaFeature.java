@@ -24,7 +24,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-
 import com.google.common.collect.Lists;
 import org.joml.Vector3f;
 
@@ -184,10 +183,7 @@ public class TenaneaFeature extends DefaultFeature {
             if (state.getBlock() == EndBlocks.TENANEA_LEAVES) {
                 return true;
             }
-            if (state.getMaterial().equals(Material.PLANT)) {
-                return true;
-            }
-            return state.getMaterial().isReplaceable();
+            return BlocksHelper.replaceableOrPlant(state);
         };
 
         IGNORE = EndBlocks.TENANEA::isTreeLog;

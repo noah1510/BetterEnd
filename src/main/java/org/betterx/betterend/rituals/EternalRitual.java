@@ -1,6 +1,7 @@
 package org.betterx.betterend.rituals;
 
 import org.betterx.bclib.blocks.BlockProperties;
+import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.advancements.BECriteria;
 import org.betterx.betterend.blocks.EndPortalBlock;
@@ -14,6 +15,7 @@ import org.betterx.worlds.together.world.event.WorldBootstrap;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.QuartPos;
 import net.minecraft.core.Registry;
 import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleOptions;
@@ -32,6 +34,7 @@ import net.minecraft.world.entity.ai.village.poi.PoiManager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelHeightAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -41,7 +44,6 @@ import net.minecraft.world.level.chunk.LevelChunkSection;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.LegacyRandomSource;
-
 
 import com.google.common.collect.Sets;
 
@@ -708,8 +710,7 @@ public class EternalRitual {
 
     private static boolean isStateInvalid(BlockState state) {
         if (!state.getFluidState().isEmpty()) return true;
-        Material material = state.getMaterial();
-        return !material.isReplaceable() && !material.equals(Material.PLANT);
+        return !BlocksHelper.replaceableOrPlant(state);
     }
 
     /**
@@ -744,7 +745,12 @@ public class EternalRitual {
             for (int i = 0; i < (step >> 1); i++) {
                 ChunkAccess chunk = world.getChunk(checkPos);
                 if (!(chunk instanceof LevelChunk) || ((LevelChunk) chunk).isEmpty()) continue;
-                for (LevelChunkSection section : chunk.getSections()) {
+
+                final LevelHeightAccessor levelHeightAccessor = chunk.getHeightAccessorForGeneration();
+                LevelChunkSection section;
+                for (int k = levelHeightAccessor.getMinSection(); k < levelHeightAccessor.getMaxSection(); ++k) {
+                    section = chunk.getSection(chunk.getSectionIndexFromSectionY(k));
+
                     if (section == null || !section.getStates().maybeHas(condition)) continue;
                     for (int x = 0; x < 16; x++) {
                         for (int y = 0; y < 16; y++) {
@@ -752,7 +758,7 @@ public class EternalRitual {
                                 BlockState checkState = section.getBlockState(x, y, z);
                                 if (checkState.is(searchBlock)) {
                                     int worldX = (chunk.getPos().x << 4) + x;
-                                    int worldY = section.bottomBlockY() + y;
+                                    int worldY = QuartPos.fromSection(k) + y;
                                     int worldZ = (chunk.getPos().z << 4) + z;
                                     checkPos.set(worldX, worldY, worldZ);
                                     return checkPos;

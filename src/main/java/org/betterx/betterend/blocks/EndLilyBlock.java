@@ -1,5 +1,6 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
 import org.betterx.bclib.blocks.BlockProperties;
 import org.betterx.bclib.blocks.BlockProperties.TripleShape;
 import org.betterx.bclib.interfaces.tools.AddMineableShears;
@@ -42,8 +43,11 @@ public class EndLilyBlock extends EndUnderwaterPlantBlock implements AddMineable
     private static final VoxelShape SHAPE_TOP = Block.box(2, 0, 2, 14, 6, 14);
 
     public EndLilyBlock() {
-        super(baseUnderwaterPlantSettings()
-                .lightLevel((state) -> state.getValue(SHAPE) == TripleShape.TOP ? 13 : 0)
+        super(baseUnderwaterPlantSettings(
+                        BehaviourBuilders.createWaterPlant(),
+                        0
+                )
+                        .lightLevel((state) -> state.getValue(SHAPE) == TripleShape.TOP ? 13 : 0)
         );
     }
 

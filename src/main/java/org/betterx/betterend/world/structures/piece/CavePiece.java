@@ -80,7 +80,7 @@ public class CavePiece extends BasePiece {
                             BlocksHelper.setWithoutUpdate(world, pos, CAVE_AIR);
                         }
                     } else if (dist < r * r) {
-                        if (world.getBlockState(pos).getMaterial().isReplaceable()) {
+                        if (world.getBlockState(pos).canBeReplaced()){
                             BlocksHelper.setWithoutUpdate(world, pos, Blocks.END_STONE);
                         }
                     }

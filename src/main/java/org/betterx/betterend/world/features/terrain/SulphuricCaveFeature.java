@@ -13,6 +13,7 @@ import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
@@ -21,7 +22,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-
 
 import com.google.common.collect.Sets;
 
@@ -141,7 +141,7 @@ public class SulphuricCaveFeature extends DefaultFeature {
                 )) + random.nextInt(2);
                 if (dist > 0) {
                     state = world.getBlockState(mut);
-                    while (!state.getFluidState().isEmpty() || state.getMaterial().equals(Material.WATER_PLANT)) {
+                    while (!state.getFluidState().isEmpty() || state.is(CommonBlockTags.WATER_PLANT)) {
                         mut.setY(mut.getY() - 1);
                         state = world.getBlockState(mut);
                     }
@@ -187,11 +187,14 @@ public class SulphuricCaveFeature extends DefaultFeature {
     }
 
     private boolean isReplaceable(BlockState state) {
-        return state.is(CommonBlockTags.GEN_END_STONES) || state.is(EndBlocks.HYDROTHERMAL_VENT) || state.is(EndBlocks.VENT_BUBBLE_COLUMN) || state
-                .is(EndBlocks.SULPHUR_CRYSTAL) || state.getMaterial().isReplaceable() || state.getMaterial()
-                                                                                              .equals(Material.PLANT) || state
-                .getMaterial()
-                .equals(Material.WATER_PLANT) || state.getMaterial().equals(Material.LEAVES);
+        return state.is(CommonBlockTags.GEN_END_STONES)
+                || state.is(EndBlocks.HYDROTHERMAL_VENT)
+                || state.is(EndBlocks.VENT_BUBBLE_COLUMN)
+                || state.is(EndBlocks.SULPHUR_CRYSTAL)
+                || BlocksHelper.replaceableOrPlant(state)
+                || state.is(CommonBlockTags.WATER_PLANT)
+                || state.is(BlockTags.LEAVES)
+                ;
     }
 
     private void placeBrimstone(WorldGenLevel world, BlockPos pos, RandomSource random) {

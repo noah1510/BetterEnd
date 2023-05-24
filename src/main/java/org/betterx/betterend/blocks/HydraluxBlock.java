@@ -1,5 +1,6 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
 import org.betterx.bclib.blocks.UnderwaterPlantBlock;
 import org.betterx.bclib.interfaces.tools.AddMineableShears;
 import org.betterx.bclib.util.MHelper;
@@ -33,8 +34,11 @@ public class HydraluxBlock extends UnderwaterPlantBlock implements AddMineableSh
     public static final EnumProperty<HydraluxShape> SHAPE = EndBlockProperties.HYDRALUX_SHAPE;
 
     public HydraluxBlock() {
-        super(baseUnderwaterPlantSettings()
-                .lightLevel((state) -> state.getValue(SHAPE).hasGlow() ? 15 : 0)
+        super(baseUnderwaterPlantSettings(
+                        BehaviourBuilders.createWaterPlant(),
+                        0
+                )
+                        .lightLevel((state) -> state.getValue(SHAPE).hasGlow() ? 15 : 0)
         );
     }
 

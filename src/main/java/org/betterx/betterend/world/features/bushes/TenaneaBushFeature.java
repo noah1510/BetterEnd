@@ -26,7 +26,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-
 import com.google.common.collect.Lists;
 
 import java.util.List;
@@ -128,11 +127,6 @@ public class TenaneaBushFeature extends DefaultFeature {
     }
 
     static {
-        REPLACE = (state) -> {
-            if (state.getMaterial().equals(Material.PLANT)) {
-                return true;
-            }
-            return state.getMaterial().isReplaceable();
-        };
+        REPLACE = BlocksHelper::replaceableOrPlant;
     }
 }

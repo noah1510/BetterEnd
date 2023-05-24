@@ -2,6 +2,7 @@ package org.betterx.betterend.integration.byg.features;
 
 import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
 import org.betterx.bclib.sdf.SDF;
+import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.bclib.util.SplineHelper;
 import org.betterx.betterend.integration.Integrations;
@@ -13,7 +14,6 @@ import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-
 
 import com.google.common.base.Function;
 import org.joml.Vector3f;
@@ -34,9 +34,7 @@ public class BigEtherTreeFeature extends DefaultFeature {
             return log;
         };
         Function<BlockState, Boolean> replace = (state) -> {
-            return state.is(CommonBlockTags.END_STONES) || state.getMaterial()
-                                                                .equals(Material.PLANT) || state.getMaterial()
-                                                                                                .isReplaceable();
+            return state.is(CommonBlockTags.END_STONES) || BlocksHelper.replaceableOrPlant(state);
         };
 
         int height = MHelper.randRange(40, 60, random);
@@ -66,9 +64,7 @@ public class BigEtherTreeFeature extends DefaultFeature {
         }
 
         sdf.setReplaceFunction((state) -> {
-            return state.is(CommonBlockTags.END_STONES) || state.getMaterial()
-                                                                .equals(Material.PLANT) || state.getMaterial()
-                                                                                                .isReplaceable();
+            return state.is(CommonBlockTags.END_STONES) || BlocksHelper.replaceableOrPlant(state);
         }).addPostProcess((info) -> {
             if (info.getState().equals(log) && (!info.getStateUp().equals(log) || !info.getStateDown().equals(log))) {
                 return wood;

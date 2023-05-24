@@ -19,7 +19,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.HalfTransparentBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 
@@ -57,8 +56,8 @@ public class EmeraldIceBlock extends HalfTransparentBlock implements RenderLayer
                 return;
             }
 
-            Material material = world.getBlockState(pos.below()).getMaterial();
-            if (material.blocksMotion() || material.isLiquid()) {
+            BlockState belowState = world.getBlockState(pos.below());
+            if (belowState.blocksMotion() || belowState.liquid()) {
                 world.setBlockAndUpdate(pos, Blocks.WATER.defaultBlockState());
             }
         }

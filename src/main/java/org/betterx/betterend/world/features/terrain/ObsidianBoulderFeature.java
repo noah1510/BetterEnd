@@ -5,6 +5,7 @@ import org.betterx.bclib.sdf.SDF;
 import org.betterx.bclib.sdf.operator.SDFDisplacement;
 import org.betterx.bclib.sdf.operator.SDFScale3D;
 import org.betterx.bclib.sdf.primitive.SDFSphere;
+import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.noise.OpenSimplexNoise;
 import org.betterx.betterend.registry.EndBlocks;
@@ -68,9 +69,7 @@ public class ObsidianBoulderFeature extends DefaultFeature {
             }
             return info.getState();
         }).setReplaceFunction((state) -> {
-            return state.getMaterial()
-                        .isReplaceable() || state.is(CommonBlockTags.GEN_END_STONES) || state.getMaterial()
-                                                                                             .equals(Material.PLANT);
+            return state.is(CommonBlockTags.GEN_END_STONES) || BlocksHelper.replaceableOrPlant(state);
         }).fillRecursive(world, pos);
     }
 }

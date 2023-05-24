@@ -23,7 +23,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-
 import com.google.common.collect.Lists;
 import org.joml.Vector3f;
 
@@ -218,11 +217,10 @@ public class UmbrellaTreeFeature extends DefaultFeature {
         SplineHelper.offset(ROOT, new Vector3f(0, -0.45F, 0));
 
         REPLACE = (state) -> {
-            if (/*state.is(CommonBlockTags.END_STONES) || */state.getMaterial().equals(Material.PLANT) || state.is(
-                    EndBlocks.UMBRELLA_TREE_MEMBRANE)) {
+            if (state.is(EndBlocks.UMBRELLA_TREE_MEMBRANE)) {
                 return true;
             }
-            return state.getMaterial().isReplaceable();
+            return BlocksHelper.replaceableOrPlant(state);
         };
     }
 

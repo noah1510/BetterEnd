@@ -26,7 +26,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -79,9 +79,11 @@ public class EndHammerItem extends DiggerItem implements ItemModelProvider, TagP
 
     @Override
     public boolean canAttackBlock(BlockState state, Level world, BlockPos pos, Player miner) {
-        return state.getMaterial().equals(Material.STONE) || state.getMaterial().equals(Material.GLASS) || state.is(
-                Blocks.DIAMOND_BLOCK) || state.is(Blocks.EMERALD_BLOCK) || state.is(Blocks.LAPIS_BLOCK) || state.is(
-                Blocks.REDSTONE_BLOCK);
+        return state.is(CommonBlockTags.MINABLE_WITH_HAMMER)
+                || state.is(Blocks.DIAMOND_BLOCK)
+                || state.is(Blocks.EMERALD_BLOCK)
+                || state.is(Blocks.LAPIS_BLOCK)
+                || state.is(Blocks.REDSTONE_BLOCK);
     }
 
     @Override
@@ -102,13 +104,16 @@ public class EndHammerItem extends DiggerItem implements ItemModelProvider, TagP
 
     @Override
     public float getDestroySpeed(ItemStack stack, BlockState state) {
-        if (state.getMaterial().equals(Material.GLASS)) {
+        //usually Glass Blocks
+        if (state.instrument() == NoteBlockInstrument.HAT) {
             return this.getTier().getSpeed() * 2.0F;
         }
         if (isCorrectToolForDrops(state)) {
             float mult;
-            if (state.is(Blocks.DIAMOND_BLOCK) || state.is(Blocks.EMERALD_BLOCK) || state.is(Blocks.LAPIS_BLOCK) || state
-                    .is(Blocks.REDSTONE_BLOCK)) {
+            if (state.is(Blocks.DIAMOND_BLOCK)
+                    || state.is(Blocks.EMERALD_BLOCK)
+                    || state.is(Blocks.LAPIS_BLOCK)
+                    || state.is(Blocks.REDSTONE_BLOCK)) {
                 mult = this.getTier().getSpeed();
             } else {
                 mult = this.getTier().getSpeed() / 2.0F;
@@ -116,30 +121,6 @@ public class EndHammerItem extends DiggerItem implements ItemModelProvider, TagP
             return Math.max(mult, 1.0F);
         }
         return 1.0F;
-    }
-
-    @Override
-    public boolean isCorrectToolForDrops(BlockState state) {
-        if (state.getMaterial().equals(Material.GLASS)) {
-            return true;
-        }
-        if (!state.is(Blocks.REDSTONE_BLOCK) && !state.is(Blocks.DIAMOND_BLOCK) && !state.is(Blocks.EMERALD_BLOCK) && !state
-                .is(Blocks.LAPIS_BLOCK) && !state.getMaterial().equals(Material.STONE)) {
-            return false;
-        }
-        int level = this.getTier().getLevel();
-        if (state.is(Blocks.IRON_ORE) || state.is(Blocks.LAPIS_BLOCK) || state.is(Blocks.LAPIS_ORE)) {
-            return level >= 1;
-        }
-        if (state.is(Blocks.DIAMOND_BLOCK) && !state.is(Blocks.DIAMOND_ORE) || state.is(Blocks.EMERALD_ORE) || state.is(
-                Blocks.EMERALD_BLOCK) || state.is(Blocks.GOLD_ORE) || state.is(Blocks.REDSTONE_ORE)) {
-            return level >= 2;
-        }
-        if (state.is(Blocks.OBSIDIAN) || state.is(Blocks.CRYING_OBSIDIAN) || state.is(Blocks.RESPAWN_ANCHOR) || state.is(
-                Blocks.ANCIENT_DEBRIS)) {
-            return level >= 3;
-        }
-        return true;
     }
 
     @Override

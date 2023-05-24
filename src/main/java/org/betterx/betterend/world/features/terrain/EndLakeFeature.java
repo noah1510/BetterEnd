@@ -229,12 +229,9 @@ public class EndLakeFeature extends DefaultFeature {
     }
 
     private boolean canReplace(BlockState state) {
-        return state.getMaterial()
-                    .isReplaceable() || state.is(CommonBlockTags.GEN_END_STONES) || state.is(EndBlocks.ENDSTONE_DUST) || state
-                .getMaterial()
-                .equals(
-                        Material.PLANT) || state
-                .getMaterial()
-                .equals(Material.WATER_PLANT);
+        return state.is(CommonBlockTags.GEN_END_STONES)
+                || state.is(EndBlocks.ENDSTONE_DUST)
+                || BlocksHelper.replaceableOrPlant(state)
+                || state.is(CommonBlockTags.WATER_PLANT);
     }
 }

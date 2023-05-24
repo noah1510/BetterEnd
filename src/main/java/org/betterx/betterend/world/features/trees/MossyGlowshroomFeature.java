@@ -22,7 +22,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-
 import org.joml.Vector3f;
 
 import java.util.List;
@@ -161,14 +160,6 @@ public class MossyGlowshroomFeature extends DefaultFeature {
         FUNCTION = new SDFSmoothUnion().setRadius(4)
                                        .setSourceB(new SDFUnion().setSourceA(HEAD_POS).setSourceB(ROOTS_ROT));
 
-        REPLACE = (state) -> {
-			/*if (state.is(CommonBlockTags.END_STONES)) {
-				return true;
-			}*/
-            if (state.getMaterial().equals(Material.PLANT)) {
-                return true;
-            }
-            return state.getMaterial().isReplaceable();
-        };
+        REPLACE = BlocksHelper::replaceableOrPlant;
     }
 }

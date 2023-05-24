@@ -1,5 +1,7 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
+import org.betterx.bclib.behaviours.interfaces.BehaviourWaterPlant;
 import org.betterx.bclib.interfaces.tools.AddMineableShears;
 import org.betterx.betterend.blocks.basis.EndUnderwaterPlantBlock;
 
@@ -19,14 +21,17 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
-public class BubbleCoralBlock extends EndUnderwaterPlantBlock implements AddMineableShears {
+public class BubbleCoralBlock extends EndUnderwaterPlantBlock implements BehaviourWaterPlant, AddMineableShears {
 
     private static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 14, 16);
 
     public BubbleCoralBlock() {
-        super(baseUnderwaterPlantSettings()
-                .sound(SoundType.CORAL_BLOCK)
-                .offsetType(BlockBehaviour.OffsetType.NONE)
+        super(baseUnderwaterPlantSettings(
+                        BehaviourBuilders.createWaterPlant(),
+                        0
+                )
+                        .sound(SoundType.CORAL_BLOCK)
+                        .offsetType(BlockBehaviour.OffsetType.NONE)
         );
     }
 

@@ -25,7 +25,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-
 import com.google.common.collect.Lists;
 import org.joml.Vector3f;
 
@@ -48,9 +47,8 @@ public class NightshadeRedwoodTreeFeature extends DefaultFeature {
         BlockState leaves_flower = Integrations.BYG.getDefaultState("flowering_nightshade_leaves");
 
         Function<BlockPos, BlockState> splinePlacer = (bpos) -> log;
-        Function<BlockState, Boolean> replace = (state) -> state.is(CommonBlockTags.END_STONES) || state.getMaterial()
-                                                                                                        .equals(Material.PLANT) || state.getMaterial()
-                                                                                                                                        .isReplaceable();
+        Function<BlockState, Boolean> replace = (state) -> state.is(CommonBlockTags.END_STONES)
+                || BlocksHelper.replaceableOrPlant(state);
         Function<PosInfo, BlockState> post = (info) -> {
             if (info.getState().equals(log) && (!info.getStateUp().equals(log) || !info.getStateDown().equals(log))) {
                 return wood;

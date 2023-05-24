@@ -23,7 +23,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 
-
 import java.util.function.Function;
 
 public class BushWithOuterFeature extends Feature<BushWithOuterFeatureConfig> {
@@ -107,11 +106,6 @@ public class BushWithOuterFeature extends Feature<BushWithOuterFeatureConfig> {
     }
 
     static {
-        REPLACE = (state) -> {
-            if (state.getMaterial().equals(Material.PLANT)) {
-                return true;
-            }
-            return state.getMaterial().isReplaceable();
-        };
+        REPLACE = BlocksHelper::replaceableOrPlant;
     }
 }

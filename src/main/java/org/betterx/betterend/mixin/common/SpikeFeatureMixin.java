@@ -106,7 +106,7 @@ public class SpikeFeatureMixin {
                     if (x2 + z2 <= r2) {
                         for (int py = minY; py < maxY; py++) {
                             mut.setY(py);
-                            if (world.getBlockState(mut).getMaterial().isReplaceable()) {
+                            if (world.getBlockState(mut).canBeReplaced()){
                                 if ((px == radius || px == -radius || pz == radius || pz == -radius) && random.nextInt(
                                         24) == 0) {
                                     BlocksHelper.setWithoutUpdate(world, mut, Blocks.CRYING_OBSIDIAN);
@@ -131,7 +131,7 @@ public class SpikeFeatureMixin {
                     if (x2 + z2 <= r2) {
                         for (int py = minY; py < maxY; py++) {
                             mut.setY(py);
-                            if (world.getBlockState(mut).getMaterial().isReplaceable()) {
+                            if (world.getBlockState(mut).canBeReplaced()){
                                 BlocksHelper.setWithoutUpdate(world, mut, Blocks.OBSIDIAN);
                             }
                         }

@@ -5,6 +5,7 @@ import org.betterx.bclib.client.render.BCLRenderLayer;
 import org.betterx.bclib.interfaces.RenderLayerProvider;
 import org.betterx.bclib.interfaces.tools.AddMineableHoe;
 import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -73,14 +74,12 @@ public class MengerSpongeBlock extends BaseBlockNotFull implements RenderLayerPr
                 BlockPos blockPos2 = blockPos.relative(direction);
                 BlockState blockState = world.getBlockState(blockPos2);
                 FluidState fluidState = world.getFluidState(blockPos2);
-                Material material = blockState.getMaterial();
                 if (fluidState.is(FluidTags.WATER)) {
-                    if (blockState.getBlock() instanceof BucketPickup && !((BucketPickup) blockState.getBlock()).pickupBlock(
-                                                                                                                        world,
-                                                                                                                        blockPos2,
-                                                                                                                        blockState
-                                                                                                                )
-                                                                                                                .isEmpty()) {
+                    if (blockState.getBlock() instanceof BucketPickup
+                            && !((BucketPickup) blockState.getBlock())
+                            .pickupBlock(world, blockPos2, blockState)
+                            .isEmpty()
+                    ) {
                         ++i;
                         if (j < 6) {
                             queue.add(new Tuple<>(blockPos2, j + 1));
@@ -91,7 +90,7 @@ public class MengerSpongeBlock extends BaseBlockNotFull implements RenderLayerPr
                         if (j < 6) {
                             queue.add(new Tuple<>(blockPos2, j + 1));
                         }
-                    } else if (material == Material.WATER_PLANT || material == Material.REPLACEABLE_WATER_PLANT) {
+                    } else if (blockState.is(CommonBlockTags.WATER_PLANT)) {
                         BlockEntity blockEntity = blockState.hasBlockEntity() ? world.getBlockEntity(blockPos2) : null;
                         dropResources(blockState, world, blockPos2, blockEntity);
                         world.setBlock(blockPos2, Blocks.AIR.defaultBlockState(), 3);

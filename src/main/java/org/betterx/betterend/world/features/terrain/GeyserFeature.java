@@ -30,7 +30,6 @@ import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -192,7 +191,7 @@ public class GeyserFeature extends DefaultFeature {
             int dist = MHelper.floor(6 - distRaw) + random.nextInt(2);
             if (dist >= 0) {
                 state = world.getBlockState(mut);
-                while (!state.getFluidState().isEmpty() || state.getMaterial().equals(Material.WATER_PLANT)) {
+                while (!state.getFluidState().isEmpty() || state.is(CommonBlockTags.WATER_PLANT)) {
                     mut.setY(mut.getY() - 1);
                     state = world.getBlockState(mut);
                 }
@@ -287,10 +286,7 @@ public class GeyserFeature extends DefaultFeature {
             if (state.is(CommonBlockTags.GEN_END_STONES) || state.is(EndBlocks.HYDROTHERMAL_VENT) || state.is(EndBlocks.SULPHUR_CRYSTAL)) {
                 return true;
             }
-            if (state.getMaterial().equals(Material.PLANT)) {
-                return true;
-            }
-            return state.getMaterial().isReplaceable();
+            return BlocksHelper.replaceableOrPlant(state);
         };
 
         IGNORE = (state) -> state.is(Blocks.WATER) || state.is(Blocks.CAVE_AIR) || state.is(EndBlocks.SULPHURIC_ROCK.stone) || state

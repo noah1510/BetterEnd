@@ -86,7 +86,7 @@ public class HelixTreeFeature extends DefaultFeature {
                 world,
                 EndBlocks.HELIX_TREE.getBark().defaultBlockState(),
                 pos,
-                (state) -> state.getMaterial().isReplaceable()
+                (state) -> state.canBeReplaced()
         );
         SplineHelper.rotateSpline(spline, (float) Math.PI);
         SplineHelper.fillSplineForce(
@@ -94,7 +94,7 @@ public class HelixTreeFeature extends DefaultFeature {
                 world,
                 EndBlocks.HELIX_TREE.getBark().defaultBlockState(),
                 pos,
-                (state) -> state.getMaterial().isReplaceable()
+                (state) -> state.canBeReplaced()
         );
         SplineHelper.scale(spline2, scale);
         BlockPos leafStart = pos.offset(
@@ -107,7 +107,7 @@ public class HelixTreeFeature extends DefaultFeature {
                 world,
                 EndBlocks.HELIX_TREE.getLog().defaultBlockState(),
                 leafStart,
-                (state) -> state.getMaterial().isReplaceable()
+                (state) -> state.canBeReplaced()
         );
 
         spline.clear();
@@ -197,7 +197,7 @@ public class HelixTreeFeature extends DefaultFeature {
             bPos.set(x + pos.getX(), y + pos.getY(), z + pos.getZ());
             int color = MHelper.floor((float) i / (float) count * 7F + 0.5F) + offset;
             color = Mth.clamp(color, 0, 7);
-            if (world.getBlockState(bPos).getMaterial().isReplaceable()) {
+            if (world.getBlockState(bPos).canBeReplaced()){
                 BlocksHelper.setWithoutUpdate(world, bPos, state.setValue(HelixTreeLeavesBlock.COLOR, color));
             }
             x += dx;
@@ -205,7 +205,7 @@ public class HelixTreeFeature extends DefaultFeature {
             z += dz;
         }
         bPos.set(end.x() + pos.getX(), end.y() + pos.getY(), end.z() + pos.getZ());
-        if (world.getBlockState(bPos).getMaterial().isReplaceable()) {
+        if (world.getBlockState(bPos).canBeReplaced()){
             BlocksHelper.setWithoutUpdate(world, bPos, state.setValue(HelixTreeLeavesBlock.COLOR, 7));
         }
     }

@@ -106,8 +106,8 @@ public class CommandRegistry {
             return 0;
         }
         final BCLBiome biome = biomes.get(biomeIndex);
-        source.sendSuccess(Component.literal("Locating Biome " + biome)
-                                    .setStyle(Style.EMPTY.withColor(ChatFormatting.DARK_GREEN)), false);
+        source.sendSuccess(() -> Component.literal("Locating Biome " + biome)
+                                          .setStyle(Style.EMPTY.withColor(ChatFormatting.DARK_GREEN)), false);
         biomeIndex = (biomeIndex + 1) % biomes.size();
 
         final BlockPos currentPosition = new BlockPos(
@@ -136,14 +136,15 @@ public class CommandRegistry {
             boolean didWrap = false;
             do {
                 target = new BlockPos(biomePosition.getX(), (int) yPos, biomePosition.getZ());
-                state = player.level.getBlockState(target);
+                state = player.level().getBlockState(target);
                 yPos--;
-                if (yPos <= player.level.getMinBuildHeight() + 1) {
+                if (yPos <= player.level().getMinBuildHeight() + 1) {
                     if (didWrap) break;
                     yPos = 127;
                     didWrap = true;
                 }
-            } while (!state.isAir() && yPos > player.level.getMinBuildHeight() && yPos < player.level.getMaxBuildHeight());
+            } while (!state.isAir() && yPos > player.level().getMinBuildHeight() && yPos < player.level()
+                                                                                                 .getMaxBuildHeight());
             Vector3d targetPlayerPos = new Vector3d(target.getX() + 0.5, target.getY() - 1, target.getZ() + 0.5);
 
             player.connection.teleport(

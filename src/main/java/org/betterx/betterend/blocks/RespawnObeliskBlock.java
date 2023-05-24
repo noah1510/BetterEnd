@@ -75,7 +75,7 @@ public class RespawnObeliskBlock extends BaseBlock.Stone implements CustomColorP
     @SuppressWarnings("deprecation")
     public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
         for (int i = 0; i < 3; i++) {
-            if (!world.getBlockState(pos.above(i)).getMaterial().isReplaceable()) {
+            if (!world.getBlockState(pos.above(i)).canBeReplaced()){
                 return false;
             }
         }

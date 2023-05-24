@@ -4,6 +4,7 @@ import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
 import org.betterx.bclib.sdf.SDF;
 import org.betterx.bclib.sdf.operator.*;
 import org.betterx.bclib.sdf.primitive.SDFSphere;
+import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.bclib.util.SplineHelper;
 import org.betterx.betterend.blocks.JellyshroomCapBlock;
@@ -18,7 +19,6 @@ import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-
 
 import com.google.common.collect.Lists;
 import org.joml.Vector3f;
@@ -118,11 +118,6 @@ public class JellyshroomFeature extends DefaultFeature {
         );
         SplineHelper.offset(ROOT, new Vector3f(0, -0.45F, 0));
 
-        REPLACE = (state) -> {
-            if (/*state.is(CommonBlockTags.END_STONES) || */state.getMaterial().equals(Material.PLANT)) {
-                return true;
-            }
-            return state.getMaterial().isReplaceable();
-        };
+        REPLACE = BlocksHelper::replaceableOrPlant;
     }
 }

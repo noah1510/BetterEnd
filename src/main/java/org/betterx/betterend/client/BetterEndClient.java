@@ -1,6 +1,5 @@
 package org.betterx.betterend.client;
 
-import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.client.render.BetterEndSkyRenderer;
 import org.betterx.betterend.events.ItemTooltipCallback;
 import org.betterx.betterend.interfaces.MultiModelItem;
@@ -49,10 +48,10 @@ public class BetterEndClient implements ClientModInitializer {
         if (ClientOptions.isCustomSky()) {
             DimensionRenderingRegistry.registerSkyRenderer(Level.END, new BetterEndSkyRenderer());
         }
-
-        if (BetterEnd.RUNS_TRINKETS) {
-            org.betterx.betterend.integration.trinkets.ElytraClient.register();
-        }
+//TODO: 1.20 Re-Enable with Trinkets
+//        if (BetterEnd.RUNS_TRINKETS) {
+//            org.betterx.betterend.integration.trinkets.ElytraClient.register();
+//        }
     }
 
     public static void registerTooltips() {

@@ -7,10 +7,10 @@ import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
-
 
 import com.google.common.collect.Sets;
 
@@ -56,13 +56,13 @@ public class RoundCaveFeature extends EndCaveFeature {
                     if (isReplaceable(state) && !isWaterNear(world, bpos)) {
                         blocks.add(bpos.immutable());
 
-                        while (state.getMaterial().equals(Material.LEAVES)) {
+                        while (state.is(BlockTags.LEAVES)) {
                             bpos.setY(bpos.getY() + 1);
                             state = world.getBlockState(bpos);
                         }
 
                         bpos.setY(y - 1);
-                        while (state.getMaterial().equals(Material.LEAVES)) {
+                        while (state.is(BlockTags.LEAVES)) {
                             bpos.setY(bpos.getY() - 1);
                             state = world.getBlockState(bpos);
                         }
@@ -77,8 +77,7 @@ public class RoundCaveFeature extends EndCaveFeature {
 
     private boolean isReplaceable(BlockState state) {
         return state.is(CommonBlockTags.GEN_END_STONES) ||
-                state.getMaterial().isReplaceable() ||
-                state.getMaterial().equals(Material.PLANT) ||
-                state.getMaterial().equals(Material.LEAVES);
+                BlocksHelper.replaceableOrPlant(state) ||
+                state.is(BlockTags.LEAVES);
     }
 }

@@ -3,7 +3,7 @@ package org.betterx.betterend.client.gui;
 import org.betterx.betterend.BetterEnd;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
@@ -61,19 +61,20 @@ public class EndStoneSmelterScreen extends AbstractContainerScreen<EndStoneSmelt
         recipeBook.tick();
     }
 
+
     @Override
-    public void render(PoseStack matrices, int mouseX, int mouseY, float delta) {
-        renderBackground(matrices);
+    public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float delta) {
+        renderBackground(guiGraphics);
         if (recipeBook.isVisible() && narrow) {
-            renderBg(matrices, delta, mouseX, mouseY);
-            recipeBook.render(matrices, mouseX, mouseY, delta);
+            renderBg(guiGraphics, delta, mouseX, mouseY);
+            recipeBook.render(guiGraphics, mouseX, mouseY, delta);
         } else {
-            recipeBook.render(matrices, mouseX, mouseY, delta);
-            super.render(matrices, mouseX, mouseY, delta);
-            recipeBook.renderGhostRecipe(matrices, leftPos, topPos, true, delta);
+            recipeBook.render(guiGraphics, mouseX, mouseY, delta);
+            super.render(guiGraphics, mouseX, mouseY, delta);
+            recipeBook.renderGhostRecipe(guiGraphics, leftPos, topPos, true, delta);
         }
-        renderTooltip(matrices, mouseX, mouseY);
-        recipeBook.renderTooltip(matrices, leftPos, topPos, mouseX, mouseY);
+        renderTooltip(guiGraphics, mouseX, mouseY);
+        recipeBook.renderTooltip(guiGraphics, leftPos, topPos, mouseX, mouseY);
     }
 
     @Override
@@ -126,17 +127,24 @@ public class EndStoneSmelterScreen extends AbstractContainerScreen<EndStoneSmelt
     }
 
     @Override
-    protected void renderBg(PoseStack matrices, float delta, int mouseX, int mouseY) {
+    protected void renderBg(GuiGraphics guiGraphics, float delta, int mouseX, int mouseY) {
         if (minecraft == null) return;
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShaderTexture(0, BACKGROUND_TEXTURE);
-        blit(matrices, leftPos, topPos, 0, 0, imageWidth, imageHeight);
+        guiGraphics.blit(BACKGROUND_TEXTURE, leftPos, topPos, 0, 0, imageWidth, imageHeight);
         int progress;
         if (menu.isBurning()) {
             progress = menu.getFuelProgress();
-            blit(matrices, leftPos + 56, topPos + 36 + 12 - progress, 176, 12 - progress, 14, progress + 1);
+            guiGraphics.blit(
+                    BACKGROUND_TEXTURE,
+                    leftPos + 56,
+                    topPos + 36 + 12 - progress,
+                    176,
+                    12 - progress,
+                    14,
+                    progress + 1
+            );
         }
         progress = menu.getSmeltProgress();
-        blit(matrices, leftPos + 92, topPos + 34, 176, 14, progress + 1, 16);
+        guiGraphics.blit(BACKGROUND_TEXTURE, leftPos + 92, topPos + 34, 176, 14, progress + 1, 16);
     }
 }

@@ -7,6 +7,7 @@ import org.betterx.bclib.sdf.operator.SDFSubtraction;
 import org.betterx.bclib.sdf.operator.SDFTranslate;
 import org.betterx.bclib.sdf.operator.SDFUnion;
 import org.betterx.bclib.sdf.primitive.SDFSphere;
+import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.bclib.util.SplineHelper;
 import org.betterx.betterend.integration.Integrations;
@@ -21,7 +22,6 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
-
 import net.minecraft.world.phys.AABB;
 
 import com.google.common.collect.Lists;
@@ -52,11 +52,10 @@ public class OldBulbisTreeFeature extends DefaultFeature {
         BlockState glow = Integrations.BYG.getDefaultState("purple_shroomlight");
 
         Function<BlockState, Boolean> replacement = (state) -> {
-            if (state.equals(stem) || state.equals(wood) || state.is(CommonBlockTags.END_STONES) || state.getMaterial()
-                                                                                                         .equals(Material.PLANT)) {
+            if (state.equals(stem) || state.equals(wood) || state.is(CommonBlockTags.END_STONES)) {
                 return true;
             }
-            return state.getMaterial().isReplaceable();
+            return BlocksHelper.replaceableOrPlant(state);
         };
 
         float size = MHelper.randRange(10, 20, random);

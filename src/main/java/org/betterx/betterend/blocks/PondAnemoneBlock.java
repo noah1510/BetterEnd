@@ -1,5 +1,6 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
 import org.betterx.bclib.interfaces.tools.AddMineableShears;
 import org.betterx.betterend.blocks.basis.EndUnderwaterPlantBlock;
 
@@ -22,8 +23,11 @@ public class PondAnemoneBlock extends EndUnderwaterPlantBlock implements AddMine
     private static final VoxelShape SHAPE = Block.box(2, 0, 2, 14, 14, 14);
 
     public PondAnemoneBlock() {
-        super(baseUnderwaterPlantSettings(13).sound(SoundType.CORAL_BLOCK)
-                                             .offsetType(OffsetType.NONE)
+        super(baseUnderwaterPlantSettings(
+                        BehaviourBuilders.createWaterPlant(),
+                        13
+                ).sound(SoundType.CORAL_BLOCK)
+                 .offsetType(OffsetType.NONE)
         );
     }
 

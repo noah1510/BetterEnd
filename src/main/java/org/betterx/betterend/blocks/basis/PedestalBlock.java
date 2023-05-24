@@ -3,12 +3,14 @@ package org.betterx.betterend.blocks.basis;
 import org.betterx.bclib.blocks.BaseBlockNotFull;
 import org.betterx.bclib.blocks.BlockProperties;
 import org.betterx.bclib.client.models.ModelsHelper;
+import org.betterx.bclib.interfaces.TagProvider;
 import org.betterx.betterend.blocks.EndBlockProperties;
 import org.betterx.betterend.blocks.EndBlockProperties.PedestalState;
 import org.betterx.betterend.blocks.InfusionPedestal;
 import org.betterx.betterend.blocks.entities.InfusionPedestalEntity;
 import org.betterx.betterend.blocks.entities.PedestalBlockEntity;
 import org.betterx.betterend.client.models.Patterns;
+import org.betterx.betterend.registry.EndTags;
 import org.betterx.betterend.rituals.InfusionRitual;
 
 import net.minecraft.client.renderer.block.model.BlockModel;
@@ -19,9 +21,11 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -55,7 +59,7 @@ import java.util.Optional;
 import java.util.function.ToIntFunction;
 import org.jetbrains.annotations.Nullable;
 
-public class PedestalBlock extends BaseBlockNotFull implements EntityBlock {
+public class PedestalBlock extends BaseBlockNotFull implements EntityBlock, TagProvider {
     public final static EnumProperty<PedestalState> STATE = EndBlockProperties.PEDESTAL_STATE;
     public static final BooleanProperty HAS_ITEM = EndBlockProperties.HAS_ITEM;
     public static final BooleanProperty HAS_LIGHT = BlockProperties.HAS_LIGHT;
@@ -461,6 +465,11 @@ public class PedestalBlock extends BaseBlockNotFull implements EntityBlock {
         SHAPE_COLUMN_TOP = Shapes.or(SHAPE_PILLAR, columnTop);
         SHAPE_COLUMN = Shapes.or(basin, SHAPE_PILLAR, columnTop);
         SHAPE_BOTTOM = Shapes.or(basin, SHAPE_PILLAR);
+    }
+
+    @Override
+    public void addTags(List<TagKey<Block>> blockTags, List<TagKey<Item>> itemTags) {
+        blockTags.add(EndTags.PEDESTALS);
     }
 	
 	/*@Override

@@ -1,16 +1,11 @@
 package org.betterx.betterend.registry;
 
 import org.betterx.bclib.api.v2.ComposterAPI;
-import org.betterx.bclib.blocks.BaseVineBlock;
-import org.betterx.bclib.blocks.SimpleLeavesBlock;
 import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.blocks.basis.EndTerrainBlock;
-import org.betterx.betterend.blocks.basis.PedestalBlock;
 import org.betterx.betterend.item.tool.EndHammerItem;
 import org.betterx.betterend.world.biome.EndBiome;
 import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 import org.betterx.worlds.together.tag.v3.CommonItemTags;
-import org.betterx.worlds.together.tag.v3.MineableTags;
 import org.betterx.worlds.together.tag.v3.TagManager;
 
 import net.minecraft.tags.BlockTags;
@@ -20,12 +15,6 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.LeavesBlock;
-import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
-
-
-import net.fabricmc.fabric.mixin.object.builder.AbstractBlockAccessor;
-import net.fabricmc.fabric.mixin.object.builder.AbstractBlockSettingsAccessor;
 
 import com.google.common.collect.Lists;
 
@@ -54,39 +43,6 @@ public class EndTags {
         addEndGround(EndBlocks.THALLASIUM.ore);
         addEndGround(EndBlocks.ENDSTONE_DUST);
         addEndGround(EndBlocks.AMBER_ORE);
-
-        EndBlocks.getModBlocks().forEach(block -> {
-            Properties properties = ((AbstractBlockAccessor) block).getSettings();
-            Material material = ((AbstractBlockSettingsAccessor) properties).getMaterial();
-            final Item item = block.asItem();
-
-            if (material.equals(Material.STONE) || material.equals(Material.METAL) || material.equals(Material.HEAVY_METAL)) {
-                TagManager.BLOCKS.add(MineableTags.PICKAXE, block);
-            } else if (material.equals(Material.WOOD)) {
-                TagManager.BLOCKS.add(MineableTags.AXE, block);
-            } else if (material.equals(Material.LEAVES) || material.equals(Material.PLANT) || material.equals(Material.WATER_PLANT) || material.equals(
-                    Material.SPONGE)) {
-                TagManager.BLOCKS.add(MineableTags.HOE, block);
-            } else if (material.equals(Material.SAND)) {
-                TagManager.BLOCKS.add(MineableTags.SHOVEL, block);
-            }
-
-            if (block instanceof EndTerrainBlock) {
-                addEndGround(block);
-            } else if (block instanceof LeavesBlock || block instanceof SimpleLeavesBlock) {
-                TagManager.BLOCKS.add(BlockTags.LEAVES, block);
-                ComposterAPI.allowCompost(0.3f, item);
-            } else if (block instanceof BaseVineBlock) {
-                TagManager.BLOCKS.add(BlockTags.CLIMBABLE, block);
-            } else if (block instanceof PedestalBlock) {
-                TagManager.BLOCKS.add(PEDESTALS, block);
-            }
-
-            Material mat = block.defaultBlockState().getMaterial();
-            if (mat.equals(Material.PLANT) || mat.equals(Material.REPLACEABLE_PLANT)) {
-                ComposterAPI.allowCompost(0.1F, item);
-            }
-        });
         addEndGround(EndBlocks.CAVE_MOSS);
 
         List<Item> ITEM_HAMMERS = Lists.newArrayList();

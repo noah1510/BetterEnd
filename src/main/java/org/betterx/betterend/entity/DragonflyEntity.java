@@ -63,7 +63,7 @@ public class DragonflyEntity extends DespawnableAnimal implements FlyingAnimal {
         FlyingPathNavigation birdNavigation = new FlyingPathNavigation(this, world) {
             public boolean isStableDestination(BlockPos pos) {
                 BlockState state = this.level.getBlockState(pos);
-                return state.isAir() || !state.getMaterial().blocksMotion();
+                return state.isAir() || !state.blocksMotion();
             }
 
             public void tick() {

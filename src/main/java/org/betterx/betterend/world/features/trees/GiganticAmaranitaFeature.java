@@ -22,7 +22,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 
-
 import org.joml.Vector3f;
 
 import java.util.List;
@@ -80,31 +79,31 @@ public class GiganticAmaranitaFeature extends DefaultFeature {
         if (radius < 2) {
             for (int i = -1; i < 2; i++) {
                 mut.set(pos).move(Direction.NORTH, 2).move(Direction.EAST, i);
-                if (world.getBlockState(mut).getMaterial().isReplaceable()) {
+                if (world.getBlockState(mut).canBeReplaced()) {
                     BlocksHelper.setWithoutUpdate(world, mut, EndBlocks.AMARANITA_HYMENOPHORE);
                 }
                 mut.set(pos).move(Direction.SOUTH, 2).move(Direction.EAST, i);
-                if (world.getBlockState(mut).getMaterial().isReplaceable()) {
+                if (world.getBlockState(mut).canBeReplaced()) {
                     BlocksHelper.setWithoutUpdate(world, mut, EndBlocks.AMARANITA_HYMENOPHORE);
                 }
                 mut.set(pos).move(Direction.EAST, 2).move(Direction.NORTH, i);
-                if (world.getBlockState(mut).getMaterial().isReplaceable()) {
+                if (world.getBlockState(mut).canBeReplaced()) {
                     BlocksHelper.setWithoutUpdate(world, mut, EndBlocks.AMARANITA_HYMENOPHORE);
                 }
                 mut.set(pos).move(Direction.WEST, 2).move(Direction.NORTH, i);
-                if (world.getBlockState(mut).getMaterial().isReplaceable()) {
+                if (world.getBlockState(mut).canBeReplaced()) {
                     BlocksHelper.setWithoutUpdate(world, mut, EndBlocks.AMARANITA_HYMENOPHORE);
                 }
             }
             for (int x = -1; x < 2; x++) {
                 for (int z = -1; z < 2; z++) {
                     mut.set(pos).move(x, 0, z);
-                    if (world.getBlockState(mut).getMaterial().isReplaceable()) {
+                    if (world.getBlockState(mut).canBeReplaced()) {
                         BlocksHelper.setWithoutUpdate(world, mut, EndBlocks.AMARANITA_LANTERN);
                         mut.move(Direction.DOWN);
                         BlocksHelper.setWithoutUpdate(world, mut, EndBlocks.AMARANITA_LANTERN);
                         mut.move(Direction.DOWN);
-                        if (world.getBlockState(mut).getMaterial().isReplaceable()) {
+                        if (world.getBlockState(mut).canBeReplaced()) {
                             BlocksHelper.setWithoutUpdate(
                                     world,
                                     mut,
@@ -123,7 +122,7 @@ public class GiganticAmaranitaFeature extends DefaultFeature {
                     mut.setX(pos.getX() + x);
                     for (int z = -1; z < 2; z++) {
                         mut.setZ(pos.getZ() + z);
-                        if (world.getBlockState(mut).getMaterial().isReplaceable()) {
+                        if (world.getBlockState(mut).canBeReplaced()) {
                             BlocksHelper.setWithoutUpdate(world, mut, EndBlocks.AMARANITA_CAP);
                         }
                     }
@@ -135,7 +134,7 @@ public class GiganticAmaranitaFeature extends DefaultFeature {
                 mut.setX(pos.getX() + x);
                 for (int z = -1; z < 2; z++) {
                     mut.setZ(pos.getZ() + z);
-                    if ((x == 0 || z == 0) && world.getBlockState(mut).getMaterial().isReplaceable()) {
+                    if ((x == 0 || z == 0) && world.getBlockState(mut).canBeReplaced()) {
                         BlocksHelper.setWithoutUpdate(world, mut, EndBlocks.AMARANITA_CAP);
                     }
                 }
@@ -144,26 +143,26 @@ public class GiganticAmaranitaFeature extends DefaultFeature {
             pos = pos.offset(-1, 0, -1);
             for (int i = -2; i < 2; i++) {
                 mut.set(pos).move(Direction.NORTH, 2).move(Direction.WEST, i);
-                if (world.getBlockState(mut).getMaterial().isReplaceable()) {
+                if (world.getBlockState(mut).canBeReplaced()) {
                     BlocksHelper.setWithoutUpdate(world, mut, EndBlocks.AMARANITA_HYMENOPHORE);
                 }
                 mut.set(pos).move(Direction.SOUTH, 3).move(Direction.WEST, i);
-                if (world.getBlockState(mut).getMaterial().isReplaceable()) {
+                if (world.getBlockState(mut).canBeReplaced()) {
                     BlocksHelper.setWithoutUpdate(world, mut, EndBlocks.AMARANITA_HYMENOPHORE);
                 }
                 mut.set(pos).move(Direction.EAST, 3).move(Direction.NORTH, i);
-                if (world.getBlockState(mut).getMaterial().isReplaceable()) {
+                if (world.getBlockState(mut).canBeReplaced()) {
                     BlocksHelper.setWithoutUpdate(world, mut, EndBlocks.AMARANITA_HYMENOPHORE);
                 }
                 mut.set(pos).move(Direction.WEST, 2).move(Direction.NORTH, i);
-                if (world.getBlockState(mut).getMaterial().isReplaceable()) {
+                if (world.getBlockState(mut).canBeReplaced()) {
                     BlocksHelper.setWithoutUpdate(world, mut, EndBlocks.AMARANITA_HYMENOPHORE);
                 }
             }
             for (int x = -1; x < 3; x++) {
                 for (int z = -1; z < 3; z++) {
                     mut.set(pos).move(x, 0, z);
-                    if (world.getBlockState(mut).getMaterial().isReplaceable()) {
+                    if (world.getBlockState(mut).canBeReplaced()) {
                         BlocksHelper.setWithoutUpdate(world, mut, EndBlocks.AMARANITA_LANTERN);
                         mut.move(Direction.DOWN);
                         if ((x >> 1) == 0 || (z >> 1) == 0) {
@@ -171,7 +170,7 @@ public class GiganticAmaranitaFeature extends DefaultFeature {
                             Axis axis = x < 0 || x > 1 ? Axis.X : Axis.Z;
                             int distance = axis == Axis.X ? x < 0 ? -1 : 1 : z < 0 ? -1 : 1;
                             BlockPos offseted = mut.relative(axis, distance);
-                            if (world.getBlockState(offseted).getMaterial().isReplaceable()) {
+                            if (world.getBlockState(offseted).canBeReplaced()) {
                                 Direction dir = Direction.fromAxisAndDirection(
                                         axis,
                                         distance < 0 ? AxisDirection.NEGATIVE : AxisDirection.POSITIVE
@@ -185,7 +184,7 @@ public class GiganticAmaranitaFeature extends DefaultFeature {
                             }
                             mut.move(Direction.DOWN);
                         }
-                        if (world.getBlockState(mut).getMaterial().isReplaceable()) {
+                        if (world.getBlockState(mut).canBeReplaced()) {
                             BlocksHelper.setWithoutUpdate(
                                     world,
                                     mut,
@@ -204,7 +203,7 @@ public class GiganticAmaranitaFeature extends DefaultFeature {
                     mut.setX(pos.getX() + x);
                     for (int z = -1; z < 3; z++) {
                         mut.setZ(pos.getZ() + z);
-                        if (world.getBlockState(mut).getMaterial().isReplaceable()) {
+                        if (world.getBlockState(mut).canBeReplaced()) {
                             BlocksHelper.setWithoutUpdate(world, mut, EndBlocks.AMARANITA_CAP);
                         }
                     }
@@ -216,7 +215,7 @@ public class GiganticAmaranitaFeature extends DefaultFeature {
                 mut.setX(pos.getX() + x);
                 for (int z = -1; z < 3; z++) {
                     mut.setZ(pos.getZ() + z);
-                    if (((x >> 1) == 0 || (z >> 1) == 0) && world.getBlockState(mut).getMaterial().isReplaceable()) {
+                    if (((x >> 1) == 0 || (z >> 1) == 0) && world.getBlockState(mut).canBeReplaced()) {
                         BlocksHelper.setWithoutUpdate(world, mut, EndBlocks.AMARANITA_CAP);
                     }
                 }
@@ -224,54 +223,54 @@ public class GiganticAmaranitaFeature extends DefaultFeature {
         } else {
             for (int i = -2; i < 3; i++) {
                 mut.set(pos).move(Direction.NORTH, 3).move(Direction.EAST, i);
-                if (world.getBlockState(mut).getMaterial().isReplaceable()) {
+                if (world.getBlockState(mut).canBeReplaced()) {
                     BlocksHelper.setWithoutUpdate(world, mut, EndBlocks.AMARANITA_HYMENOPHORE);
                 }
                 mut.move(Direction.UP);
-                if (world.getBlockState(mut).getMaterial().isReplaceable()) {
+                if (world.getBlockState(mut).canBeReplaced()) {
                     BlocksHelper.setWithoutUpdate(world, mut, EndBlocks.AMARANITA_HYMENOPHORE);
                 }
                 mut.move(Direction.NORTH);
-                if (world.getBlockState(mut).getMaterial().isReplaceable()) {
+                if (world.getBlockState(mut).canBeReplaced()) {
                     BlocksHelper.setWithoutUpdate(world, mut, EndBlocks.AMARANITA_HYMENOPHORE);
                 }
 
                 mut.set(pos).move(Direction.SOUTH, 3).move(Direction.EAST, i);
-                if (world.getBlockState(mut).getMaterial().isReplaceable()) {
+                if (world.getBlockState(mut).canBeReplaced()) {
                     BlocksHelper.setWithoutUpdate(world, mut, EndBlocks.AMARANITA_HYMENOPHORE);
                 }
                 mut.move(Direction.UP);
-                if (world.getBlockState(mut).getMaterial().isReplaceable()) {
+                if (world.getBlockState(mut).canBeReplaced()) {
                     BlocksHelper.setWithoutUpdate(world, mut, EndBlocks.AMARANITA_HYMENOPHORE);
                 }
                 mut.move(Direction.SOUTH);
-                if (world.getBlockState(mut).getMaterial().isReplaceable()) {
+                if (world.getBlockState(mut).canBeReplaced()) {
                     BlocksHelper.setWithoutUpdate(world, mut, EndBlocks.AMARANITA_HYMENOPHORE);
                 }
 
                 mut.set(pos).move(Direction.EAST, 3).move(Direction.NORTH, i);
-                if (world.getBlockState(mut).getMaterial().isReplaceable()) {
+                if (world.getBlockState(mut).canBeReplaced()) {
                     BlocksHelper.setWithoutUpdate(world, mut, EndBlocks.AMARANITA_HYMENOPHORE);
                 }
                 mut.move(Direction.UP);
-                if (world.getBlockState(mut).getMaterial().isReplaceable()) {
+                if (world.getBlockState(mut).canBeReplaced()) {
                     BlocksHelper.setWithoutUpdate(world, mut, EndBlocks.AMARANITA_HYMENOPHORE);
                 }
                 mut.move(Direction.EAST);
-                if (world.getBlockState(mut).getMaterial().isReplaceable()) {
+                if (world.getBlockState(mut).canBeReplaced()) {
                     BlocksHelper.setWithoutUpdate(world, mut, EndBlocks.AMARANITA_HYMENOPHORE);
                 }
 
                 mut.set(pos).move(Direction.WEST, 3).move(Direction.NORTH, i);
-                if (world.getBlockState(mut).getMaterial().isReplaceable()) {
+                if (world.getBlockState(mut).canBeReplaced()) {
                     BlocksHelper.setWithoutUpdate(world, mut, EndBlocks.AMARANITA_HYMENOPHORE);
                 }
                 mut.move(Direction.UP);
-                if (world.getBlockState(mut).getMaterial().isReplaceable()) {
+                if (world.getBlockState(mut).canBeReplaced()) {
                     BlocksHelper.setWithoutUpdate(world, mut, EndBlocks.AMARANITA_HYMENOPHORE);
                 }
                 mut.move(Direction.WEST);
-                if (world.getBlockState(mut).getMaterial().isReplaceable()) {
+                if (world.getBlockState(mut).canBeReplaced()) {
                     BlocksHelper.setWithoutUpdate(world, mut, EndBlocks.AMARANITA_HYMENOPHORE);
                 }
             }
@@ -281,7 +280,7 @@ public class GiganticAmaranitaFeature extends DefaultFeature {
                    .move(Direction.UP)
                    .move(BlocksHelper.HORIZONTAL[i], 3)
                    .move(BlocksHelper.HORIZONTAL[(i + 1) & 3], 3);
-                if (world.getBlockState(mut).getMaterial().isReplaceable()) {
+                if (world.getBlockState(mut).canBeReplaced()) {
                     BlocksHelper.setWithoutUpdate(world, mut, EndBlocks.AMARANITA_HYMENOPHORE);
                 }
             }
@@ -289,7 +288,7 @@ public class GiganticAmaranitaFeature extends DefaultFeature {
             for (int x = -2; x < 3; x++) {
                 for (int z = -2; z < 3; z++) {
                     mut.set(pos).move(x, 0, z);
-                    if (world.getBlockState(mut).getMaterial().isReplaceable()) {
+                    if (world.getBlockState(mut).canBeReplaced()) {
                         BlocksHelper.setWithoutUpdate(world, mut, EndBlocks.AMARANITA_LANTERN);
                         mut.move(Direction.DOWN);
                         if ((x / 2) == 0 || (z / 2) == 0) {
@@ -297,7 +296,7 @@ public class GiganticAmaranitaFeature extends DefaultFeature {
                             Axis axis = x < 0 || x > 1 ? Axis.X : Axis.Z;
                             int distance = axis == Axis.X ? x < 0 ? -1 : 1 : z < 0 ? -1 : 1;
                             BlockPos offseted = mut.relative(axis, distance);
-                            if (world.getBlockState(offseted).getMaterial().isReplaceable()) {
+                            if (world.getBlockState(offseted).canBeReplaced()) {
                                 Direction dir = Direction.fromAxisAndDirection(
                                         axis,
                                         distance < 0 ? AxisDirection.NEGATIVE : AxisDirection.POSITIVE
@@ -311,7 +310,7 @@ public class GiganticAmaranitaFeature extends DefaultFeature {
                             }
                             mut.move(Direction.DOWN);
                         }
-                        if (world.getBlockState(mut).getMaterial().isReplaceable()) {
+                        if (world.getBlockState(mut).canBeReplaced()) {
                             BlocksHelper.setWithoutUpdate(
                                     world,
                                     mut,
@@ -329,7 +328,7 @@ public class GiganticAmaranitaFeature extends DefaultFeature {
                     mut.setX(pos.getX() + x);
                     for (int z = -2; z < 3; z++) {
                         mut.setZ(pos.getZ() + z);
-                        if (world.getBlockState(mut).getMaterial().isReplaceable()) {
+                        if (world.getBlockState(mut).canBeReplaced()) {
                             BlocksHelper.setWithoutUpdate(world, mut, EndBlocks.AMARANITA_CAP);
                         }
                     }
@@ -345,14 +344,12 @@ public class GiganticAmaranitaFeature extends DefaultFeature {
                         mut.setZ(pos.getZ() + z);
                         if (y < 6) {
                             if (((x / 2) == 0 || (z / 2) == 0) && world.getBlockState(mut)
-                                                                       .getMaterial()
-                                                                       .isReplaceable()) {
+                                                                       .canBeReplaced()) {
                                 BlocksHelper.setWithoutUpdate(world, mut, EndBlocks.AMARANITA_CAP);
                             }
                         } else {
                             if ((x == 0 || z == 0) && (Math.abs(x) < 2 && Math.abs(z) < 2) && world.getBlockState(mut)
-                                                                                                   .getMaterial()
-                                                                                                   .isReplaceable()) {
+                                                                                                   .canBeReplaced()) {
                                 BlocksHelper.setWithoutUpdate(world, mut, EndBlocks.AMARANITA_CAP);
                             }
                         }
@@ -363,12 +360,7 @@ public class GiganticAmaranitaFeature extends DefaultFeature {
     }
 
     static {
-        REPLACE = (state) -> {
-            if (/*state.is(CommonBlockTags.END_STONES) || */state.getMaterial().equals(Material.PLANT)) {
-                return true;
-            }
-            return state.getMaterial().isReplaceable();
-        };
+        REPLACE = BlocksHelper::replaceableOrPlant;
 
         IGNORE = EndBlocks.DRAGON_TREE::isTreeLog;
 

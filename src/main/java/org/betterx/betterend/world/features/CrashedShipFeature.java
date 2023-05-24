@@ -15,6 +15,7 @@ import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
@@ -137,9 +138,9 @@ public class CrashedShipFeature extends NBTFeature<NBTFeatureConfig> {
                     StructureBlockInfo structureBlockInfo2,
                     StructurePlaceSettings structurePlacementData
             ) {
-                BlockState state = structureBlockInfo2.state;
-                if (state.is(Blocks.SPAWNER) || state.getMaterial().equals(Material.WOOL)) {
-                    return new StructureBlockInfo(structureBlockInfo2.pos, DefaultFeature.AIR, null);
+                BlockState state = structureBlockInfo2.state();
+                if (state.is(Blocks.SPAWNER) || state.getSoundType() == SoundType.WOOL) {
+                    return new StructureBlockInfo(structureBlockInfo2.pos(), DefaultFeature.AIR, null);
                 }
                 return structureBlockInfo2;
             }

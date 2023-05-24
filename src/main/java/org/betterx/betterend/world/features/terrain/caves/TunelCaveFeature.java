@@ -147,7 +147,7 @@ public class TunelCaveFeature extends EndCaveFeature {
             int height = world.getHeight(Types.WORLD_SURFACE, bpos.getX(), bpos.getZ());
             if (mut.getY() >= height) {
                 remove.add(bpos);
-            } else if (world.getBlockState(mut).getMaterial().isReplaceable()) {
+            } else if (world.getBlockState(mut).canBeReplaced()){
                 mut.setY(bpos.getY() - 1);
                 if (world.getBlockState(mut).is(CommonBlockTags.GEN_END_STONES)) {
                     Set<BlockPos> floorPositions = floorSets.get(bio);

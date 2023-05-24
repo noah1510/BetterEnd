@@ -118,10 +118,10 @@ public class BuildingListFeature extends NBTFeature<BuildingListFeatureConfig> {
                 StructureBlockInfo structureBlockInfo2,
                 StructurePlaceSettings structurePlaceSettings
         ) {
-            BlockState blockState = structureBlockInfo2.state;
+            BlockState blockState = structureBlockInfo2.state();
             if (blockState.getBlock() instanceof ChestBlock) {
-                RandomSource random = structurePlaceSettings.getRandom(structureBlockInfo2.pos);
-                BlockPos chestPos = structureBlockInfo2.pos;
+                RandomSource random = structurePlaceSettings.getRandom(structureBlockInfo2.pos());
+                BlockPos chestPos = structureBlockInfo2.pos();
                 ChestBlock chestBlock = (ChestBlock) blockState.getBlock();
                 BlockEntity entity = chestBlock.newBlockEntity(chestPos, blockState);
                 levelReader.getChunk(chestPos).setBlockEntity(entity);

@@ -35,8 +35,7 @@ public class CavePumpkinVineBlock extends EndPlantWithAgeBlock {
     public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
         int age = state.getValue(AGE);
         BlockState down = world.getBlockState(pos.below());
-        if (down.getMaterial()
-                .isReplaceable() || (down.is(EndBlocks.CAVE_PUMPKIN) && down.getValue(BlockProperties.SMALL))) {
+        if (down.canBeReplaced() || (down.is(EndBlocks.CAVE_PUMPKIN) && down.getValue(BlockProperties.SMALL))) {
             if (age < 3) {
                 world.setBlockAndUpdate(pos, state.setValue(AGE, age + 1));
             }
