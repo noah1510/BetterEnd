@@ -15,6 +15,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.progress.ChunkProgressListener;
 import net.minecraft.util.profiling.ProfilerFiller;
+import net.minecraft.world.RandomSequences;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -81,6 +82,7 @@ public abstract class ServerLevelMixin extends Level {
             long seed,
             List list,
             boolean bl2,
+            RandomSequences randomSequences,
             CallbackInfo ci
     ) {
         TerrainGenerator.onServerLevelInit(ServerLevel.class.cast(this), levelStem, seed);

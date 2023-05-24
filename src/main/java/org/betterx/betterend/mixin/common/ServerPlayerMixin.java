@@ -85,7 +85,7 @@ public abstract class ServerPlayerMixin extends Player implements TeleportingEnt
     public void be_changeDimension(ServerLevel destination, CallbackInfoReturnable<Entity> info) {
         if (be_canTeleport() && level() instanceof ServerLevel) {
             isChangingDimension = true;
-            ServerLevel serverWorld = getLevel();
+            ServerLevel serverWorld = serverLevel();
             LevelData worldProperties = destination.getLevelData();
             ServerPlayer player = ServerPlayer.class.cast(this);
 
@@ -154,14 +154,14 @@ public abstract class ServerPlayerMixin extends Player implements TeleportingEnt
     }
 
     @Shadow
-    public abstract ServerLevel getLevel();
-
-    @Shadow
     abstract void triggerDimensionChangeTriggers(ServerLevel origin);
 
     @Shadow
     @Override
     protected abstract PortalInfo findDimensionEntryPoint(ServerLevel destination);
+
+    @Shadow
+    public abstract ServerLevel serverLevel();
 
     @Override
     public void be_setExitPos(BlockPos pos) {
