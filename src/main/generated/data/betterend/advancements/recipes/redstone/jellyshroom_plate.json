@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_lacugrove_planks": {
+    "has_jellyshroom_planks": {
       "conditions": {
         "items": [
           {
             "items": [
-              "betterend:lacugrove_planks"
+              "betterend:jellyshroom_planks"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "betterend:lacugrove_pressure_plate"
+        "recipe": "betterend:jellyshroom_plate"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_lacugrove_planks",
+      "has_jellyshroom_planks",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "betterend:lacugrove_pressure_plate"
+      "betterend:jellyshroom_plate"
     ]
   }
 }

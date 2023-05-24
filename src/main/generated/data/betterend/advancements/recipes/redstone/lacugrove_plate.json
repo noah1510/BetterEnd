@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_end_lotus_planks": {
+    "has_lacugrove_planks": {
       "conditions": {
         "items": [
           {
             "items": [
-              "betterend:end_lotus_planks"
+              "betterend:lacugrove_planks"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "betterend:end_lotus_pressure_plate"
+        "recipe": "betterend:lacugrove_plate"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_end_lotus_planks",
+      "has_lacugrove_planks",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "betterend:end_lotus_pressure_plate"
+      "betterend:lacugrove_plate"
     ]
   }
 }

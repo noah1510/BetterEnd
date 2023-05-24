@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "betterend:mossy_glowshroom_pressure_plate"
+        "recipe": "betterend:mossy_glowshroom_plate"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "betterend:mossy_glowshroom_pressure_plate"
+      "betterend:mossy_glowshroom_plate"
     ]
   }
 }

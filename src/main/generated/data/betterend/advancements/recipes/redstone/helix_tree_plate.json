@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "betterend:helix_tree_pressure_plate"
+        "recipe": "betterend:helix_tree_plate"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "betterend:helix_tree_pressure_plate"
+      "betterend:helix_tree_plate"
     ]
   }
 }

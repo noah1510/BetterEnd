@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_jellyshroom_planks": {
+    "has_lucernia_planks": {
       "conditions": {
         "items": [
           {
             "items": [
-              "betterend:jellyshroom_planks"
+              "betterend:lucernia_planks"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "betterend:jellyshroom_pressure_plate"
+        "recipe": "betterend:lucernia_plate"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_jellyshroom_planks",
+      "has_lucernia_planks",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "betterend:jellyshroom_pressure_plate"
+      "betterend:lucernia_plate"
     ]
   }
 }

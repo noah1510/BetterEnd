@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_pythadendron_planks": {
+    "has_tenanea_planks": {
       "conditions": {
         "items": [
           {
             "items": [
-              "betterend:pythadendron_planks"
+              "betterend:tenanea_planks"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "betterend:pythadendron_pressure_plate"
+        "recipe": "betterend:tenanea_plate"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_pythadendron_planks",
+      "has_tenanea_planks",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "betterend:pythadendron_pressure_plate"
+      "betterend:tenanea_plate"
     ]
   }
 }
