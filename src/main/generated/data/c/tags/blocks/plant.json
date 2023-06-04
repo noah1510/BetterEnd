@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "betterend:blue_vine",
     "betterend:blue_vine_seed",
     "betterend:bulb_vine_seed",
     "betterend:cave_pumpkin_seed",
@@ -9,6 +10,7 @@
     "betterend:filalux_wings",
     "betterend:flamaea",
     "betterend:flammalix",
+    "betterend:glowing_pillar_roots",
     "betterend:glowing_pillar_seed",
     "betterend:lanceleaf_seed",
     "betterend:large_amaranita_mushroom",

@@ -1,6 +1,7 @@
 package org.betterx.datagen.betterend.worldgen;
 
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
+import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeRegistry;
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI.BiomeType;
 import org.betterx.bclib.api.v3.datagen.TagDataProvider;
 import org.betterx.betterend.BetterEnd;
@@ -8,6 +9,7 @@ import org.betterx.betterend.world.biome.EndBiome;
 import org.betterx.betterend.world.biome.air.BiomeIceStarfield;
 import org.betterx.betterend.world.biome.cave.*;
 import org.betterx.betterend.world.biome.land.*;
+import org.betterx.datagen.betterend.EndRegistrySupplier;
 import org.betterx.worlds.together.tag.v3.TagManager;
 
 import net.minecraft.core.HolderLookup;
@@ -68,9 +70,19 @@ public class EndBiomesDataProvider extends TagDataProvider<Biome> {
 
     public static void bootstrap(BootstapContext<Biome> ctx) {
         BCLBiomeBuilder.registerUnbound(ctx);
+        EndRegistrySupplier.INSTANCE.MAIN_LOCK.release();
+        BetterEnd.LOGGER.info("Registered BCLBiomes: " + BCLBiomeRegistry.BUILTIN_BCL_BIOMES.size() + ", " + BCLBiomeRegistry.registryOrNull());
     }
 
     public static void ensureStaticallyLoaded() {
+    }
+
+    static {
+        try {
+            EndRegistrySupplier.INSTANCE.MAIN_LOCK.acquire();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
