@@ -58,8 +58,8 @@
     [
       "betterend:pythadendron_tree",
       "betterend:pythadendron_bush",
-      "betterend:purple_polypore",
       "minecraft:chorus_plant",
+      "betterend:purple_polypore",
       "betterend:chorus_grass",
       "betterend:chorus_mushroom",
       "betterend:tail_moss",
