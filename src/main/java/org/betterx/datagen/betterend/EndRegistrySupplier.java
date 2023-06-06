@@ -32,10 +32,6 @@ public class EndRegistrySupplier extends RegistrySupplier {
     protected List<RegistryInfo<?>> initializeRegistryList(@Nullable List<String> modIDs) {
         return List.of(
                 new RegistryInfo<>(
-                        BCLBiomeRegistry.BCL_BIOMES_REGISTRY,
-                        BiomeData.CODEC
-                ),
-                new RegistryInfo<>(
                         SurfaceRuleRegistry.SURFACE_RULES_REGISTRY,
                         AssignedSurfaceRule.CODEC
                 ),
@@ -62,6 +58,10 @@ public class EndRegistrySupplier extends RegistrySupplier {
                         Registries.BIOME,
                         Biome.DIRECT_CODEC,
                         EndBiomesDataProvider::bootstrap
+                ),
+                new RegistryInfo<>(
+                        BCLBiomeRegistry.BCL_BIOMES_REGISTRY,
+                        BiomeData.CODEC
                 )
         );
     }
