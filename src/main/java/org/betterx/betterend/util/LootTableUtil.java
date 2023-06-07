@@ -67,6 +67,7 @@ public class LootTableUtil {
             = LocationCheck.checkLocation(LocationPredicate.Builder.location().setBiome(EndBiomes.UMBRELLA_JUNGLE));
 
     public static void init() {
+        //TODO: 1.20 Move to LootTable Datagen
         LootTableEvents.MODIFY.register((resourceManager, lootManager, id, table, setter) -> {
             if (BuiltInLootTables.END_CITY_TREASURE.equals(id)) {
                 LootPool.Builder builder = LootPool.lootPool();
@@ -136,8 +137,9 @@ public class LootTableUtil {
                     table.withPool(builder);
                     return;
                 }
-                addCommonItems(table);
+
                 if (FOGGY_MUSHROOMLAND.equals(id)) {
+                    addCommonItems(table);
                     LootPool.Builder builder = LootPool.lootPool();
                     builder.setRolls(UniformGenerator.between(4, 8));
                     builder.add(LootItem.lootTableItem(EndBlocks.MOSSY_GLOWSHROOM.getBlock(WoodenComplexMaterial.BLOCK_PLANKS)));
@@ -145,6 +147,7 @@ public class LootTableUtil {
                     builder.add(LootItem.lootTableItem(EndBlocks.BLUE_VINE_SEED));
                     table.withPool(builder);
                 } else if (CHORUS_FOREST.equals(id)) {
+                    addCommonItems(table);
                     LootPool.Builder builder = LootPool.lootPool();
                     builder.setRolls(UniformGenerator.between(4, 8));
                     builder.add(LootItem.lootTableItem(EndBlocks.PYTHADENDRON.getBlock(WoodenComplexMaterial.BLOCK_PLANKS)));
@@ -152,6 +155,7 @@ public class LootTableUtil {
                     builder.add(LootItem.lootTableItem(EndBlocks.CHORUS_MUSHROOM));
                     table.withPool(builder);
                 } else if (SHADOW_FOREST.equals(id)) {
+                    addCommonItems(table);
                     LootPool.Builder builder = LootPool.lootPool();
                     builder.setRolls(UniformGenerator.between(4, 8));
                     builder.add(LootItem.lootTableItem(EndBlocks.DRAGON_TREE.getBlock(WoodenComplexMaterial.BLOCK_PLANKS)));
@@ -160,6 +164,7 @@ public class LootTableUtil {
                     builder.add(LootItem.lootTableItem(EndItems.SHADOW_BERRY_RAW));
                     table.withPool(builder);
                 } else if (LANTERN_WOODS.equals(id)) {
+                    addCommonItems(table);
                     LootPool.Builder builder = LootPool.lootPool();
                     builder.setRolls(UniformGenerator.between(4, 8));
                     builder.add(LootItem.lootTableItem(EndBlocks.LUCERNIA.getBlock(WoodenComplexMaterial.BLOCK_PLANKS)));
@@ -167,6 +172,7 @@ public class LootTableUtil {
                     builder.add(LootItem.lootTableItem(EndBlocks.BOLUX_MUSHROOM));
                     table.withPool(builder);
                 } else if (UMBRELLA_JUNGLE.equals(id)) {
+                    addCommonItems(table);
                     LootPool.Builder builder = LootPool.lootPool();
                     builder.setRolls(UniformGenerator.between(4, 8));
                     builder.add(LootItem.lootTableItem(EndBlocks.UMBRELLA_TREE.getBlock(WoodenComplexMaterial.BLOCK_PLANKS)));
