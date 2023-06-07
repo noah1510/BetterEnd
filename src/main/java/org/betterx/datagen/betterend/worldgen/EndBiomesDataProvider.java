@@ -1,5 +1,6 @@
 package org.betterx.datagen.betterend.worldgen;
 
+import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeRegistry;
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI.BiomeType;
@@ -19,10 +20,13 @@ import net.minecraft.world.level.biome.Biome;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 public class EndBiomesDataProvider extends TagDataProvider<Biome> {
+    private static final Set<BCLBiome> BIOMES = new HashSet<>();
     // Better End Land
     private static final EndBiome FOGGY_MUSHROOMLAND = registerBiome(new FoggyMushroomlandBiome(), BiomeType.END_LAND);
     private static final EndBiome CHORUS_FOREST = registerBiome(new ChorusForestBiome(), BiomeType.END_LAND);
@@ -71,7 +75,15 @@ public class EndBiomesDataProvider extends TagDataProvider<Biome> {
     public static void bootstrap(BootstapContext<Biome> ctx) {
         BCLBiomeBuilder.registerUnbound(ctx);
         EndRegistrySupplier.INSTANCE.MAIN_LOCK.release();
-        BetterEnd.LOGGER.info("Registered BCLBiomes: " + BCLBiomeRegistry.BUILTIN_BCL_BIOMES.size() + ", " + BCLBiomeRegistry.registryOrNull());
+        BetterEnd.LOGGER.info("Registered Biomes");
+    }
+
+    public static void bootstrapBCL(BootstapContext<BCLBiome> ctx) {
+        for (var biome : BIOMES) {
+            ctx.register(biome.getBCLBiomeKey(), biome);
+
+        }
+        BetterEnd.LOGGER.info("Registered BCLBiomes: " + BCLBiomeRegistry.BUILTIN_BCL_BIOMES.size());
     }
 
     public static void ensureStaticallyLoaded() {
@@ -93,7 +105,9 @@ public class EndBiomesDataProvider extends TagDataProvider<Biome> {
      * @return registered {@link EndBiome}
      */
     public static EndBiome registerSubBiome(EndBiome.Config biomeConfig, EndBiome parent) {
-        return EndBiome.createSubBiome(biomeConfig, parent);
+        final EndBiome biome = EndBiome.createSubBiome(biomeConfig, parent);
+        BIOMES.add(biome);
+        return biome;
     }
 
     /**
@@ -105,10 +119,13 @@ public class EndBiomesDataProvider extends TagDataProvider<Biome> {
      */
     public static EndBiome registerBiome(EndBiome.Config biomeConfig, BiomeType type) {
         final EndBiome biome = EndBiome.create(biomeConfig, type);
+        BIOMES.add(biome);
         return biome;
     }
 
     public static EndCaveBiome registerCaveBiome(EndCaveBiome.Config biomeConfig) {
-        return EndCaveBiome.create(biomeConfig);
+        final EndCaveBiome biome = EndCaveBiome.create(biomeConfig);
+        BIOMES.add(biome);
+        return biome;
     }
 }

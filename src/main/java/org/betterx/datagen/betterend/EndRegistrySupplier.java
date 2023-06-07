@@ -64,7 +64,8 @@ public class EndRegistrySupplier extends RegistrySupplier {
                 ),
                 new RegistryInfo<>(
                         BCLBiomeRegistry.BCL_BIOMES_REGISTRY,
-                        BiomeData.CODEC
+                        BiomeData.CODEC,
+                        EndBiomesDataProvider::bootstrapBCL
                 )
         );
     }
