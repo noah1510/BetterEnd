@@ -1,6 +1,7 @@
 package org.betterx.datagen.betterend;
 
 import org.betterx.datagen.betterend.advancement.EndAdvancementDataProvider;
+import org.betterx.datagen.betterend.recipes.EndChestLootTableProvider;
 import org.betterx.datagen.betterend.recipes.EndRecipeDataProvider;
 import org.betterx.datagen.betterend.worldgen.EndBiomesDataProvider;
 import org.betterx.datagen.betterend.worldgen.EndRegistriesDataProvider;
@@ -27,6 +28,7 @@ public class BetterEndDatagen implements DataGeneratorEntrypoint {
         pack.addProvider(EndAdvancementDataProvider::new);
         pack.addProvider(EndBlockTagDataProvider::new);
         pack.addProvider(EndItemTagDataProvider::new);
+        pack.addProvider(EndChestLootTableProvider::new);
     }
 
 
