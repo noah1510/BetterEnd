@@ -1,6 +1,8 @@
 package org.betterx.betterend.registry;
 
+import org.betterx.bclib.BCLib;
 import org.betterx.bclib.items.BaseArmorItem;
+import org.betterx.bclib.items.DebugDataItem;
 import org.betterx.bclib.items.ModelProviderItem;
 import org.betterx.bclib.items.tool.BaseAxeItem;
 import org.betterx.bclib.items.tool.BaseHoeItem;
@@ -15,6 +17,8 @@ import org.betterx.betterend.item.material.EndArmorMaterial;
 import org.betterx.betterend.item.material.EndToolMaterial;
 import org.betterx.betterend.item.tool.EndHammerItem;
 import org.betterx.betterend.item.tool.EndPickaxe;
+import org.betterx.betterend.world.structures.village.VillagePools;
+import org.betterx.datagen.betterend.recipes.EndChestLootTableProvider;
 
 import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundEvent;
@@ -350,5 +354,55 @@ public class EndItems {
 
     @ApiStatus.Internal
     public static void ensureStaticallyLoaded() {
+        if (BCLib.isDevEnvironment()) {
+            BetterEnd.LOGGER.warning("Generating Debug Helpers");
+
+            registerEndItem(
+                    "debug/village_loot",
+                    DebugDataItem.forLootTable(EndChestLootTableProvider.VILLAGE_LOOT, Items.IRON_INGOT)
+            );
+
+            registerEndItem(
+                    "debug/village_bonus",
+                    DebugDataItem.forLootTable(EndChestLootTableProvider.VILLAGE_BONUS_LOOT, Items.DIAMOND)
+            );
+
+            registerEndItem(
+                    "debug/village_template",
+                    DebugDataItem.forLootTable(EndChestLootTableProvider.VILLAGE_TEMPLATE_LOOT, Items.GOLD_INGOT)
+            );
+
+            registerEndItem(
+                    "debug/jigsaw_entrance",
+                    DebugDataItem.forHouseEntranceJigSaw(BetterEnd.MOD_ID, null, Items.OAK_DOOR)
+            );
+
+            registerEndItem(
+                    "debug/jigsaw_street",
+                    DebugDataItem.forSteetJigSaw(
+                            BetterEnd.MOD_ID,
+                            VillagePools.STREET_KEY,
+                            Items.ENDER_PEARL
+                    )
+            );
+
+            registerEndItem(
+                    "debug/jigsaw_street_deco",
+                    DebugDataItem.forDecorationJigSaw(
+                            BetterEnd.MOD_ID,
+                            VillagePools.DECORATIONS_KEY,
+                            Items.ENDER_EYE
+                    )
+            );
+
+            registerEndItem(
+                    "debug/jigsaw_deco",
+                    DebugDataItem.forDecorationJigSaw(
+                            BetterEnd.MOD_ID,
+                            null,
+                            Items.LANTERN
+                    )
+            );
+        }
     }
 }
