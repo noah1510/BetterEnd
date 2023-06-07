@@ -5,6 +5,7 @@ import org.betterx.bclib.api.v2.levelgen.surface.SurfaceRuleBuilder;
 import org.betterx.bclib.interfaces.SurfaceMaterialProvider;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndSounds;
+import org.betterx.betterend.registry.EndStructures;
 import org.betterx.betterend.world.biome.EndBiome;
 
 import net.minecraft.core.particles.ParticleTypes;
@@ -31,6 +32,7 @@ public class DustWastelandsBiome extends EndBiome.Config {
                 .loop(EndSounds.AMBIENT_DUST_WASTELANDS)
                 .music(EndSounds.MUSIC_OPENSPACE)
                 .structure(BiomeTags.HAS_END_CITY)
+                .structure(EndStructures.END_VILLAGE.biomeTag)
                 .spawn(EntityType.ENDERMAN, 50, 1, 2);
     }
 

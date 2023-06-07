@@ -5,6 +5,7 @@ import org.betterx.bclib.api.v2.levelgen.structures.BCLStructureBuilder;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.world.structures.features.*;
 import org.betterx.betterend.world.structures.piece.*;
+import org.betterx.betterend.world.structures.village.VillagePools;
 import org.betterx.worlds.together.tag.v3.TagManager;
 
 import net.minecraft.core.Holder;
@@ -13,7 +14,12 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.GenerationStep.Decoration;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.VerticalAnchor;
+import net.minecraft.world.level.levelgen.heightproviders.ConstantHeight;
+import net.minecraft.world.level.levelgen.structure.TerrainAdjustment;
 import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceType;
+import net.minecraft.world.level.levelgen.structure.structures.JigsawStructure;
 
 public class EndStructures {
     public static final StructurePieceType VOXEL_PIECE = register("voxel", VoxelPiece::new);
@@ -63,6 +69,17 @@ public class EndStructures {
             .start(BetterEnd.makeID("giant_ice_star"), GiantIceStarStructure::new)
             .step(Decoration.SURFACE_STRUCTURES)
             .randomPlacement(16, 8)
+            .build();
+
+    public static final BCLStructure<JigsawStructure> END_VILLAGE = BCLStructureBuilder
+            .jigsaw(BetterEnd.makeID("end_village"))
+            .startPool(VillagePools.START)
+            .adjustment(TerrainAdjustment.BEARD_THIN)
+            .projectStartToHeightmap(Heightmap.Types.WORLD_SURFACE_WG)
+            .maxDepth(6)
+            .startHeight(ConstantHeight.of(VerticalAnchor.absolute(0)))
+            .step(Decoration.SURFACE_STRUCTURES)
+            .randomPlacement(34, 8)
             .build();
 
     public static void register() {
