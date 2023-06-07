@@ -85,6 +85,30 @@ public class VillagePools {
                 ), Pair.of(
                         StructurePools.single(BetterEnd.makeID("village/houses/small_house_07"), emptyProcessor),
                         1
+                ), Pair.of(
+                        StructurePools.single(BetterEnd.makeID("village/houses/small_house_08"), emptyProcessor),
+                        1
+                ), Pair.of(
+                        StructurePools.single(BetterEnd.makeID("village/houses/small_house_09"), emptyProcessor),
+                        1
+                ), Pair.of(
+                        StructurePools.single(BetterEnd.makeID("village/houses/small_house_10"), emptyProcessor),
+                        1
+                ), Pair.of(
+                        StructurePools.single(BetterEnd.makeID("village/houses/small_house_11"), emptyProcessor),
+                        1
+                ), Pair.of(
+                        StructurePools.single(BetterEnd.makeID("village/houses/small_house_12"), emptyProcessor),
+                        1
+                ), Pair.of(
+                        StructurePools.single(BetterEnd.makeID("village/houses/small_house_13"), emptyProcessor),
+                        1
+                ), Pair.of(
+                        StructurePools.single(BetterEnd.makeID("village/houses/small_house_14"), emptyProcessor),
+                        1
+                ), Pair.of(
+                        StructurePools.single(BetterEnd.makeID("village/houses/small_house_15"), emptyProcessor),
+                        1
                 )),
                 StructureTemplatePool.Projection.RIGID
         ));
