@@ -17,6 +17,7 @@ import org.betterx.betterend.item.tool.EndHammerItem;
 import org.betterx.betterend.item.tool.EndPickaxe;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndItems;
+import org.betterx.betterend.registry.EndTemplates;
 import org.betterx.worlds.together.tag.v3.TagManager;
 
 import net.minecraft.tags.BlockTags;
@@ -76,13 +77,15 @@ public class MetalMaterial {
     public final Item boots;
 
     public final TagKey<Item> alloyingOre;
+    public final SmithingTemplateItem swordHandleTemplate;
 
     public static MetalMaterial makeNormal(
             String name,
             MapColor color,
             Tier material,
             ArmorMaterial armor,
-            int anvilAndToolLevel
+            int anvilAndToolLevel,
+            SmithingTemplateItem swordHandleTemplate
     ) {
         return new MetalMaterial(
                 name,
@@ -91,7 +94,8 @@ public class MetalMaterial {
                 EndItems.makeEndItemSettings(),
                 material,
                 armor,
-                anvilAndToolLevel
+                anvilAndToolLevel,
+                swordHandleTemplate
         );
     }
 
@@ -102,7 +106,8 @@ public class MetalMaterial {
             float resistance,
             Tier material,
             ArmorMaterial armor,
-            int anvilAndToolLevel
+            int anvilAndToolLevel,
+            SmithingTemplateItem swordHandleTemplate
     ) {
         return new MetalMaterial(
                 name,
@@ -114,7 +119,8 @@ public class MetalMaterial {
                 EndItems.makeEndItemSettings(),
                 material,
                 armor,
-                anvilAndToolLevel
+                anvilAndToolLevel,
+                swordHandleTemplate
         );
     }
 
@@ -123,7 +129,8 @@ public class MetalMaterial {
             MapColor color,
             Tier material,
             ArmorMaterial armor,
-            int anvilAndToolLevel
+            int anvilAndToolLevel,
+            SmithingTemplateItem swordHandleTemplate
     ) {
         return new MetalMaterial(
                 name,
@@ -132,7 +139,8 @@ public class MetalMaterial {
                 EndItems.makeEndItemSettings(),
                 material,
                 armor,
-                anvilAndToolLevel
+                anvilAndToolLevel,
+                swordHandleTemplate
         );
     }
 
@@ -143,7 +151,8 @@ public class MetalMaterial {
             float resistance,
             Tier material,
             ArmorMaterial armor,
-            int anvilAndToolLevel
+            int anvilAndToolLevel,
+            SmithingTemplateItem swordHandleTemplate
     ) {
         return new MetalMaterial(
                 name,
@@ -155,7 +164,8 @@ public class MetalMaterial {
                 EndItems.makeEndItemSettings(),
                 material,
                 armor,
-                anvilAndToolLevel
+                anvilAndToolLevel,
+                swordHandleTemplate
         );
     }
 
@@ -166,7 +176,8 @@ public class MetalMaterial {
             Properties itemSettings,
             Tier material,
             ArmorMaterial armor,
-            int anvilAndToolLevel
+            int anvilAndToolLevel,
+            SmithingTemplateItem swordHandleTemplate
     ) {
         BlockBehaviour.Properties lanternProperties = FabricBlockSettings.copyOf(settings)
                                                                          .hardness(1)
@@ -174,7 +185,7 @@ public class MetalMaterial {
                                                                          .lightLevel((bs) -> 15)
                                                                          .sound(SoundType.LANTERN);
         final int level = material.getLevel();
-
+        this.swordHandleTemplate = swordHandleTemplate;
         rawOre = hasOre ? EndItems.registerEndItem(name + "_raw", new ModelProviderItem(itemSettings)) : null;
         ore = hasOre ? EndBlocks.registerBlock(name + "_ore", new BaseOreBlock(() -> rawOre, 1, 3, 1)) : null;
         alloyingOre = hasOre ? TagManager.ITEMS.makeTag(BetterEnd.MOD_ID, name + "_alloying") : null;
@@ -416,30 +427,37 @@ public class MetalMaterial {
 
         // Tools from parts
         BCLRecipeBuilder.smithing(BetterEnd.makeID(name + "_hammer"), hammer)
+                        .setTemplate(EndTemplates.HANDLE_ATTACHMENT)
                         .setPrimaryInputAndUnlock(block)
                         .setAddition(Items.STICK)
                         .build();
         BCLRecipeBuilder.smithing(BetterEnd.makeID(name + "_axe"), axe)
+                        .setTemplate(EndTemplates.HANDLE_ATTACHMENT)
                         .setPrimaryInputAndUnlock(axeHead)
                         .setAddition(Items.STICK)
                         .build();
         BCLRecipeBuilder.smithing(BetterEnd.makeID(name + "_pickaxe"), pickaxe)
+                        .setTemplate(EndTemplates.HANDLE_ATTACHMENT)
                         .setPrimaryInputAndUnlock(pickaxeHead)
                         .setAddition(Items.STICK)
                         .build();
         BCLRecipeBuilder.smithing(BetterEnd.makeID(name + "_hoe"), hoe)
+                        .setTemplate(EndTemplates.HANDLE_ATTACHMENT)
                         .setPrimaryInputAndUnlock(hoeHead)
                         .setAddition(Items.STICK)
                         .build();
         BCLRecipeBuilder.smithing(BetterEnd.makeID(name + "_sword_handle"), swordHandle)
-                        .setPrimaryInputAndUnlock(ingot)
-                        .setAddition(Items.STICK)
+                        .setTemplate(this.swordHandleTemplate)
+                        .setPrimaryInputAndUnlock(Items.STICK)
+                        .setAddition(ingot)
                         .build();
         BCLRecipeBuilder.smithing(BetterEnd.makeID(name + "_sword"), sword)
+                        .setTemplate(EndTemplates.TOOL_ASSEMBLY)
                         .setPrimaryInputAndUnlock(swordBlade)
                         .setAddition(swordHandle)
                         .build();
         BCLRecipeBuilder.smithing(BetterEnd.makeID(name + "_shovel"), shovel)
+                        .setTemplate(EndTemplates.HANDLE_ATTACHMENT)
                         .setPrimaryInputAndUnlock(shovelHead)
                         .setAddition(Items.STICK)
                         .build();

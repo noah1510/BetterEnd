@@ -611,7 +611,8 @@ public class EndBlocks {
             MapColor.COLOR_BLUE,
             EndToolMaterial.THALLASIUM,
             EndArmorMaterial.THALLASIUM,
-            EndToolMaterial.THALLASIUM.getLevel()
+            EndToolMaterial.THALLASIUM.getLevel(),
+            EndTemplates.THALLASIUM_UPGRADE
     );
 
     public static final MetalMaterial TERMINITE = MetalMaterial.makeOreless(
@@ -621,7 +622,8 @@ public class EndBlocks {
             9F,
             EndToolMaterial.TERMINITE,
             EndArmorMaterial.TERMINITE,
-            EndToolMaterial.TERMINITE.getLevel()
+            EndToolMaterial.TERMINITE.getLevel(),
+            EndTemplates.TERMINITE_UPGRADE
     );
     public static final Block AETERNIUM_BLOCK = registerBlock("aeternium_block", new AeterniumBlock());
     public static final Block CHARCOAL_BLOCK = registerBlock("charcoal_block", new CharcoalBlock());
