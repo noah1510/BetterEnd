@@ -38,11 +38,11 @@ public class EternalPedestal extends PedestalBlock {
     }
 
     @Override
-    public void checkRitual(Level world, Player player, BlockPos pos) {
-        BlockEntity blockEntity = world.getBlockEntity(pos);
+    public void checkRitual(Level sourceLevel, Player player, BlockPos pos) {
+        BlockEntity blockEntity = sourceLevel.getBlockEntity(pos);
         if (blockEntity instanceof EternalPedestalEntity) {
             EternalPedestalEntity pedestal = (EternalPedestalEntity) blockEntity;
-            BlockState updatedState = world.getBlockState(pos);
+            BlockState updatedState = sourceLevel.getBlockState(pos);
             if (pedestal.isEmpty()) {
                 if (pedestal.hasRitual()) {
                     EternalRitual ritual = pedestal.getRitual();
@@ -57,16 +57,19 @@ public class EternalPedestal extends PedestalBlock {
                         ritual.disablePortal(portalId);
                     }
                 }
-                world.setBlockAndUpdate(pos, updatedState.setValue(ACTIVATED, false).setValue(HAS_LIGHT, false));
+                sourceLevel.setBlockAndUpdate(pos, updatedState.setValue(ACTIVATED, false).setValue(HAS_LIGHT, false));
             } else {
                 ItemStack itemStack = pedestal.getItem(0);
                 ResourceLocation id = BuiltInRegistries.ITEM.getKey(itemStack.getItem());
                 if (EndPortals.isAvailableItem(id)) {
-                    world.setBlockAndUpdate(pos, updatedState.setValue(ACTIVATED, true).setValue(HAS_LIGHT, true));
+                    sourceLevel.setBlockAndUpdate(
+                            pos,
+                            updatedState.setValue(ACTIVATED, true).setValue(HAS_LIGHT, true)
+                    );
                     if (pedestal.hasRitual()) {
                         pedestal.getRitual().checkStructure(player);
                     } else {
-                        EternalRitual ritual = new EternalRitual(world, pos);
+                        EternalRitual ritual = new EternalRitual(sourceLevel, pos);
                         ritual.checkStructure(player);
                     }
                 }

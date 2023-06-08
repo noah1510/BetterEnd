@@ -28,7 +28,8 @@
     "ServerPlayerMixin",
     "SlimeMixin",
     "SpikeFeatureMixin",
-    "WorldGenRegionMixin"
+    "WorldGenRegionMixin",
+    "portal.EntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
