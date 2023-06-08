@@ -90,7 +90,12 @@ public class EndStructures {
     }
 
     public static void addBiomeStructures(ResourceLocation biomeID, Holder<Biome> biome) {
-        if (!biomeID.getPath().contains("mountain") && !biomeID.getPath().contains("lake")) {
+        if (
+                !biomeID.getNamespace().equals("minecraft")
+                        && !biomeID.getNamespace().equals(BetterEnd.MOD_ID)
+                        && !biomeID.getPath().contains("mountain")
+                        && !biomeID.getPath().contains("lake")
+        ) {
             TagManager.BIOMES.add(ETERNAL_PORTAL.biomeTag, biome.value());
         }
     }
