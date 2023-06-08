@@ -420,13 +420,10 @@
   },
   "requirements": [
     [
-      "betterend:jade_cave"
+      "betterend:lantern_woods"
     ],
     [
-      "betterend:lush_smaragdant_cave"
-    ],
-    [
-      "betterend:umbra_valley"
+      "betterend:painted_mountains"
     ],
     [
       "betterend:glowing_grasslands"
@@ -435,37 +432,25 @@
       "betterend:crystal_mountains"
     ],
     [
-      "betterend:lantern_woods"
-    ],
-    [
-      "betterend:painted_mountains"
-    ],
-    [
-      "betterend:shadow_forest"
-    ],
-    [
-      "betterend:dust_wastelands"
-    ],
-    [
-      "betterend:chorus_forest"
-    ],
-    [
-      "betterend:empty_smaragdant_cave"
-    ],
-    [
-      "betterend:dry_shrubland"
+      "betterend:empty_aurora_cave"
     ],
     [
       "betterend:ice_starfield"
     ],
     [
-      "betterend:umbrella_jungle"
+      "betterend:megalake"
     ],
     [
-      "betterend:sulphur_springs"
+      "betterend:dragon_graveyards"
     ],
     [
-      "betterend:empty_end_cave"
+      "betterend:shadow_forest"
+    ],
+    [
+      "betterend:jade_cave"
+    ],
+    [
+      "betterend:neon_oasis"
     ],
     [
       "betterend:foggy_mushroomland"
@@ -474,25 +459,40 @@
       "betterend:amber_land"
     ],
     [
-      "betterend:empty_aurora_cave"
-    ],
-    [
-      "betterend:dragon_graveyards"
-    ],
-    [
-      "betterend:lush_aurora_cave"
-    ],
-    [
       "betterend:megalake_grove"
     ],
     [
       "betterend:blossoming_spires"
     ],
     [
-      "betterend:megalake"
+      "betterend:lush_aurora_cave"
     ],
     [
-      "betterend:neon_oasis"
+      "betterend:dry_shrubland"
+    ],
+    [
+      "betterend:empty_smaragdant_cave"
+    ],
+    [
+      "betterend:lush_smaragdant_cave"
+    ],
+    [
+      "betterend:umbra_valley"
+    ],
+    [
+      "betterend:umbrella_jungle"
+    ],
+    [
+      "betterend:dust_wastelands"
+    ],
+    [
+      "betterend:empty_end_cave"
+    ],
+    [
+      "betterend:sulphur_springs"
+    ],
+    [
+      "betterend:chorus_forest"
     ]
   ],
   "rewards": {
