@@ -378,6 +378,11 @@ public class EndItems {
             );
 
             registerEndItem(
+                    "debug/jigsaw_street_entrance",
+                    DebugDataItem.forHouseEntranceJigSaw(BetterEnd.MOD_ID, VillagePools.HOUSES_KEY, Items.IRON_DOOR)
+            );
+
+            registerEndItem(
                     "debug/jigsaw_street",
                     DebugDataItem.forSteetJigSaw(
                             BetterEnd.MOD_ID,
@@ -388,16 +393,33 @@ public class EndItems {
 
             registerEndItem(
                     "debug/jigsaw_street_deco",
+                    DebugDataItem.forStreetDecorationJigSaw(
+                            BetterEnd.MOD_ID,
+                            VillagePools.STREET_DECO_KEY,
+                            Items.ENDER_EYE
+                    )
+            );
+            registerEndItem(
+                    "debug/jigsaw_street_big_deco",
                     DebugDataItem.forDecorationJigSaw(
                             BetterEnd.MOD_ID,
                             VillagePools.DECORATIONS_KEY,
-                            Items.ENDER_EYE
+                            Items.SLIME_BALL
+                    )
+            );
+
+            registerEndItem(
+                    "debug/jigsaw_big_deco",
+                    DebugDataItem.forDecorationJigSaw(
+                            BetterEnd.MOD_ID,
+                            null,
+                            Items.TURTLE_HELMET
                     )
             );
 
             registerEndItem(
                     "debug/jigsaw_deco",
-                    DebugDataItem.forDecorationJigSaw(
+                    DebugDataItem.forStreetDecorationJigSaw(
                             BetterEnd.MOD_ID,
                             null,
                             Items.LANTERN
