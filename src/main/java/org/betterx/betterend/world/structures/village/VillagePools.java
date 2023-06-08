@@ -109,6 +109,12 @@ public class VillagePools {
                 ), Pair.of(
                         StructurePools.single(BetterEnd.makeID("village/houses/small_house_15"), emptyProcessor),
                         1
+                ), Pair.of(
+                        StructurePools.single(BetterEnd.makeID("village/houses/small_house_16"), emptyProcessor),
+                        1
+                ), Pair.of(
+                        StructurePools.single(BetterEnd.makeID("village/houses/animal_pen_01"), emptyProcessor),
+                        1
                 )),
                 StructureTemplatePool.Projection.RIGID
         ));
