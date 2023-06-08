@@ -1,5 +1,6 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.interfaces.BehaviourPlant;
 import org.betterx.bclib.blocks.BaseDoublePlantBlock;
 import org.betterx.betterend.registry.EndBlocks;
 
@@ -10,7 +11,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class TwistedUmbrellaMossTallBlock extends BaseDoublePlantBlock {
+public class TwistedUmbrellaMossTallBlock extends BaseDoublePlantBlock implements BehaviourPlant {
     public TwistedUmbrellaMossTallBlock() {
         super(12);
     }

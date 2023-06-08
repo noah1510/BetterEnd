@@ -1,11 +1,12 @@
 package org.betterx.betterend.blocks.basis;
 
+import org.betterx.bclib.behaviours.interfaces.BehaviourPlant;
 import org.betterx.bclib.blocks.BaseWallPlantBlock;
 import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
 import net.minecraft.world.level.block.state.BlockState;
 
-public class EndWallPlantBlock extends BaseWallPlantBlock {
+public class EndWallPlantBlock extends BaseWallPlantBlock implements BehaviourPlant {
     public EndWallPlantBlock() {
     }
 

@@ -12,13 +12,10 @@ public class CreativeTabs {
         BCLCreativeTabManager.create(BetterEnd.MOD_ID)
                              .createTab("nature")
                              .setPredicate(item -> BCLCreativeTab.NATURE.contains(item)
-//                                     || item == NetherItems.AGAVE_LEAF
-//                                     || item == NetherItems.BLACK_APPLE
-//                                     || item == NetherBlocks.MAGMA_FLOWER.asItem()
-//                                     || item == NetherBlocks.MAT_RUBEUS.getBlockItem(NetherSlots.CONE)
-//                                     || item == NetherBlocks.MAT_WILLOW.getBlockItem(WillowMaterial.BLOCK_TORCH)
+                                     || item == EndItems.END_LILY_LEAF
+                                     || item == EndItems.END_LILY_LEAF_DRIED
                              )
-                             .setIcon(EndBlocks.FILALUX_LANTERN)
+                             .setIcon(EndBlocks.TENANEA_FLOWERS)
                              .build()
                              .createBlockTab(EndBlocks.END_MYCELIUM)
                              .build()

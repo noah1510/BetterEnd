@@ -1,12 +1,13 @@
 package org.betterx.betterend.blocks.basis;
 
+import org.betterx.bclib.behaviours.interfaces.BehaviourSeed;
 import org.betterx.bclib.blocks.BaseCropBlock;
 import org.betterx.betterend.interfaces.PottablePlant;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
-public class PottableCropBlock extends BaseCropBlock implements PottablePlant {
+public class PottableCropBlock extends BaseCropBlock implements PottablePlant, BehaviourSeed {
     private final Block[] terrain;
 
     public PottableCropBlock(Item drop, Block... terrain) {

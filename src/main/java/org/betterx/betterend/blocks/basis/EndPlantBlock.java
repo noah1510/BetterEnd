@@ -1,5 +1,6 @@
 package org.betterx.betterend.blocks.basis;
 
+import org.betterx.bclib.behaviours.interfaces.BehaviourPlant;
 import org.betterx.bclib.blocks.BasePlantBlock;
 import org.betterx.betterend.interfaces.PottablePlant;
 import org.betterx.worlds.together.tag.v3.CommonBlockTags;
@@ -7,7 +8,7 @@ import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class EndPlantBlock extends BasePlantBlock implements PottablePlant {
+public class EndPlantBlock extends BasePlantBlock implements PottablePlant, BehaviourPlant {
     protected EndPlantBlock() {
         super();
     }

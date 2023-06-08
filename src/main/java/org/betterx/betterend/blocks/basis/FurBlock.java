@@ -1,10 +1,10 @@
 package org.betterx.betterend.blocks.basis;
 
 import org.betterx.bclib.behaviours.BehaviourBuilders;
+import org.betterx.bclib.behaviours.interfaces.BehaviourShearablePlant;
 import org.betterx.bclib.blocks.BaseAttachedBlock;
 import org.betterx.bclib.client.render.BCLRenderLayer;
 import org.betterx.bclib.interfaces.RenderLayerProvider;
-import org.betterx.bclib.interfaces.tools.AddMineableShears;
 import org.betterx.bclib.items.tool.BaseShearsItem;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.worlds.together.tag.v3.TagManager;
@@ -31,7 +31,7 @@ import com.google.common.collect.Maps;
 import java.util.EnumMap;
 import java.util.List;
 
-public class FurBlock extends BaseAttachedBlock implements RenderLayerProvider, AddMineableShears {
+public class FurBlock extends BaseAttachedBlock implements RenderLayerProvider, BehaviourShearablePlant {
     private static final EnumMap<Direction, VoxelShape> BOUNDING_SHAPES = Maps.newEnumMap(Direction.class);
     private final ItemLike drop;
     private final int dropChance;
