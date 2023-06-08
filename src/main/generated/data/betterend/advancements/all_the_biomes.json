@@ -420,19 +420,22 @@
   },
   "requirements": [
     [
-      "betterend:glowing_grasslands"
+      "betterend:jade_cave"
     ],
     [
       "betterend:lush_smaragdant_cave"
     ],
     [
-      "betterend:empty_smaragdant_cave"
+      "betterend:umbra_valley"
     ],
     [
-      "betterend:blossoming_spires"
+      "betterend:glowing_grasslands"
     ],
     [
       "betterend:crystal_mountains"
+    ],
+    [
+      "betterend:lantern_woods"
     ],
     [
       "betterend:painted_mountains"
@@ -444,55 +447,52 @@
       "betterend:dust_wastelands"
     ],
     [
+      "betterend:chorus_forest"
+    ],
+    [
+      "betterend:empty_smaragdant_cave"
+    ],
+    [
+      "betterend:dry_shrubland"
+    ],
+    [
       "betterend:ice_starfield"
+    ],
+    [
+      "betterend:umbrella_jungle"
+    ],
+    [
+      "betterend:sulphur_springs"
+    ],
+    [
+      "betterend:empty_end_cave"
     ],
     [
       "betterend:foggy_mushroomland"
     ],
     [
-      "betterend:megalake_grove"
+      "betterend:amber_land"
+    ],
+    [
+      "betterend:empty_aurora_cave"
+    ],
+    [
+      "betterend:dragon_graveyards"
     ],
     [
       "betterend:lush_aurora_cave"
     ],
     [
-      "betterend:dragon_graveyards"
+      "betterend:megalake_grove"
+    ],
+    [
+      "betterend:blossoming_spires"
     ],
     [
       "betterend:megalake"
     ],
     [
       "betterend:neon_oasis"
-    ],
-    [
-      "betterend:jade_cave"
-    ],
-    [
-      "betterend:sulphur_springs"
-    ],
-    [
-      "betterend:empty_aurora_cave"
-    ],
-    [
-      "betterend:umbrella_jungle"
-    ],
-    [
-      "betterend:amber_land"
-    ],
-    [
-      "betterend:chorus_forest"
-    ],
-    [
-      "betterend:umbra_valley"
-    ],
-    [
-      "betterend:lantern_woods"
-    ],
-    [
-      "betterend:empty_end_cave"
-    ],
-    [
-      "betterend:dry_shrubland"
     ]
   ],
   "rewards": {
