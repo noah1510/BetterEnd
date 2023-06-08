@@ -389,6 +389,8 @@ public class EndBlocks {
             MapColor.COLOR_ORANGE
     ).init();
 
+    public static final EndWoodenComplexMaterial LUCERNIA_JELLY = new JellyLucerniaWoodMaterial().init();
+
     // Small Plants //
     public static final Block UMBRELLA_MOSS = registerBlock("umbrella_moss", new UmbrellaMossBlock());
     public static final Block UMBRELLA_MOSS_TALL = registerBlock("umbrella_moss_tall", new UmbrellaMossTallBlock());
