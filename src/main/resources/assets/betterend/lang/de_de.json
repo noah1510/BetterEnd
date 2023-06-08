@@ -642,8 +642,9 @@
   "item.minecraft.splash_potion.effect.long_end_veil": "Wurftrank des Endschleiers",
   "item.minecraft.tipped_arrow.effect.end_veil": "Pfeil des Endschleiers",
   "item.minecraft.tipped_arrow.effect.long_end_veil": "Pfeil des Endschleiers",
-  "itemGroup.betterend.end_blocks": "Better End: Blöcke",
-  "itemGroup.betterend.end_items": "Better End: Items",
+  "itemGroup.betterend.blocks": "Better End: Blöcke",
+  "itemGroup.betterend.items": "Better End: Gegenstände",
+  "itemGroup.betterend.plants": "Better End: Pflanzen",
   "message.betterend.fail_spawn": "§c§lDu musst 6 Bernsteinjuwele in der Hand halten, um deinen Einstiegspunkt zu setzen.",
   "message.betterend.set_spawn": "§b§lWiedereinstiegspunkt gesetzt",
   "tag.betterend.alloying_copper": "Kupfererze",
@@ -659,5 +660,15 @@
   "tag.betterend.pythadendron_logs": "Pythadendronstämme",
   "tag.betterend.tenanea_logs": "Tenaneastämme",
   "tag.betterend.thallasium_alloying": "Thallasiumerze",
-  "tag.betterend.umbrella_tree_logs": "Schirmbaumstämme"
+  "tag.betterend.umbrella_tree_logs": "Schirmbaumstämme",
+  "item.betterend.debug.village_loot": "Einfache Schätze [dev]",
+  "item.betterend.debug.village_bonus": "Super Schätze [dev]",
+  "item.betterend.debug.village_template": "Schätze mit Schmiedevorlagen [dev]",
+  "item.betterend.debug.jigsaw_entrance": "Hauseingang [dev]",
+  "item.betterend.debug.jigsaw_street_entrance": "Platzhalter - Hauseingang [dev]",
+  "item.betterend.debug.jigsaw_street": "Straßenstück [dev]",
+  "item.betterend.debug.jigsaw_street_deco": "Platzhalter - kleine Deko [dev]",
+  "item.betterend.debug.jigsaw_street_big_deco": "Platzhalter - große Deko [dev]",
+  "item.betterend.debug.jigsaw_big_deco": "Große Deko [dev]",
+  "item.betterend.debug.jigsaw_deco": "Kleine Deko [dev]"
 }

@@ -873,7 +873,7 @@
   "item.minecraft.tipped_arrow.effect.long_end_veil": "Arrow Of End Veil",
   "itemGroup.betterend.blocks": "BetterEnd: Blocks",
   "itemGroup.betterend.items": "BetterEnd: Items",
-  "itemGroup.betterend.plants": "BetterEnd: Plants",
+  "itemGroup.betterend.nature": "BetterEnd: Plants",
   "message.betterend.anvil_damage": "§cDamage",
   "message.betterend.fail_spawn": "§c§lYou need to hold 6 Amber Gems to set your spawn point",
   "message.betterend.set_spawn": "§b§lYour spawn point is set here",
