@@ -140,6 +140,24 @@
         "projection": "rigid"
       },
       "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "betterend:village/houses/small_house_16",
+        "processors": "minecraft:empty",
+        "projection": "rigid"
+      },
+      "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "betterend:village/houses/animal_pen_01",
+        "processors": "minecraft:empty",
+        "projection": "rigid"
+      },
+      "weight": 1
     }
   ],
   "fallback": "betterend:village/terminators"

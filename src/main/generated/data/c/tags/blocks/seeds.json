@@ -1,6 +1,10 @@
 {
   "replace": false,
   "values": [
-    "betterend:lumecorn_seed"
+    "betterend:amber_root_seed",
+    "betterend:blossom_berry_seed",
+    "betterend:chorus_mushroom_seed",
+    "betterend:lumecorn_seed",
+    "betterend:shadow_berry"
   ]
 }
