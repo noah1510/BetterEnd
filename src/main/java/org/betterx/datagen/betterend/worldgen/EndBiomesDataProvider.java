@@ -3,9 +3,11 @@ package org.betterx.datagen.betterend.worldgen;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeRegistry;
+import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI.BiomeType;
 import org.betterx.bclib.api.v3.datagen.TagDataProvider;
 import org.betterx.betterend.BetterEnd;
+import org.betterx.betterend.registry.EndStructures;
 import org.betterx.betterend.world.biome.EndBiome;
 import org.betterx.betterend.world.biome.air.BiomeIceStarfield;
 import org.betterx.betterend.world.biome.cave.*;
@@ -87,6 +89,12 @@ public class EndBiomesDataProvider extends TagDataProvider<Biome> {
     }
 
     public static void ensureStaticallyLoaded() {
+        TagManager.BIOMES.add(
+                EndStructures.ETERNAL_PORTAL.biomeTag,
+                BiomeAPI.END_BARRENS.getBiomeKey(),
+                BiomeAPI.END_MIDLANDS.getBiomeKey(),
+                BiomeAPI.END_HIGHLANDS.getBiomeKey()
+        );
     }
 
     static {

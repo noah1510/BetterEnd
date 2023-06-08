@@ -40,6 +40,7 @@ public class ShadowForestBiome extends EndBiome.Config {
                 .feature(EndFeatures.CHARNIA_PURPLE)
                 .feature(EndFeatures.CHARNIA_RED_RARE)
                 .structure(BiomeTags.HAS_END_CITY)
+                .structure(EndStructures.ETERNAL_PORTAL)
                 .spawn(EndEntities.SHADOW_WALKER, 80, 2, 4)
                 .spawn(EntityType.ENDERMAN, 40, 1, 4)
                 .spawn(EntityType.PHANTOM, 1, 1, 2);

@@ -9,7 +9,6 @@ import org.betterx.betterend.registry.EndStructures;
 import org.betterx.betterend.world.biome.EndBiome;
 
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -31,8 +30,8 @@ public class DustWastelandsBiome extends EndBiome.Config {
                 .particles(ParticleTypes.WHITE_ASH, 0.01F)
                 .loop(EndSounds.AMBIENT_DUST_WASTELANDS)
                 .music(EndSounds.MUSIC_OPENSPACE)
-                .structure(BiomeTags.HAS_END_CITY)
-                .structure(EndStructures.END_VILLAGE.biomeTag)
+                .structure(EndStructures.END_VILLAGE)
+                .structure(EndStructures.ETERNAL_PORTAL)
                 .spawn(EntityType.ENDERMAN, 50, 1, 2);
     }
 

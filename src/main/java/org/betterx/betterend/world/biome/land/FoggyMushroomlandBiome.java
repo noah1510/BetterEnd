@@ -40,6 +40,7 @@ public class FoggyMushroomlandBiome extends EndBiome.Config {
                 .feature(EndFeatures.CHARNIA_LIGHT_BLUE)
                 .feature(EndFeatures.CHARNIA_RED_RARE)
                 .structure(BiomeTags.HAS_END_CITY)
+                .structure(EndStructures.ETERNAL_PORTAL)
                 .spawn(EndEntities.DRAGONFLY, 80, 2, 5)
                 .spawn(EndEntities.END_FISH, 20, 2, 5)
                 .spawn(EndEntities.CUBOZOA, 10, 3, 8)

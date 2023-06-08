@@ -2,10 +2,7 @@ package org.betterx.betterend.world.biome.land;
 
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
 import org.betterx.bclib.interfaces.SurfaceMaterialProvider;
-import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.betterend.registry.EndFeatures;
-import org.betterx.betterend.registry.EndParticles;
-import org.betterx.betterend.registry.EndSounds;
+import org.betterx.betterend.registry.*;
 import org.betterx.betterend.world.biome.EndBiome;
 
 import net.minecraft.world.entity.EntityType;
@@ -36,6 +33,7 @@ public class DragonGraveyardsBiome extends EndBiome.Config {
                 .feature(EndFeatures.SMALL_AMARANITA)
                 .feature(EndFeatures.GLOBULAGUS)
                 .feature(EndFeatures.CLAWFERN)
+                .structure(EndStructures.ETERNAL_PORTAL)
                 .spawn(EntityType.ENDERMAN, 50, 1, 2);
     }
 

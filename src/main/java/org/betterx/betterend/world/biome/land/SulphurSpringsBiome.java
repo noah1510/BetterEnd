@@ -47,6 +47,7 @@ public class SulphurSpringsBiome extends EndBiome.Config {
                 .feature(EndFeatures.CHARNIA_GREEN)
                 .feature(EndFeatures.CHARNIA_ORANGE)
                 .feature(EndFeatures.CHARNIA_RED_RARE)
+                .structure(EndStructures.ETERNAL_PORTAL)
                 .spawn(EndEntities.END_FISH, 50, 3, 8)
                 .spawn(EndEntities.CUBOZOA, 50, 3, 8)
                 .spawn(EntityType.ENDERMAN, 50, 1, 4);

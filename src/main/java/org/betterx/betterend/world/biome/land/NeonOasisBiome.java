@@ -4,10 +4,7 @@ import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
 import org.betterx.bclib.api.v2.levelgen.surface.SurfaceRuleBuilder;
 import org.betterx.bclib.api.v2.levelgen.surface.rules.SwitchRuleSource;
 import org.betterx.bclib.interfaces.SurfaceMaterialProvider;
-import org.betterx.betterend.registry.EndBiomes;
-import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.betterend.registry.EndFeatures;
-import org.betterx.betterend.registry.EndSounds;
+import org.betterx.betterend.registry.*;
 import org.betterx.betterend.world.biome.EndBiome;
 import org.betterx.betterend.world.surface.SplitNoiseCondition;
 
@@ -45,6 +42,7 @@ public class NeonOasisBiome extends EndBiome.Config {
                 .feature(EndFeatures.CHARNIA_GREEN)
                 .feature(EndFeatures.CHARNIA_RED)
                 .structure(BiomeTags.HAS_END_CITY)
+                .structure(EndStructures.ETERNAL_PORTAL)
                 .spawn(EntityType.ENDERMAN, 50, 1, 2);
     }
 

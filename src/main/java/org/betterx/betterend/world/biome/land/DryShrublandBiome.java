@@ -5,6 +5,7 @@ import org.betterx.bclib.interfaces.SurfaceMaterialProvider;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndFeatures;
 import org.betterx.betterend.registry.EndSounds;
+import org.betterx.betterend.registry.EndStructures;
 import org.betterx.betterend.world.biome.EndBiome;
 
 import net.minecraft.tags.BiomeTags;
@@ -30,6 +31,7 @@ public class DryShrublandBiome extends EndBiome.Config {
                 .feature(EndFeatures.LUTEBUS)
                 .feature(EndFeatures.LAMELLARIUM)
                 .structure(BiomeTags.HAS_END_CITY)
+                .structure(EndStructures.ETERNAL_PORTAL)
                 .spawn(EntityType.ENDERMAN, 50, 1, 2);
     }
 
