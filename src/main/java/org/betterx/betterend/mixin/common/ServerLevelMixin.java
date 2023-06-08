@@ -39,7 +39,6 @@ import java.util.function.Supplier;
 @Mixin(ServerLevel.class)
 public abstract class ServerLevelMixin extends Level {
 
-
     private final static List<ResourceKey<DimensionType>> BE_TEST_DIMENSIONS = List.of(
             BuiltinDimensionTypes.OVERWORLD,
             BuiltinDimensionTypes.OVERWORLD_CAVES,
