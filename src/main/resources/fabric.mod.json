@@ -41,8 +41,7 @@
   "accessWidener": "betterend.accesswidener",
   "mixins": [
     "betterend.mixins.common.json",
-    "betterend.mixins.client.json",
-    "betterend.mixins.shadow.json"
+    "betterend.mixins.client.json"
   ],
   "depends": {
     "fabricloader": ">=0.14.21",
