@@ -8,13 +8,13 @@ import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndItems;
 
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.MaterialColor;
 
 public class VanillaVariantStoneMaterial extends StoneComplexMaterial {
     public VanillaVariantStoneMaterial(
             String baseName,
             Block sourceBlock,
-            MapColor color
+            MaterialColor color
     ) {
         super(BetterEnd.MOD_ID, baseName, "", sourceBlock, color);
     }

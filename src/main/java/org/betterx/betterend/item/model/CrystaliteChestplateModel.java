@@ -1,5 +1,6 @@
 package org.betterx.betterend.item.model;
 
+import org.betterx.bclib.client.render.HumanoidArmorRenderer;
 import org.betterx.betterend.registry.EndEntitiesRenders;
 
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -17,7 +18,7 @@ import com.google.common.collect.Lists;
 
 import java.util.Collections;
 
-public class CrystaliteChestplateModel extends HumanoidModel<LivingEntity> {
+public class CrystaliteChestplateModel extends HumanoidModel<LivingEntity> implements HumanoidArmorRenderer.CopyExtraState {
 
     public ModelPart leftShoulder;
     public ModelPart rightShoulder;
@@ -119,13 +120,13 @@ public class CrystaliteChestplateModel extends HumanoidModel<LivingEntity> {
         super(modelPart, RenderType::entityTranslucent);
         this.thinArms = thinArms;
         localBody = modelPart.getChild(PartNames.BODY);
-        leftShoulder = modelPart.getChild("leftShoulder");
-        rightShoulder = modelPart.getChild("rightShoulder");
+        this.leftShoulder = modelPart.getChild("leftShoulder");
+        this.rightShoulder = modelPart.getChild("rightShoulder");
     }
 
+
     @Override
-    public void copyPropertiesTo(HumanoidModel<LivingEntity> bipedEntityModel) {
-        super.copyPropertiesTo(bipedEntityModel);
+    public void copyPropertiesFrom(HumanoidModel<LivingEntity> parentModel) {
         this.leftShoulder.copyFrom(leftArm);
         this.rightShoulder.copyFrom(rightArm);
     }

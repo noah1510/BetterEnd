@@ -703,7 +703,7 @@ public class EndBlocks {
     public static final VanillaVariantStoneMaterial END_STONE_BRICK_VARIATIONS = new VanillaVariantStoneMaterial(
             "end_stone_brick",
             Blocks.END_STONE_BRICKS,
-            MapColor.SAND
+            MaterialColor.SAND
     ).init();
 
     public static List<Block> getModBlocks() {
