@@ -1,5 +1,6 @@
 package org.betterx.betterend.item.model;
 
+import org.betterx.bclib.client.render.HumanoidArmorRenderer;
 import org.betterx.betterend.registry.EndEntitiesRenders;
 
 import net.minecraft.client.model.HumanoidModel;
@@ -14,7 +15,7 @@ import com.google.common.collect.Lists;
 
 import java.util.Collections;
 
-public class CrystaliteBootsModel extends HumanoidModel<LivingEntity> {
+public class CrystaliteBootsModel extends HumanoidModel<LivingEntity> implements HumanoidArmorRenderer.CopyExtraState {
 
     public ModelPart leftBoot;
     public ModelPart rightBoot;
@@ -66,8 +67,7 @@ public class CrystaliteBootsModel extends HumanoidModel<LivingEntity> {
     }
 
     @Override
-    public void copyPropertiesTo(HumanoidModel<LivingEntity> bipedEntityModel) {
-        super.copyPropertiesTo(bipedEntityModel);
+    public void copyPropertiesFrom(HumanoidModel<LivingEntity> bipedEntityModel) {
         this.leftBoot.copyFrom(leftLeg);
         this.rightBoot.copyFrom(rightLeg);
     }
