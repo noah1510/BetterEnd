@@ -28,7 +28,12 @@ public class EndWoodenComplexMaterial extends WoodenComplexMaterial {
 
     @Override
     protected SlotMap<WoodenComplexMaterial> createMaterialSlots() {
-        return super.createMaterialSlots().add(WoodSlots.HANGING_SIGN);
+        return super.createMaterialSlots()
+                    .add(WoodSlots.HANGING_SIGN)
+                    .add(WoodSlots.TABURET)
+                    .add(WoodSlots.BAR_STOOL)
+                    .add(WoodSlots.CHAIR)
+                ;
     }
 
     public boolean isTreeLog(Block block) {
