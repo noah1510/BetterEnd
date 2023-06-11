@@ -10,6 +10,7 @@ import org.betterx.bclib.items.tool.BaseShovelItem;
 import org.betterx.bclib.items.tool.BaseSwordItem;
 import org.betterx.bclib.registry.BaseRegistry;
 import org.betterx.bclib.registry.ItemRegistry;
+import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.config.Configs;
 import org.betterx.betterend.item.*;
@@ -21,7 +22,9 @@ import org.betterx.betterend.world.structures.village.VillagePools;
 import org.betterx.datagen.betterend.recipes.EndChestLootTableProvider;
 
 import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
@@ -29,6 +32,8 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.entity.StructureBlockEntity;
 
 import java.util.List;
 import org.jetbrains.annotations.ApiStatus;
@@ -424,6 +429,37 @@ public class EndItems {
                             null,
                             Items.LANTERN
                     )
+            );
+
+            registerEndItem(
+                    "debug/fill_base_void",
+                    new DebugDataItem((player, entity, useOnContext) -> {
+                        if (entity instanceof StructureBlockEntity e) {
+                            final var level = useOnContext.getLevel();
+                            final var offset = e.getStructurePos();
+                            var size = e.getStructureSize();
+                            var pos = useOnContext.getClickedPos().offset(offset);
+
+                            for (int x = 0; x < size.getX(); x++) {
+                                for (int y = 0; y < size.getY(); y++) {
+                                    for (int z = 0; z < size.getZ(); z++) {
+                                        var blockPos = pos.offset(x, y, z);
+                                        var state = level.getBlockState(blockPos);
+                                        if (state.is(Blocks.END_STONE)) {
+                                            level.setBlock(
+                                                    blockPos,
+                                                    Blocks.STRUCTURE_VOID.defaultBlockState(),
+                                                    BlocksHelper.SET_SILENT
+                                            );
+                                        }
+                                    }
+                                }
+                            }
+                            return InteractionResult.SUCCESS;
+                        }
+                        return InteractionResult.FAIL;
+                    }, false, BuiltInRegistries.ITEM.getKey(Items.BUCKET))
+
             );
         }
     }
