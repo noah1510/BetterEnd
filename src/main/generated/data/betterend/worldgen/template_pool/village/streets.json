@@ -30,11 +30,20 @@
     {
       "element": {
         "element_type": "bclib:single_end_pool_element",
+        "location": "betterend:village/streets/street_04",
+        "processors": "betterend:end_street",
+        "projection": "terrain_matching"
+      },
+      "weight": 6
+    },
+    {
+      "element": {
+        "element_type": "bclib:single_end_pool_element",
         "location": "betterend:village/streets/curve_01",
         "processors": "betterend:end_street",
         "projection": "terrain_matching"
       },
-      "weight": 10
+      "weight": 8
     },
     {
       "element": {
@@ -43,7 +52,7 @@
         "processors": "betterend:end_street",
         "projection": "terrain_matching"
       },
-      "weight": 12
+      "weight": 8
     },
     {
       "element": {
@@ -58,33 +67,6 @@
       "element": {
         "element_type": "bclib:single_end_pool_element",
         "location": "betterend:village/streets/t_crossing_02",
-        "processors": "betterend:end_street",
-        "projection": "terrain_matching"
-      },
-      "weight": 5
-    },
-    {
-      "element": {
-        "element_type": "bclib:single_end_pool_element",
-        "location": "betterend:village/streets/respawn_crossing_01",
-        "processors": "betterend:end_street",
-        "projection": "terrain_matching"
-      },
-      "weight": 5
-    },
-    {
-      "element": {
-        "element_type": "bclib:single_end_pool_element",
-        "location": "betterend:village/streets/respawn_crossing_02",
-        "processors": "betterend:end_street",
-        "projection": "terrain_matching"
-      },
-      "weight": 5
-    },
-    {
-      "element": {
-        "element_type": "bclib:single_end_pool_element",
-        "location": "betterend:village/decoration/fountain_01",
         "processors": "betterend:end_street",
         "projection": "terrain_matching"
       },

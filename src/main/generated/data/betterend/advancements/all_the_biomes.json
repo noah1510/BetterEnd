@@ -420,10 +420,19 @@
   },
   "requirements": [
     [
-      "betterend:crystal_mountains"
+      "betterend:chorus_forest"
     ],
     [
       "betterend:glowing_grasslands"
+    ],
+    [
+      "betterend:foggy_mushroomland"
+    ],
+    [
+      "betterend:empty_smaragdant_cave"
+    ],
+    [
+      "betterend:ice_starfield"
     ],
     [
       "betterend:dry_shrubland"
@@ -432,64 +441,55 @@
       "betterend:lush_aurora_cave"
     ],
     [
-      "betterend:foggy_mushroomland"
-    ],
-    [
-      "betterend:painted_mountains"
-    ],
-    [
-      "betterend:chorus_forest"
-    ],
-    [
-      "betterend:amber_land"
-    ],
-    [
-      "betterend:ice_starfield"
-    ],
-    [
-      "betterend:dust_wastelands"
-    ],
-    [
-      "betterend:umbrella_jungle"
-    ],
-    [
-      "betterend:blossoming_spires"
-    ],
-    [
-      "betterend:dragon_graveyards"
-    ],
-    [
-      "betterend:sulphur_springs"
-    ],
-    [
-      "betterend:umbra_valley"
-    ],
-    [
-      "betterend:neon_oasis"
-    ],
-    [
       "betterend:empty_aurora_cave"
     ],
     [
       "betterend:megalake"
     ],
     [
-      "betterend:jade_cave"
+      "betterend:lush_smaragdant_cave"
     ],
     [
       "betterend:lantern_woods"
     ],
     [
-      "betterend:shadow_forest"
+      "betterend:painted_mountains"
+    ],
+    [
+      "betterend:umbrella_jungle"
     ],
     [
       "betterend:megalake_grove"
     ],
     [
-      "betterend:empty_smaragdant_cave"
+      "betterend:dragon_graveyards"
     ],
     [
-      "betterend:lush_smaragdant_cave"
+      "betterend:neon_oasis"
+    ],
+    [
+      "betterend:blossoming_spires"
+    ],
+    [
+      "betterend:dust_wastelands"
+    ],
+    [
+      "betterend:crystal_mountains"
+    ],
+    [
+      "betterend:jade_cave"
+    ],
+    [
+      "betterend:umbra_valley"
+    ],
+    [
+      "betterend:amber_land"
+    ],
+    [
+      "betterend:shadow_forest"
+    ],
+    [
+      "betterend:sulphur_springs"
     ],
     [
       "betterend:empty_end_cave"
