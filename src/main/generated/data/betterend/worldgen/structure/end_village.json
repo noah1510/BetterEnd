@@ -6,10 +6,10 @@
   "size": 6,
   "spawn_overrides": {},
   "start_height": {
-    "absolute": 0
+    "absolute": 20
   },
   "start_pool": "betterend:village/center_piece",
   "step": "surface_structures",
-  "terrain_adaptation": "beard_thin",
+  "terrain_adaptation": "beard_box",
   "use_expansion_hack": false
 }
