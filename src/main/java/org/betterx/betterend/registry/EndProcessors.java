@@ -13,4 +13,7 @@ public class EndProcessors {
             ProcessorHelper.createKey(BetterEnd.makeID("crack_20_percent"));
     public static final ResourceKey<StructureProcessorList> CRACK_AND_WEATHER =
             ProcessorHelper.createKey(BetterEnd.makeID("crack_and_weather"));
+
+    public static final ResourceKey<StructureProcessorList> END_STREET =
+            ProcessorHelper.createKey(BetterEnd.makeID("end_street"));
 }

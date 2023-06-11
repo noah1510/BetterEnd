@@ -2,6 +2,7 @@ package org.betterx.datagen.betterend.worldgen;
 
 import org.betterx.bclib.api.v3.datagen.ProcessorHelper;
 import org.betterx.bclib.complexmaterials.set.stone.StoneSlots;
+import org.betterx.bclib.complexmaterials.set.wood.WoodSlots;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndProcessors;
 
@@ -50,5 +51,39 @@ public class ProcessorsDataProvider {
                         )
                 )))
         );
+
+        ProcessorHelper.register(
+                bootstapContext,
+                EndProcessors.END_STREET,
+                ImmutableList.of(new RuleProcessor(ImmutableList.of(
+
+                        new ProcessorRule(
+                                new BlockMatchTest(Blocks.END_STONE_BRICKS),
+                                new BlockMatchTest(Blocks.WATER),
+                                EndBlocks.PYTHADENDRON.getBlock(WoodSlots.PLANKS).defaultBlockState()
+                        ),
+                        new ProcessorRule(
+                                new BlockMatchTest(EndBlocks.ENDSTONE_DUST),
+                                new BlockMatchTest(Blocks.WATER),
+                                Blocks.WATER.defaultBlockState()
+                        ),
+                        new ProcessorRule(
+                                new RandomBlockMatchTest(Blocks.END_STONE_BRICKS, 0.03f),
+                                AlwaysTrueTest.INSTANCE,
+                                EndBlocks.SHADOW_GRASS_PATH.defaultBlockState()
+                        ),
+                        new ProcessorRule(
+                                new RandomBlockMatchTest(Blocks.END_STONE_BRICKS, 0.2f),
+                                AlwaysTrueTest.INSTANCE,
+                                EndBlocks.END_STONE_BRICK_VARIATIONS.getBlock(StoneSlots.CRACKED).defaultBlockState()
+                        ),
+                        new ProcessorRule(
+                                new RandomBlockMatchTest(Blocks.END_STONE_BRICKS, 0.1f),
+                                AlwaysTrueTest.INSTANCE,
+                                EndBlocks.END_STONE_BRICK_VARIATIONS.getBlock(StoneSlots.WEATHERED).defaultBlockState()
+                        )
+                )))
+        );
+
     }
 }

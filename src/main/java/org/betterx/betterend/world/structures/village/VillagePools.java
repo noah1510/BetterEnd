@@ -1,5 +1,6 @@
 package org.betterx.betterend.world.structures.village;
 
+import org.betterx.bclib.api.v2.levelgen.structures.SingleEndPoolElement;
 import org.betterx.bclib.api.v2.levelgen.structures.StructurePools;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.registry.EndProcessors;
@@ -20,6 +21,8 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProc
 
 import com.google.common.collect.ImmutableList;
 
+import java.util.function.Function;
+
 public class VillagePools {
     public static ResourceKey<StructureTemplatePool> TERMINATORS_KEY = StructurePools
             .createKey(BetterEnd.makeID("village/terminators"));
@@ -34,6 +37,14 @@ public class VillagePools {
     public static ResourceKey<StructureTemplatePool> DECORATIONS_KEY = StructurePools
             .createKey(BetterEnd.makeID("village/decorations"));
 
+    public static Pair<Function<StructureTemplatePool.Projection, ? extends StructurePoolElement>, Integer> single(
+            String name,
+            Holder<StructureProcessorList> processor,
+            int weight
+    ) {
+        return Pair.of(SingleEndPoolElement.end(BetterEnd.makeID(name), processor), weight);
+    }
+
     public static void bootstrap(BootstapContext<StructureTemplatePool> ctx) {
         final HolderGetter<StructureProcessorList> processorGetter = ctx.lookup(Registries.PROCESSOR_LIST);
         final HolderGetter<PlacedFeature> featureGetter = ctx.lookup(Registries.PLACED_FEATURE);
@@ -43,124 +54,74 @@ public class VillagePools {
         final Holder.Reference<StructureTemplatePool> emptyPool = poolGetter.getOrThrow(Pools.EMPTY);
         final Holder.Reference<StructureTemplatePool> terminatorPool = poolGetter.getOrThrow(VillagePools.TERMINATORS_KEY);
 
-        Holder.Reference<StructureProcessorList> mossify = processorGetter.getOrThrow(EndProcessors.WEATHERED_10_PERCENT);
+        Holder.Reference<StructureProcessorList> mossifyProcessor = processorGetter.getOrThrow(EndProcessors.WEATHERED_10_PERCENT);
         Holder.Reference<StructureProcessorList> crack = processorGetter.getOrThrow(EndProcessors.CRACK_20_PERCENT);
-        Holder.Reference<StructureProcessorList> crackAndWeather = processorGetter.getOrThrow(EndProcessors.CRACK_AND_WEATHER);
+        Holder.Reference<StructureProcessorList> endStreetProcessor = processorGetter.getOrThrow(EndProcessors.END_STREET);
 
         final Holder.Reference<StructureProcessorList> emptyProcessor = processorGetter.getOrThrow(ProcessorLists.EMPTY);
         ctx.register(VillagePools.TERMINATORS_KEY, new StructureTemplatePool(
                 emptyPool,
-                ImmutableList.of(Pair.of(
-                        StructurePools.single(
-                                BetterEnd.makeID("village/terminators/stree_terminator_01"),
-                                emptyProcessor
-                        ),
-                        1
-                )),
+                ImmutableList.of(
+                        single("village/terminators/stree_terminator_01", emptyProcessor, 1)
+                ),
                 StructureTemplatePool.Projection.TERRAIN_MATCHING
         ));
         ctx.register(VillagePools.START, new StructureTemplatePool(
                 terminatorPool,
-                ImmutableList.of(Pair.of(
-                        StructurePools.single(BetterEnd.makeID("village/center/light_pyramid_01"), emptyProcessor),
-                        1
-                )),
+                ImmutableList.of(
+                        single("village/center/light_pyramid_01", emptyProcessor, 1)
+                ),
                 StructureTemplatePool.Projection.RIGID
         ));
         ctx.register(VillagePools.HOUSES_KEY, new StructureTemplatePool(
                 terminatorPool,
-                ImmutableList.of(Pair.of(StructurePoolElement.empty(), 5), Pair.of(
-                        StructurePools.single(BetterEnd.makeID("village/houses/small_house_01"), emptyProcessor),
-                        1
-                ), Pair.of(
-                        StructurePools.single(BetterEnd.makeID("village/houses/small_house_02"), emptyProcessor),
-                        1
-                ), Pair.of(
-                        StructurePools.single(BetterEnd.makeID("village/houses/small_house_03"), emptyProcessor),
-                        1
-                ), Pair.of(
-                        StructurePools.single(BetterEnd.makeID("village/houses/small_house_04"), emptyProcessor),
-                        1
-                ), Pair.of(
-                        StructurePools.single(BetterEnd.makeID("village/houses/small_house_05"), emptyProcessor),
-                        1
-                ), Pair.of(
-                        StructurePools.single(BetterEnd.makeID("village/houses/small_house_06"), emptyProcessor),
-                        1
-                ), Pair.of(
-                        StructurePools.single(BetterEnd.makeID("village/houses/small_house_07"), emptyProcessor),
-                        1
-                ), Pair.of(
-                        StructurePools.single(BetterEnd.makeID("village/houses/small_house_08"), emptyProcessor),
-                        1
-                ), Pair.of(
-                        StructurePools.single(BetterEnd.makeID("village/houses/small_house_09"), emptyProcessor),
-                        1
-                ), Pair.of(
-                        StructurePools.single(BetterEnd.makeID("village/houses/small_house_10"), emptyProcessor),
-                        1
-                ), Pair.of(
-                        StructurePools.single(BetterEnd.makeID("village/houses/small_house_11"), emptyProcessor),
-                        1
-                ), Pair.of(
-                        StructurePools.single(BetterEnd.makeID("village/houses/small_house_12"), emptyProcessor),
-                        1
-                ), Pair.of(
-                        StructurePools.single(BetterEnd.makeID("village/houses/small_house_13"), emptyProcessor),
-                        1
-                ), Pair.of(
-                        StructurePools.single(BetterEnd.makeID("village/houses/small_house_14"), emptyProcessor),
-                        1
-                ), Pair.of(
-                        StructurePools.single(BetterEnd.makeID("village/houses/small_house_15"), emptyProcessor),
-                        1
-                ), Pair.of(
-                        StructurePools.single(BetterEnd.makeID("village/houses/small_house_16"), emptyProcessor),
-                        1
-                ), Pair.of(
-                        StructurePools.single(BetterEnd.makeID("village/houses/animal_pen_01"), emptyProcessor),
-                        1
-                )),
+                ImmutableList.of(
+                        Pair.of(StructurePoolElement.empty(), 5),
+                        single("village/houses/small_house_01", emptyProcessor, 2),
+                        single("village/houses/small_house_02", emptyProcessor, 2),
+                        single("village/houses/small_house_03", emptyProcessor, 2),
+                        single("village/houses/small_house_04", emptyProcessor, 2),
+                        single("village/houses/small_house_05", emptyProcessor, 2),
+                        single("village/houses/small_house_06", emptyProcessor, 2),
+                        single("village/houses/small_house_07", emptyProcessor, 2),
+                        single("village/houses/small_house_08", emptyProcessor, 2),
+                        single("village/houses/small_house_09", emptyProcessor, 2),
+                        single("village/houses/small_house_10", emptyProcessor, 2),
+                        single("village/houses/small_house_11", emptyProcessor, 2),
+                        single("village/houses/small_house_12", emptyProcessor, 2),
+                        single("village/houses/small_house_13", emptyProcessor, 2),
+                        single("village/houses/small_house_14", emptyProcessor, 2),
+                        single("village/houses/small_house_15", emptyProcessor, 2),
+                        single("village/houses/small_house_16", emptyProcessor, 2),
+                        single("village/houses/small_house_17", emptyProcessor, 2),
+                        single("village/houses/animal_pen_01", emptyProcessor, 1),
+                        single("village/decoration/stable_01", crack, 1),
+                        single("village/decoration/pond_01", mossifyProcessor, 3)
+                ),
                 StructureTemplatePool.Projection.RIGID
         ));
         ctx.register(VillagePools.STREET_KEY, new StructureTemplatePool(
                 terminatorPool,
-                ImmutableList.of(Pair.of(
-                        StructurePools.single(BetterEnd.makeID("village/streets/street_01"), crackAndWeather),
-                        6
-                ), Pair.of(
-                        StructurePools.single(BetterEnd.makeID("village/streets/street_02"), crackAndWeather),
-                        4
-                ), Pair.of(
-                        StructurePools.single(BetterEnd.makeID("village/streets/curve_01"), crackAndWeather),
-                        3
-                ), Pair.of(
-                        StructurePools.single(BetterEnd.makeID("village/streets/t_crossing_01"), crackAndWeather),
-                        1
-                ), Pair.of(
-                        StructurePools.single(BetterEnd.makeID("village/streets/t_crossing_02"), crackAndWeather),
-                        2
-                )),
+                ImmutableList.of(
+                        single("village/streets/street_01", endStreetProcessor, 6),
+                        single("village/streets/street_02", endStreetProcessor, 5),
+                        single("village/streets/street_03", endStreetProcessor, 7),
+                        single("village/streets/curve_01", endStreetProcessor, 10),
+                        single("village/streets/curve_02", endStreetProcessor, 12),
+                        single("village/streets/t_crossing_01", endStreetProcessor, 4),
+                        single("village/streets/t_crossing_02", endStreetProcessor, 5),
+                        single("village/streets/respawn_crossing_01", endStreetProcessor, 5),
+                        single("village/streets/respawn_crossing_02", endStreetProcessor, 5),
+                        single("village/decoration/fountain_01", endStreetProcessor, 4)
+                ),
                 StructureTemplatePool.Projection.TERRAIN_MATCHING
         ));
         ctx.register(VillagePools.STREET_DECO_KEY, new StructureTemplatePool(
                 terminatorPool,
                 ImmutableList.of(
                         Pair.of(StructurePoolElement.empty(), 5),
-                        Pair.of(
-                                StructurePools.single(
-                                        BetterEnd.makeID("village/street_decoration/lamp_02"),
-                                        emptyProcessor
-                                ),
-                                2
-                        ),
-                        Pair.of(
-                                StructurePools.single(
-                                        BetterEnd.makeID("village/street_decoration/lamp_05"),
-                                        emptyProcessor
-                                ),
-                                1
-                        )
+                        single("village/street_decoration/lamp_02", emptyProcessor, 2),
+                        single("village/street_decoration/lamp_05", emptyProcessor, 1)
                 ),
                 StructureTemplatePool.Projection.RIGID
         ));
