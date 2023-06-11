@@ -699,6 +699,13 @@ public class EndBlocks {
     // Technical
     public static final Block END_PORTAL_BLOCK = registerEndBlockOnly("end_portal_block", new EndPortalBlock());
 
+    // Variations
+    public static final VanillaVariantStoneMaterial END_STONE_BRICK_VARIATIONS = new VanillaVariantStoneMaterial(
+            "end_stone_brick",
+            Blocks.END_STONE_BRICKS,
+            MapColor.SAND
+    ).init();
+
     public static List<Block> getModBlocks() {
         return BlockRegistry.getModBlocks(BetterEnd.MOD_ID);
     }
