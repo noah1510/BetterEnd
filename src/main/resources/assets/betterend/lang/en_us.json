@@ -793,6 +793,7 @@
   "item.betterend.crystalite_leggings": "Crystalite Leggings",
   "item.betterend.crystalline_sulphur": "Sulfur",
   "item.betterend.debug.fill_base_void": "Replace EndStone in Structure Block Bounds [dev]",
+  "item.betterend.debug.fill_air": "Replace Air in Structure Block Bounds [dev]",
   "item.betterend.debug.jigsaw_big_deco": "Large Decoration [dev]",
   "item.betterend.debug.jigsaw_deco": "Small Decoration [dev]",
   "item.betterend.debug.jigsaw_entrance": "Entrance [dev]",

@@ -77,7 +77,7 @@ public class EndStructures {
             .adjustment(TerrainAdjustment.BEARD_THIN)
             .projectStartToHeightmap(Heightmap.Types.WORLD_SURFACE_WG)
             .maxDepth(6)
-            .startHeight(ConstantHeight.of(VerticalAnchor.absolute(20)))
+            .startHeight(ConstantHeight.of(VerticalAnchor.absolute(5)))
             .step(Decoration.SURFACE_STRUCTURES)
             .randomPlacement(34, 8)
             .build();

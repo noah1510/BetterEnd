@@ -458,6 +458,37 @@ public class EndItems {
                             return InteractionResult.SUCCESS;
                         }
                         return InteractionResult.FAIL;
+                    }, false, BuiltInRegistries.ITEM.getKey(Items.WATER_BUCKET))
+
+            );
+
+            registerEndItem(
+                    "debug/fill_air",
+                    new DebugDataItem((player, entity, useOnContext) -> {
+                        if (entity instanceof StructureBlockEntity e) {
+                            final var level = useOnContext.getLevel();
+                            final var offset = e.getStructurePos();
+                            var size = e.getStructureSize();
+                            var pos = useOnContext.getClickedPos().offset(offset);
+
+                            for (int x = 0; x < size.getX(); x++) {
+                                for (int y = 0; y < size.getY(); y++) {
+                                    for (int z = 0; z < size.getZ(); z++) {
+                                        var blockPos = pos.offset(x, y, z);
+                                        var state = level.getBlockState(blockPos);
+                                        if (state.isAir()) {
+                                            level.setBlock(
+                                                    blockPos,
+                                                    Blocks.STRUCTURE_VOID.defaultBlockState(),
+                                                    BlocksHelper.SET_SILENT
+                                            );
+                                        }
+                                    }
+                                }
+                            }
+                            return InteractionResult.SUCCESS;
+                        }
+                        return InteractionResult.FAIL;
                     }, false, BuiltInRegistries.ITEM.getKey(Items.BUCKET))
 
             );

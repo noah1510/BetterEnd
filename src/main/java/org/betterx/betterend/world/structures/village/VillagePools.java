@@ -56,6 +56,7 @@ public class VillagePools {
 
         Holder.Reference<StructureProcessorList> mossifyProcessor = processorGetter.getOrThrow(EndProcessors.WEATHERED_10_PERCENT);
         Holder.Reference<StructureProcessorList> crack = processorGetter.getOrThrow(EndProcessors.CRACK_20_PERCENT);
+        Holder.Reference<StructureProcessorList> crackAndWeather = processorGetter.getOrThrow(EndProcessors.CRACK_AND_WEATHER);
         Holder.Reference<StructureProcessorList> endStreetProcessor = processorGetter.getOrThrow(EndProcessors.END_STREET);
 
         final Holder.Reference<StructureProcessorList> emptyProcessor = processorGetter.getOrThrow(ProcessorLists.EMPTY);
@@ -77,26 +78,30 @@ public class VillagePools {
                 terminatorPool,
                 ImmutableList.of(
                         Pair.of(StructurePoolElement.empty(), 5),
-                        single("village/houses/small_house_01", emptyProcessor, 2),
-                        single("village/houses/small_house_02", emptyProcessor, 2),
+                        single("village/houses/small_house_01", emptyProcessor, 4),
+                        single("village/houses/small_house_02", emptyProcessor, 4),
                         single("village/houses/small_house_03", emptyProcessor, 2),
-                        single("village/houses/small_house_04", emptyProcessor, 2),
-                        single("village/houses/small_house_05", emptyProcessor, 2),
-                        single("village/houses/small_house_06", emptyProcessor, 2),
-                        single("village/houses/small_house_07", emptyProcessor, 2),
-                        single("village/houses/small_house_08", emptyProcessor, 2),
-                        single("village/houses/small_house_09", emptyProcessor, 2),
+                        single("village/houses/small_house_04", emptyProcessor, 4),
+                        single("village/houses/small_house_05", emptyProcessor, 4),
+                        single("village/houses/small_house_06", emptyProcessor, 4),
+                        single("village/houses/small_house_07", emptyProcessor, 4),
+                        single("village/houses/small_house_08", emptyProcessor, 4),
+                        single("village/houses/small_house_09", emptyProcessor, 4),
                         single("village/houses/small_house_10", emptyProcessor, 2),
-                        single("village/houses/small_house_11", emptyProcessor, 2),
-                        single("village/houses/small_house_12", emptyProcessor, 2),
-                        single("village/houses/small_house_13", emptyProcessor, 2),
-                        single("village/houses/small_house_14", emptyProcessor, 2),
-                        single("village/houses/small_house_15", emptyProcessor, 2),
+                        single("village/houses/small_house_11", emptyProcessor, 1),
+                        single("village/houses/small_house_12", emptyProcessor, 4),
+                        single("village/houses/small_house_13", emptyProcessor, 4),
+                        single("village/houses/small_house_14", emptyProcessor, 4),
+                        single("village/houses/small_house_15", emptyProcessor, 4),
                         single("village/houses/small_house_16", emptyProcessor, 2),
-                        single("village/houses/small_house_17", emptyProcessor, 2),
-                        single("village/houses/animal_pen_01", emptyProcessor, 1),
-                        single("village/decoration/stable_01", crack, 1),
-                        single("village/decoration/pond_01", mossifyProcessor, 3)
+                        single("village/houses/small_house_17", crackAndWeather, 4),
+                        single("village/houses/animal_pen_01", emptyProcessor, 3),
+                        single("village/decoration/stable_01", crack, 2),
+                        single("village/decoration/pond_01", mossifyProcessor, 1),
+                        single("village/decoration/respawn_01", endStreetProcessor, 1),
+                        single("village/decoration/respawn_02", endStreetProcessor, 1),
+                        single("village/decoration/fountain_01", endStreetProcessor, 1)
+
                 ),
                 StructureTemplatePool.Projection.RIGID
         ));
@@ -106,20 +111,18 @@ public class VillagePools {
                         single("village/streets/street_01", endStreetProcessor, 6),
                         single("village/streets/street_02", endStreetProcessor, 5),
                         single("village/streets/street_03", endStreetProcessor, 7),
-                        single("village/streets/curve_01", endStreetProcessor, 10),
-                        single("village/streets/curve_02", endStreetProcessor, 12),
+                        single("village/streets/street_04", endStreetProcessor, 6),
+                        single("village/streets/curve_01", endStreetProcessor, 8),
+                        single("village/streets/curve_02", endStreetProcessor, 8),
                         single("village/streets/t_crossing_01", endStreetProcessor, 4),
-                        single("village/streets/t_crossing_02", endStreetProcessor, 5),
-                        single("village/streets/respawn_crossing_01", endStreetProcessor, 5),
-                        single("village/streets/respawn_crossing_02", endStreetProcessor, 5),
-                        single("village/decoration/fountain_01", endStreetProcessor, 4)
+                        single("village/streets/t_crossing_02", endStreetProcessor, 4)
                 ),
                 StructureTemplatePool.Projection.TERRAIN_MATCHING
         ));
         ctx.register(VillagePools.STREET_DECO_KEY, new StructureTemplatePool(
                 terminatorPool,
                 ImmutableList.of(
-                        Pair.of(StructurePoolElement.empty(), 5),
+                        Pair.of(StructurePoolElement.empty(), 6),
                         single("village/street_decoration/lamp_02", emptyProcessor, 2),
                         single("village/street_decoration/lamp_05", emptyProcessor, 1)
                 ),
