@@ -33,6 +33,7 @@ public class EndWoodenComplexMaterial extends WoodenComplexMaterial {
                     .add(WoodSlots.TABURET)
                     .add(WoodSlots.BAR_STOOL)
                     .add(WoodSlots.CHAIR)
+                    .add(WoodSlots.WALL)
                 ;
     }
 
