@@ -2,6 +2,7 @@ package org.betterx.betterend.world.structures.village;
 
 import org.betterx.bclib.api.v2.levelgen.structures.StructurePools;
 import org.betterx.betterend.BetterEnd;
+import org.betterx.betterend.registry.EndProcessors;
 
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.Holder;
@@ -41,6 +42,10 @@ public class VillagePools {
 
         final Holder.Reference<StructureTemplatePool> emptyPool = poolGetter.getOrThrow(Pools.EMPTY);
         final Holder.Reference<StructureTemplatePool> terminatorPool = poolGetter.getOrThrow(VillagePools.TERMINATORS_KEY);
+
+        Holder.Reference<StructureProcessorList> mossify = processorGetter.getOrThrow(EndProcessors.WEATHERED_10_PERCENT);
+        Holder.Reference<StructureProcessorList> crack = processorGetter.getOrThrow(EndProcessors.CRACK_20_PERCENT);
+        Holder.Reference<StructureProcessorList> crackAndWeather = processorGetter.getOrThrow(EndProcessors.CRACK_AND_WEATHER);
 
         final Holder.Reference<StructureProcessorList> emptyProcessor = processorGetter.getOrThrow(ProcessorLists.EMPTY);
         ctx.register(VillagePools.TERMINATORS_KEY, new StructureTemplatePool(
@@ -121,19 +126,19 @@ public class VillagePools {
         ctx.register(VillagePools.STREET_KEY, new StructureTemplatePool(
                 terminatorPool,
                 ImmutableList.of(Pair.of(
-                        StructurePools.single(BetterEnd.makeID("village/streets/street_01"), emptyProcessor),
+                        StructurePools.single(BetterEnd.makeID("village/streets/street_01"), crackAndWeather),
                         6
                 ), Pair.of(
-                        StructurePools.single(BetterEnd.makeID("village/streets/street_02"), emptyProcessor),
+                        StructurePools.single(BetterEnd.makeID("village/streets/street_02"), crackAndWeather),
                         4
                 ), Pair.of(
-                        StructurePools.single(BetterEnd.makeID("village/streets/curve_01"), emptyProcessor),
+                        StructurePools.single(BetterEnd.makeID("village/streets/curve_01"), crackAndWeather),
                         3
                 ), Pair.of(
-                        StructurePools.single(BetterEnd.makeID("village/streets/t_crossing_01"), emptyProcessor),
+                        StructurePools.single(BetterEnd.makeID("village/streets/t_crossing_01"), crackAndWeather),
                         1
                 ), Pair.of(
-                        StructurePools.single(BetterEnd.makeID("village/streets/t_crossing_02"), emptyProcessor),
+                        StructurePools.single(BetterEnd.makeID("village/streets/t_crossing_02"), crackAndWeather),
                         2
                 )),
                 StructureTemplatePool.Projection.TERRAIN_MATCHING

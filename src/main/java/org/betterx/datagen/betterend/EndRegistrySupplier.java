@@ -15,6 +15,7 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureSet;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
+import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorType;
 
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
@@ -46,6 +47,11 @@ public class EndRegistrySupplier extends RegistrySupplier {
                         Registries.CONFIGURED_FEATURE,
                         ConfiguredFeature.DIRECT_CODEC,
                         ConfiguredFeatureDataProvider::bootstrap
+                ),
+                new RegistryInfo<>(
+                        Registries.PROCESSOR_LIST,
+                        StructureProcessorType.DIRECT_CODEC,
+                        ProcessorsDataProvider::bootstrap
                 ),
                 new RegistryInfo<>(
                         Registries.PLACED_FEATURE,
