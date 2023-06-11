@@ -4,6 +4,7 @@ import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
 import org.betterx.bclib.api.v2.levelgen.surface.SurfaceRuleBuilder;
 import org.betterx.bclib.interfaces.SurfaceMaterialProvider;
 import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.registry.EndFeatures;
 import org.betterx.betterend.registry.EndSounds;
 import org.betterx.betterend.registry.EndStructures;
 import org.betterx.betterend.world.biome.EndBiome;
@@ -32,6 +33,7 @@ public class DustWastelandsBiome extends EndBiome.Config {
                 .music(EndSounds.MUSIC_OPENSPACE)
                 .structure(EndStructures.END_VILLAGE)
                 .structure(EndStructures.ETERNAL_PORTAL)
+                .feature(EndFeatures.FLAVOLITE_LAYER)
                 .spawn(EntityType.ENDERMAN, 50, 1, 2);
     }
 

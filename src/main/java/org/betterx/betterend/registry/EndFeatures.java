@@ -1444,7 +1444,6 @@ public class EndFeatures {
             BCLBiomeBuilder builder,
             boolean hasCaves
     ) {
-        builder.feature(FLAVOLITE_LAYER);
         builder.feature(THALLASIUM_ORE);
         builder.feature(ENDER_ORE);
         builder.feature(CRASHED_SHIP);
