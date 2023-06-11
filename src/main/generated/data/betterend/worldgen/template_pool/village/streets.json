@@ -4,7 +4,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "betterend:village/streets/street_01",
-        "processors": "minecraft:empty",
+        "processors": "betterend:crack_and_weather",
         "projection": "terrain_matching"
       },
       "weight": 6
@@ -13,7 +13,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "betterend:village/streets/street_02",
-        "processors": "minecraft:empty",
+        "processors": "betterend:crack_and_weather",
         "projection": "terrain_matching"
       },
       "weight": 4
@@ -22,7 +22,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "betterend:village/streets/curve_01",
-        "processors": "minecraft:empty",
+        "processors": "betterend:crack_and_weather",
         "projection": "terrain_matching"
       },
       "weight": 3
@@ -31,7 +31,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "betterend:village/streets/t_crossing_01",
-        "processors": "minecraft:empty",
+        "processors": "betterend:crack_and_weather",
         "projection": "terrain_matching"
       },
       "weight": 1
@@ -40,7 +40,7 @@
       "element": {
         "element_type": "minecraft:single_pool_element",
         "location": "betterend:village/streets/t_crossing_02",
-        "processors": "minecraft:empty",
+        "processors": "betterend:crack_and_weather",
         "projection": "terrain_matching"
       },
       "weight": 2
