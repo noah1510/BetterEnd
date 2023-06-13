@@ -47,6 +47,7 @@ public class BuildingListFeature extends NBTFeature<BuildingListFeatureConfig> {
             RandomSource random
     ) {
         selected = cfg.getRandom(random);
+        //BCLib.LOGGER.info("Selected: " + selected.structurePath + " /tp " + pos.getX() + " " + pos.getY() + " " + pos.getZ());
         return selected.getStructure();
     }
 
