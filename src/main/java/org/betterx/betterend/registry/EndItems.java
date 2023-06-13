@@ -2,7 +2,6 @@ package org.betterx.betterend.registry;
 
 import org.betterx.bclib.BCLib;
 import org.betterx.bclib.items.BaseArmorItem;
-import org.betterx.bclib.items.DebugDataItem;
 import org.betterx.bclib.items.ModelProviderItem;
 import org.betterx.bclib.items.tool.BaseAxeItem;
 import org.betterx.bclib.items.tool.BaseHoeItem;
@@ -10,7 +9,6 @@ import org.betterx.bclib.items.tool.BaseShovelItem;
 import org.betterx.bclib.items.tool.BaseSwordItem;
 import org.betterx.bclib.registry.BaseRegistry;
 import org.betterx.bclib.registry.ItemRegistry;
-import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.config.Configs;
 import org.betterx.betterend.item.*;
@@ -18,13 +16,10 @@ import org.betterx.betterend.item.material.EndArmorMaterial;
 import org.betterx.betterend.item.material.EndToolMaterial;
 import org.betterx.betterend.item.tool.EndHammerItem;
 import org.betterx.betterend.item.tool.EndPickaxe;
-import org.betterx.betterend.world.structures.village.VillagePools;
-import org.betterx.datagen.betterend.recipes.EndChestLootTableProvider;
+import org.betterx.betterend.util.DebugHelpers;
 
 import net.minecraft.core.Holder;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
@@ -32,8 +27,6 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.entity.StructureBlockEntity;
 
 import java.util.List;
 import org.jetbrains.annotations.ApiStatus;
@@ -358,140 +351,10 @@ public class EndItems {
     }
 
     @ApiStatus.Internal
-    public static void ensureStaticallyLoaded() {
+    public static void register() {
         if (BCLib.isDevEnvironment()) {
-            BetterEnd.LOGGER.warning("Generating Debug Helpers");
-
-            registerEndItem(
-                    "debug/village_loot",
-                    DebugDataItem.forLootTable(EndChestLootTableProvider.VILLAGE_LOOT, Items.IRON_INGOT)
-            );
-
-            registerEndItem(
-                    "debug/village_bonus",
-                    DebugDataItem.forLootTable(EndChestLootTableProvider.VILLAGE_BONUS_LOOT, Items.DIAMOND)
-            );
-
-            registerEndItem(
-                    "debug/village_template",
-                    DebugDataItem.forLootTable(EndChestLootTableProvider.VILLAGE_TEMPLATE_LOOT, Items.GOLD_INGOT)
-            );
-
-            registerEndItem(
-                    "debug/jigsaw_entrance",
-                    DebugDataItem.forHouseEntranceJigSaw(BetterEnd.MOD_ID, null, Items.OAK_DOOR)
-            );
-
-            registerEndItem(
-                    "debug/jigsaw_street_entrance",
-                    DebugDataItem.forHouseEntranceJigSaw(BetterEnd.MOD_ID, VillagePools.HOUSES_KEY, Items.IRON_DOOR)
-            );
-
-            registerEndItem(
-                    "debug/jigsaw_street",
-                    DebugDataItem.forSteetJigSaw(
-                            BetterEnd.MOD_ID,
-                            VillagePools.STREET_KEY,
-                            Items.ENDER_PEARL
-                    )
-            );
-
-            registerEndItem(
-                    "debug/jigsaw_street_deco",
-                    DebugDataItem.forStreetDecorationJigSaw(
-                            BetterEnd.MOD_ID,
-                            VillagePools.STREET_DECO_KEY,
-                            Items.ENDER_EYE
-                    )
-            );
-            registerEndItem(
-                    "debug/jigsaw_street_big_deco",
-                    DebugDataItem.forDecorationJigSaw(
-                            BetterEnd.MOD_ID,
-                            VillagePools.DECORATIONS_KEY,
-                            Items.SLIME_BALL
-                    )
-            );
-
-            registerEndItem(
-                    "debug/jigsaw_big_deco",
-                    DebugDataItem.forDecorationJigSaw(
-                            BetterEnd.MOD_ID,
-                            null,
-                            Items.TURTLE_HELMET
-                    )
-            );
-
-            registerEndItem(
-                    "debug/jigsaw_deco",
-                    DebugDataItem.forStreetDecorationJigSaw(
-                            BetterEnd.MOD_ID,
-                            null,
-                            Items.LANTERN
-                    )
-            );
-
-            registerEndItem(
-                    "debug/fill_base_void",
-                    new DebugDataItem((player, entity, useOnContext) -> {
-                        if (entity instanceof StructureBlockEntity e) {
-                            final var level = useOnContext.getLevel();
-                            final var offset = e.getStructurePos();
-                            var size = e.getStructureSize();
-                            var pos = useOnContext.getClickedPos().offset(offset);
-
-                            for (int x = 0; x < size.getX(); x++) {
-                                for (int y = 0; y < size.getY(); y++) {
-                                    for (int z = 0; z < size.getZ(); z++) {
-                                        var blockPos = pos.offset(x, y, z);
-                                        var state = level.getBlockState(blockPos);
-                                        if (state.is(Blocks.END_STONE)) {
-                                            level.setBlock(
-                                                    blockPos,
-                                                    Blocks.STRUCTURE_VOID.defaultBlockState(),
-                                                    BlocksHelper.SET_SILENT
-                                            );
-                                        }
-                                    }
-                                }
-                            }
-                            return InteractionResult.SUCCESS;
-                        }
-                        return InteractionResult.FAIL;
-                    }, false, BuiltInRegistries.ITEM.getKey(Items.WATER_BUCKET))
-
-            );
-
-            registerEndItem(
-                    "debug/fill_air",
-                    new DebugDataItem((player, entity, useOnContext) -> {
-                        if (entity instanceof StructureBlockEntity e) {
-                            final var level = useOnContext.getLevel();
-                            final var offset = e.getStructurePos();
-                            var size = e.getStructureSize();
-                            var pos = useOnContext.getClickedPos().offset(offset);
-
-                            for (int x = 0; x < size.getX(); x++) {
-                                for (int y = 0; y < size.getY(); y++) {
-                                    for (int z = 0; z < size.getZ(); z++) {
-                                        var blockPos = pos.offset(x, y, z);
-                                        var state = level.getBlockState(blockPos);
-                                        if (state.isAir()) {
-                                            level.setBlock(
-                                                    blockPos,
-                                                    Blocks.STRUCTURE_VOID.defaultBlockState(),
-                                                    BlocksHelper.SET_SILENT
-                                            );
-                                        }
-                                    }
-                                }
-                            }
-                            return InteractionResult.SUCCESS;
-                        }
-                        return InteractionResult.FAIL;
-                    }, false, BuiltInRegistries.ITEM.getKey(Items.BUCKET))
-
-            );
+            DebugHelpers.generateDebugItems();
         }
     }
+
 }
