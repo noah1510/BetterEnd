@@ -792,6 +792,7 @@
   "item.betterend.crystalite_helmet": "Kristallithelm",
   "item.betterend.crystalite_leggings": "Kristallitbeinschutz",
   "item.betterend.crystalline_sulphur": "Schwefel",
+  "item.betterend.debug.biome_loot": "Biome Schätze [dev]",
   "item.betterend.debug.fill_air": "Luft in Structure-Block-Volumen ersetzen [dev]",
   "item.betterend.debug.fill_base_void": "Endstein in Structure-Block-Volumen ersetzen [dev]",
   "item.betterend.debug.jigsaw_big_deco": "Große Deko [dev]",

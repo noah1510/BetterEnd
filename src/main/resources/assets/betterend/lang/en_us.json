@@ -792,6 +792,7 @@
   "item.betterend.crystalite_helmet": "Crystalite Helmet",
   "item.betterend.crystalite_leggings": "Crystalite Leggings",
   "item.betterend.crystalline_sulphur": "Sulfur",
+  "item.betterend.debug.biome_loot": "Biome Loot [dev]",
   "item.betterend.debug.fill_base_void": "Replace EndStone in Structure Block Bounds [dev]",
   "item.betterend.debug.fill_air": "Replace Air in Structure Block Bounds [dev]",
   "item.betterend.debug.jigsaw_big_deco": "Large Decoration [dev]",

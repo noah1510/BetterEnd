@@ -4,7 +4,6 @@ import org.betterx.bclib.items.DebugDataItem;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.registry.EndItems;
 import org.betterx.betterend.world.structures.village.VillagePools;
-import org.betterx.datagen.betterend.recipes.EndChestLootTableProvider;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.Item;
@@ -17,17 +16,22 @@ public class DebugHelpers {
 
         EndItems.registerEndItem(
                 "debug/village_loot",
-                DebugDataItem.forLootTable(EndChestLootTableProvider.VILLAGE_LOOT, Items.IRON_INGOT)
+                DebugDataItem.forLootTable(LootTableUtil.VILLAGE_LOOT, Items.IRON_INGOT)
         );
 
         EndItems.registerEndItem(
                 "debug/village_bonus",
-                DebugDataItem.forLootTable(EndChestLootTableProvider.VILLAGE_BONUS_LOOT, Items.DIAMOND)
+                DebugDataItem.forLootTable(LootTableUtil.VILLAGE_BONUS_LOOT, Items.DIAMOND)
         );
 
         EndItems.registerEndItem(
                 "debug/village_template",
-                DebugDataItem.forLootTable(EndChestLootTableProvider.VILLAGE_TEMPLATE_LOOT, Items.GOLD_INGOT)
+                DebugDataItem.forLootTable(LootTableUtil.VILLAGE_TEMPLATE_LOOT, Items.GOLD_INGOT)
+        );
+
+        EndItems.registerEndItem(
+                "debug/biome_loot",
+                DebugDataItem.forLootTable(LootTableUtil.BIOME_CHEST, Items.CHEST)
         );
 
         EndItems.registerEndItem(
