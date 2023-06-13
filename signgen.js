@@ -23,7 +23,7 @@ woods.forEach(wood => {
 
     const particles = `{
     "textures": {
-        "particle": "betterend:block/${wood}"
+        "particle": "betterend:block/${wood}_planks"
     }
 }`
 
