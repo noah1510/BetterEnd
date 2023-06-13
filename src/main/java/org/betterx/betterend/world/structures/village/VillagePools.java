@@ -122,7 +122,7 @@ public class VillagePools {
         ctx.register(VillagePools.STREET_DECO_KEY, new StructureTemplatePool(
                 terminatorPool,
                 ImmutableList.of(
-                        Pair.of(StructurePoolElement.empty(), 6),
+                        Pair.of(StructurePoolElement.empty(), 5),
                         single("village/street_decoration/lamp_02", emptyProcessor, 2),
                         single("village/street_decoration/lamp_05", emptyProcessor, 1)
                 ),
