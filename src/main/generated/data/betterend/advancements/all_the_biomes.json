@@ -420,7 +420,28 @@
   },
   "requirements": [
     [
-      "betterend:chorus_forest"
+      "betterend:umbra_valley"
+    ],
+    [
+      "betterend:megalake"
+    ],
+    [
+      "betterend:sulphur_springs"
+    ],
+    [
+      "betterend:amber_land"
+    ],
+    [
+      "betterend:ice_starfield"
+    ],
+    [
+      "betterend:empty_smaragdant_cave"
+    ],
+    [
+      "betterend:shadow_forest"
+    ],
+    [
+      "betterend:empty_aurora_cave"
     ],
     [
       "betterend:glowing_grasslands"
@@ -429,49 +450,34 @@
       "betterend:foggy_mushroomland"
     ],
     [
-      "betterend:empty_smaragdant_cave"
-    ],
-    [
-      "betterend:ice_starfield"
-    ],
-    [
-      "betterend:dry_shrubland"
-    ],
-    [
-      "betterend:lush_aurora_cave"
-    ],
-    [
-      "betterend:empty_aurora_cave"
-    ],
-    [
-      "betterend:megalake"
-    ],
-    [
-      "betterend:lush_smaragdant_cave"
-    ],
-    [
       "betterend:lantern_woods"
-    ],
-    [
-      "betterend:painted_mountains"
-    ],
-    [
-      "betterend:umbrella_jungle"
-    ],
-    [
-      "betterend:megalake_grove"
     ],
     [
       "betterend:dragon_graveyards"
     ],
     [
+      "betterend:chorus_forest"
+    ],
+    [
       "betterend:neon_oasis"
     ],
     [
-      "betterend:blossoming_spires"
+      "betterend:empty_end_cave"
     ],
     [
-      "betterend:dust_wastelands"
+      "betterend:lush_smaragdant_cave"
+    ],
+    [
+      "betterend:painted_mountains"
+    ],
+    [
+      "betterend:lush_aurora_cave"
+    ],
+    [
+      "betterend:megalake_grove"
+    ],
+    [
+      "betterend:blossoming_spires"
     ],
     [
       "betterend:crystal_mountains"
@@ -480,19 +486,13 @@
       "betterend:jade_cave"
     ],
     [
-      "betterend:umbra_valley"
+      "betterend:dust_wastelands"
     ],
     [
-      "betterend:amber_land"
+      "betterend:dry_shrubland"
     ],
     [
-      "betterend:shadow_forest"
-    ],
-    [
-      "betterend:sulphur_springs"
-    ],
-    [
-      "betterend:empty_end_cave"
+      "betterend:umbrella_jungle"
     ]
   ],
   "rewards": {

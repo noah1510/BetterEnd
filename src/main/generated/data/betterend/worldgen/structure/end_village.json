@@ -6,7 +6,7 @@
   "size": 6,
   "spawn_overrides": {},
   "start_height": {
-    "absolute": 5
+    "absolute": 0
   },
   "start_pool": "betterend:village/center_piece",
   "step": "surface_structures",
