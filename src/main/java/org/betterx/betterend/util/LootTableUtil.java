@@ -7,6 +7,7 @@ import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.registry.EndBiomes;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndItems;
+import org.betterx.betterend.registry.EndTemplates;
 
 import net.minecraft.advancements.critereon.LocationPredicate;
 import net.minecraft.core.Holder;
@@ -18,6 +19,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.EmptyLootItem;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootTableReference;
 import net.minecraft.world.level.storage.loot.functions.EnchantWithLevelsFunction;
@@ -83,6 +85,19 @@ public class LootTableUtil {
                 builder.add(LootItem.lootTableItem(EndItems.MUSIC_DISC_ENDSEEKER));
                 builder.add(LootItem.lootTableItem(EndItems.MUSIC_DISC_EO_DRACONA));
                 table.withPool(builder);
+
+                table.withPool(LootPool
+                        .lootPool()
+                        .setRolls(UniformGenerator.between(2, 4))
+                        .add(EmptyLootItem.emptyItem().setWeight(12))
+                        .add(LootItem.lootTableItem(EndTemplates.NETHERITE_UPGRADE).setWeight(3))
+                        .add(LootItem.lootTableItem(EndTemplates.HANDLE_ATTACHMENT).setWeight(2))
+                        .add(LootItem.lootTableItem(EndTemplates.LEATHER_HANDLE_ATTACHMENT).setWeight(1))
+                        .add(LootItem.lootTableItem(EndTemplates.TOOL_ASSEMBLY).setWeight(1))
+                        .add(LootItem.lootTableItem(EndTemplates.AETERNIUM_UPGRADE).setWeight(1))
+                        .add(LootItem.lootTableItem(EndTemplates.THALLASIUM_UPGRADE).setWeight(2))
+                        .add(LootItem.lootTableItem(EndTemplates.TERMINITE_UPGRADE).setWeight(2))
+                );
             } else if (BuiltInLootTables.FISHING.equals(id)) {
                 table.modifyPools((modifier) -> modifier.when(IN_END.invert()));
                 table.withPool(LootPool.lootPool().when(IN_END).setRolls(ConstantValue.exactly(1.0F))
@@ -153,6 +168,7 @@ public class LootTableUtil {
                     builder.add(LootItem.lootTableItem(EndBlocks.PYTHADENDRON.getBlock(WoodenComplexMaterial.BLOCK_PLANKS)));
                     builder.add(LootItem.lootTableItem(EndBlocks.PYTHADENDRON_SAPLING));
                     builder.add(LootItem.lootTableItem(EndBlocks.CHORUS_MUSHROOM));
+                    builder.add(LootItem.lootTableItem(EndTemplates.HANDLE_ATTACHMENT));
                     table.withPool(builder);
                 } else if (SHADOW_FOREST.equals(id)) {
                     addCommonItems(table);
