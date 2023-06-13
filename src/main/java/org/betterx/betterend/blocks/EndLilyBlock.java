@@ -1,6 +1,7 @@
 package org.betterx.betterend.blocks;
 
 import org.betterx.bclib.behaviours.BehaviourBuilders;
+import org.betterx.bclib.behaviours.interfaces.BehaviourWaterPlant;
 import org.betterx.bclib.blocks.BlockProperties;
 import org.betterx.bclib.blocks.BlockProperties.TripleShape;
 import org.betterx.bclib.interfaces.tools.AddMineableShears;
@@ -37,17 +38,15 @@ import com.google.common.collect.Lists;
 import java.util.Collections;
 import java.util.List;
 
-public class EndLilyBlock extends EndUnderwaterPlantBlock implements AddMineableShears {
+public class EndLilyBlock extends EndUnderwaterPlantBlock implements BehaviourWaterPlant, AddMineableShears {
     public static final EnumProperty<TripleShape> SHAPE = BlockProperties.TRIPLE_SHAPE;
     private static final VoxelShape SHAPE_BOTTOM = Block.box(4, 0, 4, 12, 16, 12);
     private static final VoxelShape SHAPE_TOP = Block.box(2, 0, 2, 14, 6, 14);
 
     public EndLilyBlock() {
-        super(baseUnderwaterPlantSettings(
-                        BehaviourBuilders.createWaterPlant(),
-                        0
-                )
-                        .lightLevel((state) -> state.getValue(SHAPE) == TripleShape.TOP ? 13 : 0)
+        super(BehaviourBuilders
+                .createWaterPlant()
+                .lightLevel((state) -> state.getValue(SHAPE) == TripleShape.TOP ? 13 : 0)
         );
     }
 

@@ -26,12 +26,10 @@ public class BubbleCoralBlock extends EndUnderwaterPlantBlock implements Behavio
     private static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 14, 16);
 
     public BubbleCoralBlock() {
-        super(baseUnderwaterPlantSettings(
-                        BehaviourBuilders.createWaterPlant(),
-                        0
-                )
-                        .sound(SoundType.CORAL_BLOCK)
-                        .offsetType(BlockBehaviour.OffsetType.NONE)
+        super(BehaviourBuilders
+                .createWaterPlant()
+                .sound(SoundType.CORAL_BLOCK)
+                .offsetType(BlockBehaviour.OffsetType.NONE)
         );
     }
 

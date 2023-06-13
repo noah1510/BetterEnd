@@ -1,6 +1,7 @@
 package org.betterx.betterend.blocks;
 
 import org.betterx.bclib.behaviours.BehaviourBuilders;
+import org.betterx.bclib.behaviours.interfaces.BehaviourWaterPlant;
 import org.betterx.bclib.interfaces.tools.AddMineableShears;
 import org.betterx.betterend.blocks.basis.EndUnderwaterPlantBlock;
 
@@ -19,15 +20,16 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
-public class PondAnemoneBlock extends EndUnderwaterPlantBlock implements AddMineableShears {
+public class PondAnemoneBlock extends EndUnderwaterPlantBlock implements BehaviourWaterPlant, AddMineableShears {
     private static final VoxelShape SHAPE = Block.box(2, 0, 2, 14, 14, 14);
 
     public PondAnemoneBlock() {
-        super(baseUnderwaterPlantSettings(
-                        BehaviourBuilders.createWaterPlant(),
-                        13
-                ).sound(SoundType.CORAL_BLOCK)
-                 .offsetType(OffsetType.NONE)
+        super(
+                BehaviourBuilders
+                        .createWaterPlant()
+                        .sound(SoundType.CORAL_BLOCK)
+                        .offsetType(OffsetType.NONE)
+                        .lightLevel(state -> 13)
         );
     }
 

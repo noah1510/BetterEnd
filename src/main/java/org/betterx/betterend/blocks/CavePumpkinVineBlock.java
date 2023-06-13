@@ -1,8 +1,10 @@
 package org.betterx.betterend.blocks;
 
 import org.betterx.bclib.behaviours.BehaviourBuilders;
+import org.betterx.bclib.behaviours.interfaces.BehaviourPlant;
 import org.betterx.bclib.blocks.BlockProperties;
 import org.betterx.betterend.blocks.basis.EndPlantWithAgeBlock;
+import org.betterx.betterend.interfaces.survives.SurvivesOnEndStone;
 import org.betterx.betterend.registry.EndBlocks;
 
 import net.minecraft.core.BlockPos;
@@ -15,20 +17,20 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class CavePumpkinVineBlock extends EndPlantWithAgeBlock {
+public class CavePumpkinVineBlock extends EndPlantWithAgeBlock implements SurvivesOnEndStone, BehaviourPlant {
     public CavePumpkinVineBlock() {
-        super(BehaviourBuilders.createPlant());
+        super(BehaviourBuilders.createPlant(MapColor.TERRACOTTA_ORANGE));
     }
 
     private static final VoxelShape SHAPE = Block.box(4, 0, 4, 12, 16, 12);
 
     @Override
     public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
-        BlockState down = world.getBlockState(pos.above());
-        return isTerrain(down);
+        return canSurviveOnBottom(world, pos);
     }
 
     @Override

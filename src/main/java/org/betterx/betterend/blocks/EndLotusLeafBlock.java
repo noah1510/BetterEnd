@@ -37,7 +37,7 @@ public class EndLotusLeafBlock extends BaseBlockNotFull implements RenderLayerPr
     private static final VoxelShape VSHAPE = Block.box(0, 0, 0, 16, 1, 16);
 
     public EndLotusLeafBlock() {
-        super(BehaviourBuilders.createPlant(MapColor.PLANT, true).noOcclusion().sound(SoundType.WET_GRASS));
+        super(BehaviourBuilders.createWalkablePlant(MapColor.COLOR_PINK).sound(SoundType.WET_GRASS));
     }
 
     @Override

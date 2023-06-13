@@ -2,6 +2,7 @@ package org.betterx.betterend.blocks;
 
 import org.betterx.bclib.behaviours.interfaces.BehaviourPlant;
 import org.betterx.bclib.blocks.BaseDoublePlantBlock;
+import org.betterx.betterend.interfaces.survives.SurvivesOnJungleMossOrMycelium;
 import org.betterx.betterend.registry.EndBlocks;
 
 import net.minecraft.core.BlockPos;
@@ -11,7 +12,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class TwistedUmbrellaMossTallBlock extends BaseDoublePlantBlock implements BehaviourPlant {
+public class TwistedUmbrellaMossTallBlock extends BaseDoublePlantBlock implements BehaviourPlant, SurvivesOnJungleMossOrMycelium {
     public TwistedUmbrellaMossTallBlock() {
         super(12);
     }
@@ -29,7 +30,7 @@ public class TwistedUmbrellaMossTallBlock extends BaseDoublePlantBlock implement
     }
 
     @Override
-    protected boolean isTerrain(BlockState state) {
-        return state.is(EndBlocks.END_MOSS) || state.is(EndBlocks.END_MYCELIUM) || state.is(EndBlocks.JUNGLE_MOSS);
+    public boolean isTerrain(BlockState state) {
+        return SurvivesOnJungleMossOrMycelium.super.isTerrain(state);
     }
 }

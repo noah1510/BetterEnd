@@ -25,8 +25,10 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -47,7 +49,9 @@ public class SmallJellyshroomBlock extends BaseAttachedBlock implements RenderLa
     private static final EnumMap<Direction, VoxelShape> BOUNDING_SHAPES = Maps.newEnumMap(Direction.class);
 
     public SmallJellyshroomBlock() {
-        super(BehaviourBuilders.createPlant().sound(SoundType.NETHER_WART));
+        super(BehaviourBuilders.createPlant(MapColor.COLOR_LIGHT_BLUE)
+                               .sound(SoundType.NETHER_WART)
+                               .offsetType(BlockBehaviour.OffsetType.XZ));
     }
 
     @Override

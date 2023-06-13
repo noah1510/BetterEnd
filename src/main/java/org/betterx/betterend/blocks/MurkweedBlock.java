@@ -1,7 +1,8 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
 import org.betterx.betterend.blocks.basis.EndPlantBlock;
-import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.interfaces.survives.SurvivesOnShadowGrass;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -13,12 +14,19 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
-public class MurkweedBlock extends EndPlantBlock {
+public class MurkweedBlock extends EndPlantBlock implements SurvivesOnShadowGrass {
+    public MurkweedBlock() {
+        super(
+                BehaviourBuilders.createPlant(MapColor.COLOR_BLACK).ignitedByLava()
+        );
+    }
+
     @Override
     @Environment(EnvType.CLIENT)
     public void animateTick(BlockState state, Level world, BlockPos pos, RandomSource random) {
@@ -35,11 +43,6 @@ public class MurkweedBlock extends EndPlantBlock {
         if (entity instanceof LivingEntity && !((LivingEntity) entity).hasEffect(MobEffects.BLINDNESS)) {
             ((LivingEntity) entity).addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 50));
         }
-    }
-
-    @Override
-    protected boolean isTerrain(BlockState state) {
-        return state.is(EndBlocks.SHADOW_GRASS);
     }
 
     @Override

@@ -11,6 +11,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -24,7 +25,7 @@ public class FilaluxWingsBlock extends BaseAttachedBlock implements RenderLayerP
 
     public FilaluxWingsBlock() {
         super(BehaviourBuilders
-                .createPlant()
+                .createPlant(MapColor.COLOR_RED)
                 .sound(SoundType.WET_GRASS)
         );
     }

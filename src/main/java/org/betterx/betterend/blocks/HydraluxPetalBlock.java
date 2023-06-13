@@ -14,7 +14,7 @@ public class HydraluxPetalBlock extends BaseBlock.Wood {
     public HydraluxPetalBlock() {
         this(
                 BehaviourBuilders
-                        .createPlant(MapColor.PODZOL)
+                        .createWalkablePlant(MapColor.PODZOL)
                         .strength(1)
                         .sound(SoundType.WART_BLOCK)
         );

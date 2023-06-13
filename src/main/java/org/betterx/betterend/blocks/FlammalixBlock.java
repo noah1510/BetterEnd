@@ -4,7 +4,7 @@ import org.betterx.bclib.behaviours.BehaviourBuilders;
 import org.betterx.bclib.behaviours.interfaces.BehaviourPlant;
 import org.betterx.bclib.client.models.ModelsHelper;
 import org.betterx.betterend.blocks.basis.EndPlantBlock;
-import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.interfaces.survives.SurvicesOnPallidium;
 
 import net.minecraft.client.renderer.block.model.BlockModel;
 import net.minecraft.core.BlockPos;
@@ -19,19 +19,11 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
-public class FlammalixBlock extends EndPlantBlock implements BehaviourPlant {
+public class FlammalixBlock extends EndPlantBlock implements BehaviourPlant, SurvicesOnPallidium {
     private static final VoxelShape SHAPE = Block.box(2, 0, 2, 14, 14, 14);
 
     public FlammalixBlock() {
         super(BehaviourBuilders.createPlant(MapColor.COLOR_ORANGE).lightLevel((bs) -> 12));
-    }
-
-    @Override
-    protected boolean isTerrain(BlockState state) {
-        return state.is(EndBlocks.PALLIDIUM_FULL) ||
-                state.is(EndBlocks.PALLIDIUM_HEAVY) ||
-                state.is(EndBlocks.PALLIDIUM_THIN) ||
-                state.is(EndBlocks.PALLIDIUM_TINY);
     }
 
     @Override

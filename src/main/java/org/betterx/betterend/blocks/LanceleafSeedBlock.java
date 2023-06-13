@@ -1,11 +1,13 @@
 package org.betterx.betterend.blocks;
 
 import org.betterx.bclib.behaviours.BehaviourBuilders;
+import org.betterx.bclib.behaviours.interfaces.BehaviourSeed;
 import org.betterx.bclib.blocks.BlockProperties;
 import org.betterx.bclib.blocks.BlockProperties.PentaShape;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.blocks.basis.EndPlantWithAgeBlock;
+import org.betterx.betterend.interfaces.survives.SurvivesOnAmberMoss;
 import org.betterx.betterend.registry.EndBlocks;
 
 import net.minecraft.core.BlockPos;
@@ -14,10 +16,11 @@ import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.MapColor;
 
-public class LanceleafSeedBlock extends EndPlantWithAgeBlock {
+public class LanceleafSeedBlock extends EndPlantWithAgeBlock implements SurvivesOnAmberMoss, BehaviourSeed {
     public LanceleafSeedBlock() {
-        super(BehaviourBuilders.createPlant().offsetType(OffsetType.NONE));
+        super(BehaviourBuilders.createSeed(MapColor.TERRACOTTA_BROWN));
     }
 
     @Override
@@ -53,10 +56,5 @@ public class LanceleafSeedBlock extends EndPlantWithAgeBlock {
                 mut.move(Direction.UP),
                 plant.setValue(BlockProperties.PENTA_SHAPE, PentaShape.TOP)
         );
-    }
-
-    @Override
-    protected boolean isTerrain(BlockState state) {
-        return state.is(EndBlocks.AMBER_MOSS);
     }
 }

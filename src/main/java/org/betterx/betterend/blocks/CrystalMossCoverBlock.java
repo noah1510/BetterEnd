@@ -29,9 +29,7 @@ public class CrystalMossCoverBlock extends MultifaceBlock implements Bonemealabl
     private final MultifaceSpreader spreader = new MultifaceSpreader(this);
 
     public CrystalMossCoverBlock(MapColor color) {
-        super(BehaviourBuilders.createReplaceablePlant(color)
-                               .strength(0.2f)
-                               .sound(SoundType.GLOW_LICHEN)
+        super(BehaviourBuilders.createPlantCover(color)
                                .lightLevel(GlowLichenBlock.emission(7)));
         this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, false));
     }

@@ -1,9 +1,10 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
 import org.betterx.bclib.items.tool.BaseShearsItem;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.blocks.basis.EndPlantBlock;
-import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.interfaces.survives.SurvivesOnShadowGrass;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
@@ -15,6 +16,7 @@ import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
@@ -23,7 +25,15 @@ import com.google.common.collect.Lists;
 
 import java.util.List;
 
-public class NeedlegrassBlock extends EndPlantBlock {
+public class NeedlegrassBlock extends EndPlantBlock implements SurvivesOnShadowGrass {
+    public NeedlegrassBlock() {
+        super(BehaviourBuilders
+                .createGrass(MapColor.COLOR_BLACK)
+                .ignitedByLava()
+                .offsetType(OffsetType.XZ)
+        );
+    }
+
     @Override
     @SuppressWarnings("deprecation")
     public void entityInside(BlockState state, Level world, BlockPos pos, Entity entity) {
@@ -43,11 +53,6 @@ public class NeedlegrassBlock extends EndPlantBlock {
         } else {
             return Lists.newArrayList(new ItemStack(Items.STICK, MHelper.randRange(0, 2, MHelper.RANDOM_SOURCE)));
         }
-    }
-
-    @Override
-    protected boolean isTerrain(BlockState state) {
-        return state.is(EndBlocks.SHADOW_GRASS);
     }
 
     @Override

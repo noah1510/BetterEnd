@@ -1,22 +1,24 @@
 package org.betterx.betterend.blocks;
 
 import org.betterx.bclib.behaviours.BehaviourBuilders;
+import org.betterx.bclib.behaviours.interfaces.BehaviourSeed;
 import org.betterx.bclib.blocks.BlockProperties;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.blocks.basis.EndPlantWithAgeBlock;
 import org.betterx.betterend.blocks.basis.FurBlock;
+import org.betterx.betterend.interfaces.survives.SurvivesOnMossOrMycelium;
 import org.betterx.betterend.registry.EndBlocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
-import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.MapColor;
 
-public class BlueVineSeedBlock extends EndPlantWithAgeBlock {
+public class BlueVineSeedBlock extends EndPlantWithAgeBlock implements SurvivesOnMossOrMycelium, BehaviourSeed {
     public BlueVineSeedBlock() {
-        super(BehaviourBuilders.createPlant());
+        super(BehaviourBuilders.createSeed(MapColor.COLOR_BLUE).ignitedByLava());
     }
 
     @Override
@@ -72,10 +74,5 @@ public class BlueVineSeedBlock extends EndPlantWithAgeBlock {
                     EndBlocks.BLUE_VINE_FUR.defaultBlockState().setValue(FurBlock.FACING, Direction.UP)
             );
         }
-    }
-
-    @Override
-    protected boolean isTerrain(BlockState state) {
-        return state.is(EndBlocks.END_MOSS) || state.is(EndBlocks.END_MYCELIUM);
     }
 }

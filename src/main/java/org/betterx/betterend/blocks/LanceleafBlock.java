@@ -1,9 +1,12 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
+import org.betterx.bclib.behaviours.interfaces.BehaviourPlant;
 import org.betterx.bclib.blocks.BlockProperties;
 import org.betterx.bclib.blocks.BlockProperties.PentaShape;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.blocks.basis.EndPlantBlock;
+import org.betterx.betterend.interfaces.survives.SurvivesOnAmberMoss;
 import org.betterx.betterend.registry.EndBlocks;
 
 import net.minecraft.core.BlockPos;
@@ -17,18 +20,19 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.storage.loot.LootParams;
 
 import java.util.Collections;
 import java.util.List;
 
-public class LanceleafBlock extends EndPlantBlock {
+public class LanceleafBlock extends EndPlantBlock implements SurvivesOnAmberMoss, BehaviourPlant {
 
     public static final EnumProperty<PentaShape> SHAPE = BlockProperties.PENTA_SHAPE;
     public static final IntegerProperty ROTATION = BlockProperties.ROTATION;
 
     public LanceleafBlock() {
-        super();
+        super(BehaviourBuilders.createPlant(MapColor.TERRACOTTA_BROWN).ignitedByLava().offsetType(OffsetType.XZ));
     }
 
     @Override
@@ -42,8 +46,7 @@ public class LanceleafBlock extends EndPlantBlock {
         if (shape == PentaShape.TOP) {
             return world.getBlockState(pos.below()).is(this);
         } else if (shape == PentaShape.BOTTOM) {
-            return world.getBlockState(pos.below()).is(EndBlocks.AMBER_MOSS) && world.getBlockState(pos.above())
-                                                                                     .is(this);
+            return canSurviveOnTop(world, pos) && world.getBlockState(pos.above()).is(this);
         } else {
             return world.getBlockState(pos.below()).is(this) && world.getBlockState(pos.above()).is(this);
         }

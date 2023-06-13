@@ -28,11 +28,11 @@ public class EndLotusFlowerBlock extends EndPlantBlock implements BehaviourPlant
     private static final VoxelShape SHAPE_COLLISION = Block.box(0, 0, 0, 16, 2, 16);
 
     public EndLotusFlowerBlock() {
-        super(BehaviourBuilders.createPlant(MapColor.COLOR_PINK, true).lightLevel((bs) -> 15));
+        super(BehaviourBuilders.createPlant(MapColor.COLOR_PINK).lightLevel((bs) -> 15));
     }
 
     @Override
-    protected boolean isTerrain(BlockState state) {
+    public boolean isTerrain(BlockState state) {
         return state.is(EndBlocks.END_LOTUS_STEM);
     }
 

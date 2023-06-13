@@ -1,25 +1,29 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
+import org.betterx.bclib.behaviours.interfaces.BehaviourSeed;
 import org.betterx.bclib.blocks.BlockProperties;
 import org.betterx.bclib.blocks.BlockProperties.TripleShape;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.betterend.blocks.basis.EndPlantWithAgeBlock;
+import org.betterx.betterend.interfaces.survives.SurvivesOnEndStoneOrTrees;
 import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.MapColor;
 
-public class BulbVineSeedBlock extends EndPlantWithAgeBlock {
+public class BulbVineSeedBlock extends EndPlantWithAgeBlock implements BehaviourSeed, SurvivesOnEndStoneOrTrees {
+    public BulbVineSeedBlock() {
+        super(BehaviourBuilders.createSeed(MapColor.COLOR_PURPLE));
+    }
 
     @Override
     public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
-        BlockState up = world.getBlockState(pos.above());
-        return up.is(CommonBlockTags.GEN_END_STONES) || up.is(BlockTags.LOGS) || up.is(BlockTags.LEAVES);
+        return canSurviveOnBottom(world, pos);
     }
 
     @Override

@@ -1,9 +1,9 @@
 package org.betterx.betterend.blocks;
 
 import org.betterx.bclib.behaviours.BehaviourBuilders;
-import org.betterx.bclib.behaviours.interfaces.BehaviourPlant;
+import org.betterx.bclib.behaviours.interfaces.BehaviourShearablePlant;
 import org.betterx.bclib.interfaces.CustomItemProvider;
-import org.betterx.bclib.interfaces.tools.AddMineableShears;
+import org.betterx.bclib.interfaces.SurvivesOnWater;
 import org.betterx.betterend.blocks.basis.EndPlantBlock;
 
 import net.minecraft.core.BlockPos;
@@ -14,10 +14,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.PlaceOnWaterBlockItem;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -26,20 +25,14 @@ import com.google.common.collect.Lists;
 
 import java.util.List;
 
-public class FlamaeaBlock extends EndPlantBlock implements CustomItemProvider, BehaviourPlant, AddMineableShears {
+public class FlamaeaBlock extends EndPlantBlock implements CustomItemProvider, BehaviourShearablePlant, SurvivesOnWater {
     private static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 1, 16);
 
     public FlamaeaBlock() {
         super(BehaviourBuilders
-                .createPlant()
+                .createPlant(MapColor.COLOR_ORANGE)
                 .sound(SoundType.WET_GRASS)
-                .offsetType(BlockBehaviour.OffsetType.NONE)
         );
-    }
-
-    @Override
-    protected boolean isTerrain(BlockState state) {
-        return state.is(Blocks.WATER);
     }
 
     @Override

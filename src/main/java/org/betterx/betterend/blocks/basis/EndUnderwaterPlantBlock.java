@@ -6,10 +6,6 @@ import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class EndUnderwaterPlantBlock extends UnderwaterPlantBlock {
-
-    public EndUnderwaterPlantBlock() {
-    }
-
     public EndUnderwaterPlantBlock(Properties settings) {
         super(settings);
     }

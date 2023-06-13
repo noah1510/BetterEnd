@@ -1,8 +1,10 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
+import org.betterx.bclib.behaviours.interfaces.BehaviourPlant;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.betterend.blocks.basis.EndPlantBlock;
-import org.betterx.betterend.registry.EndBlocks;
+import org.betterx.betterend.interfaces.survives.SurvivesOnEndBone;
 import org.betterx.betterend.registry.EndFeatures;
 
 import net.minecraft.core.BlockPos;
@@ -14,19 +16,22 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.Optional;
 
-public class SmallAmaranitaBlock extends EndPlantBlock {
+public class SmallAmaranitaBlock extends EndPlantBlock implements SurvivesOnEndBone, BehaviourPlant {
+    public SmallAmaranitaBlock() {
+        super(
+                BehaviourBuilders.createPlant(MapColor.COLOR_RED).offsetType(OffsetType.XZ)
+        );
+    }
+
     private static final VoxelShape SHAPE = Block.box(4, 0, 4, 12, 10, 12);
 
-    @Override
-    protected boolean isTerrain(BlockState state) {
-        return state.is(EndBlocks.SANGNUM) || state.is(EndBlocks.MOSSY_OBSIDIAN) || state.is(EndBlocks.MOSSY_DRAGON_BONE);
-    }
 
     @Override
     public void performBonemeal(ServerLevel world, RandomSource random, BlockPos pos, BlockState state) {
