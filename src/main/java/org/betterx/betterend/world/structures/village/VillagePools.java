@@ -70,7 +70,8 @@ public class VillagePools {
         ctx.register(VillagePools.START, new StructureTemplatePool(
                 terminatorPool,
                 ImmutableList.of(
-                        single("village/center/light_pyramid_01", emptyProcessor, 1)
+                        single("village/center/light_pyramid_01", emptyProcessor, 2),
+                        single("village/center/light_pyramid_02", emptyProcessor, 1)
                 ),
                 StructureTemplatePool.Projection.RIGID
         ));
