@@ -3,15 +3,12 @@ package org.betterx.betterend.portal;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.betterend.blocks.EndPortalBlock;
 import org.betterx.betterend.registry.EndBlocks;
-import org.betterx.betterend.registry.EndFeatures;
 import org.betterx.betterend.registry.EndPoiTypes;
 import org.betterx.betterend.rituals.EternalRitual;
-import org.betterx.worlds.together.world.event.WorldBootstrap;
 
 import net.minecraft.BlockUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.TicketType;
 import net.minecraft.util.Mth;
@@ -25,7 +22,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.border.WorldBorder;
 import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.levelgen.LegacyRandomSource;
 
 import com.google.common.collect.Sets;
 
@@ -305,38 +301,38 @@ public class PortalBuilder {
         Direction.Axis portalAxis = (Direction.Axis.X == portalDirection.getAxis())
                 ? Direction.Axis.Z
                 : Direction.Axis.X;
-        if (!checkIsAreaValid(targetLevel, centerPos, portalAxis)) {
-            if (targetLevel.dimension() == Level.END) {
-                WorldBootstrap.getLastRegistryAccess()
-                              .registryOrThrow(Registries.CONFIGURED_FEATURE)
-                              .get(net.minecraft.data.worldgen.features.EndFeatures.END_ISLAND)
-                              .place(
-                                      targetLevel,
-                                      targetLevel.getChunkSource().getGenerator(),
-                                      new LegacyRandomSource(centerPos.asLong()),
-                                      centerPos.below()
-                              );
-            } else if (targetLevel.dimension() == Level.OVERWORLD) {
-                centerPos = centerPos
-                        .mutable()
-                        .setY(targetLevel.getChunk(centerPos)
-                                         .getHeight(
-                                                 Heightmap.Types.WORLD_SURFACE,
-                                                 centerPos.getX(),
-                                                 centerPos.getZ()
-                                         ) + 1);
-            }
-            EndFeatures.BIOME_ISLAND
-                    .getPlacedFeature()
-                    .value()
-                    .place(
-                            targetLevel,
-                            targetLevel.getChunkSource().getGenerator(),
-                            new LegacyRandomSource(centerPos.asLong()),
-                            centerPos.below()
-                    );
-
-        }
+//        if (!checkIsAreaValid(targetLevel, centerPos, portalAxis)) {
+//            if (targetLevel.dimension() == Level.END) {
+//                WorldBootstrap.getLastRegistryAccess()
+//                              .registryOrThrow(Registries.CONFIGURED_FEATURE)
+//                              .get(net.minecraft.data.worldgen.features.EndFeatures.END_ISLAND)
+//                              .place(
+//                                      targetLevel,
+//                                      targetLevel.getChunkSource().getGenerator(),
+//                                      new LegacyRandomSource(centerPos.asLong()),
+//                                      centerPos.below()
+//                              );
+//            } else if (targetLevel.dimension() == Level.OVERWORLD) {
+//                centerPos = centerPos
+//                        .mutable()
+//                        .setY(targetLevel.getChunk(centerPos)
+//                                         .getHeight(
+//                                                 Heightmap.Types.WORLD_SURFACE,
+//                                                 centerPos.getX(),
+//                                                 centerPos.getZ()
+//                                         ) + 1);
+//            }
+//            EndFeatures.BIOME_ISLAND
+//                    .getPlacedFeature()
+//                    .value()
+//                    .place(
+//                            targetLevel,
+//                            targetLevel.getChunkSource().getGenerator(),
+//                            new LegacyRandomSource(centerPos.asLong()),
+//                            centerPos.below()
+//                    );
+//
+//        }
         generatePortal(targetLevel, centerPos, portalAxis, portalID);
     }
 
