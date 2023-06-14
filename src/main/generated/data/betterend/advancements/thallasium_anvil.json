@@ -1,12 +1,12 @@
 {
-  "parent": "betterend:thalassium_anvil",
+  "parent": "betterend:hammer",
   "criteria": {
-    "got_thalassium_plate": {
+    "got_thallasium_anvil": {
       "conditions": {
         "items": [
           {
             "items": [
-              "betterend:thallasium_forged_plate"
+              "betterend:thallasium_anvil"
             ]
           }
         ]
@@ -17,21 +17,21 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "translate": "advancements.betterend.thalassium_plate.description"
+      "translate": "advancements.betterend.thallasium_anvil.description"
     },
     "frame": "task",
     "hidden": false,
     "icon": {
-      "item": "betterend:thallasium_forged_plate"
+      "item": "betterend:thallasium_anvil"
     },
     "show_toast": true,
     "title": {
-      "translate": "advancements.betterend.thalassium_plate.title"
+      "translate": "advancements.betterend.thallasium_anvil.title"
     }
   },
   "requirements": [
     [
-      "got_thalassium_plate"
+      "got_thallasium_anvil"
     ]
   ],
   "sends_telemetry_event": false

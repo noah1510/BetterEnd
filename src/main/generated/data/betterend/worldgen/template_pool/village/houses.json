@@ -212,6 +212,15 @@
         "projection": "rigid"
       },
       "weight": 1
+    },
+    {
+      "element": {
+        "element_type": "bclib:single_end_pool_element",
+        "location": "betterend:village/street_decoration/work_01",
+        "processors": "betterend:end_street",
+        "projection": "rigid"
+      },
+      "weight": 1
     }
   ],
   "fallback": "betterend:village/terminators"

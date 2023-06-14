@@ -1,5 +1,5 @@
 {
-  "parent": "betterend:thalassium_plate",
+  "parent": "betterend:thallasium_plate",
   "criteria": {
     "got_thallasium_boots": {
       "conditions": {

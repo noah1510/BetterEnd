@@ -2,5 +2,5 @@
   "type": "betterend:megalake",
   "biomes": "#betterend:has_structure/megalake",
   "spawn_overrides": {},
-  "step": "raw_generation"
+  "step": "lakes"
 }

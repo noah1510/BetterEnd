@@ -25,7 +25,7 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "got_thalassium_hammer": {
+    "got_thallasium_hammer": {
       "conditions": {
         "items": [
           {
@@ -57,7 +57,7 @@
   "requirements": [
     [
       "got_diamond_hammer",
-      "got_thalassium_hammer",
+      "got_thallasium_hammer",
       "got_terminite_hammer"
     ]
   ],

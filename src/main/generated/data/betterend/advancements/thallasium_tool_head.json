@@ -1,5 +1,5 @@
 {
-  "parent": "betterend:thalassium_anvil",
+  "parent": "betterend:thallasium_anvil",
   "criteria": {
     "got_thallasium_axe_head": {
       "conditions": {
