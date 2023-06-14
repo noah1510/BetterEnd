@@ -6,6 +6,7 @@ import org.betterx.bclib.interfaces.SurvivesOnBlocks;
 import org.betterx.betterend.blocks.basis.EndPlantBlock;
 
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
 
 import java.util.List;
@@ -24,5 +25,10 @@ public class TerrainPlantBlock extends EndPlantBlock implements SurvivesOnBlocks
     @Override
     public List<Block> getSurvivableBlocks() {
         return ground;
+    }
+
+    @Override
+    public boolean isTerrain(BlockState state) {
+        return SurvivesOnBlocks.super.isTerrain(state);
     }
 }

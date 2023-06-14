@@ -99,4 +99,9 @@ public class SmallAmaranitaBlock extends EndPlantBlock implements SurvivesOnEndB
     public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
         return random.nextInt(8) == 0;
     }
+
+    @Override
+    public boolean isTerrain(BlockState state) {
+        return SurvivesOnEndBone.super.isTerrain(state);
+    }
 }

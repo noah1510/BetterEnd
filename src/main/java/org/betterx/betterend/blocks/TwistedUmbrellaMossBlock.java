@@ -47,4 +47,9 @@ public class TwistedUmbrellaMossBlock extends EndPlantBlock implements Behaviour
         BlocksHelper.setWithoutUpdate(world, pos, bs);
         BlocksHelper.setWithoutUpdate(world, pos.above(), bs.setValue(BaseDoublePlantBlock.TOP, true));
     }
+
+    @Override
+    public boolean isTerrain(BlockState state) {
+        return SurvivesOnJungleMossOrMycelium.super.isTerrain(state);
+    }
 }

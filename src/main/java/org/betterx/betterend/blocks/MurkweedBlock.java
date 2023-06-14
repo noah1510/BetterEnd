@@ -50,4 +50,9 @@ public class MurkweedBlock extends EndPlantBlock implements SurvivesOnShadowGras
     public boolean isPathfindable(BlockState state, BlockGetter world, BlockPos pos, PathComputationType type) {
         return false;
     }
+
+    @Override
+    public boolean isTerrain(BlockState state) {
+        return SurvivesOnShadowGrass.super.isTerrain(state);
+    }
 }

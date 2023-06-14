@@ -7,6 +7,7 @@ import org.betterx.bclib.blocks.BlockProperties.TripleShape;
 import org.betterx.bclib.interfaces.tools.AddMineableShears;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.blocks.basis.EndUnderwaterPlantBlock;
+import org.betterx.betterend.interfaces.survives.SurvivesOnEndStone;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndItems;
 
@@ -38,7 +39,7 @@ import com.google.common.collect.Lists;
 import java.util.Collections;
 import java.util.List;
 
-public class EndLilyBlock extends EndUnderwaterPlantBlock implements BehaviourWaterPlant, AddMineableShears {
+public class EndLilyBlock extends EndUnderwaterPlantBlock implements BehaviourWaterPlant, AddMineableShears, SurvivesOnEndStone {
     public static final EnumProperty<TripleShape> SHAPE = BlockProperties.TRIPLE_SHAPE;
     private static final VoxelShape SHAPE_BOTTOM = Block.box(4, 0, 4, 12, 16, 12);
     private static final VoxelShape SHAPE_TOP = Block.box(2, 0, 2, 14, 6, 14);
@@ -124,5 +125,10 @@ public class EndLilyBlock extends EndUnderwaterPlantBlock implements BehaviourWa
     @Override
     public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
         return false;
+    }
+
+    @Override
+    public boolean isTerrain(BlockState state) {
+        return SurvivesOnEndStone.super.isTerrain(state);
     }
 }

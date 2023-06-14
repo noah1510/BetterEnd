@@ -76,4 +76,9 @@ public class LanceleafBlock extends EndPlantBlock implements SurvivesOnAmberMoss
         return MHelper.RANDOM.nextBoolean() ? Collections.emptyList() : Collections.singletonList(new ItemStack(
                 EndBlocks.LANCELEAF_SEED));
     }
+
+    @Override
+    public boolean isTerrain(BlockState state) {
+        return SurvivesOnAmberMoss.super.isTerrain(state);
+    }
 }

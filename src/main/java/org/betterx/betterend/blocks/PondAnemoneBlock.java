@@ -4,6 +4,7 @@ import org.betterx.bclib.behaviours.BehaviourBuilders;
 import org.betterx.bclib.behaviours.interfaces.BehaviourWaterPlant;
 import org.betterx.bclib.interfaces.tools.AddMineableShears;
 import org.betterx.betterend.blocks.basis.EndUnderwaterPlantBlock;
+import org.betterx.betterend.interfaces.survives.SurvivesOnEndStone;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -20,7 +21,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
-public class PondAnemoneBlock extends EndUnderwaterPlantBlock implements BehaviourWaterPlant, AddMineableShears {
+public class PondAnemoneBlock extends EndUnderwaterPlantBlock implements BehaviourWaterPlant, AddMineableShears, SurvivesOnEndStone {
     private static final VoxelShape SHAPE = Block.box(2, 0, 2, 14, 14, 14);
 
     public PondAnemoneBlock() {
@@ -54,5 +55,10 @@ public class PondAnemoneBlock extends EndUnderwaterPlantBlock implements Behavio
     @Override
     public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
         return false;
+    }
+
+    @Override
+    public boolean isTerrain(BlockState state) {
+        return SurvivesOnEndStone.super.isTerrain(state);
     }
 }

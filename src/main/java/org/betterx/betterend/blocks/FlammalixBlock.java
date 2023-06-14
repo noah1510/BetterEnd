@@ -36,4 +36,9 @@ public class FlammalixBlock extends EndPlantBlock implements BehaviourPlant, Sur
     public BlockModel getItemModel(ResourceLocation resourceLocation) {
         return ModelsHelper.createItemModel(resourceLocation);
     }
+
+    @Override
+    public boolean isTerrain(BlockState state) {
+        return SurvicesOnPallidium.super.isTerrain(state);
+    }
 }

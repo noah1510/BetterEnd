@@ -57,4 +57,9 @@ public class LanceleafSeedBlock extends EndPlantWithAgeBlock implements Survives
                 plant.setValue(BlockProperties.PENTA_SHAPE, PentaShape.TOP)
         );
     }
+
+    @Override
+    public boolean isTerrain(BlockState state) {
+        return SurvivesOnAmberMoss.super.isTerrain(state);
+    }
 }

@@ -50,4 +50,9 @@ public class BulbVineSeedBlock extends EndPlantWithAgeBlock implements Behaviour
             );
         }
     }
+
+    @Override
+    public boolean isTerrain(BlockState state) {
+        return SurvivesOnEndStoneOrTrees.super.isTerrain(state);
+    }
 }

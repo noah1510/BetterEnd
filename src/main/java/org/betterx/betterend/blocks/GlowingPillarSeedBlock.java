@@ -76,4 +76,9 @@ public class GlowingPillarSeedBlock extends EndPlantWithAgeBlock implements AddM
             );
         }
     }
+
+    @Override
+    public boolean isTerrain(BlockState state) {
+        return SurvivesOnAmberMoss.super.isTerrain(state);
+    }
 }

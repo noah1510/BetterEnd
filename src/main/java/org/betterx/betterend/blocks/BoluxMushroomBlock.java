@@ -54,4 +54,9 @@ public class BoluxMushroomBlock extends EndPlantBlock implements SurvivesOnRutis
     public List<ItemStack> getDrops(BlockState state, LootParams.Builder builder) {
         return Lists.newArrayList(new ItemStack(this));
     }
+
+    @Override
+    public boolean isTerrain(BlockState state) {
+        return SurvivesOnRutiscus.super.isTerrain(state);
+    }
 }

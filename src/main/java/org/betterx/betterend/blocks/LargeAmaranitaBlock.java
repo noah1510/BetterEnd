@@ -65,4 +65,9 @@ public class LargeAmaranitaBlock extends EndPlantBlock implements BehaviourPlant
     public boolean isBonemealSuccess(Level world, RandomSource random, BlockPos pos, BlockState state) {
         return false;
     }
+
+    @Override
+    public boolean isTerrain(BlockState state) {
+        return SurvivesOnEndBone.super.isTerrain(state);
+    }
 }

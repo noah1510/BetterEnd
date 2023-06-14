@@ -79,4 +79,9 @@ public class CavePumpkinVineBlock extends EndPlantWithAgeBlock implements Surviv
     public VoxelShape getShape(BlockState state, BlockGetter view, BlockPos pos, CollisionContext ePos) {
         return SHAPE;
     }
+
+    @Override
+    public boolean isTerrain(BlockState state) {
+        return SurvivesOnEndStone.super.isTerrain(state);
+    }
 }

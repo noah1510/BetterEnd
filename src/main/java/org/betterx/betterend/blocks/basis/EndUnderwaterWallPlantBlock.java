@@ -13,7 +13,6 @@ public class EndUnderwaterWallPlantBlock extends BaseUnderwaterWallPlantBlock im
         super(BehaviourBuilders.createWaterPlant(color));
     }
 
-
     @Override
     public boolean isTerrain(BlockState state) {
         return SurvivesOnEndStone.super.isTerrain(state);

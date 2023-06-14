@@ -9,6 +9,7 @@ import org.betterx.betterend.registry.EndFeatures;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
@@ -32,5 +33,10 @@ public class LumecornSeedBlock extends EndPlantWithAgeBlock implements Behaviour
                 pos,
                 null
         ));
+    }
+
+    @Override
+    public boolean isTerrain(BlockState state) {
+        return SurvivesOnEndMoss.super.isTerrain(state);
     }
 }

@@ -14,6 +14,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.WorldGenLevel;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
 
 public class BlueVineSeedBlock extends EndPlantWithAgeBlock implements SurvivesOnMossOrMycelium, BehaviourSeed {
@@ -74,5 +75,10 @@ public class BlueVineSeedBlock extends EndPlantWithAgeBlock implements SurvivesO
                     EndBlocks.BLUE_VINE_FUR.defaultBlockState().setValue(FurBlock.FACING, Direction.UP)
             );
         }
+    }
+
+    @Override
+    public boolean isTerrain(BlockState state) {
+        return SurvivesOnMossOrMycelium.super.isTerrain(state);
     }
 }

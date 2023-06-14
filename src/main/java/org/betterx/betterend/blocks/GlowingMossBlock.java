@@ -7,6 +7,7 @@ import org.betterx.betterend.interfaces.survives.SurvivesOnMossOrMycelium;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
 
 import net.fabricmc.api.EnvType;
@@ -30,5 +31,10 @@ public class GlowingMossBlock extends EndPlantBlock implements SurvivesOnMossOrM
     @Environment(EnvType.CLIENT)
     public float getAmbientOcclusionLightLevel(BlockGetter world, BlockPos pos) {
         return 1F;
+    }
+
+    @Override
+    public boolean isTerrain(BlockState state) {
+        return SurvivesOnMossOrMycelium.super.isTerrain(state);
     }
 }

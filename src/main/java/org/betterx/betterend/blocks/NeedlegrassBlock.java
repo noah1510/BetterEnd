@@ -60,4 +60,9 @@ public class NeedlegrassBlock extends EndPlantBlock implements SurvivesOnShadowG
     public boolean isPathfindable(BlockState state, BlockGetter world, BlockPos pos, PathComputationType type) {
         return false;
     }
+
+    @Override
+    public boolean isTerrain(BlockState state) {
+        return SurvivesOnShadowGrass.super.isTerrain(state);
+    }
 }

@@ -54,4 +54,9 @@ public class FlamaeaBlock extends EndPlantBlock implements CustomItemProvider, B
     public BlockItem getCustomItem(ResourceLocation resourceLocation, Item.Properties itemSettings) {
         return new PlaceOnWaterBlockItem(this, itemSettings);
     }
+
+    @Override
+    public boolean isTerrain(BlockState state) {
+        return SurvivesOnWater.super.isTerrain(state);
+    }
 }
