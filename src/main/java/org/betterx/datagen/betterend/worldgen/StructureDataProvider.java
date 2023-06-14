@@ -13,5 +13,7 @@ public class StructureDataProvider {
 
     public static void bootstrapSets(BootstapContext<StructureSet> ctx) {
         BCLStructureBuilder.registerUnboundSets(ctx);
+
+
     }
 }

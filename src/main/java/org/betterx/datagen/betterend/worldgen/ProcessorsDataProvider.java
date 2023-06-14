@@ -17,6 +17,15 @@ public class ProcessorsDataProvider {
     public static void bootstrap(BootstapContext<StructureProcessorList> bootstapContext) {
         ProcessorHelper.register(
                 bootstapContext,
+                EndProcessors.CRYING_10_PERCENT,
+                ImmutableList.of(new RuleProcessor(ImmutableList.of(new ProcessorRule(
+                        new RandomBlockMatchTest(Blocks.OBSIDIAN, 0.1f),
+                        AlwaysTrueTest.INSTANCE,
+                        Blocks.CRYING_OBSIDIAN.defaultBlockState()
+                ))))
+        );
+        ProcessorHelper.register(
+                bootstapContext,
                 EndProcessors.WEATHERED_10_PERCENT,
                 ImmutableList.of(new RuleProcessor(ImmutableList.of(new ProcessorRule(
                         new RandomBlockMatchTest(Blocks.END_STONE_BRICKS, 0.1f),

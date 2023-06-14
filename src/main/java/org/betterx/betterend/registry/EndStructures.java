@@ -40,13 +40,13 @@ public class EndStructures {
 
     public static final BCLStructure<MegaLakeStructure> MEGALAKE = BCLStructureBuilder
             .start(BetterEnd.makeID("megalake"), MegaLakeStructure::new)
-            .step(Decoration.RAW_GENERATION)
+            .step(Decoration.LAKES)
             .randomPlacement(4, 1)
             .build();
 
     public static final BCLStructure<MegaLakeSmallStructure> MEGALAKE_SMALL = BCLStructureBuilder
             .start(BetterEnd.makeID("megalake_small"), MegaLakeSmallStructure::new)
-            .step(Decoration.RAW_GENERATION)
+            .step(Decoration.LAKES)
             .randomPlacement(4, 1)
             .build();
 

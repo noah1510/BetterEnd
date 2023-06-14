@@ -24,6 +24,10 @@ import com.google.common.collect.ImmutableList;
 import java.util.function.Function;
 
 public class VillagePools {
+    public static final ResourceKey<PlacedFeature> CHORUS_VILLAGE = ResourceKey.create(
+            Registries.PLACED_FEATURE,
+            BetterEnd.makeID("village_chorus")
+    );
     public static ResourceKey<StructureTemplatePool> TERMINATORS_KEY = StructurePools
             .createKey(BetterEnd.makeID("village/terminators"));
     public static ResourceKey<StructureTemplatePool> START = StructurePools
@@ -54,12 +58,14 @@ public class VillagePools {
         final Holder.Reference<StructureTemplatePool> emptyPool = poolGetter.getOrThrow(Pools.EMPTY);
         final Holder.Reference<StructureTemplatePool> terminatorPool = poolGetter.getOrThrow(VillagePools.TERMINATORS_KEY);
 
-        Holder.Reference<StructureProcessorList> mossifyProcessor = processorGetter.getOrThrow(EndProcessors.WEATHERED_10_PERCENT);
-        Holder.Reference<StructureProcessorList> crack = processorGetter.getOrThrow(EndProcessors.CRACK_20_PERCENT);
-        Holder.Reference<StructureProcessorList> crackAndWeather = processorGetter.getOrThrow(EndProcessors.CRACK_AND_WEATHER);
-        Holder.Reference<StructureProcessorList> endStreetProcessor = processorGetter.getOrThrow(EndProcessors.END_STREET);
-
+        final Holder.Reference<StructureProcessorList> mossifyProcessor = processorGetter.getOrThrow(EndProcessors.WEATHERED_10_PERCENT);
+        final Holder.Reference<StructureProcessorList> crack = processorGetter.getOrThrow(EndProcessors.CRACK_20_PERCENT);
+        final Holder.Reference<StructureProcessorList> cry = processorGetter.getOrThrow(EndProcessors.CRYING_10_PERCENT);
+        final Holder.Reference<StructureProcessorList> crackAndWeather = processorGetter.getOrThrow(EndProcessors.CRACK_AND_WEATHER);
+        final Holder.Reference<StructureProcessorList> endStreetProcessor = processorGetter.getOrThrow(EndProcessors.END_STREET);
         final Holder.Reference<StructureProcessorList> emptyProcessor = processorGetter.getOrThrow(ProcessorLists.EMPTY);
+
+        final Holder.Reference<PlacedFeature> chorus = featureGetter.getOrThrow(CHORUS_VILLAGE);
         ctx.register(VillagePools.TERMINATORS_KEY, new StructureTemplatePool(
                 emptyPool,
                 ImmutableList.of(
@@ -101,7 +107,8 @@ public class VillagePools {
                         single("village/decoration/pond_01", mossifyProcessor, 1),
                         single("village/decoration/respawn_01", endStreetProcessor, 1),
                         single("village/decoration/respawn_02", endStreetProcessor, 1),
-                        single("village/decoration/fountain_01", endStreetProcessor, 1)
+                        single("village/decoration/fountain_01", endStreetProcessor, 1),
+                        single("village/street_decoration/work_01", endStreetProcessor, 1)
 
                 ),
                 StructureTemplatePool.Projection.RIGID
@@ -124,8 +131,15 @@ public class VillagePools {
                 terminatorPool,
                 ImmutableList.of(
                         Pair.of(StructurePoolElement.empty(), 5),
-                        single("village/street_decoration/lamp_02", emptyProcessor, 2),
-                        single("village/street_decoration/lamp_05", emptyProcessor, 1)
+                        single("village/street_decoration/lamp_02", emptyProcessor, 4),
+                        single("village/street_decoration/lamp_05", emptyProcessor, 2),
+                        single("village/street_decoration/lamp_06", emptyProcessor, 3),
+                        single("village/street_decoration/obsidian_01", cry, 2),
+                        single("village/street_decoration/obsidian_02", cry, 3),
+                        single("village/street_decoration/obsidian_03", cry, 2),
+                        single("village/street_decoration/obsidian_04", cry, 2),
+                        single("village/street_decoration/obsidian_05", cry, 1),
+                        Pair.of(StructurePoolElement.feature(chorus), 2)
                 ),
                 StructureTemplatePool.Projection.RIGID
         ));
