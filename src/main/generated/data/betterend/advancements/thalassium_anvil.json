@@ -1,12 +1,12 @@
 {
-  "parent": "betterend:enter_end",
+  "parent": "betterend:hammer",
   "criteria": {
-    "infusion_pedestal": {
+    "got_thalassium_anvil": {
       "conditions": {
         "items": [
           {
             "items": [
-              "betterend:infusion_pedestal"
+              "betterend:thallasium_anvil"
             ]
           }
         ]
@@ -17,21 +17,21 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "translate": "advancements.betterend.infusion.description"
+      "translate": "advancements.betterend.thalassium_anvil.description"
     },
     "frame": "task",
     "hidden": false,
     "icon": {
-      "item": "betterend:infusion_pedestal"
+      "item": "betterend:thallasium_anvil"
     },
     "show_toast": true,
     "title": {
-      "translate": "advancements.betterend.infusion.title"
+      "translate": "advancements.betterend.thalassium_anvil.title"
     }
   },
   "requirements": [
     [
-      "infusion_pedestal"
+      "got_thalassium_anvil"
     ]
   ],
   "sends_telemetry_event": false

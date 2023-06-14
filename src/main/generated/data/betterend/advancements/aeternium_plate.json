@@ -1,12 +1,12 @@
 {
-  "parent": "betterend:enter_end",
+  "parent": "betterend:aeternium_hammer",
   "criteria": {
-    "infusion_pedestal": {
+    "got_aeternium_plate": {
       "conditions": {
         "items": [
           {
             "items": [
-              "betterend:infusion_pedestal"
+              "betterend:aeternium_forged_plate"
             ]
           }
         ]
@@ -17,22 +17,25 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "translate": "advancements.betterend.infusion.description"
+      "translate": "advancements.betterend.aeternium_plate.description"
     },
-    "frame": "task",
+    "frame": "goal",
     "hidden": false,
     "icon": {
-      "item": "betterend:infusion_pedestal"
+      "item": "betterend:aeternium_forged_plate"
     },
     "show_toast": true,
     "title": {
-      "translate": "advancements.betterend.infusion.title"
+      "translate": "advancements.betterend.aeternium_plate.title"
     }
   },
   "requirements": [
     [
-      "infusion_pedestal"
+      "got_aeternium_plate"
     ]
   ],
+  "rewards": {
+    "experience": 500
+  },
   "sends_telemetry_event": false
 }

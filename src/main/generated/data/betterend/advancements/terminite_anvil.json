@@ -1,12 +1,12 @@
 {
-  "parent": "betterend:enter_end",
+  "parent": "betterend:thalassium_anvil",
   "criteria": {
-    "infusion_pedestal": {
+    "got_terminite_anvil": {
       "conditions": {
         "items": [
           {
             "items": [
-              "betterend:infusion_pedestal"
+              "betterend:terminite_anvil"
             ]
           }
         ]
@@ -17,21 +17,21 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "translate": "advancements.betterend.infusion.description"
+      "translate": "advancements.betterend.terminite_anvil.description"
     },
     "frame": "task",
     "hidden": false,
     "icon": {
-      "item": "betterend:infusion_pedestal"
+      "item": "betterend:terminite_anvil"
     },
     "show_toast": true,
     "title": {
-      "translate": "advancements.betterend.infusion.title"
+      "translate": "advancements.betterend.terminite_anvil.title"
     }
   },
   "requirements": [
     [
-      "infusion_pedestal"
+      "got_terminite_anvil"
     ]
   ],
   "sends_telemetry_event": false

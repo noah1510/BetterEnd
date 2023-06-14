@@ -1,12 +1,12 @@
 {
-  "parent": "betterend:enter_end",
+  "parent": "betterend:aeternium_anvil",
   "criteria": {
-    "infusion_pedestal": {
+    "got_aeternium_hammer_head": {
       "conditions": {
         "items": [
           {
             "items": [
-              "betterend:infusion_pedestal"
+              "betterend:aeternium_hammer_head"
             ]
           }
         ]
@@ -17,21 +17,21 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "translate": "advancements.betterend.infusion.description"
+      "translate": "advancements.betterend.aeternium_hammer_head.description"
     },
     "frame": "task",
     "hidden": false,
     "icon": {
-      "item": "betterend:infusion_pedestal"
+      "item": "betterend:aeternium_hammer_head"
     },
     "show_toast": true,
     "title": {
-      "translate": "advancements.betterend.infusion.title"
+      "translate": "advancements.betterend.aeternium_hammer_head.title"
     }
   },
   "requirements": [
     [
-      "infusion_pedestal"
+      "got_aeternium_hammer_head"
     ]
   ],
   "sends_telemetry_event": false

@@ -1,7 +1,7 @@
 {
-  "parent": "betterend:enter_end",
+  "parent": "betterend:all_the_biomes",
   "criteria": {
-    "eternal_portal": {
+    "end_village": {
       "conditions": {
         "player": [
           {
@@ -9,7 +9,7 @@
             "entity": "this",
             "predicate": {
               "location": {
-                "structure": "betterend:eternal_portal"
+                "structure": "betterend:end_village"
               }
             }
           }
@@ -21,21 +21,21 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "translate": "advancements.betterend.portal.description"
+      "translate": "advancements.betterend.village.description"
     },
     "frame": "goal",
     "hidden": false,
     "icon": {
-      "item": "betterend:eternal_pedestal"
+      "item": "betterend:tenanea_door"
     },
     "show_toast": true,
     "title": {
-      "translate": "advancements.betterend.portal.title"
+      "translate": "advancements.betterend.village.title"
     }
   },
   "requirements": [
     [
-      "eternal_portal"
+      "end_village"
     ]
   ],
   "sends_telemetry_event": false

@@ -1,12 +1,12 @@
 {
-  "parent": "betterend:enter_end",
+  "parent": "betterend:thalassium_anvil",
   "criteria": {
-    "infusion_pedestal": {
+    "got_thalassium_plate": {
       "conditions": {
         "items": [
           {
             "items": [
-              "betterend:infusion_pedestal"
+              "betterend:thallasium_forged_plate"
             ]
           }
         ]
@@ -17,21 +17,21 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "translate": "advancements.betterend.infusion.description"
+      "translate": "advancements.betterend.thalassium_plate.description"
     },
     "frame": "task",
     "hidden": false,
     "icon": {
-      "item": "betterend:infusion_pedestal"
+      "item": "betterend:thallasium_forged_plate"
     },
     "show_toast": true,
     "title": {
-      "translate": "advancements.betterend.infusion.title"
+      "translate": "advancements.betterend.thalassium_plate.title"
     }
   },
   "requirements": [
     [
-      "infusion_pedestal"
+      "got_thalassium_plate"
     ]
   ],
   "sends_telemetry_event": false
