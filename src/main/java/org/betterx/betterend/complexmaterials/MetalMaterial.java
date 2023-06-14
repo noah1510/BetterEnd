@@ -169,6 +169,8 @@ public class MetalMaterial {
         );
     }
 
+    public final String name;
+
     private MetalMaterial(
             String name,
             boolean hasOre,
@@ -185,6 +187,7 @@ public class MetalMaterial {
                                                                          .lightLevel((bs) -> 15)
                                                                          .sound(SoundType.LANTERN);
         final int level = material.getLevel();
+        this.name = name;
         this.swordHandleTemplate = swordHandleTemplate;
         rawOre = hasOre ? EndItems.registerEndItem(name + "_raw", new ModelProviderItem(itemSettings)) : null;
         ore = hasOre ? EndBlocks.registerBlock(name + "_ore", new BaseOreBlock(() -> rawOre, 1, 3, 1)) : null;
