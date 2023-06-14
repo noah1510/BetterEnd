@@ -168,32 +168,32 @@ public class EndAdvancementDataProvider extends AdvancementDataProvider {
                 .startDisplay(EndItems.DIAMOND_HAMMER)
                 .endDisplay()
                 .addInventoryChangedCriterion("got_diamond_hammer", EndItems.DIAMOND_HAMMER)
-                .addInventoryChangedCriterion("got_thalassium_hammer", EndBlocks.THALLASIUM.hammer)
+                .addInventoryChangedCriterion("got_thallasium_hammer", EndBlocks.THALLASIUM.hammer)
                 .addInventoryChangedCriterion("got_terminite_hammer", EndBlocks.TERMINITE.hammer)
                 .requirements(RequirementsStrategy.OR)
                 .build();
 
-        ResourceLocation thalassiumAnvil = AdvancementManager.Builder
-                .create(BetterEnd.makeID("thalassium_anvil"))
+        ResourceLocation thallasiumAnvil = AdvancementManager.Builder
+                .create(BetterEnd.makeID("thallasium_anvil"))
                 .parent(hammer)
                 .startDisplay(EndBlocks.THALLASIUM.anvilBlock)
                 .endDisplay()
-                .addInventoryChangedCriterion("got_thalassium_anvil", EndBlocks.THALLASIUM.anvilBlock)
+                .addInventoryChangedCriterion("got_thallasium_anvil", EndBlocks.THALLASIUM.anvilBlock)
                 .requirements(RequirementsStrategy.OR)
                 .build();
 
-        ResourceLocation thalassiumPlate = AdvancementManager.Builder
-                .create(BetterEnd.makeID("thalassium_plate"))
-                .parent(thalassiumAnvil)
+        ResourceLocation thallasiumPlate = AdvancementManager.Builder
+                .create(BetterEnd.makeID("thallasium_plate"))
+                .parent(thallasiumAnvil)
                 .startDisplay(EndBlocks.THALLASIUM.forgedPlate)
                 .endDisplay()
-                .addInventoryChangedCriterion("got_thalassium_plate", EndBlocks.THALLASIUM.forgedPlate)
+                .addInventoryChangedCriterion("got_thallasium_plate", EndBlocks.THALLASIUM.forgedPlate)
                 .requirements(RequirementsStrategy.OR)
                 .build();
 
         ResourceLocation terminiteAnvil = AdvancementManager.Builder
                 .create(BetterEnd.makeID("terminite_anvil"))
-                .parent(thalassiumAnvil)
+                .parent(thallasiumAnvil)
                 .startDisplay(EndBlocks.TERMINITE.anvilBlock)
                 .endDisplay()
                 .addInventoryChangedCriterion("got_terminite_anvil", EndBlocks.TERMINITE.anvilBlock)
@@ -250,12 +250,12 @@ public class EndAdvancementDataProvider extends AdvancementDataProvider {
                 .build();
 
         ResourceLocation thallasiumArmor = addArmor(EndBlocks.THALLASIUM)
-                .parent(thalassiumPlate)
+                .parent(thallasiumPlate)
                 .requirements(RequirementsStrategy.OR)
                 .build();
 
         ResourceLocation thallasiumHead = addToolHeads(EndBlocks.THALLASIUM)
-                .parent(thalassiumAnvil)
+                .parent(thallasiumAnvil)
                 .requirements(RequirementsStrategy.OR)
                 .build();
 
