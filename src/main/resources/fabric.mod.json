@@ -59,7 +59,7 @@
     "blockus": ">=2.0.2",
     "nourish": ">=1.2.0",
     "colored_lights": ">=1.0.3",
-    "trinkets": ">=3.4.0"
+    "trinkets": ">=3.7.0"
   },
   "custom": {
     "bclib": {
