@@ -36,7 +36,6 @@ public class CrystaliteChestplateModel extends HumanoidModel<LivingEntity> imple
         MeshDefinition modelData = new MeshDefinition();
         PartDefinition modelPartData = modelData.getRoot();
 
-        // TODO: see if we need to subclass HumanoidModel
         // Humanoid model tries to retrieve all parts in it's constructor,
         // so we need to add empty Nodes
         modelPartData.addOrReplaceChild("head", CubeListBuilder.create(), PartPose.ZERO);

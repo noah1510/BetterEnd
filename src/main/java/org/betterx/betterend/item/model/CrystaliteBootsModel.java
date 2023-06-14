@@ -25,7 +25,6 @@ public class CrystaliteBootsModel extends HumanoidModel<LivingEntity> implements
         MeshDefinition modelData = new MeshDefinition();
         PartDefinition modelPartData = modelData.getRoot();
 
-        // TODO: see if we need to subclass HumanoidModel
         // Humanoid model tries to retrieve all parts in it's constructor,
         // so we need to add empty Nodes
         modelPartData.addOrReplaceChild("head", CubeListBuilder.create(), PartPose.ZERO);

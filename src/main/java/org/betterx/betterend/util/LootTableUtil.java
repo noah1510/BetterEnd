@@ -27,7 +27,6 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 
 public class LootTableUtil {
-    //TODO: 1.20 - find where Betterend Injects Loot into chests and make it conform to regular minecraft
     public static final ResourceLocation VILLAGE_LOOT = BetterEnd.makeID("chests/end_village_loot");
     public static final ResourceLocation VILLAGE_TEMPLATE_LOOT = BetterEnd.makeID("chests/end_village_template_loot");
     public static final ResourceLocation VILLAGE_BONUS_LOOT = BetterEnd.makeID("chests/end_village_bonus_loot");
