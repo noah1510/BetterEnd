@@ -14,4 +14,9 @@ public interface SurvivesOnSulphuricRock extends SurvivesOnBlocks {
     default List<Block> getSurvivableBlocks() {
         return BLOCKS;
     }
+
+    @Override
+    default String prefixComponent() {
+        return "tooltip.bclib.place_underwater_on";
+    }
 }

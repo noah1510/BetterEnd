@@ -59,4 +59,10 @@ public class FlamaeaBlock extends EndPlantBlock implements CustomItemProvider, B
     public boolean isTerrain(BlockState state) {
         return SurvivesOnWater.super.isTerrain(state);
     }
+
+
+//    @Override
+//    public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+//        return SurvivesOnWater.super.canSurvive(state, level, pos);
+//    }
 }

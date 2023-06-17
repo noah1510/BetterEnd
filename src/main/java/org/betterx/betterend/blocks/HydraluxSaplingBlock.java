@@ -2,6 +2,7 @@ package org.betterx.betterend.blocks;
 
 import org.betterx.bclib.behaviours.interfaces.BehaviourWaterPlantSapling;
 import org.betterx.bclib.blocks.UnderwaterPlantWithAgeBlock;
+import org.betterx.bclib.interfaces.SurvivesOnSpecialGround;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.betterend.interfaces.survives.SurvivesOnSulphuricRock;
@@ -9,10 +10,17 @@ import org.betterx.betterend.registry.EndBlocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+
+import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 public class HydraluxSaplingBlock extends UnderwaterPlantWithAgeBlock implements BehaviourWaterPlantSapling, SurvivesOnSulphuricRock {
 
@@ -75,7 +83,15 @@ public class HydraluxSaplingBlock extends UnderwaterPlantWithAgeBlock implements
         return SurvivesOnSulphuricRock.super.isTerrain(state);
     }
 
-    public String prefixComponent() {
-        return "tooltip.bclib.place_underwater_on";
+
+    @Override
+    public void appendHoverText(
+            ItemStack itemStack,
+            @Nullable BlockGetter blockGetter,
+            List<Component> list,
+            TooltipFlag tooltipFlag
+    ) {
+        super.appendHoverText(itemStack, blockGetter, list, tooltipFlag);
+        SurvivesOnSpecialGround.appendHoverTextUnderwaterInDepth(list, 5);
     }
 }
