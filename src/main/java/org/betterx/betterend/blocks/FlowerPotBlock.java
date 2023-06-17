@@ -1,5 +1,6 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.interfaces.BehaviourStone;
 import org.betterx.bclib.blocks.BaseBlockNotFull;
 import org.betterx.bclib.client.models.BasePatterns;
 import org.betterx.bclib.client.models.ModelsHelper;
@@ -451,6 +452,12 @@ public class FlowerPotBlock extends BaseBlockNotFull implements RenderLayerProvi
     @Override
     public BCLRenderLayer getRenderLayer() {
         return BCLRenderLayer.CUTOUT;
+    }
+
+    public static class Stone extends FlowerPotBlock implements BehaviourStone {
+        public Stone(Block source) {
+            super(source);
+        }
     }
 
     static {

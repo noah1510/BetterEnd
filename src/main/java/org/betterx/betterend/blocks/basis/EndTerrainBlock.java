@@ -1,5 +1,6 @@
 package org.betterx.betterend.blocks.basis;
 
+import org.betterx.bclib.behaviours.interfaces.BehaviourStone;
 import org.betterx.bclib.blocks.BaseTerrainBlock;
 import org.betterx.bclib.interfaces.TagProvider;
 import org.betterx.betterend.interfaces.PottableTerrain;
@@ -13,7 +14,7 @@ import net.minecraft.world.level.material.MapColor;
 
 import java.util.List;
 
-public class EndTerrainBlock extends BaseTerrainBlock implements PottableTerrain, TagProvider {
+public class EndTerrainBlock extends BaseTerrainBlock implements PottableTerrain, TagProvider, BehaviourStone {
     public EndTerrainBlock(MapColor color) {
         super(Blocks.END_STONE, color);
     }

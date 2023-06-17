@@ -1,7 +1,7 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.interfaces.BehaviourSand;
 import org.betterx.bclib.interfaces.TagProvider;
-import org.betterx.bclib.interfaces.tools.AddMineableShovel;
 import org.betterx.ui.ColorUtil;
 import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
@@ -23,7 +23,7 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import java.util.Collections;
 import java.util.List;
 
-public class EndstoneDustBlock extends FallingBlock implements TagProvider, AddMineableShovel {
+public class EndstoneDustBlock extends FallingBlock implements TagProvider, BehaviourSand {
     @Environment(EnvType.CLIENT)
     private static final int COLOR = ColorUtil.color(226, 239, 168);
 

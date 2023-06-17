@@ -1,5 +1,6 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.interfaces.BehaviourIce;
 import org.betterx.bclib.blocks.BaseBlock;
 import org.betterx.bclib.client.render.BCLRenderLayer;
 import org.betterx.bclib.interfaces.RenderLayerProvider;
@@ -17,7 +18,7 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import java.util.Collections;
 import java.util.List;
 
-public class DenseEmeraldIceBlock extends BaseBlock implements RenderLayerProvider {
+public class DenseEmeraldIceBlock extends BaseBlock implements RenderLayerProvider, BehaviourIce {
     public DenseEmeraldIceBlock() {
         super(FabricBlockSettings.copyOf(Blocks.PACKED_ICE));
     }

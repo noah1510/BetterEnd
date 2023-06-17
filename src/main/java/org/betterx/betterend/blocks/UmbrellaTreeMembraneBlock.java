@@ -1,5 +1,6 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.interfaces.BehaviourLeaves;
 import org.betterx.bclib.client.render.BCLRenderLayer;
 import org.betterx.bclib.interfaces.BlockModelProvider;
 import org.betterx.bclib.interfaces.RenderLayerProvider;
@@ -31,7 +32,7 @@ import com.google.common.collect.Lists;
 import java.util.Collections;
 import java.util.List;
 
-public class UmbrellaTreeMembraneBlock extends SlimeBlock implements RenderLayerProvider, BlockModelProvider {
+public class UmbrellaTreeMembraneBlock extends SlimeBlock implements RenderLayerProvider, BlockModelProvider, BehaviourLeaves {
     public static final IntegerProperty COLOR = EndBlockProperties.COLOR;
     private static final OpenSimplexNoise NOISE = new OpenSimplexNoise(0);
 

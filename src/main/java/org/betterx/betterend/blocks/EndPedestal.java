@@ -1,5 +1,8 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.interfaces.BehaviourMetal;
+import org.betterx.bclib.behaviours.interfaces.BehaviourStone;
+import org.betterx.bclib.behaviours.interfaces.BehaviourWood;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.blocks.basis.PedestalBlock;
 
@@ -11,9 +14,9 @@ import com.google.common.collect.Maps;
 
 import java.util.Map;
 
-public class EndPedestal extends PedestalBlock {
+public abstract class EndPedestal extends PedestalBlock {
 
-    public EndPedestal(Block parent) {
+    protected EndPedestal(Block parent) {
         super(parent);
     }
 
@@ -28,5 +31,26 @@ public class EndPedestal extends PedestalBlock {
         textures.put("%pillar%", name + "_pillar_side");
         textures.put("%bottom%", name + "_polished");
         return textures;
+    }
+
+    public static class Stone extends EndPedestal implements BehaviourStone {
+        public Stone(Block parent) {
+            super(parent);
+        }
+
+    }
+
+    public static class Wood extends EndPedestal implements BehaviourWood {
+        public Wood(Block parent) {
+            super(parent);
+        }
+
+    }
+
+    public static class Metal extends EndPedestal implements BehaviourMetal {
+        public Metal(Block parent) {
+            super(parent);
+        }
+
     }
 }

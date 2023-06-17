@@ -1,5 +1,6 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.interfaces.BehaviourStone;
 import org.betterx.betterend.blocks.basis.PedestalBlock;
 import org.betterx.betterend.blocks.entities.EternalPedestalEntity;
 import org.betterx.betterend.registry.EndBlocks;
@@ -29,7 +30,7 @@ import com.google.common.collect.Lists;
 
 import java.util.List;
 
-public class EternalPedestal extends PedestalBlock {
+public class EternalPedestal extends PedestalBlock implements BehaviourStone {
     public static final BooleanProperty ACTIVATED = EndBlockProperties.ACTIVE;
 
     public EternalPedestal() {

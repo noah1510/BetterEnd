@@ -120,20 +120,32 @@ public class EndBlocks {
     );
 
     // Roads //
-    public static final Block END_MYCELIUM_PATH = registerBlock("end_mycelium_path", new BasePathBlock(END_MYCELIUM));
-    public static final Block END_MOSS_PATH = registerBlock("end_moss_path", new BasePathBlock(END_MOSS));
+    public static final Block END_MYCELIUM_PATH = registerBlock(
+            "end_mycelium_path",
+            new BasePathBlock.Stone(END_MYCELIUM)
+    );
+    public static final Block END_MOSS_PATH = registerBlock("end_moss_path", new BasePathBlock.Stone(END_MOSS));
     public static final Block CHORUS_NYLIUM_PATH = registerBlock(
             "chorus_nylium_path",
-            new BasePathBlock(CHORUS_NYLIUM)
+            new BasePathBlock.Stone(CHORUS_NYLIUM)
     );
-    public static final Block CAVE_MOSS_PATH = registerBlock("cave_moss_path", new BasePathBlock(CAVE_MOSS));
-    public static final Block CRYSTAL_MOSS_PATH = registerBlock("crystal_moss_path", new BasePathBlock(CRYSTAL_MOSS));
-    public static final Block SHADOW_GRASS_PATH = registerBlock("shadow_grass_path", new BasePathBlock(SHADOW_GRASS));
-    public static final Block PINK_MOSS_PATH = registerBlock("pink_moss_path", new BasePathBlock(PINK_MOSS));
-    public static final Block AMBER_MOSS_PATH = registerBlock("amber_moss_path", new BasePathBlock(AMBER_MOSS));
-    public static final Block JUNGLE_MOSS_PATH = registerBlock("jungle_moss_path", new BasePathBlock(JUNGLE_MOSS));
-    public static final Block SANGNUM_PATH = registerBlock("sangnum_path", new BasePathBlock(SANGNUM));
-    public static final Block RUTISCUS_PATH = registerBlock("rutiscus_path", new BasePathBlock(RUTISCUS));
+    public static final Block CAVE_MOSS_PATH = registerBlock("cave_moss_path", new BasePathBlock.Stone(CAVE_MOSS));
+    public static final Block CRYSTAL_MOSS_PATH = registerBlock(
+            "crystal_moss_path",
+            new BasePathBlock.Stone(CRYSTAL_MOSS)
+    );
+    public static final Block SHADOW_GRASS_PATH = registerBlock(
+            "shadow_grass_path",
+            new BasePathBlock.Stone(SHADOW_GRASS)
+    );
+    public static final Block PINK_MOSS_PATH = registerBlock("pink_moss_path", new BasePathBlock.Stone(PINK_MOSS));
+    public static final Block AMBER_MOSS_PATH = registerBlock("amber_moss_path", new BasePathBlock.Stone(AMBER_MOSS));
+    public static final Block JUNGLE_MOSS_PATH = registerBlock(
+            "jungle_moss_path",
+            new BasePathBlock.Stone(JUNGLE_MOSS)
+    );
+    public static final Block SANGNUM_PATH = registerBlock("sangnum_path", new BasePathBlock.Stone(SANGNUM));
+    public static final Block RUTISCUS_PATH = registerBlock("rutiscus_path", new BasePathBlock.Stone(RUTISCUS));
 
     public static final Block MOSSY_OBSIDIAN = registerBlock(
             "mossy_obsidian",
@@ -178,7 +190,7 @@ public class EndBlocks {
     public static final Block MISSING_TILE = registerBlock("missing_tile", new MissingTileBlock());
     public static final Block ENDSTONE_FLOWER_POT = registerBlock(
             "endstone_flower_pot",
-            new FlowerPotBlock(Blocks.END_STONE)
+            new FlowerPotBlock.Stone(Blocks.END_STONE)
     );
 
     public static final Block FLAVOLITE_RUNED = registerBlock("flavolite_runed", new RunedFlavolite(false));
@@ -215,11 +227,11 @@ public class EndBlocks {
 
     public static final Block END_STONE_STALACTITE = registerBlock(
             "end_stone_stalactite",
-            new StalactiteBlock(Blocks.END_STONE)
+            new StalactiteBlock.Stone(Blocks.END_STONE)
     );
     public static final Block END_STONE_STALACTITE_CAVEMOSS = registerBlock(
             "end_stone_stalactite_cavemoss",
-            new StalactiteBlock(CAVE_MOSS)
+            new StalactiteBlock.Stone(CAVE_MOSS)
     );
 
     // Wooden Materials And Trees //
@@ -724,7 +736,7 @@ public class EndBlocks {
     // Blocks With Entity //
     public static final Block END_STONE_FURNACE = registerBlock(
             "end_stone_furnace",
-            new BaseFurnaceBlock(Blocks.END_STONE)
+            new BaseFurnaceBlock.Stone(Blocks.END_STONE)
     );
     public static final Block END_STONE_SMELTER = registerBlock("end_stone_smelter", new EndStoneSmelter());
     public static final Block ETERNAL_PEDESTAL = registerBlock("eternal_pedestal", new EternalPedestal());

@@ -1,5 +1,6 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.interfaces.BehaviourObsidian;
 import org.betterx.bclib.blocks.BaseBlock;
 
 import net.minecraft.core.BlockPos;
@@ -22,7 +23,7 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import java.util.Collections;
 import java.util.List;
 
-public class MossyObsidian extends BaseBlock {
+public class MossyObsidian extends BaseBlock implements BehaviourObsidian {
     public MossyObsidian() {
         super(FabricBlockSettings.copyOf(Blocks.OBSIDIAN).hardness(3).randomTicks());
     }

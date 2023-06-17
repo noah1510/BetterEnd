@@ -52,9 +52,9 @@ public class StoneMaterial {
         FabricBlockSettings material = createMaterial(color);
 
         this.baseName = name;
-        stone = EndBlocks.registerBlock(name, new BaseBlock(material));
-        polished = EndBlocks.registerBlock(name + "_polished", new BaseBlock(material));
-        tiles = EndBlocks.registerBlock(name + "_tiles", new BaseBlock(material));
+        stone = EndBlocks.registerBlock(name, new BaseBlock.Stone(material));
+        polished = EndBlocks.registerBlock(name + "_polished", new BaseBlock.Stone(material));
+        tiles = EndBlocks.registerBlock(name + "_tiles", new BaseBlock.Stone(material));
         pillar = EndBlocks.registerBlock(name + "_pillar", new BaseRotatedPillarBlock.Stone(material));
         stairs = EndBlocks.registerBlock(name + "_stairs", new BaseStairsBlock.Stone(stone));
         slab = EndBlocks.registerBlock(name + "_slab", new BaseSlabBlock.Stone(stone));
@@ -64,15 +64,15 @@ public class StoneMaterial {
                 name + "_plate",
                 new BasePressurePlateBlock.Stone(stone, BlockSetType.STONE)
         );
-        pedestal = EndBlocks.registerBlock(name + "_pedestal", new EndPedestal(stone));
+        pedestal = EndBlocks.registerBlock(name + "_pedestal", new EndPedestal.Stone(stone));
         lantern = EndBlocks.registerBlock(name + "_lantern", new StoneLanternBlock(stone));
 
-        bricks = EndBlocks.registerBlock(name + "_bricks", new BaseBlock(material));
+        bricks = EndBlocks.registerBlock(name + "_bricks", new BaseBlock.Stone(material));
         brickStairs = EndBlocks.registerBlock(name + "_bricks_stairs", new BaseStairsBlock.Stone(bricks));
         brickSlab = EndBlocks.registerBlock(name + "_bricks_slab", new BaseSlabBlock.Stone(bricks));
         brickWall = EndBlocks.registerBlock(name + "_bricks_wall", new BaseWallBlock.Stone(bricks));
-        furnace = EndBlocks.registerBlock(name + "_furnace", new BaseFurnaceBlock(bricks));
-        flowerPot = EndBlocks.registerBlock(name + "_flower_pot", new FlowerPotBlock(bricks));
+        furnace = EndBlocks.registerBlock(name + "_furnace", new BaseFurnaceBlock.Stone(bricks));
+        flowerPot = EndBlocks.registerBlock(name + "_flower_pot", new FlowerPotBlock.Stone(bricks));
 
         // Recipes //
         BCLRecipeBuilder.crafting(BetterEnd.makeID(name + "_bricks"), bricks)

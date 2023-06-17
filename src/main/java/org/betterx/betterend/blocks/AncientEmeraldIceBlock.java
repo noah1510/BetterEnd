@@ -1,5 +1,6 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.interfaces.BehaviourIce;
 import org.betterx.bclib.blocks.BaseBlock;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
@@ -25,7 +26,7 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import java.util.Collections;
 import java.util.List;
 
-public class AncientEmeraldIceBlock extends BaseBlock {
+public class AncientEmeraldIceBlock extends BaseBlock implements BehaviourIce {
     public AncientEmeraldIceBlock() {
         super(FabricBlockSettings.copyOf(Blocks.BLUE_ICE).randomTicks());
     }

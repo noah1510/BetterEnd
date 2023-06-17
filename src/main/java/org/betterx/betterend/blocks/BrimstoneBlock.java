@@ -26,7 +26,7 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 
 import org.jetbrains.annotations.Nullable;
 
-public class BrimstoneBlock extends BaseBlock {
+public class BrimstoneBlock extends BaseBlock.Stone {
     public static final BooleanProperty ACTIVATED = BlockProperties.ACTIVE;
 
     public BrimstoneBlock() {

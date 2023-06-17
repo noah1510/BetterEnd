@@ -39,7 +39,7 @@ public class CrystalSubblocksMaterial {
         stairs = EndBlocks.registerBlock(name + "_stairs", new BaseStairsBlock.Stone(source));
         slab = EndBlocks.registerBlock(name + "_slab", new BaseSlabBlock.Stone(source));
         wall = EndBlocks.registerBlock(name + "_wall", new BaseWallBlock.Stone(source));
-        pedestal = EndBlocks.registerBlock(name + "_pedestal", new EndPedestal(source));
+        pedestal = EndBlocks.registerBlock(name + "_pedestal", new EndPedestal.Stone(source));
         bricks = EndBlocks.registerBlock(name + "_bricks", new LitBaseBlock(material));
         brick_stairs = EndBlocks.registerBlock(name + "_bricks_stairs", new BaseStairsBlock.Stone(bricks));
         brick_slab = EndBlocks.registerBlock(name + "_bricks_slab", new BaseSlabBlock.Stone(bricks));

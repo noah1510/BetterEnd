@@ -20,7 +20,7 @@ import com.google.common.collect.Lists;
 
 import java.util.List;
 
-public class RunedFlavolite extends BaseBlock {
+public class RunedFlavolite extends BaseBlock.Stone {
     public static final BooleanProperty ACTIVATED = BlockProperties.ACTIVE;
 
     public RunedFlavolite(boolean unbreakable) {

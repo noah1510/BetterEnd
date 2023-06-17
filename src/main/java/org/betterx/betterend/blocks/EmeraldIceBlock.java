@@ -1,5 +1,6 @@
 package org.betterx.betterend.blocks;
 
+import org.betterx.bclib.behaviours.interfaces.BehaviourIce;
 import org.betterx.bclib.client.render.BCLRenderLayer;
 import org.betterx.bclib.interfaces.BlockModelProvider;
 import org.betterx.bclib.interfaces.RenderLayerProvider;
@@ -30,7 +31,7 @@ import java.util.Collections;
 import java.util.List;
 import org.jetbrains.annotations.Nullable;
 
-public class EmeraldIceBlock extends HalfTransparentBlock implements RenderLayerProvider, BlockModelProvider {
+public class EmeraldIceBlock extends HalfTransparentBlock implements RenderLayerProvider, BlockModelProvider, BehaviourIce {
     public EmeraldIceBlock() {
         super(FabricBlockSettings.copyOf(Blocks.ICE));
     }
