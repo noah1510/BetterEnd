@@ -12,7 +12,6 @@ import org.betterx.betterend.registry.EndItems;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.material.Material;
 
 import net.fabricmc.loader.api.FabricLoader;
 
@@ -24,7 +23,6 @@ public class Integrations {
     private static boolean hasHydrogen;
 
     public static void init() {
-        System.out.println(Material.DIRT);
         if (hasGuideBook()) {
             GuideBookItem.register();
 
