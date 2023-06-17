@@ -4,6 +4,7 @@ import org.betterx.bclib.behaviours.interfaces.BehaviourWaterPlantSapling;
 import org.betterx.bclib.blocks.UnderwaterPlantWithAgeBlock;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.interfaces.survives.SurvivesOnSulphuricRock;
 import org.betterx.betterend.registry.EndBlocks;
 
 import net.minecraft.core.BlockPos;
@@ -13,7 +14,7 @@ import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class HydraluxSaplingBlock extends UnderwaterPlantWithAgeBlock implements BehaviourWaterPlantSapling {
+public class HydraluxSaplingBlock extends UnderwaterPlantWithAgeBlock implements BehaviourWaterPlantSapling, SurvivesOnSulphuricRock {
 
     @Override
     public void grow(WorldGenLevel world, RandomSource random, BlockPos pos) {
@@ -70,7 +71,11 @@ public class HydraluxSaplingBlock extends UnderwaterPlantWithAgeBlock implements
     }
 
     @Override
-    protected boolean isTerrain(BlockState state) {
-        return state.is(EndBlocks.SULPHURIC_ROCK.stone);
+    public boolean isTerrain(BlockState state) {
+        return SurvivesOnSulphuricRock.super.isTerrain(state);
+    }
+
+    public String prefixComponent() {
+        return "tooltip.bclib.place_underwater_on";
     }
 }
