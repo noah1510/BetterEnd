@@ -176,11 +176,19 @@ public class TunelCaveFeature extends EndCaveFeature {
         }
 
         floorSets.forEach((biome, floorPositions) -> {
-            BlockState surfaceBlock = EndBiome.findTopMaterial(biome.bclBiome);
-            placeFloor(world, generator, (EndCaveBiome) biome.bclBiome, floorPositions, random, surfaceBlock);
+            if (biome != null && biome.bclBiome instanceof EndCaveBiome ecb) {
+                BlockState surfaceBlock = EndBiome.findTopMaterial(biome.bclBiome);
+                placeFloor(world, generator, ecb, floorPositions, random, surfaceBlock);
+            } else {
+                //BCLib.LOGGER.warning("Floor is not a cave biome: " + biome);
+            }
         });
         ceilSets.forEach((biome, ceilPositions) -> {
-            placeCeil(world, generator, (EndCaveBiome) biome.bclBiome, ceilPositions, random);
+            if (biome != null && biome.bclBiome instanceof EndCaveBiome ecb) {
+                placeCeil(world, generator, ecb, ceilPositions, random);
+            } else {
+                //BCLib.LOGGER.warning("Ceiling is not a cave biome: " + biome);
+            }
         });
         BiomePicker.ActualBiome biome = EndBiomes.getCaveBiome(pos.getX(), pos.getZ());
         placeWalls(world, generator, (EndCaveBiome) biome.bclBiome, caveBlocks, random);
