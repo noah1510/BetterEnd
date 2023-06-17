@@ -51,7 +51,7 @@ public class SmallJellyshroomBlock extends BaseAttachedBlock implements RenderLa
     public SmallJellyshroomBlock() {
         super(BehaviourBuilders.createPlant(MapColor.COLOR_LIGHT_BLUE)
                                .sound(SoundType.NETHER_WART)
-                               .offsetType(BlockBehaviour.OffsetType.XZ));
+                               .offsetType(BlockBehaviour.OffsetType.NONE));
     }
 
     @Override
