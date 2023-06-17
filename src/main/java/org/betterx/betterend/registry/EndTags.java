@@ -39,6 +39,16 @@ public class EndTags {
             "bonemeal/target/dragon_bone"
     );
 
+    public static final TagKey<Block> BONEMEAL_SOURCE_WATER_GRASS = TagManager.BLOCKS.makeTag(
+            BetterEnd.MOD_ID,
+            "bonemeal/source/water_grass"
+    );
+
+    public static final TagKey<Block> BONEMEAL_TARGET_WATER_GRASS = TagManager.BLOCKS.makeTag(
+            BetterEnd.MOD_ID,
+            "bonemeal/target/water_grass"
+    );
+
     public static void register() {
         addEndGround(EndBlocks.THALLASIUM.ore);
         addEndGround(EndBlocks.ENDSTONE_DUST);
@@ -82,6 +92,8 @@ public class EndTags {
         TagManager.ITEMS.add(ALLOYING_COPPER, Items.COPPER_ORE, Items.DEEPSLATE_COPPER_ORE, Items.RAW_COPPER);
 
         TagManager.ITEMS.add(ItemTags.FISHES, EndItems.END_FISH_RAW, EndItems.END_FISH_COOKED);
+
+        TagManager.BLOCKS.addOtherTags(BONEMEAL_TARGET_WATER_GRASS, CommonBlockTags.END_STONES);
     }
 
     public static void addEndGround(Block bl) {
