@@ -63,7 +63,7 @@ public class EndStructures {
     public static final BCLStructure<EternalPortalStructure> ETERNAL_PORTAL = BCLStructureBuilder
             .start(BetterEnd.makeID("eternal_portal"), EternalPortalStructure::new)
             .step(Decoration.RAW_GENERATION)
-            .randomPlacement(16, 6)
+            .randomPlacement(40, 12)
             .build();
     public static final BCLStructure<GiantIceStarStructure> GIANT_ICE_STAR = BCLStructureBuilder
             .start(BetterEnd.makeID("giant_ice_star"), GiantIceStarStructure::new)
