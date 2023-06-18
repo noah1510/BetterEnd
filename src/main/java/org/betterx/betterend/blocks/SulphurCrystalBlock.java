@@ -4,6 +4,7 @@ import org.betterx.bclib.blocks.BaseAttachedBlock;
 import org.betterx.bclib.client.render.BCLRenderLayer;
 import org.betterx.bclib.interfaces.RenderLayerProvider;
 import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.interfaces.survives.SurvivesOnBrimstone;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndItems;
 
@@ -11,6 +12,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
@@ -28,6 +31,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -40,7 +44,7 @@ import java.util.EnumMap;
 import java.util.List;
 
 @SuppressWarnings("deprecation")
-public class SulphurCrystalBlock extends BaseAttachedBlock.Glass implements RenderLayerProvider, SimpleWaterloggedBlock, LiquidBlockContainer {
+public class SulphurCrystalBlock extends BaseAttachedBlock.Glass implements RenderLayerProvider, SimpleWaterloggedBlock, LiquidBlockContainer, SurvivesOnBrimstone {
     private static final EnumMap<Direction, VoxelShape> BOUNDING_SHAPES = Maps.newEnumMap(Direction.class);
     public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 2);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -52,6 +56,7 @@ public class SulphurCrystalBlock extends BaseAttachedBlock.Glass implements Rend
                         .requiresCorrectToolForDrops()
                         .noCollission());
     }
+
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateManager) {
@@ -66,7 +71,32 @@ public class SulphurCrystalBlock extends BaseAttachedBlock.Glass implements Rend
 
     @Override
     public List<ItemStack> getDrops(BlockState state, LootParams.Builder builder) {
-        return state.getValue(AGE) < 2 ? Collections.emptyList() : Lists.newArrayList(new ItemStack(
+        final ItemStack tool = builder.getParameter(LootContextParams.TOOL);
+        if (tool != null && !tool.isEmpty()) {
+            final int fortuneLevel = EnchantmentHelper.getItemEnchantmentLevel(Enchantments.BLOCK_FORTUNE, tool) + 1;
+            final int age = state.getValue(AGE);
+
+            final int min;
+            final int max;
+            if (age < 2) {
+                min = 1;
+                max = 1 + age * fortuneLevel;
+            } else {
+                min = fortuneLevel + 1;
+                max = 2 + age * fortuneLevel;
+            }
+
+            if (tool.isCorrectToolForDrops(state) && EnchantmentHelper.hasSilkTouch(tool)) {
+                final ItemStack drop = new ItemStack(
+                        EndBlocks.SULPHUR_CRYSTAL,
+                        MHelper.randRange(min, max, MHelper.RANDOM_SOURCE)
+                );
+                return List.of(drop);
+            }
+        }
+
+        if (state.getValue(AGE) < 2) return Collections.emptyList();
+        return Lists.newArrayList(new ItemStack(
                 EndItems.CRYSTALLINE_SULPHUR,
                 MHelper.randRange(1, 3, MHelper.RANDOM_SOURCE)
         ));
@@ -108,7 +138,7 @@ public class SulphurCrystalBlock extends BaseAttachedBlock.Glass implements Rend
     public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
         Direction direction = state.getValue(FACING);
         BlockPos blockPos = pos.relative(direction.getOpposite());
-        return world.getBlockState(blockPos).is(EndBlocks.BRIMSTONE);
+        return isTerrain(world.getBlockState(blockPos));
     }
 
     static {
