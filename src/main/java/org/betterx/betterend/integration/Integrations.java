@@ -5,7 +5,6 @@ import org.betterx.bclib.integration.ModIntegration;
 import org.betterx.bclib.recipes.BCLRecipeBuilder;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.events.PlayerAdvancementsCallback;
-import org.betterx.betterend.integration.byg.BYGIntegration;
 import org.betterx.betterend.item.GuideBookItem;
 import org.betterx.betterend.registry.EndItems;
 
@@ -16,7 +15,6 @@ import net.minecraft.world.item.Items;
 import net.fabricmc.loader.api.FabricLoader;
 
 public class Integrations {
-    public static final ModIntegration BYG = ModIntegrationAPI.register(new BYGIntegration());
     public static final ModIntegration NOURISH = ModIntegrationAPI.register(new NourishIntegration());
     public static final ModIntegration FLAMBOYANT_REFABRICATED = ModIntegrationAPI.register(new FlamboyantRefabricatedIntegration());
 

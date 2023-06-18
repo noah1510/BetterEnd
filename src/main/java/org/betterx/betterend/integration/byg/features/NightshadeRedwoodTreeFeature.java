@@ -11,7 +11,7 @@ import org.betterx.bclib.sdf.primitive.SDFSphere;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.bclib.util.SplineHelper;
-import org.betterx.betterend.integration.Integrations;
+import org.betterx.betterend.integration.byg.BYGIntegration;
 import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
 import net.minecraft.core.BlockPos;
@@ -42,10 +42,10 @@ public class NightshadeRedwoodTreeFeature extends DefaultFeature {
         final WorldGenLevel world = featureConfig.level();
         if (!world.getBlockState(pos.below()).is(CommonBlockTags.END_STONES)) return false;
 
-        BlockState log = Integrations.BYG.getDefaultState("nightshade_log");
-        BlockState wood = Integrations.BYG.getDefaultState("nightshade_wood");
-        BlockState leaves = Integrations.BYG.getDefaultState("nightshade_leaves");
-        BlockState leaves_flower = Integrations.BYG.getDefaultState("flowering_nightshade_leaves");
+        BlockState log = BYGIntegration.BYG.getDefaultState("nightshade_log");
+        BlockState wood = BYGIntegration.BYG.getDefaultState("nightshade_wood");
+        BlockState leaves = BYGIntegration.BYG.getDefaultState("nightshade_leaves");
+        BlockState leaves_flower = BYGIntegration.BYG.getDefaultState("flowering_nightshade_leaves");
 
         Function<BlockPos, BlockState> splinePlacer = (bpos) -> log;
         Function<BlockState, Boolean> replace = (state) -> state.is(CommonBlockTags.END_STONES) || state.getMaterial()

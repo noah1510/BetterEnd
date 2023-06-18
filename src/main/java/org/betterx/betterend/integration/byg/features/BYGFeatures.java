@@ -3,8 +3,8 @@ package org.betterx.betterend.integration.byg.features;
 import org.betterx.bclib.api.v3.levelgen.features.BCLFeature;
 import org.betterx.bclib.api.v3.levelgen.features.BCLFeatureBuilder;
 import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.integration.Integrations;
 import org.betterx.betterend.integration.byg.BYGBlocks;
+import org.betterx.betterend.integration.byg.BYGIntegration;
 import org.betterx.betterend.registry.EndFeatures;
 import org.betterx.betterend.world.features.*;
 
@@ -22,7 +22,7 @@ public class BYGFeatures {
     public static final BCLFeature<SinglePlantFeature, SinglePlantFeatureConfig> IVIS_SPROUT = registerVegetation(
             "ivis_sprout",
             EndFeatures.SINGLE_PLANT_FEATURE,
-            new SinglePlantFeatureConfig(Integrations.BYG.getBlock("ivis_sprout"), 6, 2),
+            new SinglePlantFeatureConfig(BYGIntegration.BYG.getBlock("ivis_sprout"), 6, 2),
             6
     );
     public static final BCLFeature<VineFeature, VineFeatureConfig> IVIS_VINE = registerVegetation(

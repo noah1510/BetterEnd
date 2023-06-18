@@ -7,6 +7,7 @@ import org.betterx.betterend.api.BetterEndPlugin;
 import org.betterx.betterend.commands.CommandRegistry;
 import org.betterx.betterend.config.Configs;
 import org.betterx.betterend.effects.EndPotions;
+import org.betterx.betterend.integration.Integrations;
 import org.betterx.betterend.recipe.builders.InfusionRecipe;
 import org.betterx.betterend.registry.*;
 import org.betterx.betterend.tab.CreativeTabs;
@@ -58,7 +59,7 @@ public class BetterEnd implements ModInitializer {
         FabricLoader.getInstance()
                     .getEntrypoints("betterend", BetterEndPlugin.class)
                     .forEach(BetterEndPlugin::register);
-        //Integrations.init();
+        Integrations.init();
         Configs.saveConfigs();
         CreativeTabs.ensureStaticallyLoaded();
 

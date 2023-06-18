@@ -4,7 +4,7 @@ import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
 import org.betterx.bclib.sdf.SDF;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.bclib.util.SplineHelper;
-import org.betterx.betterend.integration.Integrations;
+import org.betterx.betterend.integration.byg.BYGIntegration;
 import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
 import net.minecraft.core.BlockPos;
@@ -28,8 +28,8 @@ public class BigEtherTreeFeature extends DefaultFeature {
         final WorldGenLevel world = featureConfig.level();
         if (!world.getBlockState(pos.below()).is(CommonBlockTags.END_STONES)) return false;
 
-        BlockState log = Integrations.BYG.getDefaultState("ether_log");
-        BlockState wood = Integrations.BYG.getDefaultState("ether_wood");
+        BlockState log = BYGIntegration.BYG.getDefaultState("ether_log");
+        BlockState wood = BYGIntegration.BYG.getDefaultState("ether_wood");
         Function<BlockPos, BlockState> splinePlacer = (bpos) -> {
             return log;
         };

@@ -4,7 +4,7 @@ import org.betterx.bclib.BCLib;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
 import org.betterx.bclib.api.v2.levelgen.surface.SurfaceRuleBuilder;
 import org.betterx.bclib.interfaces.SurfaceMaterialProvider;
-import org.betterx.betterend.integration.Integrations;
+import org.betterx.betterend.integration.byg.BYGIntegration;
 import org.betterx.betterend.integration.byg.features.BYGFeatures;
 import org.betterx.betterend.registry.EndFeatures;
 import org.betterx.betterend.world.biome.EndBiome;
@@ -31,7 +31,7 @@ public class NightshadeRedwoods extends EndBiome.Config {
 
     @Override
     protected void addCustomBuildData(BCLBiomeBuilder builder) {
-        Holder<Biome> biome = Integrations.BYG.getBiome("nightshade_forest");
+        Holder<Biome> biome = BYGIntegration.BYG.getBiome("nightshade_forest");
         BiomeSpecialEffects effects = biome.value().getSpecialEffects();
 
         builder.fogColor(140, 108, 47)
@@ -90,7 +90,7 @@ public class NightshadeRedwoods extends EndBiome.Config {
         return new EndBiome.DefaultSurfaceMaterialProvider() {
             @Override
             public BlockState getTopMaterial() {
-                return Integrations.BYG.getBlock("nightshade_phylium").defaultBlockState();
+                return BYGIntegration.BYG.getBlock("nightshade_phylium").defaultBlockState();
             }
 
             @Override

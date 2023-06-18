@@ -5,7 +5,7 @@ import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
 import org.betterx.bclib.api.v2.levelgen.surface.SurfaceRuleBuilder;
 import org.betterx.bclib.api.v2.levelgen.surface.rules.RoughNoiseCondition;
 import org.betterx.bclib.interfaces.SurfaceMaterialProvider;
-import org.betterx.betterend.integration.Integrations;
+import org.betterx.betterend.integration.byg.BYGIntegration;
 import org.betterx.betterend.integration.byg.features.BYGFeatures;
 import org.betterx.betterend.registry.EndFeatures;
 import org.betterx.betterend.world.biome.EndBiome;
@@ -36,7 +36,7 @@ public class OldBulbisGardens extends EndBiome.Config {
 
     @Override
     protected void addCustomBuildData(BCLBiomeBuilder builder) {
-        Holder<Biome> biome = Integrations.BYG.getBiome("bulbis_gardens");
+        Holder<Biome> biome = BYGIntegration.BYG.getBiome("bulbis_gardens");
         BiomeSpecialEffects effects = biome.value().getSpecialEffects();
 
         builder.fogColor(215, 132, 207)
@@ -119,12 +119,12 @@ public class OldBulbisGardens extends EndBiome.Config {
         return new EndBiome.DefaultSurfaceMaterialProvider() {
             @Override
             public BlockState getTopMaterial() {
-                return Integrations.BYG.getBlock("ivis_phylium").defaultBlockState();
+                return BYGIntegration.BYG.getBlock("ivis_phylium").defaultBlockState();
             }
 
             @Override
             public BlockState getAltTopMaterial() {
-                return Integrations.BYG.getBlock("bulbis_phycelium").defaultBlockState();
+                return BYGIntegration.BYG.getBlock("bulbis_phycelium").defaultBlockState();
             }
 
             @Override

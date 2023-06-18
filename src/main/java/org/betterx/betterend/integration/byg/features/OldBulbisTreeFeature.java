@@ -9,7 +9,7 @@ import org.betterx.bclib.sdf.operator.SDFUnion;
 import org.betterx.bclib.sdf.primitive.SDFSphere;
 import org.betterx.bclib.util.MHelper;
 import org.betterx.bclib.util.SplineHelper;
-import org.betterx.betterend.integration.Integrations;
+import org.betterx.betterend.integration.byg.BYGIntegration;
 import org.betterx.betterend.noise.OpenSimplexNoise;
 import org.betterx.worlds.together.tag.v3.CommonBlockTags;
 
@@ -44,12 +44,12 @@ public class OldBulbisTreeFeature extends DefaultFeature {
         if (!world.getBlockState(pos.below()).is(CommonBlockTags.END_STONES)) return false;
         if (!world.getBlockState(pos.below(4)).is(CommonBlockTags.GEN_END_STONES)) return false;
 
-        BlockState stem = Integrations.BYG.getDefaultState("bulbis_stem");
-        BlockState wood = Integrations.BYG.getDefaultState("bulbis_wood");
-        BlockState cap = Integrations.BYG.getDefaultState(random.nextBoolean()
+        BlockState stem = BYGIntegration.BYG.getDefaultState("bulbis_stem");
+        BlockState wood = BYGIntegration.BYG.getDefaultState("bulbis_wood");
+        BlockState cap = BYGIntegration.BYG.getDefaultState(random.nextBoolean()
                 ? "bulbis_shell"
                 : "purple_bulbis_shell");
-        BlockState glow = Integrations.BYG.getDefaultState("purple_shroomlight");
+        BlockState glow = BYGIntegration.BYG.getDefaultState("purple_shroomlight");
 
         Function<BlockState, Boolean> replacement = (state) -> {
             if (state.equals(stem) || state.equals(wood) || state.is(CommonBlockTags.END_STONES) || state.getMaterial()

@@ -1,7 +1,7 @@
 package org.betterx.betterend.integration.byg.biomes;
 
 import org.betterx.betterend.BetterEnd;
-import org.betterx.betterend.integration.Integrations;
+import org.betterx.betterend.integration.byg.BYGIntegration;
 import org.betterx.betterend.registry.EndBiomes;
 import org.betterx.betterend.world.biome.EndBiome;
 
@@ -19,8 +19,8 @@ public class BYGBiomes {
     }
 
     public static void addBiomes() {
-        EndBiomes.addSubBiomeIntegration(OLD_BULBIS_GARDENS, Integrations.BYG.getID("bulbis_gardens"));
-        EndBiomes.addSubBiomeIntegration(NIGHTSHADE_REDWOODS, Integrations.BYG.getID("nightshade_forest"));
+        EndBiomes.addSubBiomeIntegration(OLD_BULBIS_GARDENS, BYGIntegration.BYG.getID("bulbis_gardens"));
+        EndBiomes.addSubBiomeIntegration(NIGHTSHADE_REDWOODS, BYGIntegration.BYG.getID("nightshade_forest"));
         //EndBiomes.addSubBiomeIntegration(ETHERIAL_GROVE, Integrations.BYG.getID("ethereal_islands"));
     }
 }
