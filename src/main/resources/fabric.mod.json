@@ -52,14 +52,16 @@
     "bclib": "2.3.x"
   },
   "breaks": {
-    "bclib": "<2.3.3"
+    "bclib": "<2.3.3",
+    "emi": "<1.0.0"
   },
   "suggests": {
     "byg": ">=2.0.0",
     "blockus": ">=2.0.2",
     "nourish": ">=1.2.0",
     "colored_lights": ">=1.0.3",
-    "trinkets": ">=3.4.0"
+    "trinkets": ">=3.4.0",
+    "emi": ">=1.0.0"
   },
   "custom": {
     "bclib": {

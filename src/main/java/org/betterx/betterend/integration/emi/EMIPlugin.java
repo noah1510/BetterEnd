@@ -32,7 +32,7 @@ public class EMIPlugin implements dev.emi.emi.api.EmiPlugin {
         if (org.betterx.bclib.integration.emi.EMIPlugin.END_ALLOYING_CATEGORY != null) {
             EMIBlastingRecipe.addAllRecipes(emiRegistry, manager);
         }
-        
+
         emiRegistry.addWorkstation(VanillaEmiRecipeCategories.SMELTING, AZURE_JADESTONE_FURNACE_WORKSTATION);
         emiRegistry.addWorkstation(VanillaEmiRecipeCategories.SMELTING, SANDY_JADESTONE_FURNACE_WORKSTATION);
         emiRegistry.addWorkstation(VanillaEmiRecipeCategories.SMELTING, VIRID_JADESTONE_FURNACE_WORKSTATION);

@@ -17,6 +17,7 @@ import dev.emi.emi.api.recipe.EmiRecipeCategory;
 import dev.emi.emi.api.render.EmiTexture;
 import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
+import dev.emi.emi.api.widget.SlotWidget;
 import dev.emi.emi.api.widget.WidgetHolder;
 
 import java.util.List;
@@ -104,13 +105,13 @@ public class EMIInfusionRecipe implements EmiRecipe {
         widgets.addTexture(EmiTexture.EMPTY_ARROW, right + 10, cy - 8);
 
         // Adds an input slot on the left
-        widgets.add(new TransparentSlotWidget(input.get(0), cx - halfSize, cy - halfSize));
+        widgets.add(new SlotWidget(input.get(0), cx - halfSize, cy - halfSize));
 
         FormattedCharSequence str = FormattedCharSequence.forward("N", Style.EMPTY);
         widgets.addText(str, cx - Minecraft.getInstance().font.width(str) / 2, 4, ColorUtil.WHITE, true);
         double a = Math.PI;
         for (int i = 1; i < input.size(); i++) {
-            widgets.add(new TransparentSlotWidget(
+            widgets.add(new SlotWidget(
                     input.get(i),
                     cx - halfSize + (int) (Math.sin(a) * radius),
                     cy - halfSize + (int) (Math.cos(a) * radius)
@@ -121,7 +122,7 @@ public class EMIInfusionRecipe implements EmiRecipe {
         // Adds an output slot on the right
         // Note that output slots need to call `recipeContext` to inform EMI about their recipe context
         // This includes being able to resolve recipe trees, favorite stacks with recipe context, and more
-        widgets.addSlot(output.get(0), right + 40, cy - (halfSize + 4)).output(true).recipeContext(this);
+        widgets.addSlot(output.get(0), right + 40, cy - (halfSize + 4)).large(true).recipeContext(this);
     }
 
     @Override
