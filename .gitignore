@@ -35,3 +35,5 @@ Convert.class
 ModelPart.class
 libs/
 /src/main/generated/.cache/
+/CHANGES.md
+/modrinth.json
