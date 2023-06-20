@@ -1,5 +1,6 @@
 package org.betterx.betterend;
 
+import org.betterx.bclib.api.v2.dataexchange.DataExchangeAPI;
 import org.betterx.bclib.api.v2.generator.BiomeDecider;
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
 import org.betterx.betterend.advancements.BECriteria;
@@ -9,6 +10,7 @@ import org.betterx.betterend.config.Configs;
 import org.betterx.betterend.effects.EndPotions;
 import org.betterx.betterend.integration.Integrations;
 import org.betterx.betterend.integration.trinkets.Elytra;
+import org.betterx.betterend.network.RitualUpdate;
 import org.betterx.betterend.recipe.builders.InfusionRecipe;
 import org.betterx.betterend.registry.*;
 import org.betterx.betterend.tab.CreativeTabs;
@@ -24,6 +26,8 @@ import net.minecraft.world.level.biome.Biomes;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
+
+import java.util.List;
 
 public class BetterEnd implements ModInitializer {
     public static final String MOD_ID = "betterend";
@@ -80,6 +84,10 @@ public class BetterEnd implements ModInitializer {
                 EndStructures.addBiomeStructures(biomeID, biome);
             }
         });
+
+        DataExchangeAPI.registerDescriptors(List.of(
+                RitualUpdate.DESCRIPTOR
+        ));
 
         if (RUNS_TRINKETS) {
             Elytra.register();

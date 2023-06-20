@@ -1,11 +1,13 @@
 package org.betterx.betterend.rituals;
 
+import org.betterx.bclib.api.v2.dataexchange.DataExchangeAPI;
 import org.betterx.bclib.blocks.BlockProperties;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.advancements.BECriteria;
 import org.betterx.betterend.blocks.EndPortalBlock;
 import org.betterx.betterend.blocks.RunedFlavolite;
 import org.betterx.betterend.blocks.entities.EternalPedestalEntity;
+import org.betterx.betterend.network.RitualUpdate;
 import org.betterx.betterend.portal.PortalBuilder;
 import org.betterx.betterend.registry.EndBlocks;
 import org.betterx.betterend.registry.EndPortals;
@@ -60,6 +62,7 @@ public class EternalRitual {
     private BlockPos center;
     private BlockPos exit;
     private boolean active = false;
+    private boolean willActivate = false;
 
     public EternalRitual(Level world) {
         this.world = world;
@@ -70,8 +73,20 @@ public class EternalRitual {
         this.configure(initial);
     }
 
+    public BlockPos getCenter() {
+        return center;
+    }
+
+    public Direction.Axis getAxis() {
+        return axis;
+    }
+
     public void setWorld(Level world) {
         this.world = world;
+    }
+
+    public Level getWorld() {
+        return world;
     }
 
     @Nullable
@@ -119,6 +134,52 @@ public class EternalRitual {
         }
     }
 
+    public void updateActiveStateOnPedestals() {
+        if (world == null) return;
+        updateActiveStateOnPedestals(center, axis, active, willActivate, world, this);
+        DataExchangeAPI.send(new RitualUpdate(this));
+    }
+
+    public static void updateActiveStateOnPedestals(
+            BlockPos center,
+            Direction.Axis axis,
+            boolean active,
+            boolean willActivate,
+            Level world,
+            EternalRitual fallback
+    ) {
+        Direction moveX, moveY;
+        if (Direction.Axis.X == axis) {
+            moveX = Direction.EAST;
+            moveY = Direction.NORTH;
+        } else {
+            moveX = Direction.SOUTH;
+            moveY = Direction.EAST;
+        }
+
+
+        for (Point pos : PEDESTAL_POSITIONS) {
+            BlockPos.MutableBlockPos checkPos = center.mutable();
+            checkPos.move(moveX, pos.x).move(moveY, pos.y);
+            if (world.getBlockEntity(checkPos) instanceof EternalPedestalEntity pedestal) {
+                if (pedestal.hasRitual()) {
+                    if (fallback == null) fallback = pedestal.getRitual();
+                    pedestal.getRitual().active = active;
+                    pedestal.getRitual().willActivate = willActivate;
+                } else {
+                    if (fallback == null) {
+                        fallback = new EternalRitual(world);
+                        fallback.center = center;
+                        fallback.axis = axis;
+                        fallback.willActivate = willActivate;
+                        fallback.active = active;
+                    }
+                    pedestal.linkRitual(fallback);
+                }
+            }
+        }
+    }
+
     private boolean checkFrame(Level world, BlockPos framePos) {
         Direction moveDir = Direction.Axis.X == axis ? Direction.NORTH : Direction.EAST;
         boolean valid = true;
@@ -137,8 +198,15 @@ public class EternalRitual {
         return active;
     }
 
+    public boolean willActivate() {
+        return willActivate;
+    }
+
     private void activatePortal(Player player, Item keyItem) {
         if (active) return;
+        willActivate = true;
+        updateActiveStateOnPedestals();
+
         ResourceLocation itemId = BuiltInRegistries.ITEM.getKey(keyItem);
         int portalId = EndPortals.getPortalIdByItem(itemId);
         Level targetWorld = getTargetWorld(portalId);
@@ -156,13 +224,19 @@ public class EternalRitual {
                 activatePortal(targetWorld, exit, portalId);
             }
             activatePortal(world, center, portalId);
-            doEffects((ServerLevel) world, center);
+            if (world instanceof ServerLevel serverLevel) {
+                doEffects(serverLevel, center);
+            }
+            willActivate = false;
             active = true;
+            updateActiveStateOnPedestals();
         } catch (Exception ex) {
             BetterEnd.LOGGER.error("Create End portals error.", ex);
             removePortal(targetWorld, exit);
             removePortal(world, center);
+            willActivate = false;
             active = false;
+            updateActiveStateOnPedestals();
         }
     }
 
@@ -238,47 +312,49 @@ public class EternalRitual {
                                                 .setValue(EndPortalBlock.AXIS, portalAxis)
                                                 .setValue(EndPortalBlock.PORTAL, portalId);
         ParticleOptions effect = new BlockParticleOption(ParticleTypes.BLOCK, portal);
-        ServerLevel serverWorld = (ServerLevel) world;
+        if (world instanceof ServerLevel serverWorld) {
+            PortalBuilder.PORTAL_POSITIONS.forEach(point -> {
+                BlockPos pos = center.mutable().move(moveDir, point.x).move(Direction.UP, point.y);
+                if (!world.getBlockState(pos).is(PortalBuilder.PORTAL)) {
+                    world.setBlockAndUpdate(pos, portal);
+                    serverWorld.sendParticles(
+                            effect,
+                            pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+                            10,
+                            0.5, 0.5, 0.5, 0.1
+                    );
+                    serverWorld.sendParticles(
+                            ParticleTypes.REVERSE_PORTAL,
+                            pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+                            10,
+                            0.5, 0.5, 0.5, 0.3
+                    );
+                }
+                pos = center.mutable().move(moveDir, -point.x).move(Direction.UP, point.y);
+                if (!world.getBlockState(pos).is(PortalBuilder.PORTAL)) {
+                    world.setBlockAndUpdate(pos, portal);
+                    serverWorld.sendParticles(
+                            effect,
+                            pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+                            10,
+                            0.5, 0.5, 0.5, 0.1
+                    );
+                    serverWorld.sendParticles(
+                            ParticleTypes.REVERSE_PORTAL,
+                            pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+                            10,
+                            0.5, 0.5, 0.5, 0.3
+                    );
+                }
 
-        PortalBuilder.PORTAL_POSITIONS.forEach(point -> {
-            BlockPos pos = center.mutable().move(moveDir, point.x).move(Direction.UP, point.y);
-            if (!world.getBlockState(pos).is(PortalBuilder.PORTAL)) {
-                world.setBlockAndUpdate(pos, portal);
-                serverWorld.sendParticles(
-                        effect,
-                        pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
-                        10,
-                        0.5, 0.5, 0.5, 0.1
-                );
-                serverWorld.sendParticles(
-                        ParticleTypes.REVERSE_PORTAL,
-                        pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
-                        10,
-                        0.5, 0.5, 0.5, 0.3
-                );
-            }
-            pos = center.mutable().move(moveDir, -point.x).move(Direction.UP, point.y);
-            if (!world.getBlockState(pos).is(PortalBuilder.PORTAL)) {
-                world.setBlockAndUpdate(pos, portal);
-                serverWorld.sendParticles(
-                        effect,
-                        pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
-                        10,
-                        0.5, 0.5, 0.5, 0.1
-                );
-                serverWorld.sendParticles(
-                        ParticleTypes.REVERSE_PORTAL,
-                        pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
-                        10,
-                        0.5, 0.5, 0.5, 0.3
-                );
-            }
-        });
+            });
+        }
     }
 
     public void disablePortal(int state) {
         if (!active || isInvalid()) return;
-        removePortal(getTargetWorld(state), exit);
+        if (!world.isClientSide())
+            removePortal(getTargetWorld(state), exit);
         removePortal(world, center);
     }
 
@@ -308,6 +384,7 @@ public class EternalRitual {
             }
         });
         this.active = false;
+        updateActiveStateOnPedestals();
     }
 
     private Level getTargetWorld(int state) {
