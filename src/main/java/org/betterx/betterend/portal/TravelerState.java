@@ -4,23 +4,31 @@ import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.advancements.BECriteria;
 
 import net.minecraft.BlockUtil;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.protocol.game.*;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.players.PlayerList;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.biome.BiomeManager;
+import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.border.WorldBorder;
 import net.minecraft.world.level.portal.PortalInfo;
 import net.minecraft.world.level.portal.PortalShape;
+import net.minecraft.world.level.storage.LevelData;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.Objects;
 import java.util.Optional;
 import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public final class TravelerState {
@@ -47,6 +55,10 @@ public final class TravelerState {
         if (!this.level().isClientSide && !blockPos.equals(this.portalEntrancePos)) {
             this.portalEntrancePos = blockPos.immutable();
         }
+        if (entity instanceof LocalPlayer) {
+            entity.isInsidePortal = true;
+        }
+
         this.isInsidePortal = true;
     }
 
@@ -115,23 +127,122 @@ public final class TravelerState {
         final ServerLevel destination = targetIsEnd ? server.getLevel(Level.END) : server.getLevel(Level.OVERWORLD);
         if (entity instanceof ServerPlayer sp && sp.isCreative()) {
             sp.teleportTo(
-                    destination,
-                    portalInfo.pos.x + 0.5,
-                    portalInfo.pos.y,
-                    portalInfo.pos.z + 0.5,
-                    entity.getYRot() + 180,
-                    entity.getXRot()
+                    destination, portalInfo.pos.x + 0.5, portalInfo.pos.y, portalInfo.pos.z + 0.5,
+                    entity.getYRot() + 180, entity.getXRot()
             );
             BECriteria.PORTAL_TRAVEL.trigger(sp);
         } else {
             if (entity instanceof ServerPlayer sp) {
                 BECriteria.PORTAL_TRAVEL.trigger(sp);
+                travelToDimension(sp, serverLevel, portalInfo);
+            } else {
+                sendToDimension(entity, serverLevel, portalInfo);
             }
+
             entity.setPortalCooldown();
         }
     }
 
-    // /execute in the_end run tp 849 84 891
+    public static Entity sendToDimension(Entity traveler, ServerLevel serverLevel, @NotNull PortalInfo portalInfo) {
+        final Level level = traveler.level();
+        if (level instanceof ServerLevel sourceDimension && !traveler.isRemoved()) {
+            traveler.unRide();
+
+            Entity copy = traveler.getType().create(serverLevel);
+            if (copy != null) {
+                copy.restoreFrom(traveler);
+                copy.moveTo(
+                        portalInfo.pos.x, portalInfo.pos.y, portalInfo.pos.z,
+                        portalInfo.yRot, copy.getXRot()
+                );
+                copy.setDeltaMovement(portalInfo.speed);
+                serverLevel.addDuringTeleport(copy);
+            }
+
+            traveler.removeAfterChangingDimensions();
+            sourceDimension.resetEmptyTime();
+            serverLevel.resetEmptyTime();
+
+            return copy;
+        }
+        return null;
+    }
+
+    public static Entity travelToDimension(
+            ServerPlayer traveler,
+            ServerLevel serverLevel,
+            @NotNull PortalInfo portalInfo
+    ) {
+        final LevelData levelData = serverLevel.getLevelData();
+        final ServerLevel sourceDimension = traveler.serverLevel();
+        final PlayerList playerList = traveler.server.getPlayerList();
+
+        traveler.isChangingDimension = true;
+        traveler.unRide();
+
+        traveler.connection.send(new ClientboundRespawnPacket(
+                serverLevel.dimensionTypeId(),
+                serverLevel.dimension(),
+                BiomeManager.obfuscateSeed(serverLevel.getSeed()),
+                traveler.gameMode.getGameModeForPlayer(),
+                traveler.gameMode.getPreviousGameModeForPlayer(),
+                serverLevel.isDebug(),
+                serverLevel.isFlat(),
+                ClientboundRespawnPacket.KEEP_ALL_DATA,
+                traveler.getLastDeathLocation(),
+                traveler.getPortalCooldown()
+        ));
+        traveler.connection.send(new ClientboundChangeDifficultyPacket(
+                levelData.getDifficulty(),
+                levelData.isDifficultyLocked()
+        ));
+
+        playerList.sendPlayerPermissionLevel(traveler);
+
+        sourceDimension.removePlayerImmediately(traveler, Entity.RemovalReason.CHANGED_DIMENSION);
+        traveler.unsetRemoved();
+        traveler.setServerLevel(serverLevel);
+        traveler.connection.resetPosition();
+        serverLevel.addDuringPortalTeleport(traveler);
+        traveler.triggerDimensionChangeTriggers(sourceDimension);
+        traveler.connection.teleport(
+                portalInfo.pos.x, portalInfo.pos.y, portalInfo.pos.z,
+                portalInfo.yRot, portalInfo.xRot
+        );
+
+        playerList.sendLevelInfo(traveler, serverLevel);
+        playerList.sendAllPlayerInfo(traveler);
+
+        traveler.connection.send(new ClientboundPlayerAbilitiesPacket(traveler.getAbilities()));
+
+        sendPlayerEffects(traveler);
+
+        traveler.connection.send(new ClientboundLevelEventPacket(
+                LevelEvent.SOUND_PORTAL_TRAVEL,
+                BlockPos.ZERO,
+                0,
+                false
+        ));
+        traveler.lastSentExp = -1;
+        traveler.lastSentHealth = -1.0F;
+        traveler.lastSentFood = -1;
+
+        sourceDimension.resetEmptyTime();
+        serverLevel.resetEmptyTime();
+
+        return traveler;
+    }
+
+    private static void sendPlayerEffects(ServerPlayer traveler) {
+        for (MobEffectInstance mobEffectInstance : traveler.getActiveEffects()) {
+            traveler.connection.send(new ClientboundUpdateMobEffectPacket(
+                    traveler.getId(),
+                    mobEffectInstance
+            ));
+        }
+    }
+
+    // /execute in the_end run tp 49346 61 400
     // /execute in overworld run tp 849 64 891
     @Nullable
     private PortalInfo findDimensionEntryPoint(ServerLevel targetLevel) {
