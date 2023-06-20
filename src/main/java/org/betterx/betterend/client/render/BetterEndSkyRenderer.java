@@ -196,6 +196,7 @@ public class BetterEndSkyRenderer implements DimensionRenderingRegistry.SkyRende
         RenderSystem.depthMask(true);
         RenderSystem.defaultBlendFunc();
         RenderSystem.disableBlend();
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
     }
 
     private void renderBuffer(
