@@ -11,6 +11,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.FriendlyByteBuf;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.networking.v1.PacketSender;
 
 public class RitualUpdate extends DataHandler.FromServer {
@@ -53,6 +55,7 @@ public class RitualUpdate extends DataHandler.FromServer {
     }
 
     @Override
+    @Environment(EnvType.CLIENT)
     protected void deserializeIncomingDataOnClient(FriendlyByteBuf buf, PacketSender responseSender) {
         center = buf.readBlockPos();
         axis = Direction.Axis.byName(BaseDataHandler.readString(buf));
@@ -60,6 +63,7 @@ public class RitualUpdate extends DataHandler.FromServer {
     }
 
     @Override
+    @Environment(EnvType.CLIENT)
     protected void runOnClientGameThread(Minecraft client) {
         EternalRitual.updateActiveStateOnPedestals(
                 center,
