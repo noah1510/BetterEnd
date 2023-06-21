@@ -174,29 +174,54 @@ public class EternalPedestal extends PedestalBlock implements BehaviourStone {
                             && ritual.getCenter() != null
                             && (ritual.isActive() || ritual.willActivate())
                     ) {
+                        final boolean powerUp = ritual.willActivate();
+                        final boolean inX = ritual.getAxis() == Direction.Axis.X;
                         final var start = Float3.of(blockPos);
-                        final var dir = Float3
-                                .of(ritual.getCenter())
+                        final var center = Float3.of(ritual.getCenter());
+                        final var dir = center
                                 .sub(start)
                                 .normalized()
-                                .mul(ritual.willActivate() ? 0.2 : 0.05);
+                                .mul(powerUp ? 0.2 : 0.05);
                         float[] color = EternalCrystalRenderer.colors(PedestalItemRenderer.getGemAge());
 
+                        if (powerUp) {
+                            for (int i = 0; i < 30; i++) {
+                                Float3 rnd = Float3.of(
+                                        random.nextFloat() * 0.3 - 0.15,
+                                        random.nextFloat() * -0.1,
+                                        random.nextFloat() * 0.3 - 0.15
+                                ).sub(dir);
+                                SimpleParticleType particleOptions = ParticleTypes.GLOW;
+                                final Particle particle = clientLevel.bcl_addParticle(
+                                        particleOptions,
+                                        center.x + (inX ? 0 : random.nextFloat() * 3 - 1.5),
+                                        center.y + 1 + random.nextFloat() * 3,
+                                        center.z + (inX ? random.nextFloat() * 3 - 1.5 : 0),
+                                        0,
+                                        0,
+                                        0
+                                );
+                                if (particle == null) continue;
+                                particle.setColor(color[0], color[1], color[2]);
+                                particle.setParticleSpeed(rnd.x, rnd.y, rnd.z);
+                            }
+                        }
+
                         for (int i = 0; i < random.nextInt(
-                                ritual.willActivate() ? 30 : 2,
-                                ritual.willActivate() ? 60 : 10
+                                powerUp ? 20 : 2,
+                                powerUp ? 40 : 10
                         ); i++) {
                             Float3 rnd = Float3.of(
                                     random.nextFloat() * 0.3 - 0.15,
                                     random.nextFloat() * -0.1,
                                     random.nextFloat() * 0.3 - 0.15
-                            ).add(dir);
+                            ).add(dir.mul(powerUp ? random.nextFloat() * 4 : 1));
                             SimpleParticleType particleOptions = ParticleTypes.EFFECT;
                             final Particle particle = clientLevel.bcl_addParticle(
                                     particleOptions,
-                                    blockPos.getX() + 0.2 + random.nextFloat() * 0.6,
-                                    blockPos.getY() + 1 + random.nextFloat() * 0.7,
-                                    blockPos.getZ() + 0.2 + random.nextFloat() * 0.6,
+                                    start.x + 0.3 + random.nextFloat() * 0.4,
+                                    start.y + 1 + random.nextFloat() * 0.7,
+                                    start.z + 0.3 + random.nextFloat() * 0.4,
                                     0,
                                     0,
                                     0
@@ -204,6 +229,9 @@ public class EternalPedestal extends PedestalBlock implements BehaviourStone {
                             if (particle == null) continue;
                             particle.setColor(color[0], color[1], color[2]);
                             particle.setParticleSpeed(rnd.x, rnd.y, rnd.z);
+                            if (powerUp) {
+                                particle.setLifetime(6 + random.nextInt(4));
+                            }
                         }
                     }
                 }
