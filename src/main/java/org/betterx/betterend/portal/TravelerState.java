@@ -55,8 +55,10 @@ public final class TravelerState {
         if (!this.level().isClientSide && !blockPos.equals(this.portalEntrancePos)) {
             this.portalEntrancePos = blockPos.immutable();
         }
-        if (entity instanceof LocalPlayer) {
-            entity.isInsidePortal = true;
+        if (this.level().isClientSide) {
+            if (entity instanceof LocalPlayer) {
+                entity.isInsidePortal = true;
+            }
         }
 
         this.isInsidePortal = true;
