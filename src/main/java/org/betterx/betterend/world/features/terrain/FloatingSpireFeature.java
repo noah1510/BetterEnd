@@ -1,5 +1,7 @@
 package org.betterx.betterend.world.features.terrain;
 
+import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
+import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeRegistry;
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
 import org.betterx.bclib.sdf.SDF;
 import org.betterx.bclib.sdf.operator.SDFDisplacement;
@@ -86,7 +88,8 @@ public class FloatingSpireFeature extends SpireFeature {
         sdf.fillRecursive(world, center);
 
         support.forEach((bpos) -> {
-            if (BiomeAPI.getBiome(world.getBiome(bpos)).is(EndBiomes.BLOSSOMING_SPIRES)) {
+            BCLBiome biome = BiomeAPI.getBiome(world.getBiome(bpos));
+            if (!BCLBiomeRegistry.isEmptyBiome(biome) && biome.is(EndBiomes.BLOSSOMING_SPIRES)) {
                 EndFeatures.TENANEA_BUSH.getFeature()
                                         .place(new FeaturePlaceContext<NoneFeatureConfiguration>(
                                                 Optional.empty(),

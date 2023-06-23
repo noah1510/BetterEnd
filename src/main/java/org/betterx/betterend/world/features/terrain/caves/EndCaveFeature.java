@@ -2,6 +2,7 @@ package org.betterx.betterend.world.features.terrain.caves;
 
 import org.betterx.bclib.api.v2.generator.BiomePicker;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
+import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeRegistry;
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
 import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
 import org.betterx.bclib.util.BlocksHelper;
@@ -69,7 +70,7 @@ public abstract class EndCaveFeature extends DefaultFeature {
                 Set<BlockPos> floorPositions = Sets.newConcurrentHashSet();
                 Set<BlockPos> ceilPositions = Sets.newConcurrentHashSet();
                 caveBlocks.parallelStream().forEach((bpos) -> {
-                    if (world.getBlockState(bpos).canBeReplaced()){
+                    if (world.getBlockState(bpos).canBeReplaced()) {
                         BlockPos side = bpos.below();
                         if (world.getBlockState(side).is(CommonBlockTags.GEN_END_STONES)) {
                             floorPositions.add(side);
@@ -258,7 +259,9 @@ public abstract class EndCaveFeature extends DefaultFeature {
                 if (bclBiome instanceof EndBiome endBiome)
                     hasCaves = endBiome.hasCaves();
 
-                if (!hasCaves && BiomeAPI.wasRegisteredAsEndLandBiome(bclBiome.getID())) {
+                if (!hasCaves
+                        && !BCLBiomeRegistry.isEmptyBiome(bclBiome)
+                        && BiomeAPI.wasRegisteredAsEndLandBiome(bclBiome.getID())) {
                     return true;
                 }
             }

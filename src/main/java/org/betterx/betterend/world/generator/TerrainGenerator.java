@@ -32,6 +32,7 @@ import java.awt.*;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.locks.ReentrantLock;
+import org.jetbrains.annotations.Nullable;
 
 public class TerrainGenerator {
     private static final Map<Point, TerrainBoolCache> TERRAIN_BOOL_CACHE_MAP = Maps.newHashMap();
@@ -114,19 +115,21 @@ public class TerrainGenerator {
         if (biomeSource == null) {
             return 0;
         }
-        if (getBiome(biomeSource, x, z).settings.getTerrainHeight() < 0.1F) {
+        BCLBiome biome = getBiome(biomeSource, x, z);
+        if (biome != null && biome.settings.getTerrainHeight() < 0.1F) {
             return 0F;
         }
         float depth = 0F;
         for (int i = 0; i < OFFS.length; i++) {
             int px = x + OFFS[i].x;
             int pz = z + OFFS[i].y;
-            depth += getBiome(biomeSource, px, pz).settings.getTerrainHeight() * COEF[i];
+            biome = getBiome(biomeSource, px, pz);
+            depth += biome == null ? 0 : (biome.settings.getTerrainHeight() * COEF[i]);
         }
         return depth;
     }
 
-    private static BCLBiome getBiome(BiomeSource biomeSource, int x, int z) {
+    private static @Nullable BCLBiome getBiome(BiomeSource biomeSource, int x, int z) {
         return BiomeAPI.getBiome(biomeSource.getNoiseBiome(x, 0, z, sampler));
     }
 

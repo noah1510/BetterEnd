@@ -1,5 +1,6 @@
 package org.betterx.betterend.world.features.terrain.caves;
 
+import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeRegistry;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.betterend.util.BlockFixer;
 import org.betterx.betterend.world.biome.cave.EndCaveBiome;
@@ -42,6 +43,9 @@ public class CaveChunkPopulatorFeature extends Feature<CaveChunkPopulatorFeature
         MutableBlockPos max = new MutableBlockPos().set(pos);
         fillSets(sx, sz, world.getChunk(pos), floorPositions, ceilPositions, min, max);
         EndCaveBiome biome = cfg.getCaveBiome();
+        if (BCLBiomeRegistry.isEmptyBiome(biome)) {
+            return false;
+        }
         BlockState surfaceBlock = Blocks.END_STONE.defaultBlockState(); //biome.getBiome().getGenerationSettings().getSurfaceBuilderConfig().getTopMaterial();
         placeFloor(world, chunkGenerator, biome, floorPositions, random, surfaceBlock);
         placeCeil(world, chunkGenerator, biome, ceilPositions, random);

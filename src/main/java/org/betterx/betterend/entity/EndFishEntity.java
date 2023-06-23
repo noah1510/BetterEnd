@@ -1,5 +1,7 @@
 package org.betterx.betterend.entity;
 
+import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
+import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeRegistry;
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
 import org.betterx.betterend.registry.EndBiomes;
 import org.betterx.betterend.registry.EndItems;
@@ -59,7 +61,8 @@ public class EndFishEntity extends AbstractSchoolingFish {
     ) {
         SpawnGroupData data = super.finalizeSpawn(world, difficulty, spawnReason, entityData, entityTag);
 
-        if (BiomeAPI.getBiome(world.getBiome(blockPosition())).equals(EndBiomes.SULPHUR_SPRINGS)) {
+        BCLBiome biome = BiomeAPI.getBiome(world.getBiome(blockPosition()));
+        if (!BCLBiomeRegistry.isEmptyBiome(biome) && biome.equals(EndBiomes.SULPHUR_SPRINGS)) {
             this.entityData.set(VARIANT, (byte) (random.nextInt(VARIANTS_SULPHUR) + VARIANTS_NORMAL));
         }
 

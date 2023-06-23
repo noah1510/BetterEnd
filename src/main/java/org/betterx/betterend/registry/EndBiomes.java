@@ -72,9 +72,9 @@ public class EndBiomes {
                     .map(biome -> registry.getHolderOrThrow(registry.getResourceKey(biome).get()))
                     .map(biome -> biome.unwrapKey().orElseThrow().location())
                     .filter(id -> BiomeAPI.wasRegisteredAs(id, END_CAVE))
-                    .map(id -> BiomeAPI.getBiome(id))
-                    .filter(bcl -> bcl != null)
-                    .forEach(bcl -> CAVE_BIOMES.addBiome(bcl));
+                    .map(BiomeAPI::getBiome)
+                    .filter(bcl -> !BCLBiomeRegistry.isEmptyBiome(bcl))
+                    .forEach(CAVE_BIOMES::addBiome);
 
             CAVE_BIOMES.rebuild();
             caveBiomeMap = null;
@@ -106,7 +106,7 @@ public class EndBiomes {
     public static void addSubBiomeIntegration(EndBiome biome, ResourceLocation parent) {
         if (Configs.BIOME_CONFIG.getBoolean(biome.getID(), "enabled", true)) {
             BCLBiome parentBiome = BiomeAPI.getBiome(parent);
-            if (parentBiome != null && biome.getParentBiome().getID().equals(biome.getID())) {
+            if (!BCLBiomeRegistry.isEmptyBiome(parentBiome) && biome.getParentBiome().getID().equals(biome.getID())) {
                 parentBiome.addSubBiome(biome);
             }
         }

@@ -8,12 +8,14 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 
+import org.jetbrains.annotations.Nullable;
+
 public record CaveChunkPopulatorFeatureConfig(ResourceLocation biomeID) implements FeatureConfiguration {
     public static final Codec<CaveChunkPopulatorFeatureConfig> CODEC = RecordCodecBuilder.create(instance -> instance
             .group(ResourceLocation.CODEC.fieldOf("biome").forGetter(o -> o.biomeID))
             .apply(instance, CaveChunkPopulatorFeatureConfig::new));
 
-    public EndCaveBiome getCaveBiome() {
+    public @Nullable EndCaveBiome getCaveBiome() {
         return (EndCaveBiome) BiomeAPI.getBiome(biomeID);
     }
 }

@@ -3,6 +3,7 @@ package org.betterx.betterend.registry;
 import org.betterx.bclib.BCLib;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeBuilder;
+import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeRegistry;
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
 import org.betterx.bclib.api.v3.levelgen.features.BCLConfigureFeature;
 import org.betterx.bclib.api.v3.levelgen.features.BCLFeature;
@@ -1360,9 +1361,11 @@ public class EndFeatures {
             BiomeAPI.addBiomeFeature(biome, CRASHED_SHIP);
 
             BCLBiome bclbiome = BiomeAPI.getBiome(id);
-            BCLFeature feature = getBiomeStructures(bclbiome);
-            if (feature != null) {
-                BiomeAPI.addBiomeFeature(biome, feature);
+            if (!BCLBiomeRegistry.isEmptyBiome(bclbiome)) {
+                BCLFeature<BuildingListFeature, BuildingListFeatureConfig> feature = getBiomeStructures(bclbiome.getID());
+                if (feature != null) {
+                    BiomeAPI.addBiomeFeature(biome, feature);
+                }
             }
 
 
@@ -1378,10 +1381,6 @@ public class EndFeatures {
                 }
             }
         }
-    }
-
-    private static BCLFeature<BuildingListFeature, BuildingListFeatureConfig> getBiomeStructures(BCLBiome biome) {
-        return getBiomeStructures(biome.getID());
     }
 
     private static BCLFeature<BuildingListFeature, BuildingListFeatureConfig> getBiomeStructures(ResourceLocation loc) {
