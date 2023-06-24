@@ -88,27 +88,27 @@ public class EndEntities {
 
     public static void register() {
         // Air //
-        SpawnRuleBuilder.start(DRAGONFLY).aboveGround(2).maxNearby(8).buildNoRestrictions(Types.MOTION_BLOCKING);
-        SpawnRuleBuilder.start(SILK_MOTH).aboveGround(2).maxNearby(4).buildNoRestrictions(Types.MOTION_BLOCKING);
+        SpawnRuleBuilder.start(DRAGONFLY).aboveGround(2).maxNearby(4, 32).buildNoRestrictions(Types.MOTION_BLOCKING);
+        SpawnRuleBuilder.start(SILK_MOTH).aboveGround(2).maxNearby(4, 32).buildNoRestrictions(Types.MOTION_BLOCKING);
 
         // Land //
         SpawnRuleBuilder
                 .start(END_SLIME)
                 .notPeaceful()
-                .maxNearby(4, 64)
+                .maxNearby(6, 32)
                 .onlyOnValidBlocks()
                 .customRule(EndSlimeEntity::canSpawn)
-                .buildNoRestrictions(Types.MOTION_BLOCKING);
+                .buildOnGround(Types.MOTION_BLOCKING_NO_LEAVES);
 
         SpawnRuleBuilder.start(SHADOW_WALKER)
                         .vanillaHostile()
                         .onlyOnValidBlocks()
                         .maxNearby(8, 64)
-                        .buildNoRestrictions(Types.MOTION_BLOCKING);
+                        .buildOnGround(Types.MOTION_BLOCKING);
 
         // Water //
-        SpawnRuleBuilder.start(END_FISH).maxNearby(8, 64).buildInWater(Types.MOTION_BLOCKING);
-        SpawnRuleBuilder.start(CUBOZOA).maxNearby(8, 64).buildInWater(Types.MOTION_BLOCKING);
+        SpawnRuleBuilder.start(END_FISH).maxNearby(16, 16).buildInWater(Types.MOTION_BLOCKING_NO_LEAVES);
+        SpawnRuleBuilder.start(CUBOZOA).maxNearby(16, 16).buildInWater(Types.MOTION_BLOCKING_NO_LEAVES);
     }
 
     protected static <T extends Entity> EntityType<T> register(
