@@ -31,7 +31,7 @@ public class DebugHelpers {
 
         EndItems.registerEndItem(
                 "debug/biome_loot",
-                DebugDataItem.forLootTable(LootTableUtil.BIOME_CHEST, Items.CHEST)
+                DebugDataItem.forLootTable(LootTableUtil.BIOME_CHEST, Items.OAK_LEAVES)
         );
 
         EndItems.registerEndItem(
