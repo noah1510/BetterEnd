@@ -5,8 +5,10 @@ import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiomeRegistry;
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
 import org.betterx.bclib.api.v2.levelgen.features.features.DefaultFeature;
+import org.betterx.bclib.config.Configs;
 import org.betterx.bclib.util.BlocksHelper;
 import org.betterx.bclib.util.MHelper;
+import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.registry.EndBiomes;
 import org.betterx.betterend.util.BlockFixer;
 import org.betterx.betterend.world.biome.EndBiome;
@@ -36,6 +38,7 @@ import java.util.List;
 import java.util.Set;
 
 public abstract class EndCaveFeature extends DefaultFeature {
+    private static int errCounter = 0;
     protected static final BlockState CAVE_AIR = Blocks.CAVE_AIR.defaultBlockState();
     protected static final BlockState END_STONE = Blocks.END_STONE.defaultBlockState();
     protected static final BlockState WATER = Blocks.WATER.defaultBlockState();
@@ -83,9 +86,14 @@ public abstract class EndCaveFeature extends DefaultFeature {
                 });
 
                 BlockState surfaceBlock = EndBiome.findTopMaterial(biome.bclBiome);
-                placeFloor(world, generator, (EndCaveBiome) biome.bclBiome, floorPositions, random, surfaceBlock);
-                placeCeil(world, generator, (EndCaveBiome) biome.bclBiome, ceilPositions, random);
-                placeWalls(world, generator, (EndCaveBiome) biome.bclBiome, caveBlocks, random);
+                if (biome.bclBiome instanceof EndCaveBiome caveBiome) {
+                    placeFloor(world, generator, (EndCaveBiome) biome.bclBiome, floorPositions, random, surfaceBlock);
+                    placeCeil(world, generator, (EndCaveBiome) biome.bclBiome, ceilPositions, random);
+                    placeWalls(world, generator, (EndCaveBiome) biome.bclBiome, caveBlocks, random);
+                } else if (Configs.MAIN_CONFIG.verboseLogging() && errCounter < 25) {
+                    errCounter++;
+                    BetterEnd.LOGGER.error(biome.bclBiome.getID() + " is not an EndCaveBiome.");
+                }
             }
             fixBlocks(world, caveBlocks);
         }

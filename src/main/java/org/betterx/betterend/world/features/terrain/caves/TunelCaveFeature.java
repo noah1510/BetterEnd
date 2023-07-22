@@ -3,7 +3,9 @@ package org.betterx.betterend.world.features.terrain.caves;
 import org.betterx.bclib.api.v2.generator.BiomePicker;
 import org.betterx.bclib.api.v2.levelgen.biomes.BCLBiome;
 import org.betterx.bclib.api.v2.levelgen.biomes.BiomeAPI;
+import org.betterx.bclib.config.Configs;
 import org.betterx.bclib.util.BlocksHelper;
+import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.noise.OpenSimplexNoise;
 import org.betterx.betterend.registry.EndBiomes;
 import org.betterx.betterend.world.biome.EndBiome;
@@ -36,6 +38,10 @@ import java.util.Set;
 import java.util.stream.IntStream;
 
 public class TunelCaveFeature extends EndCaveFeature {
+    private static int tunnelFloorErrCounter = 0;
+    private static int tunnelCeilErrCounter = 0;
+    private static int tunnelWallErrCounter = 0;
+
     private Set<BlockPos> generate(WorldGenLevel world, BlockPos center, RandomSource random) {
         int cx = center.getX() >> 4;
         int cz = center.getZ() >> 4;
@@ -147,7 +153,7 @@ public class TunelCaveFeature extends EndCaveFeature {
             int height = world.getHeight(Types.WORLD_SURFACE, bpos.getX(), bpos.getZ());
             if (mut.getY() >= height) {
                 remove.add(bpos);
-            } else if (world.getBlockState(mut).canBeReplaced()){
+            } else if (world.getBlockState(mut).canBeReplaced()) {
                 mut.setY(bpos.getY() - 1);
                 if (world.getBlockState(mut).is(CommonBlockTags.GEN_END_STONES)) {
                     Set<BlockPos> floorPositions = floorSets.get(bio);
@@ -176,14 +182,29 @@ public class TunelCaveFeature extends EndCaveFeature {
         }
 
         floorSets.forEach((biome, floorPositions) -> {
-            BlockState surfaceBlock = EndBiome.findTopMaterial(biome.bclBiome);
-            placeFloor(world, generator, (EndCaveBiome) biome.bclBiome, floorPositions, random, surfaceBlock);
+            if (biome.bclBiome instanceof EndCaveBiome caveBiome) {
+                BlockState surfaceBlock = EndBiome.findTopMaterial(biome.bclBiome);
+                placeFloor(world, generator, caveBiome, floorPositions, random, surfaceBlock);
+            } else if (Configs.MAIN_CONFIG.verboseLogging() && tunnelFloorErrCounter < 25) {
+                tunnelFloorErrCounter++;
+                BetterEnd.LOGGER.error(biome.bclBiome.getID() + " is not an EndCaveBiome. Unable to place Tunnel Floor");
+            }
         });
         ceilSets.forEach((biome, ceilPositions) -> {
-            placeCeil(world, generator, (EndCaveBiome) biome.bclBiome, ceilPositions, random);
+            if (biome.bclBiome instanceof EndCaveBiome caveBiome) {
+                placeCeil(world, generator, caveBiome, ceilPositions, random);
+            } else if (Configs.MAIN_CONFIG.verboseLogging() && tunnelCeilErrCounter < 25) {
+                tunnelCeilErrCounter++;
+                BetterEnd.LOGGER.error(biome.bclBiome.getID() + " is not an EndCaveBiome. Unable to place Tunnel Ceiling");
+            }
         });
         BiomePicker.ActualBiome biome = EndBiomes.getCaveBiome(pos.getX(), pos.getZ());
-        placeWalls(world, generator, (EndCaveBiome) biome.bclBiome, caveBlocks, random);
+        if (biome.bclBiome instanceof EndCaveBiome caveBiome) {
+            placeWalls(world, generator, caveBiome, caveBlocks, random);
+        } else if (Configs.MAIN_CONFIG.verboseLogging() && tunnelWallErrCounter < 25) {
+            tunnelWallErrCounter++;
+            BetterEnd.LOGGER.error(biome.bclBiome.getID() + " is not an EndCaveBiome. Unable to place Tunnel Walls");
+        }
         fixBlocks(world, caveBlocks);
 
         return true;
