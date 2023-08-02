@@ -36,10 +36,6 @@ public class JadeCaveBiome extends EndCaveBiome.Config {
 
         public Biome(ResourceKey<net.minecraft.world.level.biome.Biome> biomeID, BCLBiomeSettings settings) {
             super(biomeID, settings);
-
-            JADE[0] = EndBlocks.VIRID_JADESTONE.stone.defaultBlockState();
-            JADE[1] = EndBlocks.AZURE_JADESTONE.stone.defaultBlockState();
-            JADE[2] = EndBlocks.SANDY_JADESTONE.stone.defaultBlockState();
         }
 
         @Override
@@ -91,6 +87,12 @@ public class JadeCaveBiome extends EndCaveBiome.Config {
             index = Mth.abs(index) % 3;
             return JADE[index];
         }
+
+        static {
+            JADE[0] = EndBlocks.VIRID_JADESTONE.stone.defaultBlockState();
+            JADE[1] = EndBlocks.AZURE_JADESTONE.stone.defaultBlockState();
+            JADE[2] = EndBlocks.SANDY_JADESTONE.stone.defaultBlockState();
+        }
     }
 
     public JadeCaveBiome() {
@@ -110,4 +112,6 @@ public class JadeCaveBiome extends EndCaveBiome.Config {
     public BiomeSupplier<EndBiome> getSupplier() {
         return JadeCaveBiome.Biome::new;
     }
+
+
 }
