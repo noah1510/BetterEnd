@@ -18,6 +18,6 @@ public class EndItemTagDataProvider extends TagDataProvider<Item> {
             FabricDataOutput output,
             CompletableFuture<HolderLookup.Provider> registriesFuture
     ) {
-        super(TagManager.ITEMS, List.of("minecraft", BetterEnd.MOD_ID, "c"), output, registriesFuture);
+        super(TagManager.ITEMS, List.of(BetterEnd.MOD_ID), output, registriesFuture);
     }
 }

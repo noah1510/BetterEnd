@@ -22,7 +22,7 @@ public class EndBlockTagDataProvider extends TagDataProvider<Block> {
     ) {
         super(
                 TagManager.BLOCKS,
-                List.of("minecraft", BetterEnd.MOD_ID, "c"),
+                List.of(BetterEnd.MOD_ID),
                 Set.of(CommonBlockTags.NETHER_MYCELIUM),
                 output,
                 registriesFuture
