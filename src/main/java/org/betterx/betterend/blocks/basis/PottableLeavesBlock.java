@@ -1,5 +1,6 @@
 package org.betterx.betterend.blocks.basis;
 
+import org.betterx.bclib.behaviours.BehaviourBuilders;
 import org.betterx.bclib.blocks.BaseLeavesBlock;
 import org.betterx.bclib.interfaces.SurvivesOnBlocks;
 import org.betterx.betterend.interfaces.PottablePlant;
@@ -12,11 +13,11 @@ import java.util.List;
 public class PottableLeavesBlock extends BaseLeavesBlock implements PottablePlant, SurvivesOnBlocks {
 
     public PottableLeavesBlock(Block sapling, MapColor color) {
-        super(sapling, color);
+        super(sapling, BehaviourBuilders.createStaticLeaves(color, true));
     }
 
     public PottableLeavesBlock(Block sapling, MapColor color, int light) {
-        super(sapling, color, light);
+        super(sapling, BehaviourBuilders.createStaticLeaves(color, true).lightLevel(state -> light));
     }
 
     @Override

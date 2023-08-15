@@ -34,7 +34,7 @@ public class HelixTreeLeavesBlock extends BaseBlock implements BehaviourLeaves, 
 
     public HelixTreeLeavesBlock() {
         super(BehaviourBuilders
-                .createLeaves(MapColor.COLOR_ORANGE, true)
+                .createStaticLeaves(MapColor.COLOR_ORANGE, true)
                 .sound(SoundType.WART_BLOCK)
         );
 
