@@ -7,6 +7,7 @@
 	"creative_tab": "betterend.end_items",
 	"model": "betterend:guidebook",
 	"dont_generate_book": true,
+	"use_resource_pack": true,
 	"show_progress": false,
 	"version": 1
 }
