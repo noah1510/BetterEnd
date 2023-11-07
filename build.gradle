@@ -89,7 +89,8 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api-deprecated:${project.fabric_version}"
 
-    //1.19.3 modApi "vazkii.patchouli:Patchouli:${project.patchouli_version}"
+    modApi "vazkii.patchouli:Patchouli:${project.patchouli_version}"
+
     println "Using local BCLib: ${local_bclib}"
     if (local_bclib) {
         implementation(project(path: ":BCLib", configuration: 'dev'))
