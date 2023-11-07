@@ -1,5 +1,7 @@
 package org.betterx.betterend.item;
 
+import net.minecraft.server.level.ServerPlayer;
+import vazkii.patchouli.api.PatchouliAPI;
 import org.betterx.bclib.items.ModelProviderItem;
 import org.betterx.betterend.BetterEnd;
 import org.betterx.betterend.registry.EndItems;
@@ -31,11 +33,11 @@ public class GuideBookItem extends ModelProviderItem {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level world, Player user, InteractionHand hand) {
-        //TODO: 1.19.3 Re-Enable once patchouli is available
-//        if (!world.isClientSide && user instanceof ServerPlayer) {
-//            PatchouliAPI.get().openBookGUI((ServerPlayer) user, BOOK_ID);
-//            return InteractionResultHolder.success(user.getItemInHand(hand));
-//        }
+
+        if (!world.isClientSide && user instanceof ServerPlayer) {
+            PatchouliAPI.get().openBookGUI((ServerPlayer) user, BOOK_ID);
+            return InteractionResultHolder.success(user.getItemInHand(hand));
+        }
         return InteractionResultHolder.consume(user.getItemInHand(hand));
     }
 
